@@ -1,10 +1,11 @@
-import styles from "./Main.module.css";
+// import styles from "./Main.module.css";
+import {Header} from "../../components/Header/header";
 
 function Main() {
   return (
-    <div>
-      <div className={styles["main"]}>라라라</div>
-    </div>
+    <>
+      <Header />
+    </>
   );
 }
 
