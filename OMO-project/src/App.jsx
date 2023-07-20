@@ -7,7 +7,9 @@ import Main from "./pages/main/Main";
 function App() {
   return (
     <>
-      <div>OMO 프로젝트</div>
+      <div>
+        <Main></Main>
+      </div>
     </>
   );
 }

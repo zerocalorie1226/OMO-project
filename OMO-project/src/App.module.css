@@ -3,7 +3,7 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
-/* 숨김 콘텐츠 /
+/* 숨김 콘텐츠 */
 .a11y-hidden,
 legend {
   position: absolute;
@@ -13,14 +13,14 @@ legend {
   clip-path: polygon(0 0, 0 0, 0 0);
 }
 
-/ 기본 스타일 */
+/* 기본 스타일 */
 *,
 *::before,
-::after {
+*::after {
   box-sizing: border-box;
 }
 
-/*링크 스타일 */
+/* 링크 스타일 */
 a {
   color: inherit;
   text-decoration: none;
