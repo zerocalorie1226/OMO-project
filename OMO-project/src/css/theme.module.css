@@ -1,0 +1,55 @@
+:root {
+
+  /* color */
+
+  --primary: #CFBAFF;
+  --secondary: #A179FF;
+ 
+  --black: #000000;
+  --black2: #231F20;
+  --black3: #333333;
+
+  --white: #ffffff;
+  --white2: #FFFDFD;
+  --white3: #FBFBFB;
+
+
+  --red-100: #FF6D6D;
+  --red-200: #F03F40;
+  --red-300: #FF0000;
+
+  --blue-100: #BACDFF;
+  --blue-200: #33B5FF;
+  
+  --gray-50: #E0E0E0;
+  --gray-100: #E5E5E5;
+  --gray-200: #D9D9D9;
+  --gray-300: #D0D0D0;
+  --gray-400: #A6A6A6;
+  --gray-500: #808080;
+  --gray-600: #818181;
+  --gray-700: #898989;
+  --gray-800: #959595;
+  --gray-900: #989898;
+  
+
+  /* space  */
+  --spacing-sxxs: 2px;
+  --spacing--xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-base: 16px;
+  --spacing-md: 20px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  --minus-spacing-sxxs: -2px;
+  --minus-spacing--xxs: -4px;
+  --minus-spacing-xs: -8px;
+  --minus-spacing-sm: -12px;
+  --minus-spacing-base: -16px;
+  --minus-spacing-md: -20px;
+  --minus-spacing-lg: -24px;
+  --minus-spacing-xl: -32px;
+
+}
