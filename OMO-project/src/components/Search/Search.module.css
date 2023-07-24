@@ -18,7 +18,7 @@
   pointer-events: none;
 }
 
-.main-img-container a {
+.main-img-container > a {
   pointer-events: auto;
 }
 
