@@ -7,7 +7,9 @@ export function Search() {
     <div className={styles["main-container"]}>
       <div className={styles["main-img-container"]}>
         <img src={LogoCircle} alt="로고 동그라미" />
-        <img src={Magnifier} alt="돋보기" />
+        <a href="#">
+          <img src={Magnifier} alt="돋보기" />
+        </a>
       </div>
       <input className={styles["main-search-container"]} placeholder="장소를 입력해주세요" />
     </div>

@@ -11,15 +11,21 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  height: 40px;
+
   display: flex;
   justify-content: space-between;
-  /* z-index: -1; */
+  pointer-events: none;
+}
+
+.main-img-container a {
+  pointer-events: auto;
 }
 
 .main-search-container {
   display: block;
   width: 800px;
-  height: 70px;
+  height: 80px;
   border: 1px solid var(--primary);
   margin: 50px auto;
   border-radius: 30px;
