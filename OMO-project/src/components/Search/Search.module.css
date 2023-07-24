@@ -13,6 +13,7 @@
   transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
+  /* z-index: -1; */
 }
 
 .main-search-container {
@@ -22,6 +23,8 @@
   border: 1px solid var(--primary);
   margin: 50px auto;
   border-radius: 30px;
+  padding-left: 60px;
+  outline: none;
 }
 
 .main-img-container > img {

@@ -9,7 +9,7 @@ export function Search() {
         <img src={LogoCircle} alt="로고 동그라미" />
         <img src={Magnifier} alt="돋보기" />
       </div>
-      <input className={styles["main-search-container"]} placeholder="               장소를 입력해주세요" />
+      <input className={styles["main-search-container"]} placeholder="장소를 입력해주세요" />
     </div>
   );
 }
