@@ -1,0 +1,30 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.main-img-container {
+  width: 770px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-search-container {
+  display: block;
+  width: 800px;
+  height: 70px;
+  border: 1px solid var(--primary);
+  margin: 50px auto;
+  border-radius: 30px;
+}
+
+.main-img-container > img {
+  width: 40px;
+  height: 40px;
+}
