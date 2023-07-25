@@ -1,6 +1,6 @@
 import styles from "./Search.module.css";
-import LogoCircle from "../../assets/로고 동그라미.png";
-import Magnifier from "../../assets/돋보기.png";
+import LogoCircle from "../../assets/logo-circle.png";
+import Magnifier from "../../assets/magnifier.png";
 
 export function Search() {
   return (
