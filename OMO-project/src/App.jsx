@@ -3,7 +3,8 @@ import { Header } from './components/Header/Header';
 import { Search } from './components/Search/Search';
 // import Eating from './pages/sub/eating/Eating';
 // import Watching from './pages/sub/watching/Watching';
-import Playing from './pages/sub/playing/Playing';
+// import Playing from './pages/sub/playing/Playing';
+import ThemeCafe from './pages/sub/theme-cafe/ThemeCafe';
 // import Main from './pages/main/Main';
 
 
@@ -17,7 +18,8 @@ function App() {
       {/* <Main></Main> */}
       {/* <Eating></Eating> */}
       {/* <Watching></Watching> */}
-      <Playing></Playing>
+      {/* <Playing></Playing> */}
+      <ThemeCafe></ThemeCafe>
       </div>
     </>
   );
