@@ -1,0 +1,10 @@
+.sub-category-container{
+  width: 1000px;
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  margin: 457px auto 100px auto;
+}
