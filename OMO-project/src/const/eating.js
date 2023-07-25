@@ -7,7 +7,7 @@ import Fastfood from "../assets/sub/eating/fast-food.png";
 
 
 
-export const sub = [
+export const eating = [
   {
     id: 1,
     title: "한식",
