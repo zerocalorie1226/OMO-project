@@ -1,7 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Noto+Sans+KR&display=swap');
-
-.main{
-  background: red;
-  font-size: 100px;
-  font-family: 'Gugi', cursive !important;
+.main-category-container{
+  width: 1000px;
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  margin: 457px auto 100px auto;
 }
