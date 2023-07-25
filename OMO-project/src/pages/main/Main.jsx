@@ -1,20 +1,12 @@
-import styles from "./Main.module.css";
-import {CategoryBox} from "../../components/CategoryBox/CategoryBox";
-import {main} from "./../../const/main";
+import styles from './Main.module.css';
 
-function Main() {
-  return (
+
+function Main(){
+  return(
     <div>
-      <div className={styles["main-category-container"]}>
-        {main.map((el) => {
-          return <CategoryBox key={el.id} title={el.title} img={el.src} />;
-        })}
-      </div>
-    </div>
-
-  
-
-  );
+      <div className={styles['main']}>라라라</div>
+   </div>
+  )
 }
 
 export default Main;

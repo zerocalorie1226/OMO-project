@@ -6,7 +6,6 @@ import './App.module.css';
 import Eating from './pages/sub/eating/Eating';
 
 function App() {
-
   return (
     <>
       <div>
@@ -14,7 +13,7 @@ function App() {
       <Eating></Eating>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
