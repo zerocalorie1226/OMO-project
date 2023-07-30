@@ -2,7 +2,7 @@ import styles from "./Main.module.css";
 import {CategoryBox} from "../../components/CategoryBox/CategoryBox";
 import {main} from "./../../const/main";
 import { Search } from '../../components/Search/Search';
-import { Weather } from "../../components/CategoryBox/Weather/Weather";
+import { Weather } from '../../components/Weather/Weather';
 
 
 

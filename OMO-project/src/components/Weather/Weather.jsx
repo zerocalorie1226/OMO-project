@@ -1,5 +1,5 @@
 import styles from "./Weather.module.css";
-import WeatherBanner from "../../../assets/main/weather-banner.png";
+import WeatherBanner from "../../assets/main/weather-banner.png";
 
 export function Weather() {
   return (
