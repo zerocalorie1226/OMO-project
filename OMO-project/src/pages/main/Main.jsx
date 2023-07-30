@@ -6,9 +6,8 @@ import { Weather } from '../../components/Weather/Weather';
 
 
 
-function Main() {
-  return (
-    <div>
+const Main = () => (
+    <>
       <Search />
       <Weather />
       <div className={styles["main-category-container"]}>
@@ -16,11 +15,8 @@ function Main() {
           return <CategoryBox key={el.id} title={el.title} img={el.src} />;
         })}
       </div>
-    </div>
-
-  
-
+    </>
   );
-}
+
 
 export default Main;

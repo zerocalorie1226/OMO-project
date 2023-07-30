@@ -3,17 +3,16 @@ import {SubCategoryBox} from "./../../../components/SubCategoryBox/SubCategoryBo
 import {themeCafe} from "./../../../const/themeCafe";
 import { Search } from "../../../components/Search/Search";
 
-function ThemeCafe() {
-  return (
-    <div>
+const ThemeCafe = () =>
+     (
+    <>
       <Search />
       <div className={styles["main-category-container"]}>
         {themeCafe.map((el) => {
           return <SubCategoryBox key={el.id} title={el.title} img={el.src} />;
         })}
       </div>
-    </div>
+    </>
   );
-}
 
 export default ThemeCafe;

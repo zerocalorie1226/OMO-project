@@ -9,13 +9,12 @@ import Playing from './pages/sub/playing/Playing';
 import ThemeCafe from './pages/sub/theme-cafe/ThemeCafe';
 
 
-function App() {
-  return (
+const App = () => (
     <>
       <div>
       <Header />
-      <Main />
-      {/* <Eating /> */}
+      {/* <Main /> */}
+      <Eating />
       {/* <Watching /> */}
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
@@ -23,6 +22,5 @@ function App() {
       </div>
     </>
   );
-}
 
 export default App;

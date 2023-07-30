@@ -3,17 +3,15 @@ import {SubCategoryBox} from "./../../../components/SubCategoryBox/SubCategoryBo
 import {eating} from "./../../../const/eating";
 import { Search } from "../../../components/Search/Search";
 
-function Eating() {
-  return (
-    <div>
+const Eating = () => (
+    <>
       < Search />
       <div className={styles["main-category-container"]}>
         {eating.map((el) => {
           return <SubCategoryBox key={el.id} title={el.title} img={el.src} />;
         })}
       </div>
-    </div>
+    </>
   );
-}
 
 export default Eating;

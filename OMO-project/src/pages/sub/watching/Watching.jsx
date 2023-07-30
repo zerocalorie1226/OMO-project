@@ -3,17 +3,15 @@ import {SubCategoryBox} from "./../../../components/SubCategoryBox/SubCategoryBo
 import {watching} from "./../../../const/watching";
 import { Search } from "../../../components/Search/Search";
 
-function Watching() {
-  return (
-    <div>
+const Watching = () => (
+    <>
       <Search />
       <div className={styles["main-category-container"]}>
         {watching.map((el) => {
           return <SubCategoryBox key={el.id} title={el.title} img={el.src} />;
         })}
       </div>
-    </div>
+    </>
   );
-}
 
 export default Watching;
