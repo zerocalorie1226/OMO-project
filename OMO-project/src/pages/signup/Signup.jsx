@@ -1,9 +1,9 @@
 import styles from "./Signup.module.css";
 import React, {useState} from "react";
 
-function Signup() {
-  return (
-    <div>
+const Signup = () =>
+    (
+    <>
       <section className={styles["signup-container"]}>
         <h2 className={styles["signup-title"]}>회원가입</h2>
         <p className={styles["essential"]}>필수입력사항</p>
@@ -71,8 +71,7 @@ function Signup() {
         </div>
 
       </section>
-    </div>
+    </>
   );
-}
 
 export default Signup;

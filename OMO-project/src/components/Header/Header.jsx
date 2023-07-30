@@ -1,8 +1,7 @@
 import styles from "./Header.module.css";
 import MainLogo from "../../assets/logo-main.png";
 
-export function Header() {
-  return (
+export const Header = () => (
     <>
       <header>
         <div className={styles["main-header-container"]}>
@@ -35,4 +34,4 @@ export function Header() {
       </header>
     </>
   );
-}
+
