@@ -1,6 +1,6 @@
 import './App.module.css';
 import { Header } from './components/Header/Header';
-import { Search } from './components/Search/Search';
+
 import Main from './pages/main/Main';
 import Signup from './pages/signup/Signup';
 import Eating from './pages/sub/eating/Eating';
@@ -14,13 +14,12 @@ function App() {
     <>
       <div>
       <Header />
-      <Search />
-      {/* <Signup /> */}
       <Main />
       {/* <Eating /> */}
       {/* <Watching /> */}
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
+      {/* <Signup /> */}
       </div>
     </>
   );
