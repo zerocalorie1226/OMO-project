@@ -14,8 +14,8 @@ function App() {
     <>
       <div>
       <Header />
-      <Main />
-      {/* <Eating /> */}
+      {/* <Main /> */}
+      <Eating />
       {/* <Watching /> */}
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
