@@ -1,13 +1,13 @@
-.main-container {
+.main-search-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-top: 20px;
+  margin: 70px auto;
 }
 
-.main-img-container {
+.main-search-img-container {
   width: 770px;
   position: absolute;
   left: 50%;
@@ -19,16 +19,15 @@
   pointer-events: none;
 }
 
-.main-img-container > a {
+.main-search-img-container > a {
   pointer-events: auto;
 }
 
-.main-search-container {
+.main-search-input-container {
   display: block;
   width: 800px;
   height: 80px;
   border: 1px solid var(--primary);
-  margin: 50px auto;
   border-radius: 30px;
   padding-left: 65px;
   outline: none;
