@@ -1,6 +1,8 @@
 import Calendar from "./Calendar";
 import styles from "./Signup.module.css";
 import Required from "../../assets/sign-up/required.png"
+import { Radio } from "../../components/Radio/Radio";
+import { RadioGroup } from "../../components/Radio/RadioGroup";
 
 
 const Signup = () => (
@@ -52,7 +54,7 @@ const Signup = () => (
 
         <div className={styles["signup-mbti-container"]}>
           <label className={styles["signup-mbti"]} for="mbti">
-            MBTI
+            MBTI <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px" }}/>
           </label>
 
           <select className={styles["mbti-select-IE"]} name="mbti" id="mbti-select">
@@ -76,12 +78,20 @@ const Signup = () => (
           </select>
         </div>
 
-        <div>
-          <label className={styles["gender"]} for="gender">
-            성별
+        <div className={styles["signup-gender-container"]}>
+          <label className={styles["signup-gender"]} for="gender">
+            성별 <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px" }}/>
           </label>
-          <div className={styles["male"]}>남자</div>
-          <div className={styles["female"]}>여자</div>
+          <form className={styles["radio-container"]}>
+      <RadioGroup>
+        <Radio name="gender" value="MALE" defaultChecked>
+          남자
+        </Radio>
+        <Radio name="gender" value="FEMALE">
+          여자
+        </Radio>
+      </RadioGroup>
+    </form>
         </div>
       </div>
     </section>
