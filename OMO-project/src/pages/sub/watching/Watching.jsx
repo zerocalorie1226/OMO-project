@@ -1,17 +1,17 @@
 import styles from "./../../main/Main.module.css";
 import {SubCategoryBox} from "./../../../components/SubCategoryBox/SubCategoryBox";
 import {watching} from "./../../../const/watching";
-import { Search } from "../../../components/Search/Search";
+import Search from "../../../components/Search/Search";
 
 const Watching = () => (
-    <>
-      <Search />
-      <div className={styles["main-category-container"]}>
-        {watching.map((el) => {
-          return <SubCategoryBox key={el.id} title={el.title} img={el.src} />;
-        })}
-      </div>
-    </>
-  );
+  <>
+    <Search />
+    <div className={styles["main-category-container"]}>
+      {watching.map((el) => {
+        return <SubCategoryBox key={el.id} title={el.title} img={el.src} />;
+      })}
+    </div>
+  </>
+);
 
 export default Watching;
