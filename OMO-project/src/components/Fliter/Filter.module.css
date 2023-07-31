@@ -14,7 +14,7 @@
 }
 
 .filter-container a:hover {
-  color: var(--primary);
+  color: var(--secondary);
   text-decoration: underline;
 }
 

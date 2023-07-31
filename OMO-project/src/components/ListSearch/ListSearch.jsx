@@ -8,7 +8,7 @@ const ListSearch = () => (
         <img src={Magnifier} alt="돋보기" />
       </a>
     </div>
-    <input className={styles["list-search-input-container"]} placeholder="검색어를 입력해주세요" />
+    <input className={styles["list-search-input-container"]} placeholder="검색어를 입력해주세요" maxLength={20} />
   </div>
 );
 
