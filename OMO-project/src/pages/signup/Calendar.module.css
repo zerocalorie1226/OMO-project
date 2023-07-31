@@ -57,7 +57,7 @@
 
 :global .react-datepicker {
   width: 350px;
-  height: 400px;
+  height: 418px;
   border-radius: 20px;
   padding-bottom: 20px;
   padding-top: 20px;
@@ -120,6 +120,7 @@
   flex-wrap: nowrap;
   justify-content: center;
   gap: 8px;
+  margin-bottom: 7px;
 }
 
 :global .react-datepicker__day--keyboard-selected {
