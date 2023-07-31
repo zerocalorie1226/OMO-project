@@ -21,7 +21,6 @@
 
 .essential {
   display: block;
-  /* text-align: right; */
   font-size: 18px;
   position: absolute;
   right: 50%;
@@ -40,12 +39,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-}
-
-.signup-email {
-  
-  /* margin-right: 100px; */
 }
 
 .signup-email-input {
@@ -95,8 +88,6 @@
   color: #757575;
 }
 
-
-
 .signup-pw-check {
   margin-right: 34px;
 }
@@ -112,10 +103,6 @@
 
 .signup-pw-check-input::placeholder {
   color: #757575;
-}
-
-.signup-birth-date-container {
-  /* margin-bottom: 45px; */
 }
 
 .signup-birth-date {
@@ -135,10 +122,6 @@
   color: #757575;
 }
 
-.signup-nickname-container {
-  /* margin-bottom: 45px; */
-}
-
 .signup-nickname {
   margin-right: 106px;
 }
@@ -154,10 +137,6 @@
 
 .signup-nickname-input::placeholder {
   color: #757575;
-}
-
-.signup-mbti-container {
-  /* margin-bottom: 45px; */
 }
 
 .signup-mbti {
@@ -191,7 +170,6 @@
   height: 60px;
   border-radius: 10px;
   border: 1px solid var(--gray-400);
-  /* text-align: center; */
   margin-right: 20px;
   padding-left: 11px;
   color: #757575;
@@ -207,9 +185,8 @@
   color: #757575;
 }
 
-
-.signup-gender-container{
-display: flex;
+.signup-gender-container {
+  display: flex;
 }
 
 .signup-gender {
@@ -219,5 +196,3 @@ display: flex;
 .mbti-color {
   color: black;
 }
-
-

@@ -1,4 +1,4 @@
-.gender-input{
+.gender-input {
   margin-right: 16px;
 }
 
@@ -8,7 +8,7 @@
   border: max(2px, 0.1em) solid gray;
   border-radius: 50%;
   width: 1.25em;
-  height: 1.25em; 
+  height: 1.25em;
 }
 
 [type="radio"]:checked {
@@ -40,4 +40,3 @@
   opacity: 0.7;
   cursor: not-allowed;
 }
-
