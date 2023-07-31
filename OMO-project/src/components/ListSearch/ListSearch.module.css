@@ -1,0 +1,36 @@
+.list-search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 400px;
+  margin: 70px auto;
+}
+
+.list-search-img-container {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translate(800%, -50%);
+  float: right;
+}
+
+.list-search-img-container > a {
+  pointer-events: auto;
+}
+
+.list-search-img-container > a > img {
+  width: 20px;
+}
+
+.list-search-input-container {
+  display: block;
+  width: 400px;
+  height: 40px;
+  border: 1px solid var(--primary);
+  border-radius: 30px;
+  padding-left: 20px;
+  outline: none;
+}
