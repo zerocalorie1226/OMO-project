@@ -161,7 +161,7 @@
 }
 
 .signup-mbti {
-  margin-right: 129px;
+  margin-right: 114px;
 }
 
 .mbti-select-IE {
@@ -207,22 +207,17 @@
   color: #757575;
 }
 
-.gender {
-  margin-right: 100px;
+
+.signup-gender-container{
+display: flex;
 }
 
-.male {
-}
-
-.female {
+.signup-gender {
+  margin-right: 112px;
 }
 
 .mbti-color {
   color: black;
 }
 
-/* .required {
-  width: 10px;
-  height: 10px;
-  margin-bottom: 10px;
-} */
+
