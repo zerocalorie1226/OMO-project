@@ -52,7 +52,7 @@ const Signup = () => (
 
         <div className={styles["signup-mbti-container"]}>
           <label className={styles["signup-mbti"]} for="mbti">
-            MBTI <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px" }}/>
+            MBTI
           </label>
 
           <select className={styles["mbti-select-IE"]} name="mbti" id="mbti-select">
