@@ -19,11 +19,9 @@ const App = () => (
       {/* <Watching /> */}
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
-      {/* <Signup /> */}
-      {/* <Login /> */}
-      <List />
-    </div>
-  </>
-);
+      <Signup />
+      </div>
+    </>
+  );
 
 export default App;
