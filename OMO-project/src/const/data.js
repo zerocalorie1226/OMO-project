@@ -7,8 +7,8 @@ export const data = [
   {
     id: 1,
     title: "이치라멘&돈까스",
-    like: "999+",
-    jjim: "999+",
+    like: "53+",
+    jjim: "8+",
     addressBrief: "인천광역시 미추홀구 용현동",
     addressStreet: "인천광역시 미추홀구 경인남길 30번길 95",
     addressNumber: "인천광역시 미추홀구 용현동 186-17",
@@ -47,8 +47,8 @@ export const data = [
   {
     id: 3,
     title: "와우리순대국",
-    like: "999+",
-    jjim: "999+",
+    like: "89+",
+    jjim: "67+",
     addressBrief: "경기도 안양시 안양동",
     addressStreet: "경기도 안양시 만안구 성결대학로 34-1",
     addressNumber: "경기도 안양시 안양동 563-24",
@@ -64,5 +64,24 @@ export const data = [
     src2: Ramen2,
   },
 
+  {
+    id: 3,
+    title: "감성 타코",
+    like: "142+",
+    jjim: "99+",
+    addressBrief: "서울 마포구 서교동",
+    addressStreet: "서울 마포교 와우산로21길 20-11",
+    addressNumber: "서울 마포구 서교동 358-121",
+    intro: "혜인이가 요즘 먹고 싶어하는 가게",
+    time: "11:30~22:00",
+    runTime: "영업 중",
+    holiday: "없음",
+    menu: "감성 그릴드 파히타",
+    price: "38,000원",
+    call: "031-448-8292",
+    googleMap: Map,
+    src1: Ramen1,
+    src2: Ramen2,
+  },
   
 ];
