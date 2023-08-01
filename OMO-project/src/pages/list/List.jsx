@@ -3,6 +3,10 @@ import Filter from "../../components/Fliter/Filter";
 import ListSearch from "../../components/ListSearch/ListSearch";
 import {data} from "./../../const/data";
 import { ListBox } from './../../components/ListBox/ListBox';
+import { ScrollToTop } from './../../components/ScrollToTop/ScrollToTop';
+import handleScroll from './../../components/ScrollToTop/HandleScroll.js';
+import TopButtonImg from "../../assets/top-button.png"
+
 
 
 const List = () => (
@@ -18,6 +22,9 @@ const List = () => (
       })}
       </div>
     </section>
+    {/* <a href="#"><img src={TopButtonImg} alt="탑버튼 아이콘"/></a> */}
+    <ScrollToTop handleClick={handleScroll} />
+  
   </>
 );
 
