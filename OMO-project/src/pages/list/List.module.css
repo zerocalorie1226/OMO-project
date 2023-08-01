@@ -13,4 +13,12 @@
   border: 2px solid var(--primary);
   border-radius: 20px;
   margin: 0 auto;
+  padding: 36px 26px 0px 26px;
+}
+
+.list-list-box-container{
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  align-items: center;
 }

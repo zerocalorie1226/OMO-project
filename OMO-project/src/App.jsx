@@ -19,7 +19,8 @@ const App = () => (
       {/* <Watching /> */}
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
-      <Signup />
+      {/* <Signup /> */}
+      <List />
       </div>
     </>
   );
