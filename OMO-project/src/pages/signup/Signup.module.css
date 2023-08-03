@@ -185,14 +185,55 @@
   color: #757575;
 }
 
-.signup-gender-container {
+.signup-gender-container{
   display: flex;
+}
+
+.signup-gender-radio-container > fieldset {
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+  border: 0px;
 }
 
 .signup-gender {
   margin-right: 112px;
+  display: flex;
+  align-items: center;
 }
 
 .mbti-color {
   color: black;
+}
+
+.terms-of-service{
+  margin-right: 50px;
+}
+
+
+.terms-of-service-container{
+ display: flex;
+ border-top: 1px solid var(--gray-300);
+ border-bottom: 1px solid var(--gray-300);
+ padding-top: 80px;
+ padding-bottom: 80px;
+}
+
+.signup-terms-of-service-radio-container > fieldset{
+  display: flex;
+  flex-flow: column;
+  border: 0px;
+  padding: 0;
+  gap: 38px;
+}
+
+.signup-terms-of-service-radio-container > fieldset > label > ALL {
+  background-color: red;
+}
+
+.radio-hr{
+  border: 0;
+  width: 700px;
+  height: 1px;
+  background-color: var(--gray-50);
 }
