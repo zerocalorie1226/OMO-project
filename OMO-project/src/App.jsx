@@ -8,7 +8,7 @@ import Watching from "./pages/sub/watching/Watching";
 import Playing from "./pages/sub/playing/Playing";
 import ThemeCafe from "./pages/sub/theme-cafe/ThemeCafe";
 import Login from "./pages/login/Login";
-import List from "./pages/list/list";
+import List from "./pages/list/List";
 
 const App = () => (
   <>
@@ -19,8 +19,8 @@ const App = () => (
       {/* <Watching /> */}
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
-      {/* <Signup /> */}
-      <List />
+      <Signup />
+      {/* <List /> */}
       </div>
     </>
   );
