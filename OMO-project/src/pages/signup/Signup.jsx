@@ -14,7 +14,7 @@ const Signup = () => (
       </div>
       <div className={styles["signup-inner-container"]}>
         <div className={styles["signup-email-container"]}>
-          <label className={styles["signup-email"]} for="signup-email">
+          <label className={styles["signup-email"]} htmlFor="signup-email">
             이메일 <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px" }} />
           </label>
           
@@ -25,35 +25,35 @@ const Signup = () => (
         </div>
 
         <div className={styles["signup-pw-container"]}>
-          <label className={styles["signup-pw"]} for="signup-pw">
+          <label className={styles["signup-pw"]} htmlFor="signup-pw">
             비밀번호 <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px" }}/>
           </label>
           <input className={styles["signup-pw-input"]} type="text" id="signup-pw" placeholder="비밀번호를 입력해주세요." />
         </div>
 
         <div className={styles["signup-pw-check-container"]}>
-          <label className={styles["signup-pw-check"]} for="signup-pw-check">
+          <label className={styles["signup-pw-check"]} htmlFor="signup-pw-check">
             비밀번호 확인  <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px" }}/>
           </label>
           <input className={styles["signup-pw-check-input"]} type="text" id="signup-pw-check" placeholder="비밀번호를 한번 더 입력해주세요." />
         </div>
 
         <div className={styles["signup-birth-date-container"]}>
-          <label className={styles["signup-birth-date"]} for="birth-date">
+          <label className={styles["signup-birth-date"]} htmlFor="birth-date">
             생년월일 <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px" }}/>
           </label>
           <Calendar />
         </div>
 
         <div className={styles["signup-nickname-container"]}>
-          <label className={styles["signup-nickname"]} for="nickname">
+          <label className={styles["signup-nickname"]} htmlFor="nickname">
             닉네임 <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px" }}/>
           </label>
           <input className={styles["signup-nickname-input"]} type="text" id="nickname" placeholder="닉네임을 입력해주세요." />
         </div>
 
         <div className={styles["signup-mbti-container"]}>
-          <label className={styles["signup-mbti"]} for="mbti">
+          <label className={styles["signup-mbti"]} htmlFor="mbti">
             MBTI <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px" }}/>
           </label>
 
@@ -79,7 +79,7 @@ const Signup = () => (
         </div>
 
         <div className={styles["signup-gender-container"]}>
-          <label className={styles["signup-gender"]} for="gender">
+          <label className={styles["signup-gender"]} htmlFor="gender">
             성별 <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px" }}/>
           </label>
           <form className={styles["radio-container"]}>
