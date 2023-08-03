@@ -1,0 +1,61 @@
+.myInfo-categories-list {
+  width: 250px;
+  height: 700px;
+  border: 2px solid var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px 10px 0 0;
+  margin-left: 30%;
+}
+.myInfo-categories-list-logo {
+  margin-top: 40px;
+  width: 100px;
+  height: 100px;
+}
+
+.myInfo-categories-list-nickName {
+  text-align: center;
+  font-size: 20px;
+}
+
+.myInfo-categories-list-mbti {
+  text-align: center;
+  color: var(--gray-600);
+  font-size: 20px;
+}
+
+.myInfo-categories-myPage-container {
+  background: var(--primary);
+  width: 100%;
+  text-align: center;
+}
+
+.myInfo-categories-myPage {
+  color: white;
+}
+
+.myInfo-categories-list-container {
+  margin-top: 14px;
+}
+
+.myInfo-categories-myInfo-container,
+.myInfo-categories-heart-container,
+.myInfo-categories-thumb-container,
+.myInfo-categories-recent-container,
+.myInfo-categories-write-container,
+.myInfo-categories-setting-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 100px 10px 40px;
+  width: 120px;
+}
+
+.myInfo-categories-myInfo-text,
+.myInfo-categories-heart-text,
+.myInfo-categories-thumb-text,
+.myInfo-categories-recent-text,
+.myInfo-categories-write-text,
+.myInfo-categories-setting-text {
+  padding-left: 12px;
+}
