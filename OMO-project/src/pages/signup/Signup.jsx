@@ -15,7 +15,7 @@ const Signup = () => (
           필수입력사항
         </p>
       </div>
-      <div className={styles["signup-inner-container"]}>
+      <div div className={styles["signup-inner-container"]}>
         <div className={styles["signup-email-container"]}>
           <label className={styles["signup-email"]} htmlFor="signup-email">
             이메일 <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px"}} />
@@ -122,7 +122,13 @@ const Signup = () => (
             </RadioGroup>
           </form>
         </div>
+        
+        <div className={styles["signup-btn-signup-container"]}>
+        <button type="submit" className={styles["signup-btn-signup"]}>
+          가입하기
+        </button>
       </div>
+</div>
     </section>
   </>
 );

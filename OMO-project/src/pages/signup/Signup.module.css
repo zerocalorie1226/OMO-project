@@ -217,6 +217,7 @@
  border-bottom: 1px solid var(--gray-300);
  padding-top: 80px;
  padding-bottom: 80px;
+ margin-bottom: 70px;
 }
 
 .signup-terms-of-service-radio-container > fieldset{
@@ -236,4 +237,20 @@
   width: 700px;
   height: 1px;
   background-color: var(--gray-50);
+}
+
+.signup-btn-signup {
+  color: white;
+  background-color: var(--secondary);
+  cursor: pointer;
+  width: 500px;
+  height: 80px;
+  border: none;
+  border-radius: 10px;
+}
+
+.signup-btn-signup-container{
+display: flex;
+justify-content: center;
+margin-bottom: 150px;
 }
