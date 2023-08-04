@@ -1,12 +1,12 @@
 .myInfo-categories-list {
   width: 250px;
-  height: 700px;
+  height: 722px;
   border: 2px solid var(--primary);
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 10px 10px 0 0;
-  margin-left: 30.5%;
+  /* margin-right: 200px; */
 }
 .myInfo-categories-list-logo {
   margin-top: 40px;
@@ -32,11 +32,12 @@
 }
 
 .myInfo-categories-myPage {
+  font-size: 20px;
   color: white;
 }
 
 .myInfo-categories-list-container {
-  margin-top: 14px;
+  margin: 14px 0;
 }
 
 .myInfo-categories-myInfo-container,
@@ -47,8 +48,9 @@
 .myInfo-categories-setting-container {
   display: flex;
   align-items: center;
-  margin: 10px 100px 10px 40px;
-  width: 120px;
+  margin: 0 80px 0 40px;
+  width: 160px;
+  /* gap: ; */
 }
 
 .myInfo-categories-myInfo-text,
@@ -58,4 +60,5 @@
 .myInfo-categories-write-text,
 .myInfo-categories-setting-text {
   padding-left: 12px;
+  font-size: 20px;
 }

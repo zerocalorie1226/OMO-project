@@ -5,15 +5,39 @@ import LogoCircle from "../../../assets/logo-circle.png";
 import MyInfoIcon from "../../../assets/my-page/my-info/my-info.png";
 
 const MyInfo = () => (
-  <>
+  <div className={styles["myInfo-total-container"]}>
     <h2 className={styles["myInfo-title-container"]}>
       <img src={MyInfoIcon} alt="내 정보 아이콘" /> 내 정보
     </h2>
     <div className={styles["myInfo-categories-hr-container"]}>
       <Mypage />
-      <hr className={styles["myInfo-hr-container"]} />
+      <div className={styles["myInfo-logo-info-container"]}>
+        <img className={styles["myInfo-circle-logo"]} src={LogoCircle} alt="동그라미 로고" />
+        <div className={styles["myInfo-info-container"]}>
+          <div className={styles["myInfo-nickName-container"]}>
+            <p>닉네임</p>
+            <p className={styles["myInfo-nickName-line"]}>|</p>
+            <p>이니</p>
+          </div>
+          <div className={styles["myInfo-email-container"]}>
+            <p>이메일</p>
+            <p className={styles["myInfo-email-line"]}>|</p>
+            <p>hhi9037@naver.com</p>
+          </div>
+          <div className={styles["myInfo-birthDay-container"]}>
+            <p>생년월일</p>
+            <p className={styles["myInfo-birthDay-line"]}>|</p>
+            <p>1996-04-16</p>
+          </div>
+          <div className={styles["myInfo-mbti-container"]}>
+            <p>MBTI</p>
+            <p className={styles["myInfo-mbti-line"]}>|</p>
+            <p>ISTJ</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </>
+  </div>
 );
 
 export default MyInfo;

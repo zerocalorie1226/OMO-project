@@ -1,18 +1,72 @@
+.myInfo-total-container {
+  width: 1000px;
+  margin: 0 auto;
+}
+
 .myInfo-title-container {
   display: block;
   text-align: center;
   margin: 100px 0 30px 0;
   font-size: 32px;
   font-weight: 400;
+  width: 730px;
+  padding-bottom: 20px;
+  padding-left: 0;
+  border-bottom: 1px solid var(--gray-50);
+  margin: 100px 100px 0 266px;
 }
 
 .myInfo-categories-hr-container {
-  display: flex;
+  position: relative;
+  width: 1000px;
+  justify-content: center;
 }
 
-hr {
-  margin-top: 0;
+.myInfo-logo-info-container {
+  display: flex;
+  position: absolute;
+  left: 340px;
+  top: 100px;
+}
+
+.myInfo-circle-logo {
+  width: 160px;
+  height: 160px;
+  margin-right: 70px;
+  margin-top: 20px;
+}
+.myInfo-info-container {
+  width: 360px;
+  height: 200px;
+  border: 2px dashed var(--primary);
+  border-radius: 10px;
+  padding: 20px 10px;
+}
+
+.myInfo-nickName-container,
+.myInfo-email-container,
+.myInfo-birthDay-container,
+.myInfo-mbti-container {
+  width: 300px;
+  display: flex;
+  font-size: 20px;
+  line-height: 0;
   margin-left: 20px;
-  width: 730px;
-  border: 1px solid var(--gray-50);
+}
+
+.myInfo-nickName-line,
+.myInfo-email-line {
+  margin-left: 36px;
+  margin-right: 20px;
+  color: var(--gray-200);
+}
+.myInfo-birthDay-line {
+  margin-left: 19px;
+  margin-right: 20px;
+  color: var(--gray-200);
+}
+.myInfo-mbti-line {
+  margin-left: 41px;
+  margin-right: 20px;
+  color: var(--gray-200);
 }
