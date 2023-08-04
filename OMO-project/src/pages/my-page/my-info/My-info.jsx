@@ -35,6 +35,25 @@ const MyInfo = () => (
             <p>ISTJ</p>
           </div>
         </div>
+        <div className={styles["myInfo-status-container"]}>
+          <p className={styles["myInfo-status-myStatus"]}>내 정보</p>
+          <div className={styles["myInfo-status-heart"]}>
+            <p className={styles["myInfo-status-heart-title"]}>내 관심 수</p>
+            <p className={styles["myInfo-status-heart-num"]}>4</p>
+          </div>
+          <div className={styles["myInfo-status-thumb"]}>
+            <p className={styles["myInfo-status-thumb-title"]}>내 추천 수</p>
+            <p className={styles["myInfo-status-thumb-num"]}>4</p>
+          </div>
+          <div className={styles["myInfo-status-write"]}>
+            <p className={styles["myInfo-status-write-title"]}>내가 쓴 글</p>
+            <p className={styles["myInfo-status-write-num"]}>4</p>
+          </div>
+          <div className={styles["myInfo-status-course"]}>
+            <p className={styles["myInfo-status-course-title"]}>나의 코스</p>
+            <p className={styles["myInfo-status-course-num"]}>4</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
