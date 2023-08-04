@@ -1,4 +1,4 @@
-import Calendar from "./Calendar";
+import Calendar from "../../components/Calender/Calendar";
 import styles from "./Signup.module.css";
 import Required from "../../assets/sign-up/required.png";
 import {Radio} from "../../components/Radio/Radio";
