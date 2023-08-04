@@ -3,6 +3,8 @@ import styles from "./Signup.module.css";
 import Required from "../../assets/sign-up/required.png";
 import {Radio} from "../../components/Radio/Radio";
 import {RadioGroup} from "../../components/Radio/RadioGroup";
+import CheckBox from "../../components/CheckBox/CheckBox";
+
 
 const Signup = () => (
   <>
@@ -99,35 +101,15 @@ const Signup = () => (
           </form>
         </div>
 
-        <div className={styles["terms-of-service-container"]}>
-          <label className={styles["terms-of-service"]} htmlFor="terms-of-service">이용약관동의</label>
-          <form className={styles["signup-terms-of-service-radio-container"]}>
-            <RadioGroup>
-              <Radio name="agree-items" value="ALL">
-                전체 동의합니다.
-              </Radio>
-              <hr className={styles["radio-hr"]} />
-              <Radio name="agree-items" value="ESSENTIAL">
-                서비스 이용약관 동의 (필수)
-              </Radio>
-              <Radio name="agree-items" value="ESSENTIAL">
-                개인정보 수집 및 이용 동의 (필수)
-              </Radio>
-              <Radio name="agree-items" value="OPTIONAL">
-              개인정보 수집 및 이용 동의 (선택)
-              </Radio>
-              <Radio name="agree-items" value="ESSENTIAL">
-                만 14세 이상입니다. (필수)
-              </Radio>
-            </RadioGroup>
-          </form>
-        </div>
+        <CheckBox />
         
         <div className={styles["signup-btn-signup-container"]}>
         <button type="submit" className={styles["signup-btn-signup"]}>
           가입하기
         </button>
       </div>
+
+
 </div>
     </section>
   </>

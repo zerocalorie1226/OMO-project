@@ -1,0 +1,28 @@
+.terms-of-service-container{
+  display: flex;
+  border-top: 1px solid var(--gray-300);
+  border-bottom: 1px solid var(--gray-300);
+  padding-top: 80px;
+  padding-bottom: 80px;
+  margin-bottom: 70px;
+ }
+
+ .terms-of-service{
+  margin-right: 50px;
+}
+
+.terms-of-service-container{
+  display: flex;
+  border-top: 1px solid var(--gray-300);
+  border-bottom: 1px solid var(--gray-300);
+  padding-top: 80px;
+  padding-bottom: 80px;
+  margin-bottom: 70px;
+ }
+
+ .agree-check-hr{
+  border: 0;
+  width: 700px;
+  height: 1px;
+  background-color: var(--gray-50);
+}
