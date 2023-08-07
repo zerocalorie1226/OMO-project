@@ -1,5 +1,5 @@
 .filter-container {
-  /* margin: auto 0; */
+  margin-left: 20px;
   margin-top: 30px;
   display: flex;
   flex-direction: row;

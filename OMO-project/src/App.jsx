@@ -10,6 +10,7 @@ import ThemeCafe from "./pages/sub/theme-cafe/ThemeCafe";
 import Login from "./pages/login/Login";
 import List from "./pages/list/list";
 import MyInfo from "./pages/my-page/my-info/My-info";
+import MyWrote from "./pages/my-page/my-wrote/My-wrote";
 
 const App = () => (
   <>
@@ -21,7 +22,8 @@ const App = () => (
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
       {/* <Signup /> */}
-      <MyInfo />
+      {/* <MyInfo /> */}
+      <MyWrote />
     </div>
   </>
 );
