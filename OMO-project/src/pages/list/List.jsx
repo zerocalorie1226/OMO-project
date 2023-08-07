@@ -1,8 +1,8 @@
 import styles from "./List.module.css";
 import Filter from "../../components/Filter/Filter";
 import ListSearch from "../../components/ListSearch/ListSearch";
-import {data} from "./../../const/data";
-import {ListBox} from "./../../components/ListBox/ListBox";
+import {data} from "../../const/data";
+import {ListBox} from "../../components/ListBox/ListBox";
 import {useState, useEffect} from "react";
 import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 
