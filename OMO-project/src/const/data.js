@@ -7,8 +7,8 @@ export const data = [
   {
     id: 1,
     title: "이치라멘&돈까스",
-    like: "53",
-    jjim: "8",
+    like: "999+",
+    jjim: "999+",
     addressBrief: "인천광역시 미추홀구 용현동",
     addressStreet: "인천광역시 미추홀구 경인남길 30번길 95",
     addressNumber: "인천광역시 미추홀구 용현동 186-17",
