@@ -44,7 +44,7 @@
 .myInfo-categories-heart-container,
 .myInfo-categories-thumb-container,
 .myInfo-categories-recent-container,
-.myInfo-categories-write-container,
+.myInfo-categories-wrote-container,
 .myInfo-categories-setting-container {
   display: flex;
   align-items: center;
@@ -57,7 +57,7 @@
 .myInfo-categories-heart-text,
 .myInfo-categories-thumb-text,
 .myInfo-categories-recent-text,
-.myInfo-categories-write-text,
+.myInfo-categories-wrote-text,
 .myInfo-categories-setting-text {
   padding-left: 12px;
   font-size: 20px;

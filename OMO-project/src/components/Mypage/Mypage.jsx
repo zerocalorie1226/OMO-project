@@ -3,7 +3,7 @@ import styles from "./Mypage.module.css";
 import LogoCircle from "../../assets/logo-circle.png";
 import MyInfoIcon from "../../assets/my-page/my-info/my-info.png";
 import MyInfoHeart from "../../assets/my-page/my-info/empty-heart.png";
-import MyInfoWrite from "../../assets/my-page/my-info/my-writing.png";
+import MyInfoWrote from "../../assets/my-page/my-info/my-writing.png";
 import MyInfoSetting from "../../assets/my-page/my-info/profile-setting.png";
 import MyInfoRecent from "../../assets/my-page/my-info/recent-place.png";
 import MyInfoThumb from "../../assets/my-page/my-info/empty-thumb.png";
@@ -40,9 +40,9 @@ const Mypage = () => (
           <p className={styles["myInfo-categories-recent-text"]}> 최근 본 장소</p>
         </a>
 
-        <a href="#" className={styles["myInfo-categories-write-container"]}>
-          <img className={styles["myInfo-categories-write-icon"]} src={MyInfoWrite} alt="내가 쓴 글 아이콘" />
-          <p className={styles["myInfo-categories-write-text"]}> 내가 쓴 글</p>
+        <a href="#" className={styles["myInfo-categories-wrote-container"]}>
+          <img className={styles["myInfo-categories-wrote-icon"]} src={MyInfoWrote} alt="내가 쓴 글 아이콘" />
+          <p className={styles["myInfo-categories-wrote-text"]}> 내가 쓴 글</p>
         </a>
 
         <a href="#" className={styles["myInfo-categories-setting-container"]}>
