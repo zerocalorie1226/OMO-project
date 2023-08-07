@@ -1,6 +1,6 @@
 import styles from "./Main.module.css";
 import {CategoryBox} from "../../components/CategoryBox/CategoryBox";
-import {main} from "./../../const/main";
+import {main} from "../../const/main";
 import {Weather} from "../../components/Weather/Weather";
 import Search from "../../components/Search/Search";
 

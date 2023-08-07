@@ -1,4 +1,4 @@
-import styles from "./Mypage-wrote-main.module.css";
+import styles from "./MypageWroteMain.module.css";
 
 const MypageWroteMain = (props) => (
   <div className={styles["myWrote-main-subTitle-free-container"]}>

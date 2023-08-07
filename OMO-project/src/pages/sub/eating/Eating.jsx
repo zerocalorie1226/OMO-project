@@ -1,6 +1,6 @@
-import styles from "./../../main/Main.module.css";
-import {SubCategoryBox} from "./../../../components/SubCategoryBox/SubCategoryBox";
-import {eating} from "./../../../const/eating";
+import styles from "../../Main/Main.module.css";
+import {SubCategoryBox} from "../../../components/SubCategoryBox/SubCategoryBox";
+import {eating} from "../../../const/eating";
 import Search from "../../../components/Search/Search";
 
 const Eating = () => (
