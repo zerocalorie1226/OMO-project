@@ -29,7 +29,9 @@
 
 .detail-review-profile-name{
   margin-left: 10px;
-  margin-top: 5px;
+  margin-top: 3px;
+  /* background-color: aqua; */
+  /* font-weight: 500; */
 }
 
 .detail-review-inner-top-container{
@@ -43,7 +45,7 @@
   display: block;
 margin-left: 42px;
 margin-top: 12px;
-font-size: 18px;
+font-size: 20px;
 }
 
 .detail-review-date{

@@ -52,18 +52,18 @@
 .detail-inner-container{
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 40px;
   width: 1000px;
 }
 
 /* 주소 */
 .detail-address-container{
   border: 2px solid var(--primary);
-  padding: 25px;
+  padding: 30px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  /* gap: 18px; */
 }
 .detail-address-inner-container{
   position: relative;
@@ -75,20 +75,26 @@
   font-weight: 500;
 }
 
-.detail-address-info-street, .detail-address-info-number{
+.detail-address-info-street {
+  margin-top: 18px;
   margin-left: 38px;
   font-size: 20px;
 }
 
+.detail-address-info-number{
+margin-top: 10px;
+ font-size: 20px;
+  margin-left: 38px;
+}
 
 /* 영업정보 */
 .detail-sales-info-container{
   border: 2px solid var(--primary);
-  padding: 25px;
+  padding: 30px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  /* gap: 18px; */
 }
 
 .detail-sales-info-inner-container{
@@ -98,14 +104,16 @@
 .detail-sales-info-title{
   margin-left: 38px;
   font-size: 25px;
+  font-weight: 500;
 }
 
 
 .detail-sales-info-time-container{
   display: flex;
   flex-direction: row;
-  gap: 18px;
+  gap: 17px;
   font-size: 20px;
+  margin-top: 18px;
 }
 
 .detail-sales-info-line{
@@ -117,6 +125,7 @@
   flex-direction: row;
   gap: 20px;
    font-size: 20px;
+   margin-top: 10px;
 }
 
 
@@ -125,12 +134,22 @@
   font-size: 20px;
 }
 
+.detail-sales-info-time{
+  margin-right: 3px;
+}
+
+
+.detail-sales-info-time-info{
+  margin-left: 3px;
+}
+
+
 
 /* 메뉴 */
 
 .detail-menu-container{
   border: 2px solid var(--primary);
-  padding: 25px;
+  padding: 30px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -144,6 +163,7 @@
 .detail-menu-title{
   margin-left: 38px;
   font-size: 25px;
+  font-weight: 500;
 }
 
 .detail-menu-list{
@@ -155,7 +175,7 @@
 
 .detail-call-container{
   border: 2px solid var(--primary);
-  padding: 25px;
+  padding: 30px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -169,6 +189,7 @@
 .detail-call-title{
   margin-left: 38px;
   font-size: 25px;
+  font-weight: 500;
   
 }
 
@@ -186,7 +207,7 @@
 /* MBTI */
 .detail-mbti-stats-container{  
   border: 2px solid var(--primary);
-  padding: 25px;
+  padding: 30px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -200,12 +221,13 @@
 .detail-mbti-stats-title{
   margin-left: 38px;
   font-size: 25px;
+  font-weight: 500;
 }
 
 .detail-mbti-graph-container{
   display: flex;
   flex-direction: column;
-padding: 60px 35px 60px 35px;
+  padding: 60px 35px 60px 35px;
   margin-left: 38px;
   margin-right: 38px;
   font-size: 20px;
@@ -249,7 +271,7 @@ padding: 60px 35px 60px 35px;
 .detail-mbti-graph-EI-bar-percent{
   background-color: var(--secondary);
   height: 100%;
-  width: 30%;
+  width: 70%;
 }
 
 /* SN 퍼센트 바 */
@@ -264,7 +286,7 @@ padding: 60px 35px 60px 35px;
 .detail-mbti-graph-SN-bar-percent{
   background-color: var(--secondary);
   height: 100%;
-  width: 50%;
+  width: 65%;
 }
 
 /* TF 퍼센트 바 */
@@ -295,7 +317,7 @@ padding: 60px 35px 60px 35px;
 .detail-mbti-graph-PJ-bar-percent{
   background-color: var(--secondary);
   height: 100%;
-  width: 20%;
+  width: 80%;
 }
 
 
@@ -303,7 +325,7 @@ padding: 60px 35px 60px 35px;
 
 .detail-review-container{
   border: 2px solid var(--primary);
-  padding: 25px;
+  padding: 30px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -318,11 +340,12 @@ padding: 60px 35px 60px 35px;
 .detail-review-title{
   margin-left: 38px;
   font-size: 25px;
+  font-weight: 500;
 }
 
 .detail-review-box-container{
   margin-left: 38px;
-  font-size: 20px;
+  font-size: 25px;
   display: flex;
   flex-direction: column;
   gap: 30px;

@@ -69,7 +69,7 @@ export const DetailItems = (props) => (
     {/* 구글맵 */}
     <section className={styles["detail-google-map-container"]}>
       <div  className={styles["detail-google-map-inner-container"]} >
-        <img src={props.googleMap} alt="구글맵 이미지" style={{width: "500px"}} />
+        <img src={props.googleMap} alt="구글맵 이미지" style={{width: "1000px", height:"300px"}} />
       </div>
     </section>
 
