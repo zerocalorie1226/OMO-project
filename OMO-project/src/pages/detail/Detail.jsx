@@ -1,6 +1,7 @@
 import styles from "./Detail.module.css";
 import {data} from "./../../const/data";
 import {DetailItems} from "./../../components/DetailItems/DetailItems";
+import { ScrollToTop } from './../../components/ScrollToTop/ScrollToTop';
 
 const Detail = () => (
   <>
@@ -24,8 +25,8 @@ const Detail = () => (
         img1={el.src1} 
         img2={el.src2} />;
       })}
-      <DetailItems />
     </section>
+    <ScrollToTop />
   </>
 );
 
