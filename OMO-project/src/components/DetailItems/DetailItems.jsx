@@ -12,6 +12,7 @@ import Call from "../../assets/detail/call.png"
 import Graph from "../../assets/detail/graph.png"
 import ReviewIcon from "../../assets/detail/review.png"
 import { Review } from "./../../components/DetailItems/Review/Review";
+// import { Map } from "./../../components/Map/Map";
 
 
 
@@ -70,6 +71,7 @@ export const DetailItems = (props) => (
     <section className={styles["detail-google-map-container"]}>
       <div  className={styles["detail-google-map-inner-container"]} >
         <img src={props.googleMap} alt="구글맵 이미지" style={{width: "1000px", height:"300px"}} />
+       {/* <Map /> */}
       </div>
     </section>
 
