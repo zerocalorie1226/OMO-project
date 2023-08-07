@@ -1,15 +1,15 @@
 import styles from "./Mypage-wrote-main.module.css";
 
-const MypageWroteMain = () => (
+const MypageWroteMain = (props) => (
   <div className={styles["myWrote-main-subTitle-free-container"]}>
     <a href="#" className={styles["myWrote-main-subTitle-free-division"]}>
-      자유 게시판
+      {props.division}
     </a>
     <a href="#" className={styles["myWrote-main-subTitle-free-title"]}>
-      이대로 가면...
+      {props.title}
     </a>
     <a href="#" className={styles["myWrote-main-subTitle-free-date"]}>
-      07/12
+      {props.date}
     </a>
   </div>
 );

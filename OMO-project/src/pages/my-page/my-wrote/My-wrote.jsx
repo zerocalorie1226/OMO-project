@@ -4,6 +4,7 @@ import MyWroteIcon from "../../../assets/my-page/my-info/my-writing.png";
 import MyPageFilter from "../../../components/Mypage-Filter/Mypage-Filter";
 import MypageWroteMain from "../../../components/Mypage-Wrote-main/Mypage-wrote-main";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import {myPageWrote} from "../../../const/myPageWrote";
 
 const MyWrote = () => (
   <div className={styles["myWrote-total-container"]}>
@@ -21,9 +22,9 @@ const MyWrote = () => (
           <p className={styles["myWrote-main-subTitle-title"]}>제목</p>
           <p className={styles["myWrote-main-subTitle-date"]}>작성일</p>
         </div>
-        <MypageWroteMain />
-        <MypageWroteMain />
-        <MypageWroteMain />
+        {myPageWrote.map((el) => {
+          return <MypageWroteMain key={el.id} title={el.title} division={el.division} date={el.date} />;
+        })}
       </div>
     </div>
     <ScrollToTop />
