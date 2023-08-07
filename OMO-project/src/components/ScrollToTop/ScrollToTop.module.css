@@ -1,0 +1,18 @@
+.topbtn-container {
+  position: fixed;
+  width: 100%;
+  bottom: 15%;
+  right: 5%;
+  z-index: 1000;
+}
+
+
+.topbtn{
+  position: absolute;
+  border: 0;
+  background:transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+

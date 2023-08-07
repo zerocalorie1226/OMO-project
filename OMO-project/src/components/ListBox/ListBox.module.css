@@ -1,0 +1,86 @@
+.list-box-inner-container{
+  width: 950px;
+  height: 200px;
+  border: 1px solid var(--gray-900);
+  border-radius: 20px;
+  position: relative;
+  padding: 25px;
+  /* padding-left: 50px;
+  padding-top: 25px;
+  padding-bottom: 25px; */
+}
+
+.list-box-title{
+  font-size: 30px;
+  position: absolute;
+  font-weight: 500;
+}
+
+.list-box-like{
+  font-size: 20px;
+  position: absolute;
+  top: 80px;
+ 
+}
+
+
+.list-box-like-number{
+  position: absolute;
+  top: 4px;
+  left: 30px;
+}
+
+
+.list-box-jjim{
+  font-size: 20px;
+  position: absolute;
+  top: 80px;
+  left: 120px;
+}
+
+.list-box-jjim > img{
+  position: absolute;
+  top: 3px;
+}
+
+.list-box-jjim-number{
+  position: absolute;
+  top: 4px;
+  left: 30px;
+}
+
+.list-box-runtime{
+  font-size: 20px;
+  position: absolute;
+  top: 84px;
+  left: 215px;
+  color: var(--blue-200);
+
+}
+
+.list-box-intro{
+  font-size: 20px;
+  position: absolute;
+  top: 118px;
+}
+
+
+.list-box-address-brief{
+  font-size: 20px;
+  position: absolute;
+  top: 150px;
+}
+
+.sub-category-box-img1{
+  position: absolute;
+  right: 210px;
+  top: 20px;
+
+}
+
+.sub-category-box-img2{
+  position: absolute;
+  right: 25px;
+  top: 20px;
+}
+
