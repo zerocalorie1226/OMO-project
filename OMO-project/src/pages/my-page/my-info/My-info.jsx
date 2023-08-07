@@ -9,7 +9,7 @@ const MyInfo = () => (
     <h2 className={styles["myInfo-title-container"]}>
       <img src={MyInfoIcon} alt="내 정보 아이콘" /> 내 정보
     </h2>
-    <div className={styles["myInfo-categories-hr-container"]}>
+    <div className={styles["myInfo-categories-container"]}>
       <Mypage />
       <div className={styles["myInfo-logo-info-container"]}>
         <img className={styles["myInfo-circle-logo"]} src={LogoCircle} alt="동그라미 로고" />
