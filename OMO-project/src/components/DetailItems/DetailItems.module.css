@@ -1,0 +1,142 @@
+.detail-title-container{
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  /* width: 1000px; */
+  align-items: center;
+
+}
+
+.detail-title{
+  margin-top: 60px;
+  font-size: 36px;
+
+}
+
+.detail-like-jjim-container{
+  display: flex;
+  flex-direction: row;
+  margin-top: 42px;
+  gap: 20px;
+  background-color: blue;
+  font-size: 24px;
+}
+
+
+.detail-like{
+  display:flex;
+  flex-direction: row;
+}
+
+.detail-like-number{
+  margin-left: 20px;
+}
+
+.detail-inner-container{
+  /* background-color: beige; */
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  width: 1000px;
+}
+
+/* 주소 */
+.detail-address-container{
+  border: 1px solid var(--primary);
+  padding: 36px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.detail-address-title{
+  margin-left: 18px;
+  font-size: 36px;
+}
+
+.detail-address-info-street, .detail-address-info-number{
+  margin-left: 44px;
+  font-size: 30px;
+}
+
+
+/* 영업정보 */
+.detail-sales-info-container{
+  border: 1px solid var(--primary);
+  padding: 36px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+
+.detail-sales-info-time-container{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.detail-sales-info-line{
+  color: var( --gray-200);
+}
+
+.detail-sales-info-holiday-container{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.detail-sales-info-title{
+  margin-left: 18px;
+  font-size: 36px;
+}
+
+.detail-sales-info-time, .detail-sales-info-holiday{
+  margin-left: 44px;
+  font-size: 30px;
+}
+
+/* 메뉴 */
+
+.detail-menu-container{
+  border: 1px solid var(--primary);
+  padding: 36px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.detail-menu-title{
+  margin-left: 18px;
+  font-size: 36px;
+}
+
+.detail-menu-list{
+  margin-left: 44px;
+  font-size: 30px;
+}
+
+/* 전화 */
+
+.detail-call-container{
+  border: 1px solid var(--primary);
+  padding: 36px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.detail-call-title{
+  margin-left: 18px;
+  font-size: 36px;
+  
+}
+
+.detail-call{
+  margin-left: 44px;
+  font-size: 30px;
+}

@@ -9,6 +9,7 @@ import Playing from "./pages/sub/playing/Playing";
 import ThemeCafe from "./pages/sub/theme-cafe/ThemeCafe";
 import Login from "./pages/login/Login";
 // import List from "./pages/list/List";
+import Detail from './pages/detail/Detail';
 
 const App = () => (
   <>
@@ -19,8 +20,9 @@ const App = () => (
       {/* <Watching /> */}
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
-      <Signup />
+      {/* <Signup /> */}
       {/* <List /> */}
+      <Detail />
       </div>
     </>
   );
