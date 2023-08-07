@@ -1,4 +1,4 @@
-import styles from "./Mypage-Filter.module.css";
+import styles from "./MypageFilter.module.css";
 
 const MypageFilter = () => (
   <div className={styles["filter-container"]}>

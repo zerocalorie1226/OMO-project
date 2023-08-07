@@ -1,4 +1,4 @@
-import styles from "./My-info.module.css";
+import styles from "./MyInfo.module.css";
 
 import Mypage from "../../../components/Mypage/Mypage";
 import LogoCircle from "../../../assets/logo-circle.png";

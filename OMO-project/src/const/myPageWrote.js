@@ -18,4 +18,4 @@ export const myPageWrote = [
     date: "08/07",
   },
 ];
-z``;
+

@@ -1,8 +1,8 @@
 import Mypage from "../../../components/Mypage/Mypage";
-import styles from "./My-wrote.module.css";
+import styles from "./MyWrote.module.css";
 import MyWroteIcon from "../../../assets/my-page/my-info/my-writing.png";
-import MyPageFilter from "../../../components/Mypage-Filter/Mypage-Filter";
-import MypageWroteMain from "../../../components/Mypage-Wrote-main/Mypage-wrote-main";
+import MyPageFilter from "../../../components/MypageFilter/MypageFilter";
+import MypageWroteMain from "../../../components/MypageWroteMain/MypageWroteMain";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {myPageWrote} from "../../../const/myPageWrote";
 
