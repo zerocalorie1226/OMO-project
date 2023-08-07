@@ -17,7 +17,7 @@
 }
 
 .detail-review-img-container > img{
-  border: 1px solid var(--primary);
+  border: 1px solid transparent;
   border-radius: 50%;
   object-fit: cover;
   width: 100%;
