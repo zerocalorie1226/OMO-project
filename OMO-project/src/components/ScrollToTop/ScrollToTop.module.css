@@ -1,8 +1,8 @@
 .topbtn-container {
   position: fixed;
   width: 100%;
-  bottom: 15%;
-  right: 5%;
+  bottom: 13%;
+  right: 2%;
   z-index: 1000;
 }
 
@@ -14,5 +14,6 @@
   position: absolute;
   top: 0;
   right: 0;
+  cursor: pointer;
 }
 

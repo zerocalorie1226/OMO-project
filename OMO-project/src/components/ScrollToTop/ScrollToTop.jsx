@@ -43,7 +43,7 @@ export function ScrollToTop() {
       <button 
         className={styles["topbtn"]} 
         onClick={handleTop}  // 버튼 클릭시 함수 호출
-      ><img src={TopButtonImg} alt="탑버튼 아이콘"/></button>
+      ><img src={TopButtonImg} alt="탑버튼 아이콘" style={{width: "80px", height: "80px"}}/></button>
 
     </div>
   </>
