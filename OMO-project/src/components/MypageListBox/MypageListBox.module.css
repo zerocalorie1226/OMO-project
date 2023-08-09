@@ -1,0 +1,90 @@
+.mypage-list-box-inner-container{
+  width: 670px;
+  height: 135px;
+  border: 1px solid var(--gray-900);
+  border-radius: 20px;
+  position: relative;
+  padding: 20px;
+}
+
+.mypage-list-box-inner-container:hover{
+  /* box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); */
+  border: 1px solid var(--secondary);
+}
+
+.mypage-list-box-title{
+  font-size: 20px;
+  position: absolute;
+  font-weight: 500;
+}
+
+
+.mypage-list-box-like-jjim-container{
+  display: flex;
+  flex-direction: row;
+  margin-top: 33px;
+  font-size: 13px;
+  position: relative;
+}
+
+.mypage-list-box-jjim{
+  display:flex;
+  flex-direction: row;
+}
+
+.mypage-list-box-jjim-number{
+  margin-left: 25px;
+}
+
+
+.mypage-list-box-like{
+  display:flex;
+  flex-direction: row;
+  margin-left: 15px;
+}
+
+.mypage-list-box-like-number{
+  margin-left: 25px;
+}
+
+
+
+.mypage-list-box-runtime{
+  font-size: 13px;
+  position: absolute;
+  top: 53px;
+  left: 165px;
+  color: var(--blue-200);
+
+}
+
+.mypage-list-box-intro{
+  font-size: 13px;
+  position: absolute;
+  top: 77px;
+}
+
+
+.mypage-list-box-address-brief{
+  font-size: 13px;
+  position: absolute;
+  top: 98px;
+}
+
+.mypage-list-box-img1{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  right: 150px;
+  top: 18px;
+
+}
+
+.mypage-list-box-img2{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  right: 25px;
+  top: 18px;
+}
+

@@ -1,0 +1,30 @@
+import styles from "./MypageListBox.module.css";
+import Like from "../../assets/detail/yellow-thumb.png"
+import Jjim from "../../assets/detail/red-heart.png"
+
+
+export const MypageListBox = (props) => (
+  <>
+    <a href="#" className={styles["mypage-list-box-container"]}>
+    <div className={styles["mypage-list-box-inner-container"]}>
+    <span className={styles["mypage-list-box-title"]}>{props.title}</span>
+
+    
+    <div className={styles["mypage-list-box-like-jjim-container"]}>
+          <div className={styles["mypage-list-box-jjim"]}>
+            <img src={Jjim} alt="찜 아이콘" style={{width: "18px", height: "18px", position: "absolute", top: "-2px"}} /> <span className={styles["mypage-list-box-jjim-number"]}> {props.jjim}</span>
+          </div>
+          <div className={styles["mypage-list-box-like"]}>
+            <img src={Like} alt="좋아요 아이콘" style={{width: "18px", height: "18px", position: "absolute", top: "-3px"}} /> <span className={styles["mypage-list-box-like-number"]}> {props.like}</span>
+          </div>
+        </div>
+
+    <span className={styles["mypage-list-box-runtime"]}>{props.runTime}</span>
+    <span className={styles["mypage-list-box-intro"]}>{props.intro}</span>
+    <span className={styles["mypage-list-box-address-brief"]}>{props.addressBrief}</span>
+    <img className={styles["mypage-list-box-img1"]} src={props.img1} />
+    <img className={styles["mypage-list-box-img2"]} src={props.img2} />
+    </div>
+    </a>
+  </>
+);
