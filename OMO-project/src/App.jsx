@@ -12,6 +12,7 @@ import List from "./pages/List/list";
 import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
 import MyWrote from "./pages/Mypage/Mywrote/MyWrote";
 import Detail from "./pages/Detail/Detail";
+import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
 
 const App = () => (
   <>
@@ -23,10 +24,11 @@ const App = () => (
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
       {/* <Signup /> */}
-      <List />
+      {/* <List /> */}
       {/* <Detail /> */}
       {/* <MyInfo /> */}
       {/* <MyWrote /> */}
+      <ProfileSetting />
     </div>
   </>
 );
