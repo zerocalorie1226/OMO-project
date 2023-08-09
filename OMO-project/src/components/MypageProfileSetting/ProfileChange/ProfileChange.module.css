@@ -1,16 +1,16 @@
 .profileSetting-main-profileChange-container {
   position: relative;
+  display: flex;
   width: 800px;
   height: 160px;
-  left: 320px;
+  left: 300px;
   bottom: 680px;
-  display: flex;
 }
 .profileSetting-main-profileChange-title {
   width: 120px;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 16 0px;
-  margin: auto 130px auto 0;
+  margin: auto 140px auto 0;
 }
 
 .profileSetting-main-profileChange-img {
