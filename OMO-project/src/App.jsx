@@ -2,7 +2,7 @@ import "./App.module.css";
 import {Header} from "./components/Header/Header";
 
 import Main from "./pages/Main/Main";
-import Signup from "./pages/Signup/Signup";
+// import Signup from "./pages/Signup/Signup";
 import Eating from "./pages/Sub/Eating/Eating";
 import Watching from "./pages/Sub/Watching/Watching";
 import Playing from "./pages/Sub/Playing/Playing";
@@ -23,7 +23,7 @@ const App = () => (
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
       {/* <Signup /> */}
-      {/* <List /> */}
+      <List />
       {/* <Detail /> */}
       {/* <MyInfo /> */}
       {/* <MyWrote /> */}
