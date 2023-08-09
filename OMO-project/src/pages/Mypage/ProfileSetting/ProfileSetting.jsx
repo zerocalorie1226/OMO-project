@@ -3,6 +3,7 @@ import SettingIcon from "../../../assets/my-page/setting/profile-setting.png";
 import Mypage from "../../../components/Mypage/Mypage";
 import ProfileChange from "../../../components/MypageProfileSetting/ProfileChange/ProfileChange";
 import PasswordChange from "../../../components/MypageProfileSetting/PasswordChange/PasswordChange";
+import NicknameChange from "../../../components/MypageProfileSetting/NicknameChange/NicknameChange";
 
 const ProfileSetting = () => (
   <div className={styles["profileSetting-total-container"]}>
@@ -14,6 +15,7 @@ const ProfileSetting = () => (
       <div className={styles["profileSetting-main-container"]}>
         <ProfileChange />
         <PasswordChange />
+        <NicknameChange />
       </div>
     </div>
   </div>
