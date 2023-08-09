@@ -4,6 +4,7 @@ import Mypage from "../../../components/Mypage/Mypage";
 import ProfileChange from "../../../components/MypageProfileSetting/ProfileChange/ProfileChange";
 import PasswordChange from "../../../components/MypageProfileSetting/PasswordChange/PasswordChange";
 import NicknameChange from "../../../components/MypageProfileSetting/NicknameChange/NicknameChange";
+import MbtiChange from "../../../components/MypageProfileSetting/MbtiChange/MbtiChange";
 
 const ProfileSetting = () => (
   <div className={styles["profileSetting-total-container"]}>
@@ -16,6 +17,7 @@ const ProfileSetting = () => (
         <ProfileChange />
         <PasswordChange />
         <NicknameChange />
+        <MbtiChange />
       </div>
     </div>
   </div>
