@@ -1,7 +1,6 @@
 import Ramen1 from "../assets/list/ramen-img1.png";
 import Ramen2 from "../assets/list/ramen-img2.png";
-import Map from "../assets/detail/google-map.png"
-
+import Map from "../assets/detail/google-map.png";
 
 export const data = [
   {
@@ -16,8 +15,12 @@ export const data = [
     time: "17:00~2:00",
     runTime: "영업 중",
     holiday: "일요일",
-    menu: "전기구이 통닭 (1마리(국내산))",
-    price: "16,000원",
+    menu: [
+      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
+      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
+      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
+      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+    ],
     call: "032-872-7787",
     googleMap: Map,
     src1: Ramen1,
@@ -36,7 +39,12 @@ export const data = [
     time: "11:00~22:00",
     runTime: "영업 중",
     holiday: "없음",
-    menu: "유가네 닭갈비 (1마리(국내산))",
+    menu: [
+      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
+      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
+      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
+      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+    ],
     price: "19,000원",
     call: "032-281-7197",
     googleMap: Map,
@@ -56,7 +64,12 @@ export const data = [
     time: "9:00~21:00",
     runTime: "영업 중",
     holiday: "없음",
-    menu: "내장 순대국",
+    menu: [
+      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
+      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
+      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
+      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+    ],
     price: "9000원",
     call: "031-448-8292",
     googleMap: Map,
@@ -76,7 +89,12 @@ export const data = [
     time: "11:30~22:00",
     runTime: "영업 중",
     holiday: "없음",
-    menu: "감성 그릴드 파히타",
+    menu: [
+      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
+      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
+      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
+      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+    ],
     price: "38,000원",
     call: "031-448-8292",
     googleMap: Map,
@@ -96,7 +114,12 @@ export const data = [
     time: "11:30~22:00",
     runTime: "영업 중",
     holiday: "없음",
-    menu: "감성 그릴드 파히타",
+    menu: [
+      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
+      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
+      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
+      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+    ],
     price: "38,000원",
     call: "031-448-8292",
     googleMap: Map,
@@ -116,14 +139,19 @@ export const data = [
     time: "11:30~22:00",
     runTime: "영업 중",
     holiday: "없음",
-    menu: "감성 그릴드 파히타",
+    menu: [
+      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
+      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
+      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
+      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+    ],
     price: "38,000원",
     call: "031-448-8292",
     googleMap: Map,
     src1: Ramen1,
     src2: Ramen2,
   },
-  
+
   {
     id: 7,
     title: "그냥 타코",
@@ -136,7 +164,12 @@ export const data = [
     time: "11:30~22:00",
     runTime: "영업 중",
     holiday: "없음",
-    menu: "감성 그릴드 파히타",
+    menu: [
+      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
+      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
+      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
+      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+    ],
     price: "38,000원",
     call: "031-448-8292",
     googleMap: Map,
@@ -156,7 +189,12 @@ export const data = [
     time: "11:30~22:00",
     runTime: "영업 중",
     holiday: "없음",
-    menu: "감성 그릴드 파히타",
+    menu: [
+      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
+      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
+      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
+      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+    ],
     price: "38,000원",
     call: "031-448-8292",
     googleMap: Map,
