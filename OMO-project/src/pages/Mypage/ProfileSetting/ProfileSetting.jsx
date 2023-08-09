@@ -20,6 +20,9 @@ const ProfileSetting = () => (
         <NicknameChange />
         <MbtiChange />
         <MembershipWithdrawal />
+        <button type="button" className={styles["profileSetting-main-finish"]}>
+          완료
+        </button>
       </div>
     </div>
   </div>
