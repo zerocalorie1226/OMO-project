@@ -8,16 +8,20 @@
   height: 100%;
 }
 
-.filter-container > a {
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.filter-container a:hover {
+.filter-container button:hover {
   color: var(--secondary);
   text-decoration: underline;
 }
 
 .filter-p {
   margin: 0 14px;
+}
+
+.filter-recommend,
+.filter-close,
+.filter-review,
+.filter-open {
+  border: none;
+  background-color: transparent;
+  color: var(--gray-900);
 }
