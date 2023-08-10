@@ -1,0 +1,32 @@
+.notice-main-subTitle-free-container {
+  display: flex;
+  width: 1000px;
+  height: 60px;
+  justify-content: space-between;
+  font-size: 16px;
+  color: var(--gray-700);
+}
+
+.notice-main-subTitle-free-container:hover {
+  color: var(--secondary);
+}
+
+.notice-main-subTitle-free-division,
+.notice-main-subTitle-free-date {
+  text-align: center;
+  display: inline-block;
+  width: 100px;
+  height: 60px;
+  border-bottom: 1px solid var(--gray-300);
+  margin: auto;
+  line-height: 60px;
+}
+.notice-main-subTitle-free-title {
+  display: inline-block;
+  width: 780px;
+  height: 60px;
+  border-bottom: 1px solid var(--gray-300);
+  margin: auto;
+  line-height: 60px;
+  padding-left: 10px;
+}

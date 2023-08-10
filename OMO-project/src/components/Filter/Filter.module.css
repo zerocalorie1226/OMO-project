@@ -1,10 +1,6 @@
 .filter-container {
   margin: auto 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   color: var(--gray-900);
-  width: 500px;
   height: 100%;
 }
 
@@ -13,15 +9,12 @@
   text-decoration: underline;
 }
 
-.filter-p {
-  margin: 0 14px;
-}
-
-.filter-recommend,
-.filter-close,
-.filter-review,
-.filter-open {
+.filter-button {
   border: none;
   background-color: transparent;
   color: var(--gray-900);
+}
+
+.filter-bar {
+  margin-left: 20px;
 }

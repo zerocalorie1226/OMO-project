@@ -1,10 +1,17 @@
 .list-component-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0 auto;
   margin-top: 100px;
   margin-bottom: 10px;
   width: 1000px;
+}
+
+.list-filter-container {
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
 }
 
 .list-list-container {
@@ -17,7 +24,7 @@
   padding: 36px 26px 0px 26px;
 }
 
-.list-list-box-container{
+.list-list-box-container {
   display: flex;
   flex-direction: column;
   gap: 35px;
