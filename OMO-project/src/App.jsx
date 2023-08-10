@@ -12,6 +12,10 @@ import List from "./pages/List/list";
 import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
 import MyWrote from "./pages/Mypage/Mywrote/MyWrote";
 import Detail from "./pages/Detail/Detail";
+import Interest from './pages/Mypage/Interest/Interest';
+import Recent from './pages/Mypage/Recent/Recent';
+import Recommend from './pages/Mypage/Recommend/Recommend';
+
 
 const App = () => (
   <>
@@ -27,6 +31,9 @@ const App = () => (
       {/* <Detail /> */}
       {/* <MyInfo /> */}
       {/* <MyWrote /> */}
+      {/* <Interest /> */}
+      {/* <Recent /> */}
+      {/* <Recommend/> */}
     </div>
   </>
 );
