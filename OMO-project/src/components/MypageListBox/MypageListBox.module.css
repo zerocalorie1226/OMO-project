@@ -1,6 +1,6 @@
 .mypage-list-box-inner-container{
   width: 670px;
-  height: 135px;
+  height: 160px;
   border: 1px solid var(--gray-400);
   border-radius: 20px;
   position: relative;
@@ -13,7 +13,7 @@
 }
 
 .mypage-list-box-title{
-  font-size: 20px;
+  font-size: 24px;
   position: absolute;
   font-weight: 500;
 }
@@ -22,8 +22,8 @@
 .mypage-list-box-like-jjim-container{
   display: flex;
   flex-direction: row;
-  margin-top: 33px;
-  font-size: 13px;
+  margin-top: 40px;
+  font-size: 16px;
   position: relative;
 }
 
@@ -50,41 +50,46 @@
 
 
 .mypage-list-box-runtime{
-  font-size: 13px;
+  font-size: 16px;
   position: absolute;
-  top: 53px;
-  left: 165px;
+  top: 60px;
+  left: 177px;
   color: var(--blue-200);
 
 }
 
 .mypage-list-box-intro{
-  font-size: 13px;
+  font-size: 16px;
   position: absolute;
-  top: 77px;
+  top: 90px;
+  /* background-color: pink; */
 }
 
 
 .mypage-list-box-address-brief{
-  font-size: 13px;
+  font-size: 16px;
   position: absolute;
-  top: 98px;
+  top: 120px;
+  /* background-color: aquamarine; */
 }
 
 .mypage-list-box-img1{
   position: absolute;
-  width: 100px;
-  height: 100px;
-  right: 150px;
-  top: 18px;
+  width: 120px;
+  height: 120px;
+  right: 160px;
+  top: 19px;
+  border-radius: 5px;
 
 }
 
 .mypage-list-box-img2{
   position: absolute;
-  width: 100px;
-  height: 100px;
-  right: 25px;
-  top: 18px;
+  width: 120px;
+  height: 120px;
+  right: 20px;
+  top: 19px;
+  border-radius: 5px;
+
 }
 
