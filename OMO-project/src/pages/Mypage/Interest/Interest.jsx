@@ -3,7 +3,7 @@ import Mypage from "../../../components/Mypage/Mypage";
 import {MypageListBox} from "../../../components/MypageListBox/MypageListBox";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import { data } from './../../../const/data';
-import InterestIcon from "../../../assets/detail/empty-heart.png";
+import InterestIcon from "../../../assets/my-page/my-info/empty-heart.png";
 
 const Interest = () => (
   <>
