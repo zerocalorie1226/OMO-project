@@ -9,7 +9,7 @@ import {myPageWrote} from "../../../const/myPageWrote";
 const MyWrote = () => (
   <div className={styles["myWrote-total-container"]}>
     <h2 className={styles["myWrote-title-container"]}>
-      <img src={MyWroteIcon} alt="내 정보 아이콘" /> 내가 쓴 글
+      <img src={MyWroteIcon} alt="내가 쓴 글 아이콘" /> 내가 쓴 글
     </h2>
     <div className={styles["myWrote-categories-filter-main-container"]}></div>
     <Mypage />

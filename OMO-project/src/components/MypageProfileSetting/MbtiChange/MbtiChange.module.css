@@ -1,0 +1,76 @@
+.profileSetting-main-MbtiChange-container {
+  position: relative;
+  display: flex;
+  width: 700px;
+  height: 60px;
+  left: 300px;
+  bottom: 680px;
+  margin-top: 50px;
+  justify-content: space-between;
+}
+
+.profileSetting-main-MbtiChange-title {
+  width: 140px;
+  font-size: 20px;
+  line-height: 16 0px;
+  margin: auto 25px auto 0;
+}
+
+.profileSetting-main-MbtiChange-select-container {
+  width: 330px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.profileSetting-main-MbtiChange-select-IE {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid var(--gray-400);
+  text-align: center;
+  color: #757575;
+}
+
+.profileSetting-main-MbtiChange-select-SN {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid var(--gray-400);
+  text-align: center;
+  color: #757575;
+}
+
+.profileSetting-main-MbtiChange-select-TF {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid var(--gray-400);
+  text-align: center;
+  color: #757575;
+}
+
+.profileSetting-main-MbtiChange-select-JP {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid var(--gray-400);
+  text-align: center;
+  color: #757575;
+}
+
+.profileSetting-main-MbtiChange-button {
+  width: 150px;
+  height: 60px;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: transparent;
+  color: var(--primary);
+  margin-left: 30px;
+}
+
+.profileSetting-main-MbtiChange-container button:hover {
+  cursor: pointer;
+}
