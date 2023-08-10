@@ -6,12 +6,10 @@
   margin-top: 100px;
 }
 
-
 /* 회원가입 헤더박스 */
 .signup-title-container {
   position: relative;
 }
-
 
 /* 회원가입 글자 */
 .signup-title {
@@ -24,7 +22,6 @@
   font-weight: 400;
 }
 
-
 /* 필수입력사항 */
 .essential {
   display: block;
@@ -35,7 +32,6 @@
   transform: translate(485%, 0);
 }
 
-
 /* 회원가입 하단 영역 전체 */
 .signup-inner-container {
   font-size: 25px;
@@ -43,7 +39,6 @@
   flex-direction: column;
   gap: 45px;
 }
-
 
 /* 이메일 */
 .signup-email-container {
@@ -76,7 +71,6 @@
   cursor: pointer;
 }
 
-
 /* 비밀번호 */
 .signup-pw-container {
   display: flex;
@@ -101,7 +95,6 @@
   color: #757575;
 }
 
-
 /* 비밀번호 확인 */
 .signup-pw-check {
   margin-right: 34px;
@@ -119,7 +112,6 @@
 .signup-pw-check-input::placeholder {
   color: #757575;
 }
-
 
 /* 생년월일 */
 .signup-birth-date {
@@ -139,7 +131,6 @@
   color: #757575;
 }
 
-
 /* 닉네임 */
 .signup-nickname {
   margin-right: 106px;
@@ -158,7 +149,6 @@
   color: #757575;
 }
 
-
 /* MBTI */
 .signup-mbti {
   margin-right: 114px;
@@ -171,7 +161,6 @@
   border: 1px solid var(--gray-400);
   text-align: center;
   margin-right: 20px;
-  padding-left: 11px;
   color: #757575;
 }
 
@@ -182,7 +171,6 @@
   border: 1px solid var(--gray-400);
   text-align: center;
   margin-right: 20px;
-  padding-left: 11px;
   color: #757575;
 }
 
@@ -191,8 +179,8 @@
   height: 60px;
   border-radius: 10px;
   border: 1px solid var(--gray-400);
+  text-align: center;
   margin-right: 20px;
-  padding-left: 11px;
   color: #757575;
 }
 
@@ -202,7 +190,6 @@
   border-radius: 10px;
   border: 1px solid var(--gray-400);
   text-align: center;
-  padding-left: 11px;
   color: #757575;
 }
 
@@ -210,9 +197,8 @@
   color: black;
 }
 
-
 /* 성별 */
-.signup-gender-container{
+.signup-gender-container {
   display: flex;
 }
 
@@ -229,13 +215,12 @@
   align-items: center;
 }
 
-
 /* 가입하기 버튼 */
-.signup-btn-signup-container{
+.signup-btn-signup-container {
   display: flex;
   justify-content: center;
   margin-bottom: 150px;
-  }
+}
 
 .signup-btn-signup {
   color: white;

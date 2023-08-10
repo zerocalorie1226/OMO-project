@@ -5,14 +5,12 @@ import {Radio} from "../../components/Radio/Radio";
 import {RadioGroup} from "../../components/Radio/RadioGroup";
 import CheckBox from "../../components/CheckBox/CheckBox";
 
-
 const Signup = () => (
   <>
     <section className={styles["signup-container"]}>
       <div className={styles["signup-title-container"]}>
         <h2 className={styles["signup-title"]}>회원가입</h2>
         <p className={styles["essential"]}>
-          {" "}
           <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "10px", right: "1px"}} className={styles["required"]} />
           필수입력사항
         </p>
@@ -102,15 +100,13 @@ const Signup = () => (
         </div>
 
         <CheckBox />
-        
+
         <div className={styles["signup-btn-signup-container"]}>
-        <button type="submit" className={styles["signup-btn-signup"]}>
-          가입하기
-        </button>
+          <button type="submit" className={styles["signup-btn-signup"]}>
+            가입하기
+          </button>
+        </div>
       </div>
-
-
-</div>
     </section>
   </>
 );

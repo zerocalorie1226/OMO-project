@@ -8,14 +8,16 @@ import Watching from "./pages/Sub/Watching/Watching";
 import Playing from "./pages/Sub/Playing/Playing";
 import ThemeCafe from "./pages/Sub/ThemeCafe/ThemeCafe";
 import Login from "./pages/Login/Login";
-import List from "./pages/List/list";
+import List from "./pages/List/List";
 import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
 import MyWrote from "./pages/Mypage/Mywrote/MyWrote";
 import Detail from "./pages/Detail/Detail";
 import Interest from './pages/Mypage/Interest/Interest';
 import Recent from './pages/Mypage/Recent/Recent';
 import Recommend from './pages/Mypage/Recommend/Recommend';
-
+import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
+import MyCourse from "./pages/MyCourse/MyCourse";
+import NoticeMain from "./pages/notice/Notice";
 
 const App = () => (
   <>
@@ -27,13 +29,16 @@ const App = () => (
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
       {/* <Signup /> */}
-      <List />
+      {/* <List /> */}
       {/* <Detail /> */}
       {/* <MyInfo /> */}
       {/* <MyWrote /> */}
       {/* <Interest /> */}
       {/* <Recent /> */}
       {/* <Recommend/> */}
+      {/* <ProfileSetting /> */}
+      {/* <MyCourse /> */}
+      <NoticeMain />
     </div>
   </>
 );
