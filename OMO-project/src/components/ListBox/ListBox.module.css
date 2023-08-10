@@ -73,14 +73,19 @@
 
 .list-box-img1{
   position: absolute;
-  right: 210px;
-  top: 20px;
-
+  right: 200px;
+  top: 25px;
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
 }
 
 .list-box-img2{
   position: absolute;
   right: 25px;
-  top: 20px;
+  top: 25px;
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
 }
 
