@@ -1,5 +1,4 @@
 import styles from "./DetailItems.module.css";
-import Thumbnail from "../../assets/detail/thumbnail.png";
 import Jjim from "../../assets/detail/empty-heart.png";
 // import JjimClicked from "../../assets/detail/red-heart.png"
 import Like from "../../assets/detail/empty-thumb.png";
@@ -22,7 +21,7 @@ export const DetailItems = (props) => {
       {/* 타이틀 */}
       <section className={styles["detail-title-container"]}>
         <div className={styles["detail-thumbnail-container"]}>
-          <img src={Thumbnail} alt="썸네일 이미지" style={{width: "350px", height: "350px"}} />
+          <img src={data.thumbnail} alt="썸네일 이미지" />
         </div>
         <span className={styles["detail-title"]}>{data.title}</span>
         <div className={styles["detail-like-jjim-container"]}>

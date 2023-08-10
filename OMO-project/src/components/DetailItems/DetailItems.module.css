@@ -8,6 +8,12 @@
 
 }
 
+.detail-thumbnail-container > img {
+width: 350px;
+height: 350px;
+border-radius: 20px;
+}
+
 .detail-title{
   margin-top: 30px;
   font-size: 30px;

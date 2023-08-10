@@ -1,6 +1,7 @@
 import Ramen1 from "../assets/list/ramen-img1.jpg";
 import Ramen2 from "../assets/list/ramen-img2.jpg";
 import Map from "../assets/detail/google-map.png";
+import Thumbnail from "../assets/detail/thumbnail.png";
 
 export const data = [
   {
@@ -25,6 +26,7 @@ export const data = [
     googleMap: Map,
     src1: Ramen1,
     src2: Ramen2,
+    thumbnail: Thumbnail,
   },
 
   {
