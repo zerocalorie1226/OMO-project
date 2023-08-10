@@ -14,6 +14,7 @@ import MyWrote from "./pages/Mypage/Mywrote/MyWrote";
 import Detail from "./pages/Detail/Detail";
 import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
 import MyCourse from "./pages/MyCourse/MyCourse";
+import NoticeMain from "./pages/notice/Notice";
 
 const App = () => (
   <>
@@ -30,7 +31,8 @@ const App = () => (
       {/* <MyInfo /> */}
       {/* <MyWrote /> */}
       {/* <ProfileSetting /> */}
-      <MyCourse />
+      {/* <MyCourse /> */}
+      <NoticeMain />
     </div>
   </>
 );
