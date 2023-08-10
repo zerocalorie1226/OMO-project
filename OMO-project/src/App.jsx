@@ -2,7 +2,7 @@ import "./App.module.css";
 import {Header} from "./components/Header/Header";
 
 import Main from "./pages/Main/Main";
-// import Signup from "./pages/Signup/Signup";
+import Signup from "./pages/Signup/Signup";
 import Eating from "./pages/Sub/Eating/Eating";
 import Watching from "./pages/Sub/Watching/Watching";
 import Playing from "./pages/Sub/Playing/Playing";
@@ -17,7 +17,7 @@ import Recent from './pages/Mypage/Recent/Recent';
 import Recommend from './pages/Mypage/Recommend/Recommend';
 import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
 import MyCourse from "./pages/MyCourse/MyCourse";
-import NoticeMain from "./pages/notice/Notice";
+import Notice from "./pages/Notice/Notice";
 
 const App = () => (
   <>
@@ -38,7 +38,7 @@ const App = () => (
       {/* <Recommend/> */}
       {/* <ProfileSetting /> */}
       {/* <MyCourse /> */}
-      <NoticeMain />
+      <Notice />
     </div>
   </>
 );

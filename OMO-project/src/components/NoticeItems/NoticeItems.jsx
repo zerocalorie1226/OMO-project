@@ -1,6 +1,6 @@
-import styles from "./Notice.module.css";
+import styles from "./NoticeItems.module.css";
 
-const Notice = (props) => (
+const NoticeItems = (props) => (
   <div className={styles["notice-main-subTitle-free-container"]}>
     <a href="#" className={styles["notice-main-subTitle-free-division"]}>
       {props.division}
@@ -14,4 +14,4 @@ const Notice = (props) => (
   </div>
 );
 
-export default Notice;
+export default NoticeItems;
