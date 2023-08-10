@@ -1,5 +1,5 @@
-import Ramen1 from "../assets/list/ramen-img1.png";
-import Ramen2 from "../assets/list/ramen-img2.png";
+import Ramen1 from "../assets/list/ramen-img1.jpg";
+import Ramen2 from "../assets/list/ramen-img2.jpg";
 import Map from "../assets/detail/google-map.png";
 
 export const data = [
