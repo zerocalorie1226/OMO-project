@@ -10,7 +10,7 @@
 
 /* 박스 hover 효과 */
 .mypage-list-box-inner-container:hover{
-  border: 1px solid var(--secondary);
+  border: 2px solid var(--secondary);
 }
 
 /* 가게 이름 */
