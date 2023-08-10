@@ -1,4 +1,4 @@
-.topbtn-container {
+.top-btn-container {
   position: fixed;
   width: 100%;
   bottom: 13%;
@@ -7,7 +7,7 @@
 }
 
 
-.topbtn{
+.top-btn{
   position: absolute;
   border: 0;
   background:transparent;
