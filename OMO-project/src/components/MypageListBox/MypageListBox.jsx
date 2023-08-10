@@ -12,10 +12,10 @@ export const MypageListBox = (props) => (
     
     <div className={styles["mypage-list-box-like-jjim-container"]}>
           <div className={styles["mypage-list-box-jjim"]}>
-            <img src={Jjim} alt="찜 아이콘" style={{width: "18px", height: "18px", position: "absolute", top: "-1px"}} /> <span className={styles["mypage-list-box-jjim-number"]}> {props.jjim}</span>
+            <img src={Jjim} alt="찜 아이콘" /> <span className={styles["mypage-list-box-jjim-number"]}> {props.jjim}</span>
           </div>
           <div className={styles["mypage-list-box-like"]}>
-            <img src={Like} alt="좋아요 아이콘" style={{width: "18px", height: "18px", position: "absolute", top: "-1px"}} /> <span className={styles["mypage-list-box-like-number"]}> {props.like}</span>
+            <img src={Like} alt="좋아요 아이콘" /> <span className={styles["mypage-list-box-like-number"]}> {props.like}</span>
           </div>
         </div>
 
