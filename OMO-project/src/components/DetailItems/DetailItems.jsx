@@ -1,5 +1,4 @@
 import styles from "./DetailItems.module.css";
-import Thumbnail from "../../assets/detail/thumbnail.png";
 import Jjim from "../../assets/detail/empty-heart.png";
 // import JjimClicked from "../../assets/detail/red-heart.png"
 import Like from "../../assets/detail/empty-thumb.png";
@@ -22,16 +21,16 @@ export const DetailItems = (props) => {
       {/* 타이틀 */}
       <section className={styles["detail-title-container"]}>
         <div className={styles["detail-thumbnail-container"]}>
-          <img src={Thumbnail} alt="썸네일 이미지" style={{width: "350px", height: "350px"}} />
+          <img src={data.thumbnail} alt="썸네일 이미지" />
         </div>
         <span className={styles["detail-title"]}>{data.title}</span>
         <div className={styles["detail-like-jjim-container"]}>
           <div className={styles["detail-jjim"]}>
-            <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} /> <span className={styles["detail-jjim-number"]}> {data.jjim}</span>
+           <button type="button"><img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} /> </button> <span className={styles["detail-jjim-number"]}> {data.jjim}</span>
           </div>
           <span className={styles["detail-like-jjim-line"]}>|</span>
           <div className={styles["detail-like"]}>
-            <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} /> <span className={styles["detail-like-number"]}> {data.like}</span>
+          <button type="button"><img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} /> </button><span className={styles["detail-like-number"]}> {data.like}</span>
           </div>
         </div>
       </section>

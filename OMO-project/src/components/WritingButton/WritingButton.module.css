@@ -1,13 +1,13 @@
-.top-btn-container {
+.writing-btn-container {
   position: fixed;
   width: 100%;
-  bottom: 13%;
+  bottom: 22%;
   right: 2%;
   z-index: 1000;
 }
 
 
-.top-btn{
+.writing-btn{
   position: absolute;
   border: 0;
   background:transparent;
