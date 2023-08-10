@@ -1,6 +1,6 @@
 import styles from "./MypageListBox.module.css";
-import Like from "../../assets/detail/yellow-thumb.png"
-import Jjim from "../../assets/detail/red-heart.png"
+import Like from "../../assets/my-page/interest/empty-thumb.png"
+import Jjim from "../../assets/my-page/interest/empty-heart.png"
 
 
 export const MypageListBox = (props) => (
@@ -12,10 +12,10 @@ export const MypageListBox = (props) => (
     
     <div className={styles["mypage-list-box-like-jjim-container"]}>
           <div className={styles["mypage-list-box-jjim"]}>
-            <img src={Jjim} alt="찜 아이콘" style={{width: "18px", height: "18px", position: "absolute", top: "-2px"}} /> <span className={styles["mypage-list-box-jjim-number"]}> {props.jjim}</span>
+            <img src={Jjim} alt="찜 아이콘" style={{width: "18px", height: "18px", position: "absolute", top: "-1px"}} /> <span className={styles["mypage-list-box-jjim-number"]}> {props.jjim}</span>
           </div>
           <div className={styles["mypage-list-box-like"]}>
-            <img src={Like} alt="좋아요 아이콘" style={{width: "18px", height: "18px", position: "absolute", top: "-3px"}} /> <span className={styles["mypage-list-box-like-number"]}> {props.like}</span>
+            <img src={Like} alt="좋아요 아이콘" style={{width: "18px", height: "18px", position: "absolute", top: "-1px"}} /> <span className={styles["mypage-list-box-like-number"]}> {props.like}</span>
           </div>
         </div>
 
