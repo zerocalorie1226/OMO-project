@@ -1,6 +1,6 @@
-import MyCourseList from "../../components/MyCourse/MyCourseList/MyCourseList";
-import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
-import {myCourse} from "../../const/mycourse";
+import MyCourseList from "../../../components/MyCourse/MyCourseList/MyCourseList";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import {myCourse} from "../../../const/mycourse";
 import styles from "./MyCourse.module.css";
 
 const MyCourse = () => (

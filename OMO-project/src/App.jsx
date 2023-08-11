@@ -2,7 +2,7 @@ import "./App.module.css";
 import {Header} from "./components/Header/Header";
 
 import Main from "./pages/Main/Main";
-import Signup from "./pages/Signup/Signup";
+// import Signup from "./pages/Signup/Signup";
 import Eating from "./pages/Sub/Eating/Eating";
 import Watching from "./pages/Sub/Watching/Watching";
 import Playing from "./pages/Sub/Playing/Playing";
@@ -12,12 +12,13 @@ import List from "./pages/List/List";
 import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
 import MyWrote from "./pages/Mypage/Mywrote/MyWrote";
 import Detail from "./pages/Detail/Detail";
-import Interest from './pages/Mypage/Interest/Interest';
-import Recent from './pages/Mypage/Recent/Recent';
-import Recommend from './pages/Mypage/Recommend/Recommend';
+import Interest from "./pages/Mypage/Interest/Interest";
+import Recent from "./pages/Mypage/Recent/Recent";
+import Recommend from "./pages/Mypage/Recommend/Recommend";
 import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
-import MyCourse from "./pages/MyCourse/MyCourse";
+import MyCourse from "./pages/MyCourse/MyCourseMain/MyCourse";
 import Notice from "./pages/Notice/Notice";
+import MyCourseWrite from "./pages/MyCourse/MyCourseWrite/MyCourseWrite";
 
 const App = () => (
   <>
@@ -32,12 +33,13 @@ const App = () => (
       {/* <List /> */}
       {/* <Detail /> */}
       {/* <MyInfo /> */}
-      {/* <MyWrote /> */}
+      {/* <MyWrotes /> */}
       {/* <Interest /> */}
       {/* <Recent /> */}
-      {/* <Recommend/> */}
+      {/* <Recommend /> */}
       {/* <ProfileSetting /> */}
       {/* <MyCourse /> */}
+      {/* <MyCourseWrite /> */}
       <Notice />
     </div>
   </>
