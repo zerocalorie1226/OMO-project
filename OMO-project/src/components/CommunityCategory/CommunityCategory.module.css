@@ -1,6 +1,6 @@
-.community-category-container{
+.community-category-container {
   width: 100%;
-  height: 90px;
+  height: 80px;
   background-color: var(--primary);
   font-size: 20px;
   display: flex;
@@ -8,11 +8,21 @@
   gap: 90px;
   align-items: center;
   position: absolute;
-  }
+}
 
+/* .community-category-mycourse-box {
+  width: 240px;
+  height: 75px;
+  background-color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 6px;
+  border-radius: 20px 20px 0px 0px;
+} */
 
-
-.community-category-mycourse-box{
+.community-category-worry-box {
   width: 200px;
   height: 75px;
   background-color: var(--white);
@@ -20,11 +30,11 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  top: 8px;
+  top: 6px;
   border-radius: 20px 20px 0px 0px;
 }
 
-.community-category-worry-box{
+/* .community-category-free-box {
   width: 200px;
   height: 75px;
   background-color: var(--white);
@@ -32,51 +42,44 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  top: 8px;
+  top: 6px;
   border-radius: 20px 20px 0px 0px;
-  }
-
-  .community-category-free-box{
-    width: 200px;
-    height: 75px;
-    background-color: var(--white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: 8px;
-    border-radius: 20px 20px 0px 0px;
-    }
-
-    .community-category-inquiry-box{
-      width: 200px;
-      height: 75px;
-      background-color: var(--white);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      top: 8px;
-      border-radius: 20px 20px 0px 0px;
-      }
-
-.community-category-mycourse{
-  position: relative;
-  top: 8px;
 }
 
-.community-category-worry{
+.community-category-inquiry-box {
+  width: 200px;
+  height: 75px;
+  background-color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  top: 8px;
+  top: 6px;
+  border-radius: 20px 20px 0px 0px;
+} */
+
+
+
+.community-category-mycourse {
+  position: relative;
+  top: 6px;
+  background-color: aqua;
 }
 
-
-.community-category-free{
+.community-category-worry {
   position: relative;
-  top: 8px;
+  top: 6px;
+  background-color: aqua;
 }
 
-.community-category-inquiry{
+.community-category-free {
   position: relative;
-  top: 8px;
+  top: 6px;
+  background-color: aqua;
+}
+
+.community-category-inquiry {
+  position: relative;
+  top: 6px;
+  background-color: aqua;
 }
