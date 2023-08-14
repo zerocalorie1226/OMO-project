@@ -18,6 +18,7 @@ import Recommend from './pages/Mypage/Recommend/Recommend';
 import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
 import MyCourse from "./pages/MyCourse/MyCourse";
 import Notice from "./pages/Notice/Notice";
+import MyCourseBoard from './pages/Community/MyCourseBoard/MyCourseBoard';
 
 const App = () => (
   <>
@@ -38,7 +39,8 @@ const App = () => (
       {/* <Recommend/> */}
       {/* <ProfileSetting /> */}
       {/* <MyCourse /> */}
-      <Notice />
+      {/* <Notice /> */}
+      <MyCourseBoard />
     </div>
   </>
 );
