@@ -17,6 +17,7 @@
   border: none;
   outline: none;
   border-bottom: 2px solid var(--gray-200);
+  text-align: center;
 }
 
 .myCourseWrite-input-title::placeholder {

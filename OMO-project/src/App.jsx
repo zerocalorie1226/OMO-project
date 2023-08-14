@@ -39,8 +39,8 @@ const App = () => (
       {/* <Recommend /> */}
       {/* <ProfileSetting /> */}
       {/* <MyCourse /> */}
-      {/* <MyCourseWrite /> */}
-      <Notice />
+      <MyCourseWrite />
+      {/* <Notice /> */}
     </div>
   </>
 );
