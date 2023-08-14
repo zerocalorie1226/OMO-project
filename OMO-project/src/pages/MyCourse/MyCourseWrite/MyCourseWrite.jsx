@@ -4,6 +4,7 @@ import MyCoursePlusBox from "../../../components/MyCourse/MyCoursePlusBox/MyCour
 import MyCourseSearchBox from "../../../components/MyCourse/MyCourseSearchBox/MyCourseSearchBox";
 import MyCourseAfter from "../../../components/MyCourse/MyCourseAfter/MyCourseAfter";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import Save from "../../../components/MyCourse/Button/Save/Save";
 import EditShare from "../../../components/MyCourse/Button/Edit-Share/Edit-Share";
 
@@ -16,12 +17,12 @@ const MyCourseWrite = () => (
     <MyCourseSearchBox />
     <MyCourseSearchBox />
     <MyCourseSearchBox />
-
     {/* <MyCoursePlusBox /> */}
     <MyCourseAfter />
     <Save />
     {/* <EditShare /> */}
     <ScrollToTop />
+    <WritingButton />
   </div>
 );
 
