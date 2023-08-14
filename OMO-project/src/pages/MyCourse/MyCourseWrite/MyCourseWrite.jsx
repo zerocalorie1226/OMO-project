@@ -5,6 +5,7 @@ import MyCourseSearchBox from "../../../components/MyCourse/MyCourseSearchBox/My
 import MyCourseAfter from "../../../components/MyCourse/MyCourseAfter/MyCourseAfter";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import Save from "../../../components/MyCourse/Button/Save/Save";
+import EditShare from "../../../components/MyCourse/Button/Edit-Share/Edit-Share";
 
 const MyCourseWrite = () => (
   <div className={styles["myCourseWrite-total-container"]}>
@@ -15,7 +16,8 @@ const MyCourseWrite = () => (
     <MyCourseSearchBox />
     {/* <MyCoursePlusBox /> */}
     <MyCourseAfter />
-    <Save />
+    {/* <Save /> */}
+    <EditShare />
     <ScrollToTop />
   </div>
 );
