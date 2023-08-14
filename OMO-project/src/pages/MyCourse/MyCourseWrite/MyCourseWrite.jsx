@@ -4,6 +4,7 @@ import MyCoursePlusBox from "../../../components/MyCourse/MyCoursePlusBox/MyCour
 import MyCourseSearchBox from "../../../components/MyCourse/MyCourseSearchBox/MyCourseSearchBox";
 import MyCourseAfter from "../../../components/MyCourse/MyCourseAfter/MyCourseAfter";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import Save from "../../../components/MyCourse/Button/Save/Save";
 
 const MyCourseWrite = () => (
   <div className={styles["myCourseWrite-total-container"]}>
@@ -14,6 +15,7 @@ const MyCourseWrite = () => (
     <MyCourseSearchBox />
     {/* <MyCoursePlusBox /> */}
     <MyCourseAfter />
+    <Save />
     <ScrollToTop />
   </div>
 );
