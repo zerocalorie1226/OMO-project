@@ -7,7 +7,7 @@ import Delete from "../Button/Delete/Delete";
 const MyCourseAfter = () => (
   <div className={styles["MyCourseAfter-total-container"]}>
     <MyCourseSearchBox />
-    <Delete />
+
     <MyCoursePlusBox />
   </div>
 );

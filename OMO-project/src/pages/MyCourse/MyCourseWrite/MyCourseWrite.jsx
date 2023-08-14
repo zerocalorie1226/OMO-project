@@ -14,10 +14,13 @@ const MyCourseWrite = () => (
       <img src={pencil} alt="연필" className={styles["myCourseWrite-img-title"]} />
     </div>
     <MyCourseSearchBox />
+    <MyCourseSearchBox />
+    <MyCourseSearchBox />
+
     {/* <MyCoursePlusBox /> */}
     <MyCourseAfter />
-    {/* <Save /> */}
-    <EditShare />
+    <Save />
+    {/* <EditShare /> */}
     <ScrollToTop />
   </div>
 );

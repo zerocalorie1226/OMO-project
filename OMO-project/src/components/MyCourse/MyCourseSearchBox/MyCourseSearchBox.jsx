@@ -1,8 +1,9 @@
 import styles from "./MyCourseSearchBox.module.css";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
+import Delete from "../Button/Delete/Delete";
 
 const MyCourseSearchBox = () => (
-  <div>
+  <div className={styles["myCourseSearchBox-total-container"]}>
     <div className={styles["myCourseSearchBox-button-container"]}>
       <button type="button" className={styles["myCourseSearchBox-button-popular"]}>
         찜 목록에서 찾기
@@ -14,6 +15,7 @@ const MyCourseSearchBox = () => (
         검색을 통해 찾기
       </button>
     </div>
+    <Delete />
     <img src={downArrow} alt="아래 화살표" className={styles["myCourseSearchBox-downArrow-img"]} />
   </div>
 );

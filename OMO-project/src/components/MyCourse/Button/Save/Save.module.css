@@ -1,6 +1,7 @@
 .Save-button-container {
   display: flex;
   justify-content: flex-end;
+  font-size: 25px;
 }
 
 .Save-button {
