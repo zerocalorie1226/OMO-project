@@ -12,13 +12,13 @@ import List from "./pages/List/List";
 import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
 import MyWrote from "./pages/Mypage/Mywrote/MyWrote";
 import Detail from "./pages/Detail/Detail";
-import Interest from './pages/Mypage/Interest/Interest';
-import Recent from './pages/Mypage/Recent/Recent';
-import Recommend from './pages/Mypage/Recommend/Recommend';
+import Interest from "./pages/Mypage/Interest/Interest";
+import Recent from "./pages/Mypage/Recent/Recent";
+import Recommend from "./pages/Mypage/Recommend/Recommend";
 import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
-import MyCourse from "./pages/MyCourse/MyCourse";
+import MyCourseMain from "./pages/MyCourse/MyCourseMain/MyCourseMain";
 import Notice from "./pages/Notice/Notice";
-import MyCourseBoard from './pages/Community/MyCourseBoard/MyCourseBoard';
+import MyCourseBoard from "./pages/Community/MyCourseBoard/MyCourseBoard";
 
 const App = () => (
   <>
@@ -38,7 +38,7 @@ const App = () => (
       {/* <Recent /> */}
       {/* <Recommend/> */}
       {/* <ProfileSetting /> */}
-      {/* <MyCourse /> */}
+      {/* <MyCourseMain /> */}
       {/* <Notice /> */}
       <MyCourseBoard />
     </div>
