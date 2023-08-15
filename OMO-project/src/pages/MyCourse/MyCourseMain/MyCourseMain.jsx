@@ -8,7 +8,7 @@ const MyCourseMain = () => (
     <h2 className={styles["mycourse-title"]}> 나만의 코스 </h2>
 
     {myCourse.map((el) => {
-      return <MyCourseList key={el.id} title={el.title} date={el.date} />;
+      return <MyCourseList key={el.id} title={el.title} reg_at={el.reg_at} />;
     })}
 
     <ScrollToTop />
