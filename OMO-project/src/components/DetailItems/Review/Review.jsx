@@ -8,12 +8,12 @@ export const Review = ( {data}) => {
     
         <div className={styles["detail-review-box"]}>
           <div className={styles["detail-review-inner-top-container"]}>
-            <div className={styles["detail-review-img-nick-container"]}>
-            <div className={styles["detail-review-img-container"]}> <img 
+            <div className={styles["detail-review-profile"]}>
+            <div className={styles["detail-review-profile-img"]}> <img 
             src={ProfileImg} 
 
             alt="프로필 이미지" style={{width: "32px", height: "32px"}} /></div>
-              <span className={styles["detail-review-profile-name"]}>{data.nick}</span>
+              <span className={styles["detail-review-profile-nick"]}>{data.nick}</span>
             </div>
             <span className={styles["detail-review-date"]}>{data.reg_at}</span>
           </div>

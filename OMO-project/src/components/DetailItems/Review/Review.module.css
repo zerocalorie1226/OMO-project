@@ -6,17 +6,15 @@
 }
 
 
-.detail-review-img-nick-container{
+.detail-review-profile{
   display: flex;
 }
 
-.detail-review-img-container{
-  /* border: 1px solid transparent;
-  border-radius: 30px; */
+.detail-review-profile{
   aspect-ratio: 1/1;
 }
 
-.detail-review-img-container > img{
+.detail-review-profile-img > img{
   border: 1px solid transparent;
   border-radius: 50%;
   object-fit: cover;
@@ -27,11 +25,9 @@
 
 
 
-.detail-review-profile-name{
+.detail-review-profile-nick{
   margin-left: 10px;
   margin-top: 3px;
-  /* background-color: aqua; */
-  /* font-weight: 500; */
 }
 
 .detail-review-inner-top-container{
