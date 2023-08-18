@@ -1,0 +1,105 @@
+.community-category-container {
+  width: 100%;
+  height: 80px;
+  background-color: var(--primary);
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  align-items: flex-end;
+}
+
+
+
+
+.community-category-mycourse {
+  display: block;
+  width: 230px;
+  height: 65px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+
+}
+
+
+.community-category-mycourse:hover {
+  display: block;
+  width: 230px;
+  height: 65px;
+  background-color: var(--white);
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.community-category-worry {
+  display: block;
+  width: 230px;
+  height: 65px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+
+}
+
+
+.community-category-worry:hover {
+  display: block;
+  width: 230px;
+  height: 65px;
+  background-color: var(--white);
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+}
+
+
+.community-category-free {
+  display: block;
+  width: 230px;
+  height: 65px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+
+}
+
+.community-category-free:hover {
+  display: block;
+  width: 230px;
+  height: 65px;
+  background-color: var(--white);
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+}
+
+
+.community-category-inquiry {
+  display: block;
+  width: 230px;
+  height: 65px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+
+}
+
+.community-category-inquiry:hover {
+  display: block;
+  width: 230px;
+  height: 65px;
+  background-color: var(--white);
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+}

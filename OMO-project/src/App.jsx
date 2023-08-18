@@ -16,10 +16,11 @@ import Interest from "./pages/Mypage/Interest/Interest";
 import Recent from "./pages/Mypage/Recent/Recent";
 import Recommend from "./pages/Mypage/Recommend/Recommend";
 import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
-import MyCourse from "./pages/MyCourse/MyCourseMain/MyCourse";
+import MyCourseMain from "./pages/MyCourse/MyCourseMain/MyCourseMain";
 import Notice from "./pages/Notice/Notice";
 import MyCourseWrite from "./pages/MyCourse/MyCourseWrite/MyCourseWrite";
 import WriteBoard from "./pages/community/Write-board/WriteBoard";
+import MyCourseBoard from "./pages/Community/MyCourseBoard/MyCourseBoard";
 
 const App = () => (
   <>
@@ -42,7 +43,8 @@ const App = () => (
       {/* <MyCourse /> */}
       {/* <MyCourseWrite /> */}
       {/* <Notice /> */}
-      <WriteBoard />
+      {/* <WriteBoard /> */}
+      <MyCourseBoard />
     </div>
   </>
 );
