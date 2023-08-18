@@ -2,7 +2,7 @@
   display: flex;
   width: 1000px;
   margin: 40px auto;
-  border: 2px solid var(--gray-200);
+  border: 2px solid var(--gray-400);
   border-radius: 10px;
   justify-content: space-between;
   align-items: center;
