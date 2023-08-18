@@ -1,12 +1,12 @@
 import styles from "./MyCourseBoard.module.css";
 import { useState } from "react";
-import Filter from "../../../components/Filter/Filter";
-import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {WritingButton} from "../../../components/WritingButton/WritingButton";
-import ListSearch from "./../../../components/ListSearch/ListSearch";
 import {communityPageFilter} from "./../../../const/communityPageFilter";
 import {communityMyCourse} from "../../../const/communityMyCourse";
+import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
+import Filter from "../../../components/Filter/Filter";
+import ListSearch from "./../../../components/ListSearch/ListSearch";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import CommunityMyCourseList from "../../../components/CommunityMyCourseList/CommunityMyCourseList";
 import LightPurpleI from "../../../assets/community/my-course-board/I-light-purple.png";
 import LightPurpleE from "../../../assets/community/my-course-board/E-light-purple.png";
