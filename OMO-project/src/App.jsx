@@ -2,7 +2,7 @@ import "./App.module.css";
 import {Header} from "./components/Header/Header";
 
 import Main from "./pages/Main/Main";
-import Signup from "./pages/Signup/Signup";
+// import Signup from "./pages/Signup/Signup";
 import Eating from "./pages/Sub/Eating/Eating";
 import Watching from "./pages/Sub/Watching/Watching";
 import Playing from "./pages/Sub/Playing/Playing";
@@ -19,6 +19,7 @@ import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
 import MyCourseMain from "./pages/MyCourse/MyCourseMain/MyCourseMain";
 import Notice from "./pages/Notice/Notice";
 import MyCourseWrite from "./pages/MyCourse/MyCourseWrite/MyCourseWrite";
+import WriteBoard from "./pages/community/Write-board/WriteBoard";
 import MyCourseBoard from "./pages/Community/MyCourseBoard/MyCourseBoard";
 import WorryBoard from './pages/Community/WorryBoard/WorryBoard';
 
@@ -35,14 +36,15 @@ const App = () => (
       {/* <List /> */}
       {/* <Detail /> */}
       {/* <MyInfo /> */}
-      {/* <MyWrotes /> */}
+      {/* <MyWrote /> */}
       {/* <Interest /> */}
       {/* <Recent /> */}
       {/* <Recommend /> */}
       {/* <ProfileSetting /> */}
-      {/* <MyCourseMain /> */}
+      {/* <MyCourse /> */}
       {/* <MyCourseWrite /> */}
       {/* <Notice /> */}
+      {/* <WriteBoard /> */}
       {/* <MyCourseBoard /> */}
       <WorryBoard />
     </div>
