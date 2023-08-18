@@ -19,6 +19,7 @@ import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
 import MyCourse from "./pages/MyCourse/MyCourseMain/MyCourse";
 import Notice from "./pages/Notice/Notice";
 import MyCourseWrite from "./pages/MyCourse/MyCourseWrite/MyCourseWrite";
+import WriteBoard from "./pages/community/Write-board/WriteBoard";
 
 const App = () => (
   <>
@@ -33,14 +34,15 @@ const App = () => (
       {/* <List /> */}
       {/* <Detail /> */}
       {/* <MyInfo /> */}
-      {/* <MyWrotes /> */}
+      {/* <MyWrote /> */}
       {/* <Interest /> */}
       {/* <Recent /> */}
       {/* <Recommend /> */}
       {/* <ProfileSetting /> */}
       {/* <MyCourse /> */}
-      <MyCourseWrite />
+      {/* <MyCourseWrite /> */}
       {/* <Notice /> */}
+      {/* <WriteBoard /> */}
     </div>
   </>
 );
