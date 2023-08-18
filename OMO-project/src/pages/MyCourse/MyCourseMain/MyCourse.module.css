@@ -1,6 +1,7 @@
 .mycourse-container {
   width: 1000px;
   margin: 0 auto;
+  margin-top: 100px;
 }
 .mycourse-title {
   margin: 60px auto;
