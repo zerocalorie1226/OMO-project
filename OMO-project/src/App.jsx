@@ -42,7 +42,7 @@ const App = () => (
       {/* <MyCourse /> */}
       {/* <MyCourseWrite /> */}
       {/* <Notice /> */}
-      {/* <WriteBoard /> */}
+      <WriteBoard />
     </div>
   </>
 );
