@@ -3,68 +3,49 @@
   width: 1000px;
   height: 100px;
   margin: 40px auto;
-  border: 2px solid var(--gray-200);
+  border: 2px solid var(--gray-400);
   border-radius: 10px;
-  justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .community-mycourse-list-container:hover {
   border: 2px solid var(--secondary);
 }
 
-.div1{
-  width: 450px;
-display: flex;
-justify-content: space-between;
-/* gap: 30px; */
-}
-
 .community-mycourse-list-title {
-  font-size: 32px;
+  font-size: 28px;
   margin-left: 30px;
 }
 
-.community-mycourse-list-like{
+.community-mycourse-list-like {
   display: flex;
-  /* position: absolute; */
   font-size: 24px;
-  /* margin-left: 350px; */
-  background-color: aqua;
   gap: 5px;
+  position: absolute;
+  left: 360px;
 }
 
-.community-mycourse-list-like-number{
-  background-color: blue;
-  /* margin-left: 30px; */
+.community-mycourse-list-like-number {
+  left: 35px;
+  top: 2px;
+  position: absolute;
 }
 
-
-.div2{
-  width: 350px;
-display: flex;
-justify-content: space-between;
-
-}
-
-.community-mycourse-list-nick{
+.community-mycourse-list-nick {
   color: var(--gray-400);
   font-size: 24px;
   font-weight: 200;
-  /* margin-left: 300px; */
-  background-color: pink;
-  /* text-align: right; */
+  position: absolute;
+  left: 610px;
+  width: 200px;
+  text-align: right;
 }
 
 .community-mycourse-list-date {
   color: var(--gray-400);
   font-size: 24px;
   font-weight: 200;
-  margin-right: 30px;
+  position: absolute;
+  right: 30px;
 }
-
-
-/* 닉네임 우측 기준 정렬 */
-/* 따봉 크기 바꾸기 */
-/* 따봉 옆 숫자 정렬 */
-/* mbti 추가 */
