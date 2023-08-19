@@ -1,11 +1,11 @@
 import styles from "./WorryBoard.module.css";
 import {communityPageFilter} from "./../../../const/communityPageFilter";
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
+import { CommunityPost } from './../../../components/CommunityPost/CommunityPost';
 import Filter from "../../../components/Filter/Filter";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
-
 
 const WorryBoard = () => {
 
@@ -27,7 +27,9 @@ const WorryBoard = () => {
     {/* 게시글 리스트 */}
 
     <section className={styles["community-worry-container"]}>
-
+    {communityPost.map((el) => {
+          return <CommunityPost key={el.id} title={el.title} reg_at={el.reg_at}  src={el.src}  nick={el.nick}  content={el.content} like={el.like} view={el.view}  comment={el.comment}/>;
+        })}
     </section>
 
     <ScrollToTop />
