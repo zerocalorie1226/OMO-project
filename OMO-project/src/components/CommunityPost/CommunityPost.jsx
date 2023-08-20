@@ -69,9 +69,12 @@ export const CommunityPost = (props) => (
             <li>
                 <img className={styles["community-post-comment-profile-img"]} src={el.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
               <div className={styles["community-post-comment-box"]}>
+                <div className={styles["community-post-comment-nick-date"]}>
                 <span className={styles["community-post-comment-box-nick"]}>{el.nick}</span>
                 <span className={styles["community-post-comment-box-date"]}>{el.reg_at}</span>
+                </div>
                 <span className={styles["community-post-comment-box-content"]}>{el.content}</span>
+             
               </div>
             </li>
           </ul>
