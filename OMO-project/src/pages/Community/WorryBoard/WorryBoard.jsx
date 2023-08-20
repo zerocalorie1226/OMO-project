@@ -1,5 +1,6 @@
 import styles from "./WorryBoard.module.css";
 import {communityPageFilter} from "./../../../const/communityPageFilter";
+import {communityPost} from "./../../../const/communityPost";
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
 import { CommunityPost } from './../../../components/CommunityPost/CommunityPost';
 import Filter from "../../../components/Filter/Filter";
@@ -28,7 +29,7 @@ const WorryBoard = () => {
 
     <section className={styles["community-worry-container"]}>
     {communityPost.map((el) => {
-          return <CommunityPost key={el.id} title={el.title} reg_at={el.reg_at}  src={el.src}  nick={el.nick}  content={el.content} like={el.like} view={el.view}  comment={el.comment}/>;
+          return <CommunityPost key={el.id} title={el.title} reg_at={el.reg_at}  src={el.src}  nick={el.nick}  content={el.content} like={el.like} view={el.view}  comment={el.comment} comment_list={el.comment_list} />;
         })}
     </section>
 
