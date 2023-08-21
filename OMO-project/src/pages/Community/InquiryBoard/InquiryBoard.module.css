@@ -1,0 +1,17 @@
+.Inquiryboard-filter-search-container {
+  display: flex;
+  width: 1000px;
+  justify-content: space-between;
+  margin: 60px auto 0 auto;
+}
+
+.Inquiryboard-filter-container {
+  width: 600px;
+  display: flex;
+}
+
+.Inquiryboard-hr {
+  margin-top: 20px;
+  margin-bottom: 60px;
+  border: 1px solid var(--gray-50);
+}

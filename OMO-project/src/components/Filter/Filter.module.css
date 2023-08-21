@@ -2,6 +2,7 @@
   margin: auto 0;
   color: var(--gray-900);
   height: 100%;
+  display: flex;
 }
 
 .filter-container button:hover {
