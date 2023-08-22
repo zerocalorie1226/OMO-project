@@ -62,6 +62,7 @@ export const CommunityPost = (props) => (
         <div className={styles["community-post-comment-input-container"]}>
           <img className={styles["community-post-comment-input-profile-img"]} src={props.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
           <input className={styles["community-post-comment-input"]} type="text" id="comment" name="comment" minlength="2" maxlength="40" size="10" placeholder="댓글을 입력하세요..."></input>
+          <button type="submit">입력</button>
         </div>
 
         {/* 댓글 내용 */}
