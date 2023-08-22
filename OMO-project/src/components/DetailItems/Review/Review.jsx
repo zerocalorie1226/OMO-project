@@ -10,7 +10,7 @@ export const Review = ( {data}) => {
             <div className={styles["detail-review-profile-img"]}> <img 
             src={data.src} 
 
-            alt="프로필 이미지" style={{width: "32px", height: "32px"}} /></div>
+            alt="프로필 이미지" style={{width: "50px", height: "50px"}} /></div>
               <span className={styles["detail-review-profile-nick"]}>{data.nick}</span>
             </div>
             <span className={styles["detail-review-date"]}>{data.reg_at}</span>
