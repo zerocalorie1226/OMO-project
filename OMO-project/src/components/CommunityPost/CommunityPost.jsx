@@ -60,8 +60,8 @@ export const CommunityPost = (props) => (
         
         {/* 댓글 입력창 */}
         <div className={styles["community-post-comment-input-container"]}>
-          <img v className={styles["community-post-comment-input-profile-img"]} src={props.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
-          <input className={styles["community-post-comment-input"]} type="text" id="comment" name="comment" minlength="2" maxlength="20" size="10" placeholder="댓글을 입력하세요..."></input>
+          <img className={styles["community-post-comment-input-profile-img"]} src={props.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
+          <input className={styles["community-post-comment-input"]} type="text" id="comment" name="comment" minlength="2" maxlength="40" size="10" placeholder="댓글을 입력하세요..."></input>
         </div>
 
         {/* 댓글 내용 */}
