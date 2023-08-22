@@ -1,6 +1,6 @@
 import ProfileImg from "../assets/profile-img.jpg"
 
-export const communityPost = [
+export const communityWorryPost = [
   {
     id: 1,
     title: "서울 연희동 데이트 코스",
