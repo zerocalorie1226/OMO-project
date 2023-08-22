@@ -22,8 +22,10 @@ import MyCourseWrite from "./pages/MyCourse/MyCourseWrite/MyCourseWrite";
 import WriteBoard from "./pages/community/Write-board/WriteBoard";
 import MyCourseBoard from "./pages/Community/MyCourseBoard/MyCourseBoard";
 import InquiryBoard from "./pages/community/InquiryBoard/InquiryBoard";
-import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
+
 import InquiryBoardQnA from "./pages/community/InquiryBoardQnA/InquiryBoardQnA";
+import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
+import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
 
 const App = () => (
   <>
@@ -49,8 +51,9 @@ const App = () => (
       {/* <WriteBoard /> */}
       {/* <MyCourseBoard /> */}
       {/* <InquiryBoard /> */}
-      <InquiryBoardQnA />
+      {/* <InquiryBoardQnA /> */}
       {/* <WorryBoard /> */}
+      <FreeBoard />
     </div>
   </>
 );
