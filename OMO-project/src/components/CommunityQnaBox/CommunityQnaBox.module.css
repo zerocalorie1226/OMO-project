@@ -123,39 +123,6 @@
   padding: 25px 55px 0 55px;
 }
 
-/* 입력창 묶음 */
-.community-qnapost-comment-input-container {
-  display: flex;
-  gap: 16px;
-}
-
-/* 입력창 프로필 이미지 */
-.community-qnapost-comment-input-profile-img {
-  border: 1px solid transparent;
-  border-radius: 50%;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  margin-top: 7px;
-}
-
-/* 입력창 input */
-.community-qnapost-comment-input {
-  font-size: 24px;
-  width: 880px;
-  height: 65px;
-  background-color: var(--white3);
-  border: 1px solid var(--gray-400);
-  border-radius: 30px;
-  text-indent: 20px;
-}
-
-/* 입력창 input focus 효과 */
-.community-qnapost-comment-input:focus {
-  outline: none;
-  border-color: var(--secondary);
-}
-
 /* 댓글 내용 ul */
 .community-qnapost-comment {
   padding: 0;

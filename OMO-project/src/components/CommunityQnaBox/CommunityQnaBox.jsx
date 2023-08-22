@@ -48,12 +48,6 @@ export const CommunityQnaBox = (props) => (
 
       {/* 하단 댓글창 전체박스 */}
       <div className={styles["community-qnapost-comment-container"]}>
-        {/* 댓글 입력창 */}
-        <div className={styles["community-qnapost-comment-input-container"]}>
-          <img v className={styles["community-qnapost-comment-input-profile-img"]} src={props.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
-          <input className={styles["community-qnapost-comment-input"]} type="text" id="comment" name="comment" minlength="2" maxlength="20" size="10" placeholder="댓글을 입력하세요..."></input>
-        </div>
-
         {/* 댓글 내용 */}
         {props.comment_list.map((el) => (
           <ul className={styles["community-qnapost-comment"]}>
