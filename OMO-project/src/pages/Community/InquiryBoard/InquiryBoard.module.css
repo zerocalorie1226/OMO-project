@@ -8,6 +8,7 @@
 .Inquiryboard-filter-container {
   width: 600px;
   display: flex;
+  align-items: center;
 }
 
 .Inquiryboard-hr {

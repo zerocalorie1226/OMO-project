@@ -48,8 +48,8 @@ const App = () => (
       {/* <Notice /> */}
       {/* <WriteBoard /> */}
       {/* <MyCourseBoard /> */}
-      <InquiryBoard />
-      {/* <InquiryBoardQnA /> */}
+      {/* <InquiryBoard /> */}
+      <InquiryBoardQnA />
       {/* <WorryBoard /> */}
     </div>
   </>
