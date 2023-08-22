@@ -2,6 +2,7 @@
   margin: auto 0;
   color: var(--gray-900);
   height: 100%;
+  display: flex;
 }
 
 .filter-container button:hover {
@@ -10,11 +11,12 @@
 }
 
 .filter-button {
+  padding: 0;
   border: none;
   background-color: transparent;
   color: var(--gray-900);
 }
 
 .filter-bar {
-  margin-left: 20px;
+  margin: 0 18px;
 }

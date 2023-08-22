@@ -1,11 +1,9 @@
-import Room from "../assets/sub/theme-cafe/animal.png";
+import Room from "../assets/sub/theme-cafe/room.png";
 import EscapeRoom from "../assets/sub/theme-cafe/escape-room.png";
 import Cartoon from "../assets/sub/theme-cafe/cartoon.png";
 import Animal from "../assets/sub/theme-cafe/animal.png";
 import BoardGame from "../assets/sub/theme-cafe/board-game.png";
 import CraftShop from "../assets/sub/theme-cafe/craft-shop.png";
-
-
 
 export const themeCafe = [
   {
