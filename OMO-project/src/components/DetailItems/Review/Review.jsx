@@ -1,16 +1,14 @@
 import styles from "./Review.module.css";
-import ProfileImg from "../../../assets/profile-img.jpg"
 
 
 export const Review = ( {data}) => {
   return (
     <>
-    
         <div className={styles["detail-review-box"]}>
           <div className={styles["detail-review-inner-top-container"]}>
             <div className={styles["detail-review-profile"]}>
             <div className={styles["detail-review-profile-img"]}> <img 
-            src={ProfileImg} 
+            src={data.src} 
 
             alt="프로필 이미지" style={{width: "32px", height: "32px"}} /></div>
               <span className={styles["detail-review-profile-nick"]}>{data.nick}</span>
