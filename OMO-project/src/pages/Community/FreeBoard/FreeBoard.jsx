@@ -7,6 +7,7 @@ import Filter from "../../../components/Filter/Filter";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
+import ReportModal from '../../../components/ReportModal/ReportModal';
 
 const FreeBoard = () => {
 
@@ -33,6 +34,7 @@ const FreeBoard = () => {
         })}
     </section>
 
+    {/* <ReportModal /> */}
     <ScrollToTop />
     <WritingButton />
   </>
