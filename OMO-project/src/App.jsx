@@ -22,6 +22,7 @@ import MyCourseWrite from "./pages/MyCourse/MyCourseWrite/MyCourseWrite";
 import WriteBoard from "./pages/community/Write-board/WriteBoard";
 import MyCourseBoard from "./pages/Community/MyCourseBoard/MyCourseBoard";
 import WorryBoard from './pages/Community/WorryBoard/WorryBoard';
+import FreeBoard from './pages/Community/FreeBoard/FreeBoard';
 
 const App = () => (
   <>
@@ -46,7 +47,8 @@ const App = () => (
       {/* <Notice /> */}
       {/* <WriteBoard /> */}
       {/* <MyCourseBoard /> */}
-      <WorryBoard />
+      {/* <WorryBoard /> */}
+      <FreeBoard />
     </div>
   </>
 );

@@ -1,6 +1,6 @@
-import styles from "./WorryBoard.module.css";
+import styles from "./FreeBoard.module.css";
 import {communityPageFilter} from "./../../../const/communityPageFilter";
-import {communityPost} from "../../../const/communityWorryPost";
+import {communityFreePost} from "../../../const/communityFreePost";
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
 import { CommunityPost } from './../../../components/CommunityPost/CommunityPost';
 import Filter from "../../../components/Filter/Filter";
@@ -28,7 +28,7 @@ const FreeBoard = () => {
     {/* 게시글 리스트 */}
 
     <section className={styles["community-free-container"]}>
-    {communityPost.map((el) => {
+    {communityFreePost.map((el) => {
           return <CommunityPost key={el.id} title={el.title} reg_at={el.reg_at}  src={el.src}  nick={el.nick}  content={el.content} like={el.like} view={el.view}  comment={el.comment} comment_list={el.comment_list} />;
         })}
     </section>
