@@ -101,7 +101,7 @@ const Signup = () => (
 
         <CheckBox />
 
-        <div className={styles["signup-btn-signup-container"]}>
+        <div className={styles["signup-btn-container"]}>
           <button type="submit" className={styles["signup-btn-signup"]}>
             가입하기
           </button>
