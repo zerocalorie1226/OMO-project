@@ -8,7 +8,7 @@ import ListSearch from "./../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import CommunityMyCourseList from "../../../components/CommunityMyCourseList/CommunityMyCourseList";
-// import { MBTI_TYPE } from './../../../const/mbti';
+// import { communityMbtiFilter } from './../../../const/communityMbtiFilter';
 
 const MyCourseBoard = () => {
 
