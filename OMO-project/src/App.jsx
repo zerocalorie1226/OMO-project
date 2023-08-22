@@ -34,14 +34,14 @@ const App = () => (
       {/* <ThemeCafe /> */}
       {/* <Signup /> */}
       {/* <List /> */}
-      {/* <Detail /> */}
+      <Detail />
       {/* <MyInfo /> */}
       {/* <MyWrote /> */}
       {/* <Interest /> */}
       {/* <Recent /> */}
       {/* <Recommend /> */}
       {/* <ProfileSetting /> */}
-      {/* <MyCourse /> */}
+      {/* <MyCourseMain /> */}
       {/* <MyCourseWrite /> */}
       {/* <Notice /> */}
       {/* <WriteBoard /> */}
