@@ -34,7 +34,7 @@ const App = () => (
       {/* <ThemeCafe /> */}
       {/* <Signup /> */}
       {/* <List /> */}
-      <Detail />
+      {/* <Detail /> */}
       {/* <MyInfo /> */}
       {/* <MyWrote /> */}
       {/* <Interest /> */}
