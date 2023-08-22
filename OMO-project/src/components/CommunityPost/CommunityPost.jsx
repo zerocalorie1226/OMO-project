@@ -7,9 +7,11 @@ export const CommunityPost = (props) => (
   <>
     {/* 전체 영역 */}
     <div className={styles["community-post-container"]}>
+
       {/*버튼 전까지 윗부분 영역*/}
       <div className={styles["community-post-content-container"]}>
         <div className={styles["community-post-content-title-date"]}>
+
           {/* 제목 */}
           <span className={styles["community-post-title"]}>{props.title}</span>
 
@@ -26,18 +28,17 @@ export const CommunityPost = (props) => (
         {/* 글 내용 */}
         <span className={styles["community-post-content"]}>{props.content}</span>
 
-       
-          {/*공감수*/}
-          <div className={styles["community-post-number-report-wapper"]}>
-            <span className={styles["community-post-like-number"]}>좋아요 {props.like}</span>
-            <span className={styles["community-post-view-number"]}>• 조회수 {props.view}</span>
-            <span className={styles["community-post-comment-number"]}>• 댓글 {props.comment}</span>
-             {/* 신고 아이콘 */}
-          <button  className={styles["community-post-report-button"]} type="button"><img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{width: "32px", height: "32px"}} /></button>
-          </div>
-
+        {/*공감수*/}
+        <div className={styles["community-post-number-report-wapper"]}>
+          <span className={styles["community-post-like-number"]}>좋아요 {props.like}</span>
+          <span className={styles["community-post-view-number"]}>• 조회수 {props.view}</span>
+          <span className={styles["community-post-comment-number"]}>• 댓글 {props.comment}</span>
          
-        
+          {/* 신고 아이콘 */}
+          <button className={styles["community-post-report-button"]} type="button">
+            <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{width: "32px", height: "32px"}} />
+          </button>
+        </div>
       </div>
 
       <div className={styles["community-post-button-wrapper"]}>
@@ -56,25 +57,24 @@ export const CommunityPost = (props) => (
 
       {/* 하단 댓글창 전체박스 */}
       <div className={styles["community-post-comment-container"]}>
+        
         {/* 댓글 입력창 */}
         <div className={styles["community-post-comment-input-container"]}>
-            <img v className={styles["community-post-comment-input-profile-img"]} src={props.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
+          <img v className={styles["community-post-comment-input-profile-img"]} src={props.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
           <input className={styles["community-post-comment-input"]} type="text" id="comment" name="comment" minlength="2" maxlength="20" size="10" placeholder="댓글을 입력하세요..."></input>
         </div>
 
         {/* 댓글 내용 */}
         {props.comment_list.map((el) => (
-
           <ul className={styles["community-post-comment"]}>
             <li>
-                <img className={styles["community-post-comment-profile-img"]} src={el.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
+              <img className={styles["community-post-comment-profile-img"]} src={el.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
               <div className={styles["community-post-comment-box"]}>
                 <div className={styles["community-post-comment-nick-date"]}>
-                <span className={styles["community-post-comment-box-nick"]}>{el.nick}</span>
-                <span className={styles["community-post-comment-box-date"]}>{el.reg_at}</span>
+                  <span className={styles["community-post-comment-box-nick"]}>{el.nick}</span>
+                  <span className={styles["community-post-comment-box-date"]}>{el.reg_at}</span>
                 </div>
                 <span className={styles["community-post-comment-box-content"]}>{el.content}</span>
-             
               </div>
             </li>
           </ul>
