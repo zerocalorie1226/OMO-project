@@ -1,21 +1,22 @@
-import ProfileImg from "../assets/profile-img.jpg"
+import ProfileImg from "../assets/profile-img.jpg";
 
-export const communityPost = [
+export const communityWorryPost = [
   {
     id: 1,
     title: "서울 연희동 데이트 코스",
     reg_at: "2023/07/12",
     src: ProfileImg,
     nick: "이니",
-    content: "서울 연희동에서 놀려고 하는데, 비오는 날에도 재밌게 놀 수 있는 코스 없을까요? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip hend",
+    content:
+      "서울 연희동에서 놀려고 하는데, 비오는 날에도 재밌게 놀 수 있는 코스 없을까요? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip hend",
     like: "43",
     view: "70",
     comment: "5",
     comment_list: [
-      {id: 1, nick: "이니", reg_at: "2023/07/04", src: ProfileImg, content: "맛집 갔다가 소품샵을 들러보는건 어떨까요?",},
-      {id: 2, nick: "주니", reg_at: "2023/07/05", src: ProfileImg, content: "저도 놀고싶어요",},
-      {id: 3, nick: "헌터", reg_at: "2023/07/06", src: ProfileImg, content: "알게되면 저도 알려주세요",},
-      {id: 4, nick: "키놈", reg_at: "2023/07/07", src: ProfileImg, content: "나만의 코스에서 찾아보세요",},
+      {id: 1, nick: "이니", reg_at: "2023/07/04", src: ProfileImg, content: "맛집 갔다가 소품샵을 들러보는건 어떨까요?"},
+      {id: 2, nick: "주니", reg_at: "2023/07/05", src: ProfileImg, content: "저도 놀고싶어요"},
+      {id: 3, nick: "헌터", reg_at: "2023/07/06", src: ProfileImg, content: "알게되면 저도 알려주세요"},
+      {id: 4, nick: "키놈", reg_at: "2023/07/07", src: ProfileImg, content: "나만의 코스에서 찾아보세요"},
     ],
   },
   {
@@ -28,11 +29,11 @@ export const communityPost = [
     like: "53",
     view: "90",
     comment: "4",
-        comment_list: [
-      {id: 1, nick: "이니", reg_at: "2023/07/04", src: ProfileImg, content: "맛집 갔다가 소품샵을 들러보는건 어떨까요?",},
-      {id: 2, nick: "주니", reg_at: "2023/07/05", src: ProfileImg, content: "저도 놀고싶어요",},
-      {id: 3, nick: "헌터", reg_at: "2023/07/06", src: ProfileImg, content: "알게되면 저도 알려주세요",},
-      {id: 4, nick: "키놈", reg_at: "2023/07/07", src: ProfileImg, content: "나만의 코스에서 찾아보세요",},
+    comment_list: [
+      {id: 1, nick: "이니", reg_at: "2023/07/04", src: ProfileImg, content: "맛집 갔다가 소품샵을 들러보는건 어떨까요?"},
+      {id: 2, nick: "주니", reg_at: "2023/07/05", src: ProfileImg, content: "저도 놀고싶어요"},
+      {id: 3, nick: "헌터", reg_at: "2023/07/06", src: ProfileImg, content: "알게되면 저도 알려주세요"},
+      {id: 4, nick: "키놈", reg_at: "2023/07/07", src: ProfileImg, content: "나만의 코스에서 찾아보세요"},
     ],
   },
   {
@@ -46,10 +47,10 @@ export const communityPost = [
     view: "80",
     comment: "2",
     comment_list: [
-      {id: 1, nick: "이니", reg_at: "2023/07/04", src: ProfileImg, content: "맛집 갔다가 소품샵을 들러보는건 어떨까요?",},
-      {id: 2, nick: "주니", reg_at: "2023/07/05", src: ProfileImg, content: "저도 놀고싶어요",},
-      {id: 3, nick: "헌터", reg_at: "2023/07/06", src: ProfileImg, content: "알게되면 저도 알려주세요",},
-      {id: 4, nick: "키놈", reg_at: "2023/07/07", src: ProfileImg, content: "나만의 코스에서 찾아보세요",},
+      {id: 1, nick: "이니", reg_at: "2023/07/04", src: ProfileImg, content: "맛집 갔다가 소품샵을 들러보는건 어떨까요?"},
+      {id: 2, nick: "주니", reg_at: "2023/07/05", src: ProfileImg, content: "저도 놀고싶어요"},
+      {id: 3, nick: "헌터", reg_at: "2023/07/06", src: ProfileImg, content: "알게되면 저도 알려주세요"},
+      {id: 4, nick: "키놈", reg_at: "2023/07/07", src: ProfileImg, content: "나만의 코스에서 찾아보세요"},
     ],
   },
 ];
