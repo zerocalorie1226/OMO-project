@@ -41,7 +41,7 @@ const App = () => (
       {/* <Recent /> */}
       {/* <Recommend /> */}
       {/* <ProfileSetting /> */}
-      {/* <MyCourse /> */}
+      {/* <MyCourseMain /> */}
       {/* <MyCourseWrite /> */}
       {/* <Notice /> */}
       {/* <WriteBoard /> */}
