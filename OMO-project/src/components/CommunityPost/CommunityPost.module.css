@@ -167,7 +167,8 @@
   background-color: var(--white3);
   border: 1px solid var(--gray-400);
   border-radius: 30px;
-  text-indent: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /* 입력창 input focus 효과 */
