@@ -1,7 +1,7 @@
 import styles from "./CommunityPost.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
-import Comment from "../../assets/detail/review.png";
+import Comment from "../../assets/community/worry-board/comment.png";
 
 export const CommunityPost = (props) => (
   <>
