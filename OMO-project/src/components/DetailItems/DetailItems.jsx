@@ -178,14 +178,19 @@ export const DetailItems = (props) => {
             <div className={styles["detail-review-box-container"]}>
               {/* input 박스 */}
               <div className={styles["detail-review-input-box"]}>
-                <div className={styles["detail-review-profile"]}>
-                  <div className={styles["detail-review-profile-img"]}>
-                    <img src={reviewData.find(item =>{
-                      console.log(1234, item);
-                      return item.id===2}).src} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
-                  </div>
-                </div>
-                <input className={styles["detail-review-input"]} type="text" id="review" name="review" minlength="2" maxlength="40" size="10" placeholder="댓글을 입력하세요..."></input>
+                <img
+                  src={
+                    reviewData.find((item) => {
+                      // console.log(1234, item);
+                      return item.id === 2;
+                    }).src
+                  }
+                  alt="프로필 이미지"
+                  style={{width: "50px", height: "50px"}}
+                />
+
+                <input className={styles["detail-review-input"]} type="text" id="review" name="review" minlength="2" maxlength="40" size="10" placeholder="리뷰를 입력하세요..."></input>
+                <button type="submit">입력</button>
               </div>
 
               {/* 리뷰 박스 리스트 */}
