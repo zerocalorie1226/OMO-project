@@ -389,3 +389,51 @@ margin-top: 10px;
   gap: 30px;
   margin-top: 30px;
 }
+
+.detail-review-input-box{
+  border: 1px solid  var(--gray-400);
+  border-radius: 10px;
+  display: flex;
+}
+
+/* 입력창 input focus 효과 */
+.detail-review-input-box:hover {
+  outline: none;
+  border-color: var(--secondary);
+}
+
+
+.detail-review-profile{
+  display: flex;
+}
+
+
+.detail-review-profile-img > img{
+  border: 1px solid transparent;
+  border-radius: 50%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+
+.detail-review-profile-nick{
+  font-size: 24px;
+  margin-left: 10px;
+  margin-top: 3px;
+}
+
+.detail-review-input{
+  font-size: 24px;
+  width: 880px;
+  height: 65px;
+  background-color: var(--white);
+  border: 0;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.detail-review-input:focus{
+  outline: none;
+}
