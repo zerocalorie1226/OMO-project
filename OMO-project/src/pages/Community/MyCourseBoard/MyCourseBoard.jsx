@@ -1,5 +1,5 @@
 import styles from "./MyCourseBoard.module.css";
-import { useState } from "react";
+import {useState} from "react";
 import {communityPageFilter} from "./../../../const/communityPageFilter";
 import {communityMyCourse} from "../../../const/communityMyCourse";
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
@@ -33,101 +33,99 @@ const MyCourseBoard = () => {
   const handleClickI = () => {
     if (isClickedI) {
       setImageSrcI(LightPurpleI);
-        setIsClickedI(false); // 초기 상태 false 일 땐 초기 상태 이미지 src
-      } else {
-        setImageSrcI(DeepPurpleI);
-        setIsClickedI(true); // true일 땐 변경될 이미지 src
-      }
+      setIsClickedI(false); // 초기 상태 false 일 땐 초기 상태 이미지 src
+    } else {
+      setImageSrcI(DeepPurpleI);
+      setIsClickedI(true); // true일 땐 변경될 이미지 src
+    }
   };
 
   const handleClickE = () => {
     if (isClickedE) {
       setImageSrcE(LightPurpleE);
-        setIsClickedE(false); // 초기 상태 false 일 땐 초기 상태 이미지 src
-      } else {
-        setImageSrcE(DeepPurpleE);
-        setIsClickedE(true); // true일 땐 변경될 이미지 src
-      }
+      setIsClickedE(false); // 초기 상태 false 일 땐 초기 상태 이미지 src
+    } else {
+      setImageSrcE(DeepPurpleE);
+      setIsClickedE(true); // true일 땐 변경될 이미지 src
+    }
   };
 
   const handleClickJ = () => {
     if (isClickedJ) {
       setImageSrcJ(LightPurpleJ);
-        setIsClickedJ(false); // 초기 상태 false 일 땐 초기 상태 이미지 src
-      } else {
-        setImageSrcJ(DeepPurpleJ);
-        setIsClickedJ(true); // true일 땐 변경될 이미지 src
-      }
+      setIsClickedJ(false); // 초기 상태 false 일 땐 초기 상태 이미지 src
+    } else {
+      setImageSrcJ(DeepPurpleJ);
+      setIsClickedJ(true); // true일 땐 변경될 이미지 src
+    }
   };
 
   const handleClickP = () => {
     if (isClickedP) {
       setImageSrcP(LightPurpleP);
-        setIsClickedP(false); // 초기 상태 false 일 땐 초기 상태 이미지 src
-      } else {
-        setImageSrcP(DeepPurpleP);
-        setIsClickedP(true); // true일 땐 변경될 이미지 src
-      }
+      setIsClickedP(false); // 초기 상태 false 일 땐 초기 상태 이미지 src
+    } else {
+      setImageSrcP(DeepPurpleP);
+      setIsClickedP(true); // true일 땐 변경될 이미지 src
+    }
   };
 
+  return (
+    <>
+      {/* 카테고리 */}
+      <CommunityCategory />
 
-  return(
-  <>
-    {/* 카테고리 */}
-    <CommunityCategory />
-
-    {/* 필터 + 검색창 */}
-    <div className={styles["community-component-container"]}>
-      <div className={styles["community-filter-container"]}>
-        {communityPageFilter.map((el) => {
-          return <Filter key={el.id} title={el.title} bar={el.bar} />;
-        })}
+      {/* 필터 + 검색창 */}
+      <div className={styles["community-component-container"]}>
+        <div className={styles["community-filter-container"]}>
+          {communityPageFilter.map((el) => {
+            return <Filter key={el.id} title={el.title} bar={el.bar} />;
+          })}
+        </div>
+        <ListSearch />
       </div>
-      <ListSearch />
-    </div>
 
-    {/* 리스트 */}
+      {/* 리스트 */}
 
-    <section className={styles["community-mycourse-container"]}>
+      <section className={styles["community-mycourse-container"]}>
+        {/* MBTI pick */}
 
-      {/* MBTI pick */}
+        <div className={styles["community-mbti-pick-container"]}>
+          <span className={styles["community-mbti-pick-title"]}>MBTI별 pick</span>
+          <ul className={styles["community-mbti-pick-box"]}>
+            <li>
+              <button type="button" onClick={handleClickI} className={styles["community-mbti-pick-box-i"]}>
+                <img src={imageSrcI} alt="MBTI I 아이콘"></img>
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={handleClickE} className={styles["community-mbti-pick-box-e"]}>
+                <img src={imageSrcE} alt="MBTI E 아이콘"></img>
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={handleClickJ} className={styles["community-mbti-pick-box-j"]}>
+                <img src={imageSrcJ} alt="MBTI J 아이콘"></img>
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={handleClickP} className={styles["community-mbti-pick-box-p"]}>
+                <img src={imageSrcP} alt="MBTI P 아이콘"></img>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div className={styles["community-mycourse-list-box"]}>
+          {communityMyCourse.map((el) => {
+            return <CommunityMyCourseList key={el.id} title={el.title} like={el.like} nick={el.nick} reg_at={el.reg_at} />;
+          })}
+        </div>
+      </section>
 
-      <div className={styles["community-mbti-pick-container"]}>
-        <span className={styles["community-mbti-pick-title"]}>MBTI별 pick</span>
-        <ul className={styles["community-mbti-pick-box"]}>
-          <li>
-            <button type="button" onClick={handleClickI} className={styles["community-mbti-pick-box-i"]}>
-              <img src={imageSrcI} alt="MBTI I 아이콘"></img>
-            </button>
-          </li>
-          <li>
-            <button type="button" onClick={handleClickE} className={styles["community-mbti-pick-box-e"]}>
-              <img src={imageSrcE} alt="MBTI E 아이콘"></img>
-            </button>
-          </li>
-          <li>
-            <button type="button" onClick={handleClickJ} className={styles["community-mbti-pick-box-j"]}>
-              <img src={imageSrcJ} alt="MBTI J 아이콘"></img>
-            </button>
-          </li>
-          <li>
-            <button type="button" onClick={handleClickP} className={styles["community-mbti-pick-box-p"]}>
-              <img src={imageSrcP} alt="MBTI P 아이콘"></img>
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div className={styles["community-mycourse-list-box"]}>
-        {communityMyCourse.map((el) => {
-          return <CommunityMyCourseList key={el.id} title={el.title} like={el.like} nick={el.nick} reg_at={el.reg_at} />;
-        })}
-      </div>
-    </section>
-
-    <ScrollToTop />
-    <WritingButton />
-  </>
-);
-      }
+      <ScrollToTop />
+      <WritingButton />
+    </>
+  );
+};
 
 export default MyCourseBoard;

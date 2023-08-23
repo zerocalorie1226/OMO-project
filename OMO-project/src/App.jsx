@@ -48,9 +48,9 @@ const App = () => (
       {/* <MyCourseWrite /> */}
       {/* <Notice /> */}
       {/* <WriteBoard /> */}
-      {/* <MyCourseBoard /> */}
+      <MyCourseBoard />
       {/* <InquiryBoard /> */}
-      <InquiryBoardQnA />
+      {/* <InquiryBoardQnA /> */}
       {/* <WorryBoard /> */}
       {/* <FreeBoard /> */}
     </div>
