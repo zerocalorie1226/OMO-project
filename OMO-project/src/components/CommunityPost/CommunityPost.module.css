@@ -147,6 +147,7 @@
 .community-post-comment-input-container {
   display: flex;
   gap: 16px;
+  position: relative;
 }
 
 /* 입력창 프로필 이미지 */
@@ -154,39 +155,50 @@
   border: 1px solid transparent;
   border-radius: 50%;
   object-fit: cover;
-  width: 100%;
-  height: 100%;
   margin-top: 7px;
 }
 
 /* 입력창 input */
 .community-post-comment-input {
   font-size: 24px;
-  width: 880px;
+  width: 100%;
   height: 65px;
   background-color: var(--white);
   border: 1px solid var(--gray-400);
   border-radius: 10px;
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 80px;
 }
 
-/* 입력 버튼 */
-.community-post-comment-input-container > button{
-  width: 77px;
+/* 제출 버튼 */
+.community-post-comment-input-button {
+  width: 50px;
   height: 65px;
-  border: 1px solid var(--gray-400);
-  border-radius: 10px;
+  border: none;
   background-color: transparent;
   cursor: pointer;
-  color: var(--gray-500);
-  font-size: 24px;
+  position: absolute;
+  right: 18px;
 }
 
-.community-post-comment-input-container > button:hover{
-  color: var(--secondary);
-  border: 1px solid var(--secondary);
+/* 제출 버튼 hover 효과 */
+
+.community-post-comment-input-button img.community-post-comment-input-button-img-hover{
+  display: none;
 }
+
+.community-post-comment-input-button:hover img.community-post-comment-input-button-img{
+  display: none;
+}
+
+.community-post-comment-input-button:hover img.community-post-comment-input-button-img-hover{
+  display: block;
+  position: absolute;
+  top:13px;
+  right: 8px;
+}
+
+
 
 /* 입력창 input focus 효과 */
 .community-post-comment-input:focus {
@@ -206,6 +218,7 @@
   margin: 0;
   display: flex;
 }
+
 
 /* 댓글 닉네임+날짜 */
 .community-post-comment-nick-date {
@@ -233,6 +246,8 @@
   width: 880px;
   height: 100%;
 }
+
+
 
 /* 댓글 박스 안 닉네임 */
 .community-post-comment-box-nick {
