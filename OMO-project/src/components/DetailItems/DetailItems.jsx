@@ -182,10 +182,7 @@ export const DetailItems = (props) => {
               <div className={styles["detail-review-input-box"]}>
                 <img
                   src={
-                    reviewData.find((item) => {
-                      // console.log(1234, item);
-                      return item.id === 2;
-                    }).src
+                    reviewData.find((item) =>  item.id).src
                   }
                   alt="프로필 이미지"
                   style={{width: "50px", height: "50px"}}
