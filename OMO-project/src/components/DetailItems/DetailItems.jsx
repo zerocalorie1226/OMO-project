@@ -9,6 +9,8 @@ import Menu from "../../assets/detail/menu.png";
 import Call from "../../assets/detail/call.png";
 import Graph from "../../assets/detail/graph.png";
 import ReviewIcon from "../../assets/detail/review.png";
+import Submit from "../../assets/submit.png";
+import SubmitHover from "../../assets/submit-hover.png";
 import {Review} from "./../../components/DetailItems/Review/Review";
 // import { Map } from "./../../components/Map/Map";
 import {priceTemplate} from "./../../utils/priceTemplate";
@@ -188,9 +190,11 @@ export const DetailItems = (props) => {
                   alt="프로필 이미지"
                   style={{width: "50px", height: "50px"}}
                 />
-
+                <button className={styles["detail-review-input-button"]} src={Submit}type="submit">
+                  <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px"}} />
+                  <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
+                </button>
                 <input className={styles["detail-review-input"]} type="text" id="review" name="review" minlength="2" maxlength="40" size="10" placeholder="리뷰를 입력하세요..."></input>
-                <button type="submit">입력</button>
               </div>
 
               {/* 리뷰 박스 리스트 */}
