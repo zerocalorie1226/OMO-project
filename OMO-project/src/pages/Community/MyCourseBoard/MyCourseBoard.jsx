@@ -1,5 +1,5 @@
 import styles from "./MyCourseBoard.module.css";
-import { useState } from "react";
+import {useState} from "react";
 import {communityPageFilter} from "./../../../const/communityPageFilter";
 import {communityMyCourse} from "../../../const/communityMyCourse";
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
@@ -72,27 +72,25 @@ const MyCourseBoard = () => {
       }
   };
 
+  return (
+    <>
+      {/* 카테고리 */}
+      <CommunityCategory />
 
-  return(
-  <>
-    {/* 카테고리 */}
-    <CommunityCategory />
-
-    {/* 필터 + 검색창 */}
-    <div className={styles["community-component-container"]}>
-      <div className={styles["community-filter-container"]}>
-        {communityPageFilter.map((el) => {
-          return <Filter key={el.id} title={el.title} bar={el.bar} />;
-        })}
+      {/* 필터 + 검색창 */}
+      <div className={styles["community-component-container"]}>
+        <div className={styles["community-filter-container"]}>
+          {communityPageFilter.map((el) => {
+            return <Filter key={el.id} title={el.title} bar={el.bar} />;
+          })}
+        </div>
+        <ListSearch />
       </div>
-      <ListSearch />
-    </div>
 
-    {/* 리스트 */}
+      {/* 리스트 */}
 
-    <section className={styles["community-mycourse-container"]}>
-
-      {/* MBTI pick */}
+      <section className={styles["community-mycourse-container"]}>
+        {/* MBTI pick */}
 
       <div className={styles["community-mbti-pick-container"]}>
         <span className={styles["community-mbti-pick-title"]}>MBTI별 pick</span>
@@ -126,11 +124,11 @@ const MyCourseBoard = () => {
       </div>
     </section>
 
-    <ScrollToTop />
-    <WritingButton />
-  </>
-);
-      }
+      <ScrollToTop />
+      <WritingButton />
+    </>
+  );
+};
 
 export default MyCourseBoard;
 
