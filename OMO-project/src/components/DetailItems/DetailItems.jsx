@@ -14,7 +14,7 @@ import SubmitHover from "../../assets/submit-hover.png";
 import {Review} from "./../../components/DetailItems/Review/Review";
 // import { Map } from "./../../components/Map/Map";
 import {priceTemplate} from "./../../utils/priceTemplate";
-import {reviewData} from "./../../const/review";
+import {reviewData} from "./../../const/reviewData";
 
 export const DetailItems = (props) => {
   const {data} = props;
