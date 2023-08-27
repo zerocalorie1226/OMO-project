@@ -11,7 +11,9 @@ import Login from "./pages/Login/Login";
 import List from "./pages/List/List";
 import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
 import MyWrote from "./pages/Mypage/Mywrote/MyWrote";
-import Detail from "./pages/Detail/Detail";
+import DetailMenu from "./pages/Detail/DetailMenu/DetailMenu";
+import DetailNone from "./pages/Detail/DetailNone/DetailNone";
+import DetailTariff from './pages/Detail/DetailTariff/DetailTariff';
 import Interest from "./pages/Mypage/Interest/Interest";
 import Recent from "./pages/Mypage/Recent/Recent";
 import Recommend from "./pages/Mypage/Recommend/Recommend";
@@ -26,6 +28,7 @@ import InquiryBoardQnA from "./pages/community/InquiryBoardQnA/InquiryBoardQnA";
 import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
 import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
 
+
 const App = () => (
   <>
     <div>
@@ -37,7 +40,9 @@ const App = () => (
       {/* <ThemeCafe /> */}
       {/* <Signup /> */}
       {/* <List /> */}
-      {/* <Detail /> */}
+      {/* <DetailMenu /> */}
+      {/* <DetailNone /> */}
+      <DetailTariff />
       {/* <MyInfo /> */}
       {/* <MyWrote /> */}
       {/* <Interest /> */}
@@ -48,7 +53,7 @@ const App = () => (
       {/* <MyCourseWrite /> */}
       {/* <Notice /> */}
       {/* <WriteBoard /> */}
-      <MyCourseBoard />
+      {/* <MyCourseBoard /> */}
       {/* <InquiryBoard /> */}
       {/* <InquiryBoardQnA /> */}
       {/* <WorryBoard /> */}
