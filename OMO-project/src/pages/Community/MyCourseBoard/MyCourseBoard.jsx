@@ -9,6 +9,15 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import CommunityMyCourseList from "../../../components/CommunityMyCourseList/CommunityMyCourseList";
 // import { communityMbtiFilter } from './../../../const/communityMbtiFilter';
+import LightPurpleI from "../../../assets/community/my-course-board/I-light-purple.png";
+import LightPurpleE from "../../../assets/community/my-course-board/E-light-purple.png";
+import LightPurpleJ from "../../../assets/community/my-course-board/J-light-purple.png";
+import LightPurpleP from "../../../assets/community/my-course-board/P-light-purple.png";
+import DeepPurpleI from "../../../assets/community/my-course-board/I-deep-purple.png";
+import DeepPurpleE from "../../../assets/community/my-course-board/E-deep-purple.png";
+import DeepPurpleJ from "../../../assets/community/my-course-board/J-deep-purple.png";
+import DeepPurpleP from "../../../assets/community/my-course-board/P-deep-purple.png";
+
 
 const MyCourseBoard = () => {
 
@@ -119,7 +128,7 @@ const MyCourseBoard = () => {
       </div>
       <div className={styles["community-mycourse-list-box"]}>
         {communityMyCourse.map((el) => {
-        <CommunityMyCourseList key={el.id} data={el} />; //컴포넌트가서 data.
+          return <CommunityMyCourseList key={el.id} title={el.title} like={el.like} nick={el.nick} reg_at={el.reg_at} />;
         })}
       </div>
     </section>
