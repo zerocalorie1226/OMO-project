@@ -1,22 +1,22 @@
-import styles from "./DetailItems.module.css";
-import Jjim from "../../assets/detail/empty-heart.png";
-// import JjimClicked from "../../assets/detail/red-heart.png"
-import Like from "../../assets/detail/empty-thumb.png";
-// import LikeClicked from "../../assets/detail/yellow-thumb.png"
-import Address from "../../assets/detail/address.png";
-import SalesInfo from "../../assets/detail/sales-info.png";
-import Menu from "../../assets/detail/menu.png";
-import Call from "../../assets/detail/call.png";
-import Graph from "../../assets/detail/graph.png";
-import ReviewIcon from "../../assets/detail/review.png";
-import Submit from "../../assets/submit.png";
-import SubmitHover from "../../assets/submit-hover.png";
-import {Review} from "./../../components/DetailItems/Review/Review";
-// import { Map } from "./../../components/Map/Map";
-import {priceTemplate} from "./../../utils/priceTemplate";
-import {reviewData} from "./../../const/reviewData";
+import styles from "./DetailItemsMenu.module.css";
+import Jjim from "../../../assets/detail/empty-heart.png";
+// import JjimClicked from "../../../assets/detail/red-heart.png"
+import Like from "../../../assets/detail/empty-thumb.png";
+// import LikeClicked from "../../../assets/detail/yellow-thumb.png"
+import Address from "../../../assets/detail/address.png";
+import SalesInfo from "../../../assets/detail/sales-info.png";
+import Menu from "../../../assets/detail/menu.png";
+import Call from "../../../assets/detail/call.png";
+import Graph from "../../../assets/detail/graph.png";
+import ReviewIcon from "../../../assets/detail/review.png";
+import Submit from "../../../assets/submit.png";
+import SubmitHover from "../../../assets/submit-hover.png";
+import {Review} from "../Review/Review";
+// import { Map } from "./../../../components/Map/Map";
+import {priceTemplate} from "../../../utils/priceTemplate";
+import {reviewData} from "../../../const/reviewData";
 
-export const DetailItems = (props) => {
+export const DetailItemsMenu = (props) => {
   const {data} = props;
   return (
     <>
@@ -180,14 +180,8 @@ export const DetailItems = (props) => {
             <div className={styles["detail-review-box-container"]}>
               {/* input 박스 */}
               <div className={styles["detail-review-input-box"]}>
-                <img
-                  src={
-                    reviewData.find((item) =>  item.id).src
-                  }
-                  alt="프로필 이미지"
-                  style={{width: "50px", height: "50px"}}
-                />
-                <button className={styles["detail-review-input-button"]} src={Submit}type="submit">
+                <img src={reviewData.find((item) => item.id).src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
+                <button className={styles["detail-review-input-button"]} src={Submit} type="submit">
                   <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px"}} />
                   <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
                 </button>
