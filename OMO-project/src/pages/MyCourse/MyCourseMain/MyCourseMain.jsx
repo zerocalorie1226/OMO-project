@@ -1,6 +1,6 @@
 import MyCourseList from "../../../components/MyCourse/MyCourseList/MyCourseList";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {myCourse} from "../../../const/mycourse";
+import {myCourse} from "../../../const/myCourse";
 import styles from "./MyCourseMain.module.css";
 
 const MyCourseMain = () => (
