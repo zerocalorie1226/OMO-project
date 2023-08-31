@@ -35,7 +35,7 @@ const App = () => (
       {/* <Watching /> */}
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
-      <Login />
+      {/* <Login /> */}
       {/* <Signup /> */}
       {/* <List /> */}
       {/* <Detail /> */}
@@ -44,7 +44,7 @@ const App = () => (
       {/* <Interest /> */}
       {/* <Recent /> */}
       {/* <Recommend /> */}
-      {/* <ProfileSetting /> */}
+      <ProfileSetting />
       {/* <MyCourseMain /> */}
       {/* <MyCourseWrite /> */}
       {/* <Notice /> */}

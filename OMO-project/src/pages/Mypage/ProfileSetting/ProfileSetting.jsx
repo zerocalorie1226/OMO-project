@@ -2,7 +2,7 @@ import styles from "./ProfileSetting.module.css";
 import SettingIcon from "../../../assets/my-page/setting/profile-setting.png";
 import Mypage from "../../../components/Mypage/Mypage";
 import ProfileChange from "../../../components/MypageProfileSetting/ProfileChange/ProfileChange";
-import PasswordChange from "../../../components/MypageProfileSetting/PasswordChange/PasswordChange";
+
 import NicknameChange from "../../../components/MypageProfileSetting/NicknameChange/NicknameChange";
 import MbtiChange from "../../../components/MypageProfileSetting/MbtiChange/MbtiChange";
 import MembershipWithdrawal from "../../../components/MypageProfileSetting/MembershipWithdrawal/MembershipWithdrawal";
@@ -16,13 +16,9 @@ const ProfileSetting = () => (
       <Mypage />
       <div className={styles["profileSetting-main-container"]}>
         <ProfileChange />
-        <PasswordChange />
         <NicknameChange />
         <MbtiChange />
         <MembershipWithdrawal />
-        <button type="button" className={styles["profileSetting-main-finish"]}>
-          완료
-        </button>
       </div>
     </div>
   </div>
