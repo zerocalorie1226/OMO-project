@@ -8,36 +8,19 @@ const Login = () => (
     <section className={styles["login-container"]}>
       <h2 className={styles["login-title"]}>로그인</h2>
 
-      <div className={styles["login-input-container"]}>
-        <input className={styles["login-email-input"]} type="text" id="login-email" placeholder="이메일을 입력해주세요." />
-        <input className={styles["login-pw-input"]} type="text" id="login-pw" placeholder="비밀번호 입력해주세요." />
-      </div>
-      <div className={styles["login-find-container"]}>
-        <a href="#" className={styles["login-find-id"]}>
-          아이디 찾기
-        </a>
-        <p className={styles["login-find-p"]}> | </p>
-        <a href="#" className={styles["login-find-pw"]}>
-          비밀번호 찾기
-        </a>
-      </div>
-      <form className={styles["login-btn-container"]}>
-        <button type="submit" className={styles["login-btn-login"]}>
-          로그인
-        </button>
-        <button type="submit" className={styles["login-btn-signup"]}>
-          회원가입
-        </button>
-      </form>
       <div className={styles["login-community-container"]}>
-        <a href="#" className={styles["login-community-naver"]}>
-          <img src={naver}></img>
-        </a>
-        <a href="#" className={styles["login-community-google"]}>
-          <img src={google}></img>
-        </a>
         <a href="#" className={styles["login-community-kakao"]}>
-          <img src={kakao}></img>
+          <img src={kakao} className={styles["login-community-kakao-icon"]}></img>
+          <span className={styles["login-community-kakao-letter"]}>카카오 로그인</span>
+        </a>
+        <a href="#" className={styles["login-community-naver"]}>
+          <img src={naver} className={styles["login-community-naver-icon"]}></img>
+          <span className={styles["login-community-naver-letter"]}>네이버 로그인</span>
+        </a>
+
+        <a href="#" className={styles["login-community-google"]}>
+          <img src={google} className={styles["login-community-google-icon"]}></img>
+          <span className={styles["login-community-google-letter"]}>구글 로그인</span>
         </a>
       </div>
     </section>
