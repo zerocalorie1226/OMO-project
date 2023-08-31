@@ -1,10 +1,8 @@
 import {CommunityCategory} from "../../../components/CommunityCategory/CommunityCategory";
-import CommunityInquiryBox from "../../../components/CommunityInquiryBox/CommunityInquiryBox";
-import {CommunityQnaBox} from "../../../components/CommunityQnaBox/CommunityQnaBox";
+import {CommunityQnABox} from "../../../components/CommunityQnABox/CommunityQnABox";
 import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
-import {communityInquiryFrequent} from "../../../const/communityInquiryFrequent";
 import {communityInquiryFrequentFilter} from "../../../const/communityInquiryFrequentFilter";
 import {communityQnAPost} from "../../../const/communityQnAPost";
 import styles from "./InquiryBoardQnA.module.css";
@@ -27,7 +25,7 @@ const InquiryBoardQnA = () => (
     <hr className={styles["inquiryboardqna-hr"]} />
     {communityQnAPost.map((el) => {
       return (
-        <CommunityQnaBox
+        <CommunityQnABox
           key={el.id}
           title={el.title}
           reg_at={el.reg_at}

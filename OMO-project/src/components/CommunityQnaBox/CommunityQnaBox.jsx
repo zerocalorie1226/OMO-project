@@ -1,9 +1,9 @@
-import styles from "./CommunityQnaBox.module.css";
+import styles from "./CommunityQnABox.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
 import Comment from "../../assets/community/inquiry-board/comment.png";
 
-export const CommunityQnaBox = (props) => (
+export const CommunityQnABox = (props) => (
   <>
     {/* 전체 영역 */}
     <div className={styles["community-qnapost-container"]}>
