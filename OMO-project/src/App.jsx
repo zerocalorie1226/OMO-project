@@ -35,6 +35,7 @@ const App = () => (
       {/* <Watching /> */}
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
+      <Login />
       {/* <Signup /> */}
       {/* <List /> */}
       {/* <Detail /> */}
@@ -48,7 +49,7 @@ const App = () => (
       {/* <MyCourseWrite /> */}
       {/* <Notice /> */}
       {/* <WriteBoard /> */}
-      <MyCourseBoard />
+      {/* <MyCourseBoard /> */}
       {/* <InquiryBoard /> */}
       {/* <InquiryBoardQnA /> */}
       {/* <WorryBoard /> */}
