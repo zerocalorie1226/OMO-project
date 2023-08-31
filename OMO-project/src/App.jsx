@@ -10,7 +10,7 @@ import ThemeCafe from "./pages/Sub/ThemeCafe/ThemeCafe";
 import Login from "./pages/Login/Login";
 import List from "./pages/List/List";
 import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
-import MyWrote from "./pages/Mypage/Mywrote/MyWrote";
+import MyWrote from "./pages/Mypage/MyWrote/MyWrote";
 import DetailMenu from "./pages/Detail/DetailMenu/DetailMenu";
 import DetailNone from "./pages/Detail/DetailNone/DetailNone";
 import DetailTariff from './pages/Detail/DetailTariff/DetailTariff';
