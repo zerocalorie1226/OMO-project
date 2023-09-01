@@ -1,7 +1,7 @@
 import styles from "./Delete.module.css";
 
 const Delete = () => (
-  <button type="buttin" className={styles["Delete-button"]}>
+  <button type="button" className={styles["delete-button"]}>
     삭제
   </button>
 );
