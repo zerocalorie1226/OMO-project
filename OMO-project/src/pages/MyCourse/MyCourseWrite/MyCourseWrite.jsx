@@ -7,6 +7,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import Save from "../../../components/MyCourse/Button/Save/Save";
 import EditShare from "../../../components/MyCourse/Button/Edit-Share/Edit-Share";
+import MyCourseFindInterestModal from "../../../components/MyCourseFindInterestModal/MyCourseFindInterestModal";
 
 const MyCourseWrite = () => (
   <div className={styles["myCourseWrite-total-container"]}>
@@ -23,6 +24,7 @@ const MyCourseWrite = () => (
     {/* <EditShare /> */}
     <ScrollToTop />
     <WritingButton />
+    {/* <MyCourseFindInterestModal /> */}
   </div>
 );
 
