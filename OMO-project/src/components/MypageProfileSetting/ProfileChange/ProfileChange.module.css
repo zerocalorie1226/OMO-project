@@ -1,4 +1,4 @@
-.profileSetting-main-profileChange-container {
+.profile-setting-main-profile-change-container {
   position: relative;
   display: flex;
   width: 800px;
@@ -7,20 +7,20 @@
   bottom: 680px;
   margin-top: 30px;
 }
-.profileSetting-main-profileChange-title {
+.profile-setting-main-profile-change-title {
   width: 120px;
   font-size: 20px;
   line-height: 16 0px;
   margin: auto 140px auto 0;
 }
 
-.profileSetting-main-profileChange-img {
+.profile-setting-main-profile-change-img {
   width: 160px;
   height: 160px;
   border-radius: 50%;
 }
 
-.profileSetting-main-profileChange-background {
+.profile-setting-main-profile-change-background {
   position: relative;
   width: 160px;
   height: 160px;
@@ -29,7 +29,7 @@
   border-radius: 50%;
 }
 
-.profileSetting-main-profileChange-changeImg {
+.profile-setting-main-profile-change-change-img {
   position: relative;
   width: 30px;
   height: 30px;
@@ -37,7 +37,7 @@
   top: 66px;
 }
 
-.profileSetting-main-profileChange-click {
+.profile-setting-main-profile-change-click {
   width: 180px;
   height: 180px;
   position: relative;
