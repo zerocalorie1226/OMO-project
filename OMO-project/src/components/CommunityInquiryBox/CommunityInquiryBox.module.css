@@ -5,15 +5,14 @@
   border: 1px solid var(--gray-400);
   border-radius: 10px;
   overflow: hidden;
-  transition: height 400ms ease-in-out;
+  /* transition: height 400ms ease-in-out; */
 }
 .Communityinquirybox-total-container:hover {
-  height: 400px;
+  height: 100%;
 }
 
 .Communityinquirybox-title-img-nickname-content-container {
   width: 1000px;
-  height: 400px;
 }
 
 .Communityinquirybox-title {
@@ -37,7 +36,6 @@
 
 .Communityinquirybox-content {
   width: 920px;
-  height: 145px;
   margin: 50px auto;
   font-size: 20px;
 }
