@@ -1,46 +1,12 @@
-.Inquiryboard-filter-search-container {
+.inquiry-board-filter-search-container {
   display: flex;
   width: 1000px;
   justify-content: space-between;
   margin: 60px auto 0 auto;
 }
 
-.Inquiryboard-filter-container {
-  width: 600px;
-  display: flex;
-  align-items: center;
-}
-
-.Inquiryboard-hr {
+.inquiry-board-hr {
   margin-top: 20px;
   margin-bottom: 60px;
   border: 1px solid var(--gray-50);
-}
-
-.Inquiryboard-filter-frequency {
-  display: flex;
-  width: 140px;
-  font-size: 20px;
-  justify-content: center;
-  color: var(--gray-900);
-}
-
-.Inquiryboard-filter-qna {
-  display: flex;
-  width: 67px;
-  font-size: 20px;
-  justify-content: center;
-  color: var(--gray-900);
-}
-
-.Inquiryboard-filter-bar {
-  width: 10px;
-  display: flex;
-  justify-content: center;
-  color: var(--gray-900);
-}
-
-.Inquiryboard-filter-container a:hover {
-  color: var(--secondary);
-  text-decoration: underline;
 }

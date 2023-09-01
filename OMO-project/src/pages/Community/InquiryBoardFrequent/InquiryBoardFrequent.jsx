@@ -1,29 +1,20 @@
 import {CommunityCategory} from "../../../components/CommunityCategory/CommunityCategory";
 import CommunityInquiryBox from "../../../components/CommunityInquiryBox/CommunityInquiryBox";
-import Filter from "../../../components/Filter/Filter";
+import CommunityInquiryFilter from "../../../components/CommunityInquiryFilter/CommunityInquiryFilter";
 import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import {communityInquiryFrequent} from "../../../const/communityInquiryFrequent";
-import {communityInquiryFrequentFilter} from "../../../const/communityInquiryFrequentFilter";
 import styles from "./InquiryBoardFrequent.module.css";
 
 const InquiryBoardFrequent = () => (
   <div>
     <CommunityCategory />
-    <div className={styles["Inquiryboard-filter-search-container"]}>
-      <div className={styles["Inquiryboard-filter-container"]}>
-        <a href="#" className={styles["Inquiryboard-filter-frequency"]}>
-          자주 하는 질문
-        </a>
-        <span className={styles["Inquiryboard-filter-bar"]}>|</span>
-        <a href="#" className={styles["Inquiryboard-filter-qna"]}>
-          QnA
-        </a>
-      </div>
+    <div className={styles["inquiry-board-filter-search-container"]}>
+      <CommunityInquiryFilter />
       <ListSearch />
     </div>
-    <hr className={styles["Inquiryboard-hr"]} />
+    <hr className={styles["inquiry-board-hr"]} />
     {communityInquiryFrequent.map((el) => {
       return <CommunityInquiryBox key={el.id} title={el.title} nickname={el.nickname} content={el.content} />;
     })}
