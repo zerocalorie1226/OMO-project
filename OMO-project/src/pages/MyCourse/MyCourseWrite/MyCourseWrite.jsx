@@ -7,7 +7,8 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import Save from "../../../components/MyCourse/Button/Save/Save";
 import EditShare from "../../../components/MyCourse/Button/Edit-Share/Edit-Share";
-import MyCourseFindInterestModal from "../../../components/MyCourseFindInterestModal/MyCourseFindInterestModal";
+import MyCourseFindInterestModal from "../../../components/MyCourseFindInterestModal/MyCourseFindInterestModal"; // 관심 목록에서 찾기 모달창
+import MyCourseFindRecentModal from './../../../components/MyCourseFindRecentModal/MyCourseFindRecentModal'; // 최근 본 목록에서 찾기 모달창
 
 const MyCourseWrite = () => (
   <div className={styles["myCourseWrite-total-container"]}>
@@ -25,6 +26,8 @@ const MyCourseWrite = () => (
     <ScrollToTop />
     <WritingButton />
     {/* <MyCourseFindInterestModal /> */}
+    {/* <MyCourseFindRecentModal /> */}
+    
   </div>
 );
 
