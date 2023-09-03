@@ -24,6 +24,24 @@
    margin-bottom: 35px;
 }
 
+.mycourse-find-interest-close-btn{
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  border: 0;
+  cursor: pointer;
+  right: 40px;
+  background-color: transparent;
+}
+
+.mycourse-find-interest-close-btn-img{
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
 
 .mycourse-find-interest-modal-list-box-container{
 display: flex;

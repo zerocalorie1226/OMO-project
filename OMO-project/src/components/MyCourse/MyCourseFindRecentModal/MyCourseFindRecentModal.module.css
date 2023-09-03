@@ -32,3 +32,21 @@ gap: 20px;
 height: 100%;
 overflow: hidden;
 }
+
+.mycourse-find-recent-close-btn{
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  border: 0;
+  cursor: pointer;
+  right: 40px;
+  background-color: transparent;
+}
+
+.mycourse-find-recent-close-btn-img{
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}

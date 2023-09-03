@@ -32,3 +32,21 @@
   outline: none;
   font-size: 20px;
 }
+
+.mycourse-find-search-close-btn{
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  border: 0;
+  cursor: pointer;
+  right: 15px;
+  background-color: transparent;
+}
+
+.mycourse-find-search-close-btn-img{
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}

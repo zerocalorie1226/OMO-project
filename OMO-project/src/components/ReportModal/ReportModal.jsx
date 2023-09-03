@@ -1,7 +1,7 @@
 import styles from "./ReportModal.module.css";
 import {Radio} from "../Radio/Radio";
 import {RadioGroup} from "../../components/Radio/RadioGroup";
-import ReportClose from "../../assets/report-close.png";
+import ReportClose from "../../assets/modal-close.png";
 
 const ReportModal = () => (
   <>
