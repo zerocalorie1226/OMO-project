@@ -29,7 +29,7 @@ const MyCourseWrite = () => (
     <WritingButton />
     {/* <MyCourseFindInterestModal /> */}
     {/* <MyCourseFindRecentModal /> */}
-    <MyCourseFindSearchModal />
+    {/* <MyCourseFindSearchModal /> */}
   </div>
 );
 
