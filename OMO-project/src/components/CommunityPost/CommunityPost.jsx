@@ -64,7 +64,7 @@ export const CommunityPost = (props) => (
           <img className={styles["community-post-comment-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px"}} />
           <img className={styles["community-post-comment-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
           </button>
-          <input className={styles["community-post-comment-input"]} type="text" id="comment" name="comment" minlength="2" maxlength="40" size="10" placeholder="댓글을 입력하세요..."></input>
+          <input className={styles["community-post-comment-input"]} type="text" id="comment" name="comment" minLength="2" maxLength="40" size="10" placeholder="댓글을 입력하세요..."></input>
         </div>
 
         {/* 댓글 내용 */}
