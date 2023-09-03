@@ -1,4 +1,4 @@
-.notice-main-subTitle-free-container {
+.notice-main-subtitle-free-container {
   display: flex;
   width: 1000px;
   height: 60px;
@@ -7,12 +7,12 @@
   color: var(--gray-700);
 }
 
-.notice-main-subTitle-free-container:hover {
+.notice-main-subtitle-free-container:hover {
   color: var(--secondary);
 }
 
-.notice-main-subTitle-free-division,
-.notice-main-subTitle-free-date {
+.notice-main-subtitle-free-division,
+.notice-main-subtitle-free-date {
   text-align: center;
   display: inline-block;
   width: 100px;
@@ -21,7 +21,7 @@
   margin: auto;
   line-height: 60px;
 }
-.notice-main-subTitle-free-title {
+.notice-main-subtitle-free-title {
   display: inline-block;
   width: 780px;
   height: 60px;
