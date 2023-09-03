@@ -1,10 +1,13 @@
 import styles from "./MyCourseSearchBox.module.css";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import Delete from "../Button/Delete/Delete";
+import MyCourseCalendar from './../../MyCourse/MyCourseCalendar/MyCourseCalendar';
+
 
 const MyCourseSearchBox = () => (
   <div className={styles["myCourseSearchBox-total-container"]}>
     <div className={styles["myCourseSearchBox-button-container"]}>
+      <MyCourseCalendar/>
       <button type="button" className={styles["myCourseSearchBox-button-popular"]}>
         찜 목록에서 찾기
       </button>
