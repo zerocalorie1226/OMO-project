@@ -37,9 +37,8 @@
 /* 찜, 좋아요 전체 div  */
 .mycoursedatabox-box-like-jjim-container {
   display: flex;
-
   flex-direction: row;
-  margin-top: 30px;
+  margin-top: 32px;
   position: relative;
 }
 
@@ -82,23 +81,23 @@
 
 /* 영업중 */
 .mycoursedatabox-box-runtime {
-  font-size: 20px;
+  font-size: 16px;
   position: absolute;
-  top: 46px;
+  top: 50px;
   left: 160px;
   color: var(--blue-200);
 }
 
 /* 가게 소개 */
 .mycoursedatabox-box-intro {
-  font-size: 20px;
+  font-size: 16px;
   position: absolute;
-  top: 78px;
+  top: 80px;
 }
 
 /* 간략 주소 */
 .mycoursedatabox-box-address-brief {
-  font-size: 20px;
+  font-size: 16px;
   position: absolute;
   top: 102px;
 }
