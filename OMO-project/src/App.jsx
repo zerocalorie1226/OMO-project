@@ -25,7 +25,8 @@ import InquiryBoard from "./pages/community/InquiryBoard/InquiryBoard";
 import InquiryBoardQnA from "./pages/community/InquiryBoardQnA/InquiryBoardQnA";
 import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
 import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
-import MyCourseMyVersion from "./pages/MyCourse/MyCouresMyVersion/MyCouresMyVersion";
+import MyCourseMyVersion from "./pages/MyCourse/MyCouresMyVersion/MyCourseMyVersion";
+import MyCourseMyVersionEdit from "./pages/MyCourse/MyCourseMyVersionEdit/MyCourseMyVersionEdit";
 
 const App = () => (
   <>
@@ -48,7 +49,8 @@ const App = () => (
       {/* <ProfileSetting /> */}
       {/* <MyCourseMain /> */}
       {/* <MyCourseWrite /> */}
-      <MyCourseMyVersion />
+      {/* <MyCourseMyVersion /> */}
+      {/* <MyCourseMyVersionEdit /> */}
       {/* <Notice /> */}
       {/* <WriteBoard /> */}
       {/* <MyCourseBoard /> */}

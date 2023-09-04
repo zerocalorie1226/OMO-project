@@ -1,5 +1,5 @@
 .mycoursemyversion-total-container {
-  width: 1000px;
+  width: 670px;
   margin: 0 auto;
   margin-top: 100px;
 }
@@ -15,7 +15,7 @@
   font-size: 32px;
 }
 
-.myCourseWrite-input-title {
+.mycoursemyversion-input-title {
   width: 370px;
   padding-bottom: 10px;
   font-size: 32px;
@@ -25,11 +25,11 @@
   text-align: center;
 }
 
-.myCourseWrite-input-title::placeholder {
+.mycoursemyversion-input-title::placeholder {
   text-align: center;
 }
 
-.myCourseWrite-img-title {
+.mycoursemyversion-img-title {
   position: absolute;
   right: 30px;
   top: 4px;

@@ -6,7 +6,8 @@ import Jjim from "../../../assets/detail/empty-heart.png";
 
 const MyCourseDataBox = (props) => (
   <div className={styles["mycoursedatabox-total-container"]}>
-    <a href="#" className={styles["mycoursedatabox-box-container"]}>
+    <Delete />
+    <div href="#" className={styles["mycoursedatabox-box-container"]}>
       <div className={styles["mycoursedatabox-box-inner-container"]}>
         <span className={styles["mycoursedatabox-box-title"]}>{props.title}</span>
 
@@ -31,7 +32,7 @@ const MyCourseDataBox = (props) => (
         <img className={styles["mycoursedatabox-box-img1"]} src={props.img1} />
         <img className={styles["mycoursedatabox-box-img2"]} src={props.img2} />
       </div>
-    </a>
+    </div>
     <img src={props.downArrow} className={styles["mycoursedatabox-downArrow-img"]} />
   </div>
 );

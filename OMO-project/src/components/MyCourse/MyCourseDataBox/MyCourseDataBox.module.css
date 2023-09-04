@@ -1,33 +1,35 @@
 .mycoursedatabox-total-container {
   position: relative;
-  width: 1000px;
+  /* display: flex; */
+  width: 670px;
+  justify-content: center;
+  align-items: center;
 }
 
 .mycoursedatabox-box-container {
   display: block;
-  width: 1000px;
+  width: 670px;
 }
 
 /* 개별 박스 */
 .mycoursedatabox-box-inner-container {
-  width: 1000px;
-  height: 200px;
-  border: 1px solid var(--gray-400);
+  width: 670px;
+  height: 133px;
+  border: 1px solid var(--primary);
   border-radius: 20px;
   position: relative;
-  padding: 25px;
+  padding-left: 20px;
+  padding-top: 16px;
 }
 
 /* 박스 hover 효과 */
-.mycoursedatabox-box-inner-container:hover {
+/* .mycoursedatabox-box-inner-container:hover {
   border: 2px solid var(--secondary);
-  /* border: 2px solid var(--primary); */
-  /* box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); */
-}
+} */
 
 /*  가게 이름 */
 .mycoursedatabox-box-title {
-  font-size: 30px;
+  font-size: 20px;
   position: absolute;
   font-weight: 500;
 }
@@ -35,9 +37,9 @@
 /* 찜, 좋아요 전체 div  */
 .mycoursedatabox-box-like-jjim-container {
   display: flex;
+
   flex-direction: row;
-  margin-top: 55px;
-  font-size: 20px;
+  margin-top: 30px;
   position: relative;
 }
 
@@ -82,8 +84,8 @@
 .mycoursedatabox-box-runtime {
   font-size: 20px;
   position: absolute;
-  top: 80px;
-  left: 245px;
+  top: 46px;
+  left: 160px;
   color: var(--blue-200);
 }
 
@@ -91,31 +93,31 @@
 .mycoursedatabox-box-intro {
   font-size: 20px;
   position: absolute;
-  top: 118px;
+  top: 78px;
 }
 
 /* 간략 주소 */
 .mycoursedatabox-box-address-brief {
   font-size: 20px;
   position: absolute;
-  top: 150px;
+  top: 102px;
 }
 
 .mycoursedatabox-box-img1 {
   position: absolute;
-  right: 200px;
-  top: 25px;
-  width: 150px;
-  height: 150px;
+  right: 160px;
+  top: 16px;
+  width: 100px;
+  height: 100px;
   border-radius: 5px;
 }
 
 .mycoursedatabox-box-img2 {
   position: absolute;
-  right: 25px;
-  top: 25px;
-  width: 150px;
-  height: 150px;
+  right: 30px;
+  top: 16px;
+  width: 100px;
+  height: 100px;
   border-radius: 5px;
 }
 .mycoursedatabox-downArrow-img {
