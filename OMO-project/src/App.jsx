@@ -53,11 +53,11 @@ const App = () => (
       {/* <Recommend /> */}
       {/* <ProfileSetting /> */}
       {/* <MyCourseMain /> */}
-      <MyCourseWrite />
+      {/* <MyCourseWrite /> */}
       {/* <MyCourseMyVersion /> */}
       {/* <MyCourseMyVersionEdit /> */}
       {/* <MyCourseOthersVersion /> */}
-      {/* <Notice /> */}
+      <Notice />
       {/* <WriteBoard /> */}
       {/* <MyCourseBoard /> */}
       {/* <InquiryBoard /> */}
