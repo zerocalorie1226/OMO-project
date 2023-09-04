@@ -10,8 +10,10 @@ import ThemeCafe from "./pages/Sub/ThemeCafe/ThemeCafe";
 import Login from "./pages/Login/Login";
 import List from "./pages/List/List";
 import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
-import MyWrote from "./pages/Mypage/Mywrote/MyWrote";
-import Detail from "./pages/Detail/Detail";
+import MyWrote from "./pages/Mypage/MyWrote/MyWrote";
+import DetailMenu from "./pages/Detail/DetailMenu/DetailMenu";
+import DetailNone from "./pages/Detail/DetailNone/DetailNone";
+import DetailTariff from "./pages/Detail/DetailTariff/DetailTariff";
 import Interest from "./pages/Mypage/Interest/Interest";
 import Recent from "./pages/Mypage/Recent/Recent";
 import Recommend from "./pages/Mypage/Recommend/Recommend";
@@ -19,9 +21,9 @@ import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
 import MyCourseMain from "./pages/MyCourse/MyCourseMain/MyCourseMain";
 import Notice from "./pages/Notice/Notice";
 import MyCourseWrite from "./pages/MyCourse/MyCourseWrite/MyCourseWrite";
-import WriteBoard from "./pages/community/Write-board/WriteBoard";
+import WriteBoard from "./pages/Community/WriteBoard/WriteBoard";
 import MyCourseBoard from "./pages/Community/MyCourseBoard/MyCourseBoard";
-import InquiryBoard from "./pages/community/InquiryBoard/InquiryBoard";
+import InquiryBoardFrequent from "./pages/Community/InquiryBoardFrequent/InquiryBoardFrequent";
 import InquiryBoardQnA from "./pages/community/InquiryBoardQnA/InquiryBoardQnA";
 import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
 import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
@@ -41,7 +43,9 @@ const App = () => (
       {/* <Login /> */}
       {/* <Signup /> */}
       {/* <List /> */}
-      {/* <Detail /> */}
+      {/* <DetailMenu /> */}
+      {/* <DetailNone /> */}
+      {/* <DetailTariff /> */}
       {/* <MyInfo /> */}
       {/* <MyWrote /> */}
       {/* <Interest /> */}
@@ -57,6 +61,7 @@ const App = () => (
       {/* <WriteBoard /> */}
       {/* <MyCourseBoard /> */}
       {/* <InquiryBoard /> */}
+      {/* <InquiryBoardFrequent /> */}
       {/* <InquiryBoardQnA /> */}
       {/* <WorryBoard /> */}
       {/* <FreeBoard /> */}

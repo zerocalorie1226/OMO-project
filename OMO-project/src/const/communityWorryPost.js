@@ -3,6 +3,7 @@ import ProfileImg from "../assets/profile-img.jpg";
 export const communityWorryPost = [
   {
     id: 1,
+    category: "고민 게시판",
     title: "서울 연희동 데이트 코스",
     reg_at: "2023/07/12",
     src: ProfileImg,
@@ -21,6 +22,7 @@ export const communityWorryPost = [
   },
   {
     id: 2,
+    category: "고민 게시판",
     title: "안양 데이트 코스",
     reg_at: "2023/07/15",
     src: ProfileImg,
@@ -38,6 +40,7 @@ export const communityWorryPost = [
   },
   {
     id: 3,
+    category: "고민 게시판",
     title: "이색 데이트 장소 추천",
     reg_at: "2023/07/18",
     src: ProfileImg,

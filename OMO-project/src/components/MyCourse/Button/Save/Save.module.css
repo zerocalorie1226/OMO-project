@@ -1,11 +1,11 @@
-.Save-button-container {
+.save-button-container {
   display: flex;
   width: 860px;
   justify-content: flex-end;
   font-size: 25px;
 }
 
-.Save-button {
+.save-button {
   width: 90px;
   height: 50px;
   border: none;

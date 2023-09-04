@@ -2,11 +2,12 @@ import styles from "./WorryBoard.module.css";
 import {communityPageFilter} from "./../../../const/communityPageFilter";
 import {communityWorryPost} from "./../../../const/communityWorryPost";
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
-import { CommunityPost } from './../../../components/CommunityPost/CommunityPost';
+import {CommunityPost} from './../../../components/CommunityPost/CommunityPost';
 import Filter from "../../../components/Filter/Filter";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
+import ReportModal from '../../../components/ReportModal/ReportModal';
 
 const WorryBoard = () => {
 
@@ -33,6 +34,7 @@ const WorryBoard = () => {
         })}
     </section>
 
+    {/* <ReportModal /> */}
     <ScrollToTop />
     <WritingButton />
   </>

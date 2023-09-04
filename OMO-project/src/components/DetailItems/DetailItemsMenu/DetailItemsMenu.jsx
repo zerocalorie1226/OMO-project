@@ -1,20 +1,22 @@
-import styles from "./DetailItems.module.css";
-import Jjim from "../../assets/detail/empty-heart.png";
-// import JjimClicked from "../../assets/detail/red-heart.png"
-import Like from "../../assets/detail/empty-thumb.png";
-// import LikeClicked from "../../assets/detail/yellow-thumb.png"
-import Address from "../../assets/detail/address.png";
-import SalesInfo from "../../assets/detail/sales-info.png";
-import Menu from "../../assets/detail/menu.png";
-import Call from "../../assets/detail/call.png";
-import Graph from "../../assets/detail/graph.png";
-import ReviewIcon from "../../assets/detail/review.png";
-import {Review} from "./../../components/DetailItems/Review/Review";
-// import { Map } from "./../../components/Map/Map";
-import {priceTemplate} from "./../../utils/priceTemplate";
-import { reviewData } from './../../const/review';
+import styles from "./DetailItemsMenu.module.css";
+import Jjim from "../../../assets/detail/empty-heart.png";
+// import JjimClicked from "../../../assets/detail/red-heart.png"
+import Like from "../../../assets/detail/empty-thumb.png";
+// import LikeClicked from "../../../assets/detail/yellow-thumb.png"
+import Address from "../../../assets/detail/address.png";
+import SalesInfo from "../../../assets/detail/sales-info.png";
+import Menu from "../../../assets/detail/menu.png";
+import Call from "../../../assets/detail/call.png";
+import Graph from "../../../assets/detail/graph.png";
+import ReviewIcon from "../../../assets/detail/review.png";
+import Submit from "../../../assets/submit.png";
+import SubmitHover from "../../../assets/submit-hover.png";
+import {Review} from "../Review/Review";
+// import { Map } from "./../../../components/Map/Map";
+import {priceTemplate} from "../../../utils/priceTemplate";
+import {reviewData} from "../../../const/reviewData";
 
-export const DetailItems = (props) => {
+export const DetailItemsMenu = (props) => {
   const {data} = props;
   return (
     <>
@@ -26,17 +28,22 @@ export const DetailItems = (props) => {
         <span className={styles["detail-title"]}>{data.title}</span>
         <div className={styles["detail-like-jjim-container"]}>
           <div className={styles["detail-jjim"]}>
-           <button type="button"><img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} /> </button> <span className={styles["detail-jjim-number"]}> {data.jjim}</span>
+            <button type="button">
+              <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} />{" "}
+            </button>{" "}
+            <span className={styles["detail-jjim-number"]}> {data.jjim}</span>
           </div>
           <span className={styles["detail-like-jjim-line"]}>|</span>
           <div className={styles["detail-like"]}>
-          <button type="button"><img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} /> </button><span className={styles["detail-like-number"]}> {data.like}</span>
+            <button type="button">
+              <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} />{" "}
+            </button>
+            <span className={styles["detail-like-number"]}> {data.like}</span>
           </div>
         </div>
       </section>
 
       <div className={styles["detail-inner-container"]}>
-
         {/* 주소 */}
         <section className={styles["detail-address-container"]}>
           <div className={styles["detail-address-inner-container"]}>
@@ -171,6 +178,17 @@ export const DetailItems = (props) => {
             <span className={styles["detail-review-title"]}>리뷰</span>
 
             <div className={styles["detail-review-box-container"]}>
+              {/* input 박스 */}
+              <div className={styles["detail-review-input-box"]}>
+                <img src={reviewData.find((item) => item.id).src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
+                <button className={styles["detail-review-input-button"]} src={Submit} type="submit">
+                  <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px"}} />
+                  <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
+                </button>
+                <input className={styles["detail-review-input"]} type="text" id="review" name="review" minlength="2" maxlength="40" size="10" placeholder="리뷰를 입력하세요..."></input>
+              </div>
+
+              {/* 리뷰 박스 리스트 */}
               {reviewData.map((review) => (
                 <Review data={review} />
               ))}
@@ -181,4 +199,3 @@ export const DetailItems = (props) => {
     </>
   );
 };
-

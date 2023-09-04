@@ -1,10 +1,10 @@
 import styles from "./MembershipWithdrawal.module.css";
 
 const MembershipWithdrawal = () => (
-  <div className={styles["profileSetting-main-membershipWithdrawal-container"]}>
-    <p className={styles["profileSetting-main-membershipWithdrawal-title"]}>탈퇴하기</p>
+  <div className={styles["profile-setting-main-membership-withdrawal-container"]}>
+    <p className={styles["profile-setting-main-membership-withdrawal-title"]}>탈퇴하기</p>
 
-    <button type="button" className={styles["profileSetting-main-membershipWithdrawal-button"]}>
+    <button type="button" className={styles["profile-setting-main-membership-withdrawal-button"]}>
       회원 탈퇴
     </button>
   </div>

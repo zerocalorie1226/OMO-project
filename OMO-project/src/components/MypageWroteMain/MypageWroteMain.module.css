@@ -1,32 +1,5 @@
-.myWrote-main-subTitle-free-container {
-  display: flex;
-  width: 730px;
-  height: 60px;
-  justify-content: space-between;
-  font-size: 16px;
-  color: var(--gray-700);
-}
 
-.myWrote-main-subTitle-free-container:hover {
-  color: var(--secondary);
-}
+.my-page-wrote-main-total-container :hover{
+height: 100%;
 
-.myWrote-main-subTitle-free-division,
-.myWrote-main-subTitle-free-date {
-  text-align: center;
-  display: inline-block;
-  width: 100px;
-  height: 60px;
-  border-bottom: 1px solid var(--gray-700);
-  margin: auto;
-  line-height: 60px;
-}
-.myWrote-main-subTitle-free-title {
-  display: inline-block;
-  width: 510px;
-  height: 60px;
-  border-bottom: 1px solid var(--gray-700);
-  margin: auto;
-  line-height: 60px;
-  padding-left: 10px;
 }

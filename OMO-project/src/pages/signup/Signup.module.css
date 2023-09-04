@@ -40,79 +40,6 @@
   gap: 45px;
 }
 
-/* 이메일 */
-.signup-email-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.signup-email-input {
-  all: unset;
-  width: 500px;
-  height: 60px;
-  border-radius: 10px;
-  border: 1px solid var(--gray-400);
-  padding-left: 26px;
-}
-
-.signup-email-input::placeholder {
-  color: #757575;
-}
-
-.signup-email-certification {
-  all: unset;
-  width: 180px;
-  height: 60px;
-  border-radius: 10px;
-  border: 1px solid var(--secondary);
-  color: var(--secondary);
-  text-align: center;
-  cursor: pointer;
-}
-
-/* 비밀번호 */
-.signup-pw-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.signup-pw {
-  margin-right: 84px;
-}
-
-.signup-pw-input {
-  all: unset;
-  width: 500px;
-  height: 60px;
-  border-radius: 10px;
-  border: 1px solid var(--gray-400);
-  padding-left: 26px;
-}
-
-.signup-pw-input::placeholder {
-  color: #757575;
-}
-
-/* 비밀번호 확인 */
-.signup-pw-check {
-  margin-right: 34px;
-}
-
-.signup-pw-check-input {
-  all: unset;
-  width: 500px;
-  height: 60px;
-  border-radius: 10px;
-  border: 1px solid var(--gray-400);
-  padding-left: 26px;
-}
-
-.signup-pw-check-input::placeholder {
-  color: #757575;
-}
-
 /* 생년월일 */
 .signup-birth-date {
   margin-right: 84px;
@@ -132,6 +59,7 @@
 }
 
 /* 닉네임 */
+
 .signup-nickname {
   margin-right: 106px;
 }
@@ -143,10 +71,23 @@
   border-radius: 10px;
   border: 1px solid var(--gray-400);
   padding-left: 26px;
+  color: #757575;
 }
 
 .signup-nickname-input::placeholder {
   color: #757575;
+}
+
+.signup-nickname-certification {
+  all: unset;
+  width: 180px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+  text-align: center;
+  cursor: pointer;
+  margin-left: 100px;
 }
 
 /* MBTI */
@@ -216,7 +157,7 @@
 }
 
 /* 가입하기 버튼 */
-.signup-btn-signup-container {
+.signup-btn-container {
   display: flex;
   justify-content: center;
   margin-bottom: 150px;
