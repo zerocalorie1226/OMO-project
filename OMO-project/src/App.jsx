@@ -27,6 +27,7 @@ import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
 import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
 import MyCourseMyVersion from "./pages/MyCourse/MyCouresMyVersion/MyCourseMyVersion";
 import MyCourseMyVersionEdit from "./pages/MyCourse/MyCourseMyVersionEdit/MyCourseMyVersionEdit";
+import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
 
 const App = () => (
   <>
@@ -48,9 +49,10 @@ const App = () => (
       {/* <Recommend /> */}
       {/* <ProfileSetting /> */}
       {/* <MyCourseMain /> */}
-      {/* <MyCourseWrite /> */}
-      {/* <MyCourseMyVersion /> */}
-      {/* <MyCourseMyVersionEdit /> */}
+      <MyCourseWrite />
+      <MyCourseMyVersion />
+      <MyCourseMyVersionEdit />
+      <MyCourseOthersVersion />
       {/* <Notice /> */}
       {/* <WriteBoard /> */}
       {/* <MyCourseBoard /> */}

@@ -6,7 +6,6 @@ import Jjim from "../../../assets/detail/empty-heart.png";
 
 const MyCourseDataBox = (props) => (
   <div className={styles["mycoursedatabox-total-container"]}>
-    <Delete />
     <div href="#" className={styles["mycoursedatabox-box-container"]}>
       <div className={styles["mycoursedatabox-box-inner-container"]}>
         <span className={styles["mycoursedatabox-box-title"]}>{props.title}</span>
