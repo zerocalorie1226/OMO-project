@@ -54,9 +54,9 @@ const App = () => (
       {/* <ProfileSetting /> */}
       {/* <MyCourseMain /> */}
       <MyCourseWrite />
-      <MyCourseMyVersion />
-      <MyCourseMyVersionEdit />
-      <MyCourseOthersVersion />
+      {/* <MyCourseMyVersion /> */}
+      {/* <MyCourseMyVersionEdit /> */}
+      {/* <MyCourseOthersVersion /> */}
       {/* <Notice /> */}
       {/* <WriteBoard /> */}
       {/* <MyCourseBoard /> */}
