@@ -56,8 +56,8 @@ const App = () => (
       {/* <MyCourseWrite /> */}
       {/* <MyCourseMyVersion /> */}
       {/* <MyCourseMyVersionEdit /> */}
-      {/* <MyCourseOthersVersion /> */}
-      <Notice />
+      <MyCourseOthersVersion />
+      {/* <Notice /> */}
       {/* <WriteBoard /> */}
       {/* <MyCourseBoard /> */}
       {/* <InquiryBoard /> */}

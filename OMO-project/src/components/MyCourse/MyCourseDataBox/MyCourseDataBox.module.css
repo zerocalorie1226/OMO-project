@@ -57,14 +57,15 @@
 
 /* 하트 옆 숫자 */
 .mycoursedatabox-box-jjim-number {
-  margin-left: 35px;
+  margin-left: 30px;
+  margin-top: 2px;
 }
 
 /* 따봉 아이콘 + 숫자 */
 .mycoursedatabox-box-like {
   display: flex;
   flex-direction: row;
-  margin-left: 5px;
+  margin-left: 4px;
 }
 
 /* 따봉 아이콘 버튼 */
@@ -76,7 +77,8 @@
 /* 따봉 옆 숫자 */
 
 .mycoursedatabox-box-like-number {
-  margin-left: 35px;
+  margin-left: 30px;
+  margin-top: 2px;
 }
 
 /* 영업중 */
@@ -84,7 +86,7 @@
   font-size: 16px;
   position: absolute;
   top: 50px;
-  left: 160px;
+  left: 200px;
   color: var(--blue-200);
 }
 

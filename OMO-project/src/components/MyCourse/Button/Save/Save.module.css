@@ -13,4 +13,5 @@
   color: white;
   background-color: var(--secondary);
   cursor: pointer;
+  margin-bottom: 20px;
 }
