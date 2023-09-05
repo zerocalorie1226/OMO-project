@@ -24,6 +24,8 @@ const MyCourseMyVersionEdit = () => {
 
       <MyCourseDataBox
         key={myCourseMyVersionEdit1.id}
+        like={myCourseMyVersionEdit1.like}
+        jjim={myCourseMyVersionEdit1.jjim}
         title={myCourseMyVersionEdit1.title}
         addressBrief={myCourseMyVersionEdit1.addressBrief}
         intro={myCourseMyVersionEdit1.intro}
@@ -34,6 +36,8 @@ const MyCourseMyVersionEdit = () => {
       />
       <MyCourseDataBox
         key={myCourseMyVersionEdit2.id}
+        like={myCourseMyVersionEdit2.like}
+        jjim={myCourseMyVersionEdit2.jjim}
         title={myCourseMyVersionEdit2.title}
         addressBrief={myCourseMyVersionEdit2.addressBrief}
         intro={myCourseMyVersionEdit2.intro}
@@ -44,6 +48,8 @@ const MyCourseMyVersionEdit = () => {
       />
       <MyCourseDataBox
         key={myCourseMyVersionEdit7.id}
+        like={myCourseMyVersionEdit7.like}
+        jjim={myCourseMyVersionEdit7.jjim}
         title={myCourseMyVersionEdit7.title}
         addressBrief={myCourseMyVersionEdit7.addressBrief}
         intro={myCourseMyVersionEdit7.intro}

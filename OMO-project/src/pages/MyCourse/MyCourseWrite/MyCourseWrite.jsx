@@ -11,7 +11,6 @@ import MyCourseFindInterestModal from "./../../../components/MyCourse/MyCourseFi
 import MyCourseFindRecentModal from "./../../../components/MyCourse/MyCourseFindRecentModal/MyCourseFindRecentModal"; // 최근 본 목록에서 찾기 모달창
 import MyCourseFindSearchModal from "../../../components/MyCourse/MyCourseFindSearchModal/MyCourseFindSearchModal";
 
-
 const MyCourseWrite = () => (
   <div className={styles["myCourseWrite-total-container"]}>
     <div className={styles["myCourseWrite-title-container"]}>

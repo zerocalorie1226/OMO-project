@@ -23,9 +23,7 @@ export const data = [
       {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
       {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
     ],
-    tariff: [
-     {id: 1, title: "입장료", price: 16000 },
-    ],
+    tariff: [{id: 1, title: "입장료", price: 16000}],
     call: "032-872-7787",
     googleMap: Map,
     src1: Ramen1,
