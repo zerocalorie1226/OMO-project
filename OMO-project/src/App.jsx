@@ -54,10 +54,10 @@ const App = () => (
       {/* <ProfileSetting /> */}
       {/* <MyCourseMain /> */}
       {/* <MyCourseWrite /> */}
-      {/* <MyCourseMyVersion /> */}
+      <MyCourseMyVersion />
       {/* <MyCourseMyVersionEdit /> */}
       {/* <MyCourseOthersVersion /> */}
-      <Notice />
+      {/* <Notice /> */}
       {/* <WriteBoard /> */}
       {/* <MyCourseBoard /> */}
       {/* <InquiryBoard /> */}
