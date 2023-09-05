@@ -11,6 +11,7 @@ import {data} from "../../../const/data";
 import {ListBox} from "../../../components/ListBox/ListBox";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import MyCourseDataBox from "../../../components/MyCourse/MyCourseDataBox/MyCourseDataBox";
+import MyCourseCalendar from './../../../components/MyCourse/MyCourseCalendar/MyCourseCalendar';
 
 const MyCourseMyVersionEdit = () => {
   const myCourseMyVersionEdit1 = data.find((item) => item.id === 1);
@@ -21,7 +22,7 @@ const MyCourseMyVersionEdit = () => {
       <div className={styles["mycoursemyversionedit-title-container"]}>
         <span className={styles["mycoursemyversionedit-title"]}>킹부엉의 인천 맛집 탐방</span>
       </div>
-
+      <div className={styles["mycoursemyversionedit-calendar-container"]}><MyCourseCalendar/></div>
       <MyCourseDataBox
         key={myCourseMyVersionEdit1.id}
         like={myCourseMyVersionEdit1.like}
@@ -34,6 +35,7 @@ const MyCourseMyVersionEdit = () => {
         img2={myCourseMyVersionEdit1.src2}
         downArrow={myCourseMyVersionEdit1.downarrow}
       />
+      <div className={styles["mycoursemyversionedit-calendar-container"]}><MyCourseCalendar/></div>
       <MyCourseDataBox
         key={myCourseMyVersionEdit2.id}
         like={myCourseMyVersionEdit2.like}
@@ -46,6 +48,7 @@ const MyCourseMyVersionEdit = () => {
         img2={myCourseMyVersionEdit2.src2}
         downArrow={myCourseMyVersionEdit2.downarrow}
       />
+      <div className={styles["mycoursemyversionedit-calendar-container"]}><MyCourseCalendar/></div>
       <MyCourseDataBox
         key={myCourseMyVersionEdit7.id}
         like={myCourseMyVersionEdit7.like}

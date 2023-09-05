@@ -6,7 +6,7 @@
 
 .mycoursemyversion-title-container {
   width: 400px;
-  margin: 50px auto;
+  margin: 50px auto 100px auto;
   text-align: center;
   position: relative;
 }
@@ -33,4 +33,9 @@
   position: absolute;
   right: 30px;
   top: 4px;
+}
+
+.mycoursemyversion-calendar-container{
+  position: relative;
+  top: 225px;
 }

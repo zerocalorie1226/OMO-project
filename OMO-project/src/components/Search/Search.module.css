@@ -32,6 +32,7 @@
   border: 1px solid var(--primary);
   border-radius: 30px;
   padding-left: 65px;
+  padding-right: 70px;
   outline: none;
 }
 
