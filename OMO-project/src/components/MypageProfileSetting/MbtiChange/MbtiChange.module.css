@@ -5,7 +5,7 @@
   height: 60px;
   left: 300px;
   bottom: 680px;
-  margin-top: 50px;
+  margin-top: 80px;
   justify-content: space-between;
 }
 
@@ -31,6 +31,7 @@
   border: 1px solid var(--gray-400);
   text-align: center;
   color: #757575;
+  outline: none;
 }
 
 .profile-setting-main-mbti-change-select-SN {
@@ -40,6 +41,7 @@
   border: 1px solid var(--gray-400);
   text-align: center;
   color: #757575;
+  outline: none;
 }
 
 .profile-setting-main-mbti-change-select-TF {
@@ -49,6 +51,7 @@
   border: 1px solid var(--gray-400);
   text-align: center;
   color: #757575;
+  outline: none;
 }
 
 .profile-setting-main-mbti-change-select-JP {
@@ -58,6 +61,7 @@
   border: 1px solid var(--gray-400);
   text-align: center;
   color: #757575;
+  outline: none;
 }
 
 .profile-setting-main-mbti-change-button {

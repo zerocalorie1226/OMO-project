@@ -3,7 +3,7 @@ import styles from "./Notice.module.css";
 import {myCourseFilter} from "../../const/myCourseFilter";
 import {notice} from "../../const/notice";
 import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
-import NoticeItems from './../../components/NoticeItems/NoticeItems';
+import NoticeItems from "./../../components/NoticeItems/NoticeItems";
 
 const Notice = () => (
   <div className={styles["notice-container"]}>
@@ -14,13 +14,8 @@ const Notice = () => (
       })}
     </div>
     <div className={styles["notice-main-container"]}>
-      <div className={styles["notice-main-title-container"]}>
-        <p className={styles["notice-main-subTitle-division"]}>구분</p>
-        <p className={styles["notice-main-subTitle-title"]}>제목</p>
-        <p className={styles["notice-main-subTitle-date"]}>작성일</p>
-      </div>
       {notice.map((el) => {
-        return <NoticeItems key={el.id} title={el.title} division={el.division} date={el.date} />;
+        return <NoticeItems key={el.id} title={el.title} division={el.division} date={el.date} content={el.content} />;
       })}
     </div>
     <ScrollToTop />

@@ -2,6 +2,7 @@ import Ramen1 from "../assets/list/ramen-img1.jpg";
 import Ramen2 from "../assets/list/ramen-img2.jpg";
 import Map from "../assets/detail/google-map.png";
 import Thumbnail from "../assets/detail/thumbnail.png";
+import Downarrow from "../assets/my-course/write/down-arrow.png";
 
 export const data = [
   {
@@ -30,6 +31,7 @@ export const data = [
     src1: Ramen1,
     src2: Ramen2,
     thumbnail: Thumbnail,
+    downarrow: Downarrow,
   },
 
   {
@@ -55,6 +57,7 @@ export const data = [
     googleMap: Map,
     src1: Ramen1,
     src2: Ramen2,
+    downarrow: Downarrow,
   },
 
   {
@@ -80,6 +83,7 @@ export const data = [
     googleMap: Map,
     src1: Ramen1,
     src2: Ramen2,
+    downarrow: Downarrow,
   },
 
   {
@@ -105,6 +109,7 @@ export const data = [
     googleMap: Map,
     src1: Ramen1,
     src2: Ramen2,
+    downarrow: Downarrow,
   },
 
   {
@@ -130,6 +135,7 @@ export const data = [
     googleMap: Map,
     src1: Ramen1,
     src2: Ramen2,
+    downarrow: Downarrow,
   },
 
   {
@@ -155,6 +161,7 @@ export const data = [
     googleMap: Map,
     src1: Ramen1,
     src2: Ramen2,
+    downarrow: Downarrow,
   },
 
   {
@@ -180,6 +187,7 @@ export const data = [
     googleMap: Map,
     src1: Ramen1,
     src2: Ramen2,
+    downarrow: Downarrow,
   },
 
   {

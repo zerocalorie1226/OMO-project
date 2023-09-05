@@ -19,7 +19,6 @@ const MyCourseSearchBox = () => (
         검색을 통해 찾기
       </button>
     </div>
-    <Delete />
     <img src={downArrow} alt="아래 화살표" className={styles["myCourseSearchBox-downArrow-img"]} />
   </div>
 );

@@ -1,0 +1,16 @@
+.mycoursemyversionedit-total-container {
+  width: 670px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.mycoursemyversionedit-title-container {
+  width: 400px;
+  margin: 50px auto;
+  text-align: center;
+  position: relative;
+}
+
+.mycoursemyversionedit-title {
+  font-size: 32px;
+}
