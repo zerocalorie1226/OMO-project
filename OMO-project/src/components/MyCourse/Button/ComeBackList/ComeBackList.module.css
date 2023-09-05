@@ -1,12 +1,12 @@
-.save-button-container {
+.ComeBackList-button-container {
   display: flex;
-  width: 860px;
   justify-content: flex-end;
   font-size: 25px;
+  width: 990px;
 }
 
-.save-button {
-  width: 90px;
+.ComeBackList-button {
+  width: 220px;
   height: 50px;
   border: none;
   border-radius: 10px;

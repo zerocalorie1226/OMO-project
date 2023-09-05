@@ -2,7 +2,7 @@ import "./App.module.css";
 import {Header} from "./components/Header/Header";
 
 import Main from "./pages/Main/Main";
-// import Signup from "./pages/Signup/Signup";
+import Signup from "./pages/Signup/Signup";
 import Eating from "./pages/Sub/Eating/Eating";
 import Watching from "./pages/Sub/Watching/Watching";
 import Playing from "./pages/Sub/Playing/Playing";
@@ -13,7 +13,7 @@ import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
 import MyWrote from "./pages/Mypage/MyWrote/MyWrote";
 import DetailMenu from "./pages/Detail/DetailMenu/DetailMenu";
 import DetailNone from "./pages/Detail/DetailNone/DetailNone";
-import DetailTariff from './pages/Detail/DetailTariff/DetailTariff';
+import DetailTariff from "./pages/Detail/DetailTariff/DetailTariff";
 import Interest from "./pages/Mypage/Interest/Interest";
 import Recent from "./pages/Mypage/Recent/Recent";
 import Recommend from "./pages/Mypage/Recommend/Recommend";
@@ -27,7 +27,9 @@ import InquiryBoardFrequent from "./pages/Community/InquiryBoardFrequent/Inquiry
 import InquiryBoardQnA from "./pages/community/InquiryBoardQnA/InquiryBoardQnA";
 import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
 import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
-
+import MyCourseMyVersion from "./pages/MyCourse/MyCouresMyVersion/MyCourseMyVersion";
+import MyCourseMyVersionEdit from "./pages/MyCourse/MyCourseMyVersionEdit/MyCourseMyVersionEdit";
+import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
 
 const App = () => (
   <>
@@ -38,6 +40,7 @@ const App = () => (
       {/* <Watching /> */}
       {/* <Playing /> */}
       {/* <ThemeCafe /> */}
+      {/* <Login /> */}
       {/* <Signup /> */}
       {/* <List /> */}
       {/* <DetailMenu /> */}
@@ -49,11 +52,15 @@ const App = () => (
       {/* <Recent /> */}
       {/* <Recommend /> */}
       {/* <ProfileSetting /> */}
-      <MyCourseMain />
+      {/* <MyCourseMain /> */}
       {/* <MyCourseWrite /> */}
-      {/* <Notice /> */}
+      {/* <MyCourseMyVersion /> */}
+      {/* <MyCourseMyVersionEdit /> */}
+      {/* <MyCourseOthersVersion /> */}
+      <Notice />
       {/* <WriteBoard /> */}
       {/* <MyCourseBoard /> */}
+      {/* <InquiryBoard /> */}
       {/* <InquiryBoardFrequent /> */}
       {/* <InquiryBoardQnA /> */}
       {/* <WorryBoard /> */}

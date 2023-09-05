@@ -7,6 +7,6 @@
   color: white;
   background-color: var(--secondary);
   top: -40px;
-  right: 165px;
+  right: 0;
   cursor: pointer;
 }
