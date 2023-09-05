@@ -35,7 +35,7 @@ export const watching = [
   },
   {
     id: 6,
-    title: "패스트푸드",
+    title: "미술관",
     src: ArtMuseum,
   },
 ];
