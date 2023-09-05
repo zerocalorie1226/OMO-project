@@ -12,6 +12,7 @@ import {ListBox} from "../../../components/ListBox/ListBox";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import MyCourseDataBox from "../../../components/MyCourse/MyCourseDataBox/MyCourseDataBox";
 import ComeBackList from "../../../components/MyCourse/Button/ComeBackList/ComeBackList";
+import MyCourseCalendar from './../../../components/MyCourse/MyCourseCalendar/MyCourseCalendar';
 
 const MyCourseOthersVersion = () => {
   const MyCourseOthersVersion1 = data.find((item) => item.id === 1);
@@ -22,7 +23,7 @@ const MyCourseOthersVersion = () => {
       <div className={styles["mycourseothersversion-title-container"]}>
         <span className={styles["mycourseothersversion-title"]}>킹부엉의 인천 맛집 탐방</span>
       </div>
-
+      <div className={styles["mycourseothersversion-calendar-container"]}><MyCourseCalendar/></div>
       <MyCourseDataBox
         key={MyCourseOthersVersion1.id}
         title={MyCourseOthersVersion1.title}
@@ -33,6 +34,7 @@ const MyCourseOthersVersion = () => {
         img2={MyCourseOthersVersion1.src2}
         downArrow={MyCourseOthersVersion1.downarrow}
       />
+      <div className={styles["mycourseothersversion-calendar-container"]}><MyCourseCalendar/></div>
       <MyCourseDataBox
         key={MyCourseOthersVersion2.id}
         title={MyCourseOthersVersion2.title}
@@ -43,6 +45,7 @@ const MyCourseOthersVersion = () => {
         img2={MyCourseOthersVersion2.src2}
         downArrow={MyCourseOthersVersion2.downarrow}
       />
+      <div className={styles["mycourseothersversion-calendar-container"]}><MyCourseCalendar/></div>
       <MyCourseDataBox
         key={MyCourseOthersVersion8.id}
         title={MyCourseOthersVersion8.title}
