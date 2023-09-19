@@ -1,37 +1,35 @@
 import styles from "./Header.module.css";
 import MainLogo from "../../assets/logo-main.png";
+import {Link} from "react-router-dom";
+import Main from "../../pages/main/Main";
 
 export const Header = () => (
-    <>
-      <header>
-        <div className={styles["main-header-container"]}>
-          <ul>
-            <li>
-              <a href="#">
-                <img src={MainLogo} alt="메인 로고" />
-              </a>
-            </li>
-            <li>
-              <a href="#">커뮤니티</a>
-            </li>
-            <li>
-              <a href="#">나만의 코스</a>
-            </li>
-            <li>
-              <a href="#">공지사항</a>
-            </li>
-            <li>
-              <a href="#" className={styles["main-header-login"]}>
-                로그인
-              </a>
-            </li>
-            <li>
-              <a href="#">회원가입</a>
-            </li>
-          </ul>
-        </div>
-        <hr />
-      </header>
-    </>
-  );
-
+  <>
+    <header>
+      <div className={styles["main-header-container"]}>
+        <ul>
+          <li>
+            <Link to="/Main">
+              <img src={MainLogo} alt="메인 로고" />
+            </Link>
+          </li>
+          <li>
+            <Link to="/">커뮤니티</Link>
+          </li>
+          <li>
+            <Link to="/">나만의 코스</Link>
+          </li>
+          <li>
+            <Link to="/">공지사항</Link>
+          </li>
+          <li>
+            <Link to="/" className={styles["main-header-login"]}>
+              로그인
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <hr />
+    </header>
+  </>
+);
