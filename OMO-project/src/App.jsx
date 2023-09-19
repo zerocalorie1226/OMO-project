@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-import Main from "./pages/Main/Main";
+
 import Signup from "./pages/Signup/Signup";
 import Eating from "./pages/Sub/Eating/Eating";
 import Watching from "./pages/Sub/Watching/Watching";
@@ -33,6 +33,7 @@ import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
 import MyCourseMyVersion from "./pages/MyCourse/MyCouresMyVersion/MyCourseMyVersion";
 import MyCourseMyVersionEdit from "./pages/MyCourse/MyCourseMyVersionEdit/MyCourseMyVersionEdit";
 import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
+import Main from "./pages/main/Main";
 
 const App = () => (
   <div>
@@ -40,13 +41,14 @@ const App = () => (
       <Header />
       <Routes>
         <Route path="/Main" element={<Main />} />
-        {/* <Main /> */}
-        {/* <Eating /> */}
-        {/* <Watching /> */}
-        {/* <Playing /> */}
-        {/* <ThemeCafe /> */}
+        {/* <Route path="/List" element={<List />} /> */}
+        {/* <Route path="/Detail" element={<Detail />} /> */}
+        {/* <Route path="/Eating" element={<Eating />} /> */}
+        {/* <Route path="/Playing" element={<Playing />} /> */}
+        {/* <Route path="/Watching" element={<Watching />} /> */}
+        {/* <Route path="/ThemeCafe" element={<ThemeCafe />} /> */}
+        <Route path="/Signup" element={<Signup />} />
         {/* <Login /> */}
-        {/* <Signup /> */}
         {/* <List /> */}
         {/* <DetailMenu /> */}
         {/* <DetailNone /> */}
