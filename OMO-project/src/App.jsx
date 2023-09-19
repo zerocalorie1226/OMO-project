@@ -1,5 +1,8 @@
 import "./App.module.css";
 import {Header} from "./components/Header/Header";
+import React from "react";
+import ReactDOM from "react-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import Main from "./pages/Main/Main";
 import Signup from "./pages/Signup/Signup";
@@ -32,41 +35,44 @@ import MyCourseMyVersionEdit from "./pages/MyCourse/MyCourseMyVersionEdit/MyCour
 import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
 
 const App = () => (
-  <>
-    <div>
+  <div>
+    <BrowserRouter>
       <Header />
-      {/* <Main /> */}
-      {/* <Eating /> */}
-      {/* <Watching /> */}
-      {/* <Playing /> */}
-      {/* <ThemeCafe /> */}
-      {/* <Login /> */}
-      {/* <Signup /> */}
-      {/* <List /> */}
-      {/* <DetailMenu /> */}
-      {/* <DetailNone /> */}
-      {/* <DetailTariff /> */}
-      {/* <MyInfo /> */}
-      {/* <MyWrote /> */}
-      {/* <Interest /> */}
-      {/* <Recent /> */}
-      {/* <Recommend /> */}
-      {/* <ProfileSetting /> */}
-      {/* <MyCourseMain /> */}
-      {/* <MyCourseWrite /> */}
-      {/* <MyCourseMyVersion /> */}
-      {/* <MyCourseMyVersionEdit /> */}
-      <MyCourseOthersVersion />
-      {/* <Notice /> */}
-      {/* <WriteBoard /> */}
-      {/* <MyCourseBoard /> */}
-      {/* <InquiryBoard /> */}
-      {/* <InquiryBoardFrequent /> */}
-      {/* <InquiryBoardQnA /> */}
-      {/* <WorryBoard /> */}
-      {/* <FreeBoard /> */}
-    </div>
-  </>
+      <Routes>
+        <Route path="/Main" element={<Main />} />
+        {/* <Main /> */}
+        {/* <Eating /> */}
+        {/* <Watching /> */}
+        {/* <Playing /> */}
+        {/* <ThemeCafe /> */}
+        {/* <Login /> */}
+        {/* <Signup /> */}
+        {/* <List /> */}
+        {/* <DetailMenu /> */}
+        {/* <DetailNone /> */}
+        {/* <DetailTariff /> */}
+        {/* <MyInfo /> */}
+        {/* <MyWrote /> */}
+        {/* <Interest /> */}
+        {/* <Recent /> */}
+        {/* <Recommend /> */}
+        {/* <ProfileSetting /> */}
+        {/* <MyCourseMain /> */}
+        {/* <MyCourseWrite /> */}
+        {/* <MyCourseMyVersion /> */}
+        {/* <MyCourseMyVersionEdit /> */}
+        {/* <MyCourseOthersVersion /> */}
+        {/* <Notice /> */}
+        {/* <WriteBoard /> */}
+        {/* <MyCourseBoard /> */}
+        {/* <InquiryBoard /> */}
+        {/* <InquiryBoardFrequent /> */}
+        {/* <InquiryBoardQnA /> */}
+        {/* <WorryBoard /> */}
+        {/* <FreeBoard /> */}
+      </Routes>
+    </BrowserRouter>
+  </div>
 );
 
 export default App;
