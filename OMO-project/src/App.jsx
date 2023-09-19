@@ -48,24 +48,17 @@ const App = () => (
         <Route path="/Login" element={<Login />} />
 
         {/* <Signup /> */}
+        <Route path="/List" element={<List />} />
         {/* <List /> */}
         {/* <DetailMenu /> */}
         {/* <DetailNone /> */}
         {/* <DetailTariff /> */}
         <Route path="/MyInfo" element={<MyInfo />} />
-        {/* <MyInfo /> */}
         <Route path="/Interest" element={<Interest />} />
-        {/* <Interest /> */}
         <Route path="/Recommend" element={<Recommend />} />
-
-        {/* <Recommend /> */}
         <Route path="/Recent" element={<Recent />} />
-        {/* <Recent /> */}
         <Route path="/MyWrote" element={<MyWrote />} />
-        {/* <MyWrote /> */}
         <Route path="/ProfileSetting" element={<ProfileSetting />} />
-        {/* <ProfileSetting /> */}
-
         <Route path="/MyCourseMain" element={<MyCourseMain />} />
         {/* <MyCourseMain /> */}
         {/* <MyCourseWrite /> */}
