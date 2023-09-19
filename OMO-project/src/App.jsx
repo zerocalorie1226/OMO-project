@@ -60,9 +60,10 @@ const App = () => (
         <Route path="/MyWrote" element={<MyWrote />} />
         <Route path="/ProfileSetting" element={<ProfileSetting />} />
         <Route path="/MyCourseMain" element={<MyCourseMain />} />
-        {/* <MyCourseMain /> */}
-        {/* <MyCourseWrite /> */}
-        {/* <MyCourseMyVersion /> */}
+        <Route path="/MyCourseWrite" element={<MyCourseWrite />} />
+
+        <Route path="/MyCourseMyVersion" element={<MyCourseMyVersion />} />
+
         {/* <MyCourseMyVersionEdit /> */}
         {/* <MyCourseOthersVersion /> */}
 
