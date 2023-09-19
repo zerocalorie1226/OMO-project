@@ -10,6 +10,7 @@ import EditShare from "../../../components/MyCourse/Button/Edit-Share/Edit-Share
 import MyCourseFindInterestModal from "./../../../components/MyCourse/MyCourseFindInterestModal/MyCourseFindInterestModal"; // 관심 목록에서 찾기 모달창
 import MyCourseFindRecentModal from "./../../../components/MyCourse/MyCourseFindRecentModal/MyCourseFindRecentModal"; // 최근 본 목록에서 찾기 모달창
 import MyCourseFindSearchModal from "../../../components/MyCourse/MyCourseFindSearchModal/MyCourseFindSearchModal";
+import {Link} from "react-router-dom";
 
 const MyCourseWrite = () => (
   <div className={styles["myCourseWrite-total-container"]}>
@@ -22,7 +23,10 @@ const MyCourseWrite = () => (
     <MyCourseSearchBox />
     {/* <MyCoursePlusBox /> */}
     <MyCourseAfter />
-    <Save />
+    <Link to="/MyCourseMyVersion">
+      <Save />
+    </Link>
+
     {/* <EditShare /> */}
     <ScrollToTop />
     <WritingButton />
