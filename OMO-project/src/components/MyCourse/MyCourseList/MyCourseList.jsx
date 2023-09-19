@@ -1,10 +1,11 @@
 import styles from "./MyCourseList.module.css";
+import {Link} from "react-router-dom";
 
 const MyCourseList = (props) => (
-  <a href="#" className={styles["mycourse-list-container"]}>
+  <Link to="/MyCourseMyVersion" className={styles["mycourse-list-container"]}>
     <p className={styles["mycourse-list-title"]}>{props.title}</p>
     <p className={styles["mycourse-list-date"]}>{props.reg_at}</p>
-  </a>
+  </Link>
 );
 
 export default MyCourseList;

@@ -1,7 +1,9 @@
 import MyCourseList from "../../../components/MyCourse/MyCourseList/MyCourseList";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import {myCourse} from "../../../const/myCourse";
 import styles from "./MyCourseMain.module.css";
+import {Link} from "react-router-dom";
 
 const MyCourseMain = () => (
   <div className={styles["mycourse-container"]}>
@@ -12,6 +14,9 @@ const MyCourseMain = () => (
     })}
 
     <ScrollToTop />
+    <Link to="/MyCourseWrite">
+      <WritingButton />
+    </Link>
   </div>
 );
 
