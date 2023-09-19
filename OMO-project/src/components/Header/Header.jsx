@@ -27,6 +27,11 @@ export const Header = () => (
               로그인
             </Link>
           </li>
+          <li>
+            <Link to="/MyInfo" className={styles["main-header-login"]}>
+              마이 페이지
+            </Link>
+          </li>
         </ul>
       </div>
       <hr />

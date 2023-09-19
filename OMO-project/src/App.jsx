@@ -52,12 +52,20 @@ const App = () => (
         {/* <DetailMenu /> */}
         {/* <DetailNone /> */}
         {/* <DetailTariff /> */}
+        <Route path="/MyInfo" element={<MyInfo />} />
         {/* <MyInfo /> */}
-        {/* <MyWrote /> */}
+        <Route path="/Interest" element={<Interest />} />
         {/* <Interest /> */}
-        {/* <Recent /> */}
+        <Route path="/Recommend" element={<Recommend />} />
+
         {/* <Recommend /> */}
+        <Route path="/Recent" element={<Recent />} />
+        {/* <Recent /> */}
+        <Route path="/MyWrote" element={<MyWrote />} />
+        {/* <MyWrote /> */}
+        <Route path="/ProfileSetting" element={<ProfileSetting />} />
         {/* <ProfileSetting /> */}
+
         <Route path="/MyCourseMain" element={<MyCourseMain />} />
         {/* <MyCourseMain /> */}
         {/* <MyCourseWrite /> */}
