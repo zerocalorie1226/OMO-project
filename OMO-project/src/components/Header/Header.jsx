@@ -9,22 +9,27 @@ export const Header = () => (
       <div className={styles["main-header-container"]}>
         <ul>
           <li>
-            <Link to="/Main">
+            <Link to="/">
               <img src={MainLogo} alt="메인 로고" />
             </Link>
           </li>
           <li>
-            <Link to="/">커뮤니티</Link>
+            <Link to="/MyCourseBoard">커뮤니티</Link>
           </li>
           <li>
-            <Link to="/">나만의 코스</Link>
+            <Link to="/MyCourseMain">나만의 코스</Link>
           </li>
           <li>
-            <Link to="/">공지사항</Link>
+            <Link to="/Notice">공지사항</Link>
           </li>
           <li>
-            <Link to="/" className={styles["main-header-login"]}>
+            <Link to="/Login" className={styles["main-header-login"]}>
               로그인
+            </Link>
+          </li>
+          <li>
+            <Link to="/MyInfo" className={styles["main-header-login"]}>
+              마이 페이지
             </Link>
           </li>
         </ul>
