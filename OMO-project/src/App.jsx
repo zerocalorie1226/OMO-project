@@ -45,7 +45,8 @@ const App = () => (
         {/* <Watching /> */}
         {/* <Playing /> */}
         {/* <ThemeCafe /> */}
-        {/* <Login /> */}
+        <Route path="/Login" element={<Login />} />
+
         {/* <Signup /> */}
         {/* <List /> */}
         {/* <DetailMenu /> */}
@@ -57,19 +58,22 @@ const App = () => (
         {/* <Recent /> */}
         {/* <Recommend /> */}
         {/* <ProfileSetting /> */}
+        <Route path="/MyCourseMain" element={<MyCourseMain />} />
         {/* <MyCourseMain /> */}
         {/* <MyCourseWrite /> */}
         {/* <MyCourseMyVersion /> */}
         {/* <MyCourseMyVersionEdit /> */}
         {/* <MyCourseOthersVersion /> */}
-        {/* <Notice /> */}
+
         {/* <WriteBoard /> */}
-        {/* <MyCourseBoard /> */}
+        <Route path="/MyCourseBoard" element={<MyCourseBoard />} />
+
         {/* <InquiryBoard /> */}
         {/* <InquiryBoardFrequent /> */}
         {/* <InquiryBoardQnA /> */}
         {/* <WorryBoard /> */}
         {/* <FreeBoard /> */}
+        <Route path="/Notice" element={<Notice />} />
       </Routes>
     </BrowserRouter>
   </div>
