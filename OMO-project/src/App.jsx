@@ -39,8 +39,8 @@ const App = () => (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/Main" element={<Main />} />
-        {/* <Main /> */}
+        <Route path="/" element={<Main />} />
+
         {/* <Eating /> */}
         {/* <Watching /> */}
         {/* <Playing /> */}

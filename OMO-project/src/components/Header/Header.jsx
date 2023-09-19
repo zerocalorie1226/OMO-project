@@ -9,7 +9,7 @@ export const Header = () => (
       <div className={styles["main-header-container"]}>
         <ul>
           <li>
-            <Link to="/Main">
+            <Link to="/">
               <img src={MainLogo} alt="메인 로고" />
             </Link>
           </li>
