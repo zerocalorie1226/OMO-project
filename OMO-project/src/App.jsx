@@ -37,42 +37,47 @@ import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCour
 const App = () => (
   <div>
     <BrowserRouter>
+      /* 헤더 */
       <Header />
       <Routes>
+        /* 메인 페이지 */
         <Route path="/" element={<Main />} />
-
+        /* 서브 페이지 */
         {/* <Eating /> */}
         {/* <Watching /> */}
         {/* <Playing /> */}
         {/* <ThemeCafe /> */}
+        /* 로그인/회원가입 */
         <Route path="/Login" element={<Login />} />
-
         {/* <Signup /> */}
+        /* 리스트페이지 */
         <Route path="/List" element={<List />} />
-        {/* <List /> */}
+        /* 상세페이지 */
         {/* <DetailMenu /> */}
         {/* <DetailNone /> */}
         {/* <DetailTariff /> */}
+        /* 마이 페이지 */
         <Route path="/MyInfo" element={<MyInfo />} />
         <Route path="/Interest" element={<Interest />} />
         <Route path="/Recommend" element={<Recommend />} />
         <Route path="/Recent" element={<Recent />} />
         <Route path="/MyWrote" element={<MyWrote />} />
         <Route path="/ProfileSetting" element={<ProfileSetting />} />
+        /* 나만의 코스 */
         <Route path="/MyCourseMain" element={<MyCourseMain />} />
         <Route path="/MyCourseWrite" element={<MyCourseWrite />} />
         <Route path="/MyCourseMyVersion" element={<MyCourseMyVersion />} />
         <Route path="/MyCourseMyVersionEdit" element={<MyCourseMyVersionEdit />} />
         <Route path="/MyCourseOthersVersion" element={<MyCourseOthersVersion />} />
-
-        {/* <WriteBoard /> */}
         <Route path="/MyCourseBoard" element={<MyCourseBoard />} />
-
+        /* 커뮤니티 */
+        <Route path="/WriteBoard" element={<WriteBoard />} />
         {/* <InquiryBoard /> */}
         {/* <InquiryBoardFrequent /> */}
         {/* <InquiryBoardQnA /> */}
         {/* <WorryBoard /> */}
         {/* <FreeBoard /> */}
+        /* 공지사항 */
         <Route path="/Notice" element={<Notice />} />
       </Routes>
     </BrowserRouter>
