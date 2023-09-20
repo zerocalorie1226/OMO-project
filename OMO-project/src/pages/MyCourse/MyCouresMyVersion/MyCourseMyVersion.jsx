@@ -11,7 +11,8 @@ import {data} from "../../../const/data";
 import {ListBox} from "../../../components/ListBox/ListBox";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import MyCourseDataBox from "../../../components/MyCourse/MyCourseDataBox/MyCourseDataBox";
-import MyCourseCalendar from './../../../components/MyCourse/MyCourseCalendar/MyCourseCalendar';
+import MyCourseCalendar from "./../../../components/MyCourse/MyCourseCalendar/MyCourseCalendar";
+import {Link} from "react-router-dom";
 
 const MyCourseMyVersion = () => {
   const myCourseMyVersion1 = data.find((item) => item.id === 1);
@@ -22,7 +23,9 @@ const MyCourseMyVersion = () => {
       <div className={styles["mycoursemyversion-title-container"]}>
         <span className={styles["mycoursemyversion-title"]}>킹부엉의 인천 맛집 탐방</span>
       </div>
-      <div className={styles["mycoursemyversion-calendar-container"]}><MyCourseCalendar/></div>
+      <div className={styles["mycoursemyversion-calendar-container"]}>
+        <MyCourseCalendar />
+      </div>
       <MyCourseDataBox
         key={myCourseMyVersion1.id}
         like={myCourseMyVersion1.like}
@@ -35,7 +38,9 @@ const MyCourseMyVersion = () => {
         img2={myCourseMyVersion1.src2}
         downArrow={myCourseMyVersion1.downarrow}
       />
-       <div className={styles["mycoursemyversion-calendar-container"]}><MyCourseCalendar/></div>
+      <div className={styles["mycoursemyversion-calendar-container"]}>
+        <MyCourseCalendar />
+      </div>
       <MyCourseDataBox
         key={myCourseMyVersion2.id}
         like={myCourseMyVersion2.like}
@@ -48,7 +53,9 @@ const MyCourseMyVersion = () => {
         img2={myCourseMyVersion2.src2}
         downArrow={myCourseMyVersion2.downarrow}
       />
-       <div className={styles["mycoursemyversion-calendar-container"]}><MyCourseCalendar/></div>
+      <div className={styles["mycoursemyversion-calendar-container"]}>
+        <MyCourseCalendar />
+      </div>
       <MyCourseDataBox
         key={myCourseMyVersion8.id}
         like={myCourseMyVersion8.like}
@@ -63,6 +70,7 @@ const MyCourseMyVersion = () => {
       />
 
       <EditShare />
+
       <ScrollToTop />
     </div>
   );

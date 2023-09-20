@@ -40,38 +40,41 @@ const App = () => (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/Main" element={<Main />} />
-        {/* <Route path="/List" element={<List />} /> */}
-        {/* <Route path="/Detail" element={<Detail />} /> */}
-        {/* <Route path="/Eating" element={<Eating />} /> */}
-        {/* <Route path="/Playing" element={<Playing />} /> */}
-        {/* <Route path="/Watching" element={<Watching />} /> */}
-        {/* <Route path="/ThemeCafe" element={<ThemeCafe />} /> */}
-        <Route path="/Signup" element={<Signup />} />
-        {/* <Login /> */}
+        <Route path="/" element={<Main />} />
+
+        {/* <Eating /> */}
+        {/* <Watching /> */}
+        {/* <Playing /> */}
+        {/* <ThemeCafe /> */}
+        <Route path="/Login" element={<Login />} />
+
+        {/* <Signup /> */}
+        <Route path="/List" element={<List />} />
         {/* <List /> */}
         {/* <DetailMenu /> */}
         {/* <DetailNone /> */}
         {/* <DetailTariff /> */}
-        {/* <MyInfo /> */}
-        {/* <MyWrote /> */}
-        {/* <Interest /> */}
-        {/* <Recent /> */}
-        {/* <Recommend /> */}
-        {/* <ProfileSetting /> */}
-        {/* <MyCourseMain /> */}
-        {/* <MyCourseWrite /> */}
-        {/* <MyCourseMyVersion /> */}
-        {/* <MyCourseMyVersionEdit /> */}
-        {/* <MyCourseOthersVersion /> */}
-        {/* <Notice /> */}
+        <Route path="/MyInfo" element={<MyInfo />} />
+        <Route path="/Interest" element={<Interest />} />
+        <Route path="/Recommend" element={<Recommend />} />
+        <Route path="/Recent" element={<Recent />} />
+        <Route path="/MyWrote" element={<MyWrote />} />
+        <Route path="/ProfileSetting" element={<ProfileSetting />} />
+        <Route path="/MyCourseMain" element={<MyCourseMain />} />
+        <Route path="/MyCourseWrite" element={<MyCourseWrite />} />
+        <Route path="/MyCourseMyVersion" element={<MyCourseMyVersion />} />
+        <Route path="/MyCourseMyVersionEdit" element={<MyCourseMyVersionEdit />} />
+        <Route path="/MyCourseOthersVersion" element={<MyCourseOthersVersion />} />
+
         {/* <WriteBoard /> */}
-        {/* <MyCourseBoard /> */}
+        <Route path="/MyCourseBoard" element={<MyCourseBoard />} />
+
         {/* <InquiryBoard /> */}
         {/* <InquiryBoardFrequent /> */}
         {/* <InquiryBoardQnA /> */}
         {/* <WorryBoard /> */}
         {/* <FreeBoard /> */}
+        <Route path="/Notice" element={<Notice />} />
       </Routes>
     </BrowserRouter>
   </div>
