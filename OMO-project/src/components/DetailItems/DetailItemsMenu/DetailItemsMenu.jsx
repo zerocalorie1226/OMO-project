@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./DetailItemsMenu.module.css";
 import Jjim from "../../../assets/detail/empty-heart.png";
 import JjimClicked from "../../../assets/detail/red-heart.png"
@@ -15,7 +16,6 @@ import {Review} from "../Review/Review";
 // import { Map } from "./../../../components/Map/Map";
 import {priceTemplate} from "../../../utils/priceTemplate";
 import {reviewData} from "../../../const/reviewData";
-import { useState } from "react";
 
 export const DetailItemsMenu = (props) => {
 
@@ -66,14 +66,14 @@ export const DetailItemsMenu = (props) => {
         <div className={styles["detail-like-jjim-container"]}>
           <div className={styles["detail-jjim"]}>
             <button type="button" onClick={handleClickJjim}>
-              <img src={imageSrcJjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} />{" "}
+              <img src={imageSrcJjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} />
             </button>
             <span className={styles["detail-jjim-number"]}> {countJjim}</span>
           </div>
           <span className={styles["detail-like-jjim-line"]}>|</span>
           <div className={styles["detail-like"]}>
-            <button type="button"  onClick={handleClickLike}>
-              <img src={imageSrcLike} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} />{" "}
+            <button type="button" onClick={handleClickLike}>
+              <img src={imageSrcLike} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} />
             </button>
             <span className={styles["detail-like-number"]}> {countLike}</span>
           </div>
@@ -98,7 +98,7 @@ export const DetailItemsMenu = (props) => {
             <span className={styles["detail-sales-info-title"]}>영업정보</span>
           </div>
           <div className={styles["detail-sales-info-time-container"]}>
-            {" "}
+            
             <span className={styles["detail-sales-info-time"]}>시간</span>
             <span className={styles["detail-sales-info-line"]}>|</span>
             <span className={styles["detail-sales-info-time-info"]}>{data.time}</span>
@@ -118,7 +118,7 @@ export const DetailItemsMenu = (props) => {
           {data.menu.map((el) => (
             <ul className={styles["detail-menu"]}>
               <li className={styles["detail-menu-list"]}>
-                {" "}
+                
                 <span className={styles["detail-menu-list-title"]}>{el.title}</span> <span className={styles["detail-menu-list-price"]}>{priceTemplate(el.price)}원</span>
               </li>
             </ul>
