@@ -1,7 +1,6 @@
 import styles from "./Header.module.css";
 import MainLogo from "../../assets/logo-main.png";
 import {Link} from "react-router-dom";
-import Main from "../../pages/main/Main";
 
 export const Header = () => (
   <>

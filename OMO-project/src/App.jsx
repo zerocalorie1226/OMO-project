@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-import Main from "./pages/Main/Main";
+
 import Signup from "./pages/Signup/Signup";
 import Eating from "./pages/Sub/Eating/Eating";
 import Watching from "./pages/Sub/Watching/Watching";
@@ -33,6 +33,7 @@ import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
 import MyCourseMyVersion from "./pages/MyCourse/MyCouresMyVersion/MyCourseMyVersion";
 import MyCourseMyVersionEdit from "./pages/MyCourse/MyCourseMyVersionEdit/MyCourseMyVersionEdit";
 import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
+import Main from "./pages/main/Main";
 
 const App = () => (
   <div>
@@ -57,7 +58,7 @@ const App = () => (
         <Route path="/List" element={<List />} />
 
         {/* 상세페이지 */}
-        <Route path="/DetailMenu " element={<DetailMenu />} />
+        <Route path="/DetailMenu" element={<DetailMenu />} />
         <Route path="/DetailNone" element={<DetailNone />} />
         <Route path="/DetailTariff" element={<DetailTariff />} />
 

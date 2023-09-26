@@ -4,6 +4,7 @@ import Required from "../../assets/sign-up/required.png";
 import {Radio} from "../../components/Radio/Radio";
 import {RadioGroup} from "../../components/Radio/RadioGroup";
 import CheckBox from "../../components/CheckBox/CheckBox";
+import {Link} from "react-router-dom";
 
 const Signup = () => (
   <>
@@ -81,9 +82,11 @@ const Signup = () => (
         <CheckBox />
 
         <div className={styles["signup-btn-container"]}>
+        <Link to="/Main">
           <button type="submit" className={styles["signup-btn-signup"]}>
             가입하기
           </button>
+          </Link>
         </div>
       </div>
     </section>
