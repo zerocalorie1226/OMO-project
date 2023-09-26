@@ -10,7 +10,7 @@ const Main = () => (
     <Weather />
     <div className={styles["main-category-container"]}>
       {main.map((el) => {
-        return <CategoryBox key={el.id} title={el.title} img={el.src} />;
+        return <CategoryBox key={el.id} title={el.title} img={el.src} route ={el.route} />;
       })}
     </div>
   </>

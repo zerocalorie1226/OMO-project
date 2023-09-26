@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Gugi&family=Noto+Sans+KR&display=swap");
 
+.main-category-container{
+  all: unset;
+}
 
 .main-category-box {
   width: 260px;
