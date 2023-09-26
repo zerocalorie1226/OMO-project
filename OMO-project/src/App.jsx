@@ -38,42 +38,54 @@ import Main from "./pages/main/Main";
 const App = () => (
   <div>
     <BrowserRouter>
+      {/* 헤더 */}
       <Header />
       <Routes>
+        {/* 메인 페이지 */}
         <Route path="/" element={<Main />} />
 
-        {/* <Eating /> */}
-        {/* <Watching /> */}
-        {/* <Playing /> */}
-        {/* <ThemeCafe /> */}
-        <Route path="/Login" element={<Login />} />
+        {/* 서브 페이지 */}
+        <Route path="/Eating" element={<Eating />} />
+        <Route path="/Watching" element={<Watching />} />
+        <Route path="/Playing" element={<Playing />} />
+        <Route path="/ThemeCafe" element={<ThemeCafe />} />
 
-        {/* <Signup /> */}
+        {/* 로그인/회원가입 */}
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
+
+        {/* 리스트페이지 */}
         <Route path="/List" element={<List />} />
-        {/* <List /> */}
-        {/* <DetailMenu /> */}
-        {/* <DetailNone /> */}
-        {/* <DetailTariff /> */}
+
+        {/* 상세페이지 */}
+        <Route path="/DetailMenu " element={<DetailMenu />} />
+        <Route path="/DetailNone" element={<DetailNone />} />
+        <Route path="/DetailTariff" element={<DetailTariff />} />
+
+        {/* 마이 페이지 */}
         <Route path="/MyInfo" element={<MyInfo />} />
         <Route path="/Interest" element={<Interest />} />
         <Route path="/Recommend" element={<Recommend />} />
         <Route path="/Recent" element={<Recent />} />
         <Route path="/MyWrote" element={<MyWrote />} />
         <Route path="/ProfileSetting" element={<ProfileSetting />} />
+
+        {/* 나만의 코스 */}
         <Route path="/MyCourseMain" element={<MyCourseMain />} />
         <Route path="/MyCourseWrite" element={<MyCourseWrite />} />
         <Route path="/MyCourseMyVersion" element={<MyCourseMyVersion />} />
         <Route path="/MyCourseMyVersionEdit" element={<MyCourseMyVersionEdit />} />
         <Route path="/MyCourseOthersVersion" element={<MyCourseOthersVersion />} />
 
-        {/* <WriteBoard /> */}
+        {/* 커뮤니티 */}
         <Route path="/MyCourseBoard" element={<MyCourseBoard />} />
+        <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent />} />
+        <Route path="/InquiryBoardQnA" element={<InquiryBoardQnA />} />
+        <Route path="/WriteBoard" element={<WriteBoard />} />
+        <Route path="/WorryBoard" element={<WorryBoard />} />
+        <Route path="/FreeBoard" element={<FreeBoard />} />
 
-        {/* <InquiryBoard /> */}
-        {/* <InquiryBoardFrequent /> */}
-        {/* <InquiryBoardQnA /> */}
-        {/* <WorryBoard /> */}
-        {/* <FreeBoard /> */}
+        {/* 공지사항 */}
         <Route path="/Notice" element={<Notice />} />
       </Routes>
     </BrowserRouter>
