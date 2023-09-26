@@ -5,34 +5,34 @@ import Like from "../../../assets/detail/empty-thumb.png";
 import Jjim from "../../../assets/detail/empty-heart.png";
 
 const MyCourseDataBox = (props) => (
-  <div className={styles["mycoursedatabox-total-container"]}>
-    <div href="#" className={styles["mycoursedatabox-box-container"]}>
-      <div className={styles["mycoursedatabox-box-inner-container"]}>
-        <span className={styles["mycoursedatabox-box-title"]}>{props.title}</span>
+  <div className={styles["mycourse-data-box-total-container"]}>
+    <div href="#" className={styles["mycourse-data-box-box-container"]}>
+      <div className={styles["mycourse-data-box-box-inner-container"]}>
+        <span className={styles["mycourse-data-box-box-title"]}>{props.title}</span>
 
-        <div className={styles["mycoursedatabox-box-like-jjim-container"]}>
-          <div className={styles["mycoursedatabox-box-jjim"]}>
+        <div className={styles["mycourse-data-box-box-like-jjim-container"]}>
+          <div className={styles["mycourse-data-box-box-jjim"]}>
             <button type="button">
               <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "0px", width: "23px", height: "23px"}} />{" "}
             </button>
-            <span className={styles["mycoursedatabox-box-jjim-number"]}> {props.jjim}</span>
+            <span className={styles["mycourse-data-box-box-jjim-number"]}> {props.jjim}</span>
           </div>
-          <div className={styles["mycoursedatabox-box-like"]}>
+          <div className={styles["mycourse-data-box-box-like"]}>
             <button type="button">
               <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px", width: "24px", height: "24px"}} />{" "}
             </button>
-            <span className={styles["mycoursedatabox-box-like-number"]}> {props.like}</span>
+            <span className={styles["mycourse-data-box-box-like-number"]}> {props.like}</span>
           </div>
         </div>
 
-        <span className={styles["mycoursedatabox-box-runtime"]}>{props.runTime}</span>
-        <span className={styles["mycoursedatabox-box-intro"]}>{props.intro}</span>
-        <span className={styles["mycoursedatabox-box-address-brief"]}>{props.addressBrief}</span>
-        <img className={styles["mycoursedatabox-box-img1"]} src={props.img1} />
-        <img className={styles["mycoursedatabox-box-img2"]} src={props.img2} />
+        <span className={styles["mycourse-data-box-box-runtime"]}>{props.runTime}</span>
+        <span className={styles["mycourse-data-box-box-intro"]}>{props.intro}</span>
+        <span className={styles["mycourse-data-box-box-address-brief"]}>{props.addressBrief}</span>
+        <img className={styles["mycourse-data-box-box-img1"]} src={props.img1} />
+        <img className={styles["mycourse-data-box-box-img2"]} src={props.img2} />
       </div>
     </div>
-    <img src={props.downArrow} className={styles["mycoursedatabox-downArrow-img"]} />
+    <img src={props.downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />
   </div>
 );
 

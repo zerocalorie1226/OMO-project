@@ -5,7 +5,7 @@ import MyCoursePlusBox from "../MyCoursePlusBox/MyCoursePlusBox";
 import Delete from "../Button/Delete/Delete";
 
 const MyCourseAfter = () => (
-  <div className={styles["MyCourseAfter-total-container"]}>
+  <div className={styles["mycourse-after-total-container"]}>
     <MyCourseSearchBox />
 
     <MyCoursePlusBox />
