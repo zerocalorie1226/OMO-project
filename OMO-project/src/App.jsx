@@ -58,7 +58,7 @@ const App = () => (
         <Route path="/List" element={<List />} />
 
         {/* 상세페이지 */}
-        <Route path="/DetailMenu " element={<DetailMenu />} />
+        <Route path="/DetailMenu" element={<DetailMenu />} />
         <Route path="/DetailNone" element={<DetailNone />} />
         <Route path="/DetailTariff" element={<DetailTariff />} />
 

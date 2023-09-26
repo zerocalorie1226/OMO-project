@@ -1,3 +1,8 @@
+.list-box-container{
+  all:unset;
+}
+
+
 /* 개별 박스 */
 .list-box-inner-container{
   width: 950px;

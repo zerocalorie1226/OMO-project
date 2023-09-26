@@ -30,6 +30,7 @@ export const data = [
     src2: Ramen2,
     thumbnail: Thumbnail,
     downarrow: Downarrow,
+    route: "/DetailMenu"
   },
 
   {
@@ -56,6 +57,7 @@ export const data = [
     src1: Ramen1,
     src2: Ramen2,
     downarrow: Downarrow,
+    route: "/DetailMenu"
   },
 
   {
@@ -82,6 +84,7 @@ export const data = [
     src1: Ramen1,
     src2: Ramen2,
     downarrow: Downarrow,
+    route: "/DetailNone"
   },
 
   {
@@ -108,6 +111,7 @@ export const data = [
     src1: Ramen1,
     src2: Ramen2,
     downarrow: Downarrow,
+    route: "/DetailNone"
   },
 
   {
@@ -134,6 +138,7 @@ export const data = [
     src1: Ramen1,
     src2: Ramen2,
     downarrow: Downarrow,
+    route: "/DetailTariff"
   },
 
   {
@@ -160,6 +165,7 @@ export const data = [
     src1: Ramen1,
     src2: Ramen2,
     downarrow: Downarrow,
+    route: "/DetailTariff"
   },
 
   {
@@ -186,6 +192,7 @@ export const data = [
     src1: Ramen1,
     src2: Ramen2,
     downarrow: Downarrow,
+    route: "/DetailMenu"
   },
 
   {
@@ -211,5 +218,6 @@ export const data = [
     googleMap: Map,
     src1: Ramen1,
     src2: Ramen2,
+    route: "/DetailMenu"
   },
 ];

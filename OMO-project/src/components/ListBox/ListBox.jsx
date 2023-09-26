@@ -1,11 +1,15 @@
 import styles from "./ListBox.module.css";
 import Like from "../../assets/detail/empty-thumb.png"
 import Jjim from "../../assets/detail/empty-heart.png"
+import { useNavigate } from "react-router-dom";
 
 
-export const ListBox = (props) => (
+export const ListBox = (props) => {
+  const navigate = useNavigate();
+
+  return(
   <>
-    <a href="#" className={styles["list-box-container"]}>
+    <button onClick={()=>{navigate(props.route)}} className={styles["list-box-container"]}>
     <div className={styles["list-box-inner-container"]}>
     <span className={styles["list-box-title"]}>{props.title}</span>
     
@@ -24,6 +28,7 @@ export const ListBox = (props) => (
     <img className={styles["list-box-img1"]} src={props.img1} />
     <img className={styles["list-box-img2"]} src={props.img2} />
     </div>
-    </a>
+    </button>
   </>
-);
+)
+  };
