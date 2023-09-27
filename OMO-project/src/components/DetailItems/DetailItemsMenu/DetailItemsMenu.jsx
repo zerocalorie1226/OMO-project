@@ -18,6 +18,9 @@ import {priceTemplate} from "../../../utils/priceTemplate";
 import {reviewData} from "../../../const/reviewData";
 
 export const DetailItemsMenu = (props) => {
+  
+ // 데이터
+ const {data} = props;
 
   // 찜 버튼
   const [imageSrcJjim, setImageSrcJjim] = useState(Jjim);
@@ -54,7 +57,25 @@ export const DetailItemsMenu = (props) => {
     }
   };
 
-  const {data} = props;
+  // 리뷰
+  
+  const [content, setContent] = useState("");
+
+  const handleSubmit = () => {
+
+
+
+    if(content.length < 1){
+      alert("리뷰는 최소 1글자 이상 입력해주세요");
+      return;
+    }
+
+    console.log(content);
+    alert("저장 성공");
+  }
+
+
+
   return (
     <>
       {/* 타이틀 */}
@@ -116,12 +137,14 @@ export const DetailItemsMenu = (props) => {
             <span className={styles["detail-menu-title"]}>메뉴</span>
           </div>
           {data.menu.map((el) => (
+            <div key={el.id}>
             <ul className={styles["detail-menu"]}>
               <li className={styles["detail-menu-list"]}>
                 
                 <span className={styles["detail-menu-list-title"]}>{el.title}</span> <span className={styles["detail-menu-list-price"]}>{priceTemplate(el.price)}원</span>
               </li>
             </ul>
+            </div>
           ))}
         </section>
 
@@ -218,11 +241,11 @@ export const DetailItemsMenu = (props) => {
               {/* input 박스 */}
               <div className={styles["detail-review-input-box"]}>
                 <img src={reviewData.find((item) => item.id).src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
-                <button className={styles["detail-review-input-button"]} src={Submit} type="submit">
+                <button onClick={handleSubmit} className={styles["detail-review-input-button"]} src={Submit} type="submit">
                   <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px"}} />
                   <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
                 </button>
-                <input className={styles["detail-review-input"]} type="text" id="review" name="review" minlength="2" maxlength="40" size="10" placeholder="리뷰를 입력하세요..."></input>
+                <input value={content} onChange={(e)=>{setContent(e.target.value)}} className={styles["detail-review-input"]} type="text" id="review" name="review" minLength="2" maxLength="40" size="10" placeholder="리뷰를 입력하세요..."></input>
               </div>
 
               {/* 리뷰 박스 리스트 */}
@@ -236,3 +259,4 @@ export const DetailItemsMenu = (props) => {
     </>
   );
 };
+
