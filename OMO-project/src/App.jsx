@@ -4,7 +4,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-
 import Signup from "./pages/Signup/Signup";
 import Eating from "./pages/Sub/Eating/Eating";
 import Watching from "./pages/Sub/Watching/Watching";
@@ -79,11 +78,11 @@ const App = () => (
 
         {/* 커뮤니티 */}
         <Route path="/MyCourseBoard" element={<MyCourseBoard />} />
+        <Route path="/WorryBoard" element={<WorryBoard />} />
+        <Route path="/FreeBoard" element={<FreeBoard />} />
         <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent />} />
         <Route path="/InquiryBoardQnA" element={<InquiryBoardQnA />} />
         <Route path="/WriteBoard" element={<WriteBoard />} />
-        <Route path="/WorryBoard" element={<WorryBoard />} />
-        <Route path="/FreeBoard" element={<FreeBoard />} />
 
         {/* 공지사항 */}
         <Route path="/Notice" element={<Notice />} />
