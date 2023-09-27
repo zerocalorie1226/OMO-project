@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "./DetailItemsMenu.module.css";
 import Jjim from "../../../assets/detail/empty-heart.png";
 import JjimClicked from "../../../assets/detail/red-heart.png"
@@ -16,17 +16,49 @@ import {Review} from "../Review/Review";
 // import { Map } from "./../../../components/Map/Map";
 import {priceTemplate} from "../../../utils/priceTemplate";
 import {reviewData} from "../../../const/reviewData";
+import { elapsedText } from './../../../utils/Time/elapsedText';
+
+
 
 export const DetailItemsMenu = (props) => {
-  
- // 데이터
- const {data} = props;
 
-  // 찜 버튼
+ const [item, setItem] = useState([]); // 상태변화함수, 빈배열로 시작
+
+ const [content, setContent] = useState(""); // 댓글 내용
+
+ const dataId = useRef(0); // id 인덱스 추가-> 변수처럼 사용 필요 -> useRef 사용
+
+
+ // 데이터 가져오기
+  const {data} = props;
+
+
+ // 찜 버튼 
   const [imageSrcJjim, setImageSrcJjim] = useState(Jjim);
   const [isClikedJjim, setIsClickedJjim] = useState(false);
   const [countJjim,setCountJjim] = useState(0);
 
+
+  // 좋아요 버튼 
+  const [imageSrcLike, setImageSrcLike] = useState(Like);
+   const [isClikedLike, setIsClickedLike] = useState(false);
+  const [countLike,setCountLike] = useState(0);
+
+
+  // onCreate 함수 (댓글 리스트에 댓글 추가)
+  const onCreate = (content) => { 
+    const created_date = new Date().getTime(); 
+    const newItem = { 
+      content,
+      created_date,
+      id: dataId.current,
+    };
+    dataId.current += 1; 
+    setItem([newItem,...item]); 
+  }
+
+
+  // handleClickJjim 함수 (찜 버튼 - 색, 카운트)
   const handleClickJjim =() =>{
     if(isClikedJjim) {
       setImageSrcJjim(Jjim);
@@ -40,11 +72,8 @@ export const DetailItemsMenu = (props) => {
     }
   };
 
-  // 좋아요 버튼
-  const [imageSrcLike, setImageSrcLike] = useState(Like);
-  const [isClikedLike, setIsClickedLike] = useState(false);
-  const [countLike,setCountLike] = useState(0);
 
+  // handleClickLike 함수 (좋아요 버튼 - 색, 카운트)
   const handleClickLike =() =>{
     if(isClikedLike) {
       setImageSrcLike(Like);
@@ -57,21 +86,17 @@ export const DetailItemsMenu = (props) => {
     }
   };
 
-  // 리뷰
-  
-  const [content, setContent] = useState("");
-
+ 
+ // handleSubmit 함수 (리뷰 제출 버튼) 
   const handleSubmit = () => {
-
-
-
     if(content.length < 1){
-      alert("리뷰는 최소 1글자 이상 입력해주세요");
+      alert("리뷰는 최소 1글자 이상 입력해주세요"); // 댓글 최소 글자
       return;
     }
-
-    console.log(content);
-    alert("저장 성공");
+    onCreate(content); // 내용 추가
+    // setContent({ 
+    //   content: "",
+    // })
   }
 
 
@@ -249,8 +274,8 @@ export const DetailItemsMenu = (props) => {
               </div>
 
               {/* 리뷰 박스 리스트 */}
-              {reviewData.map((review) => (
-                <Review data={review} />
+              {item.map((review) => (
+                <Review key={review.id} {...review} />
               ))}
             </div>
           </div>
