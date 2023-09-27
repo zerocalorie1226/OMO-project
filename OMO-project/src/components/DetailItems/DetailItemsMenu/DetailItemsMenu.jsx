@@ -16,7 +16,6 @@ import {Review} from "../Review/Review";
 // import { Map } from "./../../../components/Map/Map";
 import {priceTemplate} from "../../../utils/priceTemplate";
 import {reviewData} from "../../../const/reviewData";
-import { elapsedText } from './../../../utils/Time/elapsedText';
 
 
 
