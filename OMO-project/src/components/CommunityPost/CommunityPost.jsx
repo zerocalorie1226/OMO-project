@@ -14,6 +14,7 @@ export const CommunityPost = (props) => {
 
   const [content, setContent] = useState(""); // 댓글 내용
 
+
   const dataId = useRef(0); // 댓글 아이디
 
   // 댓글 달기 버튼 클릭 시 댓글창 표시/숨김 토글
@@ -109,7 +110,6 @@ export const CommunityPost = (props) => {
                 size="10"
                 placeholder="댓글을 입력하세요..."
                 value={content}
-                ref={contentInput}
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}
