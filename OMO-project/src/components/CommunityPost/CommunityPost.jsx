@@ -5,6 +5,7 @@ import Comment from "../../assets/community/worry-board/comment.png";
 import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
 import React, {useRef, useState} from "react";
+import { elapsedText } from './../../utils/Time/elapsedText';
 
 export const CommunityPost = (props) => {
   const [showComments, setShowComments] = useState(false); // 초기에 숨김 상태
@@ -13,7 +14,6 @@ export const CommunityPost = (props) => {
 
   const [content, setContent] = useState(""); // 댓글 내용
 
-  const contentInput = useRef(); //댓글 최소 입력시 포커스 주기위해 사용
 
   const dataId = useRef(0); // 댓글 아이디
 
@@ -26,7 +26,6 @@ export const CommunityPost = (props) => {
   const handleSubmit = () => {
     if (content.length < 1) {
       alert("최소 1글자 이상 입력해주세요");
-      contentInput.current.focus();
       return;
     }
     onCreate(content);
@@ -111,7 +110,6 @@ export const CommunityPost = (props) => {
                 size="10"
                 placeholder="댓글을 입력하세요..."
                 value={content}
-                ref={contentInput}
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}
@@ -124,18 +122,20 @@ export const CommunityPost = (props) => {
 
             {/* 댓글 리스트 내용 */}
             {data.map((el) => (
+              <div key={el.id}>
               <ul className={styles["community-post-comment"]}>
                 <li>
                   {/* <img className={styles["community-post-comment-profile-img"]} src={el.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} /> */}
                   <div className={styles["community-post-comment-box"]}>
                     <div className={styles["community-post-comment-nick-date"]}>
                       <span className={styles["community-post-comment-box-nick"]}>이니</span>
-                      <span className={styles["community-post-comment-box-date"]}>{new Date(el.created_date).toLocaleDateString()}</span>
+                      <span className={styles["community-post-comment-box-date"]}>{elapsedText(new Date(el.created_date)).toLocaleString()}</span>
                     </div>
                     <span className={styles["community-post-comment-box-content"]}>{el.content}</span>
                   </div>
                 </li>
               </ul>
+              </div>
             ))}
           </div>
         </div>

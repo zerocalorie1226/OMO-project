@@ -1,4 +1,4 @@
-.myCoursePlusBox-total-container {
+.mycourse-plus-box-total-container {
   width: 670px;
   height: 133px;
   margin: 0 auto;
@@ -6,7 +6,7 @@
   border-radius: 10px;
 }
 
-.myCoursePlusBox-plus-box {
+.mycourse-plus-box-plus-box {
   display: block;
   width: 670px;
   height: 133px;
@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 
-.myCoursePlusBox-plusButton {
+.mycourse-plus-box-plus-button {
   position: absolute;
   top: 50%;
   left: 50%;

@@ -1,11 +1,11 @@
+import { useState } from "react";
 import styles from "./DetailItemsNone.module.css";
 import Jjim from "../../../assets/detail/empty-heart.png";
-// import JjimClicked from "../../../assets/detail/red-heart.png"
+import JjimClicked from "../../../assets/detail/red-heart.png"
 import Like from "../../../assets/detail/empty-thumb.png";
-// import LikeClicked from "../../../assets/detail/yellow-thumb.png"
+import LikeClicked from "../../../assets/detail/purple-thumb.png"
 import Address from "../../../assets/detail/address.png";
 import SalesInfo from "../../../assets/detail/sales-info.png";
-import Menu from "../../../assets/detail/menu.png";
 import Call from "../../../assets/detail/call.png";
 import Graph from "../../../assets/detail/graph.png";
 import ReviewIcon from "../../../assets/detail/review.png";
@@ -13,10 +13,45 @@ import Submit from "../../../assets/submit.png";
 import SubmitHover from "../../../assets/submit-hover.png";
 import {Review} from "../Review/Review";
 // import { Map } from "./../../../components/Map/Map";
-// import {priceTemplate} from "../../../utils/priceTemplate";
 import {reviewData} from "../../../const/reviewData";
 
 export const DetailItemsNone = (props) => {
+
+  // 찜 버튼
+  const [imageSrcJjim, setImageSrcJjim] = useState(Jjim);
+  const [isClikedJjim, setIsClickedJjim] = useState(false);
+  const [countJjim,setCountJjim] = useState(0);
+
+  const handleClickJjim =() =>{
+    if(isClikedJjim) {
+      setImageSrcJjim(Jjim);
+      setIsClickedJjim(false);
+      setCountJjim(count => count-1); 
+
+    }else{
+      setImageSrcJjim(JjimClicked);
+      setIsClickedJjim(true);
+      setCountJjim(count => count+1);   
+    }
+  };
+
+  // 좋아요 버튼
+  const [imageSrcLike, setImageSrcLike] = useState(Like);
+  const [isClikedLike, setIsClickedLike] = useState(false);
+  const [countLike,setCountLike] = useState(0);
+
+  const handleClickLike =() =>{
+    if(isClikedLike) {
+      setImageSrcLike(Like);
+      setIsClickedLike(false);
+      setCountLike(countLike -1); 
+    }else{
+      setImageSrcLike(LikeClicked);
+      setIsClickedLike(true);
+      setCountLike(countLike +1);  
+    }
+  };
+
   const {data} = props;
   return (
     <>
@@ -28,17 +63,17 @@ export const DetailItemsNone = (props) => {
         <span className={styles["detail-title"]}>{data.title}</span>
         <div className={styles["detail-like-jjim-container"]}>
           <div className={styles["detail-jjim"]}>
-            <button type="button">
-              <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} />{" "}
-            </button>{" "}
-            <span className={styles["detail-jjim-number"]}> {data.jjim}</span>
+            <button type="button" onClick={handleClickJjim}>
+              <img src={imageSrcJjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} />
+            </button>
+            <span className={styles["detail-jjim-number"]}> {countJjim}</span>
           </div>
           <span className={styles["detail-like-jjim-line"]}>|</span>
           <div className={styles["detail-like"]}>
-            <button type="button">
-              <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} />{" "}
+            <button type="button" onClick={handleClickLike}>
+              <img src={imageSrcLike} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} />
             </button>
-            <span className={styles["detail-like-number"]}> {data.like}</span>
+            <span className={styles["detail-like-number"]}> {countLike}</span>
           </div>
         </div>
       </section>
@@ -61,7 +96,7 @@ export const DetailItemsNone = (props) => {
             <span className={styles["detail-sales-info-title"]}>영업정보</span>
           </div>
           <div className={styles["detail-sales-info-time-container"]}>
-            {" "}
+            
             <span className={styles["detail-sales-info-time"]}>시간</span>
             <span className={styles["detail-sales-info-line"]}>|</span>
             <span className={styles["detail-sales-info-time-info"]}>{data.time}</span>

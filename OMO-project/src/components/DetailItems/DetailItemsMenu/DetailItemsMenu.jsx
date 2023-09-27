@@ -1,8 +1,9 @@
+import { useState, useRef } from "react";
 import styles from "./DetailItemsMenu.module.css";
 import Jjim from "../../../assets/detail/empty-heart.png";
-// import JjimClicked from "../../../assets/detail/red-heart.png"
+import JjimClicked from "../../../assets/detail/red-heart.png"
 import Like from "../../../assets/detail/empty-thumb.png";
-// import LikeClicked from "../../../assets/detail/yellow-thumb.png"
+import LikeClicked from "../../../assets/detail/purple-thumb.png"
 import Address from "../../../assets/detail/address.png";
 import SalesInfo from "../../../assets/detail/sales-info.png";
 import Menu from "../../../assets/detail/menu.png";
@@ -16,8 +17,89 @@ import {Review} from "../Review/Review";
 import {priceTemplate} from "../../../utils/priceTemplate";
 import {reviewData} from "../../../const/reviewData";
 
+
+
 export const DetailItemsMenu = (props) => {
+
+ const [item, setItem] = useState([]); // 상태변화함수, 빈배열로 시작
+
+ const [content, setContent] = useState(""); // 댓글 내용
+
+ const dataId = useRef(0); // id 인덱스 추가-> 변수처럼 사용 필요 -> useRef 사용
+
+
+ // 데이터 가져오기
   const {data} = props;
+
+
+ // 찜 버튼 
+  const [imageSrcJjim, setImageSrcJjim] = useState(Jjim);
+  const [isClikedJjim, setIsClickedJjim] = useState(false);
+  const [countJjim,setCountJjim] = useState(0);
+
+
+  // 좋아요 버튼 
+  const [imageSrcLike, setImageSrcLike] = useState(Like);
+   const [isClikedLike, setIsClickedLike] = useState(false);
+  const [countLike,setCountLike] = useState(0);
+
+
+  // onCreate 함수 (댓글 리스트에 댓글 추가)
+  const onCreate = (content) => { 
+    const created_date = new Date().getTime(); 
+    const newItem = { 
+      content,
+      created_date,
+      id: dataId.current,
+    };
+    dataId.current += 1; 
+    setItem([newItem,...item]); 
+  }
+
+
+  // handleClickJjim 함수 (찜 버튼 - 색, 카운트)
+  const handleClickJjim =() =>{
+    if(isClikedJjim) {
+      setImageSrcJjim(Jjim);
+      setIsClickedJjim(false);
+      setCountJjim(count => count-1); 
+
+    }else{
+      setImageSrcJjim(JjimClicked);
+      setIsClickedJjim(true);
+      setCountJjim(count => count+1);   
+    }
+  };
+
+
+  // handleClickLike 함수 (좋아요 버튼 - 색, 카운트)
+  const handleClickLike =() =>{
+    if(isClikedLike) {
+      setImageSrcLike(Like);
+      setIsClickedLike(false);
+      setCountLike(countLike -1); 
+    }else{
+      setImageSrcLike(LikeClicked);
+      setIsClickedLike(true);
+      setCountLike(countLike +1);  
+    }
+  };
+
+ 
+ // handleSubmit 함수 (리뷰 제출 버튼) 
+  const handleSubmit = () => {
+    if(content.length < 1){
+      alert("리뷰는 최소 1글자 이상 입력해주세요"); // 댓글 최소 글자
+      return;
+    }
+    onCreate(content); // 내용 추가
+    // setContent({ 
+    //   content: "",
+    // })
+  }
+
+
+
   return (
     <>
       {/* 타이틀 */}
@@ -28,17 +110,17 @@ export const DetailItemsMenu = (props) => {
         <span className={styles["detail-title"]}>{data.title}</span>
         <div className={styles["detail-like-jjim-container"]}>
           <div className={styles["detail-jjim"]}>
-            <button type="button">
-              <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} />{" "}
-            </button>{" "}
-            <span className={styles["detail-jjim-number"]}> {data.jjim}</span>
+            <button type="button" onClick={handleClickJjim}>
+              <img src={imageSrcJjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} />
+            </button>
+            <span className={styles["detail-jjim-number"]}> {countJjim}</span>
           </div>
           <span className={styles["detail-like-jjim-line"]}>|</span>
           <div className={styles["detail-like"]}>
-            <button type="button">
-              <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} />{" "}
+            <button type="button" onClick={handleClickLike}>
+              <img src={imageSrcLike} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} />
             </button>
-            <span className={styles["detail-like-number"]}> {data.like}</span>
+            <span className={styles["detail-like-number"]}> {countLike}</span>
           </div>
         </div>
       </section>
@@ -61,7 +143,7 @@ export const DetailItemsMenu = (props) => {
             <span className={styles["detail-sales-info-title"]}>영업정보</span>
           </div>
           <div className={styles["detail-sales-info-time-container"]}>
-            {" "}
+            
             <span className={styles["detail-sales-info-time"]}>시간</span>
             <span className={styles["detail-sales-info-line"]}>|</span>
             <span className={styles["detail-sales-info-time-info"]}>{data.time}</span>
@@ -79,12 +161,14 @@ export const DetailItemsMenu = (props) => {
             <span className={styles["detail-menu-title"]}>메뉴</span>
           </div>
           {data.menu.map((el) => (
+            <div key={el.id}>
             <ul className={styles["detail-menu"]}>
               <li className={styles["detail-menu-list"]}>
-                {" "}
+                
                 <span className={styles["detail-menu-list-title"]}>{el.title}</span> <span className={styles["detail-menu-list-price"]}>{priceTemplate(el.price)}원</span>
               </li>
             </ul>
+            </div>
           ))}
         </section>
 
@@ -181,16 +265,16 @@ export const DetailItemsMenu = (props) => {
               {/* input 박스 */}
               <div className={styles["detail-review-input-box"]}>
                 <img src={reviewData.find((item) => item.id).src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
-                <button className={styles["detail-review-input-button"]} src={Submit} type="submit">
+                <button onClick={handleSubmit} className={styles["detail-review-input-button"]} src={Submit} type="submit">
                   <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px"}} />
                   <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
                 </button>
-                <input className={styles["detail-review-input"]} type="text" id="review" name="review" minlength="2" maxlength="40" size="10" placeholder="리뷰를 입력하세요..."></input>
+                <input value={content} onChange={(e)=>{setContent(e.target.value)}} className={styles["detail-review-input"]} type="text" id="review" name="review" minLength="2" maxLength="40" size="10" placeholder="리뷰를 입력하세요..."></input>
               </div>
 
               {/* 리뷰 박스 리스트 */}
-              {reviewData.map((review) => (
-                <Review data={review} />
+              {item.map((review) => (
+                <Review key={review.id} {...review} />
               ))}
             </div>
           </div>
@@ -199,3 +283,4 @@ export const DetailItemsMenu = (props) => {
     </>
   );
 };
+
