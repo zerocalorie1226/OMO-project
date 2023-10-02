@@ -1,10 +1,12 @@
 import styles from "./ReportModal.module.css";
 import {Radio} from "../Radio/Radio";
 import {RadioGroup} from "../../components/Radio/RadioGroup";
+import Portal from './../../utils/Portal';
 import ReportClose from "../../assets/modal-close.png";
 
 const ReportModal = () => (
-  <>
+  <div>
+      <div className={styles['Overlay']}>
     <div className={styles["report-modal-container"]}>
       <label className={styles["report-modal-select"]}  htmlFor="report-reason">
         신고 사유를 선택해주세요
@@ -41,7 +43,8 @@ const ReportModal = () => (
           </button>
         </div>
     </div>
-  </>
+    </div>
+  </div>
 );
 
 export default ReportModal;
