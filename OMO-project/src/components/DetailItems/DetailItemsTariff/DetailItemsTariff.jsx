@@ -240,7 +240,7 @@ export const DetailItemsTariff = (props) => {
         <section className={styles["detail-review-container"]}>
           <div className={styles["detail-review-inner-container"]}>
             <img src={ReviewIcon} alt="리뷰 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "3px"}} />
-            <span className={styles["detail-review-title"]}>리뷰</span>
+            <span className={styles["detail-review-title"]}>리뷰 ({item.length})</span>
 
             <div className={styles["detail-review-box-container"]}>
               <div className={styles["detail-review-input-box"]}>
