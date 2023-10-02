@@ -29,7 +29,16 @@ export const CommunityPost = (props) => {
       return;
     }
     onCreate(content);
+    setContent('');
   };
+
+  
+    // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
+    const handleOnKeyPress = (e) => {
+      if (e.key === "Enter") {
+        handleSubmit(); // Enter 입력이 되면 클릭 이벤트 실행
+      }
+    };
 
   // 댓글 리스트에 댓글 추가
   const onCreate = (content) => {
@@ -109,7 +118,8 @@ export const CommunityPost = (props) => {
                 maxLength="40"
                 size="10"
                 placeholder="댓글을 입력하세요..."
-                value={content}
+                onKeyDown={handleOnKeyPress}
+                value={content || ""}
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}
