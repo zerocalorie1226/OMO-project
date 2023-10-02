@@ -78,7 +78,7 @@ export const CommunityPost = (props) => {
           <div className={styles["community-post-number-report-wapper"]}>
             <span className={styles["community-post-like-number"]}>좋아요 {props.like}</span>
             <span className={styles["community-post-view-number"]}>• 조회수 {props.view}</span>
-            <span className={styles["community-post-comment-number"]}>• 댓글 {props.comment}</span>
+            <span className={styles["community-post-comment-number"]}>• 댓글 {data.length}</span>
 
             {/* 신고 아이콘 */}
             <button className={styles["community-post-report-button"]} type="button">
