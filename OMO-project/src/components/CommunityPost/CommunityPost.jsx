@@ -1,3 +1,4 @@
+import React, {useRef, useState} from "react";
 import styles from "./CommunityPost.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
@@ -5,10 +6,13 @@ import LikeClicked from "../../assets/detail/purple-thumb.png";
 import Comment from "../../assets/community/worry-board/comment.png";
 import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
-import React, {useRef, useState} from "react";
 import { elapsedText } from './../../utils/Time/elapsedText';
+import ReportModal from './../ReportModal/ReportModal';
 
 export const CommunityPost = (props) => {
+
+
+
 
     // 좋아요 버튼
     const [imageSrcLike, setImageSrcLike] = useState(Like);
@@ -38,6 +42,10 @@ export const CommunityPost = (props) => {
     onCreate(content);
     setContent('');
   };
+  
+  // 신고 모달창 열기
+  const [modal, setModal] = useState(false);
+
 
     // handleClickLike 함수 (좋아요 버튼 - 색, 카운트)
     const handleClickLike = () => {
@@ -101,9 +109,10 @@ export const CommunityPost = (props) => {
             <span className={styles["community-post-comment-number"]}>• 댓글 {data.length}</span>
 
             {/* 신고 아이콘 */}
-            <button className={styles["community-post-report-button"]} type="button">
+            <button className={styles["community-post-report-button"]} type="button" onClick={ () => { setModal(true) } }>
               <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{width: "32px", height: "32px"}} />
             </button>
+            {modal === true ? <ReportModal/> : null }
           </div>
         </div>
 
@@ -113,6 +122,8 @@ export const CommunityPost = (props) => {
             <img className={styles["community-post-like-button-img"]} src={imageSrcLike} />
             좋아요
           </button>
+
+
 
           {/* 댓글달기 버튼 */}
           <button

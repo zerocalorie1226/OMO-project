@@ -11,10 +11,12 @@ import ReportModal from "../../../components/ReportModal/ReportModal";
 import {Link} from "react-router-dom";
 
 const WorryBoard = () => {
-  return (
-    <>
-      {/* 카테고리 */}
-      <CommunityCategory />
+
+ 
+  return(
+  <>
+    {/* 카테고리 */}
+    <CommunityCategory />
 
       {/* 필터 + 검색창 */}
       <div className={styles["community-component-container"]}>

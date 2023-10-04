@@ -1,19 +1,29 @@
+import React, {useState} from "react";
 import styles from "./ReportModal.module.css";
 import {Radio} from "../Radio/Radio";
 import {RadioGroup} from "../../components/Radio/RadioGroup";
-import Portal from './../../utils/Portal';
+// import Portal from './../../utils/Portal';
 import ReportClose from "../../assets/modal-close.png";
 
-const ReportModal = () => (
+const ReportModal = () => {
+
+  
+  // 신고 모달창 닫기
+  // const [modal, setModal] = useState(true);
+
+  return (
   <div>
       <div className={styles['Overlay']}>
     <div className={styles["report-modal-container"]}>
       <label className={styles["report-modal-select"]}  htmlFor="report-reason">
-        신고 사유를 선택해주세요
-        <button className={styles["report-modal-close-btn"]} type="button">
+      <div className={styles['report-modal-title']}>신고 사유를 선택해주세요</div>
+        <button className={styles["report-modal-close-btn"]} type="button"  onClick={ () => { setModal(false) } }>
           <img className={styles["report-modal-close-btn-img"]} src={ReportClose} alt="닫기 아이콘" />
+          {/* {modal === false ? setModal(true) : null } */}
         </button>
       </label>
+
+      {/* <hr className={styles["hr"]} /> */}
       <form className={styles["report-modal-radio-container"]}>
         <RadioGroup>
           <Radio name="report-reason" value="INAPPROPRIATE-SUBJECT" defaultChecked>
@@ -33,7 +43,7 @@ const ReportModal = () => (
           </Radio>
           <Radio name="report-reason" value="ETC">
             기타
-            <input className={styles["report-modal-etc-input"]} type="text" id="etc"></input>
+            <input className={styles["report-modal-etc-input"]} type="text" id="etc" maxLength={50}></input>
           </Radio>
         </RadioGroup> 
       </form>
@@ -46,5 +56,6 @@ const ReportModal = () => (
     </div>
   </div>
 );
+  };
 
 export default ReportModal;
