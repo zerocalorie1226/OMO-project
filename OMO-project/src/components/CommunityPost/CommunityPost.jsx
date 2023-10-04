@@ -1,6 +1,7 @@
 import styles from "./CommunityPost.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
+import LikeClicked from "../../assets/detail/purple-thumb.png";
 import Comment from "../../assets/community/worry-board/comment.png";
 import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
@@ -8,6 +9,12 @@ import React, {useRef, useState} from "react";
 import { elapsedText } from './../../utils/Time/elapsedText';
 
 export const CommunityPost = (props) => {
+
+    // 좋아요 버튼
+    const [imageSrcLike, setImageSrcLike] = useState(Like);
+    const [isClikedLike, setIsClickedLike] = useState(false);
+    const [countLike, setCountLike] = useState(0);
+
   const [showComments, setShowComments] = useState(false); // 초기에 숨김 상태
 
   const [data, setData] = useState([]); // 댓글 리스트 초기 상태
@@ -29,7 +36,29 @@ export const CommunityPost = (props) => {
       return;
     }
     onCreate(content);
+    setContent('');
   };
+
+    // handleClickLike 함수 (좋아요 버튼 - 색, 카운트)
+    const handleClickLike = () => {
+      if (isClikedLike) {
+        setImageSrcLike(Like);
+        setIsClickedLike(false);
+        setCountLike(countLike - 1);
+      } else {
+        setImageSrcLike(LikeClicked);
+        setIsClickedLike(true);
+        setCountLike(countLike + 1);
+      }
+    };
+  
+  
+    // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
+    const handleOnKeyPress = (e) => {
+      if (e.key === "Enter") {
+        handleSubmit(); // Enter 입력이 되면 클릭 이벤트 실행
+      }
+    };
 
   // 댓글 리스트에 댓글 추가
   const onCreate = (content) => {
@@ -67,9 +96,9 @@ export const CommunityPost = (props) => {
 
           {/*공감수*/}
           <div className={styles["community-post-number-report-wapper"]}>
-            <span className={styles["community-post-like-number"]}>좋아요 {props.like}</span>
+            <span className={styles["community-post-like-number"]}>좋아요 {countLike}</span>
             <span className={styles["community-post-view-number"]}>• 조회수 {props.view}</span>
-            <span className={styles["community-post-comment-number"]}>• 댓글 {props.comment}</span>
+            <span className={styles["community-post-comment-number"]}>• 댓글 {data.length}</span>
 
             {/* 신고 아이콘 */}
             <button className={styles["community-post-report-button"]} type="button">
@@ -80,8 +109,8 @@ export const CommunityPost = (props) => {
 
         <div className={styles["community-post-button-wrapper"]}>
           {/*좋아요 버튼*/}
-          <button type="button" className={styles["community-post-like-button"]}>
-            <img className={styles["community-post-like-button-img"]} src={Like} />
+          <button onClick={handleClickLike} type="button" className={styles["community-post-like-button"]}>
+            <img className={styles["community-post-like-button-img"]} src={imageSrcLike} />
             좋아요
           </button>
 
@@ -109,7 +138,8 @@ export const CommunityPost = (props) => {
                 maxLength="40"
                 size="10"
                 placeholder="댓글을 입력하세요..."
-                value={content}
+                onKeyDown={handleOnKeyPress}
+                value={content || ""}
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}

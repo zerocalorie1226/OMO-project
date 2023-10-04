@@ -1,3 +1,4 @@
+import { simpleDateTimeFormat } from './simpleDateTimeFormat';
 
 export const elapsedText = (date) => {
 	// 초 (밀리초)

@@ -12,15 +12,11 @@ const MyCourseDataBox = (props) => (
 
         <div className={styles["mycourse-data-box-box-like-jjim-container"]}>
           <div className={styles["mycourse-data-box-box-jjim"]}>
-            <button type="button">
               <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "0px", width: "23px", height: "23px"}} />{" "}
-            </button>
             <span className={styles["mycourse-data-box-box-jjim-number"]}> {props.jjim}</span>
           </div>
           <div className={styles["mycourse-data-box-box-like"]}>
-            <button type="button">
               <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px", width: "24px", height: "24px"}} />{" "}
-            </button>
             <span className={styles["mycourse-data-box-box-like-number"]}> {props.like}</span>
           </div>
         </div>
