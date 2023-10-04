@@ -1,7 +1,7 @@
-.mycourse-search-box-total-container {
+.mycourse-find-box-total-container {
   position: relative;
 }
-.mycourse-search-box-button-container {
+.mycourse-find-box-button-container {
   width: 670px;
   height: 133px;
   margin: 30px auto;
@@ -14,21 +14,7 @@
   gap: 14px;
 }
 
-.mycourse-search-box-button-container button {
-  width: 160px;
-  background-color: transparent;
-  border: 1px solid var(--primary);
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-.mycourse-search-box-button-container button:hover {
-  background-color: var(--secondary);
-  color: white;
-  cursor: pointer;
-}
-
-.mycourse-search-box-down-arrow-img {
+.mycourse-find-box-down-arrow-img {
   margin: 40px auto;
   display: block;
 }

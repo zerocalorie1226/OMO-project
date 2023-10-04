@@ -1,0 +1,13 @@
+.mycourse-find-box-button {
+  width: 160px;
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.mycourse-find-box-button:hover {
+  background-color: var(--secondary);
+  color: white;
+  cursor: pointer;
+}
