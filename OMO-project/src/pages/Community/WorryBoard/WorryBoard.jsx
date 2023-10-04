@@ -7,9 +7,15 @@ import Filter from "../../../components/Filter/Filter";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
-import ReportModal from '../../../components/ReportModal/ReportModal';
 
 const WorryBoard = () => {
+
+ 
+
+  const togglePopup = (event) => {
+    setShowPopup(event.target.value)
+  };
+
 
   return(
   <>
@@ -34,7 +40,6 @@ const WorryBoard = () => {
         })}
     </section>
 
-    {/* <ReportModal /> */}
     <ScrollToTop />
     <WritingButton />
   </>
