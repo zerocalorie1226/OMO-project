@@ -11,12 +11,6 @@ import {WritingButton} from "../../../components/WritingButton/WritingButton";
 const WorryBoard = () => {
 
  
-
-  const togglePopup = (event) => {
-    setShowPopup(event.target.value)
-  };
-
-
   return(
   <>
     {/* 카테고리 */}
