@@ -6,6 +6,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import {communityQnAPost} from "../../../const/communityQnAPost";
 import styles from "./InquiryBoardQnA.module.css";
+import {Link} from "react-router-dom";
 
 const InquiryBoardQnA = () => (
   <div>
@@ -32,7 +33,9 @@ const InquiryBoardQnA = () => (
       );
     })}
     <ScrollToTop />
-    <WritingButton />
+    <Link to="/WriteBoard">
+      <WritingButton />
+    </Link>
   </div>
 );
 
