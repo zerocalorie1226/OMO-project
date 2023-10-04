@@ -6,6 +6,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import {communityInquiryFrequent} from "../../../const/communityInquiryFrequent";
 import styles from "./InquiryBoardFrequent.module.css";
+import {Link} from "react-router-dom";
 
 const InquiryBoardFrequent = () => (
   <div>
@@ -19,7 +20,9 @@ const InquiryBoardFrequent = () => (
       return <CommunityInquiryBox key={el.id} title={el.title} nickname={el.nickname} content={el.content} />;
     })}
     <ScrollToTop />
-    <WritingButton />
+    <Link to="/WriteBoard">
+      <WritingButton />
+    </Link>
   </div>
 );
 

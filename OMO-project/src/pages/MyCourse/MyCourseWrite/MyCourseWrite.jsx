@@ -29,7 +29,6 @@ const MyCourseWrite = () => (
 
     {/* <EditShare /> */}
     <ScrollToTop />
-    <WritingButton />
     {/* <MyCourseFindInterestModal /> */}
     {/* <MyCourseFindRecentModal /> */}
     {/* <MyCourseFindSearchModal /> */}
