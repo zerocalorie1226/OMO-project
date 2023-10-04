@@ -6,7 +6,11 @@
   border-radius: 10px;
   overflow: hidden;
 }
-.noticeitems-total-container:hover {
+.noticeitems-total-container-expanded {
+  width: 1000px;
+  margin: 30px auto;
+  border: 1px solid var(--gray-400);
+  border-radius: 10px;
   height: 100%;
 }
 .noticeitems-division-date-container {

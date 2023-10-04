@@ -5,9 +5,12 @@
   border: 1px solid var(--gray-400);
   border-radius: 10px;
   overflow: hidden;
-  /* transition: height 400ms ease-in-out; */
 }
-.Communityinquirybox-total-container:hover {
+.Communityinquirybox-total-container-expanded {
+  width: 1000px;
+  margin: 40px auto;
+  border: 1px solid var(--gray-400);
+  border-radius: 10px;
   height: 100%;
 }
 
