@@ -5,7 +5,7 @@ import {RadioGroup} from "../../components/Radio/RadioGroup";
 // import Portal from './../../utils/Portal';
 import ReportClose from "../../assets/modal-close.png";
 
-const ReportModal = () => {
+const ReportModal = ({openModal,setOpenModal}) => {
 
   
   // 신고 모달창 닫기
@@ -17,11 +17,11 @@ const ReportModal = () => {
     <div className={styles["report-modal-container"]}>
       <label className={styles["report-modal-select"]}  htmlFor="report-reason">
       <div className={styles['report-modal-title']}>신고 사유를 선택해주세요</div>
-        <button className={styles["report-modal-close-btn"]} type="button"  onClick={ () => { setModal(false) } }>
+        <button className={styles["report-modal-close-btn"]} type="button"  onClick={ () => { setOpenModal(false) } }>
           <img className={styles["report-modal-close-btn-img"]} src={ReportClose} alt="닫기 아이콘" />
-          {/* {modal === false ? setModal(true) : null } */}
+          {!openModal ? setOpenModal(true) : null }
         </button>
-      </label>
+      </label> 
 
       {/* <hr className={styles["hr"]} /> */}
       <form className={styles["report-modal-radio-container"]}>
