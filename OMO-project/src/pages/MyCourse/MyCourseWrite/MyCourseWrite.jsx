@@ -7,9 +7,6 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import Save from "../../../components/MyCourse/Button/Save/Save";
 import EditShare from "../../../components/MyCourse/Button/Edit-Share/Edit-Share";
-import MyCourseFindInterestModal from "./../../../components/MyCourse/MyCourseFindInterestModal/MyCourseFindInterestModal"; // 관심 목록에서 찾기 모달창
-import MyCourseFindRecentModal from "./../../../components/MyCourse/MyCourseFindRecentModal/MyCourseFindRecentModal"; // 최근 본 목록에서 찾기 모달창
-import MyCourseFindSearchModal from "../../../components/MyCourse/MyCourseFindSearchModal/MyCourseFindSearchModal";
 import {Link} from "react-router-dom";
 
 
@@ -25,11 +22,7 @@ const MyCourseWrite = () => (
       <Save />
     </Link>
 
-    {/* <EditShare /> */}
     <ScrollToTop />
-    {/* <MyCourseFindInterestModal /> */}
-    {/* <MyCourseFindRecentModal /> */}
-    {/* <MyCourseFindSearchModal /> */}
   </div>
 );
 

@@ -1,4 +1,3 @@
-import React, {useState} from "react";
 import styles from "./ReportModal.module.css";
 import {Radio} from "../Radio/Radio";
 import {RadioGroup} from "../../components/Radio/RadioGroup";
