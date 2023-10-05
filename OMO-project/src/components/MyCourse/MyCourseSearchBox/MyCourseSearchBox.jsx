@@ -18,12 +18,14 @@ const MyCourseFindBox = () => {
       <MyCourseCalendar />
 
       <div className={styles["mycourse-find-box-button-container"]}>
-        <FindButton text={"관심 목록에서 찾기"} onClick={() => { setInterestModal(true) }} type={"interest"} />
-        {interestModal === true ?  <MyCourseFindInterestModal/> : null }
-        <FindButton text={"최근 본 목록에서 찾기"} onClick={() =>{ setRecentModal(true) }} type={"recent"} />
-        {recentModal === true ?  <MyCourseFindRecentModal/> : null }
-        <FindButton text={"검색을 통해 찾기"} onClick={() => { setSearchModal(true) }} type={"search"} />
-        {searchModal=== true ?  <MyCourseFindSearchModal/> : null }
+        <FindButton text={"관심 목록에서 찾기"} onClick={() => { setInterestModal(true) }} />
+        {interestModal ?  <MyCourseFindInterestModal interestModal={interestModal} setInterestModal={setInterestModal} /> : null }
+       
+        <FindButton text={"최근 본 목록에서 찾기"} onClick={() =>{ setRecentModal(true) }} />
+        {recentModal ?  <MyCourseFindRecentModal recentModal={recentModal} setRecentModal={setRecentModal} /> : null }
+        
+        <FindButton text={"검색을 통해 찾기"} onClick={() => { setSearchModal(true) }} />
+        {searchModal ?  <MyCourseFindSearchModal searchModal={searchModal} setSearchModal={setSearchModal} /> : null }
       </div>
       <img src={downArrow} alt="아래 화살표" className={styles["mycourse-find-box-down-arrow-img"]} />
     </div>
