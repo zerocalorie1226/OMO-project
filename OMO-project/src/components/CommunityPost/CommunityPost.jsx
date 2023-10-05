@@ -12,7 +12,7 @@ import ReportModal from "./../ReportModal/ReportModal";
 export const CommunityPost = (props) => {
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
-  
+
   // 좋아요 버튼
   const [imageSrcLike, setImageSrcLike] = useState(Like);
   const [isClikedLike, setIsClickedLike] = useState(false);
