@@ -1,7 +1,7 @@
 import styles from "./MyCoursePlusBox.module.css";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import PlusButton from "../../../assets/my-course/write/plus.png";
-import MyCourseSearchBox from "../MyCourseSearchBox/MyCourseSearchBox";
+import MyCourseFindBox from "../MyCourseFindBox/MyCourseFindBox";
 
 const MyCoursePlusBox = () => (
   <div className={styles["mycourse-plus-box-arrow-total-container"]}>

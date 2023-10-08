@@ -1,6 +1,6 @@
 import styles from "./MyCourseWrite.module.css";
 import pencil from "../../../assets/my-course/write/gray-pencil.png";
-import MyCourseFindBox from './../../../components/MyCourse/MyCourseSearchBox/MyCourseSearchBox';
+import MyCourseFindBox from './../../../components/MyCourse/MyCourseFindBox/MyCourseFindBox';
 import MyCoursePlusBox from "../../../components/MyCourse/MyCoursePlusBox/MyCoursePlusBox";
 import MyCourseAfter from "../../../components/MyCourse/MyCourseAfter/MyCourseAfter";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";

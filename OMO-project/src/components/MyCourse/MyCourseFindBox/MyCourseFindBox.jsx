@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./MyCourseSearchBox.module.css";
+import styles from "./MyCourseFindBox.module.css";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import Delete from "../Button/Delete/Delete";
 import MyCourseCalendar from "../MyCourseCalendar/MyCourseCalendar";
