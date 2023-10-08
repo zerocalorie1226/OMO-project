@@ -5,7 +5,7 @@ import ReportClose from "../../assets/modal-close.png";
 
 const ReportModal = ({openModal, setOpenModal}) => {
   return (
-    <div>
+    <>
       <div className={styles["Overlay"]}>
         <div className={styles["report-modal-container"]}>
           <label className={styles["report-modal-select"]} htmlFor="report-reason">
@@ -52,7 +52,7 @@ const ReportModal = ({openModal, setOpenModal}) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
