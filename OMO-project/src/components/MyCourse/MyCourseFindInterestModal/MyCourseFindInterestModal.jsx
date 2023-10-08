@@ -6,6 +6,7 @@ import ModalClose from "./../../../assets/modal-close.png";
 
 const MyCourseFindInterestModal = ({interestModal, setInterestModal}) => (
   <>
+  <div className={styles["Overlay"]}>
   <div className={styles["mycourse-find-interest-modal-container"]}>
       <label className={styles["mycourse-find-interest-modal-title"]}  htmlFor="find-interest">
       관심 목록에서 찾기
@@ -20,6 +21,7 @@ const MyCourseFindInterestModal = ({interestModal, setInterestModal}) => (
         })}
       </div>
 
+    </div>
     </div>
   </>
 

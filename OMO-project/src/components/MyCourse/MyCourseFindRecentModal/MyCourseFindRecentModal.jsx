@@ -5,6 +5,7 @@ import ModalClose from "./../../../assets/modal-close.png";
 
 const MyCourseFindRecentModal = ({recentModal, setRecentModal}) => (
   <>
+  <div className={styles["Overlay"]}>
     <div className={styles["mycourse-find-recent-modal-container"]}>
       <label className={styles["mycourse-find-recent-modal-title"]} htmlFor="find-recent">
         최근 본 목록에서 찾기
@@ -18,6 +19,7 @@ const MyCourseFindRecentModal = ({recentModal, setRecentModal}) => (
           return <MypageListBox key={el.id} title={el.title} like={el.like} jjim={el.jjim} runTime={el.runTime} intro={el.intro} addressBrief={el.addressBrief} img1={el.src1} img2={el.src2} />;
         })}
       </div>
+    </div>
     </div>
   </>
 );
