@@ -18,11 +18,11 @@ const MyCourseMyVersionEdit = () => {
   const myCourseMyVersionEdit2 = data.find((item) => item.id === 2);
   const myCourseMyVersionEdit7 = data.find((item) => item.id === 7);
   return (
-    <div className={styles["mycoursemyversionedit-total-container"]}>
-      <div className={styles["mycoursemyversionedit-title-container"]}>
-        <span className={styles["mycoursemyversionedit-title"]}>킹부엉의 인천 맛집 탐방</span>
+    <div className={styles["mycourse-myversion-edit-total-container"]}>
+      <div className={styles["mycourse-myversion-edit-title-container"]}>
+        <span className={styles["mycourse-myversion-edit-title"]}>킹부엉의 인천 맛집 탐방</span>
       </div>
-      <div className={styles["mycoursemyversionedit-calendar-container"]}><MyCourseCalendar/></div>
+      <div className={styles["mycourse-myversion-edit-calendar-container"]}><MyCourseCalendar/></div>
       <MyCourseDataBox
         key={myCourseMyVersionEdit1.id}
         like={myCourseMyVersionEdit1.like}
@@ -35,7 +35,7 @@ const MyCourseMyVersionEdit = () => {
         img2={myCourseMyVersionEdit1.src2}
         downArrow={myCourseMyVersionEdit1.downarrow}
       />
-      <div className={styles["mycoursemyversionedit-calendar-container"]}><MyCourseCalendar/></div>
+      <div className={styles["mycourse-myversion-edit-calendar-container"]}><MyCourseCalendar/></div>
       <MyCourseDataBox
         key={myCourseMyVersionEdit2.id}
         like={myCourseMyVersionEdit2.like}
@@ -48,7 +48,7 @@ const MyCourseMyVersionEdit = () => {
         img2={myCourseMyVersionEdit2.src2}
         downArrow={myCourseMyVersionEdit2.downarrow}
       />
-      <div className={styles["mycoursemyversionedit-calendar-container"]}><MyCourseCalendar/></div>
+      <div className={styles["mycourse-myversion-edit-calendar-container"]}><MyCourseCalendar/></div>
       <MyCourseDataBox
         key={myCourseMyVersionEdit7.id}
         like={myCourseMyVersionEdit7.like}

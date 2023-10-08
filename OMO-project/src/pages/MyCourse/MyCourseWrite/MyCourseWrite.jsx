@@ -11,10 +11,10 @@ import {Link} from "react-router-dom";
 
 
 const MyCourseWrite = () => (
-  <div className={styles["myCourseWrite-total-container"]}>
-    <div className={styles["myCourseWrite-title-container"]}>
-      <input type="text" placeholder="나만의 코스" maxLength="10" className={styles["myCourseWrite-input-title"]} />
-      <img src={pencil} alt="연필" className={styles["myCourseWrite-img-title"]} />
+  <div className={styles["mycourse-write-total-container"]}>
+    <div className={styles["mycourse-write-title-container"]}>
+      <input type="text" placeholder="나만의 코스" maxLength="10" className={styles["mycourse-write-input-title"]} />
+      <img src={pencil} alt="연필" className={styles["mycourse-write-img-title"]} />
     </div>
     <MyCourseFindBox />
     <MyCourseAfter />

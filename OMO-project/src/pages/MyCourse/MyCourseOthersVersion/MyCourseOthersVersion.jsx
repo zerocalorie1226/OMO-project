@@ -20,11 +20,11 @@ const MyCourseOthersVersion = () => {
   const MyCourseOthersVersion2 = data.find((item) => item.id === 2);
   const MyCourseOthersVersion8 = data.find((item) => item.id === 8);
   return (
-    <div className={styles["mycourseothersversion-total-container"]}>
-      <div className={styles["mycourseothersversion-title-container"]}>
-        <span className={styles["mycourseothersversion-title"]}>킹부엉의 인천 맛집 탐방</span>
+    <div className={styles["mycourse-othersversion-total-container"]}>
+      <div className={styles["mycourse-othersversion-title-container"]}>
+        <span className={styles["mycourse-othersversion-title"]}>킹부엉의 인천 맛집 탐방</span>
       </div>
-      <div className={styles["mycourseothersversion-calendar-container"]}>
+      <div className={styles["mycourse-othersversion-calendar-container"]}>
         <MyCourseCalendar />
       </div>
       <MyCourseDataBox
@@ -39,7 +39,7 @@ const MyCourseOthersVersion = () => {
         img2={MyCourseOthersVersion1.src2}
         downArrow={MyCourseOthersVersion1.downarrow}
       />
-      <div className={styles["mycourseothersversion-calendar-container"]}>
+      <div className={styles["mycourse-othersversion-calendar-container"]}>
         <MyCourseCalendar />
       </div>
       <MyCourseDataBox
@@ -54,7 +54,7 @@ const MyCourseOthersVersion = () => {
         img2={MyCourseOthersVersion2.src2}
         downArrow={MyCourseOthersVersion2.downarrow}
       />
-      <div className={styles["mycourseothersversion-calendar-container"]}>
+      <div className={styles["mycourse-othersversion-calendar-container"]}>
         <MyCourseCalendar />
       </div>
       <MyCourseDataBox
