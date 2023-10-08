@@ -6,7 +6,7 @@ import ModalClose from "./../../../assets/modal-close.png";
 
 
 
-const MyCourseFindSearchModal = () => (
+const MyCourseFindSearchModal = ({searchModal, setSearchModal}) => (
   <>
     <div className={styles["Overlay"]}>
       <div className={styles["mycourse-find-search-modal-container"]}>
@@ -17,8 +17,9 @@ const MyCourseFindSearchModal = () => (
         <img src={Magnifier} alt="돋보기" />
       </a>
     </div>
-    <button className={styles["mycourse-find-search-close-btn"]} type="button">
+    <button className={styles["mycourse-find-search-close-btn"]} type="button" onClick={()=>{setSearchModal(false);}}>
       <img className={styles["mycourse-find-search-close-btn-img"]} src={ModalClose} alt="닫기 아이콘" />
+      {!searchModal ? setSearchModal(true) : null}
     </button>
     <input className={styles["mycourse-find-search-input-container"]} placeholder="검색어를 입력해주세요" maxLength={20} />
   </div>
