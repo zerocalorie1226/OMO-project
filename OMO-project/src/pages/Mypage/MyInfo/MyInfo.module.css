@@ -1,9 +1,11 @@
-.myInfo-total-container {
+.myinfo-total-container {
   width: 1000px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 800px;
 }
 
-.myInfo-title-container {
+.myinfo-title-container {
   text-align: center;
   font-size: 32px;
   font-weight: 400;
@@ -13,37 +15,37 @@
   margin: 100px 0 0 270px;
 }
 
-.myInfo-categories-container {
-  position: relative;
+.myinfo-categories-container {
+  position: absolute;
   width: 1000px;
-  margin-bottom: 100px;
 }
 
-.myInfo-logo-info-container {
+/* 윗부분 */
+.myinfo-logo-info-container {
   display: flex;
   position: absolute;
-  left: 340px;
+  left: 335px;
   top: 100px;
 }
 
-.myInfo-circle-logo {
+.myinfo-circle-logo {
   width: 160px;
   height: 160px;
   margin-right: 70px;
   margin-top: 20px;
 }
-.myInfo-info-container {
+.myinfo-info-container {
   width: 360px;
   height: 200px;
-  border: 2px dashed var(--primary);
+  border: 2px solid var(--primary);
   border-radius: 10px;
   padding: 20px 10px;
 }
 
-.myInfo-nickName-container,
-.myInfo-email-container,
-.myInfo-birthDay-container,
-.myInfo-mbti-container {
+.myinfo-nickname-container,
+.myinfo-email-container,
+.myinfo-birthday-container,
+.myinfo-mbti-container {
   width: 300px;
   display: flex;
   font-size: 20px;
@@ -51,36 +53,37 @@
   margin-left: 20px;
 }
 
-.myInfo-nickName-line,
-.myInfo-email-line {
+.myinfo-nickname-line,
+.myinfo-email-line {
   margin-left: 36px;
   margin-right: 20px;
   color: var(--gray-200);
 }
-.myInfo-birthDay-line {
+.myinfo-birthday-line {
   margin-left: 19px;
   margin-right: 20px;
   color: var(--gray-200);
 }
-.myInfo-mbti-line {
+.myinfo-mbti-line {
   margin-left: 41px;
   margin-right: 20px;
   color: var(--gray-200);
 }
 
-.myInfo-status-container {
+/* 아랫부분 */
+.myinfo-status-container {
   background-color: var(--primary);
   color: white;
-  width: 730px;
+  width: 670px;
   height: 180px;
   border-radius: 20px;
   font-size: 24px;
   position: absolute;
   top: 300px;
-  left: -70px;
+  left: -35px;
 }
 
-.myInfo-status-myStatus {
+.myinfo-status-myStatus {
   display: inline-block;
   width: 730px;
   height: 70px;
@@ -89,53 +92,53 @@
   padding: 24px 0 0 24px;
 }
 
-.myInfo-status-heart {
+.myinfo-status-heart {
   display: inline-block;
   margin-left: 2px;
-  width: 180px;
+  width: 165px;
   height: 108px;
   background-color: white;
   border-radius: 0 0 0 20px;
 }
-.myInfo-status-thumb {
+.myinfo-status-thumb {
   display: inline-block;
   margin-left: 2px;
-  width: 180px;
+  width: 165px;
   height: 108px;
   background-color: white;
   border-radius: 0 0 0 0;
 }
-.myInfo-status-write {
+.myinfo-status-write {
   display: inline-block;
   margin-left: 2px;
-  width: 180px;
+  width: 165px;
   height: 108px;
   background-color: white;
   border-radius: 0 0 0 0;
 }
-.myInfo-status-course {
+.myinfo-status-course {
   display: inline-block;
   margin-left: 2px;
-  width: 180px;
+  width: 165px;
   height: 108px;
   background-color: white;
   border-radius: 0 0 20px 0;
 }
 
-.myInfo-status-heart-title,
-.myInfo-status-thumb-title,
-.myInfo-status-write-title,
-.myInfo-status-course-title {
+.myinfo-status-heart-title,
+.myinfo-status-thumb-title,
+.myinfo-status-write-title,
+.myinfo-status-course-title {
   color: black;
   font-size: 16px;
   margin: 0;
   padding: 20px 0 0 20px;
 }
 
-.myInfo-status-heart-num,
-.myInfo-status-thumb-num,
-.myInfo-status-write-num,
-.myInfo-status-course-num {
+.myinfo-status-heart-num,
+.myinfo-status-thumb-num,
+.myinfo-status-write-num,
+.myinfo-status-course-num {
   font-size: 32px;
   color: var(--gray-900);
   margin: 0;
