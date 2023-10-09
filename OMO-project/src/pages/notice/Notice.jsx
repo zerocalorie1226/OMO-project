@@ -13,6 +13,9 @@ const Notice = () => (
         return <Filter key={el.id} title={el.title} bar={el.bar} />;
       })}
     </div>
+    
+    <hr className={styles["notice-container-hr"]}/>
+
     <div className={styles["notice-main-container"]}>
       {notice.map((el) => {
         return <NoticeItems key={el.id} title={el.title} division={el.division} date={el.date} content={el.content} />;
