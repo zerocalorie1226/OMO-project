@@ -1,4 +1,4 @@
-.Communityinquirybox-total-container {
+.community-inquiry-box-total-container {
   width: 1000px;
   height: 90px;
   margin: 40px auto;
@@ -6,7 +6,12 @@
   border-radius: 10px;
   overflow: hidden;
 }
-.Communityinquirybox-total-container-expanded {
+
+.community-inquiry-box-total-container:hover{
+  border: 2px solid var(--secondary);
+}
+
+.community-inquiry-box-total-container-expanded {
   width: 1000px;
   margin: 40px auto;
   border: 1px solid var(--gray-400);
@@ -14,30 +19,30 @@
   height: 100%;
 }
 
-.Communityinquirybox-title-img-nickname-content-container {
+.community-inquiry-box-title-img-nickname-content-container {
   width: 1000px;
 }
 
-.Communityinquirybox-title {
+.community-inquiry-box-title {
   font-size: 28px;
   margin: 30px 0 30px 40px;
 }
 
-.Communityinquirybox-img-nickname-container {
+.community-inquiry-box-img-nickname-container {
   display: flex;
   align-items: center;
   margin-left: 40px;
   font-size: 20px;
 }
 
-.Communityinquirybox-profile-img {
+.community-inquiry-box-profile-img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   margin-right: 10px;
 }
 
-.Communityinquirybox-content {
+.community-inquiry-box-content {
   width: 920px;
   margin: 50px auto;
   font-size: 20px;
