@@ -15,7 +15,6 @@
   top: 50%;
   transform: translate(-50%, -50%);
   height: 40px;
-
   display: flex;
   justify-content: space-between;
   pointer-events: none;
@@ -31,12 +30,29 @@
   height: 80px;
   border: 2px solid var(--primary);
   border-radius: 30px;
-  padding-left: 65px;
-  padding-right: 70px;
+  padding-left: 80px;
+  padding-right: 100px;
   outline: none;
+  font-size: 20px;
+}
+
+.main-search-input-container::placeholder{
+  color: var(--gray-400);
+  font-size: 20px;
 }
 
 .main-search-img-container > img {
   width: 40px;
   height: 40px;
+}
+
+.main-search-logocircle{
+  margin-left: 15px;
+}
+
+.main-search-magnifier{
+  margin-right: 15px;
+  width: 35px;
+  height: 35px;
+  margin-top: 1px;
 }
