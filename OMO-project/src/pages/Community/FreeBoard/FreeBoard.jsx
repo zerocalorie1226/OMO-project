@@ -7,7 +7,6 @@ import Filter from "../../../components/Filter/Filter";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
-import ReportModal from "../../../components/ReportModal/ReportModal";
 import {Link} from "react-router-dom";
 
 const FreeBoard = () => {
@@ -47,7 +46,6 @@ const FreeBoard = () => {
         })}
       </section>
 
-      {/* <ReportModal /> */}
       <ScrollToTop />
       <Link to="/WriteBoard">
         <WritingButton />

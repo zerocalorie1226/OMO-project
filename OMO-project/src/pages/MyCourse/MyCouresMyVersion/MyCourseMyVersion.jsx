@@ -1,7 +1,7 @@
 import styles from "./MyCouresMyVersion.module.css";
 import pencil from "../../../assets/my-course/write/gray-pencil.png";
 import MyCoursePlusBox from "../../../components/MyCourse/MyCoursePlusBox/MyCoursePlusBox";
-import MyCourseSearchBox from "../../../components/MyCourse/MyCourseSearchBox/MyCourseSearchBox";
+import MyCourseFindBox from "../../../components/MyCourse/MyCourseFindBox/MyCourseFindBox";
 import MyCourseAfter from "../../../components/MyCourse/MyCourseAfter/MyCourseAfter";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
@@ -19,11 +19,11 @@ const MyCourseMyVersion = () => {
   const myCourseMyVersion2 = data.find((item) => item.id === 2);
   const myCourseMyVersion8 = data.find((item) => item.id === 8);
   return (
-    <div className={styles["mycoursemyversion-total-container"]}>
-      <div className={styles["mycoursemyversion-title-container"]}>
-        <span className={styles["mycoursemyversion-title"]}>킹부엉의 인천 맛집 탐방</span>
+    <div className={styles["mycourse-myversion-total-container"]}>
+      <div className={styles["mycourse-myversion-title-container"]}>
+        <span className={styles["mycourse-myversion-title"]}>킹부엉의 인천 맛집 탐방</span>
       </div>
-      <div className={styles["mycoursemyversion-calendar-container"]}>
+      <div className={styles["mycourse-myversion-calendar-container"]}>
         <MyCourseCalendar />
       </div>
       <MyCourseDataBox
@@ -38,7 +38,7 @@ const MyCourseMyVersion = () => {
         img2={myCourseMyVersion1.src2}
         downArrow={myCourseMyVersion1.downarrow}
       />
-      <div className={styles["mycoursemyversion-calendar-container"]}>
+      <div className={styles["mycourse-myversion-calendar-container"]}>
         <MyCourseCalendar />
       </div>
       <MyCourseDataBox
@@ -53,7 +53,7 @@ const MyCourseMyVersion = () => {
         img2={myCourseMyVersion2.src2}
         downArrow={myCourseMyVersion2.downarrow}
       />
-      <div className={styles["mycoursemyversion-calendar-container"]}>
+      <div className={styles["mycourse-myversion-calendar-container"]}>
         <MyCourseCalendar />
       </div>
       <MyCourseDataBox

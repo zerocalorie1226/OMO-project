@@ -14,7 +14,7 @@
   display: none;
 }
 
-.report-modal-container{
+.report-modal-container {
   width: 500px;
   height: 730px;
   background-color: var(--white);
@@ -31,9 +31,8 @@
   transform: translate(-50%, -50%);
 }
 
-.report-modal-title{
+.report-modal-title {
   font-weight: 600;
-  /* font-size: 35px; */
 }
 
 .report-modal-radio-container > fieldset {
@@ -44,51 +43,44 @@
   margin-left: 15px;
 }
 
-
-.report-modal-select{
+.report-modal-select {
   display: flex;
   justify-content: center;
-  padding: 50px 0 15px 0; 
+  padding: 50px 0 15px 0;
   position: relative;
   margin-bottom: 30px;
-  /* border-bottom: 1px solid var(--gray-900); */
-  /* padding: 0; */
-  /* background-color: antiquewhite; */
 }
 
-.hr{
- width: 85%;
-  color:var(--gray-300);
-  /* border: 1px solid var(--gray-900); */
+.hr {
+  width: 85%;
+  color: var(--gray-300);
   margin-bottom: 30px;
-
 }
 
-.report-modal-close-btn{
+.report-modal-close-btn {
   width: 17px;
   height: 17px;
   position: absolute;
   border: 0;
   cursor: pointer;
-  top:27px;
+  top: 27px;
   right: 27px;
   background-color: transparent;
 }
 
-.report-modal-close-btn-img{
+.report-modal-close-btn-img {
   width: 17px;
   height: 17px;
-  /* background-color: aqua; */
   position: absolute;
   right: 0;
   top: 0;
 }
 
-.report-modal-radio-container{
+.report-modal-radio-container {
   display: flex;
 }
 
-.report-modal-etc-input{
+.report-modal-etc-input {
   width: 360px;
   height: 45px;
   border-radius: 10px;
@@ -98,8 +90,6 @@
   margin-left: 50px;
   padding-left: 10px;
 }
-
-
 
 .report-btn-container {
   display: flex;
@@ -116,4 +106,3 @@
   border-radius: 10px;
   margin-top: 25px;
 }
-

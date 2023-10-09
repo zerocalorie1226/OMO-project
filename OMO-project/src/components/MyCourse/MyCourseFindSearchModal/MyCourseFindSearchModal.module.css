@@ -1,3 +1,16 @@
+.Overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+}
+
+
 .mycourse-find-search-modal-container{
   width: 750px;
   height: 750px;
@@ -22,6 +35,59 @@
    display: flex;
    justify-content: center;
    margin-bottom: 35px;
+}
+
+.mycourse-find-search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 700px;
+  height: 100%;
+}
+
+.mycourse-find-search-img-container {
+  width: 20px;
+  position: absolute;
+  right: 150px;
+}
+
+.mycourse-find-search-img-container > a {
+  pointer-events: auto;
+}
+
+.mycourse-find-search-img-container > a > img {
+  width: 20px;
+}
+
+.mycourse-find-search-input-container {
+  display: block;
+  width: 450px;
+  height: 40px;
+  border: 2px solid var(--primary);
+  border-radius: 30px;
+  padding-left: 20px;
+  outline: none;
+  font-size: 20px;
+}
+
+.mycourse-find-search-close-btn{
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  border: 0;
+  cursor: pointer;
+  right: 15px;
+  background-color: transparent;
+}
+
+.mycourse-find-search-close-btn-img{
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
 

@@ -1,23 +1,20 @@
 import styles from "./MyCourseWrite.module.css";
 import pencil from "../../../assets/my-course/write/gray-pencil.png";
-import MyCourseFindBox from './../../../components/MyCourse/MyCourseSearchBox/MyCourseSearchBox';
+import MyCourseFindBox from './../../../components/MyCourse/MyCourseFindBox/MyCourseFindBox';
 import MyCoursePlusBox from "../../../components/MyCourse/MyCoursePlusBox/MyCoursePlusBox";
 import MyCourseAfter from "../../../components/MyCourse/MyCourseAfter/MyCourseAfter";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import Save from "../../../components/MyCourse/Button/Save/Save";
 import EditShare from "../../../components/MyCourse/Button/Edit-Share/Edit-Share";
-import MyCourseFindInterestModal from "./../../../components/MyCourse/MyCourseFindInterestModal/MyCourseFindInterestModal"; // 관심 목록에서 찾기 모달창
-import MyCourseFindRecentModal from "./../../../components/MyCourse/MyCourseFindRecentModal/MyCourseFindRecentModal"; // 최근 본 목록에서 찾기 모달창
-import MyCourseFindSearchModal from "../../../components/MyCourse/MyCourseFindSearchModal/MyCourseFindSearchModal";
 import {Link} from "react-router-dom";
 
 
 const MyCourseWrite = () => (
-  <div className={styles["myCourseWrite-total-container"]}>
-    <div className={styles["myCourseWrite-title-container"]}>
-      <input type="text" placeholder="나만의 코스" maxLength="10" className={styles["myCourseWrite-input-title"]} />
-      <img src={pencil} alt="연필" className={styles["myCourseWrite-img-title"]} />
+  <div className={styles["mycourse-write-total-container"]}>
+    <div className={styles["mycourse-write-title-container"]}>
+      <input type="text" placeholder="나만의 코스" maxLength="10" className={styles["mycourse-write-input-title"]} />
+      <img src={pencil} alt="연필" className={styles["mycourse-write-img-title"]} />
     </div>
     <MyCourseFindBox />
     <MyCourseAfter />
@@ -25,11 +22,7 @@ const MyCourseWrite = () => (
       <Save />
     </Link>
 
-    {/* <EditShare /> */}
     <ScrollToTop />
-    {/* <MyCourseFindInterestModal /> */}
-    {/* <MyCourseFindRecentModal /> */}
-    {/* <MyCourseFindSearchModal /> */}
   </div>
 );
 

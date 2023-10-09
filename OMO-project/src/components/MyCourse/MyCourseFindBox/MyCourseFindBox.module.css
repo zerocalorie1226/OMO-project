@@ -9,9 +9,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid var(--primary);
+  border: 3px solid var(--primary);
   border-radius: 10px;
-  gap: 14px;
+  gap: 5px;
 }
 
 .mycourse-find-box-down-arrow-img {

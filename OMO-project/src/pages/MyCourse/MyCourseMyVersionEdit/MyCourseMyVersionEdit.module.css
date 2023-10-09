@@ -1,21 +1,21 @@
-.mycoursemyversionedit-total-container {
+.mycourse-myversion-edit-total-container {
   width: 670px;
   margin: 0 auto;
   margin-top: 100px;
 }
 
-.mycoursemyversionedit-title-container {
+.mycourse-myversion-edit-title-container {
   width: 400px;
   margin: 50px auto 100px auto;
   text-align: center;
   position: relative;
 }
 
-.mycoursemyversionedit-title {
+.mycourse-myversion-edit-title {
   font-size: 32px;
 }
 
-.mycoursemyversionedit-calendar-container{
+.mycourse-myversion-edit-calendar-container{
   position: relative;
   top: 225px;
 }

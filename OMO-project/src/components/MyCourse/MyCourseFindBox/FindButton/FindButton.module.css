@@ -1,9 +1,12 @@
 .mycourse-find-box-button {
   width: 160px;
+  /* height: 100px; */
   background-color: transparent;
-  border: 1px solid var(--primary);
+  border: 2px solid var(--gray-200);
   border-radius: 5px;
   font-size: 14px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 .mycourse-find-box-button:hover {

@@ -1,6 +1,6 @@
 import styles from "./FindButton.module.css";
 
-const FindButton = ({text, type, onClick}) => {
+const FindButton = ({text, onClick}) => {
   return (
     <>
       <button className={styles["mycourse-find-box-button"]} onClick={onClick}>

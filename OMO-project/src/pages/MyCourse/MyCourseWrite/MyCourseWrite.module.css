@@ -1,17 +1,17 @@
-.myCourseWrite-total-container {
+.mycourse-write-total-container {
   width: 670px;
   margin: 0 auto;
   margin-top: 100px;
 }
 
-.myCourseWrite-title-container {
+.mycourse-write-title-container {
   width: 400px;
   margin: 50px auto 100px auto;
   text-align: center;
   position: relative;
 }
 
-.myCourseWrite-input-title {
+.mycourse-write-input-title {
   width: 370px;
   padding-bottom: 10px;
   font-size: 32px;
@@ -21,11 +21,11 @@
   text-align: center;
 }
 
-.myCourseWrite-input-title::placeholder {
+.mycourse-write-input-title::placeholder {
   text-align: center;
 }
 
-.myCourseWrite-img-title {
+.mycourse-write-img-title {
   position: absolute;
   right: 30px;
   top: 4px;
