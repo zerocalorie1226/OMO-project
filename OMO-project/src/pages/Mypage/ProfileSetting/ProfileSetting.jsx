@@ -8,18 +8,16 @@ import MbtiChange from "../../../components/MypageProfileSetting/MbtiChange/Mbti
 import MembershipWithdrawal from "../../../components/MypageProfileSetting/MembershipWithdrawal/MembershipWithdrawal";
 
 const ProfileSetting = () => (
-  <div className={styles["profileSetting-total-container"]}>
-    <h2 className={styles["profileSetting-title-container"]}>
+  <div className={styles["profile-setting-total-container"]}>
+    <h2 className={styles["profile-setting-title-container"]}>
       <img src={SettingIcon} alt="프로필 설정" /> 프로필 설정
     </h2>
-    <div className={styles["profileSetting-categories-main-container"]}>
+    <div className={styles["profile-setting-categories-main-container"]}>
       <Mypage />
-      <div className={styles["profileSetting-main-container"]}>
         <ProfileChange />
         <NicknameChange />
         <MbtiChange />
         <MembershipWithdrawal />
-      </div>
     </div>
   </div>
 );
