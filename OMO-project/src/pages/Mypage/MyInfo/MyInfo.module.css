@@ -38,7 +38,7 @@
   width: 360px;
   height: 200px;
   border: 2px solid var(--primary);
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 20px 10px;
 }
 
@@ -130,7 +130,7 @@
 .myinfo-status-write-title,
 .myinfo-status-course-title {
   color: black;
-  font-size: 16px;
+  font-size: 20px;
   margin: 0;
   padding: 20px 0 0 20px;
 }
@@ -140,7 +140,7 @@
 .myinfo-status-write-num,
 .myinfo-status-course-num {
   font-size: 32px;
-  color: var(--gray-900);
+  color: var(--gray-600);
   margin: 0;
   padding: 16px 0 20px 20px;
 }
