@@ -18,7 +18,7 @@
 .login-community-container {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
 }
 
 .login-community-container > a > img {
@@ -55,7 +55,7 @@
   align-items: center;
   width: 400px;
   height: 60px;
-  border: 1px solid var(--gray-900);
+  border: 1px solid var(--gray-200);
   border-radius: 10px;
 }
 
