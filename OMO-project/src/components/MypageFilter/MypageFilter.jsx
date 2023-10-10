@@ -5,15 +5,15 @@ const MypageFilter = () => (
     <button type="button" className={styles["filter-total"]}>
       전체
     </button>
-    <p className={styles["filter-p"]}> | </p>
+    <p className={styles["filter-bar"]}> | </p>
     <button type="button" className={styles["filter-free"]}>
       자유 게시판
     </button>
-    <p className={styles["filter-p"]}> | </p>
+    <p className={styles["filter-bar"]}> | </p>
     <button type="button" className={styles["filter-worry"]}>
       고민 게시판
     </button>
-    <p className={styles["filter-p"]}> | </p>
+    <p className={styles["filter-bar"]}> | </p>
     <button type="button" className={styles["filter-question"]}>
       문의 게시판
     </button>
