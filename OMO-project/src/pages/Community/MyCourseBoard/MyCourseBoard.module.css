@@ -11,20 +11,16 @@
 .community-filter-container {
   display: flex;
   justify-content: space-between;
-  /* background-color: aqua; */
 }
 
 .community-mycourse-container {
   border-top: 1px solid var(--gray-50);
   display: flex;
-  /* margin-left: 100px; */
   gap: 50px;
 }
 
 .community-mbti-pick-container {
   margin-top: 100px;
-  /* position: relative; */
-  /* left: 75px; */
   margin-left: 75px;
 }
 
@@ -37,7 +33,7 @@
 .community-mbti-pick-box {
   width: 300px;
   height: 300px;
-  border: 2px solid var(--gray-400);
+  border: 1px solid var(--gray-400);
   border-radius: 10px;
   display: grid;
   grid-template-rows: auto auto;
@@ -53,10 +49,6 @@
 }
 
 .community-mycourse-list-box {
-  /* background-color: antiquewhite; */
-  /* justify-content: center; */
- /* display: flex; */
- /* flex-direction: column; */
  position: relative;
  left: 26px;
 
