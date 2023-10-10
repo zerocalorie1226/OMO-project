@@ -21,7 +21,7 @@ const MyCourseFindSearchModal = ({searchModal, setSearchModal}) => (
       <img className={styles["mycourse-find-search-close-btn-img"]} src={ModalClose} alt="닫기 아이콘" />
       {!searchModal ? setSearchModal(true) : null}
     </button>
-    <input className={styles["mycourse-find-search-input-container"]} placeholder="검색어를 입력해주세요" maxLength={20} />
+    <input className={styles["mycourse-find-search-input-container"]} placeholder="검색어를 입력해 주세요." maxLength={20} />
   </div>
         </label>
         <div className={styles["mycourse-find-search-modal-list-box-container"]}>
