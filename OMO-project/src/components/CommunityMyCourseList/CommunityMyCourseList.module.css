@@ -33,7 +33,7 @@
 }
 
 .community-mycourse-list-nick {
-  color: var(--gray-400);
+  color: var(--gray-500);
   font-size: 24px;
   font-weight: 200;
   position: absolute;
@@ -43,7 +43,7 @@
 }
 
 .community-mycourse-list-date {
-  color: var(--gray-400);
+  color: var(--gray-500);
   font-size: 24px;
   font-weight: 200;
   position: absolute;
