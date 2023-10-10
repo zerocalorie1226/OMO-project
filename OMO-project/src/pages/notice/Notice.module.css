@@ -12,11 +12,11 @@
   font-weight: 400;
   border-bottom: 2px solid var(--gray-50);
 }
+
+/* 필터 */
 .notice-filter-container {
   display: flex;
-  width: 330px;
-  justify-content: space-between;
-  margin-left: 10px;
+  width: auto;
 }
 
 .notice-container-hr{
