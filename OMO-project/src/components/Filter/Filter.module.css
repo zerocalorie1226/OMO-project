@@ -1,22 +1,26 @@
 .filter-container {
-  margin: auto 0;
-  color: var(--gray-900);
   height: 100%;
   display: flex;
+  font-size: 20px;
 }
 
 .filter-container button:hover {
   color: var(--secondary);
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .filter-button {
   padding: 0;
   border: none;
   background-color: transparent;
-  color: var(--gray-400);
+  color: var(--gray);
+  width: 100%;
+
 }
 
 .filter-bar {
-  margin: 0 18px;
+  display: block;
+  margin: 0 10px;
+  color: var(--gray);
 }
