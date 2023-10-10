@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 export const MypageListBox = (props) => (
   <>
-    <Link to="/List" className={styles["mypage-list-box-container"]}>
+    <Link to="/DetailMenu" className={styles["mypage-list-box-container"]}>
       <div className={styles["mypage-list-box-inner-container"]}>
         <span className={styles["mypage-list-box-title"]}>{props.title}</span>
 
