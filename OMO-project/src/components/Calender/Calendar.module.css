@@ -11,7 +11,7 @@
   border-radius: 10px;
   border: 1px solid var(--gray-400);
   padding-left: 26px;
-  color: #757575;
+  color: var(--gray);
   background-image: url(../../assets/sign-up/calendar.png);
   background-repeat: no-repeat;
   background-position: 470px;
@@ -116,7 +116,7 @@
 }
 
 :global .react-datepicker__day {
-  color: #757575;
+  color: var(--gray);
 }
 
 :global .react-datepicker__week {
