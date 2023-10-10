@@ -31,10 +31,12 @@
   border: 2px solid var(--primary);
   border-radius: 30px;
   padding-left: 25px;
+  padding-right: 50px;
   outline: none;
+  font-size: 20px;
 }
 
 .list-search-input-container::placeholder{
-color: var(--gray-900)
+color: var(--gray)
 }
 
