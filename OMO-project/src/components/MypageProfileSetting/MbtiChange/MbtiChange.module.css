@@ -11,8 +11,7 @@
 
 .profile-setting-main-mbti-change-title {
   width: 140px;
-  font-size: 20px;
-  line-height: 16 0px;
+  font-size: 24px;
   margin: auto 25px auto 0;
 }
 
@@ -22,6 +21,7 @@
   display: flex;
   justify-content: space-between;
   text-align: center;
+  font-size: 20px;
 }
 
 .profile-setting-main-mbti-change-select-IE {
@@ -30,7 +30,7 @@
   border-radius: 10px;
   border: 1px solid var(--gray-400);
   text-align: center;
-  color: #757575;
+  color: var(--gray);
   outline: none;
 }
 
@@ -40,7 +40,7 @@
   border-radius: 10px;
   border: 1px solid var(--gray-400);
   text-align: center;
-  color: #757575;
+  color: var(--gray);
   outline: none;
 }
 
@@ -50,7 +50,7 @@
   border-radius: 10px;
   border: 1px solid var(--gray-400);
   text-align: center;
-  color: #757575;
+  color: var(--gray);
   outline: none;
 }
 
@@ -60,18 +60,18 @@
   border-radius: 10px;
   border: 1px solid var(--gray-400);
   text-align: center;
-  color: #757575;
+  color: var(--gray);
   outline: none;
 }
 
 .profile-setting-main-mbti-change-button {
   width: 150px;
   height: 60px;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--secondary);
   border-radius: 10px;
   font-size: 20px;
   background-color: transparent;
-  color: var(--primary);
+  color: var(--secondary);
   margin-left: 30px;
 }
 

@@ -11,28 +11,31 @@
 
 .profile-setting-main-nickname-change-title {
   width: 140px;
-  font-size: 20px;
-  line-height: 16 0px;
+  font-size: 24px;
   margin: auto 25px auto 0;
 }
 
 .profile-setting-main-nickname-change-input {
   width: 330px;
-  border: 1px solid var(--gray-300);
+  border: 1px solid var(--gray-400);
   border-radius: 10px;
   padding-left: 20px;
   font-size: 20px;
   outline: none;
 }
 
+.profile-setting-main-nickname-change-input::placeholder{
+color: var(--gray);
+}
+
 .profile-setting-main-nickname-change-button {
   width: 150px;
   height: 60px;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--secondary);
   border-radius: 10px;
   font-size: 20px;
   background-color: transparent;
-  color: var(--primary);
+  color: var(--secondary);
   margin-left: 30px;
 }
 

@@ -7,7 +7,6 @@
   margin-top: 40px;
   padding-bottom: 10px;
   overflow: hidden;
-  margin-left: 30px;
 }
 
 
@@ -39,7 +38,7 @@
 /* 카테고리 */
 .my-wrote-post-category {
   display: block;
-  font-size: 18px;
+  font-size: 20px;
   color: var(--gray-500);
 }
 
@@ -47,7 +46,7 @@
 /* 날짜 */
 .my-wrote-post-date {
   display: block;
-  font-size: 18px;
+  font-size: 20px;
   color: var(--gray-500);
 }
 
