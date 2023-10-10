@@ -10,7 +10,7 @@ const Search = () => (
         <img className={styles["main-search-magnifier"]} src={Magnifier} alt="돋보기" />
       </a>
     </div>
-    <input className={styles["main-search-input-container"]} placeholder="장소를 입력해주세요" />
+    <input className={styles["main-search-input-container"]} placeholder="검색어를 입력해 주세요." maxLength={35} />
   </div>
 );
 export default Search;
