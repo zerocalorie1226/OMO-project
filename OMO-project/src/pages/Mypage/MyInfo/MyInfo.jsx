@@ -1,7 +1,7 @@
 import styles from "./MyInfo.module.css";
-
 import Mypage from "../../../components/Mypage/Mypage";
 import LogoCircle from "../../../assets/logo-circle.png";
+import ProfileDefault from "../../../assets/profile-default.png";
 import MyInfoIcon from "../../../assets/my-page/my-info/my-info.png";
 
 const MyInfo = () => (
@@ -12,7 +12,7 @@ const MyInfo = () => (
     <div className={styles["myinfo-categories-container"]}>
       <Mypage />
       <div className={styles["myinfo-logo-info-container"]}>
-        <img className={styles["myinfo-circle-logo"]} src={LogoCircle} alt="동그라미 로고" />
+        <img className={styles["myinfo-circle-logo"]} src={ProfileDefault} alt="기본 프로필" />
         <div className={styles["myinfo-info-container"]}>
           <div className={styles["myinfo-nickname-container"]}>
             <p>닉네임</p>
