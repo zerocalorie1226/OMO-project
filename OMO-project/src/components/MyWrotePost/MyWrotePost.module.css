@@ -7,6 +7,7 @@
   margin-top: 40px;
   padding-bottom: 10px;
   overflow: hidden;
+  cursor: pointer;
 }
 .my-wrote-post-container-expanded {
   width: 730px;
@@ -16,6 +17,7 @@
   margin-top: 40px;
   padding-bottom: 10px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 /* 버튼 전까지 윗부분 영역 */
@@ -83,7 +85,7 @@
 .my-wrote-post-content {
   display: inline-block;
   font-size: 20px;
-  margin-top: 30px;
+  margin: 30px;
 }
 
 /* 공감수 + 신고 아이콘묶음*/
@@ -120,39 +122,17 @@
   position: relative;
 }
 
-/* 좋아요 버튼 */
-.my-wrote-post-like-button {
-  background-color: var(--white);
-  width: 363px;
-  height: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  cursor: pointer;
-  border: 0;
-  border-top: 1px solid var(--gray-400);
-  border-bottom: 1px solid var(--gray-400);
-  position: relative;
-}
-
-/* 따봉 아이콘 */
-.my-wrote-post-like-button-img {
-  position: absolute;
-  left: 120px;
-  top: 18px;
-}
-
 /* 댓글 달기 버튼 */
 .my-wrote-post-comment-button {
   background-color: var(--white);
-  width: 363px;
+  width: 730px;
   height: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
   border: 0;
   cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: relative;
+
   border-top: 1px solid var(--gray-400);
   border-bottom: 1px solid var(--gray-400);
 }
@@ -160,7 +140,7 @@
 /* 댓글 아이콘 */
 .my-wrote-post-comment-button-img {
   position: absolute;
-  left: 110px;
+  left: 310px;
   top: 20px;
 }
 
