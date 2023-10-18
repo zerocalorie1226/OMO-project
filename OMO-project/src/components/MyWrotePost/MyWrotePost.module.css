@@ -1,17 +1,22 @@
 /* 전체 영역 */
 .my-wrote-post-container {
   width: 730px;
-  height:77px;
+  height: 77px;
   border: 1px solid var(--gray-400);
   border-radius: 10px 10px 10px 10px;
-  /* margin: 0 auto; */
   margin-top: 40px;
   padding-bottom: 10px;
   overflow: hidden;
-
-  /* background-color: antiquewhite; */
 }
-
+.my-wrote-post-container-expanded {
+  width: 730px;
+  height: 100%;
+  border: 1px solid var(--gray-400);
+  border-radius: 10px 10px 10px 10px;
+  margin-top: 40px;
+  padding-bottom: 10px;
+  overflow: hidden;
+}
 
 /* 버튼 전까지 윗부분 영역 */
 .my-wrote-post-content-container {
@@ -32,9 +37,9 @@
   font-weight: 500;
 }
 
-
-.my-wrote-post-category-date{
+.my-wrote-post-category-date {
   display: flex;
+  align-items: center;
   gap: 15px;
 }
 
@@ -44,7 +49,6 @@
   font-size: 18px;
   color: var(--gray-500);
 }
-
 
 /* 날짜 */
 .my-wrote-post-date {
@@ -204,22 +208,20 @@
 
 /* 제출 버튼 hover 효과 */
 
-.my-wrote-post-comment-input-button img.my-wrote-post-comment-input-button-img-hover{
+.my-wrote-post-comment-input-button img.my-wrote-post-comment-input-button-img-hover {
   display: none;
 }
 
-.my-wrote-post-comment-input-button:hover img.my-wrote-post-comment-input-button-img{
+.my-wrote-post-comment-input-button:hover img.my-wrote-post-comment-input-button-img {
   display: none;
 }
 
-.my-wrote-post-comment-input-button:hover img.my-wrote-post-comment-input-button-img-hover{
+.my-wrote-post-comment-input-button:hover img.my-wrote-post-comment-input-button-img-hover {
   display: block;
   position: absolute;
-  top:12px;
+  top: 12px;
   right: 7px;
 }
-
-
 
 /* 입력창 input focus 효과 */
 .my-wrote-post-comment-input:focus {
@@ -239,7 +241,6 @@
   margin: 0;
   display: flex;
 }
-
 
 /* 댓글 닉네임+날짜 */
 .my-wrote-post-comment-nick-date {
@@ -267,8 +268,6 @@
   width: 100%;
   height: 100%;
 }
-
-
 
 /* 댓글 박스 안 닉네임 */
 .my-wrote-post-comment-box-nick {

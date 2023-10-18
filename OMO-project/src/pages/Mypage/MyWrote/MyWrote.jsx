@@ -10,16 +10,14 @@ const MyWrote = () => (
     <h2 className={styles["my-wrote-title-container"]}>
       <img src={MyWroteIcon} alt="내가 쓴 글 아이콘" /> 내가 쓴 글
     </h2>
-   
+
     <Mypage />
 
     <div className={styles["my-wrote-filter-main-container"]}>
       <MyPageFilter />
-   
-        <div className={styles["my-wrote-main-title-container"]}>
 
-     <MypageWroteMain />
-    
+      <div className={styles["my-wrote-main-title-container"]}>
+        <MypageWroteMain />
       </div>
     </div>
     <ScrollToTop />
