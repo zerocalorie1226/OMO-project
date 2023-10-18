@@ -51,7 +51,8 @@ const ProfileChange = () => {
           type="button"
           className={styles["profile-setting-main-profile-change-delete"]}
           onClick={() => {
-            setImage(DefaultImg);
+            window.confirm("이미지를 삭제하겠습니까?") ? setImage(DefaultImg) : null;
+            
           }}
         >
           {Image === DefaultImg ? null : <img src={DeleteImg} alt="이미지 삭제" className={styles["profile-setting-main-profile-change-delete-img"]} />}
