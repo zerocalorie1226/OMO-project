@@ -4,7 +4,7 @@
   height: 180px;
   width: 440px;
   display: flex;
-  left: 300px;
+  left: 285px;
   bottom: 680px;
   margin-top: 7px;
 }
@@ -18,16 +18,16 @@
 
 /* 이미지 네모 박스 */
 .profile-setting-main-profile-change-img-box{
-  background-color: #FAFAFA;
-  width: 180px;
-  height: 180px;
+  /* background-color: #FAFAFA; */
+  width: 181px;
+  height: 181px;
   border: 1px solid #E0E5EE;
 }
 
 /* 선택된 이미지 */
 .profile-setting-main-profile-change-img{
-width: 178px;
-height: 178px;
+width: 179px;
+height: 179px;
 }
 
 
@@ -47,14 +47,18 @@ border-radius: 50%;
 /* 플러스 버튼 추가 이미지 span*/
 .profile-setting-main-profile-change-add-img-icon{
   position: absolute;
-    z-index: 99999;
+    z-index: 9999;
     width: 50px;
     height: 50px;
     display: inline-block;
     overflow: hidden;
     background: url(../../../assets/my-page/setting/profile-add.png) no-repeat;
-    opacity: 0.7;
+    opacity: 0.6;
     text-indent: -9999px;
+}
+
+.profile-setting-main-profile-change-add-img-icon:hover{
+  opacity: 0.8;
 }
 
 
@@ -72,8 +76,8 @@ display: none;
 .profile-setting-main-profile-change-delete{
   all: unset;
   position: absolute;
-  top:0;
-  right: 0px;
+  top:1px;
+  right: 1px;
 
 
 }
