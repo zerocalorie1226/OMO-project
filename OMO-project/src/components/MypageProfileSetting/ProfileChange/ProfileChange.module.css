@@ -21,7 +21,13 @@
   background-color: #FAFAFA;
   width: 180px;
   height: 180px;
-  border: 1px solid #A6A6A6;
+  border: 1px solid #E0E5EE;
+}
+
+/* 선택된 이미지 */
+.profile-setting-main-profile-change-img{
+width: 178px;
+height: 178px;
 }
 
 
@@ -47,8 +53,8 @@ border-radius: 50%;
     display: inline-block;
     overflow: hidden;
     background: url(../../../assets/my-page/setting/profile-add.png) no-repeat;
+    opacity: 0.7;
     text-indent: -9999px;
-
 }
 
 
