@@ -33,21 +33,10 @@ export const CommunityQnABox = (props) => {
 
           {/* 글 내용 */}
           <span className={styles["community-qnapost-content"]}>{props.content}</span>
-
-          {/*공감수*/}
-          <div className={styles["community-qnapost-number-report-wapper"]}>
-            <span className={styles["community-qnapost-view-number"]}> 조회수 {props.view}</span>
-            <span className={styles["community-qnapost-comment-number"]}>• 댓글 {props.comment}</span>
-
-            {/* 신고 아이콘 */}
-            <button className={styles["community-qnapost-report-button"]} type="button">
-              <img className={styles["community-qnapost-report"]} alt="신고 아이콘" src={Report} style={{width: "32px", height: "32px"}} />
-            </button>
-          </div>
         </div>
 
         <div className={styles["community-qnapost-button-wrapper"]}>
-          {/* 댓글달기 버튼 */}
+          {/* 댓글 버튼 */}
           <button type="button" className={styles["community-qnapost-comment-button"]} onClick={toggleComments}>
             <img className={styles["community-qnapost-comment-button-img"]} src={Comment} />
             댓글
