@@ -6,7 +6,6 @@ const NoticeItems = (props) => {
 
   const handleClick = () => {
     setExpanded(!expanded);
-    console.log(expanded);
   };
 
   const containerClassName = expanded ? styles["noticeitems-total-container-expanded"] : styles["noticeitems-total-container"];
