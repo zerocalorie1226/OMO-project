@@ -6,7 +6,6 @@
   border-radius: 10px 10px 10px 10px;
   margin: 0 auto;
   margin-top: 75px;
-  padding-bottom: 25px;
 }
 
 /* 버튼 전까지 윗부분 영역 */
@@ -93,21 +92,30 @@
 
 /* 버튼 묶음 */
 .community-post-button-wrapper {
-  background-color: var(--gray-400);
+  /* background-color: var(--gray-400); */
   font-size: 25px;
   position: relative;
 }
 
+
 /* 좋아요 버튼 */
 .community-post-like-button {
   background-color: var(--white);
-  width: 498px;
+  width: 500px;
   height: 75px;
   cursor: pointer;
   border: 0;
   border-top: 1px solid var(--gray-400);
   border-bottom: 1px solid var(--gray-400);
+  border-right: 1px solid var(--gray-400);
   position: relative;
+  border-radius: 0px 0px 0px 10px;
+  top: 1px;
+}
+
+
+.community-post-like-button.show-comments{
+border-radius: 0;
 }
 
 /* 따봉 아이콘 */
@@ -120,16 +128,22 @@
 /* 댓글 달기 버튼 */
 .community-post-comment-button {
   background-color: var(--white);
-  width: 498px;
+  width: 499px;
   height: 75px;
   border: 0;
   cursor: pointer;
   position: absolute;
-  top: 0;
+  top: 1px;
   right: 0;
   border-top: 1px solid var(--gray-400);
   border-bottom: 1px solid var(--gray-400);
+  border-radius: 0px 0px 10px 0px;
+  border-left: 1px solid var(--gray-400);
 }
+
+.community-post-comment-button.show-comments{
+  border-radius: 0;
+  }
 
 /* 댓글 아이콘 */
 .community-post-comment-button-img {
@@ -141,11 +155,11 @@
 /* 댓글창 전체 박스 */
 .community-post-comment-container {
   display: none;
-  padding: 25px 55px 0 55px;
-  background-color: white;
+
 }
 .community-post-comment-container.show-comments {
   display: block; /* 댓글 달기 버튼을 클릭할 때 표시됨 */
+  padding: 25px 55px 25px 55px;
 }
 
 /* 입력창 묶음 */
@@ -212,7 +226,7 @@
 /* 댓글 내용 ul */
 .community-post-comment {
   padding: 0;
-  margin-top: 25px;
+  margin-top:25px;
 }
 
 /*  댓글 내용 li */
@@ -244,7 +258,7 @@
   border: 1px solid var(--gray-400);
   border-radius: 10px;
   padding: 25px;
-  margin-left: 16px;
+  /* margin-left: 16px; */
   width: 100%;
   height: 100%;
 }

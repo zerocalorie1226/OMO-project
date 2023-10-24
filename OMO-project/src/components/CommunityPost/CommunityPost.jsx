@@ -117,7 +117,8 @@ export const CommunityPost = (props) => {
 
         <div className={styles["community-post-button-wrapper"]}>
           {/*좋아요 버튼*/}
-          <button onClick={handleClickLike} type="button" className={styles["community-post-like-button"]}>
+          <button onClick={handleClickLike} type="button" className={`${styles["community-post-like-button"]} ${showComments ? styles["show-comments"] : ""}`}>
+            {/* <div className={`${styles["community-post-comment-container"]} ${showComments ? styles["show-comments"] : ""}`}></div> */}
             <img className={styles["community-post-like-button-img"]} src={imageSrcLike} />
             좋아요
           </button>
@@ -125,7 +126,7 @@ export const CommunityPost = (props) => {
           {/* 댓글달기 버튼 */}
           <button
             type="button"
-            className={styles["community-post-comment-button"]}
+            className={`${styles["community-post-comment-button"]} ${showComments ? styles["show-comments"] : ""}`}
             onClick={toggleComments} // 댓글 달기 버튼 클릭 시 toggleComments 함수 호출
           >
             <img className={styles["community-post-comment-button-img"]} src={Comment} />
