@@ -118,7 +118,6 @@ export const CommunityPost = (props) => {
         <div className={styles["community-post-button-wrapper"]}>
           {/*좋아요 버튼*/}
           <button onClick={handleClickLike} type="button" className={`${styles["community-post-like-button"]} ${showComments ? styles["show-comments"] : ""}`}>
-            {/* <div className={`${styles["community-post-comment-container"]} ${showComments ? styles["show-comments"] : ""}`}></div> */}
             <img className={styles["community-post-like-button-img"]} src={imageSrcLike} />
             좋아요
           </button>
