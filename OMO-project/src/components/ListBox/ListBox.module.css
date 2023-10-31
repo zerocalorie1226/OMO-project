@@ -11,20 +11,19 @@
   border-radius: 20px;
   position: relative;
   padding: 25px;
+  cursor: pointer;
 }
 
 
 /* 박스 hover 효과 */
 .list-box-inner-container:hover{
   border: 2px solid var(--secondary);
-  /* border: 2px solid var(--primary); */
-  /* box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); */
 }
 
 
 /*  가게 이름 */
 .list-box-title{
-  font-size: 30px;
+  font-size: 28px;
   position: absolute;
   font-weight: 500;
 }

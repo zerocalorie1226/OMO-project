@@ -10,16 +10,16 @@ const CommunityInquiryBox = (props) => {
     console.log(expanded);
   };
 
-  const containerClassName = expanded ? styles["Communityinquirybox-total-container-expanded"] : styles["Communityinquirybox-total-container"];
+  const containerClassName = expanded ? styles["community-inquiry-box-total-container-expanded"] : styles["community-inquiry-box-total-container"];
   return (
     <div className={containerClassName} onClick={handleClick}>
-      <div className={styles["Communityinquirybox-title-img-nickname-content-container"]}>
-        <p className={styles["Communityinquirybox-title"]}>{props.title}</p>
-        <div className={styles["Communityinquirybox-img-nickname-container"]}>
-          <img className={styles["Communityinquirybox-profile-img"]} src={CommunityProfile} alt="프로필 이미지" />
-          <span className={styles["Communityinquirybox-nickcame"]}>{props.nickname}</span>
+      <div className={styles["community-inquiry-box-title-img-nickname-content-container"]}>
+        <p className={styles["community-inquiry-box-title"]}>{props.title}</p>
+        <div className={styles["community-inquiry-box-img-nickname-container"]}>
+          <img className={styles["community-inquiry-box-profile-img"]} src={CommunityProfile} alt="프로필 이미지" />
+          <span className={styles["community-inquiry-box-nickcame"]}>{props.nickname}</span>
         </div>
-        <p className={styles["Communityinquirybox-content"]}>{props.content}</p>
+        <p className={styles["community-inquiry-box-content"]}>{props.content}</p>
       </div>
     </div>
   );

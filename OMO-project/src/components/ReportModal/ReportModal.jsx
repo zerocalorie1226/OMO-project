@@ -46,7 +46,13 @@ const ReportModal = ({openModal, setOpenModal}) => {
             </RadioGroup>
           </form>
           <div className={styles["report-btn-container"]}>
-            <button type="submit" className={styles["report-btn"]}>
+            <button
+              type="submit"
+              className={styles["report-btn"]}
+              onClick={() => {
+                alert("신고 접수가 완료되었습니다."); setOpenModal(false);
+              }}
+            >
               신고하기
             </button>
           </div>

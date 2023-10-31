@@ -1,4 +1,4 @@
-export const myCourseFilter = [
+export const noticeFilter = [
   {
     id: 1,
     title: "전체",

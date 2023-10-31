@@ -2,7 +2,7 @@ import styles from "./Mypage.module.css";
 
 import {Link} from "react-router-dom";
 
-import LogoCircle from "../../assets/logo-circle.png";
+import ProfileDefault from "../../assets/profile-default.png";
 import MyInfoIcon from "../../assets/my-page/my-info/my-info.png";
 import MyInfoHeart from "../../assets/my-page/my-info/empty-heart.png";
 import MyInfoWrote from "../../assets/my-page/my-info/my-writing.png";
@@ -14,7 +14,7 @@ const Mypage = () => (
   <>
     <div className={styles["myinfo-categories-list"]}>
       <div className={styles["myinfo-categories-list-inFoContainer"]}>
-        <img className={styles["myinfo-categories-list-logo"]} src={LogoCircle} alt="메인 로고 동그라미" />
+        <img className={styles["myinfo-categories-list-logo"]} src={ProfileDefault} alt="기본 프로필" />
         <p className={styles["myinfo-categories-list-nickname"]}>이니</p>
         <p className={styles["myinfo-categories-list-mbti"]}>ISTJ</p>
       </div>
