@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState, useMemo} from "react";
 import styles from "./CommunityPost.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
@@ -72,6 +72,25 @@ export const CommunityPost = (props) => {
     dataId.current += 1;
     setData([newItem, ...data]);
   };
+
+  // 게시글 더보기/닫기 기능
+  const [isShowMore, setIsShowMore] = useState(false); // 더보기 열고 닫는 스위치
+  const textLimit = useRef(130); // 글자수 제한 선언
+
+  const commenter = useMemo(() => {
+    // 조건에 따라 게시글을 보여주는 함수
+    const shortReview = props.content.slice(0, textLimit.current); // 원본에서 글자 수만큼 자른 짧은 버전
+
+    if (props.content.length > textLimit.current) {
+      // 원본이 길면 (원본 글자수 > 제한된 갯수)
+      if (isShowMore) {
+        return props.content;
+      } // 더보기가 true 면 원본 바로 리턴
+      return shortReview; // (더보기가 false면) 짧은 버전 리턴
+    }
+    return props.content; // 그렇지않으면 (짧은 글에는) 쓴글 그대로 리턴
+  }, [isShowMore]); // isShowMore의 상태가 바뀔때마다 호출됨
+
   return (
     <>
       {/* 전체 영역 */}
@@ -93,7 +112,8 @@ export const CommunityPost = (props) => {
           </div>
 
           {/* 글 내용 */}
-          <span className={styles["community-post-content"]}>{props.content}</span>
+          <span className={styles["community-post-content"]}>{commenter}</span>
+          <div className={styles["community-post-content-show"]} onClick={() => setIsShowMore(!isShowMore)}>{props.content.length > textLimit.current && (isShowMore ? "[접기]" : "... [더 보기]")}</div>
 
           {/*공감수*/}
           <div className={styles["community-post-number-report-wapper"]}>
