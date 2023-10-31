@@ -17,7 +17,9 @@
 .community-mycourse-container {
   border-top: 1px solid var(--gray-50);
   display: flex;
-  /* margin-left: 100px; */
+  justify-content: center;
+
+  margin: auto;
   gap: 50px;
 }
 
@@ -25,7 +27,7 @@
   margin-top: 100px;
   /* position: relative; */
   /* left: 75px; */
-  margin-left: 75px;
+  /* margin-left: 75px; */
 }
 
 .community-mbti-pick-title {
@@ -55,9 +57,9 @@
 .community-mycourse-list-box {
   /* background-color: antiquewhite; */
   /* justify-content: center; */
- /* display: flex; */
- /* flex-direction: column; */
- position: relative;
- left: 26px;
-
+  /* display: flex; */
+  /* flex-direction: column; */
+  position: relative;
+  left: 26px;
+  margin-right: 400px;
 }

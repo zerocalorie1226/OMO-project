@@ -16,6 +16,7 @@ const MyCourseFindBox = () => {
 
   const handleDeleteClick = () => {
     setFindBoxVisible(false);
+    alert("삭제되었습니다.");
   };
 
   return (
