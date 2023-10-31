@@ -19,6 +19,7 @@ const EditShare = () => {
         type="button"
         className={styles["share-button"]}
         onClick={() => {
+          alert("공유되었습니다.");
           navigate("/MyCourseBoard");
         }}
       >

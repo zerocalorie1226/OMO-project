@@ -19,9 +19,8 @@ const MyCourseWrite = () => {
       </div>
       <MyCourseFindBox />
       <MyCourseAfter />
-      <Link to="/MyCourseMyVersion">
-        <Save />
-      </Link>
+
+      <Save />
 
       <ScrollToTop />
     </div>
