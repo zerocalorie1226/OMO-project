@@ -1,8 +1,36 @@
 import {useNavigate} from "react-router-dom";
 import styles from "./WriteBoard.module.css";
+import {useState} from "react";
 
 const WriteBoard = () => {
   const navigate = useNavigate();
+
+  const [state, setState] = useState({
+    // 묶어준다.
+    title: "",
+    content: "",
+  });
+
+  const handleChangeState = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = () => {
+    if(state.title.length < 3){
+      alert("글제목은 최소 3글자 이상 입력해주세요");
+      return;
+    } 
+
+    if(state.content.length < 5){
+      alert("일기 본문은 최소 5글자 이상 입력해주세요");
+      return;
+    } 
+    alert("등록되었습니다");
+    navigate(-1);
+  }
 
   return (
     <div className={styles["writeboard-total-container"]}>
@@ -15,10 +43,10 @@ const WriteBoard = () => {
           <option value="자유 게시판">자유 게시판</option>
           <option value="문의 게시판">문의 게시판</option>
         </select>
-        <input type="text" className={styles["board-title"]} placeholder="글 제목" />
+        <input name="title" type="text" className={styles["board-title"]} placeholder="글 제목" value={state.title} onChange={handleChangeState} />
       </div>
       <div className={styles["board-content-container"]}>
-        <textarea className={styles["board-content"]} placeholder="게시글의 내용을 적어주세요. (최대 400자)" />
+        <textarea name="content" className={styles["board-content"]} placeholder="게시글의 내용을 적어주세요. (최대 400자)" value={state.content} onChange={handleChangeState} />
       </div>
       <div className={styles["board-button-container"]}>
         <button
@@ -34,8 +62,9 @@ const WriteBoard = () => {
           type="button"
           className={styles["board-button-submit"]}
           onClick={() => {
-            navigate(-1);
-          }}
+            handleSubmit();
+          }
+        }
         >
           등록
         </button>
