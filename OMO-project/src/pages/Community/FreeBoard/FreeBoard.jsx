@@ -1,13 +1,12 @@
 import styles from "./FreeBoard.module.css";
-import {communityPageFilter} from "./../../../const/communityPageFilter";
-import {communityFreePost} from "../../../const/communityFreePost";
-import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
-import {CommunityPost} from "./../../../components/CommunityPost/CommunityPost";
-import Filter from "../../../components/Filter/Filter";
-import ListSearch from "./../../../components/ListSearch/ListSearch";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {WritingButton} from "../../../components/WritingButton/WritingButton";
+import {communityPageFilter} from "./../../../const/communityPageFilter"; //필터 데이터
+import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory"; //카테고리
+import Filter from "../../../components/Filter/Filter"; //필터 컴포넌트
+import ListSearch from "./../../../components/ListSearch/ListSearch"; //검생창
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop"; //스크롤버튼
+import {WritingButton} from "../../../components/WritingButton/WritingButton"; //글쓰기버튼
 import {Link} from "react-router-dom";
+import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
 
 const FreeBoard = () => {
   return (
@@ -26,27 +25,12 @@ const FreeBoard = () => {
       </div>
 
       {/* 게시글 리스트 */}
+      <CommunityFreePostList />
 
-      <section className={styles["community-free-container"]}>
-        {communityFreePost.map((el) => {
-          return (
-            <CommunityPost
-              key={el.id}
-              title={el.title}
-              reg_at={el.reg_at}
-              src={el.src}
-              nick={el.nick}
-              content={el.content}
-              like={el.like}
-              view={el.view}
-              comment={el.comment}
-              comment_list={el.comment_list}
-            />
-          );
-        })}
-      </section>
+      {/* 스크롤 */}
+      <ScrollToTop /> 
 
-      <ScrollToTop />
+      {/* 글쓰기 */}
       <Link to="/WriteBoard">
         <WritingButton />
       </Link>

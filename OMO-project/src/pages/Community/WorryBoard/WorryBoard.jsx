@@ -1,13 +1,12 @@
 import styles from "./WorryBoard.module.css";
 import {communityPageFilter} from "./../../../const/communityPageFilter";
-import {communityWorryPost} from "./../../../const/communityWorryPost";
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
-import {CommunityPost} from "./../../../components/CommunityPost/CommunityPost";
 import Filter from "../../../components/Filter/Filter";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import {Link} from "react-router-dom";
+import { CommunityWorryPostList } from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 
 const WorryBoard = () => {
 
@@ -28,27 +27,12 @@ const WorryBoard = () => {
       </div>
 
       {/* 게시글 리스트 */}
+      <CommunityWorryPostList />
 
-      <section className={styles["community-worry-container"]}>
-        {communityWorryPost.map((el) => {
-          return (
-            <CommunityPost
-              key={el.id}
-              title={el.title}
-              reg_at={el.reg_at}
-              src={el.src}
-              nick={el.nick}
-              content={el.content}
-              like={el.like}
-              view={el.view}
-              comment={el.comment}
-              comment_list={el.comment_list}
-            />
-          );
-        })}
-      </section>
-
+      {/* 스크롤 */}
       <ScrollToTop />
+
+      {/* 글쓰기 */}
       <Link to="/WriteBoard">
         <WritingButton />
       </Link>

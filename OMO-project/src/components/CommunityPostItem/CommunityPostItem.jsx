@@ -1,15 +1,15 @@
 import React, {useRef, useState, useMemo} from "react";
-import styles from "./CommunityPost.module.css";
+import styles from "./CommunityPostItem.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
 import LikeClicked from "../../assets/detail/purple-thumb.png";
 import Comment from "../../assets/community/worry-board/comment.png";
 import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
-import {elapsedText} from "./../../utils/Time/elapsedText";
-import ReportModal from "./../ReportModal/ReportModal";
+import {elapsedText} from "../../utils/Time/elapsedText";
+import ReportModal from "../ReportModal/ReportModal";
 
-export const CommunityPost = (props) => {
+export const CommunityPostItem = (props) => {
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
 
