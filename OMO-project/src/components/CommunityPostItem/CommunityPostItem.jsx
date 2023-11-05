@@ -3,6 +3,7 @@ import styles from "./CommunityPostItem.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
 import LikeClicked from "../../assets/detail/purple-thumb.png";
+import ProfileImg from "../../assets/profile-img.jpg";
 import Comment from "../../assets/community/worry-board/comment.png";
 import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
@@ -102,18 +103,20 @@ export const CommunityPostItem = (props) => {
             <span className={styles["community-post-title"]}>{props.title}</span>
 
             {/* 날짜 */}
-            <span className={styles["community-post-date"]}>{props.reg_at}</span>
+            <span className={styles["community-post-date"]}>{new Date(props.reg_at).toLocaleString()}</span>
           </div>
 
           {/* 프로필 이미지+닉네임 */}
           <div className={styles["community-post-profile"]}>
-            <img className={styles["community-post-profile-img"]} src={props.src} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
+            <img className={styles["community-post-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
             <span className={styles["community-post-profile-nick"]}>{props.nick}</span>
           </div>
 
           {/* 글 내용 */}
           <span className={styles["community-post-content"]}>{commenter}</span>
-          <div className={styles["community-post-content-show"]} onClick={() => setIsShowMore(!isShowMore)}>{props.content.length > textLimit.current && (isShowMore ? "[접기]" : "... [더 보기]")}</div>
+          <div className={styles["community-post-content-show"]} onClick={() => setIsShowMore(!isShowMore)}>
+            {props.content.length > textLimit.current && (isShowMore ? "[접기]" : "... [더 보기]")}
+          </div>
 
           {/*공감수*/}
           <div className={styles["community-post-number-report-wapper"]}>
