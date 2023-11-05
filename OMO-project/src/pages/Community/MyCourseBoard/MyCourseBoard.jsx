@@ -22,7 +22,7 @@ const MyCourseBoard = () => {
       <div className={styles["community-component-container"]}>
         <div className={styles["community-filter-container"]}>
           {communityPageFilter.map((el) => {
-            return <Filter key={el.id} title={el.title} bar={el.bar} />;
+            return <Filter key={el.id} {...el} />;
           })}
         </div>
         <ListSearch />
@@ -45,7 +45,7 @@ const MyCourseBoard = () => {
         </div>
         <div className={styles["community-mycourse-list-box"]}>
           {communityMyCourse.map((el) => {
-            return <CommunityMyCourseList key={el.id} title={el.title} like={el.like} nick={el.nick} reg_at={el.reg_at} />;
+            return <CommunityMyCourseList key={el.id} {...el} />;
           })}
         </div>
       </section>

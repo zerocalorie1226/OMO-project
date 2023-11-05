@@ -11,7 +11,7 @@ const List = () => (
     <div className={styles["list-component-container"]}>
       <div className={styles["list-filter-container"]}>
         {listPageFilter.map((el) => {
-          return <Filter key={el.id} title={el.title} bar={el.bar} />;
+          return <Filter key={el.id} {...el} />;
         })}
       </div>
       <ListSearch />
@@ -19,7 +19,7 @@ const List = () => (
     <section className={styles["list-list-container"]}>
       <div className={styles["list-list-box-container"]}>
         {data.map((el) => {
-          return <ListBox key={el.id} title={el.title} like={el.like} jjim={el.jjim} runTime={el.runTime} intro={el.intro} addressBrief={el.addressBrief} img1={el.src1} img2={el.src2} route={el.route} />;
+          return <ListBox key={el.id} {...el} />;
         })}
       </div>
     </section>

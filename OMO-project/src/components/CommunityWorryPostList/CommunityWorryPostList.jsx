@@ -10,16 +10,7 @@ export const CommunityWorryPostList = () => {
     {communityWorryPost.map((el) => {
       return (
         <CommunityPostItem
-          key={el.id}
-          title={el.title}
-          reg_at={el.reg_at}
-          src={el.src}
-          nick={el.nick}
-          content={el.content}
-          like={el.like}
-          view={el.view}
-          comment={el.comment}
-          comment_list={el.comment_list}
+          {...el}
         />
       );
     })}

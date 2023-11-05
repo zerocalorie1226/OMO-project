@@ -20,7 +20,7 @@ const WorryBoard = () => {
       <div className={styles["community-component-container"]}>
         <div className={styles["community-filter-container"]}>
           {communityPageFilter.map((el) => {
-            return <Filter key={el.id} title={el.title} bar={el.bar} />;
+            return <Filter key={el.id} {...el} />;
           })}
         </div>
         <ListSearch />
