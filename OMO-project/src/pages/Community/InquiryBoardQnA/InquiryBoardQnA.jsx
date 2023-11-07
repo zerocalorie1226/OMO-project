@@ -1,14 +1,35 @@
-import {CommunityCategory} from "../../../components/CommunityCategory/CommunityCategory";
-import {CommunityQnABox} from "../../../components/CommunityQnABox/CommunityQnABox";
+import {useRef, useState} from "react";
+import styles from "./InquiryBoardQnA.module.css";
 import CommunityInquiryFilter from "../../../components/CommunityInquiryFilter/CommunityInquiryFilter";
+import {CommunityQnAPostList} from "../../../components/CommunityQnAPostList/CommunityQnAPostList";
+import {CommunityCategory} from "../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {WritingButton} from "../../../components/WritingButton/WritingButton";
-import {communityQnAPost} from "../../../const/communityQnAPost";
-import styles from "./InquiryBoardQnA.module.css";
-import {Link} from "react-router-dom";
+import WritingButtonImg from "../../../assets/writing-button.png";
+import WriteQnABoard from "../../../components/WritePost/WriteQnABoard/WriteQnABoard";
 
-const InquiryBoardQnA = () => (
+
+const InquiryBoardQnA = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [data, setData] = useState([]);
+
+  const dataId = useRef(0);
+
+  const onCreate = (title, content) => {
+    const reg_at = new Date().getTime();
+    const newItem = {
+      title,
+      content,
+      reg_at,
+      id: dataId.current,
+    };
+    dataId.current += 1;
+    setData([newItem, ...data]);
+  };
+
+  
+  return(
+  
   <div>
     <CommunityCategory />
     <div className={styles["inquiry-board-qna-filter-search-container"]}>
@@ -16,27 +37,22 @@ const InquiryBoardQnA = () => (
       <ListSearch />
     </div>
     <hr className={styles["inquiry-board-qna-hr"]} />
-    {communityQnAPost.map((el) => {
-      return (
-        <CommunityQnABox
-          key={el.id}
-          title={el.title}
-          reg_at={el.reg_at}
-          src={el.src}
-          nick={el.nick}
-          content={el.content}
-          like={el.like}
-          view={el.view}
-          comment={el.comment}
-          comment_list={el.comment_list}
-        />
-      );
-    })}
+    <CommunityQnAPostList communityQnAPostList={data} />
     <ScrollToTop />
-    <Link to="/WriteBoard">
-      <WritingButton />
-    </Link>
+      <div className={styles["writing-btn-container"]}>
+        <button
+          type="button"
+          className={styles["writing-btn"]}
+          onClick={() => {
+            setOpenModal(true);
+          }}
+        >
+          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}
+        </button>
+        {openModal ? <WriteQnABoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} /> : null}
+      </div>
   </div>
 );
+  };
 
 export default InquiryBoardQnA;

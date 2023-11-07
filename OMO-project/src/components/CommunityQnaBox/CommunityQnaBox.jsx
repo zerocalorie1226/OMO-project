@@ -1,6 +1,4 @@
 import styles from "./CommunityQnABox.module.css";
-import Report from "../../assets/community/worry-board/report.png";
-import Like from "../../assets/detail/empty-thumb.png";
 import Comment from "../../assets/community/inquiry-board/comment.png";
 import React, {useRef, useState} from "react";
 
@@ -22,7 +20,7 @@ export const CommunityQnABox = (props) => {
             <span className={styles["community-qnapost-title"]}>{props.title}</span>
 
             {/* 날짜 */}
-            <span className={styles["community-qnapost-date"]}>{props.reg_at}</span>
+            <span className={styles["community-qnapost-date"]}>{new Date(props.reg_at).toLocaleString()}</span>
           </div>
 
           {/* 프로필 이미지+닉네임 */}
@@ -46,7 +44,7 @@ export const CommunityQnABox = (props) => {
         {/* 하단 댓글창 전체박스 */}
         <div className={`${styles["community-qnapost-comment-container"]} ${showComments ? styles["show-comments"] : ""}`}>
           {/* 댓글 내용 */}
-          {props.comment_list.map((el) => (
+          {props.comment_list && props.comment_list.map((el) => (
             <ul className={styles["community-qnapost-comment"]}>
               <li>
                 <img className={styles["community-qnapost-comment-profile-img"]} src={el.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
