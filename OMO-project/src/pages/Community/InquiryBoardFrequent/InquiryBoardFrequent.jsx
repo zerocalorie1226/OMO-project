@@ -20,9 +20,6 @@ const InquiryBoardFrequent = () => (
       return <CommunityInquiryBox key={el.id} {...el} />;
     })}
     <ScrollToTop />
-    <Link to="/WriteBoard">
-      <WritingButton />
-    </Link>
   </div>
 );
 
