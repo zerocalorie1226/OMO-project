@@ -5,11 +5,9 @@ import {CommunityCategory} from "./../../../components/CommunityCategory/Communi
 import Filter from "../../../components/Filter/Filter"; //필터 컴포넌트
 import ListSearch from "./../../../components/ListSearch/ListSearch"; //검생창
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop"; //스크롤버튼
-import {WritingButton} from "../../../components/WritingButton/WritingButton"; //글쓰기버튼
-import {Link} from "react-router-dom";
 import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
-import WriteBoard from "../../../components/WriteBoard/WriteBoard";
 import WritingButtonImg from "../../../assets/writing-button.png";
+import WriteFreeBoard from "../../../components/WriteFreeBoard/WriteFreeBoard";
 
 const FreeBoard = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -46,7 +44,7 @@ const FreeBoard = () => {
 
       {/* 게시글 리스트 */}
 
-      <CommunityFreePostList communityPostList={data} />
+      <CommunityFreePostList communityFreePostList={data} />
 
       {/* 스크롤 */}
       <ScrollToTop />
@@ -62,9 +60,8 @@ const FreeBoard = () => {
         >
           <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}
         </button>
-        {openModal ? <WriteBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} /> : null}
+        {openModal ? <WriteFreeBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} /> : null}
       </div>
-      
     </>
   );
 };

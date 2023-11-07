@@ -37,7 +37,7 @@
   font-weight: 500;
 }
 
-.board-select-box {
+/* .board-select-box {
   color: var(--gray-600);
   font-size: 16px;
   width: 150px;
@@ -46,10 +46,10 @@
   border: 1px solid var(--secondary);
   border-radius: 10px;
   outline: none;
-}
+} */
 
 .board-title {
-  width: 480px;
+  width: 320px;
   height: 40px;
   padding-left: 10px;
   color: var(--black);

@@ -1,13 +1,11 @@
-import {useNavigate} from "react-router-dom";
-import styles from "./WriteBoard.module.css";
+import styles from "./WriteFreeBoard.module.css";
 import {useRef, useState} from "react";
 
-const WriteBoard = ({ onCreate, openModal, setOpenModal }) => {
+const WriteFreeBoard = ({onCreate, openModal, setOpenModal}) => {
   const titleInput = useRef();
   const contentInput = useRef();
 
   const [state, setState] = useState({
-    // 묶어준다.
     title: "",
     content: "",
   });
@@ -35,22 +33,32 @@ const WriteBoard = ({ onCreate, openModal, setOpenModal }) => {
       title: "",
       content: "",
     });
-    // navigate(-1);
+    setOpenModal(false);
   };
 
   return (
     <div className={styles["Overlay"]}>
       <div className={styles["writeboard-total-container"]}>
-        <div className={styles["writeboard-title"]}>글쓰기</div>
+        <div className={styles["writeboard-title"]}>자유 게시판에 글쓰기</div>
         <div className={styles["writeboard-categories-title-container"]}>
-          <select name="board" id="board-select" className={styles["board-select-box"]}>
+          {/* <select name="board" id="board-select" className={styles["board-select-box"]}>
             <option value="게시판 선택">게시판 선택</option>
             <option value="나만의 코스 게시판">나만의 코스 게시판</option>
             <option value="고민 게시판">고민 게시판</option>
             <option value="자유 게시판">자유 게시판</option>
             <option value="문의 게시판">문의 게시판</option>
-          </select>
-          <input ref={titleInput} name="title" type="text" className={styles["board-title"]} placeholder="글 제목 (최소 3글자, 최대 500자) " value={state.title || ""} onChange={handleChangeState} />
+          </select> */}
+          <input
+            ref={titleInput}
+            name="title"
+            type="text"
+            className={styles["board-title"]}
+            placeholder="글 제목 (최소 3글자, 최대 20자)"
+            minLength="3"
+            maxLength="20"
+            value={state.title || ""}
+            onChange={handleChangeState}
+          />
         </div>
         <div className={styles["board-content-container"]}>
           <textarea
@@ -58,6 +66,8 @@ const WriteBoard = ({ onCreate, openModal, setOpenModal }) => {
             name="content"
             className={styles["board-content"]}
             placeholder="게시글의 내용을 적어주세요. (최소 5자, 최대 500자)"
+            minLength="5"
+            maxLength="500"
             value={state.content}
             onChange={handleChangeState}
           />
@@ -78,7 +88,6 @@ const WriteBoard = ({ onCreate, openModal, setOpenModal }) => {
             className={styles["board-button-submit"]}
             onClick={() => {
               handleSubmit();
-              setOpenModal(false);
             }}
           >
             등록
@@ -89,4 +98,4 @@ const WriteBoard = ({ onCreate, openModal, setOpenModal }) => {
   );
 };
 
-export default WriteBoard;
+export default WriteFreeBoard;
