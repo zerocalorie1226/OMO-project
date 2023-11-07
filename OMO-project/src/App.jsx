@@ -23,7 +23,6 @@ import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
 import MyCourseMain from "./pages/MyCourse/MyCourseMain/MyCourseMain";
 import Notice from "./pages/Notice/Notice";
 import MyCourseWrite from "./pages/MyCourse/MyCourseWrite/MyCourseWrite";
-import WriteBoard from "./components/WriteBoard/WriteBoard";
 import MyCourseBoard from "./pages/Community/MyCourseBoard/MyCourseBoard";
 import InquiryBoardFrequent from "./pages/Community/InquiryBoardFrequent/InquiryBoardFrequent";
 import InquiryBoardQnA from "./pages/community/InquiryBoardQnA/InquiryBoardQnA";
@@ -82,7 +81,6 @@ const App = () => (
         <Route path="/FreeBoard" element={<FreeBoard />} />
         <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent />} />
         <Route path="/InquiryBoardQnA" element={<InquiryBoardQnA />} />
-        <Route path="/WriteBoard" element={<WriteBoard />} />
 
         {/* 공지사항 */}
         <Route path="/Notice" element={<Notice />} />
