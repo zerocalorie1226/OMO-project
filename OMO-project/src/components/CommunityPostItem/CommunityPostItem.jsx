@@ -159,7 +159,7 @@ export const CommunityPostItem = (props) => {
           <div className={`${styles["community-post-comment-container"]} ${showComments ? styles["show-comments"] : ""}`}>
             {/* 댓글 입력창 */}
             <div className={styles["community-post-comment-input-container"]}>
-              <img className={styles["community-post-comment-input-profile-img"]} src={props.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
+              <img className={styles["community-post-comment-input-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
               <input
                 className={styles["community-post-comment-input"]}
                 type="text"
@@ -186,7 +186,7 @@ export const CommunityPostItem = (props) => {
               <div key={el.id}>
                 <ul className={styles["community-post-comment"]}>
                   <li>
-                    {/* <img className={styles["community-post-comment-profile-img"]} src={el.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} /> */}
+                    <img className={styles["community-post-comment-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
                     <div className={styles["community-post-comment-box"]}>
                       <div className={styles["community-post-comment-nick-date"]}>
                         <span className={styles["community-post-comment-box-nick"]}>이니</span>

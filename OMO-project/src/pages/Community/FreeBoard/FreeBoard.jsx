@@ -9,8 +9,10 @@ import {WritingButton} from "../../../components/WritingButton/WritingButton"; /
 import {Link} from "react-router-dom";
 import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
 import WriteBoard from "../../../components/WriteBoard/WriteBoard";
+import WritingButtonImg from "../../../assets/writing-button.png";
 
 const FreeBoard = () => {
+  const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState([]);
 
   const dataId = useRef(0);
@@ -25,7 +27,6 @@ const FreeBoard = () => {
     };
     dataId.current += 1;
     setData([newItem, ...data]);
-    console.log("set");
   };
 
   return (
@@ -51,10 +52,19 @@ const FreeBoard = () => {
       <ScrollToTop />
 
       {/* 글쓰기 */}
-      {/* <Link to="/WriteBoard"> */}
-        <WriteBoard onCreate={onCreate} />
-        {/* <WritingButton /> */}
-      {/* </Link> */}
+      <div className={styles["writing-btn-container"]}>
+        <button
+          type="button"
+          className={styles["writing-btn"]}
+          onClick={() => {
+            setOpenModal(true);
+          }}
+        >
+          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}
+        </button>
+        {openModal ? <WriteBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} /> : null}
+      </div>
+      
     </>
   );
 };
