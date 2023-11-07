@@ -7,7 +7,7 @@ import ListSearch from "./../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
-import WriteWorryBoard from "../../../components/WriteWorryBoard/WriteWorryBoard";
+import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
 
 const WorryBoard = () => {
   const [openModal, setOpenModal] = useState(false);

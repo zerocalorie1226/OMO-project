@@ -7,7 +7,7 @@ import ListSearch from "./../../../components/ListSearch/ListSearch"; //검생�
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop"; //스크롤버튼
 import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
-import WriteFreeBoard from "../../../components/WriteFreeBoard/WriteFreeBoard";
+import WriteFreeBoard from "../../../components/WritePost/WriteFreeBoard/WriteFreeBoard";
 
 const FreeBoard = () => {
   const [openModal, setOpenModal] = useState(false);
