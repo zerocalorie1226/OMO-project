@@ -10,7 +10,7 @@
   z-index: 9999;
 }
 
-.mycourse-find-interest-modal-container{
+.mycourse-find-interest-modal-container {
   width: 780px;
   height: 750px;
   background-color: var(--white);
@@ -25,19 +25,18 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 35px 0 35px 0;
-  
 }
 
-.mycourse-find-interest-modal-title{
-   font-size: 28px;
-   display: block;
-   display: flex;
-   justify-content: center;
-   margin-bottom: 35px;
-   font-weight: 500;
+.mycourse-find-interest-modal-title {
+  font-size: 28px;
+  display: block;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 35px;
+  font-weight: 500;
 }
 
-.mycourse-find-interest-close-btn{
+.mycourse-find-interest-close-btn {
   width: 17px;
   height: 17px;
   position: absolute;
@@ -47,7 +46,7 @@
   background-color: transparent;
 }
 
-.mycourse-find-interest-close-btn-img{
+.mycourse-find-interest-close-btn-img {
   width: 17px;
   height: 17px;
   position: absolute;
@@ -55,11 +54,7 @@
   left: 0px;
 }
 
-
-.mycourse-find-interest-modal-list-box-container{
-display: flex;
-flex-direction: column;
-gap: 20px;
-height: 100%;
-overflow: hidden;
+.mycourse-find-interest-modal-list-box-container {
+  height: 100%;
+  overflow: hidden;
 }
