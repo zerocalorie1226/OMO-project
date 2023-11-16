@@ -1,5 +1,5 @@
 import styles from "./MyCourseFindInterestModal.module.css";
-import {MyCourseItemListBox} from "./../../MyCourseItemListBox/MyCourseItemListBox";
+import {MyCourseItemListBox} from "../MyCourseItemListBox/MyCourseItemListBox";
 import {data} from "./../../../const/data";
 import ModalClose from "./../../../assets/modal-close.png";
 

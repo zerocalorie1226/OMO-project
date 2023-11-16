@@ -1,6 +1,6 @@
 import styles from "./MyCourseItemListBox.module.css";
-import Like from "../../assets/my-page/interest/empty-thumb.png";
-import Jjim from "../../assets/my-page/interest/empty-heart.png";
+import Like from "../../../assets/my-page/interest/empty-thumb.png";
+import Jjim from "../../../assets/my-page/interest/empty-heart.png";
 import {Link} from "react-router-dom";
 
 export const MyCourseItemListBox = (props) => (
