@@ -1,6 +1,7 @@
 import styles from "./CommunityQnABox.module.css";
 import Comment from "../../assets/community/inquiry-board/comment.png";
 import React, {useRef, useState} from "react";
+import ProfileImg from "../../assets/profile-img.jpg";
 
 export const CommunityQnABox = (props) => {
   const [showComments, setShowComments] = useState(false); // 초기에 숨김 상태
@@ -25,8 +26,8 @@ export const CommunityQnABox = (props) => {
 
           {/* 프로필 이미지+닉네임 */}
           <div className={styles["community-qnapost-profile"]}>
-            <img className={styles["community-qnapost-profile-img"]} src={props.src} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
-            <span className={styles["community-qnapost-profile-nick"]}>{props.nick}</span>
+            <img className={styles["community-qnapost-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
+            <span className={styles["community-qnapost-profile-nick"]}>이니</span>
           </div>
 
           {/* 글 내용 */}
