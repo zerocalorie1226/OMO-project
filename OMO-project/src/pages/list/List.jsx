@@ -9,11 +9,11 @@ import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 const List = () => (
   <>
     <div className={styles["list-component-container"]}>
-      <div className={styles["list-filter-container"]}>
+      {/* <div className={styles["list-filter-container"]}>
         {listPageFilter.map((el) => {
           return <Filter key={el.id} {...el} />;
         })}
-      </div>
+      </div> */}
       <ListSearch />
     </div>
     <section className={styles["list-list-container"]}>

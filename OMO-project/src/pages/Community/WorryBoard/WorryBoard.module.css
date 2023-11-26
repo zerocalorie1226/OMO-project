@@ -1,6 +1,6 @@
 .community-component-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin: 0 auto;
   margin-top: 40px;

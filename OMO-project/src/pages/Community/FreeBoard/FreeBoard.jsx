@@ -77,11 +77,11 @@ const FreeBoard = () => {
 
       {/* 필터 + 검색창 */}
       <div className={styles["community-component-container"]}>
-        <div className={styles["community-filter-container"]}>
+        {/* <div className={styles["community-filter-container"]}>
           {communityPageFilter.map((el) => {
             return <Filter key={el.id} {...el} />;
           })}
-        </div>
+        </div> */}
         <ListSearch />
       </div>
 
