@@ -4,25 +4,23 @@ import {communityWorryPost} from "../../const/communityWorryPost";
 import {communityQnAPost} from "../../const/communityQnAPost";
 import { MyWrotePost } from './../MyWrotePost/MyWrotePost';
 
-const MypageWroteMain = () => (
+const MypageWroteMain = ({communityWorryPostList}) => (
   <>
   <div className={styles["my-page-wrote-main-total-container"]}>
-    {communityFreePost.map((el) => {
+    {communityWorryPostList.map((el) => {
           return <MyWrotePost key={el.id} {...el} />;
         })}
+
   </div>
 
-  <div className={styles["my-page-wrote-main-total-container"]}>
-    {communityWorryPost.map((el) => {
-          return <MyWrotePost key={el.id} {...el} />;
-        })}
-  </div>
 
-  <div className={styles["my-page-wrote-main-total-container"]}>
-    {communityQnAPost.map((el) => {
+  {/* <div className={styles["my-page-wrote-main-total-container"]}>
+    {communityFreePostList.map((el) => {
           return <MyWrotePost key={el.id} {...el} />;
         })}
-  </div>
+  </div> */}
+
+
   </>
 
 );
