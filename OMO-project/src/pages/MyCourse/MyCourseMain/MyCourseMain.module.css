@@ -1,13 +1,60 @@
+/*  전체 컨테이너 */
 .mycourse-container {
   width: 1000px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
+
+/* 나만의 코스 타이틀 */
 .mycourse-title {
-  margin: 100px auto;
+  margin: 100px auto 50px auto;
   text-align: center;
   width: 730px;
   height: 50px;
   border-bottom: 2px solid var(--gray-50);
   font-size: 32px;
   font-weight: 400;
+}
+
+/* 날짜 왼쪽+날짜+오른쪽 */
+.mycourse-header-container {
+  width: 730px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0px auto;
+  border-bottom: 2px solid var(--gray-50);
+  padding-bottom: 20px;
+  
+}
+
+/* 날짜 왼쪽 버튼 */
+.mycourse-header-left-button {
+  border: none;
+  border-radius: 5px;
+  font-size: 28px;
+  padding: 5px 15px 5px 15px;
+}
+
+/* 헤더 날짜 */
+.mycourse-header-date {
+  font-size: 25px;
+  padding: 5px 15px 5px 15px;
+}
+
+/* 날짜 오른쪽 버튼 */
+.mycourse-header-right-button {
+  border: none;
+  border-radius: 5px;
+  font-size: 28px;
+  padding: 5px 15px 5px 15px;
+}
+
+/* 필터 + 리스트 */
+.mycourse-list-container {
+  width: 730px;
+  margin: 5px auto;
+  margin-top: 30px;
 }
