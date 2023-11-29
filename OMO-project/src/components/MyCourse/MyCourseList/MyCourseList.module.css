@@ -1,4 +1,4 @@
-.mycourse-list-container {
+/* .mycourse-list-container {
   display: flex;
   width: 1000px;
   height: 100px;
@@ -9,6 +9,8 @@
   align-items: center;
 }
 
+
+
 .mycourse-list-container:hover {
   border: 2px solid var(--secondary);
 }
@@ -17,11 +19,35 @@
   display: inline-block;
   font-size: 28px;
   padding-left: 30px;
+} */
+
+
+/* 리스트 박스 전체 */
+.mycourse-list-container{
+background-color: aqua;
+margin-top: 40px;
+display: flex;
+flex-direction: column;
+gap: 35px;
+
 }
-.mycourse-list-date {
+
+
+/* .mycourse-list-date {
   display: inline-block;
   color: var(--gray-500);
   font-size: 24px;
   font-weight: 200;
   padding-right: 30px;
+} */
+
+/* 필터 */
+.mycourse-list-filter-control {
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding: 10px 20px 10px 20px;
+  cursor: pointer;
+  font-size: 18px
+  ;
 }
