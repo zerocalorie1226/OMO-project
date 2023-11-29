@@ -3,7 +3,7 @@ import {MyCourseItemListBox} from "../MyCourseItemListBox/MyCourseItemListBox";
 import {data} from "./../../../const/data";
 import ModalClose from "./../../../assets/modal-close.png";
 
-const MyCourseFindRecentModal = ({recentModal, setRecentModal}) => (
+const MyCourseFindRecentModal = ({recentModal, setRecentModal, state, setState}) => (
   <>
     <div className={styles["Overlay"]}>
       <div className={styles["mycourse-find-recent-modal-container"]}>
@@ -22,7 +22,7 @@ const MyCourseFindRecentModal = ({recentModal, setRecentModal}) => (
         </label>
         <div className={styles["mycourse-find-recent-modal-list-box-container"]}>
           {data.map((el) => {
-            return <MyCourseItemListBox key={el.id} {...el} />;
+            return <MyCourseItemListBox state={state} setState={setState} el={el} />;
           })}
         </div>
       </div>

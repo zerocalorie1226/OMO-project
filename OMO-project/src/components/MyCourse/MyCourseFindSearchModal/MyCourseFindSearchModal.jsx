@@ -4,7 +4,7 @@ import {data} from "./../../../const/data";
 import Magnifier from "./../../../assets/magnifier.png";
 import ModalClose from "./../../../assets/modal-close.png";
 
-const MyCourseFindSearchModal = ({searchModal, setSearchModal}) => (
+const MyCourseFindSearchModal = ({searchModal, setSearchModal, state, setState}) => (
   <>
     <div className={styles["Overlay"]}>
       <div className={styles["mycourse-find-search-modal-container"]}>
@@ -30,7 +30,7 @@ const MyCourseFindSearchModal = ({searchModal, setSearchModal}) => (
         </label>
         <div className={styles["mycourse-find-search-modal-list-box-container"]}>
           {data.map((el) => {
-            return <MyCourseItemListBox key={el.id} {...el} />;
+            return <MyCourseItemListBox state={state} setState={setState} el={el} />;
           })}
         </div>
       </div>

@@ -4,6 +4,9 @@ import MyCourseFindBox from "./../../../components/MyCourse/MyCourseFindBox/MyCo
 import MyCourseAfter from "../../../components/MyCourse/MyCourseAfter/MyCourseAfter";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import Save from "../../../components/MyCourse/Button/Save/Save";
+import MyCourseDataBox from "../../../components/MyCourse/MyCourseDataBox/MyCourseDataBox";
+import {data} from "../../../const/data";
+import {useState} from "react";
 
 const MyCourseWrite = () => {
   return (
@@ -14,9 +17,7 @@ const MyCourseWrite = () => {
       </div>
       <MyCourseFindBox />
       <MyCourseAfter />
-
       <Save />
-
       <ScrollToTop />
     </div>
   );
