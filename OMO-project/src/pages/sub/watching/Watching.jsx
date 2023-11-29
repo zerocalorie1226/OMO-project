@@ -8,7 +8,7 @@ const Watching = () => (
     <Search />
     <div className={styles["main-category-container"]}>
       {watching.map((el) => {
-        return <SubCategoryBox key={el.id} title={el.title} img={el.src} />;
+        return <SubCategoryBox key={el.id} {...el} />;
       })}
     </div>
   </>

@@ -1,42 +1,99 @@
-import {CommunityCategory} from "../../../components/CommunityCategory/CommunityCategory";
-import {CommunityQnABox} from "../../../components/CommunityQnABox/CommunityQnABox";
+import React, {useEffect, useRef, useState, useReducer} from "react";
+import styles from "./InquiryBoardQnA.module.css";
 import CommunityInquiryFilter from "../../../components/CommunityInquiryFilter/CommunityInquiryFilter";
+import {CommunityQnAPostList} from "../../../components/CommunityQnAPostList/CommunityQnAPostList";
+import {CommunityCategory} from "../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {WritingButton} from "../../../components/WritingButton/WritingButton";
-import {communityQnAPost} from "../../../const/communityQnAPost";
-import styles from "./InquiryBoardQnA.module.css";
-import {Link} from "react-router-dom";
+import WritingButtonImg from "../../../assets/writing-button.png";
+import WriteQnABoard from "../../../components/WritePost/WriteQnABoard/WriteQnABoard";
 
-const InquiryBoardQnA = () => (
-  <div>
-    <CommunityCategory />
-    <div className={styles["inquiry-board-qna-filter-search-container"]}>
-      <CommunityInquiryFilter />
-      <ListSearch />
-    </div>
-    <hr className={styles["inquiry-board-qna-hr"]} />
-    {communityQnAPost.map((el) => {
-      return (
-        <CommunityQnABox
-          key={el.id}
-          title={el.title}
-          reg_at={el.reg_at}
-          src={el.src}
-          nick={el.nick}
-          content={el.content}
-          like={el.like}
-          view={el.view}
-          comment={el.comment}
-          comment_list={el.comment_list}
-        />
-      );
-    })}
-    <ScrollToTop />
-    <Link to="/WriteBoard">
-      <WritingButton />
-    </Link>
-  </div>
-);
+const reducer = (state, action) => {
+  let newState = [];
+  switch (action.type) {
+    case "INIT": {
+      return action.data;
+    }
+    case "CREATE": {
+      newState = [action.data, ...state];
+      break;
+    }
+    default:
+      return state;
+  }
+
+  localStorage.setItem("qnaboard", JSON.stringify(newState));
+  return newState;
+};
+
+export const BoardStateContext = React.createContext();
+export const BoardDispatchContext = React.createContext();
+
+const InquiryBoardQnA = () => {
+  const [data, dispatch] = useReducer(reducer, []);
+
+  useEffect(() => {
+    const localData = localStorage.getItem("qnaboard");
+    if (localData) {
+      const boardList = JSON.parse(localData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
+
+      if (boardList.length >= 1) {
+        dataId.current = parseInt(boardList[0].id) + 1;
+        dispatch({type: "INIT", data: boardList});
+      }
+    }
+  }, []);
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const dataId = useRef(0);
+
+  // CREATE
+  const onCreate = (title, content) => {
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: dataId.current,
+        reg_at: new Date().getTime(),
+        title,
+        content,
+      },
+    });
+    dataId.current += 1;
+  };
+
+  return (
+    <>
+      <BoardStateContext.Provider value={data}>
+        <BoardDispatchContext.Provider
+          value={{
+            onCreate,
+          }}
+        >
+          <CommunityCategory />
+          <div className={styles["inquiry-board-qna-filter-search-container"]}>
+            <CommunityInquiryFilter />
+            <ListSearch />
+          </div>
+          <hr className={styles["inquiry-board-qna-hr"]} />
+          <CommunityQnAPostList communityQnAPostList={data} />
+          <ScrollToTop />
+          <div className={styles["writing-btn-container"]}>
+            <button
+              type="button"
+              className={styles["writing-btn"]}
+              onClick={() => {
+                setOpenModal(true);
+              }}
+            >
+              <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}
+            </button>
+            {openModal ? <WriteQnABoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} /> : null}
+          </div>
+        </BoardDispatchContext.Provider>
+      </BoardStateContext.Provider>
+    </>
+  );
+};
 
 export default InquiryBoardQnA;

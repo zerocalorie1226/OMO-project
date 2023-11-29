@@ -24,8 +24,8 @@ const MyCourseDataBox = (props) => (
         <span className={styles["mycourse-data-box-box-runtime"]}>{props.runTime}</span>
         <span className={styles["mycourse-data-box-box-intro"]}>{props.intro}</span>
         <span className={styles["mycourse-data-box-box-address-brief"]}>{props.addressBrief}</span>
-        <img className={styles["mycourse-data-box-box-img1"]} src={props.img1} />
-        <img className={styles["mycourse-data-box-box-img2"]} src={props.img2} />
+        <img className={styles["mycourse-data-box-box-img1"]} src={props.src1} />
+        <img className={styles["mycourse-data-box-box-img2"]} src={props.src2} />
       </div>
     </div>
     <img src={props.downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />

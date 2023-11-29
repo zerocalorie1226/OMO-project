@@ -1,15 +1,16 @@
 import React, {useRef, useState, useMemo} from "react";
-import styles from "./CommunityPost.module.css";
+import styles from "./CommunityPostItem.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
 import LikeClicked from "../../assets/detail/purple-thumb.png";
+import ProfileImg from "../../assets/profile-img.jpg";
 import Comment from "../../assets/community/worry-board/comment.png";
 import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
-import {elapsedText} from "./../../utils/Time/elapsedText";
-import ReportModal from "./../ReportModal/ReportModal";
+import {elapsedText} from "../../utils/Time/elapsedText";
+import ReportModal from "../ReportModal/ReportModal";
 
-export const CommunityPost = (props) => {
+export const CommunityPostItem = (props) => {
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
 
@@ -102,18 +103,20 @@ export const CommunityPost = (props) => {
             <span className={styles["community-post-title"]}>{props.title}</span>
 
             {/* 날짜 */}
-            <span className={styles["community-post-date"]}>{props.reg_at}</span>
+            <span className={styles["community-post-date"]}>{new Date(props.reg_at).toLocaleString()}</span>
           </div>
 
           {/* 프로필 이미지+닉네임 */}
           <div className={styles["community-post-profile"]}>
-            <img className={styles["community-post-profile-img"]} src={props.src} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
+            <img className={styles["community-post-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
             <span className={styles["community-post-profile-nick"]}>{props.nick}</span>
           </div>
 
           {/* 글 내용 */}
           <span className={styles["community-post-content"]}>{commenter}</span>
-          <div className={styles["community-post-content-show"]} onClick={() => setIsShowMore(!isShowMore)}>{props.content.length > textLimit.current && (isShowMore ? "[접기]" : "... [더 보기]")}</div>
+          <div className={styles["community-post-content-show"]} onClick={() => setIsShowMore(!isShowMore)}>
+            {props.content.length > textLimit.current && (isShowMore ? "[접기]" : "... [더 보기]")}
+          </div>
 
           {/*공감수*/}
           <div className={styles["community-post-number-report-wapper"]}>
@@ -156,7 +159,7 @@ export const CommunityPost = (props) => {
           <div className={`${styles["community-post-comment-container"]} ${showComments ? styles["show-comments"] : ""}`}>
             {/* 댓글 입력창 */}
             <div className={styles["community-post-comment-input-container"]}>
-              <img className={styles["community-post-comment-input-profile-img"]} src={props.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
+              <img className={styles["community-post-comment-input-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
               <input
                 className={styles["community-post-comment-input"]}
                 type="text"
@@ -183,7 +186,7 @@ export const CommunityPost = (props) => {
               <div key={el.id}>
                 <ul className={styles["community-post-comment"]}>
                   <li>
-                    {/* <img className={styles["community-post-comment-profile-img"]} src={el.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} /> */}
+                    <img className={styles["community-post-comment-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
                     <div className={styles["community-post-comment-box"]}>
                       <div className={styles["community-post-comment-nick-date"]}>
                         <span className={styles["community-post-comment-box-nick"]}>이니</span>

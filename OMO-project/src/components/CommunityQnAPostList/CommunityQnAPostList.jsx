@@ -1,0 +1,19 @@
+import styles from "./CommunityQnAPostList.module.css";
+import { CommunityQnABox } from "../CommunityQnABox/CommunityQnABox";
+
+export const CommunityQnAPostList = ({communityQnAPostList}) => {
+  return (
+    <>
+      <section className={styles["community-qna-container"]}>
+        {communityQnAPostList.map((el) => {
+      return (
+        <CommunityQnABox
+          key={el.id}
+          {...el}
+        />
+      );
+    })}
+      </section>
+    </>
+  );
+};

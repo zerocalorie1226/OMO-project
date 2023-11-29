@@ -14,6 +14,7 @@ export const MyWrotePost = (props) => {
   };
   const containerClassName = expanded ? styles["my-wrote-post-container-expanded"] : styles["my-wrote-post-container"];
 
+  
   return (
     <>
       {/* 전체 영역 */}
@@ -28,7 +29,7 @@ export const MyWrotePost = (props) => {
               {/* 카테고리 */}
               <span className={styles["my-wrote-post-category"]}>{props.category}</span>
               {/* 날짜 */}
-              <span className={styles["my-wrote-post-date"]}>{props.reg_at}</span>
+              <span className={styles["my-wrote-post-date"]}>{new Date(props.reg_at).toLocaleString()}</span>
             </div>
           </div>
 
@@ -53,7 +54,7 @@ export const MyWrotePost = (props) => {
         {/* 하단 댓글창 전체박스 */}
         <div className={styles["my-wrote-post-comment-container"]}>
           {/* 댓글 내용 */}
-          {props.comment_list.map((el) => (
+          {/* {props.comment_list.map((el) => (
             <ul className={styles["my-wrote-post-comment"]}>
               <li>
                 <img className={styles["my-wrote-post-comment-profile-img"]} src={el.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
@@ -66,7 +67,7 @@ export const MyWrotePost = (props) => {
                 </div>
               </li>
             </ul>
-          ))}
+          ))} */}
         </div>
       </div>
     </>

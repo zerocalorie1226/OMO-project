@@ -1,11 +1,11 @@
-.ComeBackList-button-container {
+.comebacklist-button-container {
   display: flex;
   justify-content: flex-end;
   font-size: 25px;
   width: 990px;
 }
 
-.ComeBackList-button {
+.comebacklist-button {
   width: 220px;
   height: 50px;
   border: none;
@@ -13,5 +13,5 @@
   color: white;
   background-color: var(--secondary);
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 100px;
 }

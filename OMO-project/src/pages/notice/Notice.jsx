@@ -8,17 +8,17 @@ import NoticeItems from "./../../components/NoticeItems/NoticeItems";
 const Notice = () => (
   <div className={styles["notice-container"]}>
     <h2 className={styles["notice-title"]}> 공지사항</h2>
-    <div className={styles["notice-filter-container"]}>
+    {/* <div className={styles["notice-filter-container"]}>
       {noticeFilter.map((el) => {
-        return <Filter key={el.id} title={el.title} bar={el.bar} />;
+        return <Filter key={el.id} {...el} />;
       })}
-    </div>
+    </div> */}
     
     <hr className={styles["notice-container-hr"]}/>
 
     <div className={styles["notice-main-container"]}>
       {notice.map((el) => {
-        return <NoticeItems key={el.id} title={el.title} division={el.division} date={el.date} content={el.content} />;
+        return <NoticeItems key={el.id} {...el} />;
       })}
     </div>
     <ScrollToTop />
