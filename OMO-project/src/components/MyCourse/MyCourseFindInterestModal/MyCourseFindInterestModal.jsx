@@ -22,7 +22,7 @@ const MyCourseFindInterestModal = ({interestModal, setInterestModal}) => (
         </label>
         <div className={styles["mycourse-find-interest-modal-list-box-container"]}>
           {data.map((el) => {
-            return <MypageListBox key={el.id} {...el} />;
+            return <MyCourseItemListBox key={el.id} {...el} />;
           })}
         </div>
       </div>

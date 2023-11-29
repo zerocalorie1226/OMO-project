@@ -30,7 +30,7 @@ const MyCourseFindSearchModal = ({searchModal, setSearchModal}) => (
         </label>
         <div className={styles["mycourse-find-search-modal-list-box-container"]}>
           {data.map((el) => {
-            return <MypageListBox key={el.id} {...el} />;
+            return <MyCourseItemListBox key={el.id} {...el} />;
           })}
         </div>
       </div>

@@ -19,8 +19,8 @@ export const MyCourseItemListBox = (props) => (
 
       <span className={styles["mycourse-list-box-runtime"]}>{props.runTime}</span>
       <span className={styles["mycourse-list-box-address-brief"]}>{props.addressBrief}</span>
-      <img className={styles["mycourse-list-box-img1"]} src={props.img1} />
-      <img className={styles["mycourse-list-box-img2"]} src={props.img2} />
+      <img className={styles["mycourse-list-box-img1"]} src={props.src1} />
+      <img className={styles["mycourse-list-box-img2"]} src={props.src2} />
     </div>
   </>
 );
