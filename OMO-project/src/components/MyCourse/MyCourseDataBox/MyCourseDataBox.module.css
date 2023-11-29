@@ -1,7 +1,7 @@
 .mycourse-data-box-total-container {
   position: relative;
-  /* display: flex; */
   width: 670px;
+  height: 133px;
   justify-content: center;
   align-items: center;
 }
@@ -15,8 +15,8 @@
 .mycourse-data-box-box-inner-container {
   width: 670px;
   height: 133px;
-  border: 1px solid var(--primary);
-  border-radius: 20px;
+  border: 3px solid var(--primary);
+  border-radius: 10px;
   position: relative;
   padding-left: 20px;
   padding-top: 16px;
@@ -85,8 +85,8 @@
 .mycourse-data-box-box-runtime {
   font-size: 16px;
   position: absolute;
-  top: 50px;
-  left: 200px;
+  top: 100px;
+
   color: var(--blue-200);
 }
 
@@ -101,7 +101,7 @@
 .mycourse-data-box-box-address-brief {
   font-size: 16px;
   position: absolute;
-  top: 102px;
+  top: 76px;
 }
 
 .mycourse-data-box-box-img1 {

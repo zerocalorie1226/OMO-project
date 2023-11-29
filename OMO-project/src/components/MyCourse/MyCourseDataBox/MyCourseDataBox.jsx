@@ -12,17 +12,17 @@ const MyCourseDataBox = (props) => (
 
         <div className={styles["mycourse-data-box-box-like-jjim-container"]}>
           <div className={styles["mycourse-data-box-box-jjim"]}>
-              <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "0px", width: "23px", height: "23px"}} />{" "}
+            <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "0px", width: "23px", height: "23px"}} />{" "}
             <span className={styles["mycourse-data-box-box-jjim-number"]}> {props.jjim}</span>
           </div>
           <div className={styles["mycourse-data-box-box-like"]}>
-              <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px", width: "24px", height: "24px"}} />{" "}
+            <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px", width: "24px", height: "24px"}} />{" "}
             <span className={styles["mycourse-data-box-box-like-number"]}> {props.like}</span>
           </div>
         </div>
 
         <span className={styles["mycourse-data-box-box-runtime"]}>{props.runTime}</span>
-        <span className={styles["mycourse-data-box-box-intro"]}>{props.intro}</span>
+
         <span className={styles["mycourse-data-box-box-address-brief"]}>{props.addressBrief}</span>
         <img className={styles["mycourse-data-box-box-img1"]} src={props.src1} />
         <img className={styles["mycourse-data-box-box-img2"]} src={props.src2} />

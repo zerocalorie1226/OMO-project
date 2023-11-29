@@ -5,6 +5,7 @@ import MyCourseDataBox from "../../../components/MyCourse/MyCourseDataBox/MyCour
 import MyCourseCalendar from "./../../../components/MyCourse/MyCourseCalendar/MyCourseCalendar";
 import Share from "../../../components/MyCourse/Button/Share/Share";
 import Edit from "../../../components/MyCourse/Button/Edit/Edit";
+import downArrow from "../../../assets/my-course/write/down-arrow.png";
 
 const MyCourseMyVersion = () => {
   const myCourseMyVersion1 = data.find((item) => item.id === 1);
@@ -19,21 +20,20 @@ const MyCourseMyVersion = () => {
         <MyCourseCalendar />
       </div>
       <MyCourseDataBox key={myCourseMyVersion1.id} {...myCourseMyVersion1} />
-
+      <img src={downArrow} alt="아래 화살표" className={styles["mycourse-find-box-down-arrow-img"]} />
       <div className={styles["mycourse-myversion-calendar-container"]}>
         <MyCourseCalendar />
       </div>
       <MyCourseDataBox key={myCourseMyVersion2.id} {...myCourseMyVersion2} />
-
+      <img src={downArrow} alt="아래 화살표" className={styles["mycourse-find-box-down-arrow-img"]} />
       <div className={styles["mycourse-myversion-calendar-container"]}>
         <MyCourseCalendar />
       </div>
       <MyCourseDataBox key={myCourseMyVersion8.id} {...myCourseMyVersion8} />
 
-      
-      <div className={styles["mycourse-myversion-edit-share-button-container"]}> 
-      <Edit/> <Share/>
-</div>
+      <div className={styles["mycourse-myversion-edit-share-button-container"]}>
+        <Edit /> <Share />
+      </div>
       <ScrollToTop />
     </div>
   );
