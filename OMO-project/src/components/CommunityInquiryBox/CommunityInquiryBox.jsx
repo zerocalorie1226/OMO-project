@@ -7,7 +7,6 @@ const CommunityInquiryBox = (props) => {
 
   const handleClick = () => {
     setExpanded(!expanded);
-    console.log(expanded);
   };
 
   const containerClassName = expanded ? styles["community-inquiry-box-total-container-expanded"] : styles["community-inquiry-box-total-container"];

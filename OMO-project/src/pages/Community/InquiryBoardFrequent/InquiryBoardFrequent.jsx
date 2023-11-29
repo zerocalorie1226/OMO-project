@@ -17,12 +17,9 @@ const InquiryBoardFrequent = () => (
     </div>
     <hr className={styles["inquiry-board-hr"]} />
     {communityInquiryFrequent.map((el) => {
-      return <CommunityInquiryBox key={el.id} title={el.title} nickname={el.nickname} content={el.content} />;
+      return <CommunityInquiryBox key={el.id} {...el} />;
     })}
     <ScrollToTop />
-    <Link to="/WriteBoard">
-      <WritingButton />
-    </Link>
   </div>
 );
 

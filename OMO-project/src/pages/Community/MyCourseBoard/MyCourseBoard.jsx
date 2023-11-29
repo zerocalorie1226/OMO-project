@@ -6,11 +6,13 @@ import {CommunityCategory} from "./../../../components/CommunityCategory/Communi
 import Filter from "../../../components/Filter/Filter";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import CommunityMyCourseList from "../../../components/CommunityMyCourseList/CommunityMyCourseList";
 import {Link} from "react-router-dom";
 import {mbtiBox} from "../../../const/mbtiBox";
 import { MbtiBox } from "../../../components/MbtiBox/MbtiBox";
+import WritingButtonImg from "../../../assets/writing-button.png";
+
+
 const MyCourseBoard = () => {
 
   return (
@@ -20,11 +22,11 @@ const MyCourseBoard = () => {
 
       {/* 필터 + 검색창 */}
       <div className={styles["community-component-container"]}>
-        <div className={styles["community-filter-container"]}>
+        {/* <div className={styles["community-filter-container"]}>
           {communityPageFilter.map((el) => {
-            return <Filter key={el.id} title={el.title} bar={el.bar} />;
+            return <Filter key={el.id} {...el} />;
           })}
-        </div>
+        </div> */}
         <ListSearch />
       </div>
 
@@ -45,14 +47,23 @@ const MyCourseBoard = () => {
         </div>
         <div className={styles["community-mycourse-list-box"]}>
           {communityMyCourse.map((el) => {
-            return <CommunityMyCourseList key={el.id} title={el.title} like={el.like} nick={el.nick} reg_at={el.reg_at} />;
+            return <CommunityMyCourseList key={el.id} {...el} />;
           })}
         </div>
       </section>
 
       <ScrollToTop />
-      <Link to="/WriteBoard">
-        <WritingButton />
+
+
+      <Link to="/MyCourseWrite">
+              <div className={styles["writing-btn-container"]}>
+        <button
+          type="button"
+          className={styles["writing-btn"]}
+        >
+          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}
+        </button>
+      </div>
       </Link>
     </>
   );

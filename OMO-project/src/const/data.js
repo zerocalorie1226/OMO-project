@@ -1,4 +1,4 @@
-import Ramen1 from "../assets/list/ramen-img1.jpg";
+import Ramen1 from "../assets/list/ramen-img1.jpg"
 import Ramen2 from "../assets/list/ramen-img2.jpg";
 import Map from "../assets/detail/google-map.png";
 import Thumbnail from "../assets/detail/thumbnail.png";
