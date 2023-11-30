@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 import styles from "./MyCourseList.module.css";
-import {Link} from "react-router-dom";
+import MyCourseItem from "../MyCourseItem/MyCourseItem";
 
 const sortOptionList = [
   {value: "latest", name: "최신순"},
@@ -26,9 +26,8 @@ const MyCourseList = ({myCourseList}) => {
 
   const getProcessedMyCourseList = () => {
     const compare = (a, b) => {
-      // 비교해주는 함수
       if (sortType === "latest") {
-        return parseInt(b.date) - parseInt(a.date); // 문자열이 들어올수도 있어서 parseInt로 숫자로 바꿔줌
+        return parseInt(b.date) - parseInt(a.date);
       } else {
         return parseInt(a.date) - parseInt(BeforeUnloadEvent.date);
       }
@@ -41,16 +40,14 @@ const MyCourseList = ({myCourseList}) => {
   return (
     <div>
       <div className={styles["mycourse-list-filter"]}>
-      <ControlMenu value={sortType} onChange={setSortType} optionList={sortOptionList} />
+        <ControlMenu value={sortType} onChange={setSortType} optionList={sortOptionList} />
       </div>
 
-    <div className={styles["mycourse-list-container"]}>
-      {getProcessedMyCourseList().map((it) => (
-        <div key={it.id}>{it.title}</div>
-      ))}
+      <div className={styles["mycourse-list-container"]}>
+        {getProcessedMyCourseList().map((it) => (
+          <MyCourseItem key={it.id} {...it} />
+        ))}
       </div>
-
-
     </div>
     // <Link to="/MyCourseMyVersion" className={styles["mycourse-list-container"]}>
     //   <p className={styles["mycourse-list-title"]}>{props.title}</p>
