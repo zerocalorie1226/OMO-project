@@ -11,7 +11,6 @@ import { useParams } from "react-router-dom";
 const MyCourseMyVersion = () => {
 
   const {id} = useParams();
-  console.log(id);
 
 
 

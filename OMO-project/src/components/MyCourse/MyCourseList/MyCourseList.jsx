@@ -49,10 +49,6 @@ const MyCourseList = ({myCourseList}) => {
         ))}
       </div>
     </div>
-    // <Link to="/MyCourseMyVersion" className={styles["mycourse-list-container"]}>
-    //   <p className={styles["mycourse-list-title"]}>{props.title}</p>
-    //   <p className={styles["mycourse-list-date"]}>{props.reg_at}</p>
-    // </Link>
   );
 };
 
