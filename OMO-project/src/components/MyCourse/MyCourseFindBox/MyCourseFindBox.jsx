@@ -3,7 +3,7 @@ import styles from "./MyCourseFindBox.module.css";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import Delete from "../Button/Delete/Delete";
 import MyCourseCalendar from "../MyCourseCalendar/MyCourseCalendar";
-import MyCourseDataBox from "../../../components/MyCourse/MyCourseDataBox/MyCourseDataBox";
+import MyCourseDataBox from "../MyCourseDataBox/MyCourseDataBox";
 import FindButton from "./FindButton/FindButton";
 import MyCourseFindInterestModal from "../MyCourseFindInterestModal/MyCourseFindInterestModal";
 import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRecentModal";
@@ -21,10 +21,16 @@ const MyCourseFindBox = () => {
     alert("삭제되었습니다.");
   };
 
+  const [item, setItem] = useState(); // id의 상태
+  console.log(item);
+
   const [state, setState] = useState(false);
 
-  const myCourseMyVersion1 = data.find((item) => item.id === 1);
+  const findItem = data.find((el) => el.id === item);
+  console.log(data);
+  console.log(findItem);
 
+  console.log("찾기 박스 id:", item);
   return (
     <>
       {isFindBoxVisible && (
@@ -33,7 +39,10 @@ const MyCourseFindBox = () => {
           <Delete onClick={handleDeleteClick} />
 
           {state ? (
-            <MyCourseDataBox key={myCourseMyVersion1.id} {...myCourseMyVersion1} />
+            // findItem.map((el) => {
+            //   return <MyCourseItemListBox key={el.id} {...el}/>;
+            // })
+            <MyCourseDataBox key={findItem.id} data={findItem} />
           ) : (
             <div className={styles["mycourse-find-box-button-container"]}>
               <FindButton
@@ -42,7 +51,7 @@ const MyCourseFindBox = () => {
                   setInterestModal(true);
                 }}
               />
-              {interestModal ? <MyCourseFindInterestModal state={state} setState={setState} interestModal={interestModal} setInterestModal={setInterestModal} /> : null}
+              {interestModal ? <MyCourseFindInterestModal item={item} setItem={setItem} state={state} setState={setState} interestModal={interestModal} setInterestModal={setInterestModal} /> : null}
 
               <FindButton
                 text={"최근 본 목록에서 찾기"}
