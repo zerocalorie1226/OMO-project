@@ -8,6 +8,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop"; //ìŠ¤í
 import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteFreeBoard from "../../../components/WritePost/WriteFreeBoard/WriteFreeBoard";
+import { communityFreePost } from "../../../const/communityFreePost";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -33,7 +34,7 @@ export const BoardDispatchContext = React.createContext();
 
 const FreeBoard = () => {
 
-  const [data, dispatch] = useReducer(reducer, []);
+  const [data, dispatch] = useReducer(reducer, communityFreePost);
 
   useEffect(() => {
     const localData = localStorage.getItem("freeboard");

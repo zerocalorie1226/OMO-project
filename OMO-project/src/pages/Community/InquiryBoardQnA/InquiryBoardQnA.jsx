@@ -7,6 +7,7 @@ import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteQnABoard from "../../../components/WritePost/WriteQnABoard/WriteQnABoard";
+import { communityQnAPost } from "../../../const/communityQnAPost";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -30,7 +31,7 @@ export const BoardStateContext = React.createContext();
 export const BoardDispatchContext = React.createContext();
 
 const InquiryBoardQnA = () => {
-  const [data, dispatch] = useReducer(reducer, []);
+  const [data, dispatch] = useReducer(reducer, communityQnAPost);
 
   useEffect(() => {
     const localData = localStorage.getItem("qnaboard");

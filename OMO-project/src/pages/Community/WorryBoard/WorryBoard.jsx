@@ -8,6 +8,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
+import { communityWorryPost } from "../../../const/communityWorryPost";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -31,7 +32,7 @@ export const BoardStateContext = React.createContext();
 export const BoardDispatchContext = React.createContext();
 
 const WorryBoard = () => {
-  const [data, dispatch] = useReducer(reducer, []);
+  const [data, dispatch] = useReducer(reducer, communityWorryPost);
 
   useEffect(() => {
     const localData = localStorage.getItem("worryboard");
