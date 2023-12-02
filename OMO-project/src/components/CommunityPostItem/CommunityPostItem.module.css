@@ -6,6 +6,7 @@
   border-radius: 10px 10px 10px 10px;
   margin: 0 auto;
   margin-top: 75px;
+
 }
 
 /* 버튼 전까지 윗부분 영역 */
@@ -233,6 +234,7 @@ border-radius: 0;
 .community-post-comment {
   padding: 0;
   margin-top:25px;
+  margin-bottom: 0;
 }
 
 /*  댓글 내용 li */

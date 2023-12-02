@@ -5,8 +5,8 @@
   border: 1px solid var(--gray-400);
   border-radius: 10px 10px 10px 10px;
   margin: 0 auto;
-  margin-top: 75px;
-  padding-bottom: 50px;
+  /* margin-top: 75px; */
+  /* padding-bottom: 50px; */
   margin-bottom: 75px;
 }
 
@@ -39,6 +39,7 @@
 /* 프로필 이미지+닉네임 */
 .community-qnapost-profile {
   margin-top: 45px;
+  margin-bottom: 45px;
   display: flex;
 }
 
@@ -60,33 +61,34 @@
 
 /* 글 내용 */
 .community-qnapost-content {
-  display: inline-block;
   font-size: 24px;
-  margin-top: 45px;
 }
 
 
 /* 버튼 묶음 */
 .community-qnapost-button-wrapper {
-  font-size: 26px;
-  width: 999px;
-  border-top: 1px solid var(--gray-400);
-  border-bottom: 1px solid var(--gray-400);
-  display: flex;
-  justify-content: center;
+  font-size: 25px;
+  /* width: 999px; */
+  /* border-top: 1px solid var(--gray-400); */
+  /* border-bottom: 1px solid var(--gray-400); */
+  /* display: flex; */
+  /* justify-content: center; */
 }
 
 /* 댓글 달기 버튼 */
 .community-qnapost-comment-button {
+  background-color: var(--white);
+  width: 997px;
+  height: 75px;
+  border: 0;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: var(--white);
-  height: 75px;
-  width: 997px;
-  border: 0;
-  cursor: pointer;
   align-items: center;
+  border-top: 1px solid var(--gray-400);
+  border-bottom: 1px solid var(--gray-400);
+  border-radius: 0px 0px 10px 10px;
 
 }
 
@@ -99,17 +101,17 @@
 /* 댓글창 전체 박스 */
 .community-qnapost-comment-container {
   display: none;
-  padding: 25px 55px 0 55px;
-  background-color: white;
 }
 .community-qnapost-comment-container.show-comments {
   display: block; /* 댓글 달기 버튼을 클릭할 때 표시됨 */
+  padding: 25px 55px 25px 55px;
 }
 
 /* 댓글 내용 ul */
 .community-qnapost-comment {
   padding: 0;
-  margin-top: 25px;
+  margin-top: 0px;
+  margin-bottom: 0;
 }
 
 /*  댓글 내용 li */
@@ -139,16 +141,17 @@
 .community-qnapost-comment-box {
   background-color: var(--white3);
   border: 1px solid var(--gray-400);
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 25px;
   margin-left: 16px;
-  width: 880px;
+  width: 100%;
   height: 100%;
 }
 
 /* 댓글 박스 안 닉네임 */
 .community-qnapost-comment-box-nick {
   font-size: 24px;
+  font-weight: 500;
 }
 
 /* 댓글 박스 안 날짜 */
