@@ -21,8 +21,6 @@ const reducer = (state, action) => {
       return state;
   }
 
-  // localStorage.setItem("worryboard", JSON.stringify(newState));
-  // localStorage.setItem("freeboard", JSON.stringify(newState));
   return newState;
 };
 
@@ -34,32 +32,24 @@ const MyWrote = () => {
 
   const [data, dispatch] = useReducer(reducer, []);
 
-  // useEffect(() => {
-  //   const localWorryData = localStorage.getItem("worryboard");
-  //   if (localWorryData) {
-  //     const boardList = JSON.parse(localWorryData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
-
-  //     if (boardList.length >= 1) {
-  //       dataId.current = parseInt(boardList[0].id) + 1;
-  //       dispatch({type: "INIT", data: boardList});
-  //     }
-  //   }
-  // }, []);
 
   useEffect(() => {
-    const localWorryData = localStorage.getItem("worryboard");
-    if (localWorryData) {
-      const worryboardList = JSON.parse(localWorryData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
+    const localWorryData = JSON.parse(localStorage.getItem("worryboard"));
+    const localFreeData = JSON.parse(localStorage.getItem("freeboard"));
+    const combineBoardList = [...localWorryData,...localFreeData]
 
-      if (worryboardList.length >= 1) {
-        dataId.current = parseInt(worryboardList[0].id) + 1;
-        dispatch({type: "INIT", data: worryboardList});
+    if (localWorryData) {
+      const newboardList = combineBoardList.sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
+
+      if (combineBoardList.length >= 1) {
+        dataId.current = parseInt(newboardList[0].id) + 1;
+        dispatch({type: "INIT", data: newboardList});
       }
     }
   }, []);
 
   // useEffect(() => {
-  //   const localFreeData = localStorage.getItem("freeboard");
+   
   //   if (localFreeData) {
   //     const freeboardList = JSON.parse(localFreeData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
 
@@ -89,7 +79,11 @@ const MyWrote = () => {
 
             <div className={styles["my-wrote-filter-main-container"]}>
               <div className={styles["my-wrote-main-title-container"]}>
-                <MypageWroteMain communityWorryPostList={data}  />
+                <MypageWroteMain 
+                // communityWorryPostList={data}  communityFreePostList={data}  
+                postList={data}
+                />
+                {/* <MypageWroteMain  /> */}
               </div>
             </div>
             <ScrollToTop />

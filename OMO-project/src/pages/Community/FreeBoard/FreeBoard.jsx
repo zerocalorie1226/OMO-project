@@ -34,7 +34,7 @@ export const BoardDispatchContext = React.createContext();
 
 const FreeBoard = () => {
 
-  const [data, dispatch] = useReducer(reducer, communityFreePost);
+  const [data, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
     const localData = localStorage.getItem("freeboard");
