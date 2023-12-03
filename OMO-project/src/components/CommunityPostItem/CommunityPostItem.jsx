@@ -76,7 +76,7 @@ export const CommunityPostItem = (props) => {
 
   // 게시글 더보기/닫기 기능
   const [isShowMore, setIsShowMore] = useState(false); // 더보기 열고 닫는 스위치
-  const textLimit = useRef(130); // 글자수 제한 선언
+  const textLimit = useRef(100); // 글자수 제한 선언
 
   const commenter = useMemo(() => {
     // 조건에 따라 게시글을 보여주는 함수
@@ -109,7 +109,7 @@ export const CommunityPostItem = (props) => {
           {/* 프로필 이미지+닉네임 */}
           <div className={styles["community-post-profile"]}>
             <img className={styles["community-post-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
-            <span className={styles["community-post-profile-nick"]}>{props.nick}</span>
+            <span className={styles["community-post-profile-nick"]}>이니</span>
           </div>
 
           {/* 글 내용 */}
