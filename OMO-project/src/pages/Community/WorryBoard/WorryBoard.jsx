@@ -8,7 +8,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
-import { communityWorryPost } from "../../../const/communityWorryPost";
+import { communityWorryPost } from './../../../const/communityWorryPost';
 
 const reducer = (state, action) => {
   let newState = [];
@@ -51,7 +51,7 @@ const WorryBoard = () => {
   const dataId = useRef(0);
 
   // CREATE
-  const onCreate = (title, content) => {
+  const onCreate = (title, content, category) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -59,6 +59,7 @@ const WorryBoard = () => {
         reg_at: new Date().getTime(),
         title,
         content,
+        category: "고민게시판",
       },
     });
     dataId.current += 1;
