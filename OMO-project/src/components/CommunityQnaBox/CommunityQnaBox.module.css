@@ -5,8 +5,6 @@
   border: 1px solid var(--gray-400);
   border-radius: 10px 10px 10px 10px;
   margin: 0 auto;
-  /* margin-top: 75px; */
-  /* padding-bottom: 50px; */
   margin-bottom: 75px;
 }
 
@@ -64,21 +62,15 @@
   font-size: 24px;
 }
 
-
 /* 버튼 묶음 */
 .community-qnapost-button-wrapper {
   font-size: 25px;
-  /* width: 999px; */
-  /* border-top: 1px solid var(--gray-400); */
-  /* border-bottom: 1px solid var(--gray-400); */
-  /* display: flex; */
-  /* justify-content: center; */
 }
 
-/* 댓글 달기 버튼 */
+/* 답변 달기 버튼 */
 .community-qnapost-comment-button {
-  background-color: var(--white);
-  width: 997px;
+  background-color: transparent;
+  width: 998px;
   height: 75px;
   border: 0;
   cursor: pointer;
@@ -87,48 +79,52 @@
   justify-content: center;
   align-items: center;
   border-top: 1px solid var(--gray-400);
-  border-bottom: 1px solid var(--gray-400);
-  border-radius: 0px 0px 10px 10px;
 
+  border-radius: 0px 0px 10px 10px;
 }
 
-/* 댓글 아이콘 */
+.community-qnapost-comment-button.show-comments {
+  border-radius: 0;
+  border-bottom: 1px solid var(--gray-400);
+}
+
+/* 답변 아이콘 */
 .community-qnapost-comment-button-img {
   display: flex;
   margin-right: 10px;
 }
 
-/* 댓글창 전체 박스 */
+/* 답변창 전체 박스 */
 .community-qnapost-comment-container {
   display: none;
 }
 .community-qnapost-comment-container.show-comments {
-  display: block; /* 댓글 달기 버튼을 클릭할 때 표시됨 */
+  display: block; /* 답변 달기 버튼을 클릭할 때 표시됨 */
   padding: 25px 55px 25px 55px;
 }
 
-/* 댓글 내용 ul */
+/* 답변 내용 ul */
 .community-qnapost-comment {
   padding: 0;
   margin-top: 0px;
   margin-bottom: 0;
 }
 
-/*  댓글 내용 li */
+/*  답변 내용 li */
 .community-qnapost-comment > li {
   list-style: none;
   margin: 0;
   display: flex;
 }
 
-/* 댓글 닉네임+날짜 */
+/* 답변 닉네임+날짜 */
 .community-qnapost-comment-nick-date {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
-/* 댓글 내용 프로필 이미지 */
+/* 답변 내용 프로필 이미지 */
 .community-qnapost-comment-profile-img {
   border: 1px solid transparent;
   border-radius: 50%;
@@ -137,7 +133,7 @@
   height: 100%;
 }
 
-/* 댓글 박스 */
+/* 답변 박스 */
 .community-qnapost-comment-box {
   background-color: var(--white3);
   border: 1px solid var(--gray-400);
@@ -148,19 +144,19 @@
   height: 100%;
 }
 
-/* 댓글 박스 안 닉네임 */
+/* 답변 박스 안 닉네임 */
 .community-qnapost-comment-box-nick {
   font-size: 24px;
   font-weight: 500;
 }
 
-/* 댓글 박스 안 날짜 */
+/* 답변 박스 안 날짜 */
 .community-qnapost-comment-box-date {
   font-size: 20px;
   color: var(--gray-500);
 }
 
-/* 댓글 박스 안 내용 */
+/* 답변 박스 안 내용 */
 .community-qnapost-comment-box-content {
   font-size: 20px;
 }

@@ -35,16 +35,15 @@ export const CommunityQnABox = (props) => {
         </div>
 
         <div className={styles["community-qnapost-button-wrapper"]}>
-          {/* 댓글 버튼 */}
-          <button type="button" className={styles["community-qnapost-comment-button"]} onClick={toggleComments}>
+          {/* 답변 버튼 */}
+          <button type="button" className={`${styles["community-qnapost-comment-button"]}  ${showComments ? styles["show-comments"] : ""}`} onClick={toggleComments}>
             <img className={styles["community-qnapost-comment-button-img"]} src={Comment} />
-            댓글
+            답변
           </button>
         </div>
-        {/* `${styles["community-qnapost-comment-container"]} ${showComments ? styles["show-comments"] : ""}` */}
         {/* 하단 댓글창 전체박스 */}
         <div className={`${styles["community-qnapost-comment-container"]} ${showComments ? styles["show-comments"] : ""}`}>
-          {/* 댓글 내용 */}
+          {/* 답변 내용 */}
           {props.comment_list && props.comment_list.map((el) => (
             <ul className={styles["community-qnapost-comment"]}>
               <li>

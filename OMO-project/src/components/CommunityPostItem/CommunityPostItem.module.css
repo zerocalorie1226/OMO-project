@@ -6,7 +6,6 @@
   border-radius: 10px 10px 10px 10px;
   margin: 0 auto;
   margin-top: 75px;
-
 }
 
 /* 버튼 전까지 윗부분 영역 */
@@ -64,7 +63,7 @@
 }
 
 /* 더보기 */
-.community-post-content-show{
+.community-post-content-show {
   display: inline-block;
   font-size: 24px;
   color: var(--gray-900);
@@ -99,11 +98,9 @@
 
 /* 버튼 묶음 */
 .community-post-button-wrapper {
-  /* background-color: var(--gray-400); */
   font-size: 25px;
   position: relative;
 }
-
 
 /* 좋아요 버튼 */
 .community-post-like-button {
@@ -120,9 +117,8 @@
   top: 1px;
 }
 
-
-.community-post-like-button.show-comments{
-border-radius: 0;
+.community-post-like-button.show-comments {
+  border-radius: 0;
 }
 
 /* 따봉 아이콘 */
@@ -148,9 +144,9 @@ border-radius: 0;
   border-left: 1px solid var(--gray-400);
 }
 
-.community-post-comment-button.show-comments{
+.community-post-comment-button.show-comments {
   border-radius: 0;
-  }
+}
 
 /* 댓글 아이콘 */
 .community-post-comment-button-img {
@@ -162,7 +158,6 @@ border-radius: 0;
 /* 댓글창 전체 박스 */
 .community-post-comment-container {
   display: none;
-
 }
 .community-post-comment-container.show-comments {
   display: block; /* 댓글 달기 버튼을 클릭할 때 표시됨 */
@@ -233,7 +228,7 @@ border-radius: 0;
 /* 댓글 내용 ul */
 .community-post-comment {
   padding: 0;
-  margin-top:25px;
+  margin-top: 25px;
   margin-bottom: 0;
 }
 
