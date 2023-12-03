@@ -9,7 +9,7 @@ export const communityWorryPost = [
     src: ProfileImg,
     nick: "이니",
     content:
-      "서울 연희동에서 놀려고 하는데, 비오는 날에도 재밌게 놀 수 있는 코스 없을까요? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip hend",
+      "서울 연희동에서 놀려고 하는데, 비오는 날에도 재밌게 놀 수 있는 코스 없을까요? 되도록 실내 데이트였으면 좋겠습니다! 비오는 날 밖에 돌아다니는 건 옷이 젖을까봐 별로 안 좋아해서요! 비오는 날 놀아보신 분은 추천해주세요.",
     like: "43",
     view: "70",
     comment: "5",
