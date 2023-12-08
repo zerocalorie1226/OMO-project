@@ -72,28 +72,21 @@ position: absolute;
 }
 
 
-/* 영업시간 */
-.mypage-list-box-runtime{
-  font-size: 16px;
-  position: absolute;
-  top: 60px;
-  left: 177px;
-  color: var(--blue-200);
-}
-
 /* 간단 소개 */
-.mypage-list-box-intro{
-  font-size: 16px;
-  position: absolute;
-  top: 90px;
-}
-
-
-/* 주소 요약 */
 .mypage-list-box-address-brief{
   font-size: 16px;
   position: absolute;
+  top: 90px;
+
+}
+
+
+/* 영업중 */
+.mypage-list-box-runtime{
+  font-size: 16px;
+  position: absolute;
   top: 120px;
+  color: var(--blue-200);
 }
 
 
