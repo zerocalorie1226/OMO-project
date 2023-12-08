@@ -18,9 +18,8 @@ export const MypageListBox = (props) => (
           </div>
         </div>
 
-        <span className={styles["mypage-list-box-runtime"]}>{props.runTime}</span>
-        <span className={styles["mypage-list-box-intro"]}>{props.intro}</span>
         <span className={styles["mypage-list-box-address-brief"]}>{props.addressBrief}</span>
+        <span className={styles["mypage-list-box-runtime"]}>{props.runTime}</span>
         <img className={styles["mypage-list-box-img1"]} src={props.src1} />
         <img className={styles["mypage-list-box-img2"]} src={props.src2} />
       </div>
