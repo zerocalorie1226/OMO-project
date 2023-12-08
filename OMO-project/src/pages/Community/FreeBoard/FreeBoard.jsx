@@ -34,12 +34,12 @@ export const BoardDispatchContext = React.createContext();
 
 const FreeBoard = () => {
 
-  const [data, dispatch] = useReducer(reducer, []);
+  const [data, dispatch] = useReducer(reducer, communityFreePost);
 
   useEffect(() => {
     const localData = localStorage.getItem("freeboard");
     if (localData) {
-      const boardList = JSON.parse(localData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
+      const boardList = JSON.parse(localData).sort((a, b) => parseInt(a.reg_at) - parseInt(b.reg_at));
 
       if (boardList.length >= 1) {
         dataId.current = parseInt(boardList[0].id) + 1;
