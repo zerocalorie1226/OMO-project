@@ -3,6 +3,7 @@ import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
 import Comment from "../../assets/community/worry-board/comment.png";
 import Submit from "../../assets/submit.png";
+import ProfileImg from "../../assets/profile-img.jpg";
 import SubmitHover from "../../assets/submit-hover.png";
 import React, {useState} from "react";
 
@@ -35,21 +36,21 @@ export const MyWrotePost = (props) => {
 
           {/* 프로필 이미지+닉네임 */}
           <div className={styles["my-wrote-post-profile"]}>
-            <img className={styles["my-wrote-post-profile-img"]} src={props.src} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
-            <span className={styles["my-wrote-post-profile-nick"]}>{props.nick}</span>
+            <img className={styles["my-wrote-post-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
+            <span className={styles["my-wrote-post-profile-nick"]}>이니</span>
           </div>
 
           {/* 글 내용 */}
           <span className={styles["my-wrote-post-content"]}>{props.content}</span>
         </div>
 
-        <div className={styles["my-wrote-post-button-wrapper"]}>
+        {/* <div className={styles["my-wrote-post-button-wrapper"]}> */}
           {/* 댓글달기 버튼 */}
-          <button type="button" className={styles["my-wrote-post-comment-button"]}>
+          {/* <button type="button" className={styles["my-wrote-post-comment-button"]}>
             <img className={styles["my-wrote-post-comment-button-img"]} src={Comment} style={{width: "25px", height: "25px"}} />
             댓글
           </button>
-        </div>
+        </div> */}
 
         {/* 하단 댓글창 전체박스 */}
         <div className={styles["my-wrote-post-comment-container"]}>
