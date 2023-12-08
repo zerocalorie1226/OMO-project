@@ -6,7 +6,6 @@ import MyPageFilter from "../../../components/MypageFilter/MypageFilter";
 import MypageWroteMain from "../../../components/MypageWroteMain/MypageWroteMain";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 
-
 const reducer = (state, action) => {
   let newState = [];
   switch (action.type) {
@@ -28,18 +27,15 @@ export const BoardStateContext = React.createContext();
 export const BoardDispatchContext = React.createContext();
 
 const MyWrote = () => {
- 
-
   const [data, dispatch] = useReducer(reducer, []);
-
 
   useEffect(() => {
     const localWorryData = JSON.parse(localStorage.getItem("worryboard"));
     const localFreeData = JSON.parse(localStorage.getItem("freeboard"));
-    const combineBoardList = [...localWorryData,...localFreeData]
+    const combineBoardList = [...localWorryData, ...localFreeData];
 
     if (localWorryData) {
-      const newboardList = combineBoardList.sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
+      const newboardList = combineBoardList.sort((a, b) => parseInt(a.reg_at) - parseInt(b.reg_at));
 
       if (combineBoardList.length >= 1) {
         dataId.current = parseInt(newboardList[0].id) + 1;
@@ -48,23 +44,7 @@ const MyWrote = () => {
     }
   }, []);
 
-  // useEffect(() => {
-   
-  //   if (localFreeData) {
-  //     const freeboardList = JSON.parse(localFreeData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
-
-  //     if (freeboardList.length >= 1) {
-  //       dataId.current = parseInt(freeboardList[0].id) + 1;
-  //       dispatch({type: "INIT", data: freeboardList});
-  //     }
-  //   }
-  // }, []);
-
-  
-
   const dataId = useRef(0);
-
-  
 
   return (
     <>
@@ -78,12 +58,9 @@ const MyWrote = () => {
             <Mypage />
 
             <div className={styles["my-wrote-filter-main-container"]}>
+              <MyPageFilter/>
               <div className={styles["my-wrote-main-title-container"]}>
-                <MypageWroteMain 
-                // communityWorryPostList={data}  communityFreePostList={data}  
-                postList={data}
-                />
-                {/* <MypageWroteMain  /> */}
+                <MypageWroteMain postList={data} />
               </div>
             </div>
             <ScrollToTop />
