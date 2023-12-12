@@ -11,11 +11,11 @@ export const MyCourseDataBox = ({data}) => {
 
           <div className={styles["mycourse-data-box-box-like-jjim-container"]}>
             <div className={styles["mycourse-data-box-box-jjim"]}>
-              <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "0px", width: "23px", height: "23px"}} />{" "}
+              <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "1px", width: "19px", height: "19px"}} />{" "}
               <span className={styles["mycourse-data-box-box-jjim-number"]}> {data.jjim}</span>
             </div>
             <div className={styles["mycourse-data-box-box-like"]}>
-              <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px", width: "24px", height: "24px"}} />{" "}
+              <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "0px", width: "18px", height: "18px"}} />{" "}
               <span className={styles["mycourse-data-box-box-like-number"]}> {data.like}</span>
             </div>
           </div>

@@ -2,9 +2,9 @@
   width: 220px;
   height: 35px;
   border-radius: 5px;
-  border: 2px solid var(--gray-50);
+  border: 2px solid var(--gray-200);
   padding: 0 10px 0 10px;
-  color: #6d6d6d;
+  color: #464646;
   bottom: 233px;
   position: absolute;
 }
