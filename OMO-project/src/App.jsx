@@ -57,35 +57,36 @@ const reducer = (state, action) => {
   return newState;
 };
 
+
 export const MyCourseStateContext = React.createContext();
 export const MyCourseDispatchContext = React.createContext();
 
 const dummyData = [
   {
     id: 1,
-    title: "나만의 코스 1번",
-    date: 1701264020170,
+    title: "12월의 나만의 코스 1번",
+    date: 1702377038722,
   },
 
   {
     id: 2,
     title: "나만의 코스 2번",
-    date: 1701264020171,
+    date: 1702377038725,
   },
   {
     id: 3,
     title: "나만의 코스 3번",
-    date: 1701264020172,
+    date: 1702377038728,
   },
   {
     id: 4,
     title: "나만의 코스 4번",
-    date: 1701264020173,
+    date: 1702377038730,
   },
   {
     id: 5,
     title: "나만의 코스 5번",
-    date: 1701264020174,
+    date: 1702377038760,
   },
 ];
 
