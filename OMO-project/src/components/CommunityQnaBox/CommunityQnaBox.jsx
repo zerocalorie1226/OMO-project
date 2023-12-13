@@ -1,6 +1,6 @@
 import styles from "./CommunityQnABox.module.css";
 import Comment from "../../assets/community/inquiry-board/comment.png";
-import React, {useRef, useState} from "react";
+import React, {useMemo, useRef, useState} from "react";
 import ProfileImg from "../../assets/profile-img.jpg";
 
 export const CommunityQnABox = (props) => {
@@ -9,6 +9,24 @@ export const CommunityQnABox = (props) => {
   const toggleComments = () => {
     setShowComments(!showComments);
   };
+
+    // 게시글 더보기/닫기 기능
+    const [isShowMore, setIsShowMore] = useState(false); // 더보기 열고 닫는 스위치
+    const textLimit = useRef(100); // 글자수 제한 선언
+  
+    const commenter = useMemo(() => {
+      // 조건에 따라 게시글을 보여주는 함수
+      const shortReview = props.content.slice(0, textLimit.current); // 원본에서 글자 수만큼 자른 짧은 버전
+  
+      if (props.content.length > textLimit.current) {
+        // 원본이 길면 (원본 글자수 > 제한된 갯수)
+        if (isShowMore) {
+          return props.content;
+        } // 더보기가 true 면 원본 바로 리턴
+        return shortReview; // (더보기가 false면) 짧은 버전 리턴
+      }
+      return props.content; // 그렇지않으면 (짧은 글에는) 쓴글 그대로 리턴
+    }, [isShowMore]); // isShowMore의 상태가 바뀔때마다 호출됨
 
   return (
     <>
@@ -31,20 +49,22 @@ export const CommunityQnABox = (props) => {
           </div>
 
           {/* 글 내용 */}
-          <span className={styles["community-qnapost-content"]}>{props.content}</span>
+          <span className={styles["community-qnapost-content"]}>{commenter}</span>
+          <div className={styles["community-post-content-show"]} onClick={() => setIsShowMore(!isShowMore)}>
+            {props.content.length > textLimit.current && (isShowMore ? "[접기]" : "... [더 보기]")}
+          </div>
         </div>
 
         <div className={styles["community-qnapost-button-wrapper"]}>
-          {/* 댓글 버튼 */}
-          <button type="button" className={styles["community-qnapost-comment-button"]} onClick={toggleComments}>
+          {/* 답변 버튼 */}
+          <button type="button" className={`${styles["community-qnapost-comment-button"]}  ${showComments ? styles["show-comments"] : ""}`} onClick={toggleComments}>
             <img className={styles["community-qnapost-comment-button-img"]} src={Comment} />
-            댓글
+            답변
           </button>
         </div>
-        {/* `${styles["community-qnapost-comment-container"]} ${showComments ? styles["show-comments"] : ""}` */}
         {/* 하단 댓글창 전체박스 */}
         <div className={`${styles["community-qnapost-comment-container"]} ${showComments ? styles["show-comments"] : ""}`}>
-          {/* 댓글 내용 */}
+          {/* 답변 내용 */}
           {props.comment_list && props.comment_list.map((el) => (
             <ul className={styles["community-qnapost-comment"]}>
               <li>

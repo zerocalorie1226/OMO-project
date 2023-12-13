@@ -1,17 +1,17 @@
 import styles from "./MyCourseItemListBox.module.css";
 import Like from "../../../assets/my-page/interest/empty-thumb.png";
 import Jjim from "../../../assets/my-page/interest/empty-heart.png";
-import {Link} from "react-router-dom";
-import {useState} from "react";
 
-export const MyCourseItemListBox = ({state, setState, el}) => {
+export const MyCourseItemListBox = ({state, setState, el, onClick}) => {
   return (
     <>
       <div
         className={styles["mycourse-list-box-inner-container"]}
         onClick={() => {
-          console.log(state);
+          // console.log(state);
           setState(!state);
+          onClick(el.id, el.title);
+          console.log("개별박스 id:", el.id);
         }}
       >
         <span className={styles["mycourse-list-box-title"]}>{el.title}</span>

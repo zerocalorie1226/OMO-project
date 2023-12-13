@@ -3,8 +3,13 @@ import {MyCourseItemListBox} from "../MyCourseItemListBox/MyCourseItemListBox";
 import {data} from "./../../../const/data";
 import ModalClose from "./../../../assets/modal-close.png";
 
-const MyCourseFindInterestModal = ({interestModal, setInterestModal, state, setState}) => {
-  console.log(state);
+const MyCourseFindInterestModal = ({interestModal, setInterestModal, state, setState, item, setItem}) => {
+
+  const handleClickItem = (item) => {
+    setItem(item); // 받아온 id를 업데이트 해줌
+
+    console.log("모달창 id:", item);
+  }
   return (
     <>
       <div className={styles["Overlay"]}>
@@ -24,7 +29,7 @@ const MyCourseFindInterestModal = ({interestModal, setInterestModal, state, setS
           </label>
           <div className={styles["mycourse-find-interest-modal-list-box-container"]}>
             {data.map((el) => {
-              return <MyCourseItemListBox state={state} setState={setState} el={el} />;
+              return <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={handleClickItem}/>;
             })}
           </div>
         </div>

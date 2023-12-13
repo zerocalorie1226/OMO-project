@@ -6,8 +6,14 @@ import MyCourseCalendar from "./../../../components/MyCourse/MyCourseCalendar/My
 import Share from "../../../components/MyCourse/Button/Share/Share";
 import Edit from "../../../components/MyCourse/Button/Edit/Edit";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
+import { useParams } from "react-router-dom";
 
 const MyCourseMyVersion = () => {
+
+  const {id} = useParams();
+
+
+
   const myCourseMyVersion1 = data.find((item) => item.id === 1);
   const myCourseMyVersion2 = data.find((item) => item.id === 2);
   const myCourseMyVersion8 = data.find((item) => item.id === 8);

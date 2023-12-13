@@ -1,6 +1,6 @@
 import "./App.module.css";
 import {Header} from "./components/Header/Header";
-import React from "react";
+import React, {useReducer, useRef} from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
@@ -33,60 +33,164 @@ import MyCourseMyVersionEdit from "./pages/MyCourse/MyCourseMyVersionEdit/MyCour
 import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
 import Main from "./pages/main/Main";
 
-const App = () => (
-  <div>
-    <BrowserRouter>
-      {/* 헤더 */}
-      <Header />
-      <Routes>
-        {/* 메인 페이지 */}
-        <Route path="/" element={<Main />} />
+const reducer = (state, action) => {
+  let newState = [];
+  switch (action.type) {
+    case "INIT": {
+      return action.data;
+    }
+    case "CREATE": {
+      newState = [action.data, ...state];
+      break;
+    }
+    case "REMOVE": {
+      newState = state.filter((it) => it.id !== action.targetId);
+      break;
+    }
+    case "EDIT": {
+      newState = state.map((it) => (it.id === action.data.id ? {...action.data} : it));
+      break;
+    }
+    default:
+      return state;
+  }
+  return newState;
+};
 
-        {/* 서브 페이지 */}
-        <Route path="/Eating" element={<Eating />} />
-        <Route path="/Watching" element={<Watching />} />
-        <Route path="/Playing" element={<Playing />} />
-        <Route path="/ThemeCafe" element={<ThemeCafe />} />
 
-        {/* 로그인/회원가입 */}
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Signup" element={<Signup />} />
+export const MyCourseStateContext = React.createContext();
+export const MyCourseDispatchContext = React.createContext();
 
-        {/* 리스트페이지 */}
-        <Route path="/List" element={<List />} />
+const dummyData = [
+  {
+    id: 1,
+    title: "12월의 나만의 코스 1번",
+    date: 1702377038722,
+  },
 
-        {/* 상세페이지 */}
-        <Route path="/DetailMenu" element={<DetailMenu />} />
-        <Route path="/DetailNone" element={<DetailNone />} />
-        <Route path="/DetailTariff" element={<DetailTariff />} />
+  {
+    id: 2,
+    title: "나만의 코스 2번",
+    date: 1702377038725,
+  },
+  {
+    id: 3,
+    title: "나만의 코스 3번",
+    date: 1702377038728,
+  },
+  {
+    id: 4,
+    title: "나만의 코스 4번",
+    date: 1702377038730,
+  },
+  {
+    id: 5,
+    title: "나만의 코스 5번",
+    date: 1702377038760,
+  },
+];
 
-        {/* 마이 페이지 */}
-        <Route path="/MyInfo" element={<MyInfo />} />
-        <Route path="/Interest" element={<Interest />} />
-        <Route path="/Recommend" element={<Recommend />} />
-        <Route path="/Recent" element={<Recent />} />
-        <Route path="/MyWrote" element={<MyWrote />} />
-        <Route path="/ProfileSetting" element={<ProfileSetting />} />
+const App = () => {
+  const [data, dispatch] = useReducer(reducer, dummyData);
 
-        {/* 나만의 코스 */}
-        <Route path="/MyCourseMain" element={<MyCourseMain />} />
-        <Route path="/MyCourseWrite" element={<MyCourseWrite />} />
-        <Route path="/MyCourseMyVersion" element={<MyCourseMyVersion />} />
-        <Route path="/MyCourseMyVersionEdit" element={<MyCourseMyVersionEdit />} />
-        <Route path="/MyCourseOthersVersion" element={<MyCourseOthersVersion />} />
+  const dataId = useRef(0);
 
-        {/* 커뮤니티 */}
-        <Route path="/MyCourseBoard" element={<MyCourseBoard />} />
-        <Route path="/WorryBoard" element={<WorryBoard />} />
-        <Route path="/FreeBoard" element={<FreeBoard />} />
-        <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent />} />
-        <Route path="/InquiryBoardQnA" element={<InquiryBoardQnA />} />
+  //CREATE
+  const onCreate = (date, title, content) => {
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: dataId.current,
+        title,
+        date: new Date(date).getTime(),
+        content,
+      },
+    });
+    dataId.current += 1;
+  };
 
-        {/* 공지사항 */}
-        <Route path="/Notice" element={<Notice />} />
-      </Routes>
-    </BrowserRouter>
-  </div>
-);
+  //REMOVE
+  const onRemove = (targetId) => {
+    dispatch({type: "REMOVE", targetId});
+  };
 
+  //EDIT
+  const onEdit = (targetId, date, title, content) => {
+    dispatch({
+      type: "EDIT",
+      data: {
+        id: targetId,
+        title,
+        date: new Date(date).getTime(),
+        content,
+      },
+    });
+  };
+
+  return (
+    <MyCourseStateContext.Provider value={data}>
+      <MyCourseDispatchContext.Provider
+        value={{
+          onCreate,
+          onEdit,
+          onRemove,
+        }}
+      >
+        <BrowserRouter>
+          <div>
+            {/* 헤더 */}
+            <Header />
+            <Routes>
+              {/* 메인 페이지 */}
+              <Route path="/" element={<Main />} />
+
+              {/* 서브 페이지 */}
+              <Route path="/Eating" element={<Eating />} />
+              <Route path="/Watching" element={<Watching />} />
+              <Route path="/Playing" element={<Playing />} />
+              <Route path="/ThemeCafe" element={<ThemeCafe />} />
+
+              {/* 로그인/회원가입 */}
+              <Route path="/Login" element={<Login />} />
+              <Route path="/Signup" element={<Signup />} />
+
+              {/* 리스트페이지 */}
+              <Route path="/List" element={<List />} />
+
+              {/* 상세페이지 */}
+              <Route path="/DetailMenu" element={<DetailMenu />} />
+              <Route path="/DetailNone" element={<DetailNone />} />
+              <Route path="/DetailTariff" element={<DetailTariff />} />
+
+              {/* 마이 페이지 */}
+              <Route path="/MyInfo" element={<MyInfo />} />
+              <Route path="/Interest" element={<Interest />} />
+              <Route path="/Recommend" element={<Recommend />} />
+              <Route path="/Recent" element={<Recent />} />
+              <Route path="/MyWrote" element={<MyWrote />} />
+              <Route path="/ProfileSetting" element={<ProfileSetting />} />
+
+              {/* 나만의 코스 */}
+              <Route path="/MyCourseMain" element={<MyCourseMain />} />
+              <Route path="/MyCourseWrite" element={<MyCourseWrite />} />
+              <Route path="/MyCourseMyVersion/:id" element={<MyCourseMyVersion />} />
+              <Route path="/MyCourseMyVersionEdit/:id" element={<MyCourseMyVersionEdit />} />
+              <Route path="/MyCourseOthersVersion" element={<MyCourseOthersVersion />} />
+
+              {/* 커뮤니티 */}
+              <Route path="/MyCourseBoard" element={<MyCourseBoard />} />
+              <Route path="/WorryBoard" element={<WorryBoard />} />
+              <Route path="/FreeBoard" element={<FreeBoard />} />
+              <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent />} />
+              <Route path="/InquiryBoardQnA" element={<InquiryBoardQnA />} />
+
+              {/* 공지사항 */}
+              <Route path="/Notice" element={<Notice />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </MyCourseDispatchContext.Provider>
+    </MyCourseStateContext.Provider>
+  );
+};
 export default App;

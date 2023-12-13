@@ -8,6 +8,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
+import { communityWorryPost } from './../../../const/communityWorryPost';
 
 const reducer = (state, action) => {
   let newState = [];
@@ -31,13 +32,12 @@ export const BoardStateContext = React.createContext();
 export const BoardDispatchContext = React.createContext();
 
 const WorryBoard = () => {
-  const [data, dispatch] = useReducer(reducer, []);
+  const [data, dispatch] = useReducer(reducer, communityWorryPost);
 
   useEffect(() => {
     const localData = localStorage.getItem("worryboard");
     if (localData) {
-      const boardList = JSON.parse(localData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
-
+      const boardList = JSON.parse(localData).sort((a, b) => parseInt(a.reg_at) - parseInt(b.reg_at));
       if (boardList.length >= 1) {
         dataId.current = parseInt(boardList[0].id) + 1;
         dispatch({type: "INIT", data: boardList});
@@ -50,7 +50,7 @@ const WorryBoard = () => {
   const dataId = useRef(0);
 
   // CREATE
-  const onCreate = (title, content) => {
+  const onCreate = (title, content, category) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -58,6 +58,7 @@ const WorryBoard = () => {
         reg_at: new Date().getTime(),
         title,
         content,
+        category: "고민게시판",
       },
     });
     dataId.current += 1;

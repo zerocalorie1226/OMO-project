@@ -6,7 +6,6 @@ import MyPageFilter from "../../../components/MypageFilter/MypageFilter";
 import MypageWroteMain from "../../../components/MypageWroteMain/MypageWroteMain";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 
-
 const reducer = (state, action) => {
   let newState = [];
   switch (action.type) {
@@ -21,8 +20,6 @@ const reducer = (state, action) => {
       return state;
   }
 
-  // localStorage.setItem("worryboard", JSON.stringify(newState));
-  // localStorage.setItem("freeboard", JSON.stringify(newState));
   return newState;
 };
 
@@ -30,51 +27,24 @@ export const BoardStateContext = React.createContext();
 export const BoardDispatchContext = React.createContext();
 
 const MyWrote = () => {
- 
-
   const [data, dispatch] = useReducer(reducer, []);
 
-  // useEffect(() => {
-  //   const localWorryData = localStorage.getItem("worryboard");
-  //   if (localWorryData) {
-  //     const boardList = JSON.parse(localWorryData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
-
-  //     if (boardList.length >= 1) {
-  //       dataId.current = parseInt(boardList[0].id) + 1;
-  //       dispatch({type: "INIT", data: boardList});
-  //     }
-  //   }
-  // }, []);
-
   useEffect(() => {
-    const localWorryData = localStorage.getItem("worryboard");
-    if (localWorryData) {
-      const worryboardList = JSON.parse(localWorryData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
+    const localWorryData = JSON.parse(localStorage.getItem("worryboard"));
+    const localFreeData = JSON.parse(localStorage.getItem("freeboard"));
+    const combineBoardList = [...localWorryData, ...localFreeData];
 
-      if (worryboardList.length >= 1) {
-        dataId.current = parseInt(worryboardList[0].id) + 1;
-        dispatch({type: "INIT", data: worryboardList});
+    if (localWorryData) {
+      const newboardList = combineBoardList.sort((a, b) => parseInt(a.reg_at) - parseInt(b.reg_at));
+
+      if (combineBoardList.length >= 1) {
+        dataId.current = parseInt(newboardList[0].id) + 1;
+        dispatch({type: "INIT", data: newboardList});
       }
     }
   }, []);
 
-  // useEffect(() => {
-  //   const localFreeData = localStorage.getItem("freeboard");
-  //   if (localFreeData) {
-  //     const freeboardList = JSON.parse(localFreeData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
-
-  //     if (freeboardList.length >= 1) {
-  //       dataId.current = parseInt(freeboardList[0].id) + 1;
-  //       dispatch({type: "INIT", data: freeboardList});
-  //     }
-  //   }
-  // }, []);
-
-  
-
   const dataId = useRef(0);
-
-  
 
   return (
     <>
@@ -88,8 +58,9 @@ const MyWrote = () => {
             <Mypage />
 
             <div className={styles["my-wrote-filter-main-container"]}>
+              <MyPageFilter/>
               <div className={styles["my-wrote-main-title-container"]}>
-                <MypageWroteMain communityWorryPostList={data}  />
+                <MypageWroteMain postList={data} />
               </div>
             </div>
             <ScrollToTop />

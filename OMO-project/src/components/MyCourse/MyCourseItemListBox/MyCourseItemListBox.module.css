@@ -68,11 +68,11 @@
   margin-left: 25px;
 }
 
-/* 영업시간 */
+/* 영업중 */
 .mycourse-list-box-runtime {
   font-size: 16px;
   position: absolute;
-  top: 100px;
+  top: 99px;
   color: var(--blue-200);
 }
 
@@ -88,7 +88,7 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  right: 144px;
+  right: 138px;
   top: 16px;
   border-radius: 5px;
 }
