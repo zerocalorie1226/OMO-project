@@ -9,19 +9,33 @@
 .main-header-container > ul {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 0;
   list-style: none;
   height: 100%;
+  /* background-color: aqua; */
 }
 
 .main-header-container > ul > li {
-  float: left;
+  /* float: left; */
   font-size: 20px;
+  /* background-color: blue; */
+}
+
+.main-header-menu-container{
+  display: flex;
+  font-size: 20px;
+  gap: 30px;
+  margin-left: 40px;
+
 }
 
 .main-header-login {
-  margin-left: 180px;
+  margin-left: 318px;
+}
+
+.main-header-mypage {
+  margin-left: 30px;
 }
 header > hr {
   border: 0;
