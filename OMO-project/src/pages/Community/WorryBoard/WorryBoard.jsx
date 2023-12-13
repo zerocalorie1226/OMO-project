@@ -8,7 +8,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
-import { communityWorryPost } from './../../../const/communityWorryPost';
+import {communityWorryPost} from "./../../../const/communityWorryPost";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -37,7 +37,7 @@ const WorryBoard = () => {
   useEffect(() => {
     const localData = localStorage.getItem("worryboard");
     if (localData) {
-      const boardList = JSON.parse(localData).sort((a, b) => parseInt(a.reg_at) - parseInt(b.reg_at));
+      const boardList = JSON.parse(localData).sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
       if (boardList.length >= 1) {
         dataId.current = parseInt(boardList[0].id) + 1;
         dispatch({type: "INIT", data: boardList});

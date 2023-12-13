@@ -53,9 +53,9 @@ const WriteWorryBoard = ({onCreate, openModal, setOpenModal}) => {
             name="title"
             type="text"
             className={styles["board-title"]}
-            placeholder="글 제목 (최소 3글자, 최대 20자)"
+            placeholder="글 제목 (최소 3글자, 최대 10자)"
             minLength="3"
-            maxLength="20"
+            maxLength="10"
             value={state.title || ""}
             onChange={handleChangeState}
           />
