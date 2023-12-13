@@ -64,7 +64,7 @@ export const MyCourseDispatchContext = React.createContext();
 const dummyData = [
   {
     id: 1,
-    title: "12월의 나만의 코스 1번",
+    title: "나만의 코스 1번",
     date: 1702377038722,
   },
 
