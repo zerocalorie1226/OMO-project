@@ -52,6 +52,14 @@
   border-radius: 20px 20px 0px 0px;
 }
 
+.community-category-link-active {
+  background-color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+}
+
 .community-category-free {
   margin-top: 16px;
   padding-bottom: 16px;
