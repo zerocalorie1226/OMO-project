@@ -10,7 +10,7 @@ import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRece
 import MyCourseFindSearchModal from "../MyCourseFindSearchModal/MyCourseFindSearchModal";
 import {data} from "../../../const/data";
 
-const MyCourseFindBox = () => {
+const MyCourseFindBox = ({date, setDate }) => {
   const [interestModal, setInterestModal] = useState(false);
   const [recentModal, setRecentModal] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
@@ -22,20 +22,16 @@ const MyCourseFindBox = () => {
   };
 
   const [item, setItem] = useState(); // id의 상태
-  console.log(item);
 
   const [state, setState] = useState(false);
 
   const findItem = data.find((el) => el.id === item);
-  console.log(data);
-  console.log(findItem);
 
-  console.log("찾기 박스 id:", item);
   return (
     <>
       {isFindBoxVisible && (
         <div className={styles["mycourse-find-box-total-container"]}>
-          <MyCourseCalendar />
+          <MyCourseCalendar date={date} setDate={setDate}/>
           <Delete onClick={handleDeleteClick} />
 
           {state ? (

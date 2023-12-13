@@ -8,9 +8,9 @@ const getStringDate= (date)=>{
 
 
 
-const MyCourseCalendar = () => {
+const MyCourseCalendar = ({date, setDate}) => {
   
-  const [date, setDate] = useState(getStringDate(new Date()));
+// console.log(date);
   
   return (
     <>
