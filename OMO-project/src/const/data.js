@@ -4,6 +4,41 @@
 // import Thumbnail from "../assets/detail/thumbnail.png";
 import Downarrow from "../assets/my-course/write/down-arrow.png";
 
+import Cheol1 from "../assets/list/cheol-img1.jpg";
+import Cheol2 from "../assets/list/cheol-img2.jpg";
+import CheolMap from "../assets/list/cheol-map.jpg";
+
+import Deli1 from "../assets/list/deli-img1.jpg";
+import Deli2 from "../assets/list/deli-img2.jpg";
+import DeliMap from "../assets/list/deli-map.jpg";
+
+import Hek1 from "../assets/list/hek-img1.jpg";
+import Hek2 from "../assets/list/hek-img2.jpg";
+import HekMap from "../assets/list/hek-map.jpg";
+
+import Hon1 from "../assets/list/hon-img1.jpg";
+import Hon2 from "../assets/list/hon-img2.jpg";
+import HonMap from "../assets/list/hon-map.jpg";
+
+import Mog1 from "../assets/list/mog-img1.jpg";
+import Mog2 from "../assets/list/mog-img2.jpg";
+import MogMap from "../assets/list/mog-map.jpg";
+
+import Pizza1 from "../assets/list/pizza-img1.jpg";
+import Pizza2 from "../assets/list/pizza-img2.jpg";
+import PizzaMap from "../assets/list/pizza-map.jpg";
+
+import Yukji1 from "../assets/list/yukji-img1.jpg";
+import Yukji2 from "../assets/list/yukji-img2.jpg";
+import YukjiMap from "../assets/list/yukji-map.jpg";
+
+import Yuni1 from "../assets/list/yuni-img1.jpg";
+import Yuni2 from "../assets/list/yuni-img2.jpg";
+import YuniMap from "../assets/list/yuni-map.jpg";
+
+
+
+
 export const data = [
   {
     id: 1,
@@ -27,7 +62,7 @@ export const data = [
     googleMap: YukjiMap,
     src1: Yukji1,
     src2: Yukji2,
-    thumbnail: Thumbnail,
+    thumbnail: Yukji1,
     downarrow: Downarrow,
     route: "/DetailMenu"
   },
@@ -50,165 +85,160 @@ export const data = [
       {id: 4, title: "고르곤졸라 피자", price: 17000},
     ],
     call: "032-281-7197",
-    googleMap: Map,
-    src1: Ramen1,
-    src2: Ramen2,
+    googleMap: YuniMap,
+    src1: Yuni1,
+    src2: Yuni2,
     downarrow: Downarrow,
+    thumbnail: Yuni1,
     route: "/DetailMenu"
   },
 
   {
     id: 3,
-    title: "와우리순대국",
+    title: "혼가츠",
     like: "89",
     jjim: "67",
-    addressBrief: "경기도 안양시 안양동",
-    addressStreet: "경기도 안양시 만안구 성결대학로 34-1",
-    addressNumber: "경기도 안양시 안양동 563-24",
-    time: "9:00~21:00",
+    addressBrief: "서울특별시 마포구 서교동",
+    addressStreet: "서울 마포구 와우산로21길 36-6",
+    addressNumber: "서울특별시 마포구 서교동 358-49",
+    time: "11:00~22:00",
     runTime: "영업 중",
     holiday: "없음",
     menu: [
-      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
-      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
-      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
-      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+      {id: 1, title: "치즈돈까스", price: 11000},
+      {id: 2, title: "왕돈까스", price: 11000},
+      {id: 3, title: "냉모밀&돈까스세트", price: 11000},
+      {id: 4, title: "냉모밀", price: 8000},
     ],
-    price: "9000원",
-    call: "031-448-8292",
-    googleMap: Map,
-    src1: Ramen1,
-    src2: Ramen2,
+    call: "02-322-8850",
+    googleMap: HonMap,
+    src1: Hon1,
+    src2: Hon2,
     downarrow: Downarrow,
-    route: "/DetailNone"
+    route: "/DetailMenu"
   },
 
   {
     id: 4,
-    title: "갬성 타코",
+    title: "몽주막",
     like: "142",
     jjim: "99",
     addressBrief: "서울 마포구 서교동",
-    addressStreet: "서울 마포교 와우산로21길 20-11",
-    addressNumber: "서울 마포구 서교동 358-121",
-    time: "11:30~22:00",
+    addressStreet: "서울 마포구 독막로9길 12",
+    addressNumber: "서울 마포구 서교동 402-10",
+    time: "16:00~01:00",
     runTime: "영업 중",
     holiday: "없음",
     menu: [
-      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
-      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
-      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
-      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+      {id: 1, title: "몽도리탕", price: 38000},
+      {id: 2, title: "떡도리탕", price: 29000},
+      {id: 3, title: "곱도리탕", price: 32000},
+      {id: 4, title: "우삼겹김치찜", price: 29000},
     ],
-    price: "38,000원",
-    call: "031-448-8292",
-    googleMap: Map,
-    src1: Ramen1,
-    src2: Ramen2,
+    call: "0507-1353-3844",
+    googleMap: MogMap,
+    src1: Mog1,
+    src2: Mog2,
     downarrow: Downarrow,
-    route: "/DetailNone"
+    route: "/DetailMenu"
   },
 
   {
     id: 5,
-    title: "갬성있는 타코",
+    title: "철인7호 치킨",
     like: "142",
     jjim: "99",
     addressBrief: "서울 마포구 서교동",
-    addressStreet: "서울 마포교 와우산로21길 20-11",
-    addressNumber: "서울 마포구 서교동 358-121",
-    time: "11:30~22:00",
+    addressStreet: "서울 마포구 양화로6길 99-3",
+    addressNumber: "서울 마포구 서교동 402-4",
+    time: "16:00~02:50",
     runTime: "영업 중",
     holiday: "없음",
     menu: [
-      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
-      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
-      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
-      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+      {id: 1, title: "달콤양념치킨", price: 17900},
+      {id: 2, title: "매운간장치킨", price: 17900},
+      {id: 3, title: "매떡치킨", price: 18900},
+      {id: 4, title: "후라이드치킨", price: 16900},
     ],
-    price: "38,000원",
-    call: "031-448-8292",
-    googleMap: Map,
-    src1: Ramen1,
-    src2: Ramen2,
+    call: "0507-1373-7175",
+    googleMap: CheolMap,
+    src1: Cheol1,
+    src2: Cheol2,
     downarrow: Downarrow,
-    route: "/DetailTariff"
+    route: "/DetailMenu"
   },
 
   {
     id: 6,
-    title: "멕시코 타코",
+    title: "핵밥",
     like: "142",
     jjim: "99",
     addressBrief: "서울 마포구 서교동",
-    addressStreet: "서울 마포교 와우산로21길 20-11",
-    addressNumber: "서울 마포구 서교동 358-121",
+    addressStreet: "서울 마포구 잔다리로6길 40-6",
+    addressNumber: "서울 마포구 서교동 366-13",
     time: "11:30~22:00",
     runTime: "영업 중",
     holiday: "없음",
     menu: [
-      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
-      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
-      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
-      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+      {id: 1, title: "큐브스테이크덮밥", price: 12900},
+      {id: 2, title: "카라이라멘", price: 10500},
+      {id: 3, title: "마제소바", price: 9900},
+      {id: 4, title: "경양식왕돈까스", price: 10500},
     ],
-    price: "38,000원",
-    call: "031-448-8292",
-    googleMap: Map,
-    src1: Ramen1,
-    src2: Ramen2,
+    call: "0507-1311-3252",
+    googleMap: HekMap,
+    src1: Hek1,
+    src2: Hek2,
     downarrow: Downarrow,
-    route: "/DetailTariff"
+    route: "/DetailMenu"
   },
 
   {
     id: 7,
-    title: "그냥 타코",
+    title: "피자네버슬립스",
     like: "142",
     jjim: "99",
     addressBrief: "서울 마포구 서교동",
-    addressStreet: "서울 마포교 와우산로21길 20-11",
-    addressNumber: "서울 마포구 서교동 358-121",
-    time: "11:30~22:00",
+    addressStreet: "서울 마포구 양화로6길 73",
+    addressNumber: "서울 마포구 서교동 400-13",
+    time: "12:00~24:00",
     runTime: "영업 중",
     holiday: "없음",
     menu: [
-      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
-      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
-      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
-      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+      {id: 1, title: "미나리 고추장 삼겹 피자", price: 28500},
+      {id: 2, title: "콘브라운 피자", price: 28000},
+      {id: 3, title: "더블 페퍼로니 피자", price: 25500},
+      {id: 4, title: "치킨 네버슬립스 피자", price: 28500},
     ],
-    price: "38,000원",
-    call: "031-448-8292",
-    googleMap: Map,
-    src1: Ramen1,
-    src2: Ramen2,
+    call: "0507-1414-1820",
+    googleMap: PizzaMap,
+    src1: Pizza1,
+    src2: Pizza2,
     downarrow: Downarrow,
     route: "/DetailMenu"
   },
 
   {
     id: 8,
-    title: "실험용 타코",
+    title: "델리인디아",
     like: "142",
     jjim: "99",
     addressBrief: "서울 마포구 서교동",
-    addressStreet: "서울 마포교 와우산로21길 20-11",
-    addressNumber: "서울 마포구 서교동 358-121",
-    time: "11:30~22:00",
+    addressStreet: "서울 마포구 독막로9길 8 2층",
+    addressNumber: "서울 마포구 서교동 402-6",
+    time: "11:00~22:30",
     runTime: "영업 중",
     holiday: "없음",
     menu: [
-      {id: 1, title: "전기구이 통닭 (1마리(국내산))", price: 16000},
-      {id: 2, title: "전기구이양념파닭 (1마리(국내산))", price: 17000},
-      {id: 3, title: "전기구이떡강정 (1마리(국내산))", price: 17000},
-      {id: 4, title: "목삼겹 (돼지고기(목전지) (미국산) 600g)", price: 20000},
+      {id: 1, title: "델리인디아 A세트", price: 27000},
+      {id: 2, title: "델리인디아 B세트", price: 17000},
+      {id: 3, title: "버터치킨", price: 12900},
+      {id: 4, title: "탄두리치킨", price: 19000},
     ],
-    price: "38,000원",
-    call: "031-448-8292",
-    googleMap: Map,
-    src1: Ramen1,
-    src2: Ramen2,
+    call: "0507-1404-2109",
+    googleMap: DeliMap,
+    src1: Deli1,
+    src2: Deli2,
     route: "/DetailMenu"
   },
 ];
