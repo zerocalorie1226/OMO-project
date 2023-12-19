@@ -7,7 +7,7 @@ import Search from "../../components/Search/Search";
 const Main = () => (
   <>
     <Search />
-    <Weather />
+    {/* <Weather /> */}
     <div className={styles["main-category-container"]}>
       {main.map((el) => {
         return <CategoryBox key={el.id} {...el} />;
