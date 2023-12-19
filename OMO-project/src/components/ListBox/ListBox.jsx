@@ -1,16 +1,17 @@
 import styles from "./ListBox.module.css";
 import Like from "../../assets/detail/empty-thumb.png";
 import Jjim from "../../assets/detail/empty-heart.png";
-import {useNavigate} from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 export const ListBox = (props) => {
   const navigate = useNavigate();
-
+  
   return (
     <>
       <button
         onClick={() => {
-          navigate(props.route);
+          navigate(`/DetailMenu/${props.id}`);
+        
         }}
         className={styles["list-box-container"]}
       >
