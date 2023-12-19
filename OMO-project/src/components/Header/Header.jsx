@@ -12,6 +12,7 @@ export const Header = () => (
               <img src={MainLogo} alt="메인 로고" />
             </Link>
           </li>
+          <div className={styles["main-header-menu-container"]}>
           <li>
             <Link to="/MyCourseBoard">커뮤니티</Link>
           </li>
@@ -21,13 +22,14 @@ export const Header = () => (
           <li>
             <Link to="/Notice">공지사항</Link>
           </li>
+          </div>
           <li>
             <Link to="/Login" className={styles["main-header-login"]}>
               로그인
             </Link>
           </li>
           <li>
-            <Link to="/MyInfo" className={styles["main-header-login"]}>
+            <Link to="/MyInfo" className={styles["main-header-mypage"]}>
               마이 페이지
             </Link>
           </li>
