@@ -20,7 +20,7 @@ export const MyCourseDataBox = ({data}) => {
             </div>
           </div>
 
-          <span className={styles["mycourse-data-box-box-runtime"]}>{data.runTime}</span>
+          <span className={`${styles["mycourse-data-box-box-runtime"]} ${data.runTime === "영업 준비 중" ? styles["ready"] : ""} `}> {data.runTime}</span>
 
           <span className={styles["mycourse-data-box-box-address-brief"]}>{data.addressBrief}</span>
           <img className={styles["mycourse-data-box-box-img1"]} src={data.src1} />

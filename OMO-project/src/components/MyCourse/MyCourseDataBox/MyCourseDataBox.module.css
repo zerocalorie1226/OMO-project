@@ -88,12 +88,20 @@
   color: var(--blue-200);
 }
 
+/* 영업준비중 */
+.mycourse-data-box-box-runtime .ready {
+  font-size: 15px;
+  position: absolute;
+  top: 95px;
+  color: var(--gray-700);
+}
+
 
 /* 간략 주소 */
 .mycourse-data-box-box-address-brief {
   font-size: 15px;
   position: absolute;
-  top: 73px;
+  top: 72px;
 }
 
 /* 왼쪽 이미지 */

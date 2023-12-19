@@ -15,7 +15,7 @@
 
 /* 박스 hover 효과 */
 .list-box-inner-container:hover {
-  border: 2px solid var(--secondary);
+  border: 3px solid var(--secondary);
 }
 
 /*  가게 이름 */
@@ -78,6 +78,15 @@
   top: 152px;
   left: 26px;
   color: var(--blue-200);
+}
+
+/* 영업준비중 */
+.list-box-runtime.ready {
+  font-size: 20px;
+  position: absolute;
+  top: 152px;
+  left: 26px;
+  color: var(--gray-700);
 }
 
 /* 가게 소개 */

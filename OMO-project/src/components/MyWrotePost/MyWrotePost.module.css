@@ -9,6 +9,9 @@
   overflow: hidden;
   cursor: pointer;
 }
+
+
+
 .my-wrote-post-container-expanded {
   width: 730px;
   height: 100%;
@@ -26,6 +29,7 @@
   padding: 25px 30px 25px 30px;
   border-radius: 10px 10px 0 0;
 }
+
 
 /* 제목+날짜 */
 .my-wrote-post-content-title-date {

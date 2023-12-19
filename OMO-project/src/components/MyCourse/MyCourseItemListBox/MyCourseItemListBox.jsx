@@ -25,7 +25,7 @@ export const MyCourseItemListBox = ({state, setState, el, onClick}) => {
           </div>
         </div>
 
-        <span className={styles["mycourse-list-box-runtime"]}>{el.runTime}</span>
+        <span className={`${styles["mycourse-list-box-runtime"]} ${el.runTime === "영업 준비 중" ? styles["ready"] : ""} `}> {el.runTime}</span>
         <span className={styles["mycourse-list-box-address-brief"]}>{el.addressBrief}</span>
         <img className={styles["mycourse-list-box-img1"]} src={el.src1} />
         <img className={styles["mycourse-list-box-img2"]} src={el.src2} />
