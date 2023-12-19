@@ -1,17 +1,18 @@
 import styles from "./ListBox.module.css";
-import Like from "../../assets/detail/empty-thumb.png";
-import Jjim from "../../assets/detail/empty-heart.png";
-import {useNavigate } from "react-router-dom";
+// import Like from "../../assets/detail/empty-thumb.png";
+import Like from "../../assets/detail/purple-thumb.png";
+// import Jjim from "../../assets/detail/empty-heart.png";
+import Jjim from "../../assets/detail/red-heart.png";
+import {useNavigate} from "react-router-dom";
 
 export const ListBox = (props) => {
   const navigate = useNavigate();
-  
+
   return (
     <>
       <button
         onClick={() => {
           navigate(`/DetailMenu/${props.id}`);
-        
         }}
         className={styles["list-box-container"]}
       >
@@ -29,10 +30,11 @@ export const ListBox = (props) => {
           </div>
 
           <span className={`${styles["list-box-runtime"]} ${props.runTime === "영업 준비 중" ? styles["ready"] : ""} `}> {props.runTime}</span>
-          {/* <span className={styles["list-box-intro"]}>{props.intro}</span> */}
+          <span className={styles["list-box-intro"]}>{props.intro}</span>
           <span className={styles["list-box-address-brief"]}>{props.addressBrief}</span>
           <img className={styles["list-box-img1"]} src={props.src1} />
           <img className={styles["list-box-img2"]} src={props.src2} />
+          <img className={styles["list-box-img3"]} src={props.src3} />
         </div>
       </button>
     </>

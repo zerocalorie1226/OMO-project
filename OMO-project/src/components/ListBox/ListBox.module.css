@@ -5,22 +5,23 @@
 /* 개별 박스 */
 .list-box-inner-container {
   width: 950px;
-  height: 200px;
+  height: 265px;
   border: 1px solid var(--gray-400);
   border-radius: 20px;
   position: relative;
-  padding: 25px;
+  padding: 27px;
   cursor: pointer;
+  margin-bottom: 35px;
 }
 
 /* 박스 hover 효과 */
 .list-box-inner-container:hover {
-  border: 3px solid var(--secondary);
+  border: 2px solid var(--secondary);
 }
 
 /*  가게 이름 */
 .list-box-title {
-  font-size: 28px;
+  font-size: 35px;
   position: absolute;
   font-weight: 500;
 }
@@ -29,8 +30,8 @@
 .list-box-like-jjim-container {
   display: flex;
   flex-direction: row;
-  margin-top: 48px;
-  font-size: 20px;
+  margin-top: 59px;
+  font-size: 22px;
   position: relative;
 }
 
@@ -73,50 +74,59 @@
 
 /* 영업중 */
 .list-box-runtime {
-  font-size: 20px;
+  font-size: 22px;
   position: absolute;
-  top: 152px;
+  top: 205px;
   left: 26px;
   color: var(--blue-200);
 }
 
 /* 영업준비중 */
 .list-box-runtime.ready {
-  font-size: 20px;
+  font-size: 22px;
   position: absolute;
-  top: 152px;
+  top: 205px;
   left: 26px;
   color: var(--gray-700);
 }
 
-/* 가게 소개 */
-.list-box-intro {
-  font-size: 20px;
+/* 간략 소개 */
+.list-box-intro{
+  font-size: 22px;
   position: absolute;
-  top: 118px;
+  top: 128px;
 }
 
 /* 간략 주소 */
 .list-box-address-brief {
-  font-size: 20px;
+  font-size: 22px;
   position: absolute;
-  top: 114px;
+  top: 168px;
 }
 
 .list-box-img1 {
   position: absolute;
-  right: 200px;
-  top: 25px;
-  width: 150px;
-  height: 150px;
+  right: 410px;
+  top: 40px;
+  width: 180px;
+  height: 180px;
   border-radius: 5px;
 }
 
 .list-box-img2 {
   position: absolute;
-  right: 25px;
-  top: 25px;
-  width: 150px;
-  height: 150px;
+  right: 220px;
+  top: 40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 5px;
+}
+
+.list-box-img3 {
+  position: absolute;
+  right: 30px;
+  top: 40px;
+  width: 180px;
+  height: 180px;
   border-radius: 5px;
 }
