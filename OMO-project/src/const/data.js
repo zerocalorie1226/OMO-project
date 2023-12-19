@@ -75,7 +75,7 @@ export const data = [
     addressStreet: "서울특별시 마포구 동교로 38길 27-8",
     addressNumber: "서울특별시 마포구 연남동 390-32",
     time: "11:30~21:00",
-    runTime: "영업 중",
+    runTime: "영업 준비 중",
     holiday: "없음",
     menu: [
       {id: 1, title: "눈꽃 치즈 파스타", price: 17000},
@@ -125,7 +125,7 @@ export const data = [
     addressStreet: "서울 마포구 독막로9길 12",
     addressNumber: "서울 마포구 서교동 402-10",
     time: "16:00~01:00",
-    runTime: "영업 중",
+    runTime: "영업 준비 중",
     holiday: "없음",
     menu: [
       {id: 1, title: "몽도리탕", price: 38000},
@@ -225,7 +225,7 @@ export const data = [
     addressStreet: "서울 마포구 독막로9길 8 2층",
     addressNumber: "서울 마포구 서교동 402-6",
     time: "11:00~22:30",
-    runTime: "영업 중",
+    runTime: "영업 준비 중",
     holiday: "없음",
     menu: [
       {id: 1, title: "델리인디아 A세트", price: 27000},
