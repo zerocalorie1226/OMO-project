@@ -89,7 +89,7 @@
 }
 
 /* 영업준비중 */
-.mycourse-data-box-box-runtime .ready {
+.mycourse-data-box-box-runtime.ready {
   font-size: 15px;
   position: absolute;
   top: 95px;
@@ -118,6 +118,15 @@
 .mycourse-data-box-box-img2 {
   position: absolute;
   right: 17px;
+  top: 15px;
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.mycourse-data-box-box-img3 {
+  position: absolute;
+  right: 250px;
   top: 15px;
   width: 100px;
   height: 100px;

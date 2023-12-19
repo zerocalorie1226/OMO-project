@@ -25,6 +25,7 @@ export const MyCourseDataBox = ({data}) => {
           <span className={styles["mycourse-data-box-box-address-brief"]}>{data.addressBrief}</span>
           <img className={styles["mycourse-data-box-box-img1"]} src={data.src1} />
           <img className={styles["mycourse-data-box-box-img2"]} src={data.src2} />
+          <img className={styles["mycourse-data-box-box-img3"]} src={data.src3} />
         </div>
       </div>
       <img src={data.downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />

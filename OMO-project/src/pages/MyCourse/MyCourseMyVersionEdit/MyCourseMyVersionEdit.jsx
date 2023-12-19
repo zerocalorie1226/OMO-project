@@ -42,8 +42,10 @@ navigate('/MyCourseMain',{replace:true});
         <input type="text" placeholder="나만의 코스" ref={contentRef} value={title} onChange={(e)=>setTitle(e.target.value)} maxLength="10" className={styles["mycourse-write-input-title"]} />
         <img src={pencil} alt="연필" className={styles["mycourse-write-img-title"]} />
       </div>
+      <div className={styles["mycourse-write-course-container"]}>
       <MyCourseFindBox date={date} setDate={setDate} />
       <MyCourseAfter />
+      </div>
           <div className={styles["save-button-container"]}>
             <button type="button" className={styles["save-button"]} onClick={handleSubmit}>
               저장
