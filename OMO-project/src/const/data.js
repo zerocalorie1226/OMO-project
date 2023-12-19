@@ -64,7 +64,6 @@ export const data = [
     src2: Yukji2,
     thumbnail: Yukji1,
     downarrow: Downarrow,
-    route: "/DetailMenu"
   },
 
   {
@@ -90,7 +89,6 @@ export const data = [
     src2: Yuni2,
     downarrow: Downarrow,
     thumbnail: Yuni1,
-    route: "/DetailMenu"
   },
 
   {
@@ -115,7 +113,7 @@ export const data = [
     src1: Hon1,
     src2: Hon2,
     downarrow: Downarrow,
-    route: "/DetailMenu"
+    thumbnail: Hon1,
   },
 
   {
@@ -140,7 +138,7 @@ export const data = [
     src1: Mog1,
     src2: Mog2,
     downarrow: Downarrow,
-    route: "/DetailMenu"
+    thumbnail: Mog1,
   },
 
   {
@@ -165,7 +163,7 @@ export const data = [
     src1: Cheol1,
     src2: Cheol2,
     downarrow: Downarrow,
-    route: "/DetailMenu"
+    thumbnail: Cheol1,
   },
 
   {
@@ -190,7 +188,7 @@ export const data = [
     src1: Hek1,
     src2: Hek2,
     downarrow: Downarrow,
-    route: "/DetailMenu"
+    thumbnail: Hek1,
   },
 
   {
@@ -215,7 +213,7 @@ export const data = [
     src1: Pizza1,
     src2: Pizza2,
     downarrow: Downarrow,
-    route: "/DetailMenu"
+    thumbnail: Pizza1,
   },
 
   {
@@ -239,6 +237,6 @@ export const data = [
     googleMap: DeliMap,
     src1: Deli1,
     src2: Deli2,
-    route: "/DetailMenu"
+    thumbnail: Deli1,
   },
 ];
