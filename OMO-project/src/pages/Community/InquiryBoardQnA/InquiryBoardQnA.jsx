@@ -7,7 +7,7 @@ import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteQnABoard from "../../../components/WritePost/WriteQnABoard/WriteQnABoard";
-import { communityQnAPost } from "../../../const/communityQnAPost";
+import {communityQnAPost} from "../../../const/communityQnAPost";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -36,7 +36,7 @@ const InquiryBoardQnA = () => {
   useEffect(() => {
     const localData = localStorage.getItem("qnaboard");
     if (localData) {
-      const boardList = JSON.parse(localData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
+      const boardList = JSON.parse(localData).sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
 
       if (boardList.length >= 1) {
         dataId.current = parseInt(boardList[0].id) + 1;

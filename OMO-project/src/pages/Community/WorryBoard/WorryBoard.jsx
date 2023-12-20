@@ -8,7 +8,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
-import { communityWorryPost } from './../../../const/communityWorryPost';
+import {communityWorryPost} from "./../../../const/communityWorryPost";
 
 const reducer = (state, action) => {
   let newState = [];

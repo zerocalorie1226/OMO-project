@@ -8,7 +8,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop"; //스�
 import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteFreeBoard from "../../../components/WritePost/WriteFreeBoard/WriteFreeBoard";
-import { communityFreePost } from "../../../const/communityFreePost";
+import {communityFreePost} from "../../../const/communityFreePost";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -31,9 +31,7 @@ const reducer = (state, action) => {
 export const BoardStateContext = React.createContext();
 export const BoardDispatchContext = React.createContext();
 
-
 const FreeBoard = () => {
-
   const [data, dispatch] = useReducer(reducer, communityFreePost);
 
   useEffect(() => {
@@ -52,62 +50,62 @@ const FreeBoard = () => {
 
   const dataId = useRef(0);
 
- // CREATE
- const onCreate = (title, content, category) => {
-  dispatch({
-    type: "CREATE",
-    data: {
-      id: dataId.current,
-      reg_at: new Date().getTime(),
-      title,
-      content,
-      category: "자유게시판",
-    },
-  });
-  dataId.current += 1;
-};
+  // CREATE
+  const onCreate = (title, content, category) => {
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: dataId.current,
+        reg_at: new Date().getTime(),
+        title,
+        content,
+        category: "자유게시판",
+      },
+    });
+    dataId.current += 1;
+  };
   return (
     <>
-          <BoardStateContext.Provider value={data}>
+      <BoardStateContext.Provider value={data}>
         <BoardDispatchContext.Provider
           value={{
             onCreate,
           }}
         >
-      {/* 카테고리 */}
-      <CommunityCategory />
+          {/* 카테고리 */}
+          <CommunityCategory />
 
-      {/* 필터 + 검색창 */}
-      <div className={styles["community-component-container"]}>
-        {/* <div className={styles["community-filter-container"]}>
+          {/* 필터 + 검색창 */}
+          <div className={styles["community-component-container"]}>
+            {/* <div className={styles["community-filter-container"]}>
           {communityPageFilter.map((el) => {
             return <Filter key={el.id} {...el} />;
           })}
         </div> */}
-        <ListSearch />
-      </div>
+            <ListSearch />
+          </div>
 
-      {/* 게시글 리스트 */}
+          {/* 게시글 리스트 */}
 
-      <CommunityFreePostList communityFreePostList={data} />
+          <CommunityFreePostList communityFreePostList={data} />
 
-      {/* 스크롤 */}
-      <ScrollToTop />
+          {/* 스크롤 */}
+          <ScrollToTop />
 
-      {/* 글쓰기 */}
-      <div className={styles["writing-btn-container"]}>
-        <button
-          type="button"
-          className={styles["writing-btn"]}
-          onClick={() => {
-            setOpenModal(true);
-          }}
-        >
-          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}
-        </button>
-        {openModal ? <WriteFreeBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} /> : null}
-      </div>
-      </BoardDispatchContext.Provider>
+          {/* 글쓰기 */}
+          <div className={styles["writing-btn-container"]}>
+            <button
+              type="button"
+              className={styles["writing-btn"]}
+              onClick={() => {
+                setOpenModal(true);
+              }}
+            >
+              <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}
+            </button>
+            {openModal ? <WriteFreeBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} /> : null}
+          </div>
+        </BoardDispatchContext.Provider>
       </BoardStateContext.Provider>
     </>
   );

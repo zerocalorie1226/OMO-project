@@ -8,7 +8,6 @@
 .inquiry-board-filter-frequency {
   display: flex;
   justify-content: center;
-
 }
 
 .inquiry-board-filter-bar {
@@ -26,4 +25,7 @@
   color: var(--secondary);
   text-decoration: underline;
 }
-
+.inquiry-board-link-active {
+  color: var(--secondary);
+  text-decoration: underline;
+}
