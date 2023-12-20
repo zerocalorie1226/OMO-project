@@ -167,4 +167,5 @@
 /* 답변 박스 안 내용 */
 .community-qnapost-comment-box-content {
   font-size: 20px;
+  line-height: 1.3;
 }
