@@ -52,10 +52,14 @@
   top: 4px;
 }
 
+/* 플러스 버튼까지 */
 .mycourse-write-course-container{
-  background-color: aqua;
   width: 1000px;
   margin: 0 auto;
+  border-radius: 20px;
+  border: 2px solid var(--gray-200);
+  padding-top: 110px;
+  padding-bottom: 90px;
 }
 
 .save-button-container {

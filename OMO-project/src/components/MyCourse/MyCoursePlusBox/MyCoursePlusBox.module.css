@@ -1,15 +1,16 @@
 .mycourse-plus-box-total-container {
-  width: 670px;
-  height: 133px;
+  width: 900px;
+  height: 200px;
   margin: 0 auto;
   border: 3px solid var(--primary);
   border-radius: 10px;
 }
 
+/* 플러스 박스 */
 .mycourse-plus-box-plus-box {
   display: block;
-  width: 670px;
-  height: 133px;
+  width: 950px;
+  height: 200px;
   background-color: transparent;
   position: relative;
   border: none;
@@ -18,7 +19,5 @@
 
 .mycourse-plus-box-plus-button {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-100%, -50%);
 }

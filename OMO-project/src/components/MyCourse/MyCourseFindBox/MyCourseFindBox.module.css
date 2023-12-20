@@ -1,22 +1,24 @@
+
+/* 찾기박스+화살표 */
 .mycourse-find-box-total-container {
   position: relative;
-  width: 1000px;
+  width: 900px;
   height: 100%;
-  margin: 0 auto;
-  padding-top: 30px;
-  border-radius: 20px;
+  margin: 0 auto 100px auto;
+  background-color: transparent;
 }
+
 .mycourse-find-box-button-container {
-  width: 950px;
+  width: 900px;
   height: 200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid var(--gray-400);
+  border: 3px solid var(--primary);
   border-radius: 10px;
-  gap: 5px;
+  gap: 10px;
 }
 
 .mycourse-find-box-down-arrow-img {
