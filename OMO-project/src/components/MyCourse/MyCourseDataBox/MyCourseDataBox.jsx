@@ -1,6 +1,6 @@
 import styles from "./mycoursedatabox.module.css";
-import Like from "../../../assets/detail/empty-thumb.png";
-import Jjim from "../../../assets/detail/empty-heart.png";
+import Like from "../../../assets/detail/purple-thumb.png";
+import Jjim from "../../../assets/detail/red-heart.png";
 
 export const MyCourseDataBox = ({data}) => {
   return (
@@ -11,11 +11,11 @@ export const MyCourseDataBox = ({data}) => {
 
           <div className={styles["mycourse-data-box-box-like-jjim-container"]}>
             <div className={styles["mycourse-data-box-box-jjim"]}>
-              <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "1px", width: "19px", height: "19px"}} />{" "}
+              <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "2px", width: "20px", height: "20px"}} />{" "}
               <span className={styles["mycourse-data-box-box-jjim-number"]}> {data.jjim}</span>
             </div>
             <div className={styles["mycourse-data-box-box-like"]}>
-              <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "0px", width: "18px", height: "18px"}} />{" "}
+              <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "0px", width: "20px", height: "20px"}} />{" "}
               <span className={styles["mycourse-data-box-box-like-number"]}> {data.like}</span>
             </div>
           </div>
