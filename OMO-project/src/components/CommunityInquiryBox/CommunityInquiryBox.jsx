@@ -16,7 +16,7 @@ const CommunityInquiryBox = (props) => {
         <p className={styles["community-inquiry-box-title"]}>{props.title}</p>
         <div className={styles["community-inquiry-box-img-nickname-container"]}>
           <img className={styles["community-inquiry-box-profile-img"]} src={CommunityProfile} alt="프로필 이미지" />
-          <span className={styles["community-inquiry-box-nickcame"]}>{props.nickname}</span>
+          <span className={styles["community-inquiry-box-nickcame"]}>OmO 운영진</span>
         </div>
         <p className={styles["community-inquiry-box-content"]}>{props.content}</p>
       </div>
