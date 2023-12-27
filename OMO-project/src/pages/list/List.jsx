@@ -9,7 +9,6 @@ import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 const List = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filter data based on the search term
   const filteredData = data.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
