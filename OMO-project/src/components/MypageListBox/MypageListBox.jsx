@@ -19,7 +19,7 @@ export const MypageListBox = (props) => (
         </div>
 
         <span className={styles["mypage-list-box-address-brief"]}>{props.addressBrief}</span>
-        <span className={styles["mypage-list-box-runtime"]}>{props.runTime}</span>
+        <span className={`${styles["mypage-list-box-runtime"]} ${props.runTime === "영업 준비 중" ? styles["ready"] : ""} `}> {props.runTime}</span>
         <img className={styles["mypage-list-box-img1"]} src={props.src1} />
         <img className={styles["mypage-list-box-img2"]} src={props.src2} />
       </div>

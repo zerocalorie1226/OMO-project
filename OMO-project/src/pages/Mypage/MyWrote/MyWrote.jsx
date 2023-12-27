@@ -35,7 +35,7 @@ const MyWrote = () => {
     const combineBoardList = [...localWorryData, ...localFreeData];
 
     if (localWorryData) {
-      const newboardList = combineBoardList.sort((a, b) => parseInt(a.reg_at) - parseInt(b.reg_at));
+      const newboardList = combineBoardList.sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
 
       if (combineBoardList.length >= 1) {
         dataId.current = parseInt(newboardList[0].id) + 1;

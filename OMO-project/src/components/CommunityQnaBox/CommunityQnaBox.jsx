@@ -71,7 +71,7 @@ export const CommunityQnABox = (props) => {
                 <img className={styles["community-qnapost-comment-profile-img"]} src={el.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
                 <div className={styles["community-qnapost-comment-box"]}>
                   <div className={styles["community-qnapost-comment-nick-date"]}>
-                    <span className={styles["community-qnapost-comment-box-nick"]}>{el.nick}</span>
+                    <span className={styles["community-qnapost-comment-box-nick"]}>OmO 운영진</span>
                     <span className={styles["community-qnapost-comment-box-date"]}>{el.reg_at}</span>
                   </div>
                   <span className={styles["community-qnapost-comment-box-content"]}>{el.content}</span>
