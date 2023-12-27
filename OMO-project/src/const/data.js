@@ -6,34 +6,42 @@ import Downarrow from "../assets/my-course/write/down-arrow.png";
 
 import Cheol1 from "../assets/list/cheol-img1.jpg";
 import Cheol2 from "../assets/list/cheol-img2.jpg";
+import Cheol3 from "../assets/list/cheol-img3.jpg";
 import CheolMap from "../assets/list/cheol-map.jpg";
 
 import Deli1 from "../assets/list/deli-img1.jpg";
 import Deli2 from "../assets/list/deli-img2.jpg";
+import Deli3 from "../assets/list/deli-img3.jpg";
 import DeliMap from "../assets/list/deli-map.jpg";
 
 import Hek1 from "../assets/list/hek-img1.jpg";
 import Hek2 from "../assets/list/hek-img2.jpg";
+import Hek3 from "../assets/list/hek-img3.jpg";
 import HekMap from "../assets/list/hek-map.jpg";
 
 import Hon1 from "../assets/list/hon-img1.jpg";
 import Hon2 from "../assets/list/hon-img2.jpg";
+import Hon3 from "../assets/list/hon-img3.jpg";
 import HonMap from "../assets/list/hon-map.jpg";
 
 import Mog1 from "../assets/list/mog-img1.jpg";
 import Mog2 from "../assets/list/mog-img2.jpg";
+import Mog3 from "../assets/list/mog-img3.jpg";
 import MogMap from "../assets/list/mog-map.jpg";
 
 import Pizza1 from "../assets/list/pizza-img1.jpg";
 import Pizza2 from "../assets/list/pizza-img2.jpg";
+import Pizza3 from "../assets/list/pizza-img3.jpg";
 import PizzaMap from "../assets/list/pizza-map.jpg";
 
 import Yukji1 from "../assets/list/yukji-img1.jpg";
 import Yukji2 from "../assets/list/yukji-img2.jpg";
+import Yukji3 from "../assets/list/yukji-img3.jpg";
 import YukjiMap from "../assets/list/yukji-map.jpg";
 
 import Yuni1 from "../assets/list/yuni-img1.jpg";
 import Yuni2 from "../assets/list/yuni-img2.jpg";
+import Yuni3 from "../assets/list/yuni-img3.jpg";
 import YuniMap from "../assets/list/yuni-map.jpg";
 
 
@@ -45,6 +53,7 @@ export const data = [
     title: "육지",
     like: "999+",
     jjim: "999+",
+    intro: "고기와 계란찜이 맛있는 집",
     addressBrief: "서울특별시 마포구 서교동",
     addressStreet: "서울 특별시 마포구 독막로3길 34",
     addressNumber: "서울특별시 마포구 서교동 396-45",
@@ -62,9 +71,9 @@ export const data = [
     googleMap: YukjiMap,
     src1: Yukji1,
     src2: Yukji2,
+    src3: Yukji3,
     thumbnail: Yukji1,
     downarrow: Downarrow,
-    route: "/DetailMenu"
   },
 
   {
@@ -72,11 +81,12 @@ export const data = [
     title: "유니의 우아한 식탁",
     like: "999+",
     jjim: "999+",
+    intro: "양식이 기깔나는 집",
     addressBrief: "서울특별시 마포구 연남동",
     addressStreet: "서울특별시 마포구 동교로 38길 27-8",
     addressNumber: "서울특별시 마포구 연남동 390-32",
     time: "11:30~21:00",
-    runTime: "영업 중",
+    runTime: "영업 준비 중",
     holiday: "없음",
     menu: [
       {id: 1, title: "눈꽃 치즈 파스타", price: 17000},
@@ -88,9 +98,9 @@ export const data = [
     googleMap: YuniMap,
     src1: Yuni1,
     src2: Yuni2,
+    src3: Yuni3,
     downarrow: Downarrow,
     thumbnail: Yuni1,
-    route: "/DetailMenu"
   },
 
   {
@@ -98,6 +108,7 @@ export const data = [
     title: "혼가츠",
     like: "89",
     jjim: "67",
+    intro: "바삭한 돈까스가 있는 집",
     addressBrief: "서울특별시 마포구 서교동",
     addressStreet: "서울 마포구 와우산로21길 36-6",
     addressNumber: "서울특별시 마포구 서교동 358-49",
@@ -114,8 +125,9 @@ export const data = [
     googleMap: HonMap,
     src1: Hon1,
     src2: Hon2,
+    src3: Hon3,
     downarrow: Downarrow,
-    route: "/DetailMenu"
+    thumbnail: Hon1,
   },
 
   {
@@ -123,11 +135,12 @@ export const data = [
     title: "몽주막",
     like: "142",
     jjim: "99",
+    intro: "탕이 땡긴다면 몽주막으로",
     addressBrief: "서울 마포구 서교동",
     addressStreet: "서울 마포구 독막로9길 12",
     addressNumber: "서울 마포구 서교동 402-10",
     time: "16:00~01:00",
-    runTime: "영업 중",
+    runTime: "영업 준비 중",
     holiday: "없음",
     menu: [
       {id: 1, title: "몽도리탕", price: 38000},
@@ -139,8 +152,9 @@ export const data = [
     googleMap: MogMap,
     src1: Mog1,
     src2: Mog2,
+    src3: Mog3,
     downarrow: Downarrow,
-    route: "/DetailMenu"
+    thumbnail: Mog1,
   },
 
   {
@@ -148,6 +162,7 @@ export const data = [
     title: "철인7호 치킨",
     like: "142",
     jjim: "99",
+    intro: "치킨계의 유망주 철인치킨",
     addressBrief: "서울 마포구 서교동",
     addressStreet: "서울 마포구 양화로6길 99-3",
     addressNumber: "서울 마포구 서교동 402-4",
@@ -164,8 +179,9 @@ export const data = [
     googleMap: CheolMap,
     src1: Cheol1,
     src2: Cheol2,
+    src3: Cheol3,
     downarrow: Downarrow,
-    route: "/DetailMenu"
+    thumbnail: Cheol1,
   },
 
   {
@@ -173,6 +189,7 @@ export const data = [
     title: "핵밥",
     like: "142",
     jjim: "99",
+    intro: "양식이 기깔나는 집",
     addressBrief: "서울 마포구 서교동",
     addressStreet: "서울 마포구 잔다리로6길 40-6",
     addressNumber: "서울 마포구 서교동 366-13",
@@ -189,8 +206,9 @@ export const data = [
     googleMap: HekMap,
     src1: Hek1,
     src2: Hek2,
+    src3: Hek3,
     downarrow: Downarrow,
-    route: "/DetailMenu"
+    thumbnail: Hek1,
   },
 
   {
@@ -198,6 +216,7 @@ export const data = [
     title: "피자네버슬립스",
     like: "142",
     jjim: "99",
+    intro: "바삭한 돈까스가 있는 집",
     addressBrief: "서울 마포구 서교동",
     addressStreet: "서울 마포구 양화로6길 73",
     addressNumber: "서울 마포구 서교동 400-13",
@@ -214,8 +233,9 @@ export const data = [
     googleMap: PizzaMap,
     src1: Pizza1,
     src2: Pizza2,
+    src3: Pizza3,
     downarrow: Downarrow,
-    route: "/DetailMenu"
+    thumbnail: Pizza1,
   },
 
   {
@@ -223,11 +243,12 @@ export const data = [
     title: "델리인디아",
     like: "142",
     jjim: "99",
+    intro: "고기와 계란찜이 맛있는 집",
     addressBrief: "서울 마포구 서교동",
     addressStreet: "서울 마포구 독막로9길 8 2층",
     addressNumber: "서울 마포구 서교동 402-6",
     time: "11:00~22:30",
-    runTime: "영업 중",
+    runTime: "영업 준비 중",
     holiday: "없음",
     menu: [
       {id: 1, title: "델리인디아 A세트", price: 27000},
@@ -239,6 +260,7 @@ export const data = [
     googleMap: DeliMap,
     src1: Deli1,
     src2: Deli2,
-    route: "/DetailMenu"
+    src3: Deli3,
+    thumbnail: Deli1,
   },
 ];

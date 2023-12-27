@@ -25,14 +25,16 @@
 
 .community-inquiry-box-title {
   font-size: 28px;
-  margin: 30px 0 30px 40px;
+  margin: 30px 0 70px 40px;
+  
 }
 
 .community-inquiry-box-img-nickname-container {
   display: flex;
   align-items: center;
   margin-left: 40px;
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .community-inquiry-box-profile-img {
@@ -44,6 +46,6 @@
 
 .community-inquiry-box-content {
   width: 920px;
-  margin: 50px auto;
-  font-size: 20px;
+  margin: 30px auto 45px auto;
+  font-size: 24px;
 }

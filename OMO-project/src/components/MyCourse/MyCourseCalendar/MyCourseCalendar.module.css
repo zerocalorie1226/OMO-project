@@ -1,12 +1,14 @@
+/* 시간 고르는 달력 */
 .mycourse-time-container {
-  width: 220px;
+  width: 320px;
   height: 35px;
   border-radius: 5px;
   border: 2px solid var(--gray-200);
-  padding: 0 10px 0 10px;
+  padding: 20px 10px 20px 20px;
   color: #464646;
-  bottom: 233px;
+  font-size: 23px;
   position: absolute;
+  bottom: 300px;
 }
 
 .mycourse-time-container > input {
