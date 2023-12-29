@@ -71,27 +71,26 @@
 }
 
 /* 프로필 이미지 */
-.my-wrote-post-profile-img {
+/* .my-wrote-post-profile-img {
   border: 1px solid transparent;
   border-radius: 50%;
   object-fit: cover;
   width: 100%;
   height: 100%;
-}
+} */
 
 /* 닉네임 */
-.my-wrote-post-profile-nick {
+/* .my-wrote-post-profile-nick {
   font-size: 20px;
   margin-left: 10px;
   margin-top: 3px;
-}
+} */
 
 /* 글 내용 */
 .my-wrote-post-content {
   display: inline-block;
   font-size: 20px;
   margin-top: 20px;
-  /* margin-bottom: 30px; */
   line-height: 1.3;
 }
 
@@ -152,9 +151,9 @@
 }
 
 /* 댓글창 전체 박스 */
-.my-wrote-post-comment-container {
-  /* padding: 25px 30px 0 30px; */
-}
+/* .my-wrote-post-comment-container {
+  padding: 25px 30px 0 30px;
+} */
 
 /* 입력창 묶음 */
 .my-wrote-post-comment-input-container {

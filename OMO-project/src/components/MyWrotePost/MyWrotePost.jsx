@@ -35,10 +35,10 @@ export const MyWrotePost = (props) => {
           </div>
 
           {/* 프로필 이미지+닉네임 */}
-          <div className={styles["my-wrote-post-profile"]}>
+          {/* <div className={styles["my-wrote-post-profile"]}>
             <img className={styles["my-wrote-post-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
             <span className={styles["my-wrote-post-profile-nick"]}>이니</span>
-          </div>
+          </div> */}
 
           {/* 글 내용 */}
           <span className={styles["my-wrote-post-content"]}>{props.content}</span>
