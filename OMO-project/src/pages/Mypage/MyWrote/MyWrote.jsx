@@ -33,9 +33,10 @@ const MyWrote = () => {
   useEffect(() => {
     const localWorryData = JSON.parse(localStorage.getItem("worryboard"));
     const localFreeData = JSON.parse(localStorage.getItem("freeboard"));
-    const combineBoardList = [...localWorryData, ...localFreeData];
+    const localQnaData = JSON.parse(localStorage.getItem("qnaboard"));
+    const combineBoardList = [...localWorryData, ...localFreeData, ...localQnaData];
 
-    if (localWorryData) {
+    if (combineBoardList ) {
       const newboardList = combineBoardList.sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
 
       if (combineBoardList.length >= 1) {

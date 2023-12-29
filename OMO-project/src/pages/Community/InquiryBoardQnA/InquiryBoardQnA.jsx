@@ -50,14 +50,15 @@ const InquiryBoardQnA = () => {
   const dataId = useRef(0);
 
   // CREATE
-  const onCreate = (title, content) => {
+  const onCreate = (title, content, category) => {
     dispatch({
       type: "CREATE",
       data: {
-        id: dataId.current,
+        id: dataId.current, 
         reg_at: new Date().getTime(),
         title,
         content,
+        category: "문의게시판",
       },
     });
     dataId.current += 1;
