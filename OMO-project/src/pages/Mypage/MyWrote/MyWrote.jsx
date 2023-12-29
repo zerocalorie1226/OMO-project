@@ -28,6 +28,7 @@ export const BoardDispatchContext = React.createContext();
 
 const MyWrote = () => {
   const [data, dispatch] = useReducer(reducer, []);
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   useEffect(() => {
     const localWorryData = JSON.parse(localStorage.getItem("worryboard"));
@@ -58,9 +59,9 @@ const MyWrote = () => {
             <Mypage />
 
             <div className={styles["my-wrote-filter-main-container"]}>
-              <MyPageFilter/>
+              <MyPageFilter setSelectedCategory={setSelectedCategory} />
               <div className={styles["my-wrote-main-title-container"]}>
-                <MypageWroteMain postList={data} />
+                <MypageWroteMain postList={data.filter((item) => selectedCategory === "all" || item.category === selectedCategory)} />
               </div>
             </div>
             <ScrollToTop />
@@ -70,4 +71,5 @@ const MyWrote = () => {
     </>
   );
 };
+
 export default MyWrote;
