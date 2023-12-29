@@ -3,7 +3,7 @@ import ProfileImg from "../assets/profile-img.jpg"
 export const communityFreePost = [
   {
     id: 1,
-    category: "자유 게시판",
+    category: "자유게시판",
     title: "크리스마스때 같이 놀 사람",
     reg_at: "2023/09/10",
     src: ProfileImg,
@@ -21,7 +21,7 @@ export const communityFreePost = [
   },
   {
     id: 2,
-    category: "자유 게시판",
+    category: "자유게시판",
     title: "연휴 때 갈만한 곳 추천 받습니다!",
     reg_at: "2023/08/12",
     src: ProfileImg,
@@ -38,7 +38,7 @@ export const communityFreePost = [
   },
   {
     id: 3,
-    category: "자유 게시판",
+    category: "자유게시판",
     title: "남친이랑 어디가지?",
     reg_at: "2023/07/1",
     src: ProfileImg,

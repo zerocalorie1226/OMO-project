@@ -3,7 +3,7 @@ import ProfileImg from "../assets/profile-img.jpg";
 export const communityQnAPost = [
   {
     id: 1,
-    category: "문의 게시판",
+    category: "문의게시판",
     title: "로그인이 안됩니다.",
     reg_at: "2023/07/15",
     src: ProfileImg,
@@ -25,7 +25,7 @@ export const communityQnAPost = [
   },
   {
     id: 2,
-    category: "문의 게시판",
+    category: "문의게시판",
     title: "MBTI는 어떻게 바꾸나요?",
     reg_at: "2023/07/12",
     src: ProfileImg,
