@@ -1,12 +1,18 @@
 import styles from "./MypageListBox.module.css";
 import Like from "../../assets/detail/purple-thumb.png";
 import Jjim from "../../assets/detail/red-heart.png";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
-export const MypageListBox = (props) => (
-  <>
-    <Link to="/DetailMenu" className={styles["mypage-list-box-container"]}>
-      <div className={styles["mypage-list-box-inner-container"]}>
+export const MypageListBox = (props) => {
+  const navigate = useNavigate();
+  return (
+    <>
+      <div
+        className={styles["mypage-list-box-inner-container"]}
+        onClick={() => {
+          navigate(`/DetailMenu/${props.id}`);
+        }}
+      >
         <span className={styles["mypage-list-box-title"]}>{props.title}</span>
 
         <div className={styles["mypage-list-box-like-jjim-container"]}>
@@ -24,6 +30,6 @@ export const MypageListBox = (props) => (
         <img className={styles["mypage-list-box-img2"]} src={props.src2} />
         <img className={styles["mypage-list-box-img3"]} src={props.src3} />
       </div>
-    </Link>
-  </>
-);
+    </>
+  );
+};
