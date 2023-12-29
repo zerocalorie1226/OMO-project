@@ -72,11 +72,11 @@ position: absolute;
 }
 
 
-/* 간단 소개 */
+/* 주소 */
 .mypage-list-box-address-brief{
   font-size: 16px;
   position: absolute;
-  top: 90px;
+  top: 92px;
 
 }
 
@@ -99,18 +99,29 @@ position: absolute;
 
 
 
-/* 왼쪽 이미지 */
+/* 맨왼쪽 이미지 */
 .mypage-list-box-img1{
   position: absolute;
   width: 120px;
   height: 120px;
-  right: 160px;
+  right: 275px;
   top: 19px;
   border-radius: 5px;
 }
 
-/* 오른쪽 이미지 */
+/* 중간 이미지 */
 .mypage-list-box-img2{
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  right: 148px;
+  top: 19px;
+  border-radius: 5px;
+
+}
+
+/* 맨 오른쪽 이미지 */
+.mypage-list-box-img3{
   position: absolute;
   width: 120px;
   height: 120px;

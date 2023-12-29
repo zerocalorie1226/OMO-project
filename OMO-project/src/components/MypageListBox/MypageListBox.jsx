@@ -1,6 +1,6 @@
 import styles from "./MypageListBox.module.css";
-import Like from "../../assets/my-page/interest/empty-thumb.png";
-import Jjim from "../../assets/my-page/interest/empty-heart.png";
+import Like from "../../assets/detail/purple-thumb.png";
+import Jjim from "../../assets/detail/red-heart.png";
 import {Link} from "react-router-dom";
 
 export const MypageListBox = (props) => (
@@ -22,6 +22,7 @@ export const MypageListBox = (props) => (
         <span className={`${styles["mypage-list-box-runtime"]} ${props.runTime === "영업 준비 중" ? styles["ready"] : ""} `}> {props.runTime}</span>
         <img className={styles["mypage-list-box-img1"]} src={props.src1} />
         <img className={styles["mypage-list-box-img2"]} src={props.src2} />
+        <img className={styles["mypage-list-box-img3"]} src={props.src3} />
       </div>
     </Link>
   </>
