@@ -11,17 +11,25 @@ const List = () => {
 
   const filteredData = data.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
+  const onSearch = (term) => {
+    setSearchTerm(term);
+  };
+
   return (
     <>
       <div className={styles["list-component-container"]}>
-        <ListSearch onSearch={(term) => setSearchTerm(term)} />
+        <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
       </div>
       <section className={styles["list-list-container"]}>
-        <div className={styles["list-list-box-container"]}>
-          {filteredData.map((el) => {
-            return <ListBox key={el.id} {...el} />;
-          })}
-        </div>
+        {filteredData && filteredData.length > 0 ? (
+          <div className={styles["list-list-box-container"]}>
+            {filteredData.map((el) => {
+              return <ListBox key={el.id} {...el} />;
+            })}
+          </div>
+        ) : (
+          <span className={styles["list-no-search-result"]}>검색 결과가 없습니다.</span>
+        )}
       </section>
       <ScrollToTop />
     </>

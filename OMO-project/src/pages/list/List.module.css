@@ -19,9 +19,9 @@
   width: 1000px;
   height: 100%;
   border: 2px solid var(--primary);
-  border-bottom: 0px;
-  border-radius: 20px 20px 0px 0px;
-  margin: 0 auto;
+  /* border-bottom: 0px; */
+  border-radius: 20px 20px 20px 20px;
+  margin: 0 auto 70px auto;
   padding: 36px 26px 0px 26px;  
 }
 
@@ -29,4 +29,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.list-no-search-result{
+  display: block;
+  margin-top: 85px;
+  margin-bottom: 115px;
+  font-size: 22px;
+  color: var(--gray-700);
+  display: flex;
+  justify-content: center;
 }

@@ -1,15 +1,11 @@
-import React, {useState} from "react";
 import styles from "./ListSearch.module.css";
 import Magnifier from "../../assets/magnifier.png";
 
-const ListSearch = ({onSearch}) => {
-  const [searchTerm, setSearchTerm] = useState("");
+const ListSearch = ({onSearch, searchTerm}) => {
 
   const handleInputChange = (event) => {
-    const term = event.target.value;
-    setSearchTerm(term);
-
-    onSearch(term);
+    const term = event.target.value; 
+    onSearch(term);   
   };
 
   return (
