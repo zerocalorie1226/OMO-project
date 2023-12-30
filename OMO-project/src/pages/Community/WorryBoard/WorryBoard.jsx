@@ -58,7 +58,7 @@ const WorryBoard = () => {
         reg_at: new Date().getTime(),
         title,
         content,
-        category: "고민게시판",
+        category: "worry",
       },
     });
     dataId.current += 1;

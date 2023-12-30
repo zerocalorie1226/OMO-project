@@ -50,7 +50,7 @@ const InquiryBoardQnA = () => {
   const dataId = useRef(0);
 
   // CREATE
-  const onCreate = (title, content) => {
+  const onCreate = (title, content, category) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -58,6 +58,7 @@ const InquiryBoardQnA = () => {
         reg_at: new Date().getTime(),
         title,
         content,
+        category: "qna",
       },
     });
     dataId.current += 1;

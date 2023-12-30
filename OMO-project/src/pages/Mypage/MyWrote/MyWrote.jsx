@@ -28,12 +28,13 @@ export const BoardDispatchContext = React.createContext();
 
 const MyWrote = () => {
   const [data, dispatch] = useReducer(reducer, []);
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("all"); // 기본은 전체보기
 
   useEffect(() => {
-    const localWorryData = JSON.parse(localStorage.getItem("worryboard"));
-    const localFreeData = JSON.parse(localStorage.getItem("freeboard"));
-    const combineBoardList = [...localWorryData, ...localFreeData];
+    const localWorryData = JSON.parse(localStorage.getItem("worryboard")); // 고민게시판
+    const localFreeData = JSON.parse(localStorage.getItem("freeboard")); // 자유게시판
+    const localQnaData = JSON.parse(localStorage.getItem("qnaboard")); // 문의게시판
+    const combineBoardList = [...localWorryData, ...localFreeData, ...localQnaData]; // 3개 합친거
 
     if (localWorryData) {
       const newboardList = combineBoardList.sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
@@ -61,7 +62,7 @@ const MyWrote = () => {
             <div className={styles["my-wrote-filter-main-container"]}>
               <MyPageFilter setSelectedCategory={setSelectedCategory} />
               <div className={styles["my-wrote-main-title-container"]}>
-                <MypageWroteMain postList={data.filter((item) => selectedCategory === "all" || item.category === selectedCategory)} />
+                <MypageWroteMain postList={data.filter((item) => item.category === selectedCategory)} /> 
               </div>
             </div>
             <ScrollToTop />
