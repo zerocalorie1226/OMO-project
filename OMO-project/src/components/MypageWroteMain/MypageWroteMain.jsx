@@ -4,7 +4,10 @@ import {communityWorryPost} from "../../const/communityWorryPost";
 import {communityQnAPost} from "../../const/communityQnAPost";
 import {MyWrotePost} from "./../MyWrotePost/MyWrotePost";
 
-const MypageWroteMain = ({postList}) => (
+const MypageWroteMain = ({postList}) => {
+
+  console.log("postList: ",postList);
+  return(
   <>
     <div className={styles["my-page-wrote-main-total-container"]}>
       {postList.map((el) => {
@@ -13,5 +16,5 @@ const MypageWroteMain = ({postList}) => (
     </div>
   </>
 );
-
+    }
 export default MypageWroteMain;

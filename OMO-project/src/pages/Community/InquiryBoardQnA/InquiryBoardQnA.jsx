@@ -51,7 +51,6 @@ const InquiryBoardQnA = () => {
 
   // CREATE
   const onCreate = (title, content, category) => {
-  const onCreate = (title, content, category) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -98,6 +97,6 @@ const InquiryBoardQnA = () => {
     </>
   );
 };
-}
+
 
 export default InquiryBoardQnA;

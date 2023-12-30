@@ -30,6 +30,8 @@ const MyWrote = () => {
   const [data, dispatch] = useReducer(reducer, []);
   const [selectedCategory, setSelectedCategory] = useState("all"); // 기본은 전체보기
 
+  console.log("selectedCategory: ",selectedCategory);
+
   useEffect(() => {
     const localWorryData = JSON.parse(localStorage.getItem("worryboard"));
     const localFreeData = JSON.parse(localStorage.getItem("freeboard"));
@@ -48,6 +50,7 @@ const MyWrote = () => {
 
   const dataId = useRef(0);
 
+
   return (
     <>
       <BoardStateContext.Provider value={data}>
@@ -62,7 +65,9 @@ const MyWrote = () => {
             <div className={styles["my-wrote-filter-main-container"]}>
               <MyPageFilter setSelectedCategory={setSelectedCategory} />
               <div className={styles["my-wrote-main-title-container"]}>
-                <MypageWroteMain postList={data.filter((item) => item.category === selectedCategory)} /> 
+                <MypageWroteMain  postList={data.filter((item) => item.category === selectedCategory)} /> 
+                {/* <MypageWroteMain postList={data} />  */}
+                
               </div>
             </div>
             <ScrollToTop />

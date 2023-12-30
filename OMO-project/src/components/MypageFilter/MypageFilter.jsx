@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./MypageFilter.module.css";
 
-const MypageFilter = ({setSelectedCategory}) => (
+const MypageFilter = ({setSelectedCategory}) => {
+
+return(
   <div className={styles["filter-container"]}>
     <button type="button" className={styles["filter-total"]} onClick={() => setSelectedCategory("all")}>
       전체
@@ -20,5 +22,6 @@ const MypageFilter = ({setSelectedCategory}) => (
     </button>
   </div>
 );
+}
 
 export default MypageFilter;
