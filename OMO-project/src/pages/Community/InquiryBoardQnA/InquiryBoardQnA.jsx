@@ -98,5 +98,6 @@ const InquiryBoardQnA = () => {
     </>
   );
 };
+}
 
 export default InquiryBoardQnA;
