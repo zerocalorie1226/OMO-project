@@ -31,12 +31,12 @@ const MyWrote = () => {
   const [selectedCategory, setSelectedCategory] = useState("all"); // 기본은 전체보기
 
   useEffect(() => {
-    const localWorryData = JSON.parse(localStorage.getItem("worryboard")); // 고민게시판
-    const localFreeData = JSON.parse(localStorage.getItem("freeboard")); // 자유게시판
-    const localQnaData = JSON.parse(localStorage.getItem("qnaboard")); // 문의게시판
-    const combineBoardList = [...localWorryData, ...localFreeData, ...localQnaData]; // 3개 합친거
+    const localWorryData = JSON.parse(localStorage.getItem("worryboard"));
+    const localFreeData = JSON.parse(localStorage.getItem("freeboard"));
+    const localQnaData = JSON.parse(localStorage.getItem("qnaboard"));
+    const combineBoardList = [...localWorryData, ...localFreeData, ...localQnaData];
 
-    if (localWorryData) {
+    if (combineBoardList ) {
       const newboardList = combineBoardList.sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
 
       if (combineBoardList.length >= 1) {
