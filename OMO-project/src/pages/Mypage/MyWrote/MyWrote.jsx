@@ -63,7 +63,7 @@ const MyWrote = () => {
             <Mypage />
 
             <div className={styles["my-wrote-filter-main-container"]}>
-              <MyPageFilter setSelectedCategory={setSelectedCategory} />
+              <MyPageFilter setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
               <div className={styles["my-wrote-main-title-container"]}>
                 <MypageWroteMain  postList={data.filter((item) => item.category === selectedCategory)} /> 
                 {/* <MypageWroteMain postList={data} />  */}

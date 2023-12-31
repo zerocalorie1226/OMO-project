@@ -1,23 +1,23 @@
 import React from "react";
 import styles from "./MypageFilter.module.css";
 
-const MypageFilter = ({setSelectedCategory}) => {
+const MypageFilter = ({setSelectedCategory, selectedCategory}) => {
 
 return(
   <div className={styles["filter-container"]}>
-    <button type="button" className={styles["filter-total"]} onClick={() => setSelectedCategory("all")}>
+    {/* <button type="button" className={styles["filter-total"]} onClick={() => setSelectedCategory("all")}>
       전체
-    </button>
-    <p className={styles["filter-bar"]}> | </p>
-    <button type="button" className={styles["filter-free"]} onClick={() => setSelectedCategory("free")}>
+    </button> */}
+    {/* <p className={styles["filter-bar"]}> | </p> */}
+    <button type="button"  className={`${styles["filter-free"]} ${selectedCategory==="free" ? styles["filter-free-active"] : ""}`} onClick={() => setSelectedCategory("free")}>
       자유게시판
     </button>
     <p className={styles["filter-bar"]}> | </p>
-    <button type="button" className={styles["filter-worry"]} onClick={() => setSelectedCategory("worry")}>
+    <button type="button"  className={`${styles["filter-worry"]} ${selectedCategory==="worry" ? styles["filter-worry-active"] : ""}`} onClick={() => setSelectedCategory("worry")}>
       고민게시판
     </button>
     <p className={styles["filter-bar"]}> | </p>
-    <button type="button" className={styles["filter-question"]} onClick={() => setSelectedCategory("qna")}>
+    <button type="button"  className={`${styles["filter-qna"]} ${selectedCategory==="qna" ? styles["filter-qna-active"] : ""}`} onClick={() => setSelectedCategory("qna")}>
       문의게시판
     </button>
   </div>

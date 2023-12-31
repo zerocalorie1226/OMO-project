@@ -24,10 +24,17 @@
 .filter-total,
 .filter-free,
 .filter-worry,
-.filter-question {
+.filter-qna {
   border: none;
   background-color: transparent;
   color: var(--gray);
   margin: 0;
   padding: 0;
+}
+
+.filter-free-active,
+.filter-worry-active,
+.filter-qna-active{
+  color: var(--secondary);
+  text-decoration: underline;
 }
