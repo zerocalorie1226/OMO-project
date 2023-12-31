@@ -5,10 +5,10 @@ const MypageFilter = ({setSelectedCategory, selectedCategory}) => {
 
 return(
   <div className={styles["filter-container"]}>
-    {/* <button type="button" className={styles["filter-total"]} onClick={() => setSelectedCategory("all")}>
+    {/* <button type="button"  className={`${styles["filter-total"]} ${selectedCategory==="all" ? styles["filter-total-active"] : ""}`} onClick={() => setSelectedCategory("all")}>
       전체
-    </button> */}
-    {/* <p className={styles["filter-bar"]}> | </p> */}
+    </button>
+    <p className={styles["filter-bar"]}> | </p> */}
     <button type="button"  className={`${styles["filter-free"]} ${selectedCategory==="free" ? styles["filter-free-active"] : ""}`} onClick={() => setSelectedCategory("free")}>
       자유게시판
     </button>

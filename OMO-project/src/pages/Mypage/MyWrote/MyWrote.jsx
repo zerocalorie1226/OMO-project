@@ -28,7 +28,7 @@ export const BoardDispatchContext = React.createContext();
 
 const MyWrote = () => {
   const [data, dispatch] = useReducer(reducer, []);
-  const [selectedCategory, setSelectedCategory] = useState("all"); // 기본은 전체보기
+  const [selectedCategory, setSelectedCategory] = useState("free"); // 기본은 전체보기
 
   console.log("selectedCategory: ",selectedCategory);
 

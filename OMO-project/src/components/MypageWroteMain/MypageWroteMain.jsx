@@ -1,7 +1,4 @@
 import styles from "./MypageWroteMain.module.css";
-import {communityFreePost} from "../../const/communityFreePost";
-import {communityWorryPost} from "../../const/communityWorryPost";
-import {communityQnAPost} from "../../const/communityQnAPost";
 import {MyWrotePost} from "./../MyWrotePost/MyWrotePost";
 
 const MypageWroteMain = ({postList}) => {
