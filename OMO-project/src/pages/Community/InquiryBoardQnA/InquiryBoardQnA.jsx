@@ -32,6 +32,7 @@ export const BoardDispatchContext = React.createContext();
 
 const InquiryBoardQnA = () => {
   const [data, dispatch] = useReducer(reducer, communityQnAPost);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const localData = localStorage.getItem("qnaboard");
@@ -63,9 +64,15 @@ const InquiryBoardQnA = () => {
     dataId.current += 1;
   };
 
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
+  const filteredData = data.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
   return (
     <>
-      <BoardStateContext.Provider value={data}>
+      <BoardStateContext.Provider value={filteredData}>
         <BoardDispatchContext.Provider
           value={{
             onCreate,
@@ -74,10 +81,10 @@ const InquiryBoardQnA = () => {
           <CommunityCategory />
           <div className={styles["inquiry-board-qna-filter-search-container"]}>
             <CommunityInquiryFilter />
-            <ListSearch />
+            <ListSearch onSearch={handleSearch} searchTerm={searchTerm} />
           </div>
           <hr className={styles["inquiry-board-qna-hr"]} />
-          <CommunityQnAPostList communityQnAPostList={data} />
+          <CommunityQnAPostList communityQnAPostList={filteredData} />
           <ScrollToTop />
           <div className={styles["writing-btn-container"]}>
             <button
