@@ -33,6 +33,7 @@ export const BoardDispatchContext = React.createContext();
 
 const FreeBoard = () => {
   const [data, dispatch] = useReducer(reducer, communityFreePost);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const localData = localStorage.getItem("freeboard");
@@ -64,9 +65,16 @@ const FreeBoard = () => {
     });
     dataId.current += 1;
   };
+
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
+  const filteredData = data.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
   return (
     <>
-      <BoardStateContext.Provider value={data}>
+      <BoardStateContext.Provider value={filteredData}>
         <BoardDispatchContext.Provider
           value={{
             onCreate,
@@ -82,12 +90,11 @@ const FreeBoard = () => {
             return <Filter key={el.id} {...el} />;
           })}
         </div> */}
-            <ListSearch />
+            <ListSearch onSearch={handleSearch} searchTerm={searchTerm} />
           </div>
 
           {/* 게시글 리스트 */}
-
-          <CommunityFreePostList communityFreePostList={data} />
+          <CommunityFreePostList communityFreePostList={filteredData} />
 
           {/* 스크롤 */}
           <ScrollToTop />
