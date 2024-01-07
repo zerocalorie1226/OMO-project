@@ -10,7 +10,7 @@ import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRece
 import MyCourseFindSearchModal from "../MyCourseFindSearchModal/MyCourseFindSearchModal";
 import {data} from "../../../const/data";
 
-const MyCourseFindBox = ({date, setDate }) => {
+const MyCourseFindBox = ({date, setDate}) => {
   const [interestModal, setInterestModal] = useState(false);
   const [recentModal, setRecentModal] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
@@ -31,7 +31,7 @@ const MyCourseFindBox = ({date, setDate }) => {
     <>
       {isFindBoxVisible && (
         <div className={styles["mycourse-find-box-total-container"]}>
-          <MyCourseCalendar date={date} setDate={setDate}/>
+          <MyCourseCalendar date={date} setDate={setDate} />
           <Delete onClick={handleDeleteClick} />
 
           {state ? (
@@ -55,7 +55,7 @@ const MyCourseFindBox = ({date, setDate }) => {
                   setRecentModal(true);
                 }}
               />
-              {recentModal ? <MyCourseFindRecentModal state={state} setState={setState} recentModal={recentModal} setRecentModal={setRecentModal} /> : null}
+              {recentModal ? <MyCourseFindRecentModal item={item} setItem={setItem} state={state} setState={setState} recentModal={recentModal} setRecentModal={setRecentModal} /> : null}
 
               <FindButton
                 text={"검색을 통해 찾기"}
@@ -63,7 +63,7 @@ const MyCourseFindBox = ({date, setDate }) => {
                   setSearchModal(true);
                 }}
               />
-              {searchModal ? <MyCourseFindSearchModal state={state} setState={setState} searchModal={searchModal} setSearchModal={setSearchModal} /> : null}
+              {searchModal ? <MyCourseFindSearchModal item={item} setItem={setItem} state={state} setState={setState} searchModal={searchModal} setSearchModal={setSearchModal} /> : null}
             </div>
           )}
 

@@ -4,38 +4,45 @@ import {data} from "./../../../const/data";
 import Magnifier from "./../../../assets/magnifier.png";
 import ModalClose from "./../../../assets/modal-close.png";
 
-const MyCourseFindSearchModal = ({searchModal, setSearchModal, state, setState}) => (
-  <>
-    <div className={styles["Overlay"]}>
-      <div className={styles["mycourse-find-search-modal-container"]}>
-        <label className={styles["mycourse-find-search-modal-title"]} htmlFor="find-search">
-          <div className={styles["mycourse-find-search-container"]}>
-            <div className={styles["mycourse-find-search-img-container"]}>
-              <a href="#">
-                <img src={Magnifier} alt="돋보기" />
-              </a>
+const MyCourseFindSearchModal = ({searchModal, setSearchModal, state, setState, item, setItem}) => {
+  const handleClickItem = (item) => {
+    setItem(item); // 받아온 id를 업데이트 해줌
+
+    console.log("모달창 id:", item);
+  };
+  return (
+    <>
+      <div className={styles["Overlay"]}>
+        <div className={styles["mycourse-find-search-modal-container"]}>
+          <label className={styles["mycourse-find-search-modal-title"]} htmlFor="find-search">
+            <div className={styles["mycourse-find-search-container"]}>
+              <div className={styles["mycourse-find-search-img-container"]}>
+                <a href="#">
+                  <img src={Magnifier} alt="돋보기" />
+                </a>
+              </div>
+              <button
+                className={styles["mycourse-find-search-close-btn"]}
+                type="button"
+                onClick={() => {
+                  setSearchModal(false);
+                }}
+              >
+                <img className={styles["mycourse-find-search-close-btn-img"]} src={ModalClose} alt="닫기 아이콘" />
+                {!searchModal ? setSearchModal(true) : null}
+              </button>
+              <input className={styles["mycourse-find-search-input-container"]} placeholder="검색어를 입력해 주세요." maxLength={20} />
             </div>
-            <button
-              className={styles["mycourse-find-search-close-btn"]}
-              type="button"
-              onClick={() => {
-                setSearchModal(false);
-              }}
-            >
-              <img className={styles["mycourse-find-search-close-btn-img"]} src={ModalClose} alt="닫기 아이콘" />
-              {!searchModal ? setSearchModal(true) : null}
-            </button>
-            <input className={styles["mycourse-find-search-input-container"]} placeholder="검색어를 입력해 주세요." maxLength={20} />
+          </label>
+          <div className={styles["mycourse-find-search-modal-list-box-container"]}>
+            {data.map((el) => {
+              return <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={handleClickItem} />;
+            })}
           </div>
-        </label>
-        <div className={styles["mycourse-find-search-modal-list-box-container"]}>
-          {data.map((el) => {
-            return <MyCourseItemListBox state={state} setState={setState} el={el} />;
-          })}
         </div>
       </div>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 export default MyCourseFindSearchModal;
