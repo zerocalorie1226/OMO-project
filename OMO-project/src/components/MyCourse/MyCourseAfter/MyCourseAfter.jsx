@@ -5,18 +5,18 @@ import MyCoursePlusBox from "../MyCoursePlusBox/MyCoursePlusBox";
 import Delete from "../Button/Delete/Delete";
 import React, {useState} from "react";
 
-const MyCourseAfter = () => {
+const MyCourseAfter = ({date, setDate }) => {
   const [myCourseFindBoxes, setMyCourseFindBoxes] = useState([]);
 
   const addMyCourseFindBox = () => {
-    setMyCourseFindBoxes([...myCourseFindBoxes, <MyCourseFindBox key={myCourseFindBoxes.length} />]);
+    setMyCourseFindBoxes([...myCourseFindBoxes, <MyCourseFindBox date={date} setDate={setDate} key={myCourseFindBoxes.length} />]);
   };
 
   return (
     <div className={styles["mycourse-after-total-container"]}>
       {myCourseFindBoxes}
 
-      <MyCoursePlusBox onPlusButtonClick={addMyCourseFindBox} />
+      <MyCoursePlusBox date={date} setDate={setDate} onPlusButtonClick={addMyCourseFindBox} />
     </div>
   );
 };
