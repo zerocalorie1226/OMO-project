@@ -60,7 +60,7 @@ const FreeBoard = () => {
         reg_at: new Date().getTime(),
         title,
         content,
-        category: "자유게시판",
+        category: "free",
       },
     });
     dataId.current += 1;

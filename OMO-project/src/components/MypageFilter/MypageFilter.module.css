@@ -6,7 +6,6 @@
   width: 100%;
   height: 100%;
   font-size: 20px;
-
 }
 
 .filter-container button:hover {
@@ -15,7 +14,7 @@
   cursor: pointer;
 }
 
-.filter-bar{
+.filter-bar {
   display: block;
   margin: 0 10px;
   color: var(--gray);
@@ -24,10 +23,15 @@
 .filter-total,
 .filter-free,
 .filter-worry,
-.filter-question {
+.filter-qna {
   border: none;
   background-color: transparent;
   color: var(--gray);
   margin: 0;
   padding: 0;
+}
+
+.filter-active {
+  color: var(--secondary);
+  text-decoration: underline;
 }

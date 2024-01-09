@@ -40,7 +40,7 @@ const MyCourseMyVersionEdit = () => {
       </div>
       <div className={styles["mycourse-write-course-container"]}>
         <MyCourseFindBox date={date} setDate={setDate} />
-        <MyCourseAfter />
+        <MyCourseAfter date={date} setDate={setDate}  />
       </div>
       <div className={styles["save-button-container"]}>
         <button type="button" className={styles["save-button"]} onClick={handleSubmit}>

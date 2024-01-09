@@ -53,6 +53,7 @@ border-radius: 50%;
     background: url(../../../assets/my-page/setting/profile-add.png) no-repeat;
     opacity: 0.6;
     text-indent: -9999px;
+    cursor: pointer;
 }
 
 .profile-setting-main-profile-change-add-img-icon:hover{
@@ -75,6 +76,7 @@ display: none;
   position: absolute;
   top:1px;
   right: 1px;
+  cursor: pointer;
 }
 
 

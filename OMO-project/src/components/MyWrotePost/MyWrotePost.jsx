@@ -1,13 +1,17 @@
 import styles from "./MyWrotePost.module.css";
-import Report from "../../assets/community/worry-board/report.png";
-import Like from "../../assets/detail/empty-thumb.png";
-import Comment from "../../assets/community/worry-board/comment.png";
-import Submit from "../../assets/submit.png";
-import ProfileImg from "../../assets/profile-img.jpg";
-import SubmitHover from "../../assets/submit-hover.png";
+// import Report from "../../assets/community/worry-board/report.png";
+// import Like from "../../assets/detail/empty-thumb.png";
+// import Comment from "../../assets/community/worry-board/comment.png";
+// import Submit from "../../assets/submit.png";
+// import ProfileImg from "../../assets/profile-img.jpg";
+// import SubmitHover from "../../assets/submit-hover.png";
 import React, {useState} from "react";
 
 export const MyWrotePost = (props) => {
+
+  console.log("props: ", props);
+
+
   const [expanded, setExpanded] = useState(false);
 
   const handleClick = () => {
@@ -28,17 +32,17 @@ export const MyWrotePost = (props) => {
 
             <div className={styles["my-wrote-post-category-date"]}>
               {/* 카테고리 */}
-              <span className={styles["my-wrote-post-category"]}>{props.category}</span>
+              {/* <span className={styles["my-wrote-post-category"]}>{props.category}</span> */}
               {/* 날짜 */}
               <span className={styles["my-wrote-post-date"]}>{new Date(props.reg_at).toLocaleString()}</span>
             </div>
           </div>
 
           {/* 프로필 이미지+닉네임 */}
-          <div className={styles["my-wrote-post-profile"]}>
+          {/* <div className={styles["my-wrote-post-profile"]}>
             <img className={styles["my-wrote-post-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
             <span className={styles["my-wrote-post-profile-nick"]}>이니</span>
-          </div>
+          </div> */}
 
           {/* 글 내용 */}
           <span className={styles["my-wrote-post-content"]}>{props.content}</span>
