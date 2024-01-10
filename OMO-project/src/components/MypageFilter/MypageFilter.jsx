@@ -8,12 +8,12 @@ const MypageFilter = ({setSelectedCategory, selectedCategory}) => {
         전체
       </button>
       <p className={styles["filter-bar"]}> | </p>
-      <button type="button" className={`${styles["filter-free"]} ${selectedCategory === "free" ? styles["filter-active"] : ""}`} onClick={() => setSelectedCategory("free")}>
-        자유게시판
-      </button>
-      <p className={styles["filter-bar"]}> | </p>
       <button type="button" className={`${styles["filter-worry"]} ${selectedCategory === "worry" ? styles["filter-active"] : ""}`} onClick={() => setSelectedCategory("worry")}>
         고민게시판
+      </button>
+      <p className={styles["filter-bar"]}> | </p>
+      <button type="button" className={`${styles["filter-free"]} ${selectedCategory === "free" ? styles["filter-active"] : ""}`} onClick={() => setSelectedCategory("free")}>
+        자유게시판
       </button>
       <p className={styles["filter-bar"]}> | </p>
       <button type="button" className={`${styles["filter-qna"]} ${selectedCategory === "qna" ? styles["filter-active"] : ""}`} onClick={() => setSelectedCategory("qna")}>
