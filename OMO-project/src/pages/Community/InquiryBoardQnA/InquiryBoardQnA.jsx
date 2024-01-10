@@ -31,7 +31,7 @@ export const BoardStateContext = React.createContext();
 export const BoardDispatchContext = React.createContext();
 
 const InquiryBoardQnA = () => {
-  const [data, dispatch] = useReducer(reducer, []);
+  const [data, dispatch] = useReducer(reducer, communityQnAPost);
 
   useEffect(() => {
     const localData = localStorage.getItem("qnaboard");
@@ -47,7 +47,7 @@ const InquiryBoardQnA = () => {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const dataId = useRef(0);
+  const dataId = useRef(4);
 
   // CREATE
   const onCreate = (title, content, category) => {
@@ -81,7 +81,7 @@ const InquiryBoardQnA = () => {
           {data.length === 0 ? (
             <div>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
           ) : (
-            <CommunityQnAPostList communityWorryPostList={data} />
+            <CommunityQnAPostList communityQnAPostList={data} />
           )}
           <ScrollToTop />
           <div className={styles["writing-btn-container"]}>

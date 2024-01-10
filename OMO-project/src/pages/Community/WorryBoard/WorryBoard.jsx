@@ -32,7 +32,7 @@ export const BoardStateContext = React.createContext();
 export const BoardDispatchContext = React.createContext();
 
 const WorryBoard = () => {
-  const [data, dispatch] = useReducer(reducer, []);
+  const [data, dispatch] = useReducer(reducer, communityWorryPost);
 
   useEffect(() => {
     const localData = localStorage.getItem("worryboard");
@@ -47,7 +47,7 @@ const WorryBoard = () => {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const dataId = useRef(0);
+  const dataId = useRef(4);
 
   // CREATE
   const onCreate = (title, content, category) => {
