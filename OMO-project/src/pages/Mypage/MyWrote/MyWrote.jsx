@@ -73,7 +73,7 @@ const MyWrote = () => {
               <MyPageFilter setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
               <div className={styles["my-wrote-main-title-container"]}>
                 {filteredData.length === 0 ? (
-                  <p>글 작성 내역이 없습니다. 커뮤니티 페이지 내 {getCategoryDisplayName()}게시판에 글을 작성해주세요.</p>
+                  <div className={styles["no-board-list"]} >글 작성 내역이 없습니다. 커뮤니티 페이지 내 {getCategoryDisplayName()}게시판에 글을 작성해주세요.</div>
                 ) : (
                   <MypageWroteMain postList={data.filter((item) => selectedCategory === "all" || item.category === selectedCategory)} />
                 )}
