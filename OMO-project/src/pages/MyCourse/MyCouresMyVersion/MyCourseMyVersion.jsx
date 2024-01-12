@@ -1,3 +1,5 @@
+// 상세페이지 (Diary)
+
 import styles from "./MyCouresMyVersion.module.css";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {data} from "../../../const/data";
@@ -6,43 +8,56 @@ import MyCourseCalendar from "./../../../components/MyCourse/MyCourseCalendar/My
 import Share from "../../../components/MyCourse/Button/Share/Share";
 import Edit from "../../../components/MyCourse/Button/Edit/Edit";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {useContext, useEffect, useState} from "react";
+import {MyCourseStateContext} from "../../../App";
 
 const MyCourseMyVersion = () => {
-
   const {id} = useParams();
+  const myCourseList = useContext(MyCourseStateContext);
+  const navigate = useNavigate();
+  const [data, setData] = useState();
+  const getStringDate = (date) => {
+    return date.toISOString().slice(0, 16);
+  };
 
+  useEffect(() => {
+    if (myCourseList.length >= 1) {
+      const targetMyCourse = myCourseList.find((it) => parseInt(it.id) === parseInt(id));
+      console.log(targetMyCourse);
 
+      if (targetMyCourse){
+        setData(targetMyCourse)
+      }else{
+        // alert("존재하지 않는 코스입니다.")
+        navigate("/MyCourseMain", {replace: true})
+      }
+    }
+  }, [id, myCourseList]);
 
-  const myCourseMyVersion1 = data.find((item) => item.id === 1);
-  const myCourseMyVersion2 = data.find((item) => item.id === 2);
-  const myCourseMyVersion8 = data.find((item) => item.id === 8);
-  return (
-    <div className={styles["mycourse-myversion-total-container"]}>
-      <div className={styles["mycourse-myversion-title-container"]}>
-        <span className={styles["mycourse-myversion-title"]}>킹부엉의 인천 맛집 탐방</span>
+  if(!data){
+    return <div>로딩중입니다...</div>
+  }else{
+    return (
+      <div className={styles["mycourse-myversion-total-container"]}>
+        <div className={styles["mycourse-myversion-title-container"]}>
+          <span className={styles["mycourse-myversion-title"]}>{data.title}</span>
+        </div>
+        <div className={styles["mycourse-myversion-calendar-container"]}>
+          {getStringDate(new Date(data.date))}
+        </div>
+        <div>{data.content}</div>
+        
+        <div className={styles["mycourse-myversion-edit-share-button-container"]}>
+          <Edit /> <Share />
+        </div>
+        <ScrollToTop />
       </div>
-      <div className={styles["mycourse-myversion-calendar-container"]}>
-        <MyCourseCalendar />
-      </div>
-      <MyCourseDataBox key={myCourseMyVersion1.id} {...myCourseMyVersion1} />
-      <img src={downArrow} alt="아래 화살표" className={styles["mycourse-find-box-down-arrow-img"]} />
-      <div className={styles["mycourse-myversion-calendar-container"]}>
-        <MyCourseCalendar />
-      </div>
-      <MyCourseDataBox key={myCourseMyVersion2.id} {...myCourseMyVersion2} />
-      <img src={downArrow} alt="아래 화살표" className={styles["mycourse-find-box-down-arrow-img"]} />
-      <div className={styles["mycourse-myversion-calendar-container"]}>
-        <MyCourseCalendar />
-      </div>
-      <MyCourseDataBox key={myCourseMyVersion8.id} {...myCourseMyVersion8} />
+    );
 
-      <div className={styles["mycourse-myversion-edit-share-button-container"]}>
-        <Edit /> <Share />
-      </div>
-      <ScrollToTop />
-    </div>
-  );
+  }
+
+  
 };
 
 export default MyCourseMyVersion;
