@@ -7,7 +7,7 @@ const MyCourseItem = ({id, title, date, content}) => {
   const navigate = useNavigate();
 
   const goDetail = () => {
-    navigate(`/MyCourseMyVersion/${id}/`);
+    navigate(`/MyCourseMyVersion/${id}`);
   };
   
   const goEdit = () => {

@@ -1,16 +1,16 @@
-// 작성페이지 안에 있는 편집페이지 (DiaryEditor)
+// 글쓰기(새로운코스) + 수정(기존코스) (DiaryEditor)
 
-import styles from "./MyCourseMyVersionEdit.module.css";
-import pencil from "../../../assets/my-course/write/gray-pencil.png";
-import MyCourseFindBox from "./../../../components/MyCourse/MyCourseFindBox/MyCourseFindBox";
-import MyCourseAfter from "../../../components/MyCourse/MyCourseAfter/MyCourseAfter";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {useContext, useEffect, useRef, useState} from "react";
-import {MyCourseDispatchContext} from "../../../App";
 import {useNavigate} from "react-router-dom";
-import MyCourseCalendar from "../../../components/MyCourse/MyCourseCalendar/MyCourseCalendar";
+import styles from "./MyCourseEditor.module.css";
+import {MyCourseDispatchContext} from "../../App";
+import pencil from "../../assets/my-course/write/gray-pencil.png";
+import MyCourseFindBox from './../MyCourse/MyCourseFindBox/MyCourseFindBox';
+import MyCourseAfter from './../MyCourse/MyCourseAfter/MyCourseAfter';
+import MyCourseCalendar from './../MyCourse/MyCourseCalendar/MyCourseCalendar';
+import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 
-const MyCourseMyVersionEdit = ({isEdit, originData}) => {
+const MyCourseEditor = ({isEdit, originData}) => {
 
 
   const getStringDate = (date) => {
@@ -83,4 +83,4 @@ useEffect(()=>{
   );
 };
 
-export default MyCourseMyVersionEdit;
+export default MyCourseEditor;

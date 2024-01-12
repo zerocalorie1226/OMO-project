@@ -3,7 +3,7 @@
 import {useContext, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {MyCourseStateContext} from "../../../App";
-import MyCourseMyVersionEdit from "../MyCourseMyVersionEdit/MyCourseMyVersionEdit";
+import MyCourseEditor from "../../../components/MyCourseEditor/MyCourseEditor";
 
 const MyCourseEdit = () => {
 
@@ -28,6 +28,6 @@ const MyCourseEdit = () => {
     }
   }, [id, myCourseList]);
 
-  return <div>{originData && <MyCourseMyVersionEdit isEdit={true} originData={originData}/>}</div>;
+  return <div>{originData && <MyCourseEditor isEdit={true} originData={originData}/>}</div>;
 };
 export default MyCourseEdit;

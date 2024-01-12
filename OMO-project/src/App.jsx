@@ -29,7 +29,6 @@ import InquiryBoardQnA from "./pages/community/InquiryBoardQnA/InquiryBoardQnA";
 import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
 import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
 import MyCourseMyVersion from "./pages/MyCourse/MyCouresMyVersion/MyCourseMyVersion";
-import MyCourseMyVersionEdit from "./pages/MyCourse/MyCourseMyVersionEdit/MyCourseMyVersionEdit";
 import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
 import Main from "./pages/main/Main";
 import MyCourseEdit from "./pages/MyCourse/MyCourseEdit/MyCourseEdit";
@@ -181,7 +180,6 @@ const App = () => {
               <Route path="/MyCourseWrite" element={<MyCourseWrite />} />
               <Route path="/MyCourseEdit/:id" element={<MyCourseEdit />} />
               <Route path="/MyCourseMyVersion/:id" element={<MyCourseMyVersion />} />
-              <Route path="/MyCourseMyVersionEdit/:id" element={<MyCourseMyVersionEdit />} />
               <Route path="/MyCourseOthersVersion" element={<MyCourseOthersVersion />} />
 
               {/* 커뮤니티 */}

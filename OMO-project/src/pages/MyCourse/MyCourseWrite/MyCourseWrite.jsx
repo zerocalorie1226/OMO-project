@@ -1,10 +1,10 @@
 //  작성페이지 (New)
 
-import MyCourseMyVersionEdit from "../MyCourseMyVersionEdit/MyCourseMyVersionEdit";
+import MyCourseEditor from "../../../components/MyCourseEditor/MyCourseEditor";
 
 const MyCourseWrite = () => {
   return (
-<MyCourseMyVersionEdit/>
+<MyCourseEditor/>
   );
 };
 export default MyCourseWrite;
