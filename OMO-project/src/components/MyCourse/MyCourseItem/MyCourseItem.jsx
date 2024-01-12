@@ -9,13 +9,20 @@ const MyCourseItem = ({id, title, date, content}) => {
   const goDetail = () => {
     navigate(`/MyCourseMyVersion/${id}/`);
   };
+  
+  const goEdit = () => {
+    navigate(`/MyCourseEdit/${id}`);
+  };
 
   const strDate = new Date(parseInt(date)).toLocaleDateString();
   return (
+    <>
     <div className={styles["mycourse-item-container"]} onClick={goDetail}>
       <div className={styles["mycourse-item-title"]}>{title}</div>
       <div className={styles["mycourse-item-date"]}>{strDate}</div>
     </div>
+      <button onClick={goEdit}>수정하기</button>
+      </>
   );
 };
 

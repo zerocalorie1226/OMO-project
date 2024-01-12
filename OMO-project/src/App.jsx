@@ -32,6 +32,7 @@ import MyCourseMyVersion from "./pages/MyCourse/MyCouresMyVersion/MyCourseMyVers
 import MyCourseMyVersionEdit from "./pages/MyCourse/MyCourseMyVersionEdit/MyCourseMyVersionEdit";
 import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
 import Main from "./pages/main/Main";
+import MyCourseEdit from "./pages/MyCourse/MyCourseEdit/MyCourseEdit";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -65,28 +66,33 @@ const dummyData = [
   {
     id: 1,
     title: "나만의 코스 1번",
-    date: 1702377038722,
+    date: 1705059575558,
+    content: "1번입니다",
   },
 
   {
     id: 2,
     title: "나만의 코스 2번",
-    date: 1702377038725,
+    date: 1705059575558,
+    content: "2번입니다",
   },
   {
     id: 3,
     title: "나만의 코스 3번",
-    date: 1702377038728,
+    date: 1705059575558,
+    content: "3번입니다",
   },
   {
     id: 4,
     title: "나만의 코스 4번",
-    date: 1702377038730,
+    date: 1705059575558,
+    content: "4번입니다",
   },
   {
     id: 5,
     title: "나만의 코스 5번",
-    date: 1702377038760,
+    date: 1705059575558,
+    content: "5번입니다",
   },
 ];
 
@@ -173,6 +179,7 @@ const App = () => {
               {/* 나만의 코스 */}
               <Route path="/MyCourseMain" element={<MyCourseMain />} />
               <Route path="/MyCourseWrite" element={<MyCourseWrite />} />
+              <Route path="/MyCourseEdit/:id" element={<MyCourseEdit />} />
               <Route path="/MyCourseMyVersion/:id" element={<MyCourseMyVersion />} />
               <Route path="/MyCourseMyVersionEdit/:id" element={<MyCourseMyVersionEdit />} />
               <Route path="/MyCourseOthersVersion" element={<MyCourseOthersVersion />} />
