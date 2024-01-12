@@ -39,14 +39,14 @@ const MyCourseDetail = () => {
     return <div>로딩중입니다...</div>;
   } else {
     return (
-      <div className={styles["mycourse-myversion-total-container"]}>
-        <div className={styles["mycourse-myversion-title-container"]}>
-          <span className={styles["mycourse-myversion-title"]}>{data.title}</span>
+      <div className={styles["mycourse-detail-total-container"]}>
+        <div className={styles["mycourse-detail-title-container"]}>
+          <span className={styles["mycourse-detail-title"]}>{data.title}</span>
         </div>
-        <div className={styles["mycourse-myversion-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
+        <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
         <div>{data.content}</div>
 
-        <div className={styles["mycourse-myversion-edit-share-button-container"]}>
+        <div className={styles["mycourse-detail-edit-share-button-container"]}>
           <Edit /> <Share />
         </div>
         <ScrollToTop />

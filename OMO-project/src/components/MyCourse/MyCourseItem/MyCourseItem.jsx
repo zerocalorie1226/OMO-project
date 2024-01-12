@@ -21,7 +21,6 @@ const MyCourseItem = ({id, title, date, content}) => {
       <div className={styles["mycourse-item-title"]}>{title}</div>
       <div className={styles["mycourse-item-date"]}>{strDate}</div>
     </div>
-      <button onClick={goEdit}>수정하기</button>
       </>
   );
 };

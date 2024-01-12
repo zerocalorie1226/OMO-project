@@ -1,21 +1,21 @@
-.mycourse-myversion-total-container {
+.mycourse-detail-total-container {
   width: 670px;
   margin: 0 auto;
   margin-top: 100px;
 }
 
-.mycourse-myversion-title-container {
+.mycourse-detail-title-container {
   width: 400px;
   margin: 50px auto 100px auto;
   text-align: center;
   position: relative;
 }
 
-.mycourse-myversion-title {
+.mycourse-detail-title {
   font-size: 32px;
 }
 
-.mycourse-myversion-input-title {
+.mycourse-detail-input-title {
   width: 370px;
   padding-bottom: 10px;
   font-size: 32px;
@@ -25,22 +25,22 @@
   text-align: center;
 }
 
-.mycourse-myversion-input-title::placeholder {
+.mycourse-detail-input-title::placeholder {
   text-align: center;
 }
 
-.mycourse-myversion-img-title {
+.mycourse-detail-img-title {
   position: absolute;
   right: 30px;
   top: 4px;
 }
 
-.mycourse-myversion-calendar-container {
+.mycourse-detail-calendar-container {
   position: relative;
   top: 225px;
 }
 
-.mycourse-myversion-edit-share-button-container {
+.mycourse-detail-edit-share-button-container {
   display: flex;
   justify-content: flex-end;
   font-size: 25px;

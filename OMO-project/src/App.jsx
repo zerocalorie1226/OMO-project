@@ -176,7 +176,7 @@ const App = () => {
 
               {/* 나만의 코스 */}
               <Route path="/MyCourseMain" element={<MyCourseMain />} />
-              <Route path="/MyCourseWrite" element={<MyCourseNewWrite />} />
+              <Route path="/MyCourseNewWrite" element={<MyCourseNewWrite />} />
               <Route path="/MyCourseEdit/:id" element={<MyCourseEdit />} />
               <Route path="/MyCourseDetail/:id" element={<MyCourseDetail />} />
               <Route path="/MyCourseOthersVersion" element={<MyCourseOthersVersion />} />

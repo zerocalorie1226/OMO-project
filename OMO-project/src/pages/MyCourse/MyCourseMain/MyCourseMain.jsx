@@ -48,7 +48,7 @@ const MyCourseMain = () => {
       </div>
 
       <ScrollToTop />
-      <Link to="/MyCourseWrite">
+      <Link to="/MyCourseNewWrite">
         <WritingButton />
       </Link>
     </div>
