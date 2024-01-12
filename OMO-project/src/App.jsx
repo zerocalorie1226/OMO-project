@@ -22,16 +22,16 @@ import Recommend from "./pages/Mypage/Recommend/Recommend";
 import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
 import MyCourseMain from "./pages/MyCourse/MyCourseMain/MyCourseMain";
 import Notice from "./pages/Notice/Notice";
-import MyCourseWrite from "./pages/MyCourse/MyCourseWrite/MyCourseWrite";
 import MyCourseBoard from "./pages/Community/MyCourseBoard/MyCourseBoard";
 import InquiryBoardFrequent from "./pages/Community/InquiryBoardFrequent/InquiryBoardFrequent";
 import InquiryBoardQnA from "./pages/community/InquiryBoardQnA/InquiryBoardQnA";
 import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
 import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
-import MyCourseMyVersion from "./pages/MyCourse/MyCouresMyVersion/MyCourseMyVersion";
 import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
 import Main from "./pages/main/Main";
 import MyCourseEdit from "./pages/MyCourse/MyCourseEdit/MyCourseEdit";
+import MyCourseNewWrite from "./pages/MyCourse/MyCourseNewWrite/MyCourseNewWrite";
+import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -56,7 +56,6 @@ const reducer = (state, action) => {
   }
   return newState;
 };
-
 
 export const MyCourseStateContext = React.createContext();
 export const MyCourseDispatchContext = React.createContext();
@@ -177,9 +176,9 @@ const App = () => {
 
               {/* 나만의 코스 */}
               <Route path="/MyCourseMain" element={<MyCourseMain />} />
-              <Route path="/MyCourseWrite" element={<MyCourseWrite />} />
+              <Route path="/MyCourseWrite" element={<MyCourseNewWrite />} />
               <Route path="/MyCourseEdit/:id" element={<MyCourseEdit />} />
-              <Route path="/MyCourseMyVersion/:id" element={<MyCourseMyVersion />} />
+              <Route path="/MyCourseDetail/:id" element={<MyCourseDetail />} />
               <Route path="/MyCourseOthersVersion" element={<MyCourseOthersVersion />} />
 
               {/* 커뮤니티 */}

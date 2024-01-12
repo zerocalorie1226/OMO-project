@@ -2,9 +2,9 @@
 
 import MyCourseEditor from "../../../components/MyCourseEditor/MyCourseEditor";
 
-const MyCourseWrite = () => {
+const MyCourseNewWrite = () => {
   return (
 <MyCourseEditor/>
   );
 };
-export default MyCourseWrite;
+export default MyCourseNewWrite;

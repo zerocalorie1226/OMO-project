@@ -7,7 +7,7 @@ const Save = () => {
   };
   return (
     <div className={styles["save-button-container"]}>
-      <Link to="/MyCourseMyVersion" onClick={saveClick}>
+      <Link to="/MyCourseDetail" onClick={saveClick}>
         <button type="button" className={styles["save-button"]}>
           저장
         </button>
