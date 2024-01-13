@@ -47,20 +47,20 @@ const MyCourseDetail = () => {
         </div>
         <div className={styles["mycourse-detail-course-container"]}>
           <div className={styles["mycourse-detail-course-item-container"]}>
+            <div className={styles["mycourse-detail-content"]}>{data.content}</div>
             <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
-            <div>{data.content}</div>
             <MyCourseDetailBox />
           </div>
           <img src={downArrow} alt="아래 화살표" className={styles["mycourse-detail-down-arrow-img"]}></img>
           <div className={styles["mycourse-detail-course-item-container"]}>
+            <div className={styles["mycourse-detail-content"]}>{data.content}</div>
             <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
-            <div>{data.content}</div>
             <MyCourseDetailBox />
           </div>
           <img src={downArrow} alt="아래 화살표" className={styles["mycourse-detail-down-arrow-img"]}></img>
           <div className={styles["mycourse-detail-course-item-container"]}>
+            <div className={styles["mycourse-detail-content"]}>{data.content}</div>
             <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
-            <div>{data.content}</div>
             <MyCourseDetailBox />
           </div>
         </div>
