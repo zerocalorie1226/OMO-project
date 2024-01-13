@@ -11,6 +11,7 @@ import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import {useNavigate, useParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {MyCourseStateContext} from "../../../App";
+import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";
 
 const MyCourseDetail = () => {
   const {id} = useParams();
@@ -18,7 +19,8 @@ const MyCourseDetail = () => {
   const navigate = useNavigate();
   const [data, setData] = useState();
   const getStringDate = (date) => {
-    return date.toISOString().slice(0, 16);
+    const options = {year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: false};
+    return new Intl.DateTimeFormat("ko-KR", options).format(date);
   };
 
   useEffect(() => {
@@ -41,11 +43,27 @@ const MyCourseDetail = () => {
     return (
       <div className={styles["mycourse-detail-total-container"]}>
         <div className={styles["mycourse-detail-title-container"]}>
-          <span className={styles["mycourse-detail-title"]}>{data.title}</span>
+          <span>{data.title}</span>
         </div>
-        <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
-        <div>{data.content}</div>
-
+        <div className={styles["mycourse-detail-course-container"]}>
+          <div className={styles["mycourse-detail-course-item-container"]}>
+            <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
+            <div>{data.content}</div>
+            <MyCourseDetailBox />
+          </div>
+          <img src={downArrow} alt="아래 화살표" className={styles["mycourse-detail-down-arrow-img"]}></img>
+          <div className={styles["mycourse-detail-course-item-container"]}>
+            <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
+            <div>{data.content}</div>
+            <MyCourseDetailBox />
+          </div>
+          <img src={downArrow} alt="아래 화살표" className={styles["mycourse-detail-down-arrow-img"]}></img>
+          <div className={styles["mycourse-detail-course-item-container"]}>
+            <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
+            <div>{data.content}</div>
+            <MyCourseDetailBox />
+          </div>
+        </div>
         <div className={styles["mycourse-detail-edit-share-button-container"]}>
           <Edit /> <Share />
         </div>

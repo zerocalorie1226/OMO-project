@@ -69,7 +69,7 @@ const MyCourseEditor = ({isEdit, originData}) => {
       </div>
 
       <div className={styles["mycourse-editor-course-container"]}>
-        {/* <textarea type="text" placeholder="내용입니다" ref={contentRef} value={content} onChange={(e) => setContent(e.target.value)} className={styles["mycourse-editor-content"]} /> */}
+        <textarea type="text" placeholder="내용입니다" ref={contentRef} value={content} onChange={(e) => setContent(e.target.value)} className={styles["mycourse-editor-content"]} />
         <MyCourseFindBox date={date} setDate={setDate} />
         <MyCourseAfter date={date} setDate={setDate} />
       </div>

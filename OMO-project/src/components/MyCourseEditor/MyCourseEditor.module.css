@@ -44,6 +44,7 @@
   text-align: left;
 }
 
+/*  연필이미지 */
 .mycourse-editor-pencil-img{
   position: absolute;
   right: 320px;
@@ -62,12 +63,7 @@
 }
 
 
-
-
-
-
-
-
+/* 저장 버튼 */
 
 .save-button-container {
   margin-bottom: 280px;
@@ -85,4 +81,10 @@
   color: white;
   background-color: var(--secondary);
   cursor: pointer;
+}
+
+
+/*  임시 content */
+.mycourse-editor-content{
+margin-left: 430px;
 }
