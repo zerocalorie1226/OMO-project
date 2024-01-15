@@ -1,5 +1,5 @@
+import React, {useState} from "react";
 import styles from "./MyCourseBoard.module.css";
-import {useState} from "react";
 import {communityPageFilter} from "./../../../const/communityPageFilter";
 import {communityMyCourse} from "../../../const/communityMyCourse";
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";

@@ -4,10 +4,8 @@ import CommunityInquiryBox from "../../../components/CommunityInquiryBox/Communi
 import CommunityInquiryFilter from "../../../components/CommunityInquiryFilter/CommunityInquiryFilter";
 import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import {communityInquiryFrequent} from "../../../const/communityInquiryFrequent";
 import styles from "./InquiryBoardFrequent.module.css";
-import {Link} from "react-router-dom";
 
 const InquiryBoardFrequent = () => {
 

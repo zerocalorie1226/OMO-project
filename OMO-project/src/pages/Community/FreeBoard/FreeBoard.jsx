@@ -64,9 +64,16 @@ const FreeBoard = () => {
     });
     dataId.current += 1;
   };
+
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
+  const filteredData = data.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
   return (
     <>
-      <BoardStateContext.Provider value={data}>
+      <BoardStateContext.Provider value={filteredData}>
         <BoardDispatchContext.Provider
           value={{
             onCreate,
@@ -82,7 +89,7 @@ const FreeBoard = () => {
             return <Filter key={el.id} {...el} />;
           })}
         </div> */}
-            <ListSearch />
+            <ListSearch onSearch={handleSearch} searchTerm={searchTerm} />
           </div>
 
           {/* 게시글 리스트 */}
