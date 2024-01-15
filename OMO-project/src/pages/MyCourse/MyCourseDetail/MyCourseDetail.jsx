@@ -1,4 +1,4 @@
-// 상세페이지 (Diary)
+// 상세페이지
 
 import styles from "./MyCourseDetail.module.css";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";

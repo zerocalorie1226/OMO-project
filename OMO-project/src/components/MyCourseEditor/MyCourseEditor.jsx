@@ -1,4 +1,4 @@
-// 글쓰기(새로운코스) + 수정(기존코스) (DiaryEditor)
+// 글쓰기(새로운코스) + 수정(기존코스) 
 
 import {useContext, useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";

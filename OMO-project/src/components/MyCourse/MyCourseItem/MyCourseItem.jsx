@@ -1,4 +1,4 @@
-// 나만의 코스 개별 아이템 (DiaryItem)
+// 나만의 코스 개별 아이템
 
 import styles from "./MyCourseItem.module.css";
 import {useNavigate} from "react-router-dom";
