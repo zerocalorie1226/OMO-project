@@ -33,7 +33,6 @@ export const BoardDispatchContext = React.createContext();
 
 const WorryBoard = () => {
   const [data, dispatch] = useReducer(reducer, communityWorryPost);
-  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const localData = localStorage.getItem("worryboard");
@@ -64,15 +63,12 @@ const WorryBoard = () => {
     dataId.current += 1;
   };
 
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-  };
 
-  const filteredData = data.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
 
   return (
     <>
-      <BoardStateContext.Provider value={filteredData}>
+      <BoardStateContext.Provider>
         <BoardDispatchContext.Provider
           value={{
             onCreate,
@@ -88,7 +84,7 @@ const WorryBoard = () => {
                 return <Filter key={el.id} {...el} />;
               })}
             </div> */}
-            <ListSearch onSearch={handleSearch} searchTerm={searchTerm} />
+            <ListSearch  />
           </div>
 
           {/* 게시글 리스트 */}
