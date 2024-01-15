@@ -17,16 +17,12 @@
   border-top: 1px solid var(--gray-50);
   display: flex;
   justify-content: center;
-
   margin: auto;
   gap: 50px;
 }
 
 .community-mbti-pick-container {
   margin-top: 100px;
-  /* position: relative; */
-  /* left: 75px; */
-  /* margin-left: 75px; */
 }
 
 .community-mbti-pick-title {
@@ -54,15 +50,10 @@
 }
 
 .community-mycourse-list-box {
-  /* background-color: antiquewhite; */
-  /* justify-content: center; */
-  /* display: flex; */
-  /* flex-direction: column; */
   position: relative;
   left: 26px;
   margin-right: 400px;
 }
-
 
 .writing-btn-container {
   position: fixed;
@@ -72,12 +63,34 @@
   z-index: 1000;
 }
 
-.writing-btn{
+.writing-btn {
   position: absolute;
   border: 0;
-  background:transparent;
+  background: transparent;
   position: absolute;
   top: 0;
   right: 0;
   cursor: pointer;
+}
+
+.list-no-search-result {
+  width: 1000px;
+  height: 300px;
+  border: 1px solid var(--gray-400);
+  border-radius: 10px;
+  font-size: 22px;
+  color: var(--gray-700);
+  display: flex;
+  justify-content: center;
+  padding-top: 120px;
+  margin: 0 auto;
+}
+
+.list-no-search-result-container {
+  border-top: 1px solid var(--gray-50);
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  gap: 50px;
+  padding-top: 40px;
 }

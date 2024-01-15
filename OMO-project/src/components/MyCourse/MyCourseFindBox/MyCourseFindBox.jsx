@@ -25,7 +25,11 @@ const MyCourseFindBox = ({date, setDate}) => {
 
   const [state, setState] = useState(false);
 
+
+//  선택한 item(id)와 같은 id를 data에서 찾아서 findItem에 넣어줌
   const findItem = data.find((el) => el.id === item);
+
+  console.log(findItem);
 
   return (
     <>

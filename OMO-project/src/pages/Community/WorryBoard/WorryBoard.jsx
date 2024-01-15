@@ -33,7 +33,6 @@ export const BoardDispatchContext = React.createContext();
 
 const WorryBoard = () => {
   const [data, dispatch] = useReducer(reducer, communityWorryPost);
-  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const localData = localStorage.getItem("worryboard");
@@ -47,7 +46,8 @@ const WorryBoard = () => {
   }, []);
 
   const [openModal, setOpenModal] = useState(false);
-  const dataId = useRef(0);
+
+  const dataId = useRef(4);
 
   const onCreate = (title, content, category) => {
     dispatch({
@@ -63,15 +63,12 @@ const WorryBoard = () => {
     dataId.current += 1;
   };
 
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-  };
 
-  const filteredData = data.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
 
   return (
     <>
-      <BoardStateContext.Provider value={filteredData}>
+      <BoardStateContext.Provider>
         <BoardDispatchContext.Provider
           value={{
             onCreate,
@@ -87,11 +84,15 @@ const WorryBoard = () => {
                 return <Filter key={el.id} {...el} />;
               })}
             </div> */}
-            <ListSearch onSearch={handleSearch} searchTerm={searchTerm} />
+            <ListSearch  />
           </div>
 
           {/* 게시글 리스트 */}
-          <CommunityWorryPostList communityWorryPostList={filteredData} />
+          {data.length === 0 ? (
+            <div>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
+          ) : (
+            <CommunityWorryPostList communityWorryPostList={data} />
+          )}
 
           {/* 스크롤 */}
           <ScrollToTop />

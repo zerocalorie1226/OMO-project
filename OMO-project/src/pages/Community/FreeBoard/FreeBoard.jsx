@@ -32,8 +32,7 @@ export const BoardStateContext = React.createContext();
 export const BoardDispatchContext = React.createContext();
 
 const FreeBoard = () => {
-  const [data, dispatch] = useReducer(reducer, communityFreePost);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [data, dispatch] = useReducer(reducer, [] );
 
   useEffect(() => {
     const localData = localStorage.getItem("freeboard");
@@ -49,7 +48,7 @@ const FreeBoard = () => {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const dataId = useRef(0);
+  const dataId = useRef(4);
 
   // CREATE
   const onCreate = (title, content, category) => {
@@ -66,15 +65,12 @@ const FreeBoard = () => {
     dataId.current += 1;
   };
 
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-  };
 
-  const filteredData = data.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
 
   return (
     <>
-      <BoardStateContext.Provider value={filteredData}>
+      <BoardStateContext.Provider>
         <BoardDispatchContext.Provider
           value={{
             onCreate,
@@ -90,11 +86,12 @@ const FreeBoard = () => {
             return <Filter key={el.id} {...el} />;
           })}
         </div> */}
-            <ListSearch onSearch={handleSearch} searchTerm={searchTerm} />
+            <ListSearch />
           </div>
 
           {/* 게시글 리스트 */}
-          <CommunityFreePostList communityFreePostList={filteredData} />
+
+          {data.length === 0 ? <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div> : <CommunityFreePostList communityFreePostList={data} />}
 
           {/* 스크롤 */}
           <ScrollToTop />

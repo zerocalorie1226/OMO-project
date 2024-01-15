@@ -28,28 +28,35 @@ export const BoardDispatchContext = React.createContext();
 
 const MyWrote = () => {
   const [data, dispatch] = useReducer(reducer, []);
-  const [selectedCategory, setSelectedCategory] = useState("free"); // 기본은 전체보기
+  const [selectedCategory, setSelectedCategory] = useState("all"); // 기본은 전체로 설정
 
-  console.log("selectedCategory: ",selectedCategory);
+  const filteredData = data.filter((item) => selectedCategory === "all" || item.category === selectedCategory);
+
+  console.log("selectedCategory: ", selectedCategory);
 
   useEffect(() => {
-    const localWorryData = JSON.parse(localStorage.getItem("worryboard"));
-    const localFreeData = JSON.parse(localStorage.getItem("freeboard"));
-    const localQnaData = JSON.parse(localStorage.getItem("qnaboard"));
-    const combineBoardList = [...localWorryData, ...localFreeData, ...localQnaData];
-
-    if (combineBoardList ) {
-      const newboardList = combineBoardList.sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
-
-      if (combineBoardList.length >= 1) {
-        dataId.current = parseInt(newboardList[0].id) + 1;
-        dispatch({type: "INIT", data: newboardList});
-      }
-    }
+    const localWorryData = JSON.parse(localStorage.getItem("worryboard")) || [];
+    const localFreeData = JSON.parse(localStorage.getItem("freeboard")) || [];
+    const localQnaData = JSON.parse(localStorage.getItem("qnaboard")) || [];
+    dispatch({type: "INIT", data: [...localWorryData, ...localFreeData, ...localQnaData]});
   }, []);
 
   const dataId = useRef(0);
 
+  const getCategoryDisplayName = () => {
+    switch (selectedCategory) {
+      case "all":
+        return "전체";
+      case "free":
+        return "자유";
+      case "worry":
+        return "고민";
+      case "qna":
+        return "문의게시판-QnA";
+      default:
+        return selectedCategory;
+    }
+  };
 
   return (
     <>
@@ -65,9 +72,11 @@ const MyWrote = () => {
             <div className={styles["my-wrote-filter-main-container"]}>
               <MyPageFilter setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
               <div className={styles["my-wrote-main-title-container"]}>
-                <MypageWroteMain  postList={data.filter((item) => item.category === selectedCategory)} /> 
-                {/* <MypageWroteMain postList={data} />  */}
-                
+                {filteredData.length === 0 ? (
+                  <div className={styles["no-board-list"]} >글 작성 내역이 없습니다. 커뮤니티 페이지 내 {getCategoryDisplayName()}게시판에 글을 작성해주세요.</div>
+                ) : (
+                  <MypageWroteMain postList={data.filter((item) => selectedCategory === "all" || item.category === selectedCategory)} />
+                )}
               </div>
             </div>
             <ScrollToTop />

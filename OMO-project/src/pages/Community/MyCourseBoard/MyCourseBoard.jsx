@@ -15,9 +15,9 @@ import WritingButtonImg from "../../../assets/writing-button.png";
 const MyCourseBoard = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredMyCourse = communityMyCourse.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredData = communityMyCourse.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
-  const handleSearch = (term) => {
+  const onSearch = (term) => {
     setSearchTerm(term);
   };
 
@@ -33,30 +33,37 @@ const MyCourseBoard = () => {
             return <Filter key={el.id} {...el} />;
           })}
         </div> */}
-        <ListSearch onSearch={handleSearch} searchTerm={searchTerm} />
+        <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
       </div>
 
       {/* 리스트 */}
-      <section className={styles["community-mycourse-container"]}>
-        {/* MBTI pick */}
-        <div className={styles["community-mbti-pick-container"]}>
-          <span className={styles["community-mbti-pick-title"]}>MBTI별 pick</span>
-          <ul className={styles["community-mbti-pick-box"]}>
-            {mbtiBox.map((e) => {
-              return <MbtiBox key={e.id} data={e} />;
+
+      {filteredData && filteredData.length > 0 ? (
+        <section className={styles["community-mycourse-container"]}>
+          {/* MBTI pick */}
+          <div className={styles["community-mbti-pick-container"]}>
+            <span className={styles["community-mbti-pick-title"]}>MBTI별 pick</span>
+            <ul className={styles["community-mbti-pick-box"]}>
+              {mbtiBox.map((e) => {
+                return <MbtiBox key={e.id} data={e} />;
+              })}
+            </ul>
+          </div>
+          <div className={styles["community-mycourse-list-box"]}>
+            {filteredData.map((el) => {
+              return <CommunityMyCourseList key={el.id} {...el} />;
             })}
-          </ul>
+          </div>
+        </section>
+      ) : (
+        <div className={styles["list-no-search-result-container"]}>
+          <span className={styles["list-no-search-result"]}>검색 결과가 없습니다.</span>
         </div>
-        <div className={styles["community-mycourse-list-box"]}>
-          {filteredMyCourse.map((el) => {
-            return <CommunityMyCourseList key={el.id} {...el} />;
-          })}
-        </div>
-      </section>
+      )}
 
       <ScrollToTop />
 
-      <Link to="/MyCourseWrite">
+      <Link to="/MyCourseNewWrite">
         <div className={styles["writing-btn-container"]}>
           <button type="button" className={styles["writing-btn"]}>
             <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}

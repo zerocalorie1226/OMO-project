@@ -8,9 +8,7 @@ import styles from "./MyWrotePost.module.css";
 import React, {useState} from "react";
 
 export const MyWrotePost = (props) => {
-
   console.log("props: ", props);
-
 
   const [expanded, setExpanded] = useState(false);
 
@@ -19,7 +17,19 @@ export const MyWrotePost = (props) => {
   };
   const containerClassName = expanded ? styles["my-wrote-post-container-expanded"] : styles["my-wrote-post-container"];
 
-  
+  const getCategoryDisplayName = () => {
+    switch (props.category) {
+      case "free":
+        return "자유게시판";
+      case "worry":
+        return "고민게시판";
+      case "qna":
+        return "문의게시판";
+      default:
+        return props.category;
+    }
+  };
+
   return (
     <>
       {/* 전체 영역 */}
@@ -32,7 +42,7 @@ export const MyWrotePost = (props) => {
 
             <div className={styles["my-wrote-post-category-date"]}>
               {/* 카테고리 */}
-              {/* <span className={styles["my-wrote-post-category"]}>{props.category}</span> */}
+              <span className={styles["my-wrote-post-category"]}>{getCategoryDisplayName()}</span>
               {/* 날짜 */}
               <span className={styles["my-wrote-post-date"]}>{new Date(props.reg_at).toLocaleString()}</span>
             </div>
@@ -49,8 +59,8 @@ export const MyWrotePost = (props) => {
         </div>
 
         {/* <div className={styles["my-wrote-post-button-wrapper"]}> */}
-          {/* 댓글달기 버튼 */}
-          {/* <button type="button" className={styles["my-wrote-post-comment-button"]}>
+        {/* 댓글달기 버튼 */}
+        {/* <button type="button" className={styles["my-wrote-post-comment-button"]}>
             <img className={styles["my-wrote-post-comment-button-img"]} src={Comment} style={{width: "25px", height: "25px"}} />
             댓글
           </button>

@@ -6,7 +6,7 @@ const Edit = () => {
   const navigate = useNavigate();
 
   const goEdit = () => {
-    navigate(`/MyCourseMyVersionEdit/${id}`);
+    navigate(`/MyCourseEdit/${id}`);
   };
 
   return (

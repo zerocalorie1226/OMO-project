@@ -9,7 +9,7 @@
 /* 플러스 박스 */
 .mycourse-plus-box-plus-box {
   display: block;
-  width: 950px;
+  width: 900px;
   height: 200px;
   background-color: transparent;
   position: relative;
@@ -19,5 +19,5 @@
 
 .mycourse-plus-box-plus-button {
   position: absolute;
-  transform: translate(-100%, -50%);
+  transform: translate(-55%, -50%);
 }

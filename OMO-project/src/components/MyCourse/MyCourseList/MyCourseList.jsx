@@ -1,4 +1,4 @@
-// 나만의 코스 List 페이지 (DiaryList)
+// 나만의 코스 List 페이지 
 
 import {useState} from "react";
 import styles from "./MyCourseList.module.css";

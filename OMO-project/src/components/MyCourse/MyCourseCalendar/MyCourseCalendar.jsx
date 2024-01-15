@@ -2,9 +2,6 @@ import { useState } from "react";
 import styles from "./MyCourseCalendar.module.css";
 
 
-const getStringDate= (date)=>{
-  return date.toISOString().slice(0,16);
-}
 
 
 
