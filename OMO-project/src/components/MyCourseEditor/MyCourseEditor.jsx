@@ -1,4 +1,4 @@
-// 글쓰기(새로운코스) + 수정(기존코스) 
+// 글쓰기(새로운코스) + 수정(기존코스)
 
 import {useContext, useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
@@ -70,8 +70,8 @@ const MyCourseEditor = ({isEdit, originData}) => {
 
       <div className={styles["mycourse-editor-course-container"]}>
         <textarea type="text" placeholder="내용입니다" ref={contentRef} value={content} onChange={(e) => setContent(e.target.value)} className={styles["mycourse-editor-content"]} />
-        <MyCourseFindBox date={date} setDate={setDate} />
-        <MyCourseAfter date={date} setDate={setDate} />
+        <MyCourseFindBox date={date} setDate={setDate} content={content} setContent={setContent} />
+        <MyCourseAfter date={date} setDate={setDate} content={content} setContent={setContent} />
       </div>
       <div className={styles["save-button-container"]}>
         <button type="button" className={styles["save-button"]} onClick={handleSubmit}>

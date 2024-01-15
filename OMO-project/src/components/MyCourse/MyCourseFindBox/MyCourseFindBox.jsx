@@ -10,7 +10,7 @@ import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRece
 import MyCourseFindSearchModal from "../MyCourseFindSearchModal/MyCourseFindSearchModal";
 import {data} from "../../../const/data";
 
-const MyCourseFindBox = ({date, setDate}) => {
+const MyCourseFindBox = ({date, setDate, content, setContent}) => {
   const [interestModal, setInterestModal] = useState(false);
   const [recentModal, setRecentModal] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
@@ -25,11 +25,15 @@ const MyCourseFindBox = ({date, setDate}) => {
 
   const [state, setState] = useState(false);
 
-
-//  선택한 item(id)와 같은 id를 data에서 찾아서 findItem에 넣어줌
+  //  선택한 item(id)와 같은 id를 data에서 찾아서 findItem에 넣어줌
   const findItem = data.find((el) => el.id === item);
 
-  console.log(findItem);
+  const changeSetContent = (findItem) => {
+    setContent(findItem);
+  };
+
+  // console.log(findItem);
+  console.log(content);
 
   return (
     <>
@@ -51,7 +55,17 @@ const MyCourseFindBox = ({date, setDate}) => {
                   setInterestModal(true);
                 }}
               />
-              {interestModal ? <MyCourseFindInterestModal item={item} setItem={setItem} state={state} setState={setState} interestModal={interestModal} setInterestModal={setInterestModal} /> : null}
+              {interestModal ? (
+                <MyCourseFindInterestModal
+                  item={item}
+                  setItem={setItem}
+                  state={state}
+                  setState={setState}
+                  interestModal={interestModal}
+                  setInterestModal={setInterestModal}
+                  changeSetContent={changeSetContent}
+                />
+              ) : null}
 
               <FindButton
                 text={"최근 본 목록에서 찾기"}
