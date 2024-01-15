@@ -2,7 +2,7 @@ import styles from "./MyCourseItemListBox.module.css";
 import Like from "../../../assets/detail/purple-thumb.png";
 import Jjim from "../../../assets/detail/red-heart.png";
 
-export const MyCourseItemListBox = ({state, setState, el, onClick}) => {
+export const MyCourseItemListBox = ({state, setState, el, onClick, changeSetContent}) => {
   return (
     <>
       <div
@@ -11,7 +11,8 @@ export const MyCourseItemListBox = ({state, setState, el, onClick}) => {
           // console.log(state);
           setState(!state);
           onClick(el.id, el.title);
-          console.log("개별박스 id:", el.id);
+          console.log("개별박스 id:", el);
+          changeSetContent(el);
         }}
       >
         <span className={styles["mycourse-list-box-title"]}>{el.title}</span>
@@ -21,7 +22,7 @@ export const MyCourseItemListBox = ({state, setState, el, onClick}) => {
             <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "0px"}} /> <span className={styles["mycourse-list-box-jjim-number"]}> {el.jjim}</span>
           </div>
           <div className={styles["mycourse-list-box-like"]}>
-            <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}}  /> <span className={styles["mycourse-list-box-like-number"]}> {el.like}</span>
+            <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} /> <span className={styles["mycourse-list-box-like-number"]}> {el.like}</span>
           </div>
         </div>
 
