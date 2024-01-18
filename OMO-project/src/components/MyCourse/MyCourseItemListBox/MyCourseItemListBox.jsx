@@ -12,7 +12,10 @@ export const MyCourseItemListBox = ({state, setState, el, onClick, changeSetCont
           setState(!state);
           onClick(el.id, el.title);
           console.log("MyCourseItemListBox에서 개별박스 el:", el);
-          changeSetContent(el);
+          // changeSetContent(el);
+          changeSetContent([el, /* 다른 el 추가 */]);
+   
+
         }}
       >
         <span className={styles["mycourse-list-box-title"]}>{el.title}</span>

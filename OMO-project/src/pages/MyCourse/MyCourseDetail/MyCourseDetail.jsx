@@ -7,7 +7,7 @@ import MyCourseDataBox from "../../../components/MyCourse/MyCourseDataBox/MyCour
 import MyCourseCalendar from "../../../components/MyCourse/MyCourseCalendar/MyCourseCalendar";
 import Share from "../../../components/MyCourse/Button/Share/Share";
 import Edit from "../../../components/MyCourse/Button/Edit/Edit";
-import downArrow from "../../../assets/my-course/write/down-arrow.png";
+// import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import {useNavigate, useParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {MyCourseStateContext} from "../../../App";
@@ -26,7 +26,7 @@ const MyCourseDetail = () => {
   useEffect(() => {
     if (myCourseList.length >= 1) {
       const targetMyCourse = myCourseList.find((it) => parseInt(it.id) === parseInt(id));
-      console.log(targetMyCourse);
+      // console.log(targetMyCourse);
 
       if (targetMyCourse) {
         setData(targetMyCourse);
@@ -40,7 +40,10 @@ const MyCourseDetail = () => {
     return <div>로딩중입니다...</div>;
   } else {
     // content가 객체인 경우 문자열로 변환
-    const contentText = typeof data.content === "object" ? JSON.stringify(data.content) : data.content;
+    // const contentText = typeof data.content === "object" ? JSON.stringify(data.content) : data.content;
+
+console.log("content들어왔니?: ", data.content);
+const newContent3 = data.content
 
     return (
       <div className={styles["mycourse-detail-total-container"]}>
@@ -51,8 +54,13 @@ const MyCourseDetail = () => {
           <div className={styles["mycourse-detail-course-item-container"]}>
             {/* contentText를 사용하여 내용을 렌더링 */}
             {/* <div className={styles["mycourse-detail-content"]}>{contentText}</div> */}
-            <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
-            <MyCourseDetailBox findItem={contentText} />
+            {/* <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div> */}
+            
+            {newContent3.map((el) => (
+                <MyCourseDetailBox  key={el.id} {...el} />
+                
+              ))}
+
           </div>
         </div>
         <div className={styles["mycourse-detail-edit-share-button-container"]}>

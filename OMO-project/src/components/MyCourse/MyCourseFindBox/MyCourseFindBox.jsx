@@ -28,8 +28,12 @@ const MyCourseFindBox = ({date, setDate, content, setContent}) => {
   //  선택한 item(id)와 같은 id를 data에서 찾아서 findItem에 넣어줌
   const findItem = data.find((el) => el.id === item);
 
-  const changeSetContent = (findItem) => {
-    setContent(findItem);
+  const changeSetContent = (arrayEl) => {
+    const exArray = [];
+    const newContent = exArray.concat(content);
+    const newContent2 = newContent.concat(arrayEl);
+    console.log(newContent2);
+    setContent(newContent2);
   };
 
   // console.log(findItem);
