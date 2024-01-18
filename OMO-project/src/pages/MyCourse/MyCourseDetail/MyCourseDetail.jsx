@@ -36,10 +36,12 @@ const MyCourseDetail = () => {
       }
     }
   }, [id, myCourseList]);
-
   if (!data) {
     return <div>로딩중입니다...</div>;
   } else {
+    // content가 객체인 경우 문자열로 변환
+    const contentText = typeof data.content === "object" ? JSON.stringify(data.content) : data.content;
+
     return (
       <div className={styles["mycourse-detail-total-container"]}>
         <div className={styles["mycourse-detail-title-container"]}>
@@ -47,21 +49,10 @@ const MyCourseDetail = () => {
         </div>
         <div className={styles["mycourse-detail-course-container"]}>
           <div className={styles["mycourse-detail-course-item-container"]}>
-            <div className={styles["mycourse-detail-content"]}>{data.content}</div>
+            {/* contentText를 사용하여 내용을 렌더링 */}
+            {/* <div className={styles["mycourse-detail-content"]}>{contentText}</div> */}
             <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
-            <MyCourseDetailBox />
-          </div>
-          <img src={downArrow} alt="아래 화살표" className={styles["mycourse-detail-down-arrow-img"]}></img>
-          <div className={styles["mycourse-detail-course-item-container"]}>
-            <div className={styles["mycourse-detail-content"]}>{data.content}</div>
-            <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
-            <MyCourseDetailBox />
-          </div>
-          <img src={downArrow} alt="아래 화살표" className={styles["mycourse-detail-down-arrow-img"]}></img>
-          <div className={styles["mycourse-detail-course-item-container"]}>
-            <div className={styles["mycourse-detail-content"]}>{data.content}</div>
-            <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
-            <MyCourseDetailBox />
+            <MyCourseDetailBox findItem={contentText} />
           </div>
         </div>
         <div className={styles["mycourse-detail-edit-share-button-container"]}>

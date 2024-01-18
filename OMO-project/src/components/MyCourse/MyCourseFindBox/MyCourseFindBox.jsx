@@ -33,7 +33,7 @@ const MyCourseFindBox = ({date, setDate, content, setContent}) => {
   };
 
   // console.log(findItem);
-  console.log(content);
+  console.log("MyCourseFindBox에서 content: ", content);
 
   return (
     <>

@@ -11,7 +11,7 @@ export const MyCourseItemListBox = ({state, setState, el, onClick, changeSetCont
           // console.log(state);
           setState(!state);
           onClick(el.id, el.title);
-          console.log("개별박스 id:", el);
+          console.log("MyCourseItemListBox에서 개별박스 el:", el);
           changeSetContent(el);
         }}
       >
