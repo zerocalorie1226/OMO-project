@@ -31,7 +31,6 @@ export const MyCourseDetailBox = (el) => {
           <img className={styles["mycourse-data-box-box-img3"]} src={el.src3} />
         </div>
       </div>
-      <img src={downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />
     </div>
   );
 };
