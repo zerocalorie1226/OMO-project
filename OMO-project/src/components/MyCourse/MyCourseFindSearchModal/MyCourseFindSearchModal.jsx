@@ -5,7 +5,7 @@ import Magnifier from "./../../../assets/magnifier.png";
 import ModalClose from "./../../../assets/modal-close.png";
 import { useState } from "react";
 
-const MyCourseFindSearchModal = ({searchModal, setSearchModal, state, setState, item, setItem}) => {
+const MyCourseFindSearchModal = ({searchModal, setSearchModal, state, setState, item, setItem, changeSetContent}) => {
   
   const [searchTerm, setSearchTerm] = useState(""); // 검색창 상태 관리
 
@@ -58,7 +58,7 @@ const MyCourseFindSearchModal = ({searchModal, setSearchModal, state, setState, 
           </label>
           <div className={styles["mycourse-find-search-modal-list-box-container"]}>
             {filteredData.map((el) => {
-              return <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={handleClickItem} />;
+              return <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={handleClickItem}  changeSetContent={changeSetContent}  />;
             })}
           </div>
         </div>
