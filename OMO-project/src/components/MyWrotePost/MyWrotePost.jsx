@@ -8,7 +8,6 @@ import styles from "./MyWrotePost.module.css";
 import React, {useState} from "react";
 
 export const MyWrotePost = (props) => {
-  console.log("props: ", props);
 
   const [expanded, setExpanded] = useState(false);
 

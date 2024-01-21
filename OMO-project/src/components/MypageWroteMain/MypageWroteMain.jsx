@@ -3,7 +3,6 @@ import {MyWrotePost} from "./../MyWrotePost/MyWrotePost";
 
 const MypageWroteMain = ({postList}) => {
 
-  console.log("postList: ",postList);
   return(
   <>
     <div className={styles["my-page-wrote-main-total-container"]}>
