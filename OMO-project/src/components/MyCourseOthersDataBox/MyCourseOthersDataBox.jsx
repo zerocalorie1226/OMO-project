@@ -2,8 +2,8 @@ import styles from "./MyCourseOthersDataBox.module.css";
 import Like from "../../assets/detail/purple-thumb.png";
 import Jjim from "../../assets/detail/red-heart.png";
 
+
 export const MyCourseOthersDataBox = (data) => {
-  console.log("데이터: ", data);
   return (
     <div className={styles["mycourse-data-box-total-container"]}>
       <div href="#" className={styles["mycourse-data-box-box-container"]}>
@@ -29,7 +29,6 @@ export const MyCourseOthersDataBox = (data) => {
           <img className={styles["mycourse-data-box-box-img3"]} src={data.src3} />
         </div>
       </div>
-      <img src={data.downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />
     </div>
   );
 };
