@@ -3,7 +3,7 @@ import {MyCourseItemListBox} from "../MyCourseItemListBox/MyCourseItemListBox";
 import {data} from "./../../../const/data";
 import ModalClose from "./../../../assets/modal-close.png";
 
-const MyCourseFindRecentModal = ({recentModal, setRecentModal, state, setState, item, setItem}) => {
+const MyCourseFindRecentModal = ({recentModal, setRecentModal, state, setState, item, setItem, changeSetContent}) => {
   const handleClickItem = (item) => {
     setItem(item); // 받아온 id를 업데이트 해줌
 
@@ -29,7 +29,7 @@ const MyCourseFindRecentModal = ({recentModal, setRecentModal, state, setState, 
           </label>
           <div className={styles["mycourse-find-recent-modal-list-box-container"]}>
             {data.map((el) => {
-              return <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={handleClickItem} />;
+              return <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={handleClickItem}  changeSetContent={changeSetContent}  />;
             })}
           </div>
         </div>

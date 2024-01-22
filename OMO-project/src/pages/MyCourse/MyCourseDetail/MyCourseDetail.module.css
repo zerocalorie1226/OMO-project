@@ -24,7 +24,7 @@
   margin: 0 auto;
   border-radius: 20px;
   border: 2px solid var(--gray-200);
-  padding-top: 110px;
+  padding-top: 55px;
   padding-bottom: 90px;
   display: flex;
   flex-direction: column;
@@ -67,13 +67,10 @@ text-align: center;
   margin-top: 100px;
 }
 
-
-/* 임시 content */
-.mycourse-detail-content{
-  position:absolute;
-  left: 400px;
-  font-size: 30px;
-  background-color: aqua;
-  border: 1px solid black;
-  padding: 10px;
+.mycourse-data-box-down-arrow-img {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 114px;
+  display: block;
 }

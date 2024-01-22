@@ -60,42 +60,9 @@ const reducer = (state, action) => {
 export const MyCourseStateContext = React.createContext();
 export const MyCourseDispatchContext = React.createContext();
 
-const dummyData = [
-  {
-    id: 1,
-    title: "나만의 코스 1번",
-    date: 1705059575558,
-    content: "1번입니다",
-  },
-
-  {
-    id: 2,
-    title: "나만의 코스 2번",
-    date: 1705059575558,
-    content: "2번입니다",
-  },
-  {
-    id: 3,
-    title: "나만의 코스 3번",
-    date: 1705059575558,
-    content: "3번입니다",
-  },
-  {
-    id: 4,
-    title: "나만의 코스 4번",
-    date: 1705059575558,
-    content: "4번입니다",
-  },
-  {
-    id: 5,
-    title: "나만의 코스 5번",
-    date: 1705059575558,
-    content: "5번입니다",
-  },
-];
 
 const App = () => {
-  const [data, dispatch] = useReducer(reducer, dummyData);
+  const [data, dispatch] = useReducer(reducer, []);
 
   const dataId = useRef(0);
 
@@ -179,7 +146,7 @@ const App = () => {
               <Route path="/MyCourseNewWrite" element={<MyCourseNewWrite />} />
               <Route path="/MyCourseEdit/:id" element={<MyCourseEdit />} />
               <Route path="/MyCourseDetail/:id" element={<MyCourseDetail />} />
-              <Route path="/MyCourseOthersVersion" element={<MyCourseOthersVersion />} />
+              <Route path="/MyCourseOthersVersion/:id" element={<MyCourseOthersVersion />} />
 
               {/* 커뮤니티 */}
               <Route path="/MyCourseBoard" element={<MyCourseBoard />} />

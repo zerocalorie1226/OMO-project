@@ -38,15 +38,29 @@ const MyCourseMain = () => {
       <h2 className={styles["mycourse-title"]}> 나만의 코스 </h2>
 
       <div className={styles["mycourse-header-container"]}>
-        <button className={styles["mycourse-header-left-button"]} onClick={decreaseMonth}>&lt;</button>
+        <button className={styles["mycourse-header-left-button"]} onClick={decreaseMonth}>
+          &lt;
+        </button>
         <div className={styles["mycourse-header-date"]}>{headText}</div>
-        <button className={styles["mycourse-header-right-button"]} onClick={increaseMonth}>&gt;</button>
+        <button className={styles["mycourse-header-right-button"]} onClick={increaseMonth}>
+          &gt;
+        </button>
       </div>
 
       <div className={styles["mycourse-list-container"]}>
-      <MyCourseList myCourseList={data} />
-      </div>
 
+      {/* 날짜 데이터를 Date 객체로 변환하고 필터링하여 현재 선택된 월에 해당하는 데이터가 없을 때에만 메시지를 표시 */}
+        {data.length > 0 ? (
+          <MyCourseList myCourseList={data} />
+        ) : (
+          <div>
+            {myCourseList.filter((it) => { // myCourseList 배열의 각 요소에 대해 filter 함수를 사용하여 특정 조건을 만족하는 요소만 남김 (it은 배열의 각 요소를 나타냄)
+              const courseDate = new Date(it.date); // it.date가 Date 객체가 아니라면 이를 Date 객체로 가정함
+              return courseDate.getMonth() === curDate.getMonth() && courseDate.getFullYear() === curDate.getFullYear(); // 현재 선택된 월과 년도와 일치하는지를 확인
+            }).length === 0 && <div>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요</div>}
+          </div> // filter 함수를 통해 남은 요소가 없을 때 (즉, 현재 선택된 월에 해당하는 데이터가 없을 때), length는 0이 되며, 이때만 메시지를 표시 (&& 연산자를 사용하여 앞의 조건이 참일 때만 메시지를 표시)
+        )}
+      </div>
       <ScrollToTop />
       <Link to="/MyCourseNewWrite">
         <WritingButton />

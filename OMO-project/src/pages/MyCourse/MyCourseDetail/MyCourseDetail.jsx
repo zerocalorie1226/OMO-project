@@ -7,11 +7,12 @@ import MyCourseDataBox from "../../../components/MyCourse/MyCourseDataBox/MyCour
 import MyCourseCalendar from "../../../components/MyCourse/MyCourseCalendar/MyCourseCalendar";
 import Share from "../../../components/MyCourse/Button/Share/Share";
 import Edit from "../../../components/MyCourse/Button/Edit/Edit";
-import downArrow from "../../../assets/my-course/write/down-arrow.png";
+// import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import {useNavigate, useParams} from "react-router-dom";
-import {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {MyCourseStateContext} from "../../../App";
 import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";
+import downArrow from "../../../assets/my-course/write/down-arrow.png";
 
 const MyCourseDetail = () => {
   const {id} = useParams();
@@ -26,7 +27,7 @@ const MyCourseDetail = () => {
   useEffect(() => {
     if (myCourseList.length >= 1) {
       const targetMyCourse = myCourseList.find((it) => parseInt(it.id) === parseInt(id));
-      console.log(targetMyCourse);
+      // console.log(targetMyCourse);
 
       if (targetMyCourse) {
         setData(targetMyCourse);
@@ -36,10 +37,15 @@ const MyCourseDetail = () => {
       }
     }
   }, [id, myCourseList]);
-
   if (!data) {
     return <div>로딩중입니다...</div>;
   } else {
+    // content가 객체인 경우 문자열로 변환
+    // const contentText = typeof data.content === "object" ? JSON.stringify(data.content) : data.content;
+
+    console.log("content들어왔니?: ", data.content);
+    const newContent3 = data.content;
+
     return (
       <div className={styles["mycourse-detail-total-container"]}>
         <div className={styles["mycourse-detail-title-container"]}>
@@ -47,21 +53,14 @@ const MyCourseDetail = () => {
         </div>
         <div className={styles["mycourse-detail-course-container"]}>
           <div className={styles["mycourse-detail-course-item-container"]}>
-            <div className={styles["mycourse-detail-content"]}>{data.content}</div>
-            <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
-            <MyCourseDetailBox />
-          </div>
-          <img src={downArrow} alt="아래 화살표" className={styles["mycourse-detail-down-arrow-img"]}></img>
-          <div className={styles["mycourse-detail-course-item-container"]}>
-            <div className={styles["mycourse-detail-content"]}>{data.content}</div>
-            <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
-            <MyCourseDetailBox />
-          </div>
-          <img src={downArrow} alt="아래 화살표" className={styles["mycourse-detail-down-arrow-img"]}></img>
-          <div className={styles["mycourse-detail-course-item-container"]}>
-            <div className={styles["mycourse-detail-content"]}>{data.content}</div>
-            <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
-            <MyCourseDetailBox />
+            {/* <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div> */}
+            {newContent3.map((el, index) => (
+              <React.Fragment key={index}>
+                <MyCourseDetailBox {...el} />
+                {index !== newContent3.length - 1 && <img src={downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />}
+              {/* 현재 요소가 배열의 맨 마지막 요소가 아닌 경우에만 화살표 이미지를 렌더링한다 */}
+              </React.Fragment>
+            ))}
           </div>
         </div>
         <div className={styles["mycourse-detail-edit-share-button-container"]}>

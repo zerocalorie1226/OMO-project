@@ -28,12 +28,19 @@ const MyCourseFindBox = ({date, setDate, content, setContent}) => {
   //  선택한 item(id)와 같은 id를 data에서 찾아서 findItem에 넣어줌
   const findItem = data.find((el) => el.id === item);
 
-  const changeSetContent = (findItem) => {
-    setContent(findItem);
+  const changeSetContent = (arrayEl) => {
+    const newContent = content.length === 0 ? [arrayEl] : [...content, arrayEl];
+    //  기존 배열에 새로운 요소를 추가하기 전에 배열의 길이를 확인하고, 길이가 0이라면 0으로 시작하도록 처리
+
+    const flattenedContent = newContent.flat(); // 이 부분을 추가해서 중첩 배열을 평탄화합니다. (객체가 바로 들어감)
+
+    console.log(flattenedContent); // 평탄화된 배열
+
+    setContent(flattenedContent); // 업데이트
   };
 
   // console.log(findItem);
-  console.log(content);
+  console.log("MyCourseFindBox에서 content: ", content);
 
   return (
     <>
@@ -73,7 +80,17 @@ const MyCourseFindBox = ({date, setDate, content, setContent}) => {
                   setRecentModal(true);
                 }}
               />
-              {recentModal ? <MyCourseFindRecentModal item={item} setItem={setItem} state={state} setState={setState} recentModal={recentModal} setRecentModal={setRecentModal} /> : null}
+              {recentModal ? (
+                <MyCourseFindRecentModal
+                  item={item}
+                  setItem={setItem}
+                  state={state}
+                  setState={setState}
+                  recentModal={recentModal}
+                  setRecentModal={setRecentModal}
+                  changeSetContent={changeSetContent}
+                />
+              ) : null}
 
               <FindButton
                 text={"검색을 통해 찾기"}
@@ -81,7 +98,17 @@ const MyCourseFindBox = ({date, setDate, content, setContent}) => {
                   setSearchModal(true);
                 }}
               />
-              {searchModal ? <MyCourseFindSearchModal item={item} setItem={setItem} state={state} setState={setState} searchModal={searchModal} setSearchModal={setSearchModal} /> : null}
+              {searchModal ? (
+                <MyCourseFindSearchModal
+                  item={item}
+                  setItem={setItem}
+                  state={state}
+                  setState={setState}
+                  searchModal={searchModal}
+                  setSearchModal={setSearchModal}
+                  changeSetContent={changeSetContent}
+                />
+              ) : null}
             </div>
           )}
 

@@ -20,9 +20,9 @@ const MyCourseEditor = ({isEdit, originData}) => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(getStringDate(new Date()));
   const [content, setContent] = useState("");
-  console.log("날짜:", date);
-  console.log("제목", title);
-  console.log("내용:", content);
+  console.log("MyCourseEditor에서 날짜:", date);
+  console.log("MyCourseEditor에서 제목", title);
+  console.log("MyCourseEditor에서 내용:", content);
 
   const navigate = useNavigate();
 
@@ -69,7 +69,6 @@ const MyCourseEditor = ({isEdit, originData}) => {
       </div>
 
       <div className={styles["mycourse-editor-course-container"]}>
-        <textarea type="text" placeholder="내용입니다" ref={contentRef} value={content} onChange={(e) => setContent(e.target.value)} className={styles["mycourse-editor-content"]} />
         <MyCourseFindBox date={date} setDate={setDate} content={content} setContent={setContent} />
         <MyCourseAfter date={date} setDate={setDate} content={content} setContent={setContent} />
       </div>

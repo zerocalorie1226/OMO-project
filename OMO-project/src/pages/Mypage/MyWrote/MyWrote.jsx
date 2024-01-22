@@ -32,7 +32,6 @@ const MyWrote = () => {
 
   const filteredData = data.filter((item) => selectedCategory === "all" || item.category === selectedCategory);
 
-  console.log("selectedCategory: ", selectedCategory);
 
   useEffect(() => {
     const localWorryData = JSON.parse(localStorage.getItem("worryboard")) || [];
