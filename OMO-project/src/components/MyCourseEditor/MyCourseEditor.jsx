@@ -21,8 +21,8 @@ const MyCourseEditor = ({isEdit, originData}) => {
   const [date, setDate] = useState(getStringDate(new Date()));
   const [content, setContent] = useState("");
   console.log("MyCourseEditor에서 날짜:", date);
-  console.log("MyCourseEditor에서 제목", title);
-  console.log("MyCourseEditor에서 내용:", content);
+  // console.log("MyCourseEditor에서 제목", title);
+  // console.log("MyCourseEditor에서 내용:", content);
 
   const navigate = useNavigate();
 

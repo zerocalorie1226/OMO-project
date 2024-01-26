@@ -27,7 +27,7 @@ const MyCourseFindSearchModal = ({searchModal, setSearchModal, state, setState, 
   const handleClickItem = (item) => {
     setItem(item); // 받아온 id를 업데이트 해줌
 
-    console.log("모달창 id:", item);
+    // console.log("모달창 id:", item);
 
 
 

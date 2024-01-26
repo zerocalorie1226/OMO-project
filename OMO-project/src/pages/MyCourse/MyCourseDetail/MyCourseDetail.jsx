@@ -11,7 +11,7 @@ import Edit from "../../../components/MyCourse/Button/Edit/Edit";
 import {useNavigate, useParams} from "react-router-dom";
 import React, {useContext, useEffect, useState} from "react";
 import {MyCourseStateContext} from "../../../App";
-import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";
+import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";``
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 
 const MyCourseDetail = () => {
@@ -43,7 +43,7 @@ const MyCourseDetail = () => {
     // content가 객체인 경우 문자열로 변환
     // const contentText = typeof data.content === "object" ? JSON.stringify(data.content) : data.content;
 
-    console.log("content들어왔니?: ", data.content);
+    // console.log("content들어왔니?: ", data.content);
     const newContent3 = data.content;
 
     return (
@@ -53,7 +53,7 @@ const MyCourseDetail = () => {
         </div>
         <div className={styles["mycourse-detail-course-container"]}>
           <div className={styles["mycourse-detail-course-item-container"]}>
-            {/* <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div> */}
+            <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
             {newContent3.map((el, index) => (
               <React.Fragment key={index}>
                 <MyCourseDetailBox {...el} />
