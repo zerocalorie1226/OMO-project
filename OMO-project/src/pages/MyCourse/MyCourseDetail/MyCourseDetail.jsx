@@ -38,7 +38,7 @@ const MyCourseDetail = () => {
     }
   }, [id, myCourseList]);
   if (!data) {
-    return <div>로딩중입니다...</div>;
+    return <div className={styles["loading"]}>로딩중입니다...</div>;
   } else {
     // content가 객체인 경우 문자열로 변환
     // const contentText = typeof data.content === "object" ? JSON.stringify(data.content) : data.content;
