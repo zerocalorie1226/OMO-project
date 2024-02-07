@@ -44,6 +44,7 @@ const MyCourseDetail = () => {
     // const contentText = typeof data.content === "object" ? JSON.stringify(data.content) : data.content;
 
     // console.log("content들어왔니?: ", data.content);
+    console.log("디테일 data: ", data);
     const newContent3 = data.content;
 
     return (
@@ -53,7 +54,8 @@ const MyCourseDetail = () => {
         </div>
         <div className={styles["mycourse-detail-course-container"]}>
           <div className={styles["mycourse-detail-course-item-container"]}>
-            <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.date))}</div>
+            {/* <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.dates))}</div> */}
+            <div className={styles["mycourse-detail-calendar-container"]}>{data.dates}</div>
             {newContent3.map((el, index) => (
               <React.Fragment key={index}>
                 <MyCourseDetailBox {...el} />

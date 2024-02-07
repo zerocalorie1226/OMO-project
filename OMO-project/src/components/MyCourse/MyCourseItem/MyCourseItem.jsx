@@ -3,7 +3,7 @@
 import styles from "./MyCourseItem.module.css";
 import {useNavigate} from "react-router-dom";
 
-const MyCourseItem = ({id, title, date, content}) => {
+const MyCourseItem = ({id, title, dates, content}) => {
   const navigate = useNavigate();
 
   const goDetail = () => {
@@ -14,12 +14,13 @@ const MyCourseItem = ({id, title, date, content}) => {
     navigate(`/MyCourseEdit/${id}`);
   };
 
-  const strDate = new Date(parseInt(date)).toLocaleDateString();
+
+  // const strDate = new Date(parseInt(dates)).toLocaleDateString();
   return (
     <>
     <div className={styles["mycourse-item-container"]} onClick={goDetail}>
       <div className={styles["mycourse-item-title"]}>{title}</div>
-      <div className={styles["mycourse-item-date"]}>{strDate}</div>
+      {/* <div className={styles["mycourse-item-date"]}>{dates}</div> */}
     </div>
       </>
   );

@@ -73,7 +73,7 @@ const App = () => {
       data: {
         id: dataId.current,
         title,
-        dates: new Date(dates).getTime(),
+        dates,
         content,
       },
     });
