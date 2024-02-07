@@ -47,23 +47,34 @@ const MyCourseDetail = () => {
     console.log("디테일 data: ", data);
     const newContent3 = data.content;
 
+    const formatDate = (dateString) => {
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      };
+      return new Date(dateString).toLocaleString("ko-KR", options);
+    };
+
     return (
       <div className={styles["mycourse-detail-total-container"]}>
         <div className={styles["mycourse-detail-title-container"]}>
           <span>{data.title}</span>
         </div>
         <div className={styles["mycourse-detail-course-container"]}>
-          <div className={styles["mycourse-detail-course-item-container"]}>
-            {/* <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(new Date(data.dates))}</div> */}
-            <div className={styles["mycourse-detail-calendar-container"]}>{data.dates}</div>
-            {newContent3.map((el, index) => (
-              <React.Fragment key={index}>
-                <MyCourseDetailBox {...el} />
-                {index !== newContent3.length - 1 && <img src={downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />}
-              {/* 현재 요소가 배열의 맨 마지막 요소가 아닌 경우에만 화살표 이미지를 렌더링한다 */}
-              </React.Fragment>
-            ))}
-          </div>
+        <div className={styles["mycourse-detail-course-item-container"]}>
+          {/* content와 dates를 함께 순회하여 각 쌍의 요소를 렌더링 */}
+          {data.content.map((contentItem, index) => (
+            <React.Fragment key={index}>
+              {/* 날짜를 원하는 형식으로 형식화하여 렌더링 */}
+              <div className={styles["mycourse-detail-calendar-container"]}>{formatDate(data.dates[index])}</div>
+              <MyCourseDetailBox {...contentItem} />
+              {index !== data.content.length - 1 && <img src={downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />}
+            </React.Fragment>
+          ))}
+        </div>
         </div>
         <div className={styles["mycourse-detail-edit-share-button-container"]}>
           <Edit /> <Share />
