@@ -11,16 +11,16 @@ import MyCourseCalendar from "./../MyCourse/MyCourseCalendar/MyCourseCalendar";
 import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 
 const MyCourseEditor = ({isEdit, originData}) => {
-  const getStringDate = (date) => {
-    return date.toISOString().slice(0, 16);
+  const getStringDate = (dates) => {
+    return dates.toISOString().slice(0, 16);
   };
   const {onCreate, onEdit} = useContext(MyCourseDispatchContext);
   const titleRef = useRef();
   const contentRef = useRef();
   const [title, setTitle] = useState("");
-  const [date, setDate] = useState(getStringDate(new Date()));
+  const [dates, setDates] = useState([getStringDate(new Date())]);
   const [content, setContent] = useState("");
-  console.log("MyCourseEditor에서 날짜:", date);
+  console.log("MyCourseEditor에서 날짜:", dates);
   // console.log("MyCourseEditor에서 제목", title);
   // console.log("MyCourseEditor에서 내용:", content);
 
@@ -35,9 +35,9 @@ const MyCourseEditor = ({isEdit, originData}) => {
 
     if (window.confirm(isEdit ? "코스를 수정하시겠습니까?" : "새로운 코스를 작성하시겠습니까?")) {
       if (!isEdit) {
-        onCreate(date, title, content);
+        onCreate(dates, title, content);
       } else {
-        onEdit(originData.id, date, title, content);
+        onEdit(originData.id, dates, title, content);
       }
     }
 
@@ -46,7 +46,7 @@ const MyCourseEditor = ({isEdit, originData}) => {
 
   useEffect(() => {
     if (isEdit) {
-      setDate(getStringDate(new Date(parseInt(originData.date))));
+      setDates(getStringDate(new Date(parseInt(originData.dates))));
       setTitle(originData.title);
       setContent(originData.content);
     }
@@ -69,8 +69,8 @@ const MyCourseEditor = ({isEdit, originData}) => {
       </div>
 
       <div className={styles["mycourse-editor-course-container"]}>
-        <MyCourseFindBox date={date} setDate={setDate} content={content} setContent={setContent} />
-        <MyCourseAfter date={date} setDate={setDate} content={content} setContent={setContent} />
+        <MyCourseFindBox dates={dates} setDates={setDates} content={content} setContent={setContent} idx={0} />
+        <MyCourseAfter dates={dates} setDates={setDates} content={content} setContent={setContent} />
       </div>
       <div className={styles["save-button-container"]}>
         <button type="button" className={styles["save-button"]} onClick={handleSubmit}>

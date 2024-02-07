@@ -3,7 +3,7 @@ import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import PlusButton from "../../../assets/my-course/write/plus.png";
 import MyCourseFindBox from "../MyCourseFindBox/MyCourseFindBox";
 
-const MyCoursePlusBox = ({onPlusButtonClick, date, setDate, content, setContent}) => (
+const MyCoursePlusBox = ({onPlusButtonClick}) => (
   <div className={styles["mycourse-plus-box-arrow-total-container"]}>
     <div className={styles["mycourse-plus-box-total-container"]}>
       <button

@@ -67,13 +67,13 @@ const App = () => {
   const dataId = useRef(0);
 
   //CREATE
-  const onCreate = (date, title, content) => {
+  const onCreate = (dates, title, content) => {
     dispatch({
       type: "CREATE",
       data: {
         id: dataId.current,
         title,
-        date: new Date(date).getTime(),
+        dates: new Date(dates).getTime(),
         content,
       },
     });
@@ -86,17 +86,18 @@ const App = () => {
   };
 
   //EDIT
-  const onEdit = (targetId, date, title, content) => {
+  const onEdit = (targetId, dates, title, content) => {
     dispatch({
       type: "EDIT",
       data: {
         id: targetId,
         title,
-        date: new Date(date).getTime(),
+        dates: new Date(dates).getTime(),
         content,
       },
     });
   };
+
 
   return (
     <MyCourseStateContext.Provider value={data}>

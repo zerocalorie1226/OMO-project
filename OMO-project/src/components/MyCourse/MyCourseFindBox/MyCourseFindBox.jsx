@@ -10,7 +10,7 @@ import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRece
 import MyCourseFindSearchModal from "../MyCourseFindSearchModal/MyCourseFindSearchModal";
 import {data} from "../../../const/data";
 
-const MyCourseFindBox = ({date, setDate, content, setContent}) => {
+const MyCourseFindBox = ({dates, setDates, content, setContent, idx}) => {
   const [interestModal, setInterestModal] = useState(false);
   const [recentModal, setRecentModal] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
@@ -34,7 +34,7 @@ const MyCourseFindBox = ({date, setDate, content, setContent}) => {
 
     const flattenedContent = newContent.flat(); // 이 부분을 추가해서 중첩 배열을 평탄화합니다. (객체가 바로 들어감)
 
-    console.log(flattenedContent); // 평탄화된 배열
+    // console.log(flattenedContent); // 평탄화된 배열
 
     setContent(flattenedContent); // 업데이트
   };
@@ -46,7 +46,7 @@ const MyCourseFindBox = ({date, setDate, content, setContent}) => {
     <>
       {isFindBoxVisible && (
         <div className={styles["mycourse-find-box-total-container"]}>
-          <MyCourseCalendar date={date} setDate={setDate} />
+          <MyCourseCalendar dates={dates} setDates={setDates} idx={idx}/>
           <Delete onClick={handleDeleteClick} />
 
           {state ? (
