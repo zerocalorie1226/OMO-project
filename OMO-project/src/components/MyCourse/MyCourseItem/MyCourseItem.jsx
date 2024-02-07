@@ -3,19 +3,13 @@
 import styles from "./MyCourseItem.module.css";
 import {useNavigate} from "react-router-dom";
 
-const MyCourseItem = ({id, title, dates, content}) => {
+const MyCourseItem = ({id, title, dates}) => {
   const navigate = useNavigate();
 
   const goDetail = () => {
     navigate(`/MyCourseDetail/${id}`);
   };
   
-  const goEdit = () => {
-    navigate(`/MyCourseEdit/${id}`);
-  };
-
-
-  // const strDate = new Date(parseInt(dates)).toLocaleDateString();
   return (
     <>
     <div className={styles["mycourse-item-container"]} onClick={goDetail}>

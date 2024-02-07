@@ -29,7 +29,6 @@ import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
 import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
 import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
 import Main from "./pages/main/Main";
-import MyCourseEdit from "./pages/MyCourse/MyCourseEdit/MyCourseEdit";
 import MyCourseNewWrite from "./pages/MyCourse/MyCourseNewWrite/MyCourseNewWrite";
 import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
 
@@ -41,14 +40,6 @@ const reducer = (state, action) => {
     }
     case "CREATE": {
       newState = [action.data, ...state];
-      break;
-    }
-    case "REMOVE": {
-      newState = state.filter((it) => it.id !== action.targetId);
-      break;
-    }
-    case "EDIT": {
-      newState = state.map((it) => (it.id === action.data.id ? {...action.data} : it));
       break;
     }
     default:
@@ -80,32 +71,11 @@ const App = () => {
     dataId.current += 1;
   };
 
-  //REMOVE
-  const onRemove = (targetId) => {
-    dispatch({type: "REMOVE", targetId});
-  };
-
-  //EDIT
-  const onEdit = (targetId, dates, title, content) => {
-    dispatch({
-      type: "EDIT",
-      data: {
-        id: targetId,
-        title,
-        dates: new Date(dates).getTime(),
-        content,
-      },
-    });
-  };
-
-
   return (
     <MyCourseStateContext.Provider value={data}>
       <MyCourseDispatchContext.Provider
         value={{
           onCreate,
-          onEdit,
-          onRemove,
         }}
       >
         <BrowserRouter>
@@ -145,7 +115,6 @@ const App = () => {
               {/* 나만의 코스 */}
               <Route path="/MyCourseMain" element={<MyCourseMain />} />
               <Route path="/MyCourseNewWrite" element={<MyCourseNewWrite />} />
-              <Route path="/MyCourseEdit/:id" element={<MyCourseEdit />} />
               <Route path="/MyCourseDetail/:id" element={<MyCourseDetail />} />
               <Route path="/MyCourseOthersVersion/:id" element={<MyCourseOthersVersion />} />
 

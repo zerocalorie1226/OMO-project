@@ -1,28 +1,26 @@
 // 글쓰기(새로운코스) + 수정(기존코스)
 
-import {useContext, useEffect, useRef, useState} from "react";
+import {useContext, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import styles from "./MyCourseEditor.module.css";
 import {MyCourseDispatchContext} from "../../App";
 import pencil from "../../assets/my-course/write/gray-pencil.png";
 import MyCourseFindBox from "./../MyCourse/MyCourseFindBox/MyCourseFindBox";
 import MyCourseAfter from "./../MyCourse/MyCourseAfter/MyCourseAfter";
-import MyCourseCalendar from "./../MyCourse/MyCourseCalendar/MyCourseCalendar";
 import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 
-const MyCourseEditor = ({isEdit, originData}) => {
+const MyCourseEditor = () => {
   const getStringDate = (dates) => {
     return dates.toISOString().slice(0, 16);
   };
-  const {onCreate, onEdit} = useContext(MyCourseDispatchContext);
+  const {onCreate} = useContext(MyCourseDispatchContext);
   const titleRef = useRef();
-  const contentRef = useRef();
   const [title, setTitle] = useState("");
   const [dates, setDates] = useState([getStringDate(new Date())]);
   const [content, setContent] = useState("");
-  console.log("MyCourseEditor에서 날짜:", dates);
+  // console.log("MyCourseEditor에서 날짜:", dates);
   // console.log("MyCourseEditor에서 제목", title);
-  console.log("MyCourseEditor에서 내용:", content);
+  // console.log("MyCourseEditor에서 내용:", content);
 
   const navigate = useNavigate();
 
@@ -33,28 +31,17 @@ const MyCourseEditor = ({isEdit, originData}) => {
       return;
     }
 
-    if (window.confirm(isEdit ? "코스를 수정하시겠습니까?" : "새로운 코스를 작성하시겠습니까?")) {
-      if (!isEdit) {
+    if (window.confirm("새로운 코스를 작성하시겠습니까?")) {
         onCreate(dates, title, content);
-      } else {
-        onEdit(originData.id, dates, title, content);
-      }
     }
 
     navigate("/MyCourseMain", {replace: true});
   };
 
-  useEffect(() => {
-    if (isEdit) {
-      setDates(getStringDate(new Date(parseInt(originData.dates))));
-      setTitle(originData.title);
-      setContent(originData.content);
-    }
-  }, [isEdit, originData]);
 
   return (
     <div className={styles["mycourse-editor-total-container"]}>
-      <div className={styles["mycourse-editor-subject-container"]}> {isEdit ? "수정하기" : "새로운 코스 만들기"}</div>
+      <div className={styles["mycourse-editor-subject-container"]}>새로운 코스 만들기</div>
       <div className={styles["mycourse-editor-title-container"]}>
         <input
           type="text"
