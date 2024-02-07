@@ -2,16 +2,11 @@
 
 import styles from "./MyCourseDetail.module.css";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {data} from "../../../const/data";
-import MyCourseDataBox from "../../../components/MyCourse/MyCourseDataBox/MyCourseDataBox";
-import MyCourseCalendar from "../../../components/MyCourse/MyCourseCalendar/MyCourseCalendar";
 import Share from "../../../components/MyCourse/Button/Share/Share";
-import Edit from "../../../components/MyCourse/Button/Edit/Edit";
-// import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import {useNavigate, useParams} from "react-router-dom";
 import React, {useContext, useEffect, useState} from "react";
 import {MyCourseStateContext} from "../../../App";
-import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";``
+import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 
 const MyCourseDetail = () => {
@@ -27,7 +22,6 @@ const MyCourseDetail = () => {
   useEffect(() => {
     if (myCourseList.length >= 1) {
       const targetMyCourse = myCourseList.find((it) => parseInt(it.id) === parseInt(id));
-      // console.log(targetMyCourse);
 
       if (targetMyCourse) {
         setData(targetMyCourse);
@@ -40,12 +34,7 @@ const MyCourseDetail = () => {
   if (!data) {
     return <div className={styles["loading"]}>로딩중입니다...</div>;
   } else {
-    // content가 객체인 경우 문자열로 변환
-    // const contentText = typeof data.content === "object" ? JSON.stringify(data.content) : data.content;
-
-    // console.log("content들어왔니?: ", data.content);
     console.log("디테일 data: ", data);
-    const newContent3 = data.content;
 
     const formatDate = (dateString) => {
       const options = {
@@ -64,20 +53,19 @@ const MyCourseDetail = () => {
           <span>{data.title}</span>
         </div>
         <div className={styles["mycourse-detail-course-container"]}>
-        <div className={styles["mycourse-detail-course-item-container"]}>
-          {/* content와 dates를 함께 순회하여 각 쌍의 요소를 렌더링 */}
-          {data.content.map((contentItem, index) => (
-            <React.Fragment key={index}>
-              {/* 날짜를 원하는 형식으로 형식화하여 렌더링 */}
-              <div className={styles["mycourse-detail-calendar-container"]}>{formatDate(data.dates[index])}</div>
-              <MyCourseDetailBox {...contentItem} />
-              {index !== data.content.length - 1 && <img src={downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />}
-            </React.Fragment>
-          ))}
-        </div>
+          <div className={styles["mycourse-detail-course-item-container"]}>
+            {/* content와 dates를 함께 순회하여 각 쌍의 요소를 렌더링 */}
+            {data.content.map((contentItem, index) => (
+              <React.Fragment key={index}>
+                <div className={styles["mycourse-detail-calendar-container"]}>{formatDate(data.dates[index])}</div>
+                <MyCourseDetailBox {...contentItem} />
+                {index !== data.content.length - 1 && <img src={downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />}
+              </React.Fragment>
+            ))}
+          </div>
         </div>
         <div className={styles["mycourse-detail-edit-share-button-container"]}>
-          <Edit /> <Share />
+          <Share />
         </div>
         <ScrollToTop />
       </div>
