@@ -3,7 +3,7 @@
 import styles from "./MyCourseItem.module.css";
 import {useNavigate} from "react-router-dom";
 
-const MyCourseItem = ({id, title, dates}) => {
+const MyCourseItem = ({id, title, regat}) => {
   const navigate = useNavigate();
 
   const goDetail = () => {
@@ -14,7 +14,7 @@ const MyCourseItem = ({id, title, dates}) => {
     <>
     <div className={styles["mycourse-item-container"]} onClick={goDetail}>
       <div className={styles["mycourse-item-title"]}>{title}</div>
-      {/* <div className={styles["mycourse-item-date"]}>{dates}</div> */}
+      <div className={styles["mycourse-item-date"]}>{regat}</div>
     </div>
       </>
   );

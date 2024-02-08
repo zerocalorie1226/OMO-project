@@ -51,7 +51,7 @@ const MyCourseBoard = () => {
           </div>
           <div className={styles["community-mycourse-list-box"]}>
             {filteredData.map((el) => {
-              return <CommunityMyCourseList key={el.id} {...el} />;
+              return <CommunityMyCourseList key={el.id} {...el}  />;
             })}
           </div>
         </section>

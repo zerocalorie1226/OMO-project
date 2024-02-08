@@ -31,6 +31,7 @@ import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCour
 import Main from "./pages/main/Main";
 import MyCourseNewWrite from "./pages/MyCourse/MyCourseNewWrite/MyCourseNewWrite";
 import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
+import { useEffect } from "react";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -45,6 +46,7 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+  localStorage.setItem("mycourseboard", JSON.stringify(newState));
   return newState;
 };
 
@@ -55,10 +57,22 @@ export const MyCourseDispatchContext = React.createContext();
 const App = () => {
   const [data, dispatch] = useReducer(reducer, []);
 
+  useEffect(() => {
+    const localData = localStorage.getItem("mycourseboard");
+    if (localData) {
+      const boardList = JSON.parse(localData).sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
+      if (boardList.length >= 1) {
+        dataId.current = parseInt(boardList[0].id) + 1;
+        dispatch({type: "INIT", data: boardList});
+      }
+    }
+  }, []);
+
+
   const dataId = useRef(0);
 
   //CREATE
-  const onCreate = (dates, title, content) => {
+  const onCreate = (dates, title, content, regat) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -66,6 +80,7 @@ const App = () => {
         title,
         dates,
         content,
+        regat,
       },
     });
     dataId.current += 1;
