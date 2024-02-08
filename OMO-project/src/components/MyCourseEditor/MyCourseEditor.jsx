@@ -18,9 +18,9 @@ const MyCourseEditor = () => {
   const [title, setTitle] = useState("");
   const [dates, setDates] = useState([getStringDate(new Date())]);
   const [content, setContent] = useState("");
-  // console.log("MyCourseEditor에서 날짜:", dates);
+  console.log("MyCourseEditor에서 날짜:", dates);
   // console.log("MyCourseEditor에서 제목", title);
-  // console.log("MyCourseEditor에서 내용:", content);
+  console.log("MyCourseEditor에서 내용:", content);
 
   const navigate = useNavigate();
 
@@ -28,6 +28,15 @@ const MyCourseEditor = () => {
     if (title.length < 1) {
       titleRef.current.focus();
       alert("제목을 1자 이상 입력해주세요.");
+      return;
+    }
+
+    if (dates.length < content.length) {
+      alert("날짜를 입력해주세요.");
+      return;
+    }
+    if (content.length < dates.length) {
+      alert("내용을 입력해주세요.");
       return;
     }
 
