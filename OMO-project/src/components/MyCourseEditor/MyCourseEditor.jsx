@@ -18,6 +18,7 @@ const MyCourseEditor = () => {
   const [title, setTitle] = useState("");
   const [dates, setDates] = useState([getStringDate(new Date())]);
   const [content, setContent] = useState("");
+  const [regat, setRegat] = useState(new Date().toLocaleString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', hour12: false }));
   // console.log("MyCourseEditor에서 날짜:", dates);
   // console.log("MyCourseEditor에서 제목", title);
   // console.log("MyCourseEditor에서 내용:", content);
@@ -32,12 +33,12 @@ const MyCourseEditor = () => {
     }
 
     if (window.confirm("새로운 코스를 작성하시겠습니까?")) {
-        onCreate(dates, title, content);
+      setRegat(new Date().toLocaleString("ko-KR", {year: "numeric", month: "2-digit", day: "2-digit", hour12: false}));
+      onCreate(dates, title, content, regat);
     }
 
     navigate("/MyCourseMain", {replace: true});
   };
-
 
   return (
     <div className={styles["mycourse-editor-total-container"]}>

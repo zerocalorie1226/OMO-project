@@ -58,7 +58,7 @@ const App = () => {
   const dataId = useRef(0);
 
   //CREATE
-  const onCreate = (dates, title, content) => {
+  const onCreate = (dates, title, content, regat) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -66,6 +66,7 @@ const App = () => {
         title,
         dates,
         content,
+        regat,
       },
     });
     dataId.current += 1;
