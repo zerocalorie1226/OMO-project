@@ -13,7 +13,6 @@ const MyCourseMain = () => {
   return (
     <div className={styles["mycourse-container"]}>
       <h2 className={styles["mycourse-title"]}>나만의 코스</h2>
-
       {myCourseList.length === 0 ? (
         <div className={styles["no-boardlist"]}>
           글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.

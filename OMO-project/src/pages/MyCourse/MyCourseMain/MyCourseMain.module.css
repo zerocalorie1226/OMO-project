@@ -53,12 +53,6 @@
   padding: 5px 15px 5px 15px;
 }
 
-/* 필터 + 리스트 */
-.mycourse-list-container {
-  width: 1000px;
-  /* margin: 5px auto; */
-  margin-top: 30px;
-}
 
 .no-boardlist{
     display: flex;
