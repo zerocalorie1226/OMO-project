@@ -21,7 +21,7 @@ import Recent from "./pages/Mypage/Recent/Recent";
 import Recommend from "./pages/Mypage/Recommend/Recommend";
 import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
 import MyCourseMain from "./pages/MyCourse/MyCourseMain/MyCourseMain";
-import Notice from "./pages/Notice/Notice";
+import Notice from "./pages/notice/Notice";
 import MyCourseBoard from "./pages/Community/MyCourseBoard/MyCourseBoard";
 import InquiryBoardFrequent from "./pages/Community/InquiryBoardFrequent/InquiryBoardFrequent";
 import InquiryBoardQnA from "./pages/community/InquiryBoardQnA/InquiryBoardQnA";
