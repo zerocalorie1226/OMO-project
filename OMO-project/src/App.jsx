@@ -24,7 +24,7 @@ import MyCourseMain from "./pages/MyCourse/MyCourseMain/MyCourseMain";
 import Notice from "./pages/notice/Notice";
 import MyCourseBoard from "./pages/Community/MyCourseBoard/MyCourseBoard";
 import InquiryBoardFrequent from "./pages/Community/InquiryBoardFrequent/InquiryBoardFrequent";
-import InquiryBoardQnA from "./pages/community/InquiryBoardQnA/InquiryBoardQnA";
+import InquiryBoardQnA from "./pages/Community/InquiryBoardQnA/InquiryBoardQnA";
 import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
 import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
 import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
