@@ -13,6 +13,7 @@
 
 .mycourse-item-container:hover {
   border: 2px solid var(--secondary);
+  cursor: pointer;
 }
 
 .mycourse-item-title {

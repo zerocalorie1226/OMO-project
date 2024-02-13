@@ -24,7 +24,11 @@
   font-size: 20px;
 }
 
-.profile-setting-main-mbti-change-select-IE {
+.profile-setting-main-mbti-change-select-IE,
+.profile-setting-main-mbti-change-select-SN,
+.profile-setting-main-mbti-change-select-TF,
+.profile-setting-main-mbti-change-select-JP
+ {
   width: 60px;
   height: 60px;
   border-radius: 10px;
@@ -32,36 +36,7 @@
   text-align: center;
   color: var(--gray);
   outline: none;
-}
-
-.profile-setting-main-mbti-change-select-SN {
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-  border: 1px solid var(--gray-400);
-  text-align: center;
-  color: var(--gray);
-  outline: none;
-}
-
-.profile-setting-main-mbti-change-select-TF {
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-  border: 1px solid var(--gray-400);
-  text-align: center;
-  color: var(--gray);
-  outline: none;
-}
-
-.profile-setting-main-mbti-change-select-JP {
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-  border: 1px solid var(--gray-400);
-  text-align: center;
-  color: var(--gray);
-  outline: none;
+  cursor: pointer;
 }
 
 .profile-setting-main-mbti-change-button {
