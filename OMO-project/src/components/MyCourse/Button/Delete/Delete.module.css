@@ -1,0 +1,15 @@
+/* 삭제버튼 */
+.delete-button {
+  width: 80px;
+  height: 43px;
+  border: none;
+  border-radius: 5px;
+  color: var(--secondary);
+  background-color: white;
+  border: 1px solid var(--secondary);
+  position: absolute;
+  bottom: 300px;
+  right: 0px;
+  cursor: pointer;
+  font-size: 23px;
+}

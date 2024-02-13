@@ -1,0 +1,60 @@
+.noticeitems-total-container {
+  width: 1000px;
+  height: 100px;
+  margin: 40px auto;
+  border: 1px solid var(--gray-400);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.noticeitems-total-container:hover {
+  border: 2px solid var(--secondary);
+  cursor: pointer;
+}
+
+.noticeitems-total-container-expanded {
+  width: 1000px;
+  margin: 40px auto;
+  border: 1px solid var(--gray-400);
+  border-radius: 10px;
+  height: 100%;
+}
+
+.noticeitems-division {
+  color: var(--gray);
+  font-size: 24px;
+  font-weight: 200;
+  position: absolute;
+  right: 190px;
+  top: -22px;
+  text-align: right;
+}
+
+.noticeitems-date {
+  color: var(--gray);
+  font-size: 24px;
+  font-weight: 200;
+  position: absolute;
+  right: 30px;
+  top: -22px;
+}
+
+/* 분류+날짜 */
+.noticeitems-title-division-date-content-container {
+  width: 1000px;
+  position: relative;
+}
+
+/* 제목 */
+.noticeitems-title {
+  font-size: 28px;
+  margin: 36px 0 30px 40px;
+}
+
+/* 펼쳤을때 내용 */
+.noticeitems-content {
+  width: 920px;
+  margin: 36px auto;
+  font-size: 24px;
+  line-height: 1.5;
+}

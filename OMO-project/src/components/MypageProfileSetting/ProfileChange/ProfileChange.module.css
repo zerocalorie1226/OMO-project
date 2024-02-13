@@ -1,0 +1,82 @@
+/* 프로필변경 전체 섹션 */
+.profile-setting-main-profile-change-container {
+  position: relative;
+  height: 180px;
+  width: 440px;
+  display: flex;
+  left: 300px;
+  bottom: 680px;
+  margin-top: 7px;
+}
+
+/* 프로필 변경 왼쪽 제목 */
+.profile-setting-main-profile-change-title {
+  width: 120px;
+  font-size: 24px;
+  margin: auto 140px auto 0;
+}
+
+/* 이미지 네모 박스 */
+.profile-setting-main-profile-change-img-box{
+  /* background-color: #FAFAFA; */
+  width: 181px;
+  height: 181px;
+  border: 1px solid #E0E5EE;
+}
+
+/* 선택된 이미지 */
+.profile-setting-main-profile-change-img{
+width: 179px;
+height: 179px;
+}
+
+/* 플러스 버튼 label */
+.profile-setting-main-profile-change-add-img{
+top: 65px;
+left: 325px;
+position: absolute;
+z-index: 10;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+}
+
+
+/* 플러스 버튼 추가 이미지 span*/
+.profile-setting-main-profile-change-add-img-icon{
+  position: absolute;
+    z-index: 9999;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(../../../assets/my-page/setting/profile-add.png) no-repeat;
+    opacity: 0.6;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+
+.profile-setting-main-profile-change-add-img-icon:hover{
+  opacity: 0.8;
+}
+
+
+/* 플러스 버튼 input */
+.profile-setting-main-profile-change-add-img-input{
+  display: none;
+}
+
+.profile-setting-main-profile-change-add-img-input::file-selector-button{
+display: none;
+}
+
+/* 삭제버튼 */
+.profile-setting-main-profile-change-delete{
+  all: unset;
+  position: absolute;
+  top:1px;
+  right: 1px;
+  cursor: pointer;
+}
+
+

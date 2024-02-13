@@ -1,0 +1,172 @@
+/* 전체 영역 */
+.community-qnapost-container {
+  width: 1000px;
+  height: 100%;
+  border: 1px solid var(--gray-400);
+  border-radius: 10px 10px 10px 10px;
+  margin: 0 auto;
+  margin-bottom: 75px;
+}
+
+/* 버튼 전까지 윗부분 영역 */
+.community-qnapost-content-container {
+  padding-bottom: 30px;
+  padding: 55px 55px 55px 55px;
+  border-radius: 10px 10px 0 0;
+}
+
+/* 제목+날짜 */
+.community-qnapost-content-title-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 제목 */
+.community-qnapost-title {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+/* 날짜 */
+.community-qnapost-date {
+  display: block;
+  font-size: 24px;
+  color: var(--gray-500);
+}
+
+/* 프로필 이미지+닉네임 */
+.community-qnapost-profile {
+  margin-top: 45px;
+  margin-bottom: 45px;
+  display: flex;
+}
+
+/* 프로필 이미지 */
+.community-qnapost-profile-img {
+  border: 1px solid transparent;
+  border-radius: 50%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* 닉네임 */
+.community-qnapost-profile-nick {
+  font-size: 24px;
+  margin-left: 10px;
+  margin-top: 3px;
+}
+
+/* 글 내용 */
+.community-qnapost-content {
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+/* 더보기 */
+.community-post-content-show {
+  display: inline-block;
+  font-size: 24px;
+  color: var(--gray-900);
+  cursor: pointer;
+}
+
+/* 버튼 묶음 */
+.community-qnapost-button-wrapper {
+  font-size: 25px;
+}
+
+/* 답변 달기 버튼 */
+.community-qnapost-comment-button {
+  background-color: transparent;
+  width: 998px;
+  height: 75px;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--gray-400);
+
+  border-radius: 0px 0px 10px 10px;
+}
+
+.community-qnapost-comment-button.show-comments {
+  border-radius: 0;
+  border-bottom: 1px solid var(--gray-400);
+}
+
+/* 답변 아이콘 */
+.community-qnapost-comment-button-img {
+  display: flex;
+  margin-right: 10px;
+}
+
+/* 답변창 전체 박스 */
+.community-qnapost-comment-container {
+  display: none;
+}
+.community-qnapost-comment-container.show-comments {
+  display: block; /* 답변 달기 버튼을 클릭할 때 표시됨 */
+  padding: 25px 55px 25px 55px;
+}
+
+/* 답변 내용 ul */
+.community-qnapost-comment {
+  padding: 0;
+  margin-top: 0px;
+  margin-bottom: 0;
+}
+
+/*  답변 내용 li */
+.community-qnapost-comment > li {
+  list-style: none;
+  margin: 0;
+  display: flex;
+}
+
+/* 답변 닉네임+날짜 */
+.community-qnapost-comment-nick-date {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* 답변 내용 프로필 이미지 */
+.community-qnapost-comment-profile-img {
+  border: 1px solid transparent;
+  border-radius: 50%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* 답변 박스 */
+.community-qnapost-comment-box {
+  background-color: var(--white3);
+  border: 1px solid var(--gray-400);
+  border-radius: 10px;
+  padding: 25px;
+  margin-left: 16px;
+  width: 100%;
+  height: 100%;
+}
+
+/* 답변 박스 안 닉네임 */
+.community-qnapost-comment-box-nick {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+/* 답변 박스 안 날짜 */
+.community-qnapost-comment-box-date {
+  font-size: 20px;
+  color: var(--gray-500);
+}
+
+/* 답변 박스 안 내용 */
+.community-qnapost-comment-box-content {
+  font-size: 20px;
+  line-height: 1.3;
+}

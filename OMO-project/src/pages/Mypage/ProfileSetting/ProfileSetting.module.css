@@ -1,0 +1,19 @@
+.profile-setting-total-container {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.profile-setting-title-container {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 400;
+  width: 730px;
+  padding-bottom: 20px;
+  margin: 100px 0 0 270px;
+  border-bottom: 2px solid var(--gray-50);
+}
+
+.profile-setting-categories-main-container{
+  height: 800px;
+}

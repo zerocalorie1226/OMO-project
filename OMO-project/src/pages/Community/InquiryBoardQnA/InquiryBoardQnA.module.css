@@ -1,0 +1,31 @@
+.inquiry-board-qna-filter-search-container {
+  display: flex;
+  width: 1000px;
+  justify-content: space-between;
+  margin: 40px auto 0 auto;
+  align-items: center;
+}
+
+.inquiry-board-qna-hr {
+  margin-top: 20px;
+  margin-bottom: 60px;
+  border: 1px solid var(--gray-50);
+}
+
+.writing-btn-container {
+  position: fixed;
+  width: 100%;
+  bottom: 23%;
+  right: 2%;
+  z-index: 1000;
+}
+
+.writing-btn{
+  position: absolute;
+  border: 0;
+  background:transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}

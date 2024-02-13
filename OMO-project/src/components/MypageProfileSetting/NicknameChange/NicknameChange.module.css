@@ -1,0 +1,45 @@
+.profile-setting-main-nickname-change-container {
+  position: relative;
+  display: flex;
+  width: 700px;
+  height: 60px;
+  left: 300px;
+  bottom: 680px;
+  margin-top: 100px;
+  justify-content: space-between;
+}
+
+.profile-setting-main-nickname-change-title {
+  width: 140px;
+  font-size: 24px;
+  margin: auto 25px auto 0;
+}
+
+.profile-setting-main-nickname-change-input {
+  width: 330px;
+  border: 1px solid var(--gray-400);
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 20px;
+  outline: none;
+}
+
+.profile-setting-main-nickname-change-input::placeholder{
+color: var(--gray);
+}
+
+.profile-setting-main-nickname-change-button {
+  width: 150px;
+  height: 60px;
+  border: 1px solid var(--secondary);
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: transparent;
+  color: var(--secondary);
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.profile-setting-main-nickname-change-container button:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,31 @@
+.inquiry-board-filter-container {
+  height: 100%;
+  display: flex;
+  font-size: 20px;
+  color: var(--gray);
+}
+
+.inquiry-board-filter-frequency {
+  display: flex;
+  justify-content: center;
+}
+
+.inquiry-board-filter-bar {
+  width: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 0 8px;
+}
+
+.inquiry-board-filter-qna {
+  display: flex;
+}
+
+.inquiry-board-filter-container a:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+.inquiry-board-link-active {
+  color: var(--secondary);
+  text-decoration: underline;
+}

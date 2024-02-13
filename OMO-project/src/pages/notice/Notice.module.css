@@ -1,0 +1,33 @@
+.notice-container {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.notice-title {
+  margin: 100px auto;
+  text-align: center;
+  width: 730px;
+  height: 50px;
+  font-size: 32px;
+  font-weight: 400;
+  border-bottom: 2px solid var(--gray-50);
+}
+
+/* 필터 */
+.notice-filter-container {
+  display: flex;
+  width: auto;
+}
+
+.notice-container-hr{
+  margin-top: 20px;
+  height: 1px;
+  background-color: var(--gray-50);
+  margin-bottom: 0;
+  border: none;
+}
+
+.notice-main-container {
+  width: 1000px;
+  margin-top: 10px;
+}

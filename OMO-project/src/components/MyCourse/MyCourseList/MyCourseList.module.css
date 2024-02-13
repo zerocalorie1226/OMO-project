@@ -1,0 +1,17 @@
+/* 리스트 박스 전체 */
+.mycourse-list-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  border-top: 1px solid var(--gray-50);
+}
+
+/* 필터 */
+.mycourse-list-filter-control {
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding: 10px 10px 10px 15px;
+  cursor: pointer;
+  font-size: 23px;
+}

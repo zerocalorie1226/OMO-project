@@ -1,0 +1,71 @@
+.mycourse-detail-total-container {
+  margin: 0 auto;
+  width: 1000px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  position: relative;
+  margin-bottom: 280px;
+}
+
+/* 나만의 코스 제목 */
+.mycourse-detail-title-container {
+  margin: 100px auto;
+  text-align: center;
+  width: 730px;
+  height: 50px;
+  border-bottom: 2px solid var(--gray-50);
+  font-size: 32px;
+  font-weight: 400;
+}
+
+/* 코스 상자 */
+.mycourse-detail-course-container {
+  width: 1000px;
+  margin: 0 auto;
+  border-radius: 20px;
+  border: 2px solid var(--gray-200);
+  padding-top:55px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 달력+가게컴포넌트 */
+.mycourse-detail-course-item-container {
+  margin-top: 0px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 달력 */
+.mycourse-detail-calendar-container {
+display: inline-block;
+border-radius: 5px;
+border: 3px solid var(--gray-200);
+padding: 10px 20px 10px 20px;
+/* color: #464646; */
+color: black;
+/* color: white; */
+/* background-color: var(--secondary); */
+margin-bottom: 10px;
+font-size: 25px;
+text-align: center;
+
+}
+
+/* 아래화살표이미지 */
+.mycourse-detail-down-arrow-img {
+  width: 50px;
+  height: 50px;
+  margin: 40px auto;
+}
+
+
+.mycourse-data-box-down-arrow-img {
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+  display: block;
+}
