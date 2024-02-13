@@ -1,4 +1,4 @@
-import styles from "./mycoursedetailbox.module.css";
+import styles from "./MyCourseDetailBox.module.css";
 import Like from "../../assets/detail/purple-thumb.png";
 import Jjim from "../../assets/detail/red-heart.png";
 import {data} from "../../const/data";

@@ -1,4 +1,4 @@
-import styles from "./CommunityQnABox.module.css";
+import styles from "./CommunityQnaBox.module.css";
 import Comment from "../../assets/community/inquiry-board/comment.png";
 import React, {useMemo, useRef, useState} from "react";
 import ProfileImg from "../../assets/profile-img.jpg";

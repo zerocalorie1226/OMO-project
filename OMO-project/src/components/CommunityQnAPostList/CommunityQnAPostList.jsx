@@ -1,5 +1,5 @@
 import styles from "./CommunityQnAPostList.module.css";
-import { CommunityQnABox } from "../CommunityQnABox/CommunityQnABox";
+import { CommunityQnABox } from "../CommunityQnaBox/CommunityQnaBox";
 
 export const CommunityQnAPostList = ({communityQnAPostList}) => {
   return (
