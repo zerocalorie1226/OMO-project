@@ -5,9 +5,9 @@ import ReactDOM from "react-dom";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import Signup from "./pages/signup/Signup";
-import Eating from "./pages/Sub/Eating/Eating";
-import Watching from "./pages/Sub/Watching/Watching";
-import Playing from "./pages/Sub/Playing/Playing";
+import Eating from "./pages/Sub/eating/Eating";
+import Watching from "./pages/Sub/watching/Watching";
+import Playing from "./pages/Sub/playing/Playing";
 import ThemeCafe from "./pages/Sub/ThemeCafe/ThemeCafe";
 import Login from "./pages/Login/Login";
 import List from "./pages/List/List";
