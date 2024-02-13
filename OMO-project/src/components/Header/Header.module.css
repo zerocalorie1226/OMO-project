@@ -4,25 +4,33 @@
   width: 1000px;
   height: 60px;
   margin: 30px auto;
-}
-
-.main-header-container > ul {
+  /* background-color: antiquewhite; */
   display: flex;
-  align-items: center;
+}
+
+.main-header-menu-container {
+  /* background-color: yellow; */
+  flex-grow: 1;
+  display: flex;
   justify-content: space-between;
-  padding: 0;
-  list-style: none;
-  height: 100%;
-}
-
-.main-header-container > ul > li {
-  float: left;
+  align-items: center;
+  margin-left: 35px;
   font-size: 20px;
+  
 }
 
-.main-header-login {
-  margin-left: 180px;
+.main-header-menu-left-container {
+  /* background-color: aqua; */
+  display: flex;
+  gap: 25px;
 }
+
+.main-header-menu-right-container {
+  /* background-color: pink; */
+  display: flex;
+  gap: 25px;
+}
+
 header > hr {
   border: 0;
   width: 100%;

@@ -2,11 +2,35 @@
   display: flex;
   width: 1000px;
   justify-content: space-between;
-  margin: 60px auto 0 auto;
+  margin: 40px auto 0 auto;
+  align-items: center;
 }
 
 .inquiry-board-hr {
   margin-top: 20px;
-  margin-bottom: 60px;
-  border: 1px solid var(--gray-50);
+  height:1px;
+  background-color: var(--gray-50);
+  border: 0;
+}
+
+.list-no-search-result {
+  width: 1000px;
+  height: 300px;
+  border: 1px solid var(--gray-400);
+  border-radius: 10px;
+  font-size: 22px;
+  color: var(--gray-700);
+  display: flex;
+  justify-content: center;
+  padding-top: 120px;
+  margin: 0 auto;
+}
+
+.list-no-search-result-container {
+  border-top: 1px solid var(--gray-50);
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  gap: 50px;
+  padding-top: 40px;
 }

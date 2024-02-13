@@ -1,8 +1,25 @@
-.report-modal-container{
+.Overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+}
+
+.a11y-hidden {
+  display: none;
+}
+
+.report-modal-container {
   width: 500px;
   height: 730px;
   background-color: var(--white);
-  font-size: 28px;
+  color: var(--black);
+  font-size: 30px;
   display: flex;
   flex-direction: column;
   box-shadow: 0px 8px 36px rgba(0, 0, 0, 0.2);
@@ -14,6 +31,10 @@
   transform: translate(-50%, -50%);
 }
 
+.report-modal-title {
+  font-weight: 600;
+}
+
 .report-modal-radio-container > fieldset {
   display: flex;
   flex-direction: column;
@@ -22,37 +43,44 @@
   margin-left: 15px;
 }
 
-
-.report-modal-select{
-  display: block;
+.report-modal-select {
   display: flex;
   justify-content: center;
-  padding: 35px 0 35px 0; 
+  padding: 50px 0 15px 0;
   position: relative;
-  margin-bottom: 35px;
-  border-bottom: 1px solid var(--gray-900);
+  margin-bottom: 30px;
 }
 
-.report-modal-close-btn{
-  width: 38px;
-  height: 30px;
+.hr {
+  width: 85%;
+  color: var(--gray-300);
+  margin-bottom: 30px;
+}
+
+.report-modal-close-btn {
+  width: 17px;
+  height: 17px;
   position: absolute;
   border: 0;
   cursor: pointer;
-  right: 45px;
+  top: 27px;
+  right: 27px;
   background-color: transparent;
 }
 
-.report-modal-close-btn-img{
-  width: 30px;
-  height: 30px;
+.report-modal-close-btn-img {
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
-.report-modal-radio-container{
+.report-modal-radio-container {
   display: flex;
 }
 
-.report-modal-etc-input{
+.report-modal-etc-input {
   width: 360px;
   height: 45px;
   border-radius: 10px;
@@ -62,8 +90,6 @@
   margin-left: 50px;
   padding-left: 10px;
 }
-
-
 
 .report-btn-container {
   display: flex;
@@ -80,4 +106,3 @@
   border-radius: 10px;
   margin-top: 25px;
 }
-

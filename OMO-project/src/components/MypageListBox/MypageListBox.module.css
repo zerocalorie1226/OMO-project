@@ -1,6 +1,6 @@
 /* 개별 박스 */
 .mypage-list-box-inner-container{
-  width: 670px;
+  width: 730px;
   height: 160px;
   border: 1px solid var(--gray-400);
   border-radius: 20px;
@@ -11,6 +11,7 @@
 /* 박스 hover 효과 */
 .mypage-list-box-inner-container:hover{
   border: 2px solid var(--secondary);
+  cursor: pointer;
 }
 
 /* 가게 이름 */
@@ -72,43 +73,56 @@ position: absolute;
 }
 
 
-/* 영업시간 */
-.mypage-list-box-runtime{
-  font-size: 16px;
-  position: absolute;
-  top: 60px;
-  left: 177px;
-  color: var(--blue-200);
-}
-
-/* 간단 소개 */
-.mypage-list-box-intro{
-  font-size: 16px;
-  position: absolute;
-  top: 90px;
-}
-
-
-/* 주소 요약 */
+/* 주소 */
 .mypage-list-box-address-brief{
   font-size: 16px;
   position: absolute;
-  top: 120px;
+  top: 92px;
+
 }
 
 
-/* 왼쪽 이미지 */
+/* 영업중 */
+.mypage-list-box-runtime{
+  font-size: 16px;
+  position: absolute;
+  top: 120px;
+  color: var(--blue-200);
+}
+
+/* 영업준비중 */
+.mypage-list-box-runtime.ready{
+  font-size: 16px;
+  position: absolute;
+  top: 120px;
+  color: var(--gray-700);
+}
+
+
+
+/* 맨왼쪽 이미지 */
 .mypage-list-box-img1{
   position: absolute;
   width: 120px;
   height: 120px;
-  right: 160px;
+  right: 275px;
   top: 19px;
   border-radius: 5px;
 }
 
-/* 오른쪽 이미지 */
+/* 중간 이미지 */
 .mypage-list-box-img2{
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  right: 148px;
+  top: 19px;
+  border-radius: 5px;
+
+}
+
+/* 맨 오른쪽 이미지 */
+.mypage-list-box-img3{
   position: absolute;
   width: 120px;
   height: 120px;

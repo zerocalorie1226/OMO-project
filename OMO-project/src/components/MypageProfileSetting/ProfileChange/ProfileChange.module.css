@@ -1,48 +1,82 @@
+/* 프로필변경 전체 섹션 */
 .profile-setting-main-profile-change-container {
   position: relative;
+  height: 180px;
+  width: 440px;
   display: flex;
-  width: 800px;
-  height: 160px;
   left: 300px;
   bottom: 680px;
-  margin-top: 30px;
+  margin-top: 7px;
 }
+
+/* 프로필 변경 왼쪽 제목 */
 .profile-setting-main-profile-change-title {
   width: 120px;
-  font-size: 20px;
-  line-height: 16 0px;
+  font-size: 24px;
   margin: auto 140px auto 0;
 }
 
-.profile-setting-main-profile-change-img {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
+/* 이미지 네모 박스 */
+.profile-setting-main-profile-change-img-box{
+  /* background-color: #FAFAFA; */
+  width: 181px;
+  height: 181px;
+  border: 1px solid #E0E5EE;
 }
 
-.profile-setting-main-profile-change-background {
-  position: relative;
-  width: 160px;
-  height: 160px;
-  right: 160px;
-  background-color: rgba(128, 128, 128, 0.7);
-  border-radius: 50%;
+/* 선택된 이미지 */
+.profile-setting-main-profile-change-img{
+width: 179px;
+height: 179px;
 }
 
-.profile-setting-main-profile-change-change-img {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  right: 254px;
-  top: 66px;
+/* 플러스 버튼 label */
+.profile-setting-main-profile-change-add-img{
+top: 65px;
+left: 325px;
+position: absolute;
+z-index: 10;
+width: 50px;
+height: 50px;
+border-radius: 50%;
 }
 
-.profile-setting-main-profile-change-click {
-  width: 180px;
-  height: 180px;
-  position: relative;
-  border: 2px solid var(--gray-300);
-  border-radius: 10px;
-  right: 360px;
-  bottom: 10px;
+
+/* 플러스 버튼 추가 이미지 span*/
+.profile-setting-main-profile-change-add-img-icon{
+  position: absolute;
+    z-index: 9999;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(../../../assets/my-page/setting/profile-add.png) no-repeat;
+    opacity: 0.6;
+    text-indent: -9999px;
+    cursor: pointer;
 }
+
+.profile-setting-main-profile-change-add-img-icon:hover{
+  opacity: 0.8;
+}
+
+
+/* 플러스 버튼 input */
+.profile-setting-main-profile-change-add-img-input{
+  display: none;
+}
+
+.profile-setting-main-profile-change-add-img-input::file-selector-button{
+display: none;
+}
+
+/* 삭제버튼 */
+.profile-setting-main-profile-change-delete{
+  all: unset;
+  position: absolute;
+  top:1px;
+  right: 1px;
+  cursor: pointer;
+}
+
+

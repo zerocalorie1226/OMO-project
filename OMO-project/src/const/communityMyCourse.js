@@ -8,7 +8,7 @@ export const communityMyCourse = [
   },
   {
     id: 2,
-    title: "연희동 맛집, 카페 투어",
+    title: "연희동 맛집 및 카페 투어",
     like: "888",
     nick: "헌터",
     reg_at: "2023/07/21",

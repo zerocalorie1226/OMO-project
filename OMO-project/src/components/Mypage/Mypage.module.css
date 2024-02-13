@@ -1,17 +1,16 @@
 .myinfo-categories-list {
-  width: 250px;
+  width: 220px;
   height: 722px;
   border: 2px solid var(--primary);
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 10px 10px 0 0;
-  /* margin-right: 200px; */
 }
 .myinfo-categories-list-logo {
   margin-top: 40px;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
 }
 
 .myinfo-categories-list-nickname {
@@ -21,7 +20,7 @@
 
 .myinfo-categories-list-mbti {
   text-align: center;
-  color: var(--gray-600);
+  color: var(--gray);
   font-size: 20px;
 }
 
@@ -48,9 +47,8 @@
 .myinfo-categories-setting-container {
   display: flex;
   align-items: center;
-  margin: 0 80px 0 40px;
+  margin: 0 50px 0 40px;
   width: 160px;
-  /* gap: ; */
 }
 
 .myinfo-categories-myinfo-text,

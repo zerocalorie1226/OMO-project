@@ -1,5 +1,17 @@
-.mycourse-find-recent-modal-container{
-  width: 750px;
+.Overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+}
+
+.mycourse-find-recent-modal-container {
+  width: 700px;
   height: 750px;
   background-color: var(--white);
   display: flex;
@@ -13,29 +25,25 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 35px 0 35px 0;
-  
 }
 
-.mycourse-find-recent-modal-title{
-   font-size: 28px;
-   display: block;
-   display: flex;
-   justify-content: center;
-   margin-bottom: 35px;
+.mycourse-find-recent-modal-title {
+  font-size: 28px;
+  display: block;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 35px;
+  font-weight: 500;
 }
 
-
-.mycourse-find-recent-modal-list-box-container{
-display: flex;
-flex-direction: column;
-gap: 20px;
-height: 100%;
-overflow: hidden;
+.mycourse-find-recent-modal-list-box-container {
+  height: 100%;
+  overflow: hidden;
 }
 
-.mycourse-find-recent-close-btn{
-  width: 25px;
-  height: 25px;
+.mycourse-find-recent-close-btn {
+  width: 17px;
+  height: 17px;
   position: absolute;
   border: 0;
   cursor: pointer;
@@ -43,9 +51,9 @@ overflow: hidden;
   background-color: transparent;
 }
 
-.mycourse-find-recent-close-btn-img{
-  width: 25px;
-  height: 25px;
+.mycourse-find-recent-close-btn-img {
+  width: 17px;
+  height: 17px;
   position: absolute;
   top: 0px;
   left: 0px;

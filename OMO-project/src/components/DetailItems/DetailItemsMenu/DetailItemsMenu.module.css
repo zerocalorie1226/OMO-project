@@ -14,8 +14,8 @@
 
 /* 가게 이름 */
 .detail-title {
-  margin-top: 30px;
-  font-size: 30px;
+  margin-top: 35px;
+  font-size: 32px;
   font-weight: 500;
 }
 
@@ -390,7 +390,7 @@
 
 /* input창 */
 .detail-review-input {
-  font-size: 24px;
+  font-size: 20px;
   width: 792px;
   height: 65px;
   background-color: var(--white);
@@ -398,7 +398,7 @@
   border-radius: 10px;
   padding-left: 20px;
   padding-right: 70px;
-  border: 1px solid var(--gray-400);
+  border: 1px solid var(--gray);
   border-radius: 10px;
 }
 
@@ -430,7 +430,7 @@
 .detail-review-input-button:hover img.detail-review-input-button-img-hover{
   display: block;
   position: absolute;
-  top:13px;
+  top:12px;
   right: 8px;
 
 }

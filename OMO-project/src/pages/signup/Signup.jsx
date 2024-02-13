@@ -4,6 +4,7 @@ import Required from "../../assets/sign-up/required.png";
 import {Radio} from "../../components/Radio/Radio";
 import {RadioGroup} from "../../components/Radio/RadioGroup";
 import CheckBox from "../../components/CheckBox/CheckBox";
+import {Link} from "react-router-dom";
 
 const Signup = () => (
   <>
@@ -28,7 +29,7 @@ const Signup = () => (
           <label className={styles["signup-nickname"]} htmlFor="nickname">
             닉네임 <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px"}} />
           </label>
-          <input className={styles["signup-nickname-input"]} type="text" id="nickname" placeholder="닉네임을 입력해주세요." />
+          <input className={styles["signup-nickname-input"]} type="text" id="nickname" minlength="2" maxlength="8" placeholder="닉네임을 입력해주세요." />
           <button className={styles["signup-nickname-certification"]} type="submit">
             중복 확인
           </button>
@@ -81,9 +82,11 @@ const Signup = () => (
         <CheckBox />
 
         <div className={styles["signup-btn-container"]}>
+        <Link to="/Main">
           <button type="submit" className={styles["signup-btn-signup"]}>
             가입하기
           </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,28 +1,37 @@
 .filter-container {
-  margin-left: 20px;
-  margin-top: 30px;
+  margin-top: 38px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 500px;
+  width: 100%;
   height: 100%;
+  font-size: 20px;
 }
 
 .filter-container button:hover {
   color: var(--secondary);
   text-decoration: underline;
+  cursor: pointer;
 }
 
-.filter-p {
-  margin: 0 14px;
-  color: var(--gray-900);
+.filter-bar {
+  display: block;
+  margin: 0 10px;
+  color: var(--gray);
 }
 
 .filter-total,
 .filter-free,
 .filter-worry,
-.filter-question {
+.filter-qna {
   border: none;
   background-color: transparent;
-  color: var(--gray-900);
+  color: var(--gray);
+  margin: 0;
+  padding: 0;
+}
+
+.filter-active {
+  color: var(--secondary);
+  text-decoration: underline;
 }

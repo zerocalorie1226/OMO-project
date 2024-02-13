@@ -1,44 +1,118 @@
+import React, {useEffect, useRef, useState, useReducer} from "react";
 import styles from "./FreeBoard.module.css";
-import {communityPageFilter} from "./../../../const/communityPageFilter";
+import {communityPageFilter} from "./../../../const/communityPageFilter"; //필터 데이터
+import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory"; //카테고리
+import Filter from "../../../components/Filter/Filter"; //필터 컴포넌트
+import ListSearch from "./../../../components/ListSearch/ListSearch"; //검생창
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop"; //스크롤버튼
+import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
+import WritingButtonImg from "../../../assets/writing-button.png";
+import WriteFreeBoard from "../../../components/WritePost/WriteFreeBoard/WriteFreeBoard";
 import {communityFreePost} from "../../../const/communityFreePost";
-import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
-import { CommunityPost } from './../../../components/CommunityPost/CommunityPost';
-import Filter from "../../../components/Filter/Filter";
-import ListSearch from "./../../../components/ListSearch/ListSearch";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {WritingButton} from "../../../components/WritingButton/WritingButton";
-import ReportModal from '../../../components/ReportModal/ReportModal';
+
+const reducer = (state, action) => {
+  let newState = [];
+  switch (action.type) {
+    case "INIT": {
+      return action.data;
+    }
+    case "CREATE": {
+      newState = [action.data, ...state];
+      break;
+    }
+    default:
+      return state;
+  }
+
+  localStorage.setItem("freeboard", JSON.stringify(newState));
+  return newState;
+};
+
+export const BoardStateContext = React.createContext();
+export const BoardDispatchContext = React.createContext();
 
 const FreeBoard = () => {
+  const [data, dispatch] = useReducer(reducer, [] );
 
-  return(
-  <>
-    {/* 카테고리 */}
-    <CommunityCategory />
+  useEffect(() => {
+    const localData = localStorage.getItem("freeboard");
+    if (localData) {
+      const boardList = JSON.parse(localData).sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
 
-    {/* 필터 + 검색창 */}
-    <div className={styles["community-component-container"]}>
-      <div className={styles["community-filter-container"]}>
-        {communityPageFilter.map((el) => {
-          return <Filter key={el.id} title={el.title} bar={el.bar} />;
-        })}
-      </div>
-      <ListSearch />
-    </div>
-
-    {/* 게시글 리스트 */}
-
-    <section className={styles["community-free-container"]}>
-    {communityFreePost.map((el) => {
-          return <CommunityPost key={el.id} title={el.title} reg_at={el.reg_at}  src={el.src}  nick={el.nick}  content={el.content} like={el.like} view={el.view}  comment={el.comment} comment_list={el.comment_list} />;
-        })}
-    </section>
-
-    {/* <ReportModal /> */}
-    <ScrollToTop />
-    <WritingButton />
-  </>
-);
+      if (boardList.length >= 1) {
+        dataId.current = parseInt(boardList[0].id) + 1;
+        dispatch({type: "INIT", data: boardList});
       }
+    }
+  }, []);
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const dataId = useRef(4);
+
+  // CREATE
+  const onCreate = (title, content, category) => {
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: dataId.current,
+        reg_at: new Date().getTime(),
+        title,
+        content,
+        category: "free",
+      },
+    });
+    dataId.current += 1;
+  };
+
+
+
+
+  return (
+    <>
+      <BoardStateContext.Provider>
+        <BoardDispatchContext.Provider
+          value={{
+            onCreate,
+          }}
+        >
+          {/* 카테고리 */}
+          <CommunityCategory />
+
+          {/* 필터 + 검색창 */}
+          <div className={styles["community-component-container"]}>
+            {/* <div className={styles["community-filter-container"]}>
+          {communityPageFilter.map((el) => {
+            return <Filter key={el.id} {...el} />;
+          })}
+        </div> */}
+            <ListSearch />
+          </div>
+
+          {/* 게시글 리스트 */}
+
+          {data.length === 0 ? <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div> : <CommunityFreePostList communityFreePostList={data} />}
+
+          {/* 스크롤 */}
+          <ScrollToTop />
+
+          {/* 글쓰기 */}
+          <div className={styles["writing-btn-container"]}>
+            <button
+              type="button"
+              className={styles["writing-btn"]}
+              onClick={() => {
+                setOpenModal(true);
+              }}
+            >
+              <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}
+            </button>
+            {openModal ? <WriteFreeBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} /> : null}
+          </div>
+        </BoardDispatchContext.Provider>
+      </BoardStateContext.Provider>
+    </>
+  );
+};
 
 export default FreeBoard;

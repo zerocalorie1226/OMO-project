@@ -1,6 +1,6 @@
 .community-component-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin: 0 auto;
   margin-top: 40px;
@@ -13,10 +13,32 @@
   justify-content: space-between;
 }
 
-
-.community-free-container{
-  border-top: 1px solid var(--gray-50);
-  display: flex;
-  flex-direction: column;
+.writing-btn-container {
+  position: fixed;
+  width: 100%;
+  bottom: 23%;
+  right: 2%;
+  z-index: 1000;
 }
 
+.writing-btn{
+  position: absolute;
+  border: 0;
+  background:transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.no-boardlist{
+  border-top: 1px solid var(--gray-50);
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 130px;
+  font-size: 23px;
+  font-weight: 500;
+  color: var(--gray-700);;
+}
