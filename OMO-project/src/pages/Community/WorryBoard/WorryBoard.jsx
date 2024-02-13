@@ -68,7 +68,7 @@ const WorryBoard = () => {
 
   return (
     <>
-      <BoardStateContext.Provider>
+      <BoardStateContext.Provider value={data}>
         <BoardDispatchContext.Provider
           value={{
             onCreate,
@@ -76,7 +76,7 @@ const WorryBoard = () => {
         >
           {/* 카테고리 */}
           <CommunityCategory />
-
+  
           {/* 필터 + 검색창 */}
           <div className={styles["community-component-container"]}>
             {/* <div className={styles["community-filter-container"]}>
@@ -86,17 +86,17 @@ const WorryBoard = () => {
             </div> */}
             <ListSearch  />
           </div>
-
+  
           {/* 게시글 리스트 */}
           {data.length === 0 ? (
             <div>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
           ) : (
             <CommunityWorryPostList communityWorryPostList={data} />
           )}
-
+  
           {/* 스크롤 */}
           <ScrollToTop />
-
+  
           {/* 글쓰기 */}
           <div className={styles["writing-btn-container"]}>
             <button

@@ -70,7 +70,7 @@ const FreeBoard = () => {
 
   return (
     <>
-      <BoardStateContext.Provider>
+      <BoardStateContext.Provider value={data}>
         <BoardDispatchContext.Provider
           value={{
             onCreate,
