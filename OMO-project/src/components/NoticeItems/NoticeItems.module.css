@@ -9,6 +9,7 @@
 
 .noticeitems-total-container:hover {
   border: 2px solid var(--secondary);
+  cursor: pointer;
 }
 
 .noticeitems-total-container-expanded {

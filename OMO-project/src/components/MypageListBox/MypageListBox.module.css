@@ -11,6 +11,7 @@
 /* 박스 hover 효과 */
 .mypage-list-box-inner-container:hover{
   border: 2px solid var(--secondary);
+  cursor: pointer;
 }
 
 /* 가게 이름 */

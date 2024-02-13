@@ -25,6 +25,11 @@
   color: var(--gray);
 }
 
+.profile-setting-main-membership-withdrawal-button:hover{
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+}
+
 .profile-setting-main-membership-withdrawal-container button:hover {
   cursor: pointer;
 }
