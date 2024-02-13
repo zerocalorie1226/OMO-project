@@ -5,10 +5,10 @@ import ReactDOM from "react-dom";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import Signup from "./pages/signup/Signup";
-import Eating from "./pages/Sub/eating/Eating";
-import Watching from "./pages/Sub/watching/Watching";
-import Playing from "./pages/Sub/playing/Playing";
-import ThemeCafe from "./pages/Sub/ThemeCafe/ThemeCafe";
+import Eating from "./pages/sub/eating/Eating";
+import Watching from "./pages/sub/watching/Watching";
+import Playing from "./pages/sub/playing/Playing";
+import ThemeCafe from "./pages/sub/ThemeCafe/ThemeCafe";
 import Login from "./pages/Login/Login";
 import List from "./pages/List/List";
 import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
