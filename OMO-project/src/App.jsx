@@ -31,7 +31,7 @@ import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCour
 import Main from "./pages/main/Main";
 import MyCourseNewWrite from "./pages/MyCourse/MyCourseNewWrite/MyCourseNewWrite";
 import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -69,6 +69,10 @@ const App = () => {
   }, []);
 
 
+  const [recentData, setRecentData] = useState([]);
+
+
+  
   const dataId = useRef(0);
 
   //CREATE
@@ -112,7 +116,10 @@ const App = () => {
               <Route path="/Signup" element={<Signup />} />
 
               {/* 리스트페이지 */}
-              <Route path="/List" element={<List />} />
+              <Route
+            path="/List"
+            element={<List recentData={recentData} setRecentData={setRecentData}  />}
+          />
 
               {/* 상세페이지 */}
               <Route path="/DetailMenu/:id" element={<DetailMenu />} />
@@ -123,7 +130,7 @@ const App = () => {
               <Route path="/MyInfo" element={<MyInfo />} />
               <Route path="/Interest" element={<Interest />} />
               <Route path="/Recommend" element={<Recommend />} />
-              <Route path="/Recent" element={<Recent />} />
+              <Route path="/Recent" element={<Recent recentData={recentData} />} />
               <Route path="/MyWrote" element={<MyWrote />} />
               <Route path="/ProfileSetting" element={<ProfileSetting />} />
 

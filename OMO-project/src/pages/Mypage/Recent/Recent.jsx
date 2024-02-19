@@ -5,7 +5,9 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import { data } from './../../../const/data';
 import RecentIcon from "../../../assets/my-page/my-info/recent-place.png";
 
-const Recent = () => (
+const Recent = ({recentData}) => {
+  
+  return(
   <>
     <div className={styles["mypage-list-component-container"]}>
     <h2 className={styles["mypage-list-title-container"]}>
@@ -15,17 +17,17 @@ const Recent = () => (
     <section className={styles["mypage-list-container"]}>
     <Mypage />
       <div className={styles["mypage-list-box-container"]}>
-        {data.map((el) => {
-          return <MypageListBox key={el.id} {...el} />;
-        })}
+      {recentData.map((item) => (
+            <MypageListBox key={item.id} {...item} />
+          ))}
       </div>
     </section>
-   
     
     </div>
     <ScrollToTop/>
 
   </>
 );
+;}
 
 export default Recent;
