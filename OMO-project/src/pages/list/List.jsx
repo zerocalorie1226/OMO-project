@@ -22,7 +22,6 @@ const List = ({recentData, setRecentData}) => {
       setRecentData((prevData) => {
         const updatedData = [selectedItem, ...prevData.filter((recentItem) => recentItem.id !== item.id)];
   
-        // 최대 4개만 유지
         return updatedData;
       });
     }
