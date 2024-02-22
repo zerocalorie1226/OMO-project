@@ -16,7 +16,7 @@ const Signup = () => (
           필수입력사항
         </p>
       </div>
-      <div div className={styles["signup-inner-container"]}>
+      <div className={styles["signup-inner-container"]}>
         
         <div className={styles["signup-birth-date-container"]}>
           <label className={styles["signup-birth-date"]} htmlFor="birth-date">
@@ -29,7 +29,7 @@ const Signup = () => (
           <label className={styles["signup-nickname"]} htmlFor="nickname">
             닉네임 <img src={Required} alt="필수항목표시" style={{width: "10px", height: "10px", position: "relative", bottom: "17px", right: "7px"}} />
           </label>
-          <input className={styles["signup-nickname-input"]} type="text" id="nickname" minlength="2" maxlength="8" placeholder="닉네임을 입력해주세요." />
+          <input className={styles["signup-nickname-input"]} type="text" id="nickname" minLength="2" maxLength="8" placeholder="닉네임을 입력해주세요." />
           <button className={styles["signup-nickname-certification"]} type="submit">
             중복 확인
           </button>

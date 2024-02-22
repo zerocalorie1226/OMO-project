@@ -4,13 +4,13 @@ import React, {useReducer, useRef} from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-import Signup from "./pages/Signup/Signup";
-import Eating from "./pages/Sub/Eating/Eating";
-import Watching from "./pages/Sub/Watching/Watching";
-import Playing from "./pages/Sub/Playing/Playing";
-import ThemeCafe from "./pages/Sub/ThemeCafe/ThemeCafe";
-import Login from "./pages/Login/Login";
-import List from "./pages/List/List";
+import Signup from "./pages/signup/Signup";
+import Eating from "./pages/sub/eating/Eating";
+import Watching from "./pages/sub/watching/Watching";
+import Playing from "./pages/sub/playing/Playing";
+import ThemeCafe from "./pages/sub/ThemeCafe/ThemeCafe";
+import Login from "./pages/login/Login";
+import List from "./pages/list/List";
 import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
 import MyWrote from "./pages/Mypage/MyWrote/MyWrote";
 import DetailMenu from "./pages/Detail/DetailMenu/DetailMenu";
@@ -21,17 +21,17 @@ import Recent from "./pages/Mypage/Recent/Recent";
 import Recommend from "./pages/Mypage/Recommend/Recommend";
 import ProfileSetting from "./pages/Mypage/ProfileSetting/ProfileSetting";
 import MyCourseMain from "./pages/MyCourse/MyCourseMain/MyCourseMain";
-import Notice from "./pages/Notice/Notice";
+import Notice from "./pages/notice/Notice";
 import MyCourseBoard from "./pages/Community/MyCourseBoard/MyCourseBoard";
 import InquiryBoardFrequent from "./pages/Community/InquiryBoardFrequent/InquiryBoardFrequent";
-import InquiryBoardQnA from "./pages/community/InquiryBoardQnA/InquiryBoardQnA";
+import InquiryBoardQnA from "./pages/Community/InquiryBoardQnA/InquiryBoardQnA";
 import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
 import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
 import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
 import Main from "./pages/main/Main";
 import MyCourseNewWrite from "./pages/MyCourse/MyCourseNewWrite/MyCourseNewWrite";
 import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -69,6 +69,10 @@ const App = () => {
   }, []);
 
 
+  const [recentData, setRecentData] = useState([]);
+
+
+  
   const dataId = useRef(0);
 
   //CREATE
@@ -112,7 +116,10 @@ const App = () => {
               <Route path="/Signup" element={<Signup />} />
 
               {/* 리스트페이지 */}
-              <Route path="/List" element={<List />} />
+              <Route
+            path="/List"
+            element={<List recentData={recentData} setRecentData={setRecentData}  />}
+          />
 
               {/* 상세페이지 */}
               <Route path="/DetailMenu/:id" element={<DetailMenu />} />
@@ -123,7 +130,7 @@ const App = () => {
               <Route path="/MyInfo" element={<MyInfo />} />
               <Route path="/Interest" element={<Interest />} />
               <Route path="/Recommend" element={<Recommend />} />
-              <Route path="/Recent" element={<Recent />} />
+              <Route path="/Recent" element={<Recent recentData={recentData} />} />
               <Route path="/MyWrote" element={<MyWrote />} />
               <Route path="/ProfileSetting" element={<ProfileSetting />} />
 
