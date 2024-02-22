@@ -26,7 +26,6 @@ const List = ({recentData, setRecentData}) => {
       });
     }
   
-    // 현재 상태를 로그에 출력
 
   };
   
