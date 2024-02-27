@@ -5,7 +5,7 @@ import Like from "../../assets/detail/purple-thumb.png";
 import Jjim from "../../assets/detail/red-heart.png";
 import {useNavigate} from "react-router-dom";
 
-export const ListBox = (props) => {
+export const ListBox = (props,) => {
   const navigate = useNavigate();
 
   return (
@@ -13,7 +13,10 @@ export const ListBox = (props) => {
       <button
         onClick={() => {
           navigate(`/DetailMenu/${props.id}`);
+
+          props.addRecentItem(props); 
         }}
+        
         className={styles["list-box-container"]}
       >
         <div className={styles["list-box-inner-container"]}>
@@ -30,7 +33,7 @@ export const ListBox = (props) => {
           </div>
 
           <span className={`${styles["list-box-runtime"]} ${props.runTime === "영업 준비 중" ? styles["ready"] : ""} `}> {props.runTime}</span>
-          <span className={styles["list-box-intro"]}>{props.intro}</span>
+
           <span className={styles["list-box-address-brief"]}>{props.addressBrief}</span>
           <img className={styles["list-box-img1"]} src={props.src1} />
           <img className={styles["list-box-img2"]} src={props.src2} />
