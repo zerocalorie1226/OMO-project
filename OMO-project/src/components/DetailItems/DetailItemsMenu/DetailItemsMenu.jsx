@@ -60,7 +60,7 @@ export const DetailItemsMenu = (props) => {
       setImageSrcJjim(Jjim);
       setIsClickedJjim(false);
       setCountJjim((count) => count - 1);
-      props.updateJjimData(false);
+      // props.updateJjimData(false);
     } else {
       setImageSrcJjim(JjimClicked);
       setIsClickedJjim(true);

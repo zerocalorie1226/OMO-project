@@ -5,7 +5,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {data} from "./../../../const/data";
 import InterestIcon from "../../../assets/my-page/my-info/empty-heart.png";
 
-const Interest = () => {
+const Interest = ({jjimData}) => {
 
   return (
     <>
@@ -19,7 +19,7 @@ const Interest = () => {
         <section className={styles["mypage-list-container"]}>
           <Mypage />
           <div className={styles["mypage-list-box-container"]}>
-            {data.map((el) => {
+            {jjimData.map((el) => {
               return <MypageListBox key={el.id} {...el} />;
             })}
           </div>
