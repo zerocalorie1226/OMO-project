@@ -28,7 +28,8 @@ const reducer = (state, action) => {
   return newState;
 };
 
-const MyInfo = () => {
+const MyInfo = ({ jjimData }) => {
+  console.log(jjimData);
   const myCourseList = useContext(MyCourseStateContext);
   const [data, dispatch] = useReducer(reducer, []);
 
@@ -77,8 +78,7 @@ const MyInfo = () => {
                   <p className={styles["myinfo-status-myStatus"]}>내 정보</p>
                   <div className={styles["myinfo-status-heart"]}>
                     <p className={styles["myinfo-status-heart-title"]}>내 관심 수</p>
-                    {/* <p className={styles["myinfo-status-heart-num"]}>{getJjimmedData(data).length}</p> */}
-                    <p className={styles["myinfo-status-heart-num"]}>16</p>
+                    <p className={styles["myinfo-status-heart-num"]}>{jjimData.length}</p>
                   </div>
                   <div className={styles["myinfo-status-thumb"]}>
                     <p className={styles["myinfo-status-thumb-title"]}>내 추천 수</p>

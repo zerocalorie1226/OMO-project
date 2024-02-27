@@ -134,7 +134,7 @@ const App = () => {
               <Route path="/DetailTariff" element={<DetailTariff />} />
 
               {/* 마이 페이지 */}
-              <Route path="/MyInfo" element={<MyInfo />} />
+              <Route path="/MyInfo" element={<MyInfo jjimData={jjimData}/>} />
               <Route path="/Interest" element={<Interest jjimData={jjimData} />} />
               <Route path="/Recommend" element={<Recommend />} />
               <Route path="/Recent" element={<Recent recentData={recentData} />} />
