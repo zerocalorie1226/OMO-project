@@ -9,6 +9,7 @@ import { BoardDispatchContext, BoardStateContext } from "../MyWrote/MyWrote";
 import MyCourseList from './../../../components/MyCourse/MyCourseList/MyCourseList';
 import { useContext } from "react";
 import { MyCourseStateContext } from "../../../App";
+// import { DetailItemsMenu } from './../../../components/DetailItems/DetailItemsMenu/DetailItemsMenu';
 
 const reducer = (state, action) => {
   let newState = [];
@@ -76,7 +77,8 @@ const MyInfo = () => {
                   <p className={styles["myinfo-status-myStatus"]}>내 정보</p>
                   <div className={styles["myinfo-status-heart"]}>
                     <p className={styles["myinfo-status-heart-title"]}>내 관심 수</p>
-                    <p className={styles["myinfo-status-heart-num"]}>25</p>
+                    {/* <p className={styles["myinfo-status-heart-num"]}>{getJjimmedData(data).length}</p> */}
+                    <p className={styles["myinfo-status-heart-num"]}>16</p>
                   </div>
                   <div className={styles["myinfo-status-thumb"]}>
                     <p className={styles["myinfo-status-thumb-title"]}>내 추천 수</p>
