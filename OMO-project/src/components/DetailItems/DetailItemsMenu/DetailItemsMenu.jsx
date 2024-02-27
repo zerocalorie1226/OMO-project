@@ -54,27 +54,23 @@ export const DetailItemsMenu = (props) => {
     setItem([newItem, ...item]);
   };
 
-  // handleClickJjim 함수 (찜 버튼 - 색, 카운트)
+  // handleClickJjim 함수 (하트 버튼 (관심) - 색, 카운트)
   const handleClickJjim = () => {
     if (isClikedJjim) {
       setImageSrcJjim(Jjim);
       setIsClickedJjim(false);
       setCountJjim((count) => count - 1);
+      props.updateJjimData(false);
     } else {
       setImageSrcJjim(JjimClicked);
       setIsClickedJjim(true);
       setCountJjim((count) => count + 1);
+      props.updateJjimData(true);
     }
   };
- // getJjimmedData 함수 (찜한 것만 모아서 배열로 만듦)
-// const getJjimmedData = (data) => {
-//   // 이미지가 찜된 경우의 데이터를 필터링하여 새 배열로 반환
-//   const jjimmedData = data.filter((item) => item.imageSrcJjim === true);
-//   return jjimmedData;
-// };
- 
 
-  // handleClickLike 함수 (좋아요 버튼 - 색, 카운트)
+
+  // handleClickLike 함수 (따봉 버튼 (추천) - 색, 카운트)
   const handleClickLike = () => {
     if (isClikedLike) {
       setImageSrcLike(Like);

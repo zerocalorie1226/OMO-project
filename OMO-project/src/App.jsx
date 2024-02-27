@@ -55,8 +55,11 @@ export const MyCourseDispatchContext = React.createContext();
 
 
 const App = () => {
+
+  // 나만의 코스 data
   const [data, dispatch] = useReducer(reducer, []);
 
+  // 나만의 코스 list
   useEffect(() => {
     const localData = localStorage.getItem("mycourseboard");
     if (localData) {
@@ -69,13 +72,17 @@ const App = () => {
   }, []);
 
 
-  const [recentData, setRecentData] = useState([]);
+  // 최근 본 장소 
+  const [recentData, setRecentData] = useState([]); 
+
+  // 관심 목록 (하트) 
+  const [jjimData, setJjimData] = useState([]);
 
 
   
   const dataId = useRef(0);
 
-  //CREATE
+  // 나만의 코스 CREATE
   const onCreate = (dates, title, content, regat) => {
     dispatch({
       type: "CREATE",
@@ -122,13 +129,13 @@ const App = () => {
           />
 
               {/* 상세페이지 */}
-              <Route path="/DetailMenu/:id" element={<DetailMenu />} />
+              <Route path="/DetailMenu/:id" element={<DetailMenu jjimData={jjimData} setJjimData={setJjimData} />} />
               <Route path="/DetailNone" element={<DetailNone />} />
               <Route path="/DetailTariff" element={<DetailTariff />} />
 
               {/* 마이 페이지 */}
               <Route path="/MyInfo" element={<MyInfo />} />
-              <Route path="/Interest" element={<Interest />} />
+              <Route path="/Interest" element={<Interest jjimData={jjimData} />} />
               <Route path="/Recommend" element={<Recommend />} />
               <Route path="/Recent" element={<Recent recentData={recentData} />} />
               <Route path="/MyWrote" element={<MyWrote />} />
