@@ -80,8 +80,10 @@ export const DetailItemsMenu = (props) => {
       setImageSrcLike(LikeClicked);
       setIsClickedLike(true);
       setCountLike(countLike + 1);
+      props.updateLikeData(true);
     }
-  };
+  }
+
 
   // handleSubmit 함수 (리뷰 제출 버튼)
   const handleSubmit = () => {

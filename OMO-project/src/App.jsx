@@ -1,8 +1,8 @@
 import "./App.module.css";
-import {Header} from "./components/Header/Header";
-import React, {useReducer, useRef} from "react";
+import { Header } from "./components/Header/Header";
+import React, { useReducer, useRef } from "react";
 import ReactDOM from "react-dom";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Signup from "./pages/signup/Signup";
 import Eating from "./pages/sub/eating/Eating";
@@ -31,7 +31,7 @@ import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCour
 import Main from "./pages/main/Main";
 import MyCourseNewWrite from "./pages/MyCourse/MyCourseNewWrite/MyCourseNewWrite";
 import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -66,20 +66,21 @@ const App = () => {
       const boardList = JSON.parse(localData).sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
       if (boardList.length >= 1) {
         dataId.current = parseInt(boardList[0].id) + 1;
-        dispatch({type: "INIT", data: boardList});
+        dispatch({ type: "INIT", data: boardList });
       }
     }
   }, []);
 
 
   // 최근 본 장소 
-  const [recentData, setRecentData] = useState([]); 
+  const [recentData, setRecentData] = useState([]);
 
   // 관심 목록 (하트) 
   const [jjimData, setJjimData] = useState([]);
 
+  // 추천 장소 (따봉)
+  const [likeData, setLikeData] = useState([]);
 
-  
   const dataId = useRef(0);
 
   // 나만의 코스 CREATE
@@ -124,19 +125,19 @@ const App = () => {
 
               {/* 리스트페이지 */}
               <Route
-            path="/List"
-            element={<List recentData={recentData} setRecentData={setRecentData}  />}
-          />
+                path="/List"
+                element={<List recentData={recentData} setRecentData={setRecentData} />}
+              />
 
               {/* 상세페이지 */}
-              <Route path="/DetailMenu/:id" element={<DetailMenu jjimData={jjimData} setJjimData={setJjimData} />} />
+              <Route path="/DetailMenu/:id" element={<DetailMenu jjimData={jjimData} setJjimData={setJjimData} likeData={likeData} setLikeData={setLikeData} />} />
               <Route path="/DetailNone" element={<DetailNone />} />
               <Route path="/DetailTariff" element={<DetailTariff />} />
 
               {/* 마이 페이지 */}
-              <Route path="/MyInfo" element={<MyInfo jjimData={jjimData}/>} />
+              <Route path="/MyInfo" element={<MyInfo jjimData={jjimData} likeData={likeData} />} />
               <Route path="/Interest" element={<Interest jjimData={jjimData} />} />
-              <Route path="/Recommend" element={<Recommend />} />
+              <Route path="/Recommend" element={<Recommend likeData={likeData} />} />
               <Route path="/Recent" element={<Recent recentData={recentData} />} />
               <Route path="/MyWrote" element={<MyWrote />} />
               <Route path="/ProfileSetting" element={<ProfileSetting />} />

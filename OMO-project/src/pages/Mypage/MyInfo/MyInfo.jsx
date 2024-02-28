@@ -6,10 +6,8 @@ import MyInfoIcon from "../../../assets/my-page/my-info/my-info.png";
 import { useEffect } from "react";
 import { useReducer } from "react";
 import { BoardDispatchContext, BoardStateContext } from "../MyWrote/MyWrote";
-import MyCourseList from './../../../components/MyCourse/MyCourseList/MyCourseList';
 import { useContext } from "react";
 import { MyCourseStateContext } from "../../../App";
-// import { DetailItemsMenu } from './../../../components/DetailItems/DetailItemsMenu/DetailItemsMenu';
 
 const reducer = (state, action) => {
   let newState = [];
@@ -28,8 +26,7 @@ const reducer = (state, action) => {
   return newState;
 };
 
-const MyInfo = ({ jjimData }) => {
-  console.log(jjimData);
+const MyInfo = ({ jjimData, likeData }) => {
   const myCourseList = useContext(MyCourseStateContext);
   const [data, dispatch] = useReducer(reducer, []);
 
@@ -39,6 +36,7 @@ const MyInfo = ({ jjimData }) => {
     const localQnaData = JSON.parse(localStorage.getItem("qnaboard")) || [];
     dispatch({ type: "INIT", data: [...localWorryData, ...localFreeData, ...localQnaData] });
   }, []);
+
 
   return (
     <>
@@ -82,7 +80,7 @@ const MyInfo = ({ jjimData }) => {
                   </div>
                   <div className={styles["myinfo-status-thumb"]}>
                     <p className={styles["myinfo-status-thumb-title"]}>내 추천 수</p>
-                    <p className={styles["myinfo-status-thumb-num"]}>13</p>
+                    <p className={styles["myinfo-status-thumb-num"]}>{likeData.length}</p>
                   </div>
                   <div className={styles["myinfo-status-write"]}>
                     <p className={styles["myinfo-status-write-title"]}>내가 쓴 글</p>
