@@ -60,7 +60,7 @@ export const DetailItemsMenu = (props) => {
       setImageSrcJjim(Jjim);
       setIsClickedJjim(false);
       setCountJjim((count) => count - 1);
-      // props.updateJjimData(false);
+      props.updateJjimData(false);
     } else {
       setImageSrcJjim(JjimClicked);
       setIsClickedJjim(true);
@@ -76,6 +76,7 @@ export const DetailItemsMenu = (props) => {
       setImageSrcLike(Like);
       setIsClickedLike(false);
       setCountLike(countLike - 1);
+      props.updateLikeData(false);
     } else {
       setImageSrcLike(LikeClicked);
       setIsClickedLike(true);
