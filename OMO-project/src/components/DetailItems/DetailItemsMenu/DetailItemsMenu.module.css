@@ -364,7 +364,8 @@
 
 /* 리뷰 제목 밑 영역 */
 .detail-review-box-container {
-  margin-left: 38px;
+  width: 860px;
+  margin: auto;
   font-size: 25px;
   display: flex;
   flex-direction: column;
@@ -375,6 +376,10 @@
 /* 프로필+input */
 .detail-review-input-box {
   display: flex;
+  border: 1px solid #989898;
+  border-radius: 10px;
+  width: 860px;
+  height: 200px;
   gap: 16px;
 }
 
@@ -391,15 +396,19 @@
 /* input창 */
 .detail-review-input {
   font-size: 20px;
-  width: 792px;
-  height: 65px;
+  width: 600px;
+  height: 150px;
   background-color: var(--white);
   border: 0;
   border-radius: 10px;
-  padding-left: 20px;
-  padding-right: 70px;
   border: 1px solid var(--gray);
-  border-radius: 10px;
+  /* margin-right: 20px; */
+  position: absolute;
+  right: 75px;
+  top: 84px;
+  padding-left: 20px;
+  padding-right: 60px;
+  padding-bottom: 90px;
 }
 
 /* 입력창 input focus 효과 */
@@ -416,7 +425,8 @@
   background-color: transparent;
   cursor: pointer;
   position: absolute;
-  right: 52px;
+  right: 90px;
+  top: 126px;
 }
 
 .detail-review-input-button img.detail-review-input-button-img-hover{
@@ -433,5 +443,76 @@
   top:12px;
   right: 8px;
 
+}
+/* 이미지 네모 박스 */
+.detail-review-input-box-change-img-box{
+  /* background-color: #FAFAFA; */
+  width: 150px;
+  height: 150px;
+  border: 1px solid var(--gray);
+  border-radius: 10px;
+  position: absolute;
+  left: 75px;
+  top: 84px;
+}
+
+/* 선택된 이미지 */
+.detail-review-input-change-img{
+width: 148px;
+height: 148px;
+border-radius: 10px;
+}
+
+/* 플러스 버튼 label */
+.detail-review-input-change-img-add-img{
+top: 42px;
+left: 45px;
+position: absolute;
+z-index: 10;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+}
+
+
+/* 플러스 버튼 추가 이미지 span*/
+.detail-review-input-change-img-add-img-icon{
+  position: absolute;
+    z-index: 9999;
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(../../../assets/detail/reviewChooseImg.png) no-repeat;
+    opacity: 0.6;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+
+.detail-review-input-change-img-add-img-icon:hover{
+  opacity: 0.8;
+}
+
+
+/* 플러스 버튼 input */
+.detail-review-input-change-img-add-img-input{
+  display: none;
+}
+
+.detail-review-input-change-img-add-img-input::file-selector-button{
+  display: none;
+}
+
+/* 삭제버튼 */
+.detail-review-input-change-img-delete{
+  all: unset;
+  position: absolute;
+  bottom: 127px;
+  left: 131px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.detail-review-input-change-img-delete-img{
+  /* border-radius:10px; */
 }
 

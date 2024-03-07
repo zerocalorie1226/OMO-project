@@ -5,7 +5,7 @@ import Like from "../../assets/detail/purple-thumb.png";
 import Jjim from "../../assets/detail/red-heart.png";
 import {useNavigate} from "react-router-dom";
 
-export const ListBox = (props,) => {
+export const ListBox = (props) => {
   const navigate = useNavigate();
 
   return (
