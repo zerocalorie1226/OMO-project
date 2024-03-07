@@ -364,7 +364,7 @@
 
 /* 리뷰 제목 밑 영역 */
 .detail-review-box-container {
-  width: 800px;
+  width: 860px;
   margin: auto;
   font-size: 25px;
   display: flex;
@@ -378,7 +378,7 @@
   display: flex;
   border: 1px solid #989898;
   border-radius: 10px;
-  width: 800px;
+  width: 860px;
   height: 200px;
   gap: 16px;
 }
@@ -396,7 +396,7 @@
 /* input창 */
 .detail-review-input {
   font-size: 20px;
-  width: 580px;
+  width: 600px;
   height: 150px;
   background-color: var(--white);
   border: 0;
@@ -404,7 +404,7 @@
   border: 1px solid var(--gray);
   /* margin-right: 20px; */
   position: absolute;
-  right: 90px;
+  right: 75px;
   top: 84px;
   padding-left: 20px;
   padding-right: 60px;
@@ -425,7 +425,7 @@
   background-color: transparent;
   cursor: pointer;
   position: absolute;
-  right: 100px;
+  right: 90px;
   top: 126px;
 }
 
@@ -452,7 +452,7 @@
   border: 1px solid var(--gray);
   border-radius: 10px;
   position: absolute;
-  left: 90px;
+  left: 75px;
   top: 84px;
 }
 
