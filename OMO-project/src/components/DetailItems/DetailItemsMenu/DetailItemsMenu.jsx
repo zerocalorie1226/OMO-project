@@ -18,7 +18,7 @@ import {priceTemplate} from "../../../utils/priceTemplate";
 import {reviewData} from "../../../const/reviewData";
 
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
-import DefaultImg from "../../../assets/my-page/setting/default-background.png";
+import DefaultImg from "../../../assets/detail/detail-default-background.png";
 
 export const DetailItemsMenu = (props) => {
   const [item, setItem] = useState([]); // 상태변화함수, 빈배열로 시작
