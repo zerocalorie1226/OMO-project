@@ -278,7 +278,9 @@ export const DetailItemsMenu = (props) => {
               <div className={styles["detail-review-input-box-change-img-box"]}>
                 <img src={Image} alt="리뷰 사진" className={styles["detail-review-input-change-img"]} />
                 <label className={styles["detail-review-input-change-img-add-img"]} htmlFor="input-file">
-                  <span className={styles["detail-review-input-change-img-add-img-icon"]}>블로그 이미지 찾아보기</span>
+                <span className={Image === DefaultImg ? styles["detail-review-input-change-img-add-img-icon"] : styles["detail-review-input-change-img-add-img-icon-setImg"]}>
+      블로그 이미지 찾아보기
+    </span>
                   <input
                     type="file"
                     accept="image/*"
