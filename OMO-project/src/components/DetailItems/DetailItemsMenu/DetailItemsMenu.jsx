@@ -14,10 +14,11 @@ import Submit from "../../../assets/submit.png";
 import SubmitHover from "../../../assets/submit-hover.png";
 import { Review } from "../Review/Review";
 // import { Map } from "./../../../components/Map/Map";
-import { priceTemplate } from "../../../utils/priceTemplate";
-import { reviewData } from "../../../const/reviewData";
+import {priceTemplate} from "../../../utils/priceTemplate";
+import {reviewData} from "../../../const/reviewData";
 
-
+import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
+import DefaultImg from "../../../assets/detail/detail-default-background.png";
 
 export const DetailItemsMenu = (props) => {
 
@@ -83,7 +84,33 @@ export const DetailItemsMenu = (props) => {
       setCountLike(countLike + 1);
       props.updateLikeData(true);
     }
-  }
+  };
+
+
+
+  //  리뷰 사진 체출
+  const [Image, setImage] = useState(DefaultImg);
+  const [File, setFile] = useState(""); 
+
+  const fileInput = useRef(null);
+
+
+  const onChange = (e) => {
+    if (e.target.files[0]) {
+      setFile(e.target.files[0]);
+    } else {
+      //업로드 취소할 시
+      setImage(DefaultImg);
+      return;
+    }
+    //화면에 프로필 사진 표시
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setImage(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);} 
 
 
   // handleSubmit 함수 (리뷰 제출 버튼)
@@ -255,13 +282,37 @@ export const DetailItemsMenu = (props) => {
             <span className={styles["detail-review-title"]}>리뷰 ({item.length})</span>
 
             <div className={styles["detail-review-box-container"]}>
-              <div className={styles["detail-review-input-box"]}>
-                <img src={reviewData.find((item) => item.id).src} alt="프로필 이미지" style={{ width: "50px", height: "50px" }} />
-                <button onClick={handleSubmit} className={styles["detail-review-input-button"]} src={Submit} type="submit">
-                  <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{ width: "35px", height: "35px" }} />
-                  <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{ width: "35px", height: "35px" }} />
+            <div className={styles["detail-review-input-box"]}>       
+              <div className={styles["detail-review-input-box-change-img-box"]}>
+                <img src={Image} alt="리뷰 사진" className={styles["detail-review-input-change-img"]} />
+                <label className={styles["detail-review-input-change-img-add-img"]} htmlFor="input-file">
+                  <span className={styles["detail-review-input-change-img-add-img-icon"]}>블로그 이미지 찾아보기</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    id="input-file"
+                    className={styles["detail-review-input-change-img-add-img-input"]}
+                    onClick={() => {
+                      fileInput.current.value = null;
+                      fileInput.current.click();
+                    }}
+                    ref={fileInput}
+                    onChange={onChange}
+                  />
+                </label>
+                <button
+                  type="button"
+                  className={styles["detail-review-input-change-img-delete"]}
+                  onClick={() => {
+                    window.confirm("이미지를 삭제하겠습니까?") ? setImage(DefaultImg) : null;
+                    
+                  }}
+                >
+                  {Image === DefaultImg ? null : <img src={DeleteImg} alt="이미지 삭제" className={styles["detail-review-input-change-img-delete-img"]} />}
                 </button>
-                <input
+              </div>
+                  
+                  <input
                   onKeyDown={handleOnKeyPress}
                   value={content || ""}
                   onChange={(e) => {
@@ -274,8 +325,12 @@ export const DetailItemsMenu = (props) => {
                   minLength="2"
                   maxLength="40"
                   size="10"
-                  placeholder="리뷰를 입력하세요..."
+                  placeholder="리뷰를 작성해주세요..."
                 ></input>
+                <button onClick={handleSubmit} className={styles["detail-review-input-button"]} src={Submit} type="submit">
+                <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px"}} />
+                <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
+              </button>
               </div>
 
               {item.map((review) => (

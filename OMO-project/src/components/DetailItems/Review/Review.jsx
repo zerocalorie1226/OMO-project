@@ -9,7 +9,7 @@ export const Review = ({id, author, created_date, src, content}) => {
         <div className={styles["detail-review-inner-top-container"]}>
           <div className={styles["detail-review-profile"]}>
             <div className={styles["detail-review-profile-img"]}>
-              <img src={ProfileImg} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
+              <img src={ProfileImg} alt="프로필 이미지" style={{width: "50px", height: "50px", marginLeft:"16px"}} />
             </div>
             <span className={styles["detail-review-profile-nick"]}>이니</span>
           </div>

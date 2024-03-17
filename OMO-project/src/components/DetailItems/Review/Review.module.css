@@ -1,6 +1,6 @@
 
 .detail-review-box{
-  width: 859px;
+  width: 860px;
   padding: 20px 20px 30px 20px;
   border: 1px solid  var(--gray-400);
   border-radius: 10px;
@@ -40,7 +40,7 @@
 
 .detail-review-content{
   display: block;
-margin-left: 65px;
+margin-left: 82px;
 font-size: 20px;
 }
 
