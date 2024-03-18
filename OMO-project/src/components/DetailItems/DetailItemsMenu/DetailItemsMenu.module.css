@@ -488,6 +488,18 @@ border-radius: 50%;
     text-indent: -9999px;
     cursor: pointer;
 }
+.detail-review-input-change-img-add-img-icon-setImg{
+  position: absolute;
+    z-index: 9999;
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    overflow: hidden;
+    
+    opacity: 0.6;
+    text-indent: -9999px;
+    cursor: pointer;
+}
 
 .detail-review-input-change-img-add-img-icon:hover{
   opacity: 0.8;
