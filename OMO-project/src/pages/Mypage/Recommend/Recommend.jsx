@@ -2,10 +2,9 @@ import styles from "../Interest/Interest.module.css";
 import Mypage from "../../../components/Mypage/Mypage";
 import {MypageListBox} from "../../../components/MypageListBox/MypageListBox";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {data} from "./../../../const/data";
 import RecommendIcon from "../../../assets/my-page/my-info/empty-thumb.png";
 
-const Recommend = () => (
+  const Recommend = ({likeData}) => (
   <>
     <div className={styles["mypage-list-component-container"]}>
       <h2 className={styles["mypage-list-title-container"]}>
@@ -17,7 +16,7 @@ const Recommend = () => (
       <section className={styles["mypage-list-container"]}>
         <Mypage />
         <div className={styles["mypage-list-box-container"]}>
-          {data.map((el) => {
+          {likeData.map((el) => {
             return <MypageListBox key={el.id} {...el} />;
           })}
         </div>

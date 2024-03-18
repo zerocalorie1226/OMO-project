@@ -60,7 +60,7 @@ const MyWrote = () => {
   return (
     <>
       <BoardStateContext.Provider value={data}>
-        <BoardDispatchContext.Provider>
+        <BoardDispatchContext.Provider value={dispatch}>
           <div className={styles["my-wrote-total-container"]}>
             <h2 className={styles["my-wrote-title-container"]}>
               <img src={MyWroteIcon} alt="내가 쓴 글 아이콘" /> 내가 쓴 글
