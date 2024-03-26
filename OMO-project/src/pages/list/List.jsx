@@ -1,35 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import styles from "./List.module.css";
 import ListSearch from "../../components/ListSearch/ListSearch";
-import { data } from "../../const/data";
 import { ListBox } from "../../components/ListBox/ListBox";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop";
-import { useState } from "react";
 
-const List = ({recentData, setRecentData}) => {
+const List = ({ recentData, setRecentData, dataCopy }) => {
+  // useParams를 사용하여 category 값을 가져옵니다.
+  const { category: categoryParam } = useParams();
+  
+  // URL에서 받아온 category 값이 없는 경우 'all'로 간주합니다.
+  const category = categoryParam || 'all';
+  
   const [searchTerm, setSearchTerm] = useState("");
-  const filteredData = data.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
-  
+
+  // 카테고리와 검색어 모두를 고려하여 데이터 필터링
+  const filteredData = dataCopy.filter((item) => {
+    const matchesCategory = category === 'all' || item.category === category;
+    const matchesSearchTerm = item.title.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearchTerm;
+  });
+
   const onSearch = (term) => {
-    setSearchTerm(term);
+    setSearchTerm(term); // 검색어 상태 업데이트
   };
 
+  // 아이템을 최근 본 목록에 추가하는 함수
   const addRecentItem = (item) => {
-    const selectedItem = { id: item.id, title: item.title,jjim:item.jjim,like:item.like,addressBrief:item.addressBrief,runTime:item.runTime,src1:item.src1 ,src2:item.src2,src3:item.src3};
+    const newItem = {
+      id: item.id,
+      title: item.title,
+      jjim: item.jjim,
+      like: item.like,
+      addressBrief: item.addressBrief,
+      runTime: item.runTime,
+      src1: item.src1,
+      src2: item.src2,
+      src3: item.src3
+    };
   
-    // 중복된 id가 없을 때만 최근 항목을 추가
-    if (selectedItem) {
-      setRecentData((prevData) => {
-        const updatedData = [selectedItem, ...prevData.filter((recentItem) => recentItem.id !== item.id)];
-  
-        return updatedData;
-      });
-    }
-  
-
+    setRecentData((prevData) => {
+      const existingIndex = prevData.findIndex((recentItem) => recentItem.id === item.id);
+      let updatedData = [...prevData];
+      if (existingIndex === -1) { // 아이템이 최근 본 목록에 없는 경우 추가
+        updatedData.unshift(newItem);
+      }
+      return updatedData;
+    });
   };
-  
-
 
   return (
     <>
@@ -37,13 +55,13 @@ const List = ({recentData, setRecentData}) => {
         <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
       </div>
       <section className={styles["list-list-container"]}>
-        {filteredData && filteredData.length > 0 ? (
+        {filteredData.length > 0 ? (
           <div className={styles["list-list-box-container"]}>
-            {filteredData.map((el) => (
+            {filteredData.map((item) => (
               <ListBox
-                key={el.id}
-                {...el}
-                addRecentItem={addRecentItem}
+                key={item.id}
+                {...item}
+                addRecentItem={() => addRecentItem(item)}
               />
             ))}
           </div>
