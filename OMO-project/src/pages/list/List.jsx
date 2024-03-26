@@ -16,7 +16,7 @@ const List = ({ recentData, setRecentData, dataCopy }) => {
 
   // 카테고리와 검색어 모두를 고려하여 데이터 필터링
   const filteredData = dataCopy.filter((item) => {
-    const matchesCategory = category === 'all' || item.category === category;
+    const matchesCategory = category === 'all' || item.category.includes(category);
     const matchesSearchTerm = item.title.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearchTerm;
   });
