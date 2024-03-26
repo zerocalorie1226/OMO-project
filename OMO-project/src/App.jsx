@@ -32,6 +32,7 @@ import Main from "./pages/main/Main";
 import MyCourseNewWrite from "./pages/MyCourse/MyCourseNewWrite/MyCourseNewWrite";
 import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
 import { useEffect, useState } from "react";
+import {dataCopy} from"./const/dataCopy"
 
 const reducer = (state, action) => {
   let newState = [];
@@ -124,10 +125,8 @@ const App = () => {
               <Route path="/Signup" element={<Signup />} />
 
               {/* 리스트페이지 */}
-              <Route
-                path="/List"
-                element={<List recentData={recentData} setRecentData={setRecentData} />}
-              />
+              <Route path="/List" element={<List recentData={recentData} setRecentData={setRecentData} dataCopy={dataCopy} />} />
+              <Route path="/List/:category" element={<List recentData={recentData} setRecentData={setRecentData} dataCopy={dataCopy} />} />
 
               {/* 상세페이지 */}
               <Route path="/DetailMenu/:id" element={<DetailMenu jjimData={jjimData} setJjimData={setJjimData} likeData={likeData} setLikeData={setLikeData} />} />
