@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./DetailItemsMenu.module.css";
 import Jjim from "../../../assets/detail/empty-heart.png";
 import JjimClicked from "../../../assets/detail/red-heart.png";
@@ -19,6 +19,7 @@ import {reviewData} from "../../../const/reviewData";
 
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import DefaultImg from "../../../assets/detail/detail-default-background.png";
+import axios from "axios";
 
 export const DetailItemsMenu = (props) => {
 
@@ -31,7 +32,26 @@ export const DetailItemsMenu = (props) => {
   const dataId = useRef(0); // id 인덱스 추가-> 변수처럼 사용 필요 -> useRef 사용
 
   // 데이터 가져오기
-  const { data } = props;
+  // const { data } = props;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`https://e93f-58-29-127-244.ngrok-free.app/place/양고기동아리`,{
+          headers:{
+            "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiR1VFU1QiLCJtZW1iZXJJZCI6MiwidXNlcm5hbWUiOiJzZXVuZ2h5dW43MTFAbmF2ZXIuY29tIiwic3ViIjoic2V1bmdoeXVuNzExQG5hdmVyLmNvbSIsImlhdCI6MTcxMDA1MzY4NiwiZXhwIjoxNzEwMDU3Mjg2fQ.4JAS5TeXH4JcFntdoAmvQS80cOuH_FwiN5WognJAvLJcCsoJQqprcLCxgyitGVcsEP-KG0IzHyWXy_Iw1VUY9A",
+            "placeId": "1283229309"
+          }
+        });
+        console.log(response)
+        // setData(response.data); // 서버로부터 받은 데이터를 상태에 저장
+      } catch (error) {
+        console.error("에러야", error);
+      }
+    };
+
+    fetchData();
+  }, []); // category가 변경될 때마다 데이터를 새로 가져옵니다.
 
   // 하트 버튼 (관심)
   const [imageSrcJjim, setImageSrcJjim] = useState(Jjim);
@@ -45,7 +65,7 @@ export const DetailItemsMenu = (props) => {
 
   // onCreate 함수 (댓글 리스트에 댓글 추가)
   const onCreate = (content) => {
-    const created_date = new Date().getTime();
+    const created_date = new Date().getTime()
     const newItem = {
       content,
       created_date,
@@ -133,7 +153,7 @@ export const DetailItemsMenu = (props) => {
 
   return (
     <>
-      <section className={styles["detail-title-container"]}>
+      {/* <section className={styles["detail-title-container"]}>
         <div className={styles["detail-thumbnail-container"]}>
           <img src={data.thumbnail} alt="썸네일 이미지" />
         </div>
@@ -153,8 +173,8 @@ export const DetailItemsMenu = (props) => {
             <span className={styles["detail-like-number"]}> {countLike}</span>
           </div>
         </div>
-      </section>
-
+      </section> */}
+{/* 
       <div className={styles["detail-inner-container"]}>
         <section className={styles["detail-address-container"]}>
           <div className={styles["detail-address-inner-container"]}>
@@ -341,7 +361,7 @@ export const DetailItemsMenu = (props) => {
             </div>
           </div>
         </section>
-      </div>
+      </div> */}
     </>
   );
 };
