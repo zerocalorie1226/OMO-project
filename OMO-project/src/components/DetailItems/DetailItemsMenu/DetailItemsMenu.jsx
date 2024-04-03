@@ -12,6 +12,7 @@ import Graph from "../../../assets/detail/graph.png";
 import ReviewIcon from "../../../assets/detail/review.png";
 import Submit from "../../../assets/submit.png";
 import SubmitHover from "../../../assets/submit-hover.png";
+import Magnifier from "../../../assets/detail/magnifier.png";
 import { Review } from "../Review/Review";
 // import { Map } from "./../../../components/Map/Map";
 import {priceTemplate} from "../../../utils/priceTemplate";
@@ -34,7 +35,7 @@ export const DetailItemsMenu = (props) => {
   // 데이터 가져오기
   // const { data } = props;
 
-  const [exData,setExData]=useState(null)
+  const [DetailItemsMenuData,setDetailItemsMenuData]=useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,9 +46,8 @@ export const DetailItemsMenu = (props) => {
             "placeId": "1283229309"
           }
         });
-        console.log(response)
-        setExData(response.data); // 서버로부터 받은 데이터를 상태에 저장
-        console.log(exData)
+        console.log(response.data)
+        setDetailItemsMenuData(response.data); // 서버로부터 받은 데이터를 상태에 저장
       } catch (error) {
         console.error("에러야", error);
       }
@@ -59,12 +59,25 @@ export const DetailItemsMenu = (props) => {
   // 하트 버튼 (관심)
   const [imageSrcJjim, setImageSrcJjim] = useState(Jjim);
   const [isClikedJjim, setIsClickedJjim] = useState(false);
-  const [countJjim, setCountJjim] = useState(0);
+  const [countJjim, setCountJjim] = useState(0); // 초기값을 0 또는 적절한 기본값으로 설정
+
+useEffect(() => {
+  if (DetailItemsMenuData) {
+    setCountJjim(DetailItemsMenuData.mine); // 데이터가 로드되면 상태 업데이트
+  }
+}, [DetailItemsMenuData]); // DetailItemsMenuData가 변경될 때마다 실행
 
   // 따봉 버튼 (추천)
   const [imageSrcLike, setImageSrcLike] = useState(Like);
   const [isClikedLike, setIsClickedLike] = useState(false);
   const [countLike, setCountLike] = useState(0);
+
+  useEffect(() => {
+    if (DetailItemsMenuData) {
+      setCountLike(DetailItemsMenuData.recommend); // 데이터가 로드되면 상태 업데이트
+    }
+  }, [DetailItemsMenuData]); // DetailItemsMenuData가 변경될 때마다 실행
+  
 
   // onCreate 함수 (댓글 리스트에 댓글 추가)
   const onCreate = (content) => {
@@ -153,14 +166,52 @@ export const DetailItemsMenu = (props) => {
     }
   };
 
+  // 지도 표시
+  const mapContainer = useRef(null); // 지도를 표시할 div의 ref
 
+  useEffect(() => {
+    // 카카오맵 스크립트 로드
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=36a2e85facafe4523773ac62c9e870a8&autoload=false`;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      kakao.maps.load(() => {
+        if (DetailItemsMenuData) {
+          const { y: latitude, x: longitude } = DetailItemsMenuData;
+          const mapCenter = new kakao.maps.LatLng(latitude, longitude);
+
+          const mapOption = {
+            center: mapCenter,
+            level: 3
+          };
+
+          const map = new kakao.maps.Map(mapContainer.current, mapOption);
+
+          const marker = new kakao.maps.Marker({
+            position: mapCenter
+          });
+
+          marker.setMap(map);
+        }
+      });
+    };
+
+    return () => script.remove();
+  }, [DetailItemsMenuData]); // DetailItemsMenuData 상태에 의존
+  
   return (
     <>
-      {/* <section className={styles["detail-title-container"]}>
+     {DetailItemsMenuData=== null ? (
+        <div>Loading...</div>
+      ) : (
+        <div>
+       <section className={styles["detail-title-container"]}>
         <div className={styles["detail-thumbnail-container"]}>
-          <img src={data.thumbnail} alt="썸네일 이미지" />
+          <img src={Magnifier} alt="썸네일 이미지" />
         </div>
-        <span className={styles["detail-title"]}>{data.title}</span>
+        <span className={styles["detail-title"]}>{DetailItemsMenuData.place_name}</span>
         <div className={styles["detail-like-jjim-container"]}>
           <div className={styles["detail-jjim"]}>
             <button type="button" onClick={handleClickJjim}>
@@ -176,19 +227,18 @@ export const DetailItemsMenu = (props) => {
             <span className={styles["detail-like-number"]}> {countLike}</span>
           </div>
         </div>
-      </section> */}
-{/* 
+      </section>
       <div className={styles["detail-inner-container"]}>
         <section className={styles["detail-address-container"]}>
           <div className={styles["detail-address-inner-container"]}>
             <img src={Address} alt="주소 아이콘" style={{ width: "20px", height: "25px", position: "absolute", top: "1px" }} />
             <span className={styles["detail-address-title"]}>주소</span>
           </div>
-          <span className={styles["detail-address-info-street"]}>{data.addressStreet}</span>
-          <span className={styles["detail-address-info-number"]}>{data.addressNumber}</span>
+          <span className={styles["detail-address-info-street"]}>{DetailItemsMenuData.road_address_name}</span>
+          <span className={styles["detail-address-info-number"]}>{DetailItemsMenuData.address_name}</span>
         </section>
 
-        <section className={styles["detail-sales-info-container"]}>
+        {/* <section className={styles["detail-sales-info-container"]}>
           <div className={styles["detail-sales-info-inner-container"]}>
             <img src={SalesInfo} alt="영업정보 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "3px" }} />
             <span className={styles["detail-sales-info-title"]}>영업정보</span>
@@ -196,20 +246,20 @@ export const DetailItemsMenu = (props) => {
           <div className={styles["detail-sales-info-time-container"]}>
             <span className={styles["detail-sales-info-time"]}>시간</span>
             <span className={styles["detail-sales-info-line"]}>|</span>
-            <span className={styles["detail-sales-info-time-info"]}>{data.time}</span>
+            <span className={styles["detail-sales-info-time-info"]}>{DetailItemsMenuData.time}</span>
           </div>
           <div className={styles["detail-sales-info-holiday-container"]}>
             <span className={styles["detail-sales-info-holiday"]}>휴무</span> <span className={styles["detail-sales-info-line"]}>|</span>
-            <span className={styles["detail-sales-info-holiday-info"]}>{data.holiday}</span>
+            <span className={styles["detail-sales-info-holiday-info"]}>{DetailItemsMenuData.holiday}</span>
           </div>
-        </section>
+        </section> */}
 
-        <section className={styles["detail-menu-container"]}>
+        {/* <section className={styles["detail-menu-container"]}>
           <div className={styles["detail-menu-inner-container"]}>
             <img src={Menu} alt="메뉴 아이콘" style={{ width: "20px", height: "25px", position: "absolute", top: "1px" }} />
             <span className={styles["detail-menu-title"]}>메뉴</span>
           </div>
-          {data.menu.map((el) => (
+          {DetailItemsMenuData.menu.map((el) => (
             <div key={el.id}>
               <ul className={styles["detail-menu"]}>
                 <li className={styles["detail-menu-list"]}>
@@ -218,20 +268,18 @@ export const DetailItemsMenu = (props) => {
               </ul>
             </div>
           ))}
-        </section>
+        </section> */}
 
         <section className={styles["detail-call-container"]}>
           <div className={styles["detail-call-inner-container"]}>
             <img src={Call} alt="전화 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "1px" }} />
             <span className={styles["detail-call-title"]}>전화</span>
           </div>
-          <span className={styles["detail-call"]}>{data.call}</span>
+          <span className={styles["detail-call"]}>{DetailItemsMenuData.phone}</span>
         </section>
 
         <section className={styles["detail-google-map-container"]}>
-          <div className={styles["detail-google-map-inner-container"]}>
-            <img src={data.googleMap} alt="구글맵 이미지" style={{ width: "1000px", height: "300px" }} />
-          </div>
+          <div ref={mapContainer} style={{ width: '100%', height: '500px' }}></div>
         </section>
 
         <section className={styles["detail-mbti-stats-container"]}>
@@ -364,7 +412,19 @@ export const DetailItemsMenu = (props) => {
             </div>
           </div>
         </section>
-      </div> */}
+
+        <section className={styles["detail-more-container"]}>
+          <div className={styles["detail-more-inner-container"]}>
+            <img src={Magnifier} alt="더보기 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "1px" }} />
+            <span className={styles["detail-more-title"]}>더보기</span>
+          </div>
+          <a href={DetailItemsMenuData.place_url}className={styles["detail-more"]}>{DetailItemsMenuData.place_url}</a>
+        </section>
+      </div> 
+       </div>
+      )}
+    
+     
     </>
   );
 };

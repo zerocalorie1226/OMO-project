@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
 }
 
 /* 썸네일 이미지 */
@@ -349,7 +350,6 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-  margin-bottom: 100px;
 }
 
 .detail-review-inner-container {
@@ -528,3 +528,36 @@ border-radius: 50%;
   /* border-radius:10px; */
 }
 
+
+/* 더보기 */
+
+.detail-more-container {
+  border: 2px solid var(--primary);
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 100px;
+
+}
+
+.detail-more-inner-container {
+  position: relative;
+}
+
+.detail-more-title {
+  margin-left: 38px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.detail-more {
+  margin-left: 38px;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.detail-more:hover{
+  color: var(--secondary);
+}
