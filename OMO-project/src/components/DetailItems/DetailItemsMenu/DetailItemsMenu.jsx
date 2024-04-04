@@ -76,10 +76,11 @@ export const DetailItemsMenu = (props) => {
   }, [DetailItemsMenuData]); // DetailItemsMenuData가 변경될 때마다 실행
 
   // onCreate 함수 (댓글 리스트에 댓글 추가)
-  const onCreate = (content) => {
+  const onCreate = (content, imageSrc) => {
     const created_date = new Date().getTime();
     const newItem = {
       content,
+      imageSrc, // 이미지 경로 추가
       created_date,
       id: dataId.current,
     };
@@ -141,15 +142,18 @@ export const DetailItemsMenu = (props) => {
     reader.readAsDataURL(e.target.files[0]);
   };
 
-  // handleSubmit 함수 (리뷰 제출 버튼)
-  const handleSubmit = () => {
-    if (content.length < 1) {
-      alert("리뷰는 최소 1글자 이상 입력해주세요"); // 댓글 최소 글자
-      return;
-    }
-    onCreate(content);
-    setContent("");
-  };
+  // handleSubmit 
+const handleSubmit = () => {
+  if (content.length < 1) {
+    alert("리뷰는 최소 1글자 이상 입력해주세요");
+    return;
+  }
+  const imageToUpload = Image !== DefaultImg ? Image : ''; // 이미지가 기본 이미지와 다르면 이미지 사용, 아니면 빈 문자열
+  onCreate(content, imageToUpload);
+  setContent("");
+  setImage(DefaultImg); // 이미지 초기화
+};
+
 
   // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
   const handleOnKeyPress = (e) => {
