@@ -458,8 +458,8 @@
 
 /* 선택된 이미지 */
 .detail-review-input-change-img{
-width: 148px;
-height: 148px;
+width: 147px;
+height: 147px;
 border-radius: 10px;
 }
 
@@ -524,10 +524,6 @@ border-radius: 50%;
   border-radius: 10px;
   cursor: pointer;
 }
-.detail-review-input-change-img-delete-img{
-  /* border-radius:10px; */
-}
-
 
 /* 더보기 */
 
