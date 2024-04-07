@@ -25,7 +25,7 @@ const Search = ({onSearch}) => {
           <input
             className={styles["main-search-input"]}
             type="text"
-            placeholder="장소를 입력해 주세요."
+            placeholder="가고 싶은 장소의 정확한 도로명을 입력해주세요. (ex. 마포구(O), 홍대(X))"
             value={query}
             onChange={handleInputChange}
             maxLength={35}
@@ -37,7 +37,7 @@ const Search = ({onSearch}) => {
       </form>
       <div className={styles["main-search-location-container"]}>
         <img src={Location} alt="위치" />
-        <div className={styles["main-search-location-current"]}>현재 설정된 위치 : 홍대 입구역 </div>
+        <div className={styles["main-search-location-current"]}>현재 설정된 위치 : 마포구 </div>
       </div>
     </div>
   );
