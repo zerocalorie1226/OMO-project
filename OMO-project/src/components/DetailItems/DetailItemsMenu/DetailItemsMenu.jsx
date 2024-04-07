@@ -181,6 +181,7 @@ const handleSubmit = () => {
           const mapOption = {
             center: mapCenter, // 지도의 중심 좌표
             level: 3, // 지도 확대 레벨
+            draggable: false, // 지도 이동 및 마우스 휠 확대/축소를 막기
           };
 
           const map = new kakao.maps.Map(mapContainer.current, mapOption); // 지도 생성
@@ -215,6 +216,7 @@ const handleSubmit = () => {
 
           // 마커 위에 인포윈도우를 표시
           infowindow.open(map, marker); // 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시
+          
         }
       });
     };
@@ -235,17 +237,20 @@ const handleSubmit = () => {
             <span className={styles["detail-title"]}>{DetailItemsMenuData.place_name}</span>
             <div className={styles["detail-like-jjim-container"]}>
               <div className={styles["detail-jjim"]}>
+              <span className={styles["detail-jjim-line"]}>|</span>
                 <button type="button" onClick={handleClickJjim}>
                   <img src={imageSrcJjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} />
                 </button>
                 <span className={styles["detail-jjim-number"]}> {countJjim}</span>
+                {/* <span className={styles["detail-jjim-number"]}> 999+</span> */}
               </div>
-              <span className={styles["detail-like-jjim-line"]}>|</span>
               <div className={styles["detail-like"]}>
+              <span className={styles["detail-like-line"]}>|</span>
                 <button type="button" onClick={handleClickLike}>
                   <img src={imageSrcLike} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} />
                 </button>
                 <span className={styles["detail-like-number"]}> {countLike}</span>
+                {/* <span className={styles["detail-like-number"]}>999+</span> */}
               </div>
             </div>
           </section>
