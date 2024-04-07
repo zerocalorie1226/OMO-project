@@ -421,7 +421,7 @@ const handleSubmit = () => {
                       id="review"
                       name="review"
                       minLength="2"
-                      maxLength="40"
+                      maxLength="39"
                       size="10"
                       placeholder="리뷰를 작성해주세요..."
                     ></input>
