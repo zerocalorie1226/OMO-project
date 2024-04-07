@@ -36,3 +36,15 @@
   gap: 30px;
   align-items: center;
 }
+
+.no-jjim-list{
+  display: flex;
+  justify-content: center;
+  width: 730px;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 80px;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--gray-700);
+}
