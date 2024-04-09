@@ -60,7 +60,7 @@ const List = ({ recentData, setRecentData, dataCopy,searchResultsX,searchResults
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.oneulmohae.co.kr/place/list/한식?page=1`, {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/place/list/${category}?page=1`, {
           headers: {
             x: searchResultsX,
             y: searchResultsY,
