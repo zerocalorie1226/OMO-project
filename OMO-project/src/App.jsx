@@ -57,6 +57,46 @@ export const MyCourseDispatchContext = React.createContext();
 
 const App = () => {
 
+
+  // 메인페이지에서 사용자의 현재 위치 가져오기
+  const getCurrentPosition = () => {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            resolve({ latitude, longitude });
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      } else {
+        reject(new Error("Geolocation을 지원하지 않는 브라우저입니다."));
+      }
+    });
+  };
+
+  // useState를 사용하여 사용자의 현재 위치를 관리
+  const [searchResultsX, setSearchResultsX] = useState("");
+  const [searchResultsY, setSearchResultsY] = useState("");
+
+  // 컴포넌트가 마운트될 때 사용자의 현재 위치를 가져와서 상태를 업데이트
+  useEffect(() => {
+    getCurrentPosition()
+      .then(({ latitude, longitude }) => {
+        console.log("사용자의 현재 위치:", latitude, longitude);
+        // 가져온 현재 위치를 상태에 설정
+        setSearchResultsX(longitude);
+        setSearchResultsY(latitude);
+      })
+      .catch((error) => {
+        console.error("현재 위치를 가져오는데 실패했습니다:", error.message);
+      });
+  }, []); // 컴포넌트가 마운트될 때만 실행
+ 
+
+
   // 나만의 코스 data
   const [data, dispatch] = useReducer(reducer, []);
 
@@ -98,11 +138,6 @@ const App = () => {
     });
     dataId.current += 1;
   };
-
-  // 장소에 대한 x,y 좌표
-  const [searchResultsX, setSearchResultsX] = useState("");
-  const [searchResultsY, setSearchResultsY] = useState("");
-
   
 
   return (

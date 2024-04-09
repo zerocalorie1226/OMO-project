@@ -7,6 +7,7 @@ import {useState} from "react";
 import axios from "axios";
 
 const Main = ({setSearchResultsX,setSearchResultsY}) => {
+  
   const [query, setQuery] = useState('');
 
   // 여기서 서버로 검색 쿼리를 전송하고 결과를 받아오는 로직을 구현
