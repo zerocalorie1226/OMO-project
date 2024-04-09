@@ -99,6 +99,12 @@ const App = () => {
     dataId.current += 1;
   };
 
+  // 장소에 대한 x,y 좌표
+  const [searchResultsX, setSearchResultsX] = useState("");
+  const [searchResultsY, setSearchResultsY] = useState("");
+
+  
+
   return (
     <MyCourseStateContext.Provider value={data}>
       <MyCourseDispatchContext.Provider
@@ -112,7 +118,7 @@ const App = () => {
             <Header />
             <Routes>
               {/* 메인 페이지 */}
-              <Route path="/" element={<Main />} />
+              <Route path="/" element={<Main setSearchResultsX={setSearchResultsX} setSearchResultsY={setSearchResultsY} />} />
 
               {/* 서브 페이지 */}
               <Route path="/Eating" element={<Eating />} />

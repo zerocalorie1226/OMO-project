@@ -6,8 +6,7 @@ import Search from "../../components/Search/Search";
 import {useState} from "react";
 import axios from "axios";
 
-const Main = () => {
-  const [searchResults, setSearchResults] = useState([]);
+const Main = ({setSearchResultsX,setSearchResultsY}) => {
   const [query, setQuery] = useState('');
 
   // 여기서 서버로 검색 쿼리를 전송하고 결과를 받아오는 로직을 구현
@@ -20,8 +19,11 @@ const Main = () => {
           q: query
         },
       });
-      setSearchResults(response.data);
-      console.log(response)
+      setSearchResultsX(response.data.documents[0].x);
+      setSearchResultsY(response.data.documents[0].y);
+      console.log(response.data.documents[0].x)
+      console.log( response.data.documents[0].y)
+      
     } catch (error) {
       console.error("검색 중 오류 발생:", error);
     }
