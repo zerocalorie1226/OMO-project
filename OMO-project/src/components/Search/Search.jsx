@@ -4,8 +4,8 @@ import Magnifier from "../../assets/magnifier.png";
 import Location from "../../assets/main/location.png";
 import { useState } from "react";
 
-const Search = ({onSearch}) => {
-  const [query, setQuery] = useState('');
+const Search = ({onSearch,query,setQuery}) => {
+
 
   const handleInputChange = (event) => {  // input 입력값 받음
     setQuery(event.target.value);
@@ -25,7 +25,7 @@ const Search = ({onSearch}) => {
           <input
             className={styles["main-search-input"]}
             type="text"
-            placeholder="가고 싶은 장소의 정확한 도로명을 입력해주세요. (ex. 마포구(O), 홍대(X))"
+            placeholder="시/군/구를 정확하게 입력해주세요 (ex. 서울시 마포구 양화로(O) 홍대(X))"
             value={query}
             onChange={handleInputChange}
             maxLength={35}
@@ -37,7 +37,7 @@ const Search = ({onSearch}) => {
       </form>
       <div className={styles["main-search-location-container"]}>
         <img src={Location} alt="위치" />
-        <div className={styles["main-search-location-current"]}>현재 설정된 위치 : 마포구 </div>
+        <div className={styles["main-search-location-current"]}>현재 설정된 위치 : {query} </div>
       </div>
     </div>
   );

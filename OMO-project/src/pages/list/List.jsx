@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import styles from "./List.module.css";
 import ListSearch from "../../components/ListSearch/ListSearch";
 import { ListBox } from "../../components/ListBox/ListBox";
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop";
+import axios from "axios";
 
-const List = ({ recentData, setRecentData, dataCopy }) => {
+const List = ({ recentData, setRecentData, dataCopy,searchResultsX,searchResultsY }) => {
   // useParams를 사용하여 category 값을 가져옵니다.
   const { category: categoryParam } = useParams();
   
@@ -48,6 +49,38 @@ const List = ({ recentData, setRecentData, dataCopy }) => {
       return updatedData;
     });
   };
+
+  console.log(searchResultsX)
+  console.log(searchResultsY)
+  console.log(category)
+
+  const [listData, setListData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // 쿼리 파라미터로 x, y, category 값을 추가합니다.
+        const params = new URLSearchParams({
+          x: searchResultsX,
+          y: searchResultsY,
+          category: category,
+          page:'1'
+        }).toString();
+  
+        const response = await axios.get(`https://api.oneulmohae.co.kr/place/list/${category}?${params}`);
+        console.log(response.data);
+        setListData(response.data); // 서버로부터 받은 데이터를 상태에 저장
+      } catch (error) {
+        console.error("에러야", error);
+      }
+    };
+  
+    fetchData();
+  }, [category, searchResultsX, searchResultsY]); // category, searchResultsX, searchResultsY가 변경될 때마다 fetchData를 다시 호출합니다.
+  
+
+
+
 
   return (
     <>
