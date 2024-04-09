@@ -81,29 +81,29 @@ console.log(listData);
   return (
     <>
           {listData === null ? (
-        <div>Loading...</div>
+  <div>Loading...</div>
+) : (
+  <div>
+    <div className={styles["list-component-container"]}>
+      <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
+    </div>
+    <section className={styles["list-list-container"]}>
+      {listData && listData.length > 0 ? ( // listData가 null 또는 undefined인지 확인
+        <div className={styles["list-list-box-container"]}>
+          {listData.map((item) => (
+            <ListBox
+              key={item.id}
+              {...item}
+              addRecentItem={() => addRecentItem(item)}
+            />
+          ))}
+        </div>
       ) : (
-        <div>
-      <div className={styles["list-component-container"]}>
-        <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
-      </div>
-      <section className={styles["list-list-container"]}>
-        {listData.length > 0 ? (
-          <div className={styles["list-list-box-container"]}>
-            {listData.map((item) => (
-              <ListBox
-                key={item.id}
-                {...item}
-                addRecentItem={() => addRecentItem(item)}
-              />
-            ))}
-          </div>
-        ) : (
-          <span className={styles["list-no-search-result"]}>검색 결과가 없습니다.</span>
-        )}
-      </section>
-      </div>
-            )}
+        <span className={styles["list-no-search-result"]}>검색 결과가 없습니다.</span>
+      )}
+    </section>
+  </div>
+)}
       <ScrollToTop />
     </>
   );
