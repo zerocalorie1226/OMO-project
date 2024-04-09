@@ -23,51 +23,66 @@
 /* 찜, 좋아요 전체 div  */
 .detail-like-jjim-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap: 40px;
   margin-top: 30px;
   font-size: 24px;
   position: relative;
+}
+
+/*하트 왼쪽 선 */
+.detail-jjim-line {
+  color: var(--gray-200);
+  position: absolute;
+  left: -70px;
 }
 
 /* 하트 아이콘 + 숫자 */
 .detail-jjim {
   display: flex;
   flex-direction: row;
-  margin-right: 20px;
 }
 
 /* 하트 아이콘 버튼 */
 .detail-jjim > button {
   all: unset;
   cursor: pointer;
+  position: absolute;
+  left: -50px;
 }
 
 /* 하트 옆 숫자 */
 .detail-jjim-number {
-  margin-left: 40px;
+  position: absolute;
+  left: 0px;
 }
 
-/*중간 선 */
-.detail-like-jjim-line {
+/*따봉 왼쪽 선 */
+.detail-like-line {
   color: var(--gray-200);
+  position: absolute;
+  left: -70px;
 }
 
 /*  따봉 아이콘 + 숫자 */
 .detail-like {
   display: flex;
   flex-direction: row;
-  margin-left: 20px;
+
 }
 
 /*  따봉 아이콘 버튼 */
 .detail-like > button {
   all: unset;
   cursor: pointer;
+  position: absolute;
+  left: -50px;
 }
 
 /*  따봉 옆 숫자 */
 .detail-like-number {
-  margin-left: 40px;
+  position: absolute;
+  left: 0px;
 }
 
 /* 주소부터 밑 영역 전체 */
