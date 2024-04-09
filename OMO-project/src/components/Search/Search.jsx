@@ -25,7 +25,7 @@ const Search = ({onSearch,query,setQuery}) => {
           <input
             className={styles["main-search-input"]}
             type="text"
-            placeholder="가고 싶은 장소의 정확한 도로명을 입력해주세요. (ex. 마포구(O), 홍대(X))"
+            placeholder="시/군/구를 정확하게 입력해주세요 (ex. 서울시 마포구 양화로(O) 홍대(X))"
             value={query}
             onChange={handleInputChange}
             maxLength={35}
