@@ -12,9 +12,10 @@ const Search = ({handleSearch ,query,setQuery, location, setLocation}) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    // 사용자가 입력한 쿼리를 부모 컴포넌트로 전달
-    handleSearch (query);
+    event.preventDefault(); // form 제출시 페이지 새로고침 막기
+    handleSearch (query); // 사용자가 입력한 쿼리를 부모 컴포넌트로 전달
+    setQuery(''); // 검색창 비우기
+
   };
 
   return (
