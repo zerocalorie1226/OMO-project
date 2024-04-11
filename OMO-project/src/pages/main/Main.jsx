@@ -9,30 +9,31 @@ import axios from "axios";
 const Main = ({setSearchResultsX,setSearchResultsY}) => {
   
   const [query, setQuery] = useState('');
+  const [location, setLocation] = useState('현재위치');
+
 
   // 여기서 서버로 검색 쿼리를 전송하고 결과를 받아오는 로직을 구현
   // 결과를 setSearchResults를 통해 저장
   const handleSearch = async (query) => {
     try {
-      // 주소 뭐 써야하는지 모르겠음. 수정 필요
       const response = await axios.get(`https://api.oneulmohae.co.kr/local/${query}`, {
         params: {
           q: query
         },
       });
+      const addressName = response.data.documents[0].address_name;
       setSearchResultsX(response.data.documents[0].x);
       setSearchResultsY(response.data.documents[0].y);
-      console.log(response.data.documents[0].x)
-      console.log( response.data.documents[0].y)
-      
+      alert(`주소가 ${addressName}로 설정되었습니다.`)
+      setLocation(addressName);
     } catch (error) {
-      console.error("검색 중 오류 발생:", error);
+     alert("가고 싶은 장소의 시/군/구를 정확히 입력해주세요. \n예시) 홍대입구 (X), 마포구 (O) \n \n같은 도로명 주소가 여러 개 있을 경우 시, 도를 입력해 주셔야 정확한 주소가 설정됩니다. \n예시) 신천로 27 (X), 울산광역시 북구 신천로 27 (O)", error);
     }
   };
 
   return (
     <>
-      <Search onSearch={handleSearch} query={query} setQuery={setQuery} />
+      <Search handleSearch={handleSearch} query={query} setQuery={setQuery} location={location} setLocation={setLocation} />
       <Weather />
       <div className={styles["main-category-container"]}>
         {main.map((el) => {
