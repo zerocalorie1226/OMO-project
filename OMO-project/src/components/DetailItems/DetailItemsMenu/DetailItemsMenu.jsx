@@ -23,6 +23,8 @@ import DefaultImg from "../../../assets/detail/detail-default-background.png";
 import axios from "axios";
 
 export const DetailItemsMenu = (props) => {
+
+  console.log("상세페이지 props: ", props);
   const [item, setItem] = useState([]); // 상태변화함수, 빈배열로 시작
 
   const [content, setContent] = useState(""); // 댓글 내용
@@ -37,10 +39,10 @@ export const DetailItemsMenu = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.oneulmohae.co.kr/place/양고기동아리`, {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/place/${props.place_name}`, {
           headers: {
             // "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiR1VFU1QiLCJtZW1iZXJJZCI6MiwidXNlcm5hbWUiOiJzZXVuZ2h5dW43MTFAbmF2ZXIuY29tIiwic3ViIjoic2V1bmdoeXVuNzExQG5hdmVyLmNvbSIsImlhdCI6MTcxMDA1MzY4NiwiZXhwIjoxNzEwMDU3Mjg2fQ.4JAS5TeXH4JcFntdoAmvQS80cOuH_FwiN5WognJAvLJcCsoJQqprcLCxgyitGVcsEP-KG0IzHyWXy_Iw1VUY9A",
-            placeId: "1283229309",
+            placeId: props.id,
           },
         });
         console.log(response.data);

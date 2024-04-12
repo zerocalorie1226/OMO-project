@@ -6,6 +6,7 @@ import Jjim from "../../assets/detail/red-heart.png";
 import {useNavigate} from "react-router-dom";
 
 export const ListBox = (props) => {
+  // console.log("리스트박스 props: ", props);
   const navigate = useNavigate();
 
   return (

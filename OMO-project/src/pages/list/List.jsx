@@ -69,6 +69,8 @@ const List = ({recentData, setRecentData, dataCopy, searchResultsX, searchResult
       })
     : [];
 
+    // console.log(listData[0].id);
+
   const onSearch = (term) => {
     setSearchTerm(term); // 검색어 상태 업데이트
   };
@@ -86,7 +88,7 @@ const List = ({recentData, setRecentData, dataCopy, searchResultsX, searchResult
             {filteredData && filteredData.length > 0 ? ( // filteredData가 null 또는 undefined인지 확인
               <div className={styles["list-list-box-container"]}>
                 {filteredData.map((item) => (
-                  <ListBox key={item.id} {...item} addRecentItem={() => addRecentItem(item)} />
+                  <ListBox key={item.id} id={item.id} {...item} addRecentItem={() => addRecentItem(item)} />
                 ))}
               </div>
             ) : (
