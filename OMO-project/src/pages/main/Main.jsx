@@ -6,12 +6,13 @@ import Search from "../../components/Search/Search";
 import {useState} from "react";
 import axios from "axios";
 
-const Main = ({setSearchResultsX,setSearchResultsY}) => {
+const Main = ({setSearchResultsX,setSearchResultsY, location, setLocation}) => {
   
   const [query, setQuery] = useState('');
-  const [location, setLocation] = useState('현재위치');
 
 
+  
+ 
   // 여기서 서버로 검색 쿼리를 전송하고 결과를 받아오는 로직을 구현
   // 결과를 setSearchResults를 통해 저장
   const handleSearch = async (query) => {

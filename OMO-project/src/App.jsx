@@ -34,6 +34,7 @@ import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
 import { useEffect, useState } from "react";
 import {dataCopy} from"./const/dataCopy"
 
+
 const reducer = (state, action) => {
   let newState = [];
   switch (action.type) {
@@ -58,42 +59,46 @@ export const MyCourseDispatchContext = React.createContext();
 const App = () => {
 
 
-  // 메인페이지에서 사용자의 현재 위치 가져오기
-  const getCurrentPosition = () => {
-    return new Promise((resolve, reject) => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            resolve({ latitude, longitude });
-          },
-          (error) => {
-            reject(error);
-          }
-        );
-      } else {
-        reject(new Error("Geolocation을 지원하지 않는 브라우저입니다."));
-      }
-    });
-  };
+// 현재 위치를 가져오기 위한 구글 API KEY
+ const GOOGLE_MAPS_API_KEY = "AIzaSyAXiS5yhJhzkpg62ICaOEe4SWw4GX1Hqvg";
 
-  // useState를 사용하여 사용자의 현재 위치를 관리
-  const [searchResultsX, setSearchResultsX] = useState("");
-  const [searchResultsY, setSearchResultsY] = useState("");
+ // 구글 API로 현재 위치 가져오는 fetch 함수
+ const getCurrentPosition = async () => {
+   try {
+     const position = await new Promise((resolve, reject) => {
+       navigator.geolocation.getCurrentPosition(resolve, reject);
+     });
 
-  // 컴포넌트가 마운트될 때 사용자의 현재 위치를 가져와서 상태를 업데이트
-  useEffect(() => {
-    getCurrentPosition()
-      .then(({ latitude, longitude }) => {
-        console.log("사용자의 현재 위치:", latitude, longitude);
-        // 가져온 현재 위치를 상태에 설정
-        setSearchResultsX(longitude);
-        setSearchResultsY(latitude);
-      })
-      .catch((error) => {
-        console.error("현재 위치를 가져오는데 실패했습니다:", error.message);
-      });
-  }, []); // 컴포넌트가 마운트될 때만 실행
+     const { latitude, longitude } = position.coords;
+
+     const response = await fetch(
+       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${GOOGLE_MAPS_API_KEY}`
+     );
+     const data = await response.json();
+     const address = data.results[0].formatted_address;  // 현재 위치의 도로명 주소
+     setLocation(address);
+     return { latitude, longitude, address };
+   } catch (error) {
+     console.error("Failed to fetch location data:", error);
+     throw new Error("Failed to fetch location data");
+   }
+ };
+
+ const [searchResultsX, setSearchResultsX] = useState(""); // 설정된 위치의 X 좌표 상태 관리
+ const [searchResultsY, setSearchResultsY] = useState(""); // 설정된 위치 Y 좌표 상태 관리
+ const [location, setLocation] = useState("Loading...");
+
+
+ useEffect(() => {
+   getCurrentPosition()
+     .then(({ latitude, longitude }) => { // 현재 위치 설정된거 받아옴
+       setSearchResultsX(longitude);
+       setSearchResultsY(latitude);
+     })
+     .catch((error) => {
+       console.error("현재 위치를 가져오는데 실패했습니다:", error.message);
+     });
+ }, []);
  
 
 
@@ -153,7 +158,7 @@ const App = () => {
             <Header />
             <Routes>
               {/* 메인 페이지 */}
-              <Route path="/" element={<Main setSearchResultsX={setSearchResultsX} setSearchResultsY={setSearchResultsY} />} />
+              <Route path="/" element={<Main setSearchResultsX={setSearchResultsX} setSearchResultsY={setSearchResultsY} location={location} setLocation={setLocation}/>} />
 
               {/* 서브 페이지 */}
               <Route path="/Eating" element={<Eating />} />
