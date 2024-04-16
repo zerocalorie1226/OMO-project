@@ -34,6 +34,7 @@ import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
 import { useEffect, useState } from "react";
 import {dataCopy} from"./const/dataCopy"
 
+
 const reducer = (state, action) => {
   let newState = [];
   switch (action.type) {
@@ -56,6 +57,50 @@ export const MyCourseDispatchContext = React.createContext();
 
 
 const App = () => {
+
+
+// 현재 위치를 가져오기 위한 구글 API KEY
+ const GOOGLE_MAPS_API_KEY = "AIzaSyAXiS5yhJhzkpg62ICaOEe4SWw4GX1Hqvg";
+
+ // 구글 API로 현재 위치 가져오는 fetch 함수
+ const getCurrentPosition = async () => {
+   try {
+     const position = await new Promise((resolve, reject) => {
+       navigator.geolocation.getCurrentPosition(resolve, reject);
+     });
+
+     const { latitude, longitude } = position.coords;
+
+     const response = await fetch(
+       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${GOOGLE_MAPS_API_KEY}`
+     );
+     const data = await response.json();
+     const address = data.results[0].formatted_address;  // 현재 위치의 도로명 주소
+     setLocation(address);
+     return { latitude, longitude, address };
+   } catch (error) {
+     console.error("Failed to fetch location data:", error);
+     throw new Error("Failed to fetch location data");
+   }
+ };
+
+ const [searchResultsX, setSearchResultsX] = useState(""); // 설정된 위치의 X 좌표 상태 관리
+ const [searchResultsY, setSearchResultsY] = useState(""); // 설정된 위치 Y 좌표 상태 관리
+ const [location, setLocation] = useState("Loading...");
+
+
+ useEffect(() => {
+   getCurrentPosition()
+     .then(({ latitude, longitude }) => { // 현재 위치 설정된거 받아옴
+       setSearchResultsX(longitude);
+       setSearchResultsY(latitude);
+     })
+     .catch((error) => {
+       console.error("현재 위치를 가져오는데 실패했습니다:", error.message);
+     });
+ }, []);
+ 
+
 
   // 나만의 코스 data
   const [data, dispatch] = useReducer(reducer, []);
@@ -98,11 +143,6 @@ const App = () => {
     });
     dataId.current += 1;
   };
-
-  // 장소에 대한 x,y 좌표
-  const [searchResultsX, setSearchResultsX] = useState("");
-  const [searchResultsY, setSearchResultsY] = useState("");
-
   
 
   return (
@@ -118,7 +158,7 @@ const App = () => {
             <Header />
             <Routes>
               {/* 메인 페이지 */}
-              <Route path="/" element={<Main setSearchResultsX={setSearchResultsX} setSearchResultsY={setSearchResultsY} />} />
+              <Route path="/" element={<Main setSearchResultsX={setSearchResultsX} setSearchResultsY={setSearchResultsY} location={location} setLocation={setLocation}/>} />
 
               {/* 서브 페이지 */}
               <Route path="/Eating" element={<Eating />} />
@@ -135,7 +175,7 @@ const App = () => {
               <Route path="/List/:category" element={<List recentData={recentData} setRecentData={setRecentData} dataCopy={dataCopy} searchResultsX={searchResultsX} searchResultsY={searchResultsY} />} />
 
               {/* 상세페이지 */}
-              <Route path="/DetailMenu/:id" element={<DetailMenu jjimData={jjimData} setJjimData={setJjimData} likeData={likeData} setLikeData={setLikeData} />} />
+              <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu jjimData={jjimData} setJjimData={setJjimData} likeData={likeData} setLikeData={setLikeData} />} />
               <Route path="/DetailNone" element={<DetailNone />} />
               <Route path="/DetailTariff" element={<DetailTariff />} />
 

@@ -5,7 +5,7 @@
 /* 개별 박스 */
 .list-box-inner-container {
   width: 950px;
-  height: 265px;
+  height: 220px;
   border: 1px solid var(--gray-400);
   border-radius: 20px;
   position: relative;
@@ -105,29 +105,29 @@
   top: 154px;
 }
 
-.list-box-img1 {
+/* .list-box-img1 {
   position: absolute;
   right: 410px;
   top: 40px;
   width: 180px;
   height: 180px;
   border-radius: 5px;
+} */
+
+.list-box-img1 {
+  position: absolute;
+  right: 220px;
+  top: 40px;
+  width: 140px;
+  height: 140px;
+  border-radius: 5px;
 }
 
 .list-box-img2 {
   position: absolute;
-  right: 220px;
-  top: 40px;
-  width: 180px;
-  height: 180px;
-  border-radius: 5px;
-}
-
-.list-box-img3 {
-  position: absolute;
   right: 30px;
   top: 40px;
-  width: 180px;
-  height: 180px;
+  width: 140px;
+  height: 140px;
   border-radius: 5px;
 }

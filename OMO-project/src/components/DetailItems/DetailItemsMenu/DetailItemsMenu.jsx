@@ -20,9 +20,11 @@ import {reviewData} from "../../../const/reviewData";
 
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import DefaultImg from "../../../assets/detail/detail-default-background.png";
-import axios from "axios";
+
 
 export const DetailItemsMenu = (props) => {
+
+  console.log("상세페이지 props: ", props);
   const [item, setItem] = useState([]); // 상태변화함수, 빈배열로 시작
 
   const [content, setContent] = useState(""); // 댓글 내용
@@ -32,37 +34,16 @@ export const DetailItemsMenu = (props) => {
   // 데이터 가져오기
   // const { data } = props;
 
-  const [DetailItemsMenuData, setDetailItemsMenuData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`https://api.oneulmohae.co.kr/place/양고기동아리`, {
-          headers: {
-            // "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiR1VFU1QiLCJtZW1iZXJJZCI6MiwidXNlcm5hbWUiOiJzZXVuZ2h5dW43MTFAbmF2ZXIuY29tIiwic3ViIjoic2V1bmdoeXVuNzExQG5hdmVyLmNvbSIsImlhdCI6MTcxMDA1MzY4NiwiZXhwIjoxNzEwMDU3Mjg2fQ.4JAS5TeXH4JcFntdoAmvQS80cOuH_FwiN5WognJAvLJcCsoJQqprcLCxgyitGVcsEP-KG0IzHyWXy_Iw1VUY9A",
-            placeId: "1283229309",
-          },
-        });
-        console.log(response.data);
-        setDetailItemsMenuData(response.data); // 서버로부터 받은 데이터를 상태에 저장
-      } catch (error) {
-        console.error("에러야", error);
-      }
-    };
-
-    fetchData();
-  }, []); // category가 변경될 때마다 데이터를 새로 가져옵니다.
-
   // 하트 버튼 (관심)
   const [imageSrcJjim, setImageSrcJjim] = useState(Jjim);
   const [isClikedJjim, setIsClickedJjim] = useState(false);
   const [countJjim, setCountJjim] = useState(0); // 초기값을 0 또는 적절한 기본값으로 설정
 
   useEffect(() => {
-    if (DetailItemsMenuData) {
-      setCountJjim(DetailItemsMenuData.mine); // 데이터가 로드되면 상태 업데이트
+    if (props.DetailItemsMenuData) {
+      setCountJjim(props.DetailItemsMenuData.mine); // 데이터가 로드되면 상태 업데이트
     }
-  }, [DetailItemsMenuData]); // DetailItemsMenuData가 변경될 때마다 실행
+  }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
 
   // 따봉 버튼 (추천)
   const [imageSrcLike, setImageSrcLike] = useState(Like);
@@ -70,10 +51,10 @@ export const DetailItemsMenu = (props) => {
   const [countLike, setCountLike] = useState(0);
 
   useEffect(() => {
-    if (DetailItemsMenuData) {
-      setCountLike(DetailItemsMenuData.recommend); // 데이터가 로드되면 상태 업데이트
+    if (props.DetailItemsMenuData) {
+      setCountLike(props.DetailItemsMenuData.recommend); // 데이터가 로드되면 상태 업데이트
     }
-  }, [DetailItemsMenuData]); // DetailItemsMenuData가 변경될 때마다 실행
+  }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
 
   // onCreate 함수 (댓글 리스트에 댓글 추가)
   const onCreate = (content, imageSrc) => {
@@ -174,8 +155,8 @@ const handleSubmit = () => {
 
     script.onload = () => {
       kakao.maps.load(() => {
-        if (DetailItemsMenuData) {
-          const {y: latitude, x: longitude} = DetailItemsMenuData;
+        if (props.DetailItemsMenuData) {
+          const {y: latitude, x: longitude} = props.DetailItemsMenuData;
           const mapCenter = new kakao.maps.LatLng(latitude, longitude); // 지도의 중심 좌표
 
           const mapOption = {
@@ -204,7 +185,7 @@ const handleSubmit = () => {
           marker.setMap(map);
 
           // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능
-          const iwContent = `<div style="padding:5px;">${DetailItemsMenuData.place_name}<br><a href="https://map.kakao.com/link/map/${DetailItemsMenuData.place_name},${DetailItemsMenuData.y},${DetailItemsMenuData.x}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${DetailItemsMenuData.place_name},${DetailItemsMenuData.y},${DetailItemsMenuData.x}" style="color:blue" target="_blank">길찾기</a></div>`;
+          const iwContent = `<div style="padding:5px;">${props.DetailItemsMenuData.place_name}<br><a href="https://map.kakao.com/link/map/${props.DetailItemsMenuData.place_name},${props.DetailItemsMenuData.y},${props.DetailItemsMenuData.x}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${props.DetailItemsMenuData.place_name},${props.DetailItemsMenuData.y},${props.DetailItemsMenuData.x}" style="color:blue" target="_blank">길찾기</a></div>`;
 
           const iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); // 인포윈도우 표시 위치
 
@@ -222,11 +203,11 @@ const handleSubmit = () => {
     };
 
     return () => script.remove();
-  }, [DetailItemsMenuData]);
+  }, [props.DetailItemsMenuData]);
 
   return (
     <>
-      {DetailItemsMenuData === null ? (
+      {props.DetailItemsMenuData === null ? (
         <div>Loading...</div>
       ) : (
         <div>
@@ -234,7 +215,7 @@ const handleSubmit = () => {
             <div className={styles["detail-thumbnail-container"]}>
               <img src={Magnifier} alt="썸네일 이미지" />
             </div>
-            <span className={styles["detail-title"]}>{DetailItemsMenuData.place_name}</span>
+            <span className={styles["detail-title"]}>{props.DetailItemsMenuData.place_name}</span>
             <div className={styles["detail-like-jjim-container"]}>
               <div className={styles["detail-jjim"]}>
               <span className={styles["detail-jjim-line"]}>|</span>
@@ -260,8 +241,8 @@ const handleSubmit = () => {
                 <img src={Address} alt="주소 아이콘" style={{width: "20px", height: "25px", position: "absolute", top: "1px"}} />
                 <span className={styles["detail-address-title"]}>주소</span>
               </div>
-              <span className={styles["detail-address-info-street"]}>{DetailItemsMenuData.road_address_name}</span>
-              <span className={styles["detail-address-info-number"]}>{DetailItemsMenuData.address_name}</span>
+              <span className={styles["detail-address-info-street"]}>{props.DetailItemsMenuData.road_address_name}</span>
+              <span className={styles["detail-address-info-number"]}>{props.DetailItemsMenuData.address_name}</span>
             </section>
 
             {/* <section className={styles["detail-sales-info-container"]}>
@@ -272,11 +253,11 @@ const handleSubmit = () => {
           <div className={styles["detail-sales-info-time-container"]}>
             <span className={styles["detail-sales-info-time"]}>시간</span>
             <span className={styles["detail-sales-info-line"]}>|</span>
-            <span className={styles["detail-sales-info-time-info"]}>{DetailItemsMenuData.time}</span>
+            <span className={styles["detail-sales-info-time-info"]}>{props.DetailItemsMenuData.time}</span>
           </div>
           <div className={styles["detail-sales-info-holiday-container"]}>
             <span className={styles["detail-sales-info-holiday"]}>휴무</span> <span className={styles["detail-sales-info-line"]}>|</span>
-            <span className={styles["detail-sales-info-holiday-info"]}>{DetailItemsMenuData.holiday}</span>
+            <span className={styles["detail-sales-info-holiday-info"]}>{props.DetailItemsMenuData.holiday}</span>
           </div>
         </section> */}
 
@@ -285,7 +266,7 @@ const handleSubmit = () => {
             <img src={Menu} alt="메뉴 아이콘" style={{ width: "20px", height: "25px", position: "absolute", top: "1px" }} />
             <span className={styles["detail-menu-title"]}>메뉴</span>
           </div>
-          {DetailItemsMenuData.menu.map((el) => (
+          {props.DetailItemsMenuData.menu.map((el) => (
             <div key={el.id}>
               <ul className={styles["detail-menu"]}>
                 <li className={styles["detail-menu-list"]}>
@@ -301,7 +282,7 @@ const handleSubmit = () => {
                 <img src={Call} alt="전화 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
                 <span className={styles["detail-call-title"]}>전화</span>
               </div>
-              <span className={styles["detail-call"]}>{DetailItemsMenuData.phone}</span>
+              <span className={styles["detail-call"]}>{props.DetailItemsMenuData.phone}</span>
             </section>
 
             <section className={styles["detail-google-map-container"]}>
@@ -443,8 +424,8 @@ const handleSubmit = () => {
                 <img src={Magnifier} alt="더보기 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
                 <span className={styles["detail-more-title"]}>더보기</span>
               </div>
-              <a href={DetailItemsMenuData.place_url} className={styles["detail-more"]}>
-                {DetailItemsMenuData.place_url}
+              <a href={props.DetailItemsMenuData.place_url} className={styles["detail-more"]}>
+                {props.DetailItemsMenuData.place_url}
               </a>
             </section>
           </div>

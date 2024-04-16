@@ -5,7 +5,6 @@ import Search from "../../../components/Search/Search";
 
 const Eating = () => (
   <>
-    <Search />
     <div className={styles["main-category-container"]}>
       {eating.map((el) => {
         return <SubCategoryBox key={el.id} {...el} />;
