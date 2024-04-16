@@ -175,7 +175,7 @@ const App = () => {
               <Route path="/List/:category" element={<List recentData={recentData} setRecentData={setRecentData} dataCopy={dataCopy} searchResultsX={searchResultsX} searchResultsY={searchResultsY} />} />
 
               {/* 상세페이지 */}
-              <Route path="/DetailMenu/:id" element={<DetailMenu jjimData={jjimData} setJjimData={setJjimData} likeData={likeData} setLikeData={setLikeData} />} />
+              <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu jjimData={jjimData} setJjimData={setJjimData} likeData={likeData} setLikeData={setLikeData} />} />
               <Route path="/DetailNone" element={<DetailNone />} />
               <Route path="/DetailTariff" element={<DetailTariff />} />
 

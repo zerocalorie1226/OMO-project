@@ -11,15 +11,15 @@ export const ListBox = (props) => {
 
   return (
     <>
-      <button
-        onClick={() => {
-          navigate(`/DetailMenu/${props.id}`);
+  <button
+  onClick={() => {
+    navigate(`/DetailMenu/${props.id}/${props.place_name}`);
 
-          props.addRecentItem(props); 
-        }}
-        
-        className={styles["list-box-container"]}
-      >
+
+    props.addRecentItem({ id: props.id, place_name: props.place_name });
+  }}
+  className={styles["list-box-container"]}
+>
         <div className={styles["list-box-inner-container"]}>
           <span className={styles["list-box-title"]}>{props.place_name}</span>
 
