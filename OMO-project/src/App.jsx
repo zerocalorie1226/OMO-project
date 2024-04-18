@@ -33,6 +33,7 @@ import MyCourseNewWrite from "./pages/MyCourse/MyCourseNewWrite/MyCourseNewWrite
 import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
 import { useEffect, useState } from "react";
 import {dataCopy} from"./const/dataCopy"
+import LoginLoading from "./pages/LoginLoading/LoginLoading";
 
 
 const reducer = (state, action) => {
@@ -169,6 +170,7 @@ const App = () => {
               {/* 로그인/회원가입 */}
               <Route path="/Login" element={<Login />} />
               <Route path="/Signup" element={<Signup />} />
+              <Route path="/LoginLoading" element={<LoginLoading />} />
 
               {/* 리스트페이지 */}
               <Route path="/List" element={<List recentData={recentData} setRecentData={setRecentData} dataCopy={dataCopy}  searchResultsX={searchResultsX} searchResultsY={searchResultsY}/>} />
