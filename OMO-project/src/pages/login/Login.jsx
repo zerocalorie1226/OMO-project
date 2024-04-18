@@ -8,8 +8,8 @@ const Login = () => {
   const handleLogin = () => {
     // 구글 로그인 화면으로 이동시키기
     window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?
-		client_id=558371130453-at4g7encs56mmp29amli05gmc8ifrmt3.apps.googleusercontent.com
-		&redirect_uri=http://localhost:5173/
+		client_id=21906896789-8363kp8suu6i3bq15mrfcjtfuisffcdk.apps.googleusercontent.com
+		&redirect_uri=http://localhost:5173/LoginLoading
 		&response_type=code
 		&scope=email profile`;
   };
