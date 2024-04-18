@@ -59,9 +59,8 @@ export const MyCourseDispatchContext = React.createContext();
 
 const App = () => {
 
-
 // 현재 위치를 가져오기 위한 구글 API KEY
- const GOOGLE_MAPS_API_KEY = "AIzaSyAXiS5yhJhzkpg62ICaOEe4SWw4GX1Hqvg";
+ const GOOGLE_MAPS_API_KEY = "AIzaSyBFZH53aP29Zr7vY5jyv7wd4wGQMg3CI1s";
 
  // 구글 API로 현재 위치 가져오는 fetch 함수
  const getCurrentPosition = async () => {
