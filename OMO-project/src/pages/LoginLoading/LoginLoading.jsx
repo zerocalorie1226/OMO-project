@@ -1,5 +1,5 @@
-import styles from "./LoginLoading.module.css";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from "react-router-dom";
+import {Loading} from "../../components/Loading/Loading";
 
 const LoginLoading = () => {
   // const navigate = useNavigate();
@@ -48,10 +48,9 @@ const LoginLoading = () => {
   // }, [code, navigate]);
 
   return (
-    <div>
-      {/* <LoadingIcon src={loading} /> */}
-      <div className={styles["login-loading-container"]}>로그인중입니다...</div>
-    </div>
+    <>
+      <Loading />
+    </>
   );
 };
 
