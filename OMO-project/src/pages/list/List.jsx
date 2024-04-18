@@ -5,6 +5,7 @@ import ListSearch from "../../components/ListSearch/ListSearch";
 import {ListBox} from "../../components/ListBox/ListBox";
 import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 import axios from "axios";
+import { Loading } from "../../components/Loading/Loading";
 
 const List = ({recentData, setRecentData, dataCopy, searchResultsX, searchResultsY}) => {
   // useParams를 사용하여 category 값을 가져옵니다.
@@ -69,7 +70,7 @@ const List = ({recentData, setRecentData, dataCopy, searchResultsX, searchResult
       })
     : [];
 
-    // console.log(listData[0].id);
+  // console.log(listData[0].id);
 
   const onSearch = (term) => {
     setSearchTerm(term); // 검색어 상태 업데이트
@@ -78,7 +79,7 @@ const List = ({recentData, setRecentData, dataCopy, searchResultsX, searchResult
   return (
     <>
       {filteredData === null ? (
-        <div>Loading...</div>
+        <Loading/>
       ) : (
         <div>
           <div className={styles["list-component-container"]}>

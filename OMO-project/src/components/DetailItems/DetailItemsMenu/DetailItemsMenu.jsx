@@ -20,10 +20,10 @@ import {reviewData} from "../../../const/reviewData";
 
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import DefaultImg from "../../../assets/detail/detail-default-background.png";
-
+import {BeatLoader} from "react-spinners";
+import { Loading } from "../../Loading/Loading";
 
 export const DetailItemsMenu = (props) => {
-
   console.log("상세페이지 props: ", props);
   const [item, setItem] = useState([]); // 상태변화함수, 빈배열로 시작
 
@@ -123,18 +123,17 @@ export const DetailItemsMenu = (props) => {
     reader.readAsDataURL(e.target.files[0]);
   };
 
-  // handleSubmit 
-const handleSubmit = () => {
-  if (content.length < 1) {
-    alert("리뷰는 최소 1글자 이상 입력해주세요");
-    return;
-  }
-  const imageToUpload = Image !== DefaultImg ? Image : ''; // 이미지가 기본 이미지와 다르면 이미지 사용, 아니면 빈 문자열
-  onCreate(content, imageToUpload);
-  setContent("");
-  setImage(DefaultImg); // 이미지 초기화
-};
-
+  // handleSubmit
+  const handleSubmit = () => {
+    if (content.length < 1) {
+      alert("리뷰는 최소 1글자 이상 입력해주세요");
+      return;
+    }
+    const imageToUpload = Image !== DefaultImg ? Image : ""; // 이미지가 기본 이미지와 다르면 이미지 사용, 아니면 빈 문자열
+    onCreate(content, imageToUpload);
+    setContent("");
+    setImage(DefaultImg); // 이미지 초기화
+  };
 
   // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
   const handleOnKeyPress = (e) => {
@@ -197,7 +196,6 @@ const handleSubmit = () => {
 
           // 마커 위에 인포윈도우를 표시
           infowindow.open(map, marker); // 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시
-          
         }
       });
     };
@@ -208,7 +206,7 @@ const handleSubmit = () => {
   return (
     <>
       {props.DetailItemsMenuData === null ? (
-        <div>Loading...</div>
+        <Loading/>
       ) : (
         <div>
           <section className={styles["detail-title-container"]}>
@@ -218,7 +216,7 @@ const handleSubmit = () => {
             <span className={styles["detail-title"]}>{props.DetailItemsMenuData.place_name}</span>
             <div className={styles["detail-like-jjim-container"]}>
               <div className={styles["detail-jjim"]}>
-              <span className={styles["detail-jjim-line"]}>|</span>
+                <span className={styles["detail-jjim-line"]}>|</span>
                 <button type="button" onClick={handleClickJjim}>
                   <img src={imageSrcJjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} />
                 </button>
@@ -226,7 +224,7 @@ const handleSubmit = () => {
                 {/* <span className={styles["detail-jjim-number"]}> 999+</span> */}
               </div>
               <div className={styles["detail-like"]}>
-              <span className={styles["detail-like-line"]}>|</span>
+                <span className={styles["detail-like-line"]}>|</span>
                 <button type="button" onClick={handleClickLike}>
                   <img src={imageSrcLike} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} />
                 </button>

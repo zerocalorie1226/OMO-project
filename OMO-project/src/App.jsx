@@ -33,6 +33,7 @@ import MyCourseNewWrite from "./pages/MyCourse/MyCourseNewWrite/MyCourseNewWrite
 import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
 import { useEffect, useState } from "react";
 import {dataCopy} from"./const/dataCopy"
+import LoginLoading from "./pages/LoginLoading/LoginLoading";
 
 
 const reducer = (state, action) => {
@@ -58,9 +59,8 @@ export const MyCourseDispatchContext = React.createContext();
 
 const App = () => {
 
-
 // 현재 위치를 가져오기 위한 구글 API KEY
- const GOOGLE_MAPS_API_KEY = "AIzaSyAXiS5yhJhzkpg62ICaOEe4SWw4GX1Hqvg";
+ const GOOGLE_MAPS_API_KEY = "AIzaSyBFZH53aP29Zr7vY5jyv7wd4wGQMg3CI1s";
 
  // 구글 API로 현재 위치 가져오는 fetch 함수
  const getCurrentPosition = async () => {
@@ -169,6 +169,7 @@ const App = () => {
               {/* 로그인/회원가입 */}
               <Route path="/Login" element={<Login />} />
               <Route path="/Signup" element={<Signup />} />
+              <Route path="/LoginLoading" element={<LoginLoading />} />
 
               {/* 리스트페이지 */}
               <Route path="/List" element={<List recentData={recentData} setRecentData={setRecentData} dataCopy={dataCopy}  searchResultsX={searchResultsX} searchResultsY={searchResultsY}/>} />
