@@ -35,7 +35,7 @@ const Main = ({setSearchResultsX,setSearchResultsY, location, setLocation}) => {
   return (
     <>
       <Search handleSearch={handleSearch} query={query} setQuery={setQuery} location={location} setLocation={setLocation} />
-      <Weather />
+      {/* <Weather /> */}
       <div className={styles["main-category-container"]}>
         {main.map((el) => {
           return <CategoryBox key={el.id} {...el} />;
