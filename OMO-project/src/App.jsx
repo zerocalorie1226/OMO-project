@@ -143,6 +143,8 @@ const App = () => {
     });
     dataId.current += 1;
   };
+
+  const [loginApi,setLoginApi]=useState("")
   
 
   return (
@@ -167,9 +169,9 @@ const App = () => {
               <Route path="/ThemeCafe" element={<ThemeCafe />} />
 
               {/* 로그인/회원가입 */}
-              <Route path="/Login" element={<Login />} />
+              <Route path="/Login" element={<Login loginApi={loginApi} setLoginApi={setLoginApi} />} />
               <Route path="/Signup" element={<Signup />} />
-              <Route path="/LoginLoading" element={<LoginLoading />} />
+              <Route path="/LoginLoading" element={<LoginLoading loginApi={loginApi} setLoginApi={setLoginApi} />} />
 
               {/* 리스트페이지 */}
               <Route path="/List" element={<List recentData={recentData} setRecentData={setRecentData} dataCopy={dataCopy}  searchResultsX={searchResultsX} searchResultsY={searchResultsY}/>} />
