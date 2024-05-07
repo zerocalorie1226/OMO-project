@@ -79,7 +79,7 @@ const Signup = () => (
           </form>
         </div>
 
-        <CheckBox />
+        {/* <CheckBox /> */}
 
         <div className={styles["signup-btn-container"]}>
         <Link to="/Main">
