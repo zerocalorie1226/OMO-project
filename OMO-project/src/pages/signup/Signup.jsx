@@ -5,8 +5,18 @@ import {Radio} from "../../components/Radio/Radio";
 import {RadioGroup} from "../../components/Radio/RadioGroup";
 import CheckBox from "../../components/CheckBox/CheckBox";
 import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Signup = () => (
+const Signup = () =>{ 
+  const navigate = useNavigate();
+  
+  const singUpInfo=()=>{
+    alert("가입되었습니다")
+    navigate("/");
+    
+  }
+  
+  return(
   <>
     <section className={styles["signup-container"]}>
       <div className={styles["signup-title-container"]}>
@@ -82,15 +92,13 @@ const Signup = () => (
         {/* <CheckBox /> */}
 
         <div className={styles["signup-btn-container"]}>
-        <Link to="/Main">
-          <button type="submit" className={styles["signup-btn-signup"]}>
+          <button type="submit" className={styles["signup-btn-signup"]} onClick={singUpInfo} >
             가입하기
           </button>
-          </Link>
         </div>
       </div>
     </section>
   </>
 );
-
+}
 export default Signup;

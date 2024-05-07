@@ -146,6 +146,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 150px;
+  cursor: pointer;
 }
 
 .signup-btn-signup {
