@@ -5,7 +5,6 @@ import Search from "../../../components/Search/Search";
 
 const ThemeCafe = () => (
   <>
-    <Search />
     <div className={styles["main-category-container"]}>
       {themeCafe.map((el) => {
         return <SubCategoryBox key={el.id} {...el} />;

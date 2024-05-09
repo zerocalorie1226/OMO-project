@@ -1,7 +1,6 @@
 export const simpleDateTimeFormat = (date, pattern) => {
 	const dateString = pattern.replace(/(yyyy|MM|dd|HH|mm|ss|SSS)/g, function(match) {
-		let matchString = ""; 
-
+		let matchString = "";
 		switch(match) {
 			case "yyyy":
 				matchString = date.getFullYear();

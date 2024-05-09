@@ -123,6 +123,9 @@
 /* 성별 */
 .signup-gender-container {
   display: flex;
+  padding-bottom: 53px;
+  border-bottom: 1px solid var(--primary);
+
 }
 
 .signup-gender-radio-container > fieldset {
@@ -143,6 +146,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 150px;
+  cursor: pointer;
 }
 
 .signup-btn-signup {

@@ -1,58 +1,88 @@
+/* 검색창 + 위치 */
+.main-search-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 70px auto 70px auto;
+  width: 800px;
+}
+
+/* 검색창 div */
 .main-search-container {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 800px;
-  margin: 70px auto;
-}
-
-.main-search-img-container {
-  width: 770px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  height: 40px;
-  display: flex;
-  justify-content: space-between;
-  pointer-events: none;
-}
-
-.main-search-img-container > a {
-  pointer-events: auto;
-}
-
-.main-search-input-container {
-  display: block;
   width: 800px;
   height: 80px;
+  margin-bottom: 15px;
   border: 2px solid var(--primary);
   border-radius: 40px;
-  padding-left: 85px;
-  padding-right: 40px;
-  outline: none;
-  font-size: 20px;
 }
 
-.main-search-input-container::placeholder{
-  color: var(--gray);
-  font-size: 20px;
+/* 로고 + input + 검색버튼*/
+.main-search-input-container {
+  width: 100%;
+  height: 40px;
+  display: flex;
+
+  position: relative;
+  align-items: center;
 }
 
-.main-search-img-container > img {
+/* 로고 */
+.main-search-logocircle {
   width: 40px;
   height: 40px;
+  position: absolute;
+  left: 30px;
 }
 
-.main-search-logocircle{
-  margin-left: 15px;
+/* input */
+.main-search-input {
+  width: 620px;
+  height: 100%;
+  border: none;
+  font-size: 20px;
+  position: absolute;
+  left: 90px;
 }
 
-.main-search-magnifier{
-  margin-right: 20px;
+.main-search-input::placeholder {
+  color: var(--gray);
+  font-size: 18px;
+}
+
+.main-search-input:focus {
+  outline: none;
+}
+
+/* 검색버튼 */
+.main-search-button {
+  all: unset;
+  position: absolute;
+  right: 30px;
+  cursor: pointer;
+}
+
+/* 돋보기 이미지 */
+.main-search-button > img {
   width: 35px;
   height: 35px;
-  margin-top: 1px;
+}
+
+/* 위치아이콘 + 위치정보 div */
+.main-search-location-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #818181;
+}
+
+.main-search-location-container > img{
+width: 25px;
+height: 25px;
+}
+
+/* 위치정보 span */
+.main-search-location-current {
+  margin-left: 5px;
 }

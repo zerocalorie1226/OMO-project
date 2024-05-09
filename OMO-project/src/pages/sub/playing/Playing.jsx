@@ -5,7 +5,6 @@ import Search from "../../../components/Search/Search";
 
 const Playing = () => (
   <>
-    <Search />
     <div className={styles["main-category-container"]}>
       {playing.map((el) => {
         return <SubCategoryBox key={el.id} {...el} />;
