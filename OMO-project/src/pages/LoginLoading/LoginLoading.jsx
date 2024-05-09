@@ -11,25 +11,38 @@ const LoginLoading = () => {
 
     const params = new URLSearchParams(window.location.search);
     console.log(params);
+    
+    // URL에서 필요한 값들을 가져옵니다.
+    const accessToken = params.get('accessToken');
+    const refreshToken = params.get('refreshToken');
     const isExistingMember = params.get('isExistingMember');
+    
+    console.log('accessToken:', accessToken);
+    console.log('refreshToken:', refreshToken);
     console.log('isExistingMember:', isExistingMember);
 
+    // 로컬 스토리지에 토큰과 멤버 정보를 저장합니다.
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+    localStorage.setItem('isExistingMember', isExistingMember);
+
+    // 사용자 상태에 따라 다른 페이지로 리디렉션합니다.
     if (isExistingMember === 'true') {
-      console.log("기존 멤버로 확인됨, / 홈으로 이동");
-      navigate("/Signup");
-    } else if (isExistingMember === 'false') {
-      console.log("새로운 멤버로 확인됨, /Signup 페이지로 이동");
-      navigate("/Signup");
+      console.log("기존 멤버로 확인됨, 홈으로 이동");
+      navigate("/"); // 기존 멤버일 경우 홈 페이지로 이동
+    } else {
+      console.log("새로운 멤버로 확인됨, Signup 페이지로 이동");
+      navigate("/Signup"); // 새 멤버일 경우 회원가입 페이지로 이동
     } 
 
     setLoading(false);
-  }, [navigate]); // 의존성 배열에서 loading을 제거했습니다.
+  }, [navigate]);
 
   if (loading) {
     return <Loading />;
   }
 
-  return null;
+  // return null;
 };
 
 export default LoginLoading;
