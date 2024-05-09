@@ -3,11 +3,9 @@ import naver from "../../assets/login/naver-icon.png";
 import google from "../../assets/login/google-icon.png";
 import kakao from "../../assets/login/kakao-icon.png";
 
-const Login = ({loginApi,setLoginApi}) => {
+const Login = () => {
 
   const handleLogin = (service) => {
-    localStorage.setItem('loginService', service); // 로컬 스토리지에 저장
-    // setLoginApi(service)
     window.location.href = `https://api.oneulmohae.co.kr/oauth2/authorization/${service}`;
   };
 
