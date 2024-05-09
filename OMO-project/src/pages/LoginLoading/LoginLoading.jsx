@@ -7,30 +7,28 @@ const LoginLoading = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("useEffect 실행");
+
     const params = new URLSearchParams(window.location.search);
-    const isExistingMember = params.get('isExistingMember'); // 서버에서 리디렉트 시 설정한 쿼리 파라미터
+    console.log(params);
+    const isExistingMember = params.get('isExistingMember');
+    console.log('isExistingMember:', isExistingMember);
 
-    if (loading) {
-      // 사용자 상태에 따라 리디렉트
-      if (isExistingMember === 'true') {
-        navigate("/");
-      } else if (isExistingMember === 'false') {
-        navigate("/Signup");
-      } else {
-        // 쿼리 파라미터가 없거나 예상치 못한 값일 경우 로그인 페이지로 리다이렉트
-        navigate("/login");
-      }
-      setLoading(false);
-    }
+    if (isExistingMember === 'true') {
+      console.log("기존 멤버로 확인됨, / 홈으로 이동");
+      navigate("/Signup");
+    } else if (isExistingMember === 'false') {
+      console.log("새로운 멤버로 확인됨, /Signup 페이지로 이동");
+      navigate("/Signup");
+    } 
 
-  }, [navigate, loading]);
+    setLoading(false);
+  }, [navigate]); // 의존성 배열에서 loading을 제거했습니다.
 
-  // 로딩 상태를 표시
   if (loading) {
     return <Loading />;
   }
 
-  // 로딩 상태가 해제된 후에는 추가적인 UI가 필요하지 않으므로 null 반환
   return null;
 };
 
