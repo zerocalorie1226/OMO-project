@@ -23,7 +23,7 @@ export const themeCafe = [
   },
   {
     id: 4,
-    title: "동물",
+    title: "동물원",
     src: Animal,
   },
   {
