@@ -9,7 +9,7 @@ const MbtiChange = () => {
 
     if (confirmWithdrawal) {
       alert("변경되었습니다.");
-      navigate("/");
+      navigate("/ProfileSetting");
   }}
   return(
   

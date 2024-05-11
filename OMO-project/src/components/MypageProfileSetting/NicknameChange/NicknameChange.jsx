@@ -9,7 +9,7 @@ const NicknameChange = () => {
 
     if (confirmWithdrawal) {
       alert("변경되었습니다.");
-      navigate("/");
+      navigate("/ProfileSetting");
   }}
   return(
   <div className={styles["profile-setting-main-nickname-change-container"]}>
