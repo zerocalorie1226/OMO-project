@@ -1,7 +1,6 @@
 import styles from "../../main/Main.module.css";
 import {SubCategoryBox} from "../../../components/SubCategoryBox/SubCategoryBox";
 import {themeCafe} from "../../../const/themeCafe";
-import Search from "../../../components/Search/Search";
 
 const ThemeCafe = () => (
   <>

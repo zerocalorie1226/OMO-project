@@ -7,31 +7,42 @@ const LoginLoading = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("useEffect 실행");
+
     const params = new URLSearchParams(window.location.search);
-    const isExistingMember = params.get('isExistingMember'); // 서버에서 리디렉트 시 설정한 쿼리 파라미터
+    console.log(params);
+    
+    // URL에서 필요한 값들을 가져옵니다.
+    const accessToken = params.get('accessToken');
+    const refreshToken = params.get('refreshToken');
+    const isExistingMember = params.get('isExistingMember');
+    
+    console.log('accessToken:', accessToken);
+    console.log('refreshToken:', refreshToken);
+    console.log('isExistingMember:', isExistingMember);
 
-    if (loading) {
-      // 사용자 상태에 따라 리디렉트
-      if (isExistingMember === 'true') {
-        navigate("/");
-      } else if (isExistingMember === 'false') {
-        navigate("/Signup");
-      } else {
-        // 쿼리 파라미터가 없거나 예상치 못한 값일 경우 로그인 페이지로 리다이렉트
-        navigate("/login");
-      }
-      setLoading(false);
-    }
+    // 로컬 스토리지에 토큰과 멤버 정보를 저장합니다.
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+    localStorage.setItem('isExistingMember', isExistingMember);
 
-  }, [navigate, loading]);
+    // 사용자 상태에 따라 다른 페이지로 리디렉션합니다.
+    if (isExistingMember === 'true') {
+      console.log("기존 멤버로 확인됨, 홈으로 이동");
+      navigate("/"); // 기존 멤버일 경우 홈 페이지로 이동
+    } else {
+      console.log("새로운 멤버로 확인됨, Signup 페이지로 이동");
+      navigate("/Signup"); // 새 멤버일 경우 회원가입 페이지로 이동
+    } 
 
-  // 로딩 상태를 표시
+    setLoading(false);
+  }, [navigate]);
+
   if (loading) {
     return <Loading />;
   }
 
-  // 로딩 상태가 해제된 후에는 추가적인 UI가 필요하지 않으므로 null 반환
-  return null;
+  // return null;
 };
 
 export default LoginLoading;
