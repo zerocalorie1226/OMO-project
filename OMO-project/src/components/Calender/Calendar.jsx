@@ -6,15 +6,14 @@ import styles from "./Calendar.module.css";
 import { getMonth, getYear } from 'date-fns';
 import range from "lodash/range";
 
-const Calendar = () => {
-  const [startDate, setStartDate] = useState(new Date());
+const Calendar = ({birthdate, setBirthdate}) => {
   const years = range(1800, getYear(new Date()) + 1, 1);
   const months = range(0, 12); // 월을 숫자로 처리하도록 변경
 
   return (
     <DatePicker 
-      selected={startDate} 
-      onChange={date => setStartDate(date)}
+      selected={birthdate} 
+      onChange={date => setBirthdate(date)}
       locale={ko}
       dateFormat="yyyy-MM-dd" // 일반적인 날짜 포맷으로 변경
       showPopperArrow={false}
