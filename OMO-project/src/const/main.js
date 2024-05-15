@@ -28,7 +28,7 @@ export const main = [
     id: 4,
     title: "카페",
     src: Cafe,
-    route: "/List",
+    route: "/List/카페",
   },
   {
     id: 5,
