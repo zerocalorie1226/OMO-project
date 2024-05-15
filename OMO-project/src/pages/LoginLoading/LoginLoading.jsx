@@ -16,15 +16,18 @@ const LoginLoading = () => {
     const accessToken = params.get('accessToken');
     const refreshToken = params.get('refreshToken');
     const isExistingMember = params.get('isExistingMember');
+    const memberId = params.get('memberId');
     
     console.log('accessToken:', accessToken);
     console.log('refreshToken:', refreshToken);
     console.log('isExistingMember:', isExistingMember);
+    console.log('memberId:', memberId);
 
     // 로컬 스토리지에 토큰과 멤버 정보를 저장합니다.
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
     localStorage.setItem('isExistingMember', isExistingMember);
+    localStorage.setItem('memberId', memberId);
 
     // 사용자 상태에 따라 다른 페이지로 리디렉션합니다.
     if (isExistingMember === 'true') {
