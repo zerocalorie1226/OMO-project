@@ -1,3 +1,4 @@
+import axios from "axios";
 import Calendar from "../../components/Calender/Calendar";
 import styles from "./Signup.module.css";
 import Required from "../../assets/sign-up/required.png";
@@ -15,9 +16,9 @@ const Signup = () => {
   const [mbtiSN, setMbtiSN] = useState("");
   const [mbtiTF, setMbtiTF] = useState("");
   const [mbtiJP, setMbtiJP] = useState("");
-  const [gender, setGender] = useState("");
+  const [genderType, setGenderType] = useState("");
 
-  const singUpInfo = () => {
+  const singUpInfo = async () => {
     if (!birthdate) {
       alert("생년월일을 입력해주세요.");
       return;
@@ -30,12 +31,87 @@ const Signup = () => {
       alert("MBTI를 입력해주세요.");
       return;
     }
-    if (!gender) {
+    if (!genderType) {
       alert("성별을 선택해주세요.");
       return;
     }
-    alert("가입되었습니다");
-    navigate("/");
+
+    const mbtiMapping = {
+      ISTP: 1,
+      ISTJ: 2,
+      ISFP: 3,
+      ISFJ: 4,
+      INTP: 5,
+      INTJ: 6,
+      INFP: 7,
+      INFJ: 8,
+      ESTP: 9,
+      ESTJ: 10,
+      ESFP: 11,
+      ESFJ: 12,
+      ENTP: 13,
+      ENTJ: 14,
+      ENFP: 15,
+      ENFJ: 16,
+    };
+
+    const getMbtiValue = (mbtiIE, mbtiSN, mbtiTF, mbtiJP) => {
+      const fullMbti = `${mbtiIE}${mbtiSN}${mbtiTF}${mbtiJP}`;
+      return mbtiMapping[fullMbti] || null;
+    };
+
+    // 날짜에서 년, 월, 일 추출
+    const birthYear = birthdate.getFullYear();
+    const birthMonth = birthdate.getMonth() + 1;
+    const birthDay = birthdate.getDate();
+
+    console.log("birthYear: ", birthYear);
+    console.log("birthMonth: ", birthMonth);
+    console.log("birthDay: ", birthDay);
+
+    // MBTI 값 매핑
+    const mbti = getMbtiValue(mbtiIE, mbtiSN, mbtiTF, mbtiJP);
+    if (!mbti) {
+      alert("MBTI를 완전히 선택해주세요.");
+      return;
+    }
+
+    console.log("mbti: ", mbti);
+
+    // 성별을 0과 1로 변환
+    const gender = genderType === "MALE" ? 0 : 1;
+
+    console.log("gender: ", gender);
+
+    console.log("nickname: ", nickname);
+
+    try {
+      const response = await axios.post(
+        `https://api.oneulmohae.co.kr/memberInfo/${localStorage.getItem("memberId")}`,
+        {
+          nickname: nickname,
+          birthYear: birthYear,
+          birthMonth: birthMonth,
+          birthDay: birthDay,
+          mbti: mbti,
+          gender: gender,
+        },
+        {
+          headers: {
+            Authorization: `${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+      console.log(localStorage.getItem("accessToken"));
+      console.log(localStorage.getItem("memberId"));
+      console.log(response.data);
+
+      alert("가입되었습니다");
+      navigate("/");
+    } catch (error) {
+      alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+      console.error(error);
+    }
   };
 
   const checkNickname = () => {
@@ -78,11 +154,7 @@ const Signup = () => {
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
             />
-            <button
-              className={styles["signup-nickname-certification"]}
-              type="button"
-              onClick={checkNickname} 
-            >
+            <button className={styles["signup-nickname-certification"]} type="button" onClick={checkNickname}>
               중복 확인
             </button>
           </div>
@@ -122,11 +194,11 @@ const Signup = () => {
               성별 <img className={styles["signup-gender-ess"]} src={Required} alt="필수항목표시" />
             </label>
             <form className={styles["signup-gender-radio-container"]}>
-              <RadioGroup name="gender">
-                <Radio name="gender" value="MALE" defaultChecked={gender === "MALE"} setGender={setGender}>
+              <RadioGroup name="genderType">
+                <Radio name="gender" value="MALE" defaultChecked={genderType === "MALE"} setGender={setGenderType}>
                   남자
                 </Radio>
-                <Radio name="gender" value="FEMALE" defaultChecked={gender === "FEMALE"} setGender={setGender}>
+                <Radio name="gender" value="FEMALE" defaultChecked={genderType === "FEMALE"} setGender={setGenderType}>
                   여자
                 </Radio>
               </RadioGroup>
