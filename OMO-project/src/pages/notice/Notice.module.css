@@ -31,3 +31,14 @@
   width: 1000px;
   margin-top: 10px;
 }
+.notice-main-nothing{
+  display: flex;
+  justify-content: center;
+  width: 730px;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 50px;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--gray-700);
+}
