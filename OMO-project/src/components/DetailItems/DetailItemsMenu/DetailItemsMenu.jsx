@@ -20,7 +20,7 @@ import {reviewData} from "../../../const/reviewData";
 
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import DefaultImg from "../../../assets/detail/detail-default-background.png";
-import EatingDefaultIcon from"../../../assets/detail/EatingDefaultIcon.png"
+import defaultDetailIcon from"../../../assets/detail/defaultDetailIcon.png"
 import {BeatLoader} from "react-spinners";
 import { Loading } from "../../Loading/Loading";
 
@@ -214,7 +214,7 @@ export const DetailItemsMenu = (props) => {
         <div>
           <section className={styles["detail-title-container"]}>
             <div className={styles["detail-thumbnail-container"]}>
-              <img src={item.length==0?EatingDefaultIcon:item[0].imageSrc} alt="썸네일 이미지" />
+              <img src={item.length==0?defaultDetailIcon:item[0].imageSrc} alt="썸네일 이미지" />
             </div>
             <span className={styles["detail-title"]}>{props.DetailItemsMenuData.place_name}</span>
             <div className={styles["detail-like-jjim-container"]}>
