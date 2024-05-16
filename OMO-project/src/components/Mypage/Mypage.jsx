@@ -1,3 +1,4 @@
+import axios from "axios";
 import styles from "./Mypage.module.css";
 import {Link} from "react-router-dom";
 import ProfileDefault from "../../assets/profile-default.png";
@@ -8,22 +9,42 @@ import MyInfoSetting from "../../assets/my-page/my-info/profile-setting.png";
 import MyInfoRecent from "../../assets/my-page/my-info/recent-place.png";
 import MyInfoThumb from "../../assets/my-page/my-info/empty-thumb.png";
 import { mbtiReverseMapping } from "../../const/mbtiReverseMapping";
+import { useEffect, useState } from "react";
 
-const Mypage = ({myInfoData}) => {
+
+const Mypage = ()=> {
+
+  const [myPageData, setMyPageData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo/${localStorage.getItem("memberId")}`, {
+          headers: {
+            Authorization: `${localStorage.getItem("accessToken")}`,
+          },
+        });
+        console.log(response.data);
+        setMyPageData(response.data); 
+      } catch (error) {
+        console.error("에러야", error);
+      }
+    };
+    fetchData();
+  }, []); 
 
   const getMbtiString = (mbtiValue) => {
     return mbtiReverseMapping[mbtiValue] || "Unknown MBTI";
   };
 
-
   return (
     <>
-      {myInfoData && (
+      {myPageData && (
         <div className={styles["myinfo-categories-list"]}>
           <div className={styles["myinfo-categories-list-inFoContainer"]}>
             <img className={styles["myinfo-categories-list-logo"]} src={ProfileDefault} alt="기본 프로필" />
-            <p className={styles["myinfo-categories-list-nickname"]}>{myInfoData.nickname}</p>
-            <p className={styles["myinfo-categories-list-mbti"]}>{getMbtiString(myInfoData.mbti)}</p>
+            <p className={styles["myinfo-categories-list-nickname"]}>{myPageData.nickname}</p>
+            <p className={styles["myinfo-categories-list-mbti"]}>{getMbtiString(myPageData.mbti)}</p>
           </div>
           <div className={styles["myinfo-categories-mypage-container"]}>
             <p className={styles["myinfo-categories-mypage"]}>My page</p>
