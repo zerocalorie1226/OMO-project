@@ -203,6 +203,7 @@ export const DetailItemsMenu = (props) => {
     return () => script.remove();
   }, [props.DetailItemsMenuData]);
 
+  console.log(item)
   return (
     <>
       {props.DetailItemsMenuData === null ? (
@@ -211,7 +212,7 @@ export const DetailItemsMenu = (props) => {
         <div>
           <section className={styles["detail-title-container"]}>
             <div className={styles["detail-thumbnail-container"]}>
-              <img src={Magnifier} alt="썸네일 이미지" />
+              <img src={item[0].imageSrc} alt="썸네일 이미지" />
             </div>
             <span className={styles["detail-title"]}>{props.DetailItemsMenuData.place_name}</span>
             <div className={styles["detail-like-jjim-container"]}>
