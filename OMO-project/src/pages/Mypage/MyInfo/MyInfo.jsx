@@ -46,14 +46,14 @@ const MyInfo = () => {
           },
         });
         console.log(response.data);
-        setMyInfoData(response.data); // 서버로부터 받은 데이터를 상태에 저장
+        setMyInfoData(response.data); 
       } catch (error) {
         console.error("에러야", error);
       }
     };
 
     fetchData();
-  }, []); // category가 변경될 때마다 데이터를 새로 가져옵니다.
+  }, []); 
 
   const getMbtiString = (mbtiValue) => {
     return mbtiReverseMapping[mbtiValue] || "Unknown MBTI";
@@ -68,7 +68,7 @@ const MyInfo = () => {
               <img src={MyInfoIcon} alt="내 정보 아이콘" /> 내 정보
             </h2>
             <div className={styles["myinfo-categories-container"]}>
-              <Mypage />
+              <Mypage myInfoData={myInfoData} />
               {myInfoData && (
                 <div className={styles["myinfo-logo-info-container"]}>
                   <img className={styles["myinfo-circle-logo"]} src={myInfoData.profileImageUrl} alt="기본 프로필" />
