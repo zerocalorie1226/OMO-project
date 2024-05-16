@@ -6,6 +6,7 @@ import {Radio} from "../../components/Radio/Radio";
 import {RadioGroup} from "../../components/Radio/RadioGroup";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import { mbtiMapping } from "../../const/mbtiMapping";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -35,25 +36,6 @@ const Signup = () => {
       alert("성별을 선택해주세요.");
       return;
     }
-
-    const mbtiMapping = {
-      ISTP: 1,
-      ISTJ: 2,
-      ISFP: 3,
-      ISFJ: 4,
-      INTP: 5,
-      INTJ: 6,
-      INFP: 7,
-      INFJ: 8,
-      ESTP: 9,
-      ESTJ: 10,
-      ESFP: 11,
-      ESFJ: 12,
-      ENTP: 13,
-      ENTJ: 14,
-      ENFP: 15,
-      ENFJ: 16,
-    };
 
     const getMbtiValue = (mbtiIE, mbtiSN, mbtiTF, mbtiJP) => {
       const fullMbti = `${mbtiIE}${mbtiSN}${mbtiTF}${mbtiJP}`;
