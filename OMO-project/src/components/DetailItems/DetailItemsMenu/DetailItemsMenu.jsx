@@ -137,8 +137,10 @@ export const DetailItemsMenu = (props) => {
     onCreate(content, imageToUpload);
     setContent("");
     setImage(DefaultImg); // 이미지 초기화
-    props.setDefaultListImg(item.length==0?defaultDetailIcon:item[0].imageSrc)
-    
+
+    if(item.length > 0) {
+        props.setDefaultListImg(item[0].imageSrc)
+    }
   };
 
   // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
