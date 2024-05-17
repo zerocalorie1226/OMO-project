@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from 'react-router-dom';
 
-const DetailMenu = ({ jjimData, setJjimData, likeData, setLikeData }) => {
+const DetailMenu = ({ jjimData, setJjimData, likeData, setLikeData,defaultListImg,setDefaultListImg }) => {
 
   const { id, place_name } = useParams();
 
@@ -59,7 +59,7 @@ const DetailMenu = ({ jjimData, setJjimData, likeData, setLikeData }) => {
   return (
     <>
       <section className={styles["detail-container"]}>
-        <DetailItemsMenu DetailItemsMenuData={DetailItemsMenuData} updateJjimData={updateJjimData} updateLikeData={updateLikeData} />
+        <DetailItemsMenu DetailItemsMenuData={DetailItemsMenuData} updateJjimData={updateJjimData} updateLikeData={updateLikeData} defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg}/>
       </section>
       <ScrollToTop />
     </>

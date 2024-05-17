@@ -144,7 +144,8 @@ const App = () => {
     dataId.current += 1;
   };
 
-  const [loginApi,setLoginApi]=useState("")
+
+  const [defaultListImg, setDefaultListImg ]= useState('')
   
 
   return (
@@ -169,16 +170,16 @@ const App = () => {
               <Route path="/ThemeCafe" element={<ThemeCafe />} />
 
               {/* 로그인/회원가입 */}
-              <Route path="/Login" element={<Login loginApi={loginApi} setLoginApi={setLoginApi} />} />
+              <Route path="/Login" element={<Login  />} />
               <Route path="/Signup" element={<Signup />} />
-              <Route path="/LoginLoading" element={<LoginLoading loginApi={loginApi} setLoginApi={setLoginApi} />} />
+              <Route path="/LoginLoading" element={<LoginLoading  />} />
 
               {/* 리스트페이지 */}
-              <Route path="/List" element={<List recentData={recentData} setRecentData={setRecentData} dataCopy={dataCopy}  searchResultsX={searchResultsX} searchResultsY={searchResultsY}/>} />
-              <Route path="/List/:category" element={<List recentData={recentData} setRecentData={setRecentData} dataCopy={dataCopy} searchResultsX={searchResultsX} searchResultsY={searchResultsY} />} />
+              <Route path="/List" element={<List recentData={recentData} setRecentData={setRecentData} dataCopy={dataCopy}  searchResultsX={searchResultsX} searchResultsY={searchResultsY} defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} />} />
+              <Route path="/List/:category" element={<List recentData={recentData} setRecentData={setRecentData} dataCopy={dataCopy} searchResultsX={searchResultsX} searchResultsY={searchResultsY} defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} />} />
 
               {/* 상세페이지 */}
-              <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu jjimData={jjimData} setJjimData={setJjimData} likeData={likeData} setLikeData={setLikeData} />} />
+              <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu jjimData={jjimData} setJjimData={setJjimData} likeData={likeData} setLikeData={setLikeData}  defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg}/>} />
               <Route path="/DetailNone" element={<DetailNone />} />
               <Route path="/DetailTariff" element={<DetailTariff />} />
 

@@ -27,6 +27,8 @@ import { Loading } from "../../Loading/Loading";
 
 export const DetailItemsMenu = (props) => {
   console.log("상세페이지 props: ", props);
+  console.log("상세페이지 props: ", props.defaultListImg);
+  
   const [item, setItem] = useState([]); // 상태변화함수, 빈배열로 시작
 
   const [content, setContent] = useState(""); // 댓글 내용
@@ -135,6 +137,8 @@ export const DetailItemsMenu = (props) => {
     onCreate(content, imageToUpload);
     setContent("");
     setImage(DefaultImg); // 이미지 초기화
+    props.setDefaultListImg(item.length==0?defaultDetailIcon:item[0].imageSrc)
+    
   };
 
   // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
@@ -204,6 +208,9 @@ export const DetailItemsMenu = (props) => {
 
     return () => script.remove();
   }, [props.DetailItemsMenuData]);
+
+
+
 
   console.log(item)
   return (
