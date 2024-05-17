@@ -20,11 +20,15 @@ import {reviewData} from "../../../const/reviewData";
 
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import DefaultImg from "../../../assets/detail/detail-default-background.png";
+import defaultDetailIcon from"../../../assets/detail/defaultDetailIcon.png"
 import {BeatLoader} from "react-spinners";
 import { Loading } from "../../Loading/Loading";
 
+
 export const DetailItemsMenu = (props) => {
   console.log("상세페이지 props: ", props);
+  console.log("상세페이지 props: ", props.defaultListImg);
+  
   const [item, setItem] = useState([]); // 상태변화함수, 빈배열로 시작
 
   const [content, setContent] = useState(""); // 댓글 내용
@@ -133,6 +137,10 @@ export const DetailItemsMenu = (props) => {
     onCreate(content, imageToUpload);
     setContent("");
     setImage(DefaultImg); // 이미지 초기화
+
+    if(item.length > 0) {
+        props.setDefaultListImg(item[0].imageSrc)
+    }
   };
 
   // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
@@ -203,6 +211,10 @@ export const DetailItemsMenu = (props) => {
     return () => script.remove();
   }, [props.DetailItemsMenuData]);
 
+
+
+
+  console.log(item)
   return (
     <>
       {props.DetailItemsMenuData === null ? (
@@ -211,7 +223,7 @@ export const DetailItemsMenu = (props) => {
         <div>
           <section className={styles["detail-title-container"]}>
             <div className={styles["detail-thumbnail-container"]}>
-              <img src={Magnifier} alt="썸네일 이미지" />
+              <img src={item.length==0?defaultDetailIcon:item[0].imageSrc} alt="썸네일 이미지" />
             </div>
             <span className={styles["detail-title"]}>{props.DetailItemsMenuData.place_name}</span>
             <div className={styles["detail-like-jjim-container"]}>
