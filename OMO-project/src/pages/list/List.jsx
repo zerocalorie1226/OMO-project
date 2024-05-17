@@ -7,7 +7,7 @@ import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 import axios from "axios";
 import { Loading } from "../../components/Loading/Loading";
 
-const List = ({recentData, setRecentData, dataCopy, searchResultsX, searchResultsY}) => {
+const List = ({recentData, setRecentData, dataCopy, searchResultsX, searchResultsY,defaultListImg,setDefaultListImg}) => {
   // useParams를 사용하여 category 값을 가져옵니다.
   const {category: categoryParam} = useParams();
 
@@ -89,7 +89,7 @@ const List = ({recentData, setRecentData, dataCopy, searchResultsX, searchResult
             {filteredData && filteredData.length > 0 ? ( // filteredData가 null 또는 undefined인지 확인
               <div className={styles["list-list-box-container"]}>
                 {filteredData.map((item) => (
-                  <ListBox key={item.id} id={item.id} {...item} addRecentItem={() => addRecentItem(item)} />
+                  <ListBox key={item.id} id={item.id} {...item} addRecentItem={() => addRecentItem(item)} defaultListImg={defaultListImg} />
                 ))}
               </div>
             ) : (

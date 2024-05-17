@@ -37,8 +37,8 @@ export const ListBox = (props) => {
           {/* <span className={styles["list-box-intro"]}>{props.intro}</span> */}
           <span className={styles["list-box-address-brief"]}>{props.address_name}</span>
           {/* <img className={styles["list-box-img1"]} src={props.src1} /> */}
-          <img className={styles["list-box-img1"]} src={props.src1} />
-          <img className={styles["list-box-img2"]} src={props.src2} />
+          <img className={styles["list-box-img1"]} src={props.defaultListImg} />
+          {/* <img className={styles["list-box-img2"]} src={props.src2} /> */}
         </div>
       </button>
     </>
