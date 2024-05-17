@@ -20,7 +20,7 @@
   width: 1000px;
 }
 
-/* 윗부분 */
+/* 프로필사진+정보 */
 .myinfo-logo-info-container {
   display: flex;
   position: absolute;
@@ -28,46 +28,50 @@
   top: 100px;
 }
 
+/*프로필사진 */
 .myinfo-circle-logo {
   width: 160px;
   height: 160px;
-  margin-right: 70px;
+  margin-right: 60px;
   margin-top: 20px;
+  border-radius: 50%;
 }
+
+/* 내정보 상자 */
 .myinfo-info-container {
-  width: 360px;
-  height: 200px;
+  width: 400px;
   border: 2px solid var(--primary);
   border-radius: 20px;
-  padding: 20px 10px;
+  padding: 20px 25px;
+  position: relative;
 }
 
 .myinfo-nickname-container,
 .myinfo-email-container,
 .myinfo-birthday-container,
 .myinfo-mbti-container {
-  width: 300px;
   display: flex;
   font-size: 20px;
-  line-height: 0;
-  margin-left: 20px;
+  line-height: 10px;
+  position: relative;
 }
 
+/* 내정보 상자 가운데 바 */
 .myinfo-nickname-line,
-.myinfo-email-line {
-  margin-left: 36px;
-  margin-right: 20px;
-  color: var(--gray-200);
-}
-.myinfo-birthday-line {
-  margin-left: 19px;
-  margin-right: 20px;
-  color: var(--gray-200);
-}
+.myinfo-email-line,
+.myinfo-birthday-line,
 .myinfo-mbti-line {
-  margin-left: 41px;
-  margin-right: 20px;
+  position: absolute;
+  left: 82px;
   color: var(--gray-200);
+}
+
+.myinfo-nickname,
+.myinfo-email,
+.myinfo-birthday,
+.myinfo-mbti {
+  position: absolute;
+  left: 100px;
 }
 
 /* 아랫부분 */

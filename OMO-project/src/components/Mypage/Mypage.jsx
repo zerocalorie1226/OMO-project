@@ -42,7 +42,7 @@ const Mypage = ()=> {
       {myPageData && (
         <div className={styles["myinfo-categories-list"]}>
           <div className={styles["myinfo-categories-list-inFoContainer"]}>
-            <img className={styles["myinfo-categories-list-logo"]} src={ProfileDefault} alt="기본 프로필" />
+            <img className={styles["myinfo-categories-list-logo"]} src={myPageData.profileImageUrl} alt="기본 프로필" />
             <p className={styles["myinfo-categories-list-nickname"]}>{myPageData.nickname}</p>
             <p className={styles["myinfo-categories-list-mbti"]}>{getMbtiString(myPageData.mbti)}</p>
           </div>

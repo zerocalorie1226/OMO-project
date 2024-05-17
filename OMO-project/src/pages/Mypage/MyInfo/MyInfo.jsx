@@ -74,26 +74,24 @@ const MyInfo = () => {
                   <img className={styles["myinfo-circle-logo"]} src={myInfoData.profileImageUrl} alt="기본 프로필" />
                   <div className={styles["myinfo-info-container"]}>
                     <div className={styles["myinfo-nickname-container"]}>
-                      <>
                         <p>닉네임</p>
                         <p className={styles["myinfo-nickname-line"]}>|</p>
-                        <p>{myInfoData.nickname}</p>
-                      </>
+                        <p className={styles["myinfo-nickname"]}>{myInfoData.nickname}</p>
                     </div>
                     <div className={styles["myinfo-email-container"]}>
                       <p>이메일</p>
                       <p className={styles["myinfo-email-line"]}>|</p>
-                      <p>{myInfoData.email}</p>
+                      <p className={styles["myinfo-email"]}>{myInfoData.email}</p>
                     </div>
                     <div className={styles["myinfo-birthday-container"]}>
                       <p>생년월일</p>
                       <p className={styles["myinfo-birthday-line"]}>|</p>
-                      <p>{myInfoData.birth}</p>
+                      <p  className={styles["myinfo-birthday"]}>{myInfoData.birth}</p>
                     </div>
                     <div className={styles["myinfo-mbti-container"]}>
                       <p>MBTI</p>
                       <p className={styles["myinfo-mbti-line"]}>|</p>
-                      <p>{getMbtiString(myInfoData.mbti)}</p>
+                      <p className={styles["myinfo-mbti"]}>{getMbtiString(myInfoData.mbti)}</p>
                     </div>
                   </div>
                   <div className={styles["myinfo-status-container"]}>
