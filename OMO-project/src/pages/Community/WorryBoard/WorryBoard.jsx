@@ -1,66 +1,90 @@
+import axios from 'axios';
 import React, {useEffect, useRef, useState, useReducer} from "react";
 import styles from "./WorryBoard.module.css";
-import {communityPageFilter} from "./../../../const/communityPageFilter";
+// import {communityPageFilter} from "./../../../const/communityPageFilter";
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
-import Filter from "../../../components/Filter/Filter";
+// import Filter from "../../../components/Filter/Filter";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
-import {communityWorryPost} from "./../../../const/communityWorryPost";
+// import {communityWorryPost} from "./../../../const/communityWorryPost";
 
 const reducer = (state, action) => {
-  let newState = [];
   switch (action.type) {
-    case "INIT": {
+    case "INIT":
       return action.data;
-    }
-    case "CREATE": {
-      newState = [action.data, ...state];
-      break;
-    }
+    case "CREATE":
+      return [action.data, ...state];
     default:
       return state;
   }
-
-  localStorage.setItem("worryboard", JSON.stringify(newState));
-  return newState;
 };
 
 export const BoardStateContext = React.createContext();
 export const BoardDispatchContext = React.createContext();
 
 const WorryBoard = () => {
-  const [data, dispatch] = useReducer(reducer, communityWorryPost);
-
-  useEffect(() => {
-    const localData = localStorage.getItem("worryboard");
-    if (localData) {
-      const boardList = JSON.parse(localData).sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
-      if (boardList.length >= 1) {
-        dataId.current = parseInt(boardList[0].id) + 1;
-        dispatch({type: "INIT", data: boardList});
-      }
-    }
-  }, []);
-
+  const [data, dispatch] = useReducer(reducer, []);
+  const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
-  const dataId = useRef(4);
 
-  const onCreate = (title, content, category) => {
-    dispatch({
-      type: "CREATE",
-      data: {
-        id: dataId.current,
-        reg_at: new Date().getTime(),
-        title,
-        content,
-        category: "worry",
-      },
-    });
-    dataId.current += 1;
+  // 게시글 불러오기
+  const fetchData = async (id) => {
+    try {
+      const response = await axios.get(`https://api.oneulmohae.co.kr/board/${id}`);
+      dispatch({ type: "INIT", data: response.data });
+
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (boardId !== null) {
+      fetchData(boardId);
+    }
+  }, [boardId]);
+
+  console.log(data);
+
+
+  // 게시글 작성
+  const onCreate = async (title, content) => {
+    try {
+      const response = await axios.post(
+        'https://api.oneulmohae.co.kr/board/write',
+        {
+          title,
+          content,
+          type: "TROUBLE",
+        },
+        {
+          headers: {
+            Authorization: `${localStorage.getItem("accessToken")}`,
+          }
+        }
+      );
+
+      const newPost = response.data;
+    console.log('Server New Post:', newPost); 
+      setBoardId(newPost.id); // 새로 생성된 게시글의 ID를 boardId로 설정
+      dispatch({
+        type: "CREATE",
+        data: {
+          id: newPost.id,
+          reg_at: newPost.reg_at,
+          title: newPost.title,
+          content: newPost.content,
+          type: "TROUBLE",
+        },
+      });
+    } catch (error) {
+      console.error("Error creating post:", error);
+      alert("게시글 작성 중 오류가 발생했습니다.");
+    }
   };
 
 
