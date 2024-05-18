@@ -47,10 +47,6 @@ const Signup = () => {
     const birthMonth = birthdate.getMonth() + 1;
     const birthDay = birthdate.getDate();
 
-    console.log("birthYear: ", birthYear);
-    console.log("birthMonth: ", birthMonth);
-    console.log("birthDay: ", birthDay);
-
     // MBTI 값 매핑
     const mbti = getMbtiValue(mbtiIE, mbtiSN, mbtiTF, mbtiJP);
     if (!mbti) {
@@ -58,14 +54,8 @@ const Signup = () => {
       return;
     }
 
-    console.log("mbti: ", mbti);
-
     // 성별을 0과 1로 변환
     const gender = genderType === "MALE" ? 0 : 1;
-
-    console.log("gender: ", gender);
-
-    console.log("nickname: ", nickname);
 
     try {
       const response = await axios.post(
@@ -84,9 +74,6 @@ const Signup = () => {
           },
         }
       );
-      console.log(localStorage.getItem("accessToken"));
-      console.log(localStorage.getItem("memberId"));
-      console.log(response.data);
 
       alert("가입되었습니다");
       navigate("/");
