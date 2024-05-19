@@ -6,7 +6,7 @@ export const CommunityWorryPostList = ({communityWorryPostList}) => {
     <>
       <section className={styles["community-worry-container"]}>
         {communityWorryPostList.map((el) => {
-          return <CommunityPostItem key={el.id} {...el} />;
+          return <CommunityPostItem key={el.boardId} {...el} />;
         })}
       </section>
     </>
