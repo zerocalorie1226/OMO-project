@@ -53,9 +53,9 @@ const WriteQnABoard = ({onCreate, openModal, setOpenModal}) => {
             name="title"
             type="text"
             className={styles["board-title"]}
-            placeholder="글 제목 (최소 3글자, 최대 10자)"
+            placeholder="글 제목 (최소 3글자, 최대 18자)"
             minLength="3"
-            maxLength="10"
+            maxLength="16"
             value={state.title || ""}
             onChange={handleChangeState}
           />

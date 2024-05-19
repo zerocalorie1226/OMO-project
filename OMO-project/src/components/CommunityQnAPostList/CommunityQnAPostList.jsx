@@ -8,7 +8,7 @@ export const CommunityQnAPostList = ({communityQnAPostList}) => {
         {communityQnAPostList.map((el) => {
       return (
         <CommunityQnABox
-          key={el.id}
+          key={el.boardId}
           {...el}
         />
       );
