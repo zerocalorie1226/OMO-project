@@ -6,6 +6,7 @@ import {Radio} from "../../components/Radio/Radio";
 import {RadioGroup} from "../../components/Radio/RadioGroup";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import { mbtiMapping } from "../../const/mbtiMapping";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -36,25 +37,6 @@ const Signup = () => {
       return;
     }
 
-    const mbtiMapping = {
-      ISTP: 1,
-      ISTJ: 2,
-      ISFP: 3,
-      ISFJ: 4,
-      INTP: 5,
-      INTJ: 6,
-      INFP: 7,
-      INFJ: 8,
-      ESTP: 9,
-      ESTJ: 10,
-      ESFP: 11,
-      ESFJ: 12,
-      ENTP: 13,
-      ENTJ: 14,
-      ENFP: 15,
-      ENFJ: 16,
-    };
-
     const getMbtiValue = (mbtiIE, mbtiSN, mbtiTF, mbtiJP) => {
       const fullMbti = `${mbtiIE}${mbtiSN}${mbtiTF}${mbtiJP}`;
       return mbtiMapping[fullMbti] || null;
@@ -65,10 +47,6 @@ const Signup = () => {
     const birthMonth = birthdate.getMonth() + 1;
     const birthDay = birthdate.getDate();
 
-    console.log("birthYear: ", birthYear);
-    console.log("birthMonth: ", birthMonth);
-    console.log("birthDay: ", birthDay);
-
     // MBTI 값 매핑
     const mbti = getMbtiValue(mbtiIE, mbtiSN, mbtiTF, mbtiJP);
     if (!mbti) {
@@ -76,14 +54,8 @@ const Signup = () => {
       return;
     }
 
-    console.log("mbti: ", mbti);
-
     // 성별을 0과 1로 변환
     const gender = genderType === "MALE" ? 0 : 1;
-
-    console.log("gender: ", gender);
-
-    console.log("nickname: ", nickname);
 
     try {
       const response = await axios.post(
@@ -102,9 +74,6 @@ const Signup = () => {
           },
         }
       );
-      console.log(localStorage.getItem("accessToken"));
-      console.log(localStorage.getItem("memberId"));
-      console.log(response.data);
 
       alert("가입되었습니다");
       navigate("/");
