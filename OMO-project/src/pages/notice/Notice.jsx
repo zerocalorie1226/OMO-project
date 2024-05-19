@@ -25,7 +25,7 @@ const Notice = () => {
   return (
     <div className={styles["notice-container"]}>
       <h2 className={styles["notice-title"]}>공지사항</h2>
-      <hr className={styles["notice-container-hr"]} />
+      {notices.length > 0 && <hr className={styles["notice-container-hr"]} />}
       <div className={styles["notice-main-container"]}>
         {notices.length > 0 ? (
           notices.map((el) => <NoticeItems key={el.id} {...el} />)
