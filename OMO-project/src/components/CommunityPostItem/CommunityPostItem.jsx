@@ -109,7 +109,7 @@ export const CommunityPostItem = (props) => {
           {/* 프로필 이미지+닉네임 */}
           <div className={styles["community-post-profile"]}>
             <img className={styles["community-post-profile-img"]} src={props.profileURL} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
-            <span className={styles["community-post-profile-nick"]}>이니</span>
+            <span className={styles["community-post-profile-nick"]}>{props.writer}</span>
           </div>
 
           {/* 글 내용 */}
