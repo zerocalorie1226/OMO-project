@@ -81,7 +81,7 @@ const WorryBoard = () => {
 
       {/* 게시글 리스트 */}
       {posts.length === 0 ? (
-        <div>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
+        <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
       ) : (
         <CommunityWorryPostList communityWorryPostList={posts} />
       )}
