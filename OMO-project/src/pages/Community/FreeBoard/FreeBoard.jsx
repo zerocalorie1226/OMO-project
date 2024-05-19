@@ -1,116 +1,105 @@
+import axios from 'axios';
 import React, {useEffect, useRef, useState, useReducer} from "react";
 import styles from "./FreeBoard.module.css";
-import {communityPageFilter} from "./../../../const/communityPageFilter"; //필터 데이터
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory"; //카테고리
-import Filter from "../../../components/Filter/Filter"; //필터 컴포넌트
 import ListSearch from "./../../../components/ListSearch/ListSearch"; //검생창
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop"; //스크롤버튼
 import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteFreeBoard from "../../../components/WritePost/WriteFreeBoard/WriteFreeBoard";
-import {communityFreePost} from "../../../const/communityFreePost";
-
-const reducer = (state, action) => {
-  let newState = [];
-  switch (action.type) {
-    case "INIT": {
-      return action.data;
-    }
-    case "CREATE": {
-      newState = [action.data, ...state];
-      break;
-    }
-    default:
-      return state;
-  }
-
-  localStorage.setItem("freeboard", JSON.stringify(newState));
-  return newState;
-};
-
-export const BoardStateContext = React.createContext();
-export const BoardDispatchContext = React.createContext();
 
 const FreeBoard = () => {
-  const [data, dispatch] = useReducer(reducer, [] );
-
-  useEffect(() => {
-    const localData = localStorage.getItem("freeboard");
-    if (localData) {
-      const boardList = JSON.parse(localData).sort((a, b) => parseInt(b.reg_at) - parseInt(a.reg_at));
-
-      if (boardList.length >= 1) {
-        dataId.current = parseInt(boardList[0].id) + 1;
-        dispatch({type: "INIT", data: boardList});
-      }
-    }
-  }, []);
-
+  const [posts, setPosts] = useState([]);
+  const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
-  const dataId = useRef(4);
-
-  // CREATE
-  const onCreate = (title, content, category) => {
-    dispatch({
-      type: "CREATE",
-      data: {
-        id: dataId.current,
-        reg_at: new Date().getTime(),
-        title,
-        content,
-        category: "free",
-      },
-    });
-    dataId.current += 1;
+  // 게시글 불러오기
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('https://api.oneulmohae.co.kr/board/Free?page=1&size=10&sorting=createdAt');
+      setPosts(response.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
 
+  console.log("get으로 불러온 데이터: ", posts); // {data배열, pageInfo}
 
+  // 게시글 작성
+  const onCreate = async (title, content) => {
+    const postData = {
+      title,
+      content,
+      type: "FREE",
+    };
+
+    console.log('작성한 데이터: ', postData); // {data}
+
+    try {
+      const response = await axios.post(
+        'https://api.oneulmohae.co.kr/board/write',
+        postData,
+        {
+          headers: {
+            Authorization: `${localStorage.getItem("accessToken")}`,
+          }
+        }
+      );
+
+      const newPost = response.data;
+      console.log('post데이터:', newPost); // {data+사용자정보까지}
+      setBoardId(newPost.boardId); // 새로 생성된 게시글의 ID를 boardId로 설정
+      setPosts(prevPosts => [
+        newPost,
+        ...prevPosts
+      ]);
+
+    } catch (error) {
+      console.error("Error creating post:", error);
+      if (error.response) {
+        console.error('Response Data:', error.response.data);
+        console.error('Response Status:', error.response.status);
+        console.error('Response Headers:', error.response.headers);
+      }
+      alert("게시글 작성 중 오류가 발생했습니다.");
+    }
+  };
 
   return (
     <>
-      <BoardStateContext.Provider value={data}>
-        <BoardDispatchContext.Provider
-          value={{
-            onCreate,
-          }}
+      {/* 카테고리 */}
+      <CommunityCategory />
+
+      {/* 필터 + 검색창 */}
+      <div className={styles["community-component-container"]}>
+        <ListSearch />
+      </div>
+
+      {/* 게시글 리스트 */}
+      {posts.length === 0 ? (
+        <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
+      ) : (
+        <CommunityFreePostList communityFreePostList={posts} />
+      )}
+
+      {/* 스크롤 */}
+      <ScrollToTop />
+
+      {/* 글쓰기 */}
+      <div className={styles["writing-btn-container"]}>
+        <button
+          type="button"
+          className={styles["writing-btn"]}
+          onClick={() => setOpenModal(true)}
         >
-          {/* 카테고리 */}
-          <CommunityCategory />
-
-          {/* 필터 + 검색창 */}
-          <div className={styles["community-component-container"]}>
-            {/* <div className={styles["community-filter-container"]}>
-          {communityPageFilter.map((el) => {
-            return <Filter key={el.id} {...el} />;
-          })}
-        </div> */}
-            <ListSearch />
-          </div>
-
-          {/* 게시글 리스트 */}
-
-          {data.length === 0 ? <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div> : <CommunityFreePostList communityFreePostList={data} />}
-
-          {/* 스크롤 */}
-          <ScrollToTop />
-
-          {/* 글쓰기 */}
-          <div className={styles["writing-btn-container"]}>
-            <button
-              type="button"
-              className={styles["writing-btn"]}
-              onClick={() => {
-                setOpenModal(true);
-              }}
-            >
-              <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}
-            </button>
-            {openModal ? <WriteFreeBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} /> : null}
-          </div>
-        </BoardDispatchContext.Provider>
-      </BoardStateContext.Provider>
+          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{ width: "80px", height: "80px" }} />
+        </button>
+        {openModal && <WriteFreeBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} />}
+      </div>
     </>
   );
 };

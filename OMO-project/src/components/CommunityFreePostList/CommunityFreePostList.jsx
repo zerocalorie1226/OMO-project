@@ -6,7 +6,7 @@ export const CommunityFreePostList = ({communityFreePostList}) => {
     <>
       <section className={styles["community-free-container"]}>
         {communityFreePostList.map((el) => {
-          return <CommunityPostItem key={el.id} {...el} />;
+          return <CommunityPostItem key={el.boardId} {...el} />;
         })}
       </section>
     </>
