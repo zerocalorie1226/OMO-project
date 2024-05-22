@@ -11,8 +11,6 @@ const DetailMenu = ({ jjimData, setJjimData, likeData, setLikeData,defaultListIm
 
   const { id, place_name } = useParams();
 
-  console.log(id);
-  console.log(place_name);
 
   const [DetailItemsMenuData, setDetailItemsMenuData] = useState(null);
 
@@ -24,7 +22,6 @@ const DetailMenu = ({ jjimData, setJjimData, likeData, setLikeData,defaultListIm
             placeId: id,
           },
         });
-        console.log(response.data);
         setDetailItemsMenuData(response.data); // 서버로부터 받은 데이터를 상태에 저장
       } catch (error) {
         console.error("에러야", error);
@@ -34,13 +31,9 @@ const DetailMenu = ({ jjimData, setJjimData, likeData, setLikeData,defaultListIm
     fetchData();
   }, []); // category가 변경될 때마다 데이터를 새로 가져옵니다
 
-  // const targetData = data.find(
-  //   (it) => parseInt(it.id) === parseInt(id)
-  // );
 
   // jjimData 상태를 업데이트하는 함수 
   const updateJjimData = (newJjimData) => {
-    // handleClickJjim이 true일 때만 targetData를 포함하는 jjimData 배열 필터링
     const updatedJjim = newJjimData ? [DetailItemsMenuData, ...jjimData.filter((jjimItem) => jjimItem.id !== DetailItemsMenuData.id)] : jjimData.filter((jjimItem) => jjimItem.id !== DetailItemsMenuData.id);
     // 필터링된 배열로 jjimData 상태 업데이트
     setJjimData(updatedJjim);
@@ -50,16 +43,17 @@ const DetailMenu = ({ jjimData, setJjimData, likeData, setLikeData,defaultListIm
 
   // likeData 상태를 업데이트하는 함수 
   const updateLikeData = (newLikeData) => {
-    const updatedLike = newLikeData ? [DetailItemsMenuData, ...likeData.filter((likeItem) => likeItem.id !== DetailItemsMenuData.id)] : likeData.filter((likeItem) => likeItem.id !== targetData.id);
-    // console.log("업데이트: ", updatedLike);
+    const updatedLike = newLikeData ? [DetailItemsMenuData, ...likeData.filter((likeItem) => likeItem.id !== DetailItemsMenuData.id)] : likeData.filter((likeItem) => likeItem.id !== DetailItemsMenuData.id);
     setLikeData(updatedLike);
   };
-  console.log("따봉 목록 배열", likeData);
+
+  // console.log("하트 목록 배열", jjimData);
+  // console.log("따봉 목록 배열", likeData);
 
   return (
     <>
       <section className={styles["detail-container"]}>
-        <DetailItemsMenu DetailItemsMenuData={DetailItemsMenuData} updateJjimData={updateJjimData} updateLikeData={updateLikeData} defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg}/>
+        <DetailItemsMenu DetailItemsMenuData={DetailItemsMenuData} updateJjimData={updateJjimData} updateLikeData={updateLikeData} defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} place_name={place_name} placeId={id}/>
       </section>
       <ScrollToTop />
     </>
