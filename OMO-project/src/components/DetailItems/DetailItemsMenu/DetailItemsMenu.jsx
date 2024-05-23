@@ -20,11 +20,6 @@ import {Loading} from "../../Loading/Loading";
 
 export const DetailItemsMenu = (props) => {
   
-  console.log("props.DetailItemsMenuData: ", props.DetailItemsMenuData);
-  console.log("props.place_name: ", props.place_name);
-  console.log("props.placeId: ", props.placeId);
-  console.log("accessToken: ", localStorage.getItem("accessToken"));
-  console.log("memberId: ", localStorage.getItem("memberId"));
 
   const [item, setItem] = useState([]); // 상태변화함수, 빈배열로 시작
 
@@ -33,24 +28,24 @@ export const DetailItemsMenu = (props) => {
   const dataId = useRef(0); // id 인덱스 추가-> 변수처럼 사용 필요 -> useRef 사용
 
   // 하트 버튼 (관심)
-  const [imageSrcJjim, setImageSrcJjim] = useState(Jjim);
-  const [isClikedJjim, setIsClickedJjim] = useState(false);
-  const [countJjim, setCountJjim] = useState(0); // 초기값을 0 또는 적절한 기본값으로 설정
+  const [imageSrcJjim, setImageSrcJjim] = useState(Jjim); // 하트 이미지 토글
+  const [isClikedJjim, setIsClickedJjim] = useState(false); // 하트 버튼 클릭 토글
+  const [countJjim, setCountJjim] = useState(0); // 하트 카운트 값 관리
 
   useEffect(() => {
     if (props.DetailItemsMenuData) {
-      setCountJjim(props.DetailItemsMenuData.mine); // 데이터가 로드되면 상태 업데이트
+      setCountJjim(props.DetailItemsMenuData.mine); // 관심 데이터가 로드되면 상태 업데이트
     }
   }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
 
   // 따봉 버튼 (추천)
-  const [imageSrcLike, setImageSrcLike] = useState(Like);
-  const [isClikedLike, setIsClickedLike] = useState(false);
-  const [countLike, setCountLike] = useState(0);
+  const [imageSrcLike, setImageSrcLike] = useState(Like); // 따봉 이미지 토글
+  const [isClikedLike, setIsClickedLike] = useState(false); // 따봉 버튼 클릭 토글
+  const [countLike, setCountLike] = useState(0); // 따봉 카운트 값 관리
 
   useEffect(() => {
     if (props.DetailItemsMenuData) {
-      setCountLike(props.DetailItemsMenuData.recommend); // 데이터가 로드되면 상태 업데이트
+      setCountLike(props.DetailItemsMenuData.recommend); // 추천 데이터가 로드되면 상태 업데이트
     }
   }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
 
@@ -70,21 +65,49 @@ export const DetailItemsMenu = (props) => {
   // handleClickJjim 함수 (하트 버튼 (관심) - 색, 카운트)
   const handleClickJjim = async () => {
     try {
-      const response = await axios.put(`https://api.oneulmohae.co.kr/place/${props.place_name}`, {
-        headers: {
-          placeId: props.placeId,
-          Authorization: `${localStorage.getItem("accessToken")}`,
-          memberId: `${localStorage.getItem("memberId")}`,
-          LR: true,
-        },
-      });
-
+      const response = await axios.put(
+        `https://api.oneulmohae.co.kr/place/${props.place_name}`,
+        {}, // 빈 객체를 본문으로 전달
+        {
+          headers: {
+            placeId: props.placeId,
+            Authorization: localStorage.getItem("accessToken"),
+            memberId: localStorage.getItem("memberId"),
+            LR: true,
+          },
+          withCredentials: true, 
+        }
+      );
+  
       if (response.status === 200) {
-        const updatedData = response.data;
-        console.log(updatedData);
-        // setIsClickedJjim(updatedData.mine);
-        // setCountJjim(updatedData.mine);
-        // setImageSrcJjim(updatedData.isClikedJjim ? JjimClicked : Jjim);
+        console.log("put요청: ", response.data);
+        // PUT 요청이 성공한 후 GET 요청을 보내기
+        const getResponse = await axios.get(
+          `https://api.oneulmohae.co.kr/place/${props.place_name}`,
+          {
+            headers: {
+              placeId: props.placeId,
+            },
+          }
+        );
+
+        if (getResponse.status === 200) {
+          const updatedData = getResponse.data;
+  
+          console.log("get요청: ", updatedData.mine);
+  
+          // 이미지 변경 및 카운트 업데이트
+          if (isClikedJjim) {
+            setImageSrcJjim(Jjim);
+            setIsClickedJjim(false);
+          } else {
+            setImageSrcJjim(JjimClicked);
+            setIsClickedJjim(true);
+          }
+          setCountJjim(updatedData.mine); // 새로운 데이터를 사용하여 업데이트
+        } else {
+          console.error("Failed to fetch updated jjim data");
+        }
       } else {
         console.error("Failed to update jjim status");
       }
@@ -92,7 +115,7 @@ export const DetailItemsMenu = (props) => {
       console.error("Error:", error);
     }
   };
-
+  
   // handleClickLike 함수 (따봉 버튼 (추천) - 색, 카운트)
   const handleClickLike = () => {
     if (isClikedLike) {
