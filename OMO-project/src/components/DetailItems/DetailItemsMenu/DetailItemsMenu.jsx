@@ -38,8 +38,27 @@ export const DetailItemsMenu = (props) => {
     if (props.DetailItemsMenuData) {
       setCountJjim(props.DetailItemsMenuData.mine); // 관심 데이터가 로드되면 상태 업데이트
       setCountLike(props.DetailItemsMenuData.recommend); // 추천 데이터가 로드되면 상태 업데이트
+
+      // mine 값을 사용하여 초기 상태 설정
+      if (props.DetailItemsMenuData.myMine) {
+        setImageSrcJjim(JjimClicked);
+        setIsClickedJjim(true);
+      } else {
+        setImageSrcJjim(Jjim);
+        setIsClickedJjim(false);
+      }
+
+      // recommend 값을 사용하여 초기 상태 설정
+      if (props.DetailItemsMenuData.myRecommend) {
+        setImageSrcLike(LikeClicked);
+        setIsClickedLike(true);
+      } else {
+        setImageSrcLike(Like);
+        setIsClickedLike(false);
+      }
     }
   }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
+
 
 
   // handleClickJjim 함수 (하트 버튼 (관심) - PUT+GET 요청, 이미지 변경, 카운트 업데이트)
