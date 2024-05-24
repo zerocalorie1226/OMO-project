@@ -2,6 +2,7 @@ import axios from "axios";
 import styles from "./MyInfo.module.css";
 import Mypage from "../../../components/Mypage/Mypage";
 import MyInfoIcon from "../../../assets/my-page/my-info/my-info.png";
+import DefaultProfileImage from "../../../assets/detail/defaultDetailIcon.png";
 import { useEffect, useState, useReducer, useContext } from "react";
 import { BoardDispatchContext, BoardStateContext } from "../MyWrote/MyWrote";
 import { MyCourseStateContext } from "../../../App";
@@ -45,7 +46,6 @@ const MyInfo = () => {
             Authorization: `${localStorage.getItem("accessToken")}`,
           },
         });
-        console.log(response.data);
         setMyInfoData(response.data); 
       } catch (error) {
         console.error("에러야", error);
@@ -71,7 +71,12 @@ const MyInfo = () => {
               <Mypage myInfoData={myInfoData} />
               {myInfoData && (
                 <div className={styles["myinfo-logo-info-container"]}>
-                  <img className={styles["myinfo-circle-logo"]} src={myInfoData.profileImageUrl} alt="기본 프로필" />
+                  <img 
+                    className={styles["myinfo-circle-logo"]} 
+                    src={myInfoData.profileImageUrl || DefaultProfileImage} 
+                    alt="기본 프로필" 
+                    onError={(e) => { e.target.onerror = null; e.target.src = DefaultProfileImage; }}
+                  />
                   <div className={styles["myinfo-info-container"]}>
                     <div className={styles["myinfo-nickname-container"]}>
                         <p>닉네임</p>
