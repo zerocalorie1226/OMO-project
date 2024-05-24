@@ -16,7 +16,7 @@ export const ListBox = (props) => {
     navigate(`/DetailMenu/${props.id}/${props.place_name}`);
 
 
-    props.addRecentItem({ id: props.id, place_name: props.place_name });
+    props.addRecentItem({ id: props.id, place_name: props.place_name, address_name: props.address_name, phone: props.phone });
   }}
   className={styles["list-box-container"]}
 >

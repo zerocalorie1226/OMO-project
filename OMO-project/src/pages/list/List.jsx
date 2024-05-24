@@ -7,22 +7,24 @@ import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 import axios from "axios";
 import { Loading } from "../../components/Loading/Loading";
 
-const List = ({recentData, setRecentData, dataCopy, searchResultsX, searchResultsY,defaultListImg,setDefaultListImg}) => {
+const List = ({recentData, setRecentData,  searchResultsX, searchResultsY,defaultListImg}) => {
   // useParams를 사용하여 category 값을 가져옵니다.
   const {category: categoryParam} = useParams();
 
   // URL에서 받아온 category 값이 없는 경우 'all'로 간주합니다.
   const category = categoryParam || "all";
 
+  console.log("최근본목록: ", recentData);
+
   // 아이템을 최근 본 목록에 추가하는 함수
   const addRecentItem = (item) => {
     const newItem = {
       id: item.id,
-      title: item.title,
-      jjim: item.jjim,
-      like: item.like,
-      addressBrief: item.addressBrief,
-      runTime: item.runTime,
+      place_name: item.place_name,
+      mine: item.mine,
+      recommend: item.recommend,
+      address_name: item.address_name,
+      phone: item.phone,
       src1: item.src1,
       src2: item.src2,
       src3: item.src3,
@@ -50,7 +52,6 @@ const List = ({recentData, setRecentData, dataCopy, searchResultsX, searchResult
             y: searchResultsY,
           },
         });
-        console.log(response.data.documents);
         setListData(response.data.documents); // 서버로부터 받은 데이터를 상태에 저장
       } catch (error) {
         console.error("에러야", error);

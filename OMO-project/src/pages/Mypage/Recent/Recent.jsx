@@ -6,6 +6,7 @@ import {data} from "./../../../const/data";
 import RecentIcon from "../../../assets/my-page/my-info/recent-place.png";
 
 const Recent = ({recentData}) => {
+  console.log("최근본장소: ", recentData);
   return (
     <>
       <div className={styles["mypage-list-component-container"]}>
