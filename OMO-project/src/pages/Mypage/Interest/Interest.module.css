@@ -23,6 +23,9 @@
 .mypage-list-box-container {
   margin-top: 40px;
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .mypage-list-container {
@@ -30,12 +33,6 @@
   border-bottom: 0px;
 }
 
-.mypage-list-box-container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  align-items: center;
-}
 
 .no-jjim-list{
   display: flex;
