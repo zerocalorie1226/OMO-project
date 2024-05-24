@@ -18,9 +18,12 @@ const DetailMenu = ({ setDefaultListImg }) => {
         const response = await axios.get(`https://api.oneulmohae.co.kr/place/${place_name}`, {
           headers: {
             placeId: id,
+            Authorization: `${localStorage.getItem("accessToken")}`,
           },
         });
         setDetailItemsMenuData(response.data); // 서버로부터 받은 데이터를 상태에 저장
+        // console.log("상세페이지 data: ", response.data);
+
       } catch (error) {
         console.error("에러야", error);
       }
