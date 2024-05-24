@@ -2,7 +2,6 @@ import styles from "../Recent/Recent.module.css";
 import Mypage from "../../../components/Mypage/Mypage";
 import {MypageListBox} from "../../../components/MypageListBox/MypageListBox";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {data} from "./../../../const/data";
 import RecentIcon from "../../../assets/my-page/my-info/recent-place.png";
 
 const Recent = ({recentData}) => {
