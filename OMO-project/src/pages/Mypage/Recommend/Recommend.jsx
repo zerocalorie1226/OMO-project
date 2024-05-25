@@ -40,7 +40,7 @@ const Recommend = () => {
           <Mypage />
           <div className={styles["mypage-list-box-container"]}>
             {recommendPosts === null || recommendPosts.length === 0 ? (
-              <div className={styles["no-jjim-list"]}>관심 목록이 없습니다. 장소 상세 페이지에서 하트를 눌러보세요!</div>
+              <div className={styles["no-like-list"]}>추천한 장소가 없습니다. 장소 상세 페이지에서 따봉을 눌러보세요!</div>
             ) : (
               <div>
                 {recommendPosts.map((el) => {
