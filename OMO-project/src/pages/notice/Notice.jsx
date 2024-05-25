@@ -13,14 +13,14 @@ const Notice = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`https://api.oneulmohae.co.kr/notice?page=1&size=10&type=all`);
-        setNotices(response.data.data); // 상태 업데이트
+        setNotices(response.data.data); 
       } catch (error) {
         console.error("에러야", error);
       }
     };
 
     fetchData();
-  }, []); // 의존성 배열에 변수를 넣으면 해당 변수가 변경될 때마다 useEffect가 실행됩니다.
+  }, []); 
 
   return (
     <div className={styles["notice-container"]}>
