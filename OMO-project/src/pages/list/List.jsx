@@ -1,22 +1,16 @@
-import React, {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styles from "./List.module.css";
 import ListSearch from "../../components/ListSearch/ListSearch";
-import {ListBox} from "../../components/ListBox/ListBox";
-import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
+import { ListBox } from "../../components/ListBox/ListBox";
+import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop";
 import axios from "axios";
 import { Loading } from "../../components/Loading/Loading";
 
-const List = ({recentData, setRecentData,  searchResultsX, searchResultsY,defaultListImg}) => {
-  // useParams를 사용하여 category 값을 가져옵니다.
-  const {category: categoryParam} = useParams();
-
-  // URL에서 받아온 category 값이 없는 경우 'all'로 간주합니다.
+const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defaultListImg }) => {
+  const { category: categoryParam } = useParams();
   const category = categoryParam || "all";
 
-  console.log("최근본목록: ", recentData);
-
-  // 아이템을 최근 본 목록에 추가하는 함수
   const addRecentItem = (item) => {
     const newItem = {
       id: item.id,
@@ -34,8 +28,8 @@ const List = ({recentData, setRecentData,  searchResultsX, searchResultsY,defaul
       const existingIndex = prevData.findIndex((recentItem) => recentItem.id === item.id);
       let updatedData = [...prevData];
       if (existingIndex === -1) {
-        // 아이템이 최근 본 목록에 없는 경우 추가
         updatedData.unshift(newItem);
+        localStorage.setItem("recentData", JSON.stringify(updatedData)); // updatedData를 localStorage에 저장
       }
       return updatedData;
     });
@@ -52,16 +46,14 @@ const List = ({recentData, setRecentData,  searchResultsX, searchResultsY,defaul
             y: searchResultsY,
           },
         });
-        setListData(response.data.documents); // 서버로부터 받은 데이터를 상태에 저장
+        setListData(response.data.documents);
       } catch (error) {
         console.error("에러야", error);
       }
     };
 
     fetchData();
-  }, []); // category가 변경될 때마다 데이터를 새로 가져옵니다.
-
-  // console.log("리스트데이터: ",listData);
+  }, [category, searchResultsX, searchResultsY]);
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -71,23 +63,21 @@ const List = ({recentData, setRecentData,  searchResultsX, searchResultsY,defaul
       })
     : [];
 
-  // console.log(listData[0].id);
-
   const onSearch = (term) => {
-    setSearchTerm(term); // 검색어 상태 업데이트
+    setSearchTerm(term);
   };
 
   return (
     <>
       {filteredData === null ? (
-        <Loading/>
+        <Loading />
       ) : (
         <div>
           <div className={styles["list-component-container"]}>
             <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
           </div>
           <section className={styles["list-list-container"]}>
-            {filteredData && filteredData.length > 0 ? ( // filteredData가 null 또는 undefined인지 확인
+            {filteredData && filteredData.length > 0 ? (
               <div className={styles["list-list-box-container"]}>
                 {filteredData.map((item) => (
                   <ListBox key={item.id} id={item.id} {...item} addRecentItem={() => addRecentItem(item)} defaultListImg={defaultListImg} />

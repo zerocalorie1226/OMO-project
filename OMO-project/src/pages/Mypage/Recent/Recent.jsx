@@ -1,11 +1,20 @@
+import React, { useEffect, useState } from "react";
 import styles from "../Recent/Recent.module.css";
 import Mypage from "../../../components/Mypage/Mypage";
-import {MypageListBox} from "../../../components/MypageListBox/MypageListBox";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import { MypageListBox } from "../../../components/MypageListBox/MypageListBox";
+import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
 import RecentIcon from "../../../assets/my-page/my-info/recent-place.png";
 
-const Recent = ({recentData}) => {
-  console.log("최근본장소: ", recentData);
+const Recent = () => {
+  const [recentData, setRecentData] = useState([]);
+
+  useEffect(() => {
+    const storedRecentData = localStorage.getItem("recentData");
+    if (storedRecentData) {
+      setRecentData(JSON.parse(storedRecentData));
+    }
+  }, []);
+
   return (
     <>
       <div className={styles["mypage-list-component-container"]}>
