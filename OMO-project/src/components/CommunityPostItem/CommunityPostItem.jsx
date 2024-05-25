@@ -121,7 +121,6 @@ export const CommunityPostItem = (props) => {
           {/*공감수*/}
           <div className={styles["community-post-number-report-wapper"]}>
             <span className={styles["community-post-like-number"]}>좋아요 {countLike}</span>
-            <span className={styles["community-post-view-number"]}>• 조회수 {props.view}</span>
             <span className={styles["community-post-comment-number"]}>• 댓글 {data.length}</span>
 
             {/* 신고 아이콘 */}
