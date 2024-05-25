@@ -1,21 +1,39 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import {CommunityCategory} from "../../../components/CommunityCategory/CommunityCategory";
 import CommunityInquiryBox from "../../../components/CommunityInquiryBox/CommunityInquiryBox";
 import CommunityInquiryFilter from "../../../components/CommunityInquiryFilter/CommunityInquiryFilter";
 import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {communityInquiryFrequent} from "../../../const/communityInquiryFrequent";
 import styles from "./InquiryBoardFrequent.module.css";
 
 const InquiryBoardFrequent = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [frequents, setFrequents] = useState([]);
 
-  const filteredData = communityInquiryFrequent.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/board/Qna/FAQ?page=1&size=10&sorting=createdAt`);
+        setFrequents(response.data.data);
+      } catch (error) {
+        console.error("에러야", error);
+      }
+    };
+
+    fetchData();
+  }, []); 
+
+
+  const filteredData = frequents.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
   const onSearch = (term) => {
     setSearchTerm(term);
   };
+
+
+
 
   return(
   <div>
