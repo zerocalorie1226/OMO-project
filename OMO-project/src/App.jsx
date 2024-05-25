@@ -54,16 +54,8 @@ const reducer = (state, action) => {
 export const MyCourseStateContext = React.createContext();
 export const MyCourseDispatchContext = React.createContext();
 
-const App = () => {
-  // 로그인 상태 관리 (헤더에 사용 - 상태에 따라 헤더 우측 글자 바뀌게)
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const App = ({ handleLogout, isLoggedIn }) => {
 
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
 
   // 현재 위치를 가져오기 위한 구글 API KEY (메인페이지에 사용 - 검색창에 디폴트로 현재 위치 뜨게)
   const GOOGLE_MAPS_API_KEY = "AIzaSyBFZH53aP29Zr7vY5jyv7wd4wGQMg3CI1s";
@@ -148,10 +140,10 @@ const App = () => {
           onCreate,
         }}
       >
-        <BrowserRouter>
+
           <div>
             {/* 헤더 */}
-            <Header isLoggedIn={isLoggedIn} />
+            <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
             <Routes>
               {/* 메인 페이지 */}
               <Route path="/" element={<Main setSearchResultsX={setSearchResultsX} setSearchResultsY={setSearchResultsY} location={location} setLocation={setLocation} />} />
@@ -232,7 +224,6 @@ const App = () => {
               <Route path="/Notice" element={<Notice />} />
             </Routes>
           </div>
-        </BrowserRouter>
       </MyCourseDispatchContext.Provider>
     </MyCourseStateContext.Provider>
   );
