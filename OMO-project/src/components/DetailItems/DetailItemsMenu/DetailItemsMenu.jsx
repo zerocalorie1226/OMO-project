@@ -72,7 +72,7 @@ export const DetailItemsMenu = (props) => {
             placeId: props.placeId,
             Authorization: localStorage.getItem("accessToken"),
             memberId: localStorage.getItem("memberId"),
-            LR: true,
+            LR: 'true',
           },
           withCredentials: true,
         }
@@ -126,7 +126,7 @@ export const DetailItemsMenu = (props) => {
               placeId: props.placeId,
               Authorization: localStorage.getItem("accessToken"),
               memberId: localStorage.getItem("memberId"),
-              LR: false,
+              LR: 'false',
             },
             withCredentials: true,
           }
