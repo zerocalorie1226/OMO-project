@@ -1,4 +1,5 @@
 import React, {useRef, useState, useMemo} from "react";
+import axios from "axios";
 import styles from "./CommunityPostItem.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
@@ -16,7 +17,7 @@ export const CommunityPostItem = (props) => {
 
   // 좋아요 버튼
   const [imageSrcLike, setImageSrcLike] = useState(Like);
-  const [isClikedLike, setIsClickedLike] = useState(false);
+  const [isClickedLike, setIsClickedLike] = useState(false);
   const [countLike, setCountLike] = useState(0);
 
   const [showComments, setShowComments] = useState(false); // 초기에 숨김 상태
@@ -43,15 +44,62 @@ export const CommunityPostItem = (props) => {
   };
 
   // handleClickLike 함수 (좋아요 버튼 - 색, 카운트)
-  const handleClickLike = () => {
-    if (isClikedLike) {
-      setImageSrcLike(Like);
-      setIsClickedLike(false);
-      setCountLike(countLike - 1);
-    } else {
-      setImageSrcLike(LikeClicked);
-      setIsClickedLike(true);
-      setCountLike(countLike + 1);
+  // const handleClickLike = () => {
+  //   if (isClikedLike) {
+  //     setImageSrcLike(Like);
+  //     setIsClickedLike(false);
+  //     setCountLike(countLike - 1);
+  //   } else {
+  //     setImageSrcLike(LikeClicked);
+  //     setIsClickedLike(true);
+  //     setCountLike(countLike + 1);
+  //   }
+  // };
+
+  const handleClickLike = async () => {
+    try {
+      const response = await axios.put(
+        `https://api.oneulmohae.co.kr/board/like`,
+        {}, // 빈 객체를 본문으로 전달
+        {
+          headers: {
+            boardId: props.boardId,
+            Authorization: localStorage.getItem("accessToken"),
+          },
+          withCredentials: true,
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("put요청: ", response.data);
+        // PUT 요청이 성공한 후 GET 요청을 보내기
+        const getResponse = await axios.get(
+          `https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt`,
+
+        );
+
+        if (getResponse.status === 200) {
+          const updatedData = getResponse.data;
+
+          console.log("get요청: ", updatedData.mine);
+
+          // 이미지 변경 및 카운트 업데이트
+          if (isClickedLike) {
+            setImageSrcLike(Like);
+            setIsClickedLike(false);
+          } else {
+            setImageSrcLike(LikeClicked);
+            setIsClickedLike(true);
+          }
+          setCountLike(updatedData.mine); // 새로운 데이터를 사용하여 업데이트
+        } else {
+          console.error("Failed to fetch updated jjim data");
+        }
+      } else {
+        console.error("Failed to update jjim status");
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
