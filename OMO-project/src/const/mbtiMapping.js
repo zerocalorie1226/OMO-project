@@ -1,0 +1,18 @@
+export const mbtiMapping = {
+  ISTP: 1,
+  ISTJ: 2,
+  ISFP: 3,
+  ISFJ: 4,
+  INTP: 5,
+  INTJ: 6,
+  INFP: 7,
+  INFJ: 8,
+  ESTP: 9,
+  ESTJ: 10,
+  ESFP: 11,
+  ESFJ: 12,
+  ENTP: 13,
+  ENTJ: 14,
+  ENFP: 15,
+  ENFJ: 16,
+};

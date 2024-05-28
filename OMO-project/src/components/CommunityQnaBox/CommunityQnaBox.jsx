@@ -39,13 +39,13 @@ export const CommunityQnABox = (props) => {
             <span className={styles["community-qnapost-title"]}>{props.title}</span>
 
             {/* 날짜 */}
-            <span className={styles["community-qnapost-date"]}>{new Date(props.reg_at).toLocaleString()}</span>
+            <span className={styles["community-qnapost-date"]}>{new Date(props.createdDate).toLocaleString()}</span>
           </div>
 
           {/* 프로필 이미지+닉네임 */}
           <div className={styles["community-qnapost-profile"]}>
-            <img className={styles["community-qnapost-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
-            <span className={styles["community-qnapost-profile-nick"]}>이니</span>
+            <img className={styles["community-qnapost-profile-img"]} src={props.profileURL} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
+            <span className={styles["community-qnapost-profile-nick"]}>{props.writer}</span>
           </div>
 
           {/* 글 내용 */}
