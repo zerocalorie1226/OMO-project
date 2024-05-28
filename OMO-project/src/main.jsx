@@ -18,15 +18,13 @@ const Root = () => {
 
   const handleLogout = async () => {
     try {
-      const accessToken = localStorage.getItem('accessToken');
-      const refreshToken = localStorage.getItem('refreshToken');
-      // await axios.post('https://api.example.com/logout', {}, {
-      //   headers: {
-      //     Authorization: `Bearer ${accessToken}`,
-      //     Refresh: refreshToken,
-      //   },
-      //   withCredentials: true, // 자격 증명을 포함
-      // });
+      await axios.post('https://api.oneulmohae.co.kr/logout', {}, {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+          Refresh: localStorage.getItem('refreshToken'),
+        },
+        withCredentials: true, // 자격 증명을 포함
+      });
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('isExistingMember');
