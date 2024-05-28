@@ -1,12 +1,15 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import MainLogo from "../../assets/logo-main.png";
 import { Link } from "react-router-dom";
 
-export const Header = ({ isLoggedIn }) => {
+export const Header = ({ isLoggedIn, handleLogout }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isSignupPage = location.pathname === "/Signup";
   const isLogin = location.pathname === "/Login";
+
+
 
   return (
     <header>
@@ -34,6 +37,9 @@ export const Header = ({ isLoggedIn }) => {
                 <Link to="/MyInfo" className={styles["main-header-mypage"]}>
                   마이 페이지
                 </Link>
+                <button onClick={handleLogout} className={styles["main-header-logout"]}>
+                  로그아웃
+                </button>
               </div>
             ) : (
               <div>

@@ -1,19 +1,18 @@
 import axios from "axios";
 import styles from "./Mypage.module.css";
 import {Link} from "react-router-dom";
-import ProfileDefault from "../../assets/profile-default.png";
 import MyInfoIcon from "../../assets/my-page/my-info/my-info.png";
 import MyInfoHeart from "../../assets/my-page/my-info/empty-heart.png";
 import MyInfoWrote from "../../assets/my-page/my-info/my-writing.png";
 import MyInfoSetting from "../../assets/my-page/my-info/profile-setting.png";
 import MyInfoRecent from "../../assets/my-page/my-info/recent-place.png";
 import MyInfoThumb from "../../assets/my-page/my-info/empty-thumb.png";
-import { mbtiReverseMapping } from "../../const/mbtiReverseMapping";
-import { useEffect, useState } from "react";
+import {mbtiReverseMapping} from "../../const/mbtiReverseMapping";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
-
-const Mypage = ()=> {
-
+const Mypage = () => {
+  const navigate = useNavigate();
   const [myPageData, setMyPageData] = useState(null);
 
   useEffect(() => {
@@ -25,13 +24,14 @@ const Mypage = ()=> {
           },
         });
         console.log(response.data);
-        setMyPageData(response.data); 
+        setMyPageData(response.data);
       } catch (error) {
         console.error("에러야", error);
+        navigate("/Login");
       }
     };
     fetchData();
-  }, []); 
+  }, []);
 
   const getMbtiString = (mbtiValue) => {
     return mbtiReverseMapping[mbtiValue] || "Unknown MBTI";

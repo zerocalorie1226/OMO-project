@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
 import styles from "./DetailItemsMenu.module.css";
 import Jjim from "../../../assets/detail/empty-heart.png";
 import JjimClicked from "../../../assets/detail/red-heart.png";
@@ -16,41 +17,159 @@ import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import DefaultImg from "../../../assets/detail/detail-default-background.png";
 import defaultDetailIcon from "../../../assets/detail/defaultDetailIcon.png";
 import { Loading } from "../../Loading/Loading";
+import KakaoMap from "../../KaKaoMap/KaKaoMap";
 
 export const DetailItemsMenu = (props) => {
-  console.log("상세페이지 props: ", props);
-  console.log("상세페이지 props: ", props.defaultListImg);
-
   const [item, setItem] = useState([]); // 상태변화함수, 빈배열로 시작
-
   const [content, setContent] = useState(""); // 댓글 내용
-
   const dataId = useRef(0); // id 인덱스 추가-> 변수처럼 사용 필요 -> useRef 사용
 
-  // 데이터 가져오기
-  // const { data } = props;
+  // 하트 버튼 (관심) 상태관리
+  const [imageSrcJjim, setImageSrcJjim] = useState(Jjim); // 하트 이미지 토글
+  const [isClikedJjim, setIsClickedJjim] = useState(false); // 하트 버튼 클릭 토글
+  const [countJjim, setCountJjim] = useState(0); // 하트 카운트 값 관리
 
-  // 하트 버튼 (관심)
-  const [imageSrcJjim, setImageSrcJjim] = useState(Jjim);
-  const [isClikedJjim, setIsClickedJjim] = useState(false);
-  const [countJjim, setCountJjim] = useState(0); // 초기값을 0 또는 적절한 기본값으로 설정
-
-  useEffect(() => {
-    if (props.DetailItemsMenuData) {
-      setCountJjim(props.DetailItemsMenuData.mine); // 데이터가 로드되면 상태 업데이트
-    }
-  }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
-
-  // 따봉 버튼 (추천)
-  const [imageSrcLike, setImageSrcLike] = useState(Like);
-  const [isClikedLike, setIsClickedLike] = useState(false);
-  const [countLike, setCountLike] = useState(0);
+  // 따봉 버튼 (추천) 상태관리
+  const [imageSrcLike, setImageSrcLike] = useState(Like); // 따봉 이미지 토글
+  const [isClikedLike, setIsClickedLike] = useState(false); // 따봉 버튼 클릭 토글
+  const [countLike, setCountLike] = useState(0); // 따봉 카운트 값 관리
 
   useEffect(() => {
     if (props.DetailItemsMenuData) {
-      setCountLike(props.DetailItemsMenuData.recommend); // 데이터가 로드되면 상태 업데이트
+      setCountJjim(props.DetailItemsMenuData.mine); // 관심 데이터가 로드되면 상태 업데이트
+      setCountLike(props.DetailItemsMenuData.recommend); // 추천 데이터가 로드되면 상태 업데이트
+
+      // mine 값을 사용하여 초기 상태 설정
+      if (props.DetailItemsMenuData.myMine) {
+        setImageSrcJjim(JjimClicked);
+        setIsClickedJjim(true);
+      } else {
+        setImageSrcJjim(Jjim);
+        setIsClickedJjim(false);
+      }
+
+      // recommend 값을 사용하여 초기 상태 설정
+      if (props.DetailItemsMenuData.myRecommend) {
+        setImageSrcLike(LikeClicked);
+        setIsClickedLike(true);
+      } else {
+        setImageSrcLike(Like);
+        setIsClickedLike(false);
+      }
     }
   }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
+
+
+
+  // handleClickJjim 함수 (하트 버튼 (관심) - PUT+GET 요청, 이미지 변경, 카운트 업데이트)
+  const handleClickJjim = async () => {
+    try {
+      const response = await axios.put(
+        `https://api.oneulmohae.co.kr/place/${props.place_name}`,
+        {}, // 빈 객체를 본문으로 전달
+        {
+          headers: {
+            placeId: props.placeId,
+            Authorization: localStorage.getItem("accessToken"),
+            memberId: localStorage.getItem("memberId"),
+            LR: 'true',
+          },
+          withCredentials: true,
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("put요청: ", response.data);
+        // PUT 요청이 성공한 후 GET 요청을 보내기
+        const getResponse = await axios.get(
+          `https://api.oneulmohae.co.kr/place/${props.place_name}`,
+          {
+            headers: {
+              placeId: props.placeId,
+            },
+          }
+        );
+
+        if (getResponse.status === 200) {
+          const updatedData = getResponse.data;
+
+          console.log("get요청: ", updatedData.mine);
+
+          // 이미지 변경 및 카운트 업데이트
+          if (isClikedJjim) {
+            setImageSrcJjim(Jjim);
+            setIsClickedJjim(false);
+          } else {
+            setImageSrcJjim(JjimClicked);
+            setIsClickedJjim(true);
+          }
+          setCountJjim(updatedData.mine); // 새로운 데이터를 사용하여 업데이트
+        } else {
+          console.error("Failed to fetch updated jjim data");
+        }
+      } else {
+        console.error("Failed to update jjim status");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+    // handleClickLike 함수 (따봉 버튼 (추천) - PUT+GET 요청, 이미지 변경, 카운트 업데이트)
+    const handleClickLike = async () => {
+      try {
+        const response = await axios.put(
+          `https://api.oneulmohae.co.kr/place/${props.place_name}`,
+          {}, // 빈 객체를 본문으로 전달
+          {
+            headers: {
+              placeId: props.placeId,
+              Authorization: localStorage.getItem("accessToken"),
+              memberId: localStorage.getItem("memberId"),
+              LR: 'false',
+            },
+            withCredentials: true,
+          }
+        );
+  
+        if (response.status === 200) {
+          console.log("put요청: ", response.data);
+          // PUT 요청이 성공한 후 GET 요청을 보내기
+          const getResponse = await axios.get(
+            `https://api.oneulmohae.co.kr/place/${props.place_name}`,
+            {
+              headers: {
+                placeId: props.placeId,
+              },
+            }
+          );
+  
+          if (getResponse.status === 200) {
+            const updatedData = getResponse.data;
+  
+            console.log("get요청: ", updatedData.recommend);
+  
+            // 이미지 변경 및 카운트 업데이트
+            if (isClikedLike) {
+              setImageSrcLike(Like);
+              setIsClickedLike(false);
+            } else {
+              setImageSrcLike(LikeClicked);
+              setIsClickedLike(true);
+            }
+            setCountLike(updatedData.recommend); // 새로운 데이터를 사용하여 업데이트
+          } else {
+            console.error("Failed to fetch updated Like data");
+          }
+        } else {
+          console.error("Failed to update Like status");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+  
+
 
   // onCreate 함수 (댓글 리스트에 댓글 추가)
   const onCreate = (content, imageSrc) => {
@@ -63,36 +182,6 @@ export const DetailItemsMenu = (props) => {
     };
     dataId.current += 1;
     setItem([newItem, ...item]);
-  };
-
-  // handleClickJjim 함수 (하트 버튼 (관심) - 색, 카운트)
-  const handleClickJjim = () => {
-    if (isClikedJjim) {
-      setImageSrcJjim(Jjim);
-      setIsClickedJjim(false);
-      setCountJjim((count) => count - 1);
-      props.updateJjimData(false);
-    } else {
-      setImageSrcJjim(JjimClicked);
-      setIsClickedJjim(true);
-      setCountJjim((count) => count + 1);
-      props.updateJjimData(true);
-    }
-  };
-
-  // handleClickLike 함수 (따봉 버튼 (추천) - 색, 카운트)
-  const handleClickLike = () => {
-    if (isClikedLike) {
-      setImageSrcLike(Like);
-      setIsClickedLike(false);
-      setCountLike(countLike - 1);
-      props.updateLikeData(false);
-    } else {
-      setImageSrcLike(LikeClicked);
-      setIsClickedLike(true);
-      setCountLike(countLike + 1);
-      props.updateLikeData(true);
-    }
   };
 
   //  리뷰 사진 체출
@@ -142,68 +231,6 @@ export const DetailItemsMenu = (props) => {
     }
   };
 
-  // 지도 표시
-  const mapContainer = useRef(null); // 지도를 표시할 div의 ref
-
-  useEffect(() => {
-    // 카카오맵 스크립트 로드
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=36a2e85facafe4523773ac62c9e870a8&autoload=false`;
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      window.kakao.maps.load(() => {
-        if (props.DetailItemsMenuData) {
-          const { y: latitude, x: longitude } = props.DetailItemsMenuData;
-          const mapCenter = new window.kakao.maps.LatLng(latitude, longitude); // 지도의 중심 좌표
-
-          const mapOption = {
-            center: mapCenter, // 지도의 중심 좌표
-            level: 3, // 지도 확대 레벨
-            draggable: false, // 지도 이동 및 마우스 휠 확대/축소를 막기
-          };
-
-          const map = new window.kakao.maps.Map(mapContainer.current, mapOption); // 지도 생성
-
-          const mapTypeControl = new window.kakao.maps.MapTypeControl(); // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤 생성
-
-          // 지도에 컨트롤을 추가
-          map.addControl(mapTypeControl, window.kakao.maps.ControlPosition.TOPRIGHT); // window.kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미
-
-          // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성
-          const zoomControl = new window.kakao.maps.ZoomControl();
-          map.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
-
-          // 마커 생성
-          const marker = new window.kakao.maps.Marker({
-            position: mapCenter,
-          });
-
-          // 마커가 지도 위에 표시되도록 설정
-          marker.setMap(map);
-
-          // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능
-          const iwContent = `<div style="padding:5px;">${props.DetailItemsMenuData.place_name}<br><a href="https://map.kakao.com/link/map/${props.DetailItemsMenuData.place_name},${props.DetailItemsMenuData.y},${props.DetailItemsMenuData.x}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${props.DetailItemsMenuData.place_name},${props.DetailItemsMenuData.y},${props.DetailItemsMenuData.x}" style="color:blue" target="_blank">길찾기</a></div>`;
-
-          const iwPosition = new window.kakao.maps.LatLng(33.450701, 126.570667); // 인포윈도우 표시 위치
-
-          // 인포윈도우 생성
-          const infowindow = new window.kakao.maps.InfoWindow({
-            position: iwPosition,
-            content: iwContent,
-          });
-
-          // 마커 위에 인포윈도우를 표시
-          infowindow.open(map, marker); // 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시
-        }
-      });
-    };
-
-    return () => script.remove();
-  }, [props.DetailItemsMenuData]);
-
-  console.log(item);
   return (
     <>
       {props.DetailItemsMenuData === null ? (
@@ -212,7 +239,7 @@ export const DetailItemsMenu = (props) => {
         <div>
           <section className={styles["detail-title-container"]}>
             <div className={styles["detail-thumbnail-container"]}>
-              <img src={item.length == 0 ? defaultDetailIcon : item[0].imageSrc} alt="썸네일 이미지" />
+              <img src={item.length === 0 ? defaultDetailIcon : item[0].imageSrc} alt="썸네일 이미지" />
             </div>
             <span className={styles["detail-title"]}>{props.DetailItemsMenuData.place_name}</span>
             <div className={styles["detail-like-jjim-container"]}>
@@ -222,7 +249,6 @@ export const DetailItemsMenu = (props) => {
                   <img src={imageSrcJjim} alt="찜 아이콘" style={{ position: "absolute", top: "1px" }} />
                 </button>
                 <span className={styles["detail-jjim-number"]}> {countJjim}</span>
-                {/* <span className={styles["detail-jjim-number"]}> 999+</span> */}
               </div>
               <div className={styles["detail-like"]}>
                 <span className={styles["detail-like-line"]}>|</span>
@@ -230,7 +256,6 @@ export const DetailItemsMenu = (props) => {
                   <img src={imageSrcLike} alt="좋아요 아이콘" style={{ position: "absolute", top: "-1px" }} />
                 </button>
                 <span className={styles["detail-like-number"]}> {countLike}</span>
-                {/* <span className={styles["detail-like-number"]}>999+</span> */}
               </div>
             </div>
           </section>
@@ -244,38 +269,6 @@ export const DetailItemsMenu = (props) => {
               <span className={styles["detail-address-info-number"]}>{props.DetailItemsMenuData.address_name}</span>
             </section>
 
-            {/* <section className={styles["detail-sales-info-container"]}>
-          <div className={styles["detail-sales-info-inner-container"]}>
-            <img src={SalesInfo} alt="영업정보 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "3px" }} />
-            <span className={styles["detail-sales-info-title"]}>영업정보</span>
-          </div>
-          <div className={styles["detail-sales-info-time-container"]}>
-            <span className={styles["detail-sales-info-time"]}>시간</span>
-            <span className={styles["detail-sales-info-line"]}>|</span>
-            <span className={styles["detail-sales-info-time-info"]}>{props.DetailItemsMenuData.time}</span>
-          </div>
-          <div className={styles["detail-sales-info-holiday-container"]}>
-            <span className={styles["detail-sales-info-holiday"]}>휴무</span> <span className={styles["detail-sales-info-line"]}>|</span>
-            <span className={styles["detail-sales-info-holiday-info"]}>{props.DetailItemsMenuData.holiday}</span>
-          </div>
-        </section> */}
-
-            {/* <section className={styles["detail-menu-container"]}>
-          <div className={styles["detail-menu-inner-container"]}>
-            <img src={Menu} alt="메뉴 아이콘" style={{ width: "20px", height: "25px", position: "absolute", top: "1px" }} />
-            <span className={styles["detail-menu-title"]}>메뉴</span>
-          </div>
-          {props.DetailItemsMenuData.menu.map((el) => (
-            <div key={el.id}>
-              <ul className={styles["detail-menu"]}>
-                <li className={styles["detail-menu-list"]}>
-                  <span className={styles["detail-menu-list-title"]}>{el.title}</span> <span className={styles["detail-menu-list-price"]}>{priceTemplate(el.price)}원</span>
-                </li>
-              </ul>
-            </div>
-          ))}
-        </section> */}
-
             <section className={styles["detail-call-container"]}>
               <div className={styles["detail-call-inner-container"]}>
                 <img src={Call} alt="전화 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "1px" }} />
@@ -285,7 +278,11 @@ export const DetailItemsMenu = (props) => {
             </section>
 
             <section className={styles["detail-google-map-container"]}>
-              <div ref={mapContainer} style={{ width: "100%", height: "500px" }}></div>
+              <KakaoMap
+                latitude={props.DetailItemsMenuData.y}
+                longitude={props.DetailItemsMenuData.x}
+                placeName={props.DetailItemsMenuData.place_name}
+              />
             </section>
 
             <section className={styles["detail-mbti-stats-container"]}>
@@ -318,7 +315,7 @@ export const DetailItemsMenu = (props) => {
                     <div className={styles["detail-mbti-graph-SN-bar-percent"]}></div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
-                    <span className={styles["detail-mbti-graph-N"]}>N</span>
+                    <span className={styles["detail-mbti-graph-alphabat"]}>N</span>
                     <span className={styles["detail-mbti-graph-text"]}>직관</span>
                   </div>
                 </div>

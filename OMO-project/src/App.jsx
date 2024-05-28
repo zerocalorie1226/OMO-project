@@ -1,7 +1,6 @@
 import "./App.module.css";
 import {Header} from "./components/Header/Header";
 import React, {useReducer, useRef} from "react";
-import ReactDOM from "react-dom";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import Signup from "./pages/signup/Signup";
@@ -55,22 +54,13 @@ const reducer = (state, action) => {
 export const MyCourseStateContext = React.createContext();
 export const MyCourseDispatchContext = React.createContext();
 
-const App = () => {
-  // 로그인 상태 관리
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const App = ({ handleLogout, isLoggedIn }) => {
 
-  useEffect(() => {
-    // 예시: 토큰 유무를 확인하여 로그인 상태 설정
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
 
-  // 현재 위치를 가져오기 위한 구글 API KEY
+  // 현재 위치를 가져오기 위한 구글 API KEY (메인페이지에 사용 - 검색창에 디폴트로 현재 위치 뜨게)
   const GOOGLE_MAPS_API_KEY = "AIzaSyBFZH53aP29Zr7vY5jyv7wd4wGQMg3CI1s";
 
-  // 구글 API로 현재 위치 가져오는 fetch 함수
+  // 구글 API로 현재 위치 가져오는 fetch 함수 (메인페이지에 사용)
   const getCurrentPosition = async () => {
     try {
       const position = await new Promise((resolve, reject) => {
@@ -121,14 +111,8 @@ const App = () => {
     }
   }, []);
 
-  // 최근 본 장소
+  // 마이페이지 최근 본 장소 상태 관리
   const [recentData, setRecentData] = useState([]);
-
-  // 관심 목록 (하트)
-  const [jjimData, setJjimData] = useState([]);
-
-  // 추천 장소 (따봉)
-  const [likeData, setLikeData] = useState([]);
 
   const dataId = useRef(0);
 
@@ -156,10 +140,10 @@ const App = () => {
           onCreate,
         }}
       >
-        <BrowserRouter>
+
           <div>
             {/* 헤더 */}
-            <Header isLoggedIn={isLoggedIn} />
+            <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
             <Routes>
               {/* 메인 페이지 */}
               <Route path="/" element={<Main setSearchResultsX={setSearchResultsX} setSearchResultsY={setSearchResultsY} location={location} setLocation={setLocation} />} />
@@ -209,16 +193,16 @@ const App = () => {
               <Route
                 path="/DetailMenu/:id/:place_name"
                 element={
-                  <DetailMenu jjimData={jjimData} setJjimData={setJjimData} likeData={likeData} setLikeData={setLikeData} defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} />
+                  <DetailMenu defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} />
                 }
               />
               <Route path="/DetailNone" element={<DetailNone />} />
               <Route path="/DetailTariff" element={<DetailTariff />} />
 
               {/* 마이 페이지 */}
-              <Route path="/MyInfo" element={<MyInfo jjimData={jjimData} likeData={likeData} />} />
-              <Route path="/Interest" element={<Interest jjimData={jjimData} />} />
-              <Route path="/Recommend" element={<Recommend likeData={likeData} />} />
+              <Route path="/MyInfo" element={<MyInfo />} />
+              <Route path="/Interest" element={<Interest />} />
+              <Route path="/Recommend" element={<Recommend />} />
               <Route path="/Recent" element={<Recent recentData={recentData} />} />
               <Route path="/MyWrote" element={<MyWrote />} />
               <Route path="/ProfileSetting" element={<ProfileSetting />} />
@@ -240,7 +224,6 @@ const App = () => {
               <Route path="/Notice" element={<Notice />} />
             </Routes>
           </div>
-        </BrowserRouter>
       </MyCourseDispatchContext.Provider>
     </MyCourseStateContext.Provider>
   );
