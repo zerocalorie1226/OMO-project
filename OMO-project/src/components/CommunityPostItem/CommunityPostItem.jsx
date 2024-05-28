@@ -29,19 +29,20 @@ export const CommunityPostItem = (props) => {
 
   const dataId = useRef(0); // 댓글 아이디
 
-  // useEffect(() => {
-  //   if (props) {
-  //     setPosts(props); 
+  // console.log("프롭스: ", props);
+  console.log("프롭스좋아요: ", props.likeCount);
 
-  //     if (props) {
-  //       setImageSrcLike(LikeClicked);
-  //       setIsClickedLike(true);
-  //     } else {
-  //       setImageSrcLike(Like);
-  //       setIsClickedLike(false);
-  //     }
-  //   }
-  // }, [props]); 
+  
+// like 값을 사용하여 초기 상태 설정 (따봉 누른 것들 새로고침해도 유지하게끔)
+  useEffect(() => {
+    if (props.likeCount) { // myLike으로 수정 예정
+        setImageSrcLike(LikeClicked);
+        setIsClickedLike(true);
+      } else {
+        setImageSrcLike(Like);
+        setIsClickedLike(false);
+      }
+  }, []); 
 
   // 댓글 달기 버튼 클릭 시 댓글창 표시/숨김 토글
   const toggleComments = () => {
