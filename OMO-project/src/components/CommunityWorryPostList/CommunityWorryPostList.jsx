@@ -1,12 +1,12 @@
 import styles from "./CommunityWorryPostList.module.css";
 import {CommunityPostItem} from "../CommunityPostItem/CommunityPostItem";
 
-export const CommunityWorryPostList = ({communityWorryPostList}) => {
+export const CommunityWorryPostList = ({communityWorryPostList, setPosts}) => {
   return (
     <>
       <section className={styles["community-worry-container"]}>
         {communityWorryPostList.map((el) => {
-          return <CommunityPostItem key={el.boardId} {...el} />;
+          return <CommunityPostItem key={el.boardId} {...el} setPosts={setPosts} />;
         })}
       </section>
     </>

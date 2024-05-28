@@ -1,4 +1,4 @@
-import React, {useRef, useState, useMemo} from "react";
+import React, {useRef, useState, useMemo, useEffect} from "react";
 import axios from "axios";
 import styles from "./CommunityPostItem.module.css";
 import Report from "../../assets/community/worry-board/report.png";
@@ -12,13 +12,14 @@ import {elapsedText} from "../../utils/Time/elapsedText";
 import ReportModal from "../ReportModal/ReportModal";
 
 export const CommunityPostItem = (props) => {
+
+  console.log("props: ",props);
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
 
   // 좋아요 버튼
   const [imageSrcLike, setImageSrcLike] = useState(Like);
   const [isClickedLike, setIsClickedLike] = useState(false);
-  const [countLike, setCountLike] = useState(0);
 
   const [showComments, setShowComments] = useState(false); // 초기에 숨김 상태
 
@@ -27,6 +28,20 @@ export const CommunityPostItem = (props) => {
   const [content, setContent] = useState(""); // 댓글 내용
 
   const dataId = useRef(0); // 댓글 아이디
+
+  // useEffect(() => {
+  //   if (props) {
+  //     setPosts(props); 
+
+  //     if (props) {
+  //       setImageSrcLike(LikeClicked);
+  //       setIsClickedLike(true);
+  //     } else {
+  //       setImageSrcLike(Like);
+  //       setIsClickedLike(false);
+  //     }
+  //   }
+  // }, [props]); 
 
   // 댓글 달기 버튼 클릭 시 댓글창 표시/숨김 토글
   const toggleComments = () => {
@@ -43,27 +58,14 @@ export const CommunityPostItem = (props) => {
     setContent("");
   };
 
-  // handleClickLike 함수 (좋아요 버튼 - 색, 카운트)
-  // const handleClickLike = () => {
-  //   if (isClikedLike) {
-  //     setImageSrcLike(Like);
-  //     setIsClickedLike(false);
-  //     setCountLike(countLike - 1);
-  //   } else {
-  //     setImageSrcLike(LikeClicked);
-  //     setIsClickedLike(true);
-  //     setCountLike(countLike + 1);
-  //   }
-  // };
-
+  // 좋아요 버튼
   const handleClickLike = async () => {
     try {
       const response = await axios.put(
-        `https://api.oneulmohae.co.kr/board/like`,
+        `https://api.oneulmohae.co.kr/board/like/${props.boardId}`,
         {}, // 빈 객체를 본문으로 전달
         {
           headers: {
-            boardId: props.boardId,
             Authorization: localStorage.getItem("accessToken"),
           },
           withCredentials: true,
@@ -71,17 +73,12 @@ export const CommunityPostItem = (props) => {
       );
 
       if (response.status === 200) {
-        console.log("put요청: ", response.data);
-        // PUT 요청이 성공한 후 GET 요청을 보내기
-        const getResponse = await axios.get(
-          `https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt`,
-
-        );
+        const getResponse = await axios.get(`https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt`);
 
         if (getResponse.status === 200) {
           const updatedData = getResponse.data;
 
-          console.log("get요청: ", updatedData.mine);
+          console.log("get요청 좋아요: ", updatedData.data);
 
           // 이미지 변경 및 카운트 업데이트
           if (isClickedLike) {
@@ -91,7 +88,7 @@ export const CommunityPostItem = (props) => {
             setImageSrcLike(LikeClicked);
             setIsClickedLike(true);
           }
-          setCountLike(updatedData.mine); // 새로운 데이터를 사용하여 업데이트
+          props.setPosts(updatedData.data); // 새로운 데이터를 사용하여 업데이트
         } else {
           console.error("Failed to fetch updated jjim data");
         }
@@ -102,6 +99,7 @@ export const CommunityPostItem = (props) => {
       console.error("Error:", error);
     }
   };
+
 
   // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
   const handleOnKeyPress = (e) => {
@@ -168,7 +166,7 @@ export const CommunityPostItem = (props) => {
 
           {/*공감수*/}
           <div className={styles["community-post-number-report-wapper"]}>
-            <span className={styles["community-post-like-number"]}>좋아요 {countLike}</span>
+            <span className={styles["community-post-like-number"]}>좋아요 {props.likeCount}</span>
             <span className={styles["community-post-comment-number"]}>• 댓글 {data.length}</span>
 
             {/* 신고 아이콘 */}
