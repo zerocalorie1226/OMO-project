@@ -232,75 +232,7 @@ export const DetailItemsMenu = (props) => {
     }
   };
 
-<<<<<<< HEAD
-  // 지도 표시
-  const mapContainer = useRef(null); // 지도를 표시할 div의 ref
-
-  useEffect(() => {
-    // 카카오맵 스크립트 로드
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=36a2e85facafe4523773ac62c9e870a8&autoload=false`;
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      kakao.maps.load(() => {
-        if (props.DetailItemsMenuData) {
-          const {y: latitude, x: longitude} = props.DetailItemsMenuData;
-          const mapCenter = new kakao.maps.LatLng(latitude, longitude); // 지도의 중심 좌표
-
-          const mapOption = {
-            center: mapCenter, // 지도의 중심 좌표
-            level: 3, // 지도 확대 레벨
-            draggable: false, // 지도 이동 및 마우스 휠 확대/축소를 막기
-          };
-
-          const map = new kakao.maps.Map(mapContainer.current, mapOption); // 지도 생성
-
-          const mapTypeControl = new kakao.maps.MapTypeControl(); // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤 생성
-
-          // 지도에 컨트롤을 추가
-          map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT); // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미
-
-          // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성
-          const zoomControl = new kakao.maps.ZoomControl();
-          map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-          // 마커 생성
-          const marker = new kakao.maps.Marker({
-            position: mapCenter,
-          });
-
-          // 마커가 지도 위에 표시되도록 설정
-          marker.setMap(map);
-
-          // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능
-          const iwContent = `<div style="padding:5px;">${props.DetailItemsMenuData.place_name}<br><a href="https://map.kakao.com/link/map/${props.DetailItemsMenuData.place_name},${props.DetailItemsMenuData.y},${props.DetailItemsMenuData.x}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${props.DetailItemsMenuData.place_name},${props.DetailItemsMenuData.y},${props.DetailItemsMenuData.x}" style="color:blue" target="_blank">길찾기</a></div>`;
-
-          const iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); // 인포윈도우 표시 위치
-
-          // 인포윈도우 생성
-          const infowindow = new kakao.maps.InfoWindow({
-            position: iwPosition,
-            content: iwContent,
-          });
-
-          // 마커 위에 인포윈도우를 표시
-          infowindow.open(map, marker); // 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시
-        }
-      });
-    };
-
-    return () => script.remove();
-  }, [props.DetailItemsMenuData]);
-
-
-
-
-  console.log(item)
-
-
-
+  //리뷰 Get 조회
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -324,8 +256,6 @@ export const DetailItemsMenu = (props) => {
   
 
 
-=======
->>>>>>> af905412cd6ff033fcf5e5e3b0e9ae331dd0fc57
   return (
     <>
       {props.DetailItemsMenuData === null ? (
@@ -334,7 +264,7 @@ export const DetailItemsMenu = (props) => {
         <div>
           <section className={styles["detail-title-container"]}>
             <div className={styles["detail-thumbnail-container"]}>
-              <img src={item.length === 0 ? defaultDetailIcon : item[0].imageSrc} alt="썸네일 이미지" />
+              <img src={defaultDetailIcon} alt="썸네일 이미지" />
             </div>
             <span className={styles["detail-title"]}>{props.DetailItemsMenuData.place_name}</span>
             <div className={styles["detail-like-jjim-container"]}>
