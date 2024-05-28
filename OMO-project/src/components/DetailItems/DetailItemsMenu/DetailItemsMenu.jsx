@@ -23,6 +23,7 @@ import DefaultImg from "../../../assets/detail/detail-default-background.png";
 import defaultDetailIcon from"../../../assets/detail/defaultDetailIcon.png"
 import {BeatLoader} from "react-spinners";
 import { Loading } from "../../Loading/Loading";
+import axios from 'axios';
 
 
 export const DetailItemsMenu = (props) => {
@@ -213,6 +214,32 @@ export const DetailItemsMenu = (props) => {
 
 
   console.log(item)
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const reviewId = props.DetailItemsMenuData.id; // 데이터 구조에 맞게 조정
+
+        const response = await axios.get('https://api.oneulmohae.co.kr/review/get', {
+          headers: {
+            'review-id': reviewId
+          }
+        });
+
+        console.log(response.data);
+        setItem(response.data); // 서버로부터 받은 데이터를 상태에 저장
+      } catch (error) {
+        console.error("에러야", error);
+      }
+    };
+
+    fetchData();
+  }, [props.DetailItemsMenuData]);
+  
+
+
   return (
     <>
       {props.DetailItemsMenuData === null ? (
@@ -252,38 +279,6 @@ export const DetailItemsMenu = (props) => {
               <span className={styles["detail-address-info-street"]}>{props.DetailItemsMenuData.road_address_name}</span>
               <span className={styles["detail-address-info-number"]}>{props.DetailItemsMenuData.address_name}</span>
             </section>
-
-            {/* <section className={styles["detail-sales-info-container"]}>
-          <div className={styles["detail-sales-info-inner-container"]}>
-            <img src={SalesInfo} alt="영업정보 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "3px" }} />
-            <span className={styles["detail-sales-info-title"]}>영업정보</span>
-          </div>
-          <div className={styles["detail-sales-info-time-container"]}>
-            <span className={styles["detail-sales-info-time"]}>시간</span>
-            <span className={styles["detail-sales-info-line"]}>|</span>
-            <span className={styles["detail-sales-info-time-info"]}>{props.DetailItemsMenuData.time}</span>
-          </div>
-          <div className={styles["detail-sales-info-holiday-container"]}>
-            <span className={styles["detail-sales-info-holiday"]}>휴무</span> <span className={styles["detail-sales-info-line"]}>|</span>
-            <span className={styles["detail-sales-info-holiday-info"]}>{props.DetailItemsMenuData.holiday}</span>
-          </div>
-        </section> */}
-
-            {/* <section className={styles["detail-menu-container"]}>
-          <div className={styles["detail-menu-inner-container"]}>
-            <img src={Menu} alt="메뉴 아이콘" style={{ width: "20px", height: "25px", position: "absolute", top: "1px" }} />
-            <span className={styles["detail-menu-title"]}>메뉴</span>
-          </div>
-          {props.DetailItemsMenuData.menu.map((el) => (
-            <div key={el.id}>
-              <ul className={styles["detail-menu"]}>
-                <li className={styles["detail-menu-list"]}>
-                  <span className={styles["detail-menu-list-title"]}>{el.title}</span> <span className={styles["detail-menu-list-price"]}>{priceTemplate(el.price)}원</span>
-                </li>
-              </ul>
-            </div>
-          ))}
-        </section> */}
 
             <section className={styles["detail-call-container"]}>
               <div className={styles["detail-call-inner-container"]}>
