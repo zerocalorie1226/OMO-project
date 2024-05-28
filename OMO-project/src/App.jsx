@@ -145,7 +145,7 @@ const App = () => {
   };
 
 
-  const [defaultListImg, setDefaultListImg ]= useState('')
+  const [defaultListImg, setDefaultListImg ]= useState('/src/assets/detail/defaultDetailIcon.png')
   
 
   return (
