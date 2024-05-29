@@ -17,7 +17,6 @@ import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import DefaultImg from "../../../assets/detail/detail-default-background.png";
 import defaultDetailIcon from "../../../assets/detail/defaultDetailIcon.png";
 import { Loading } from "../../Loading/Loading";
-
 import KakaoMap from "../../KaKaoMap/KaKaoMap";
 
 export const DetailItemsMenu = (props) => {
@@ -232,29 +231,9 @@ export const DetailItemsMenu = (props) => {
     }
   };
 
-  //리뷰 Get 조회
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const reviewId = props.DetailItemsMenuData.id; // 데이터 구조에 맞게 조정
 
-        const response = await axios.get('https://api.oneulmohae.co.kr/review/get', {
-          headers: {
-            'review-id': reviewId
-          }
-        });
 
-        console.log(response.data);
-        setItem(response.data); // 서버로부터 받은 데이터를 상태에 저장
-      } catch (error) {
-        console.error("에러야", error);
-      }
-    };
-
-    fetchData();
-  }, [props.DetailItemsMenuData]);
   
-
 
   return (
     <>
@@ -264,7 +243,7 @@ export const DetailItemsMenu = (props) => {
         <div>
           <section className={styles["detail-title-container"]}>
             <div className={styles["detail-thumbnail-container"]}>
-              <img src={defaultDetailIcon} alt="썸네일 이미지" />
+              <img src={item.length === 0 ? defaultDetailIcon : item[0].imageSrc} alt="썸네일 이미지" />
             </div>
             <span className={styles["detail-title"]}>{props.DetailItemsMenuData.place_name}</span>
             <div className={styles["detail-like-jjim-container"]}>
