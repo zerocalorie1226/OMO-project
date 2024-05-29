@@ -8,15 +8,15 @@ const MypageFilter = ({setSelectedCategory, selectedCategory}) => {
         전체
       </button>
       <p className={styles["filter-bar"]}> | </p>
-      <button type="button" className={`${styles["filter-worry"]} ${selectedCategory === "worry" ? styles["filter-active"] : ""}`} onClick={() => setSelectedCategory("worry")}>
+      <button type="button" className={`${styles["filter-worry"]} ${selectedCategory === "TROUBLE" ? styles["filter-active"] : ""}`} onClick={() => setSelectedCategory("trouble")}>
         고민게시판
       </button>
       <p className={styles["filter-bar"]}> | </p>
-      <button type="button" className={`${styles["filter-free"]} ${selectedCategory === "free" ? styles["filter-active"] : ""}`} onClick={() => setSelectedCategory("free")}>
+      <button type="button" className={`${styles["filter-free"]} ${selectedCategory === "FREE" ? styles["filter-active"] : ""}`} onClick={() => setSelectedCategory("free")}>
         자유게시판
       </button>
       <p className={styles["filter-bar"]}> | </p>
-      <button type="button" className={`${styles["filter-qna"]} ${selectedCategory === "qna" ? styles["filter-active"] : ""}`} onClick={() => setSelectedCategory("qna")}>
+      <button type="button" className={`${styles["filter-qna"]} ${selectedCategory === "QNA" ? styles["filter-active"] : ""}`} onClick={() => setSelectedCategory("qna")}>
         문의게시판
       </button>
     </div>

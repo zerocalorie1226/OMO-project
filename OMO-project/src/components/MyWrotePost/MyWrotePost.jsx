@@ -17,15 +17,15 @@ export const MyWrotePost = (props) => {
   const containerClassName = expanded ? styles["my-wrote-post-container-expanded"] : styles["my-wrote-post-container"];
 
   const getCategoryDisplayName = () => {
-    switch (props.category) {
-      case "free":
+    switch (props.type) {
+      case "FREE":
         return "자유게시판";
-      case "worry":
+      case "TROUBLE":
         return "고민게시판";
-      case "qna":
+      case "QNA":
         return "문의게시판";
       default:
-        return props.category;
+        return props.type;
     }
   };
 
@@ -43,27 +43,21 @@ export const MyWrotePost = (props) => {
               {/* 카테고리 */}
               <span className={styles["my-wrote-post-category"]}>{getCategoryDisplayName()}</span>
               {/* 날짜 */}
-              <span className={styles["my-wrote-post-date"]}>{new Date(props.reg_at).toLocaleString()}</span>
+              <span className={styles["my-wrote-post-date"]}>
+                {new Date(props.createdDate).toLocaleString([], {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}
+              </span>
             </div>
           </div>
-
-          {/* 프로필 이미지+닉네임 */}
-          {/* <div className={styles["my-wrote-post-profile"]}>
-            <img className={styles["my-wrote-post-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
-            <span className={styles["my-wrote-post-profile-nick"]}>이니</span>
-          </div> */}
 
           {/* 글 내용 */}
           <span className={styles["my-wrote-post-content"]}>{props.content}</span>
         </div>
-
-        {/* <div className={styles["my-wrote-post-button-wrapper"]}> */}
-        {/* 댓글달기 버튼 */}
-        {/* <button type="button" className={styles["my-wrote-post-comment-button"]}>
-            <img className={styles["my-wrote-post-comment-button-img"]} src={Comment} style={{width: "25px", height: "25px"}} />
-            댓글
-          </button>
-        </div> */}
 
         {/* 하단 댓글창 전체박스 */}
         <div className={styles["my-wrote-post-comment-container"]}>
