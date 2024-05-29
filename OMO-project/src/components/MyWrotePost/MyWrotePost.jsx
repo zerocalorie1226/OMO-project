@@ -1,3 +1,4 @@
+import {formatDate} from "../../utils/Time/\bformatDate";
 import styles from "./MyWrotePost.module.css";
 // import Report from "../../assets/community/worry-board/report.png";
 // import Like from "../../assets/detail/empty-thumb.png";
@@ -8,7 +9,6 @@ import styles from "./MyWrotePost.module.css";
 import React, {useState} from "react";
 
 export const MyWrotePost = (props) => {
-
   const [expanded, setExpanded] = useState(false);
 
   const handleClick = () => {
@@ -43,15 +43,7 @@ export const MyWrotePost = (props) => {
               {/* 카테고리 */}
               <span className={styles["my-wrote-post-category"]}>{getCategoryDisplayName()}</span>
               {/* 날짜 */}
-              <span className={styles["my-wrote-post-date"]}>
-                {new Date(props.createdDate).toLocaleString([], {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}
-              </span>
+              <span className={styles["my-wrote-post-date"]}>{formatDate(props.createdDate)}</span>
             </div>
           </div>
 
