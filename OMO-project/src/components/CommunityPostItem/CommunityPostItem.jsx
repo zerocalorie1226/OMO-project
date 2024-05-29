@@ -10,9 +10,9 @@ import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
 import {elapsedText} from "../../utils/Time/elapsedText";
 import ReportModal from "../ReportModal/ReportModal";
+import { formatDate } from "../../utils/Time/\bformatDate";
 
 export const CommunityPostItem = (props) => {
-
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
 
@@ -28,17 +28,17 @@ export const CommunityPostItem = (props) => {
 
   const dataId = useRef(0); // 댓글 아이디
 
-
-// like 값을 사용하여 초기 상태 설정 (따봉 누른 것들 새로고침해도 유지하게끔)
+  // like 값을 사용하여 초기 상태 설정 (따봉 누른 것들 새로고침해도 유지하게끔)
   useEffect(() => {
-    if (props.likeCount) { // myLike으로 수정 예정
-        setImageSrcLike(LikeClicked);
-        setIsClickedLike(true);
-      } else {
-        setImageSrcLike(Like);
-        setIsClickedLike(false);
-      }
-  }, []); 
+    if (props.likeCount) {
+      // myLike으로 수정 예정
+      setImageSrcLike(LikeClicked);
+      setIsClickedLike(true);
+    } else {
+      setImageSrcLike(Like);
+      setIsClickedLike(false);
+    }
+  }, []);
 
   // 댓글 달기 버튼 클릭 시 댓글창 표시/숨김 토글
   const toggleComments = () => {
@@ -97,7 +97,6 @@ export const CommunityPostItem = (props) => {
     }
   };
 
-
   // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
   const handleOnKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -146,7 +145,9 @@ export const CommunityPostItem = (props) => {
             <span className={styles["community-post-title"]}>{props.title}</span>
 
             {/* 날짜 */}
-            <span className={styles["community-post-date"]}>{new Date(props.createdDate).toLocaleString()}</span>
+            <span className={styles["community-post-date"]}>
+            {formatDate(props.createdDate)}
+            </span>
           </div>
 
           {/* 프로필 이미지+닉네임 */}
