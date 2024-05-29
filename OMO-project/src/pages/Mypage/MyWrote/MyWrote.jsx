@@ -11,8 +11,6 @@ const MyWrote = () => {
   const [myPosts, setMyPosts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all"); // 기본은 전체로 설정
 
-  const filteredData = myPosts.filter((item) => selectedCategory === "all" || item.type === selectedCategory.toUpperCase());
-
   useEffect(() => {
     const MyWroteData = async () => {
       try {
@@ -21,16 +19,22 @@ const MyWrote = () => {
             Authorization: localStorage.getItem("accessToken"),
           },
         });
-        setMyPosts(response.data);
-        console.log(response.data);
+        if (Array.isArray(response.data)) {
+          setMyPosts(response.data);
+        } else {
+          console.error("Unexpected data format:", response.data);
+          setMyPosts([]);
+        }
       } catch (error) {
-        console.error("Error MyWroteing data:", error);
+        console.error("Error fetching MyWrote data:", error);
         setMyPosts([]);
       }
     };
 
     MyWroteData();
   }, []);
+
+  const filteredData = myPosts.filter((item) => selectedCategory === "all" || item.type === selectedCategory.toUpperCase());
 
   const getCategoryDisplayName = () => {
     switch (selectedCategory) {
