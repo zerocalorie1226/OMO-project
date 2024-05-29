@@ -2,11 +2,11 @@ import axios from "axios";
 import Calendar from "../../components/Calender/Calendar";
 import styles from "./Signup.module.css";
 import Required from "../../assets/sign-up/required.png";
-import {Radio} from "../../components/Radio/Radio";
-import {RadioGroup} from "../../components/Radio/RadioGroup";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import { mbtiMapping } from "../../const/mbtiMapping";
+import { GenderRadioGroup } from "../../components/Radio/GenderRadio/GenderRadioGroup";
+import { GenderRadio } from "../../components/Radio/GenderRadio/GenderRadio";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -163,14 +163,14 @@ const Signup = () => {
               성별 <img className={styles["signup-gender-ess"]} src={Required} alt="필수항목표시" />
             </label>
             <form className={styles["signup-gender-radio-container"]}>
-              <RadioGroup name="genderType">
-                <Radio name="gender" value="MALE" defaultChecked={genderType === "MALE"} setGender={setGenderType}>
+              <GenderRadioGroup name="genderType">
+                <GenderRadio name="gender" value="MALE" defaultChecked={genderType === "MALE"} setGender={setGenderType}>
                   남자
-                </Radio>
-                <Radio name="gender" value="FEMALE" defaultChecked={genderType === "FEMALE"} setGender={setGenderType}>
+                </GenderRadio>
+                <GenderRadio name="gender" value="FEMALE" defaultChecked={genderType === "FEMALE"} setGender={setGenderType}>
                   여자
-                </Radio>
-              </RadioGroup>
+                </GenderRadio>
+              </GenderRadioGroup>
             </form>
           </div>
 

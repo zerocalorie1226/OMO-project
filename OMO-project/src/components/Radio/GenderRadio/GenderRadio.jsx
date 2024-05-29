@@ -1,7 +1,7 @@
-import styles from "./Radio.module.css";
+import styles from "./GenderRadio.module.css";
 
 
-export const Radio = ({ children, value, name, defaultChecked, disabled, setGender }) => (
+export const GenderRadio = ({ children, value, name, defaultChecked, disabled, setGender }) => (
   <label>
     <input
       type="radio"
