@@ -56,26 +56,11 @@ const ReportModal = ({ openModal, setOpenModal, boardId }) => {
 
       if (response.status === 200 || response.status === 201){
         alert("신고 접수가 완료되었습니다.");
-        console.log(response);
         setOpenModal(false);
-      }else {
-          alert("신고 접수에 실패했습니다. 다시 시도해주세요.");
-          console.log("응답 상태 코드: ", response.status);
-          console.log("응답 데이터: ", response.data);
-        }
-    } catch (error) {
-      if (error.response) {
-        // 서버가 2xx 외의 상태 코드를 반환한 경우
-        console.error("Response error:", error.response.data);
-        console.error("Status code:", error.response.status);
-        console.error("Headers:", error.response.headers);
-      } else if (error.request) {
-        // 요청이 만들어졌지만 응답을 받지 못한 경우
-        console.error("Request error:", error.request);
       } else {
-        // 오류를 발생시킨 요청을 설정하는 중에 발생한 경우
-        console.error("Error:", error.message);
+        alert("신고 접수에 실패했습니다. 다시 시도해주세요.");
       }
+    } catch (error) {
       alert("신고 접수에 실패했습니다. 다시 시도해주세요.");
     }
   };
