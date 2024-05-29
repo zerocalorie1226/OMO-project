@@ -177,7 +177,7 @@ export const CommunityPostItem = (props) => {
             >
               <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{width: "32px", height: "32px"}} />
             </button>
-            {openModal ? <ReportModal openModal={openModal} setOpenModal={setOpenModal} /> : null}
+            {openModal ? <ReportModal openModal={openModal} setOpenModal={setOpenModal} boardId={props.boardId}/> : null}
           </div>
         </div>
 
