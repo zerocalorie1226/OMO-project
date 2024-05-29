@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React, {useEffect, useRef, useState, useReducer} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./FreeBoard.module.css";
-import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory"; //카테고리
-import ListSearch from "./../../../components/ListSearch/ListSearch"; //검생창
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop"; //스크롤버튼
+import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory"; 
+import ListSearch from "./../../../components/ListSearch/ListSearch"; 
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop"; 
 import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteFreeBoard from "../../../components/WritePost/WriteFreeBoard/WriteFreeBoard";
@@ -12,6 +12,8 @@ const FreeBoard = () => {
   const [posts, setPosts] = useState([]);
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+
+  const category = "Free"; 
 
   // 게시글 불러오기
   const fetchData = async () => {
@@ -27,7 +29,6 @@ const FreeBoard = () => {
     fetchData();
   }, []);
 
-  console.log("get으로 불러온 데이터: ", posts); // {data배열, pageInfo}
 
   // 게시글 작성
   const onCreate = async (title, content) => {
@@ -37,7 +38,6 @@ const FreeBoard = () => {
       type: "FREE",
     };
 
-    console.log('작성한 데이터: ', postData); // {data}
 
     try {
       const response = await axios.post(
@@ -51,7 +51,6 @@ const FreeBoard = () => {
       );
 
       const newPost = response.data;
-      console.log('post데이터:', newPost); // {data+사용자정보까지}
       setBoardId(newPost.boardId); // 새로 생성된 게시글의 ID를 boardId로 설정
       setPosts(prevPosts => [
         newPost,
@@ -83,7 +82,7 @@ const FreeBoard = () => {
       {posts.length === 0 ? (
         <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
       ) : (
-        <CommunityFreePostList communityFreePostList={posts} />
+        <CommunityFreePostList communityFreePostList={posts} setPosts={setPosts} category={category}/>
       )}
 
       {/* 스크롤 */}

@@ -13,7 +13,6 @@ import ReportModal from "../ReportModal/ReportModal";
 
 export const CommunityPostItem = (props) => {
 
-  console.log("props: ",props);
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
 
@@ -29,10 +28,7 @@ export const CommunityPostItem = (props) => {
 
   const dataId = useRef(0); // 댓글 아이디
 
-  // console.log("프롭스: ", props);
-  console.log("프롭스좋아요: ", props.likeCount);
 
-  
 // like 값을 사용하여 초기 상태 설정 (따봉 누른 것들 새로고침해도 유지하게끔)
   useEffect(() => {
     if (props.likeCount) { // myLike으로 수정 예정
@@ -74,7 +70,7 @@ export const CommunityPostItem = (props) => {
       );
 
       if (response.status === 200) {
-        const getResponse = await axios.get(`https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt`);
+        const getResponse = await axios.get(`https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`);
 
         if (getResponse.status === 200) {
           const updatedData = getResponse.data;
