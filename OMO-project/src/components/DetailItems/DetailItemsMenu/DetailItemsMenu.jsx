@@ -231,10 +231,6 @@ export const DetailItemsMenu = (props) => {
     }
   };
 
-
-
-  
-
   return (
     <>
       {props.DetailItemsMenuData === null ? (
