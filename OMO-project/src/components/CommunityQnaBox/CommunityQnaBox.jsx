@@ -65,8 +65,8 @@ export const CommunityQnABox = (props) => {
         {/* 하단 댓글창 전체박스 */}
         <div className={`${styles["community-qnapost-comment-container"]} ${showComments ? styles["show-comments"] : ""}`}>
           {/* 답변 내용 */}
-          {props.comment_list &&
-            props.comment_list.map((el) => (
+          {props.comments &&
+            props.comments.map((el) => (
               <div key={el.id}>
                 <ul className={styles["community-qnapost-comment"]}>
                   <li>
