@@ -13,7 +13,7 @@ import ReportModal from "../ReportModal/ReportModal";
 import {formatDate} from "../../utils/Time/\bformatDate";
 
 export const CommunityPostItem = (props) => {
-  console.log(props.comments);
+  console.log(props);
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
 
@@ -23,14 +23,14 @@ export const CommunityPostItem = (props) => {
 
   // like 값을 사용하여 초기 상태 설정 (따봉 누른 것들 새로고침해도 유지하게끔)
   useEffect(() => {
-    if (props.myLike) {
+    if (props.myLiked) {
       setImageSrcLike(LikeClicked);
       setIsClickedLike(true);
     } else {
       setImageSrcLike(Like);
       setIsClickedLike(false);
     }
-  }, [props.myLike]);
+  }, [props.myLiked]);
 
   // 댓글창 초기에 숨김상태
   const [showComments, setShowComments] = useState(false);
@@ -82,46 +82,56 @@ export const CommunityPostItem = (props) => {
   };
 
   // 좋아요 버튼
-  const handleClickLike = async () => {
-    try {
-      const response = await axios.put(
-        `https://api.oneulmohae.co.kr/board/like/${props.boardId}`,
-        {}, // 빈 객체를 본문으로 전달
+const handleClickLike = async () => {
+  try {
+    const response = await axios.put(
+      `https://api.oneulmohae.co.kr/board/like/${props.boardId}`,
+      {}, // 빈 객체를 본문으로 전달
+      {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+        },
+        withCredentials: true,
+      }
+    );
+    console.log("PUT response:", response);
+    console.log(props.category);
+
+    if (response.status === 200) {
+      const getResponse = await axios.get(
+        `https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`,
         {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
           },
-          withCredentials: true,
         }
       );
+      if (getResponse.status === 200) {
+        console.log("get데이터: ",getResponse);
+        console.log("get데이터.data : ", getResponse.data);
+        // const updatedData = getResponse.data;
 
-      if (response.status === 200) {
-        const getResponse = await axios.get(`https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`);
 
-        if (getResponse.status === 200) {
-          const updatedData = getResponse.data;
-
-          console.log("get요청 좋아요: ", updatedData.data);
-
-          // 이미지 변경 및 카운트 업데이트
-          if (isClickedLike) {
-            setImageSrcLike(Like);
-            setIsClickedLike(false);
-          } else {
-            setImageSrcLike(LikeClicked);
-            setIsClickedLike(true);
-          }
-          props.setPosts(updatedData.data); // 새로운 데이터를 사용하여 업데이트
+        // 이미지 변경 및 카운트 업데이트
+        if (isClickedLike) {
+          setImageSrcLike(Like);
+          setIsClickedLike(false);
         } else {
-          console.error("Failed to fetch updated jjim data");
+          setImageSrcLike(LikeClicked);
+          setIsClickedLike(true);
         }
+        // props.setPosts(updatedData.data); 
       } else {
-        console.error("Failed to update jjim status");
+        console.error("Failed to fetch updated jjim data");
       }
-    } catch (error) {
-      console.error("Error:", error);
+    } else {
+      console.error("Failed to update jjim status");
     }
-  };
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
 
   // 댓글 handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
   const handleOnKeyPress = (e) => {
