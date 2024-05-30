@@ -10,49 +10,75 @@ import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
 import {elapsedText} from "../../utils/Time/elapsedText";
 import ReportModal from "../ReportModal/ReportModal";
-import { formatDate } from "../../utils/Time/\bformatDate";
+import {formatDate} from "../../utils/Time/\bformatDate";
 
 export const CommunityPostItem = (props) => {
+  console.log(props.comments);
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
 
-  // 좋아요 버튼
+  // 좋아요 버튼 (이미지, 클릭토글)
   const [imageSrcLike, setImageSrcLike] = useState(Like);
   const [isClickedLike, setIsClickedLike] = useState(false);
 
-  const [showComments, setShowComments] = useState(false); // 초기에 숨김 상태
-
-  const [data, setData] = useState([]); // 댓글 리스트 초기 상태
-
-  const [content, setContent] = useState(""); // 댓글 내용
-
-  const dataId = useRef(0); // 댓글 아이디
-
   // like 값을 사용하여 초기 상태 설정 (따봉 누른 것들 새로고침해도 유지하게끔)
   useEffect(() => {
-    if (props.likeCount) {
-      // myLike으로 수정 예정
+    if (props.myLike) {
       setImageSrcLike(LikeClicked);
       setIsClickedLike(true);
     } else {
       setImageSrcLike(Like);
       setIsClickedLike(false);
     }
-  }, []);
+  }, [props.myLike]);
+
+  // 댓글창 초기에 숨김상태
+  const [showComments, setShowComments] = useState(false);
+
+  // 댓글 내용
+  const [content, setContent] = useState("");
 
   // 댓글 달기 버튼 클릭 시 댓글창 표시/숨김 토글
   const toggleComments = () => {
     setShowComments(!showComments);
   };
-
   // 댓글 최소 글자
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (content.length < 1) {
       alert("최소 1글자 이상 입력해주세요");
       return;
     }
-    onCreate(content);
-    setContent("");
+
+    // 댓글 POST 통신
+    try {
+      const response = await axios.post(
+        `https://api.oneulmohae.co.kr/comment/write`,
+        {content, boardId: props.boardId},
+        {
+          headers: {
+            Authorization: localStorage.getItem("accessToken"),
+          },
+          withCredentials: true,
+        }
+      );
+
+      if (response.status === 200 || response.status === 201) {
+        // 댓글 작성 후 GET 통신으로 데이터 업데이트
+        const getResponse = await axios.get(`https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`);
+
+        if (getResponse.status === 200) {
+          props.setPosts(getResponse.data.data);
+        } else {
+          console.error("Failed to fetch updated data");
+        }
+
+        setContent("");
+      } else {
+        console.error("Failed to post comment");
+      }
+    } catch (error) {
+      console.error("Error posting comment:", error);
+    }
   };
 
   // 좋아요 버튼
@@ -97,23 +123,11 @@ export const CommunityPostItem = (props) => {
     }
   };
 
-  // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
+  // 댓글 handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
   const handleOnKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSubmit(); // Enter 입력이 되면 클릭 이벤트 실행
     }
-  };
-
-  // 댓글 리스트에 댓글 추가
-  const onCreate = (content) => {
-    const created_date = new Date().getTime();
-    const newItem = {
-      content,
-      created_date,
-      id: dataId.current,
-    };
-    dataId.current += 1;
-    setData([newItem, ...data]);
   };
 
   // 게시글 더보기/닫기 기능
@@ -145,9 +159,7 @@ export const CommunityPostItem = (props) => {
             <span className={styles["community-post-title"]}>{props.title}</span>
 
             {/* 날짜 */}
-            <span className={styles["community-post-date"]}>
-            {formatDate(props.createdDate)}
-            </span>
+            <span className={styles["community-post-date"]}>{formatDate(props.createdDate)}</span>
           </div>
 
           {/* 프로필 이미지+닉네임 */}
@@ -165,7 +177,7 @@ export const CommunityPostItem = (props) => {
           {/*공감수*/}
           <div className={styles["community-post-number-report-wapper"]}>
             <span className={styles["community-post-like-number"]}>좋아요 {props.likeCount}</span>
-            <span className={styles["community-post-comment-number"]}>• 댓글 {data.length}</span>
+            <span className={styles["community-post-comment-number"]}>• 댓글 {props.comments.length}</span>
 
             {/* 신고 아이콘 */}
             <button
@@ -177,7 +189,7 @@ export const CommunityPostItem = (props) => {
             >
               <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{width: "32px", height: "32px"}} />
             </button>
-            {openModal ? <ReportModal openModal={openModal} setOpenModal={setOpenModal} boardId={props.boardId}/> : null}
+            {openModal ? <ReportModal openModal={openModal} setOpenModal={setOpenModal} boardId={props.boardId} /> : null}
           </div>
         </div>
 
@@ -225,8 +237,8 @@ export const CommunityPostItem = (props) => {
             </div>
 
             {/* 댓글 리스트 내용 */}
-            {data.map((el) => (
-              <div key={el.id}>
+            {props.comments.map((el) => (
+              <div key={el.commentId}>
                 <ul className={styles["community-post-comment"]}>
                   <li>
                     <img className={styles["community-post-comment-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
