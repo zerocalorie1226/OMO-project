@@ -19,8 +19,13 @@ const WorryBoard = () => {
   // 게시글 불러오기
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt');
+      const response = await axios.get('https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt', {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+        },
+      });
       setPosts(response.data.data);
+      console.log(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }

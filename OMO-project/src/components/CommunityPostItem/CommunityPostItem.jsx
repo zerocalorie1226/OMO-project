@@ -13,7 +13,6 @@ import ReportModal from "../ReportModal/ReportModal";
 import {formatDate} from "../../utils/Time/\bformatDate";
 
 export const CommunityPostItem = (props) => {
-  console.log(props);
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
 
@@ -82,56 +81,47 @@ export const CommunityPostItem = (props) => {
   };
 
   // 좋아요 버튼
-const handleClickLike = async () => {
-  try {
-    const response = await axios.put(
-      `https://api.oneulmohae.co.kr/board/like/${props.boardId}`,
-      {}, // 빈 객체를 본문으로 전달
-      {
-        headers: {
-          Authorization: localStorage.getItem("accessToken"),
-        },
-        withCredentials: true,
-      }
-    );
-    console.log("PUT response:", response);
-    console.log(props.category);
-
-    if (response.status === 200) {
-      const getResponse = await axios.get(
-        `https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`,
+  const handleClickLike = async () => {
+    try {
+      const response = await axios.put(
+        `https://api.oneulmohae.co.kr/board/like/${props.boardId}`,
+        {}, // 빈 객체를 본문으로 전달
         {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
           },
+          withCredentials: true,
         }
       );
-      if (getResponse.status === 200) {
-        console.log("get데이터: ",getResponse);
-        console.log("get데이터.data : ", getResponse.data);
-        // const updatedData = getResponse.data;
 
+      if (response.status === 200) {
+        const getResponse = await axios.get(`https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`, {
+          headers: {
+            Authorization: localStorage.getItem("accessToken"),
+          },
+        });
+        if (getResponse.status === 200) {
+          const updatedData = getResponse.data;
 
-        // 이미지 변경 및 카운트 업데이트
-        if (isClickedLike) {
-          setImageSrcLike(Like);
-          setIsClickedLike(false);
+          // 이미지 변경 및 카운트 업데이트
+          if (isClickedLike) {
+            setImageSrcLike(Like);
+            setIsClickedLike(false);
+          } else {
+            setImageSrcLike(LikeClicked);
+            setIsClickedLike(true);
+          }
+          props.setPosts(updatedData.data);
         } else {
-          setImageSrcLike(LikeClicked);
-          setIsClickedLike(true);
+          console.error("Failed to fetch updated jjim data");
         }
-        // props.setPosts(updatedData.data); 
       } else {
-        console.error("Failed to fetch updated jjim data");
+        console.error("Failed to update jjim status");
       }
-    } else {
-      console.error("Failed to update jjim status");
+    } catch (error) {
+      console.error("Error:", error);
     }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
-
+  };
 
   // 댓글 handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
   const handleOnKeyPress = (e) => {
@@ -255,7 +245,7 @@ const handleClickLike = async () => {
                     <div className={styles["community-post-comment-box"]}>
                       <div className={styles["community-post-comment-nick-date"]}>
                         <span className={styles["community-post-comment-box-nick"]}>이니</span>
-                        <span className={styles["community-post-comment-box-date"]}>{elapsedText(new Date(el.created_date)).toLocaleString()}</span>
+                        <span className={styles["community-post-comment-box-date"]}>{elapsedText(new Date(el.createdAt)).toLocaleString()}</span>
                       </div>
                       <span className={styles["community-post-comment-box-content"]}>{el.content}</span>
                     </div>
