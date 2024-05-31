@@ -9,6 +9,8 @@ import styles from "./MyWrotePost.module.css";
 import React, {useState} from "react";
 
 export const MyWrotePost = (props) => {
+
+  console.log(props);
   const [expanded, setExpanded] = useState(false);
 
   const handleClick = () => {
@@ -17,7 +19,8 @@ export const MyWrotePost = (props) => {
   const containerClassName = expanded ? styles["my-wrote-post-container-expanded"] : styles["my-wrote-post-container"];
 
   const getCategoryDisplayName = () => {
-    switch (props.type) {
+  
+    switch (props.category) {
       case "FREE":
         return "자유게시판";
       case "TROUBLE":
@@ -25,7 +28,7 @@ export const MyWrotePost = (props) => {
       case "QNA":
         return "문의게시판";
       default:
-        return props.type;
+        return props.category;
     }
   };
 

@@ -1,26 +1,27 @@
 import axios from 'axios';
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Mypage from "../../../components/Mypage/Mypage";
 import styles from "./MyWrote.module.css";
 import MyWroteIcon from "../../../assets/my-page/my-info/my-writing.png";
 import MyPageFilter from "../../../components/MypageFilter/MypageFilter";
 import MypageWroteMain from "../../../components/MypageWroteMain/MypageWroteMain";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
 
 const MyWrote = () => {
   const [myPosts, setMyPosts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("all"); // 기본은 전체로 설정
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   useEffect(() => {
     const MyWroteData = async () => {
       try {
-        const response = await axios.get('https://api.oneulmohae.co.kr/myPage/boards?page=1', {
+        const response = await axios.get('https://api.oneulmohae.co.kr/myPage/boards?page=1&category=ALL', {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
           },
         });
         if (Array.isArray(response.data)) {
           setMyPosts(response.data);
+          console.log(response.data);
         } else {
           console.error("Unexpected data format:", response.data);
           setMyPosts([]);
@@ -34,7 +35,7 @@ const MyWrote = () => {
     MyWroteData();
   }, []);
 
-  const filteredData = myPosts.filter((item) => selectedCategory === "all" || item.type === selectedCategory.toUpperCase());
+  const filteredData = myPosts.filter((item) => selectedCategory === "all" || item.category === selectedCategory.toUpperCase());
 
   const getCategoryDisplayName = () => {
     switch (selectedCategory) {
