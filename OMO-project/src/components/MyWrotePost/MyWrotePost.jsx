@@ -1,4 +1,4 @@
-import {formatDate} from "../../utils/Time/\bformatDate";
+import {formatDate} from "../../utils/Time/formatDate";
 import styles from "./MyWrotePost.module.css";
 // import Report from "../../assets/community/worry-board/report.png";
 // import Like from "../../assets/detail/empty-thumb.png";

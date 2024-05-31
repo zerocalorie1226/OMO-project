@@ -10,7 +10,7 @@ import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
 import {elapsedText} from "../../utils/Time/elapsedText";
 import ReportModal from "../ReportModal/ReportModal";
-import {formatDate} from "../../utils/Time/\bformatDate";
+import {formatDate} from "../../utils/Time/formatDate";
 
 export const CommunityPostItem = (props) => {
   // 신고 모달창 열기
@@ -236,8 +236,8 @@ export const CommunityPostItem = (props) => {
               </button>
             </div>
 
-            {/* 댓글 리스트 내용 */}
-            {props.comments.map((el) => (
+           {/* 댓글 리스트 내용 */}
+           {props.comments.slice().reverse().map((el) => (
               <div key={el.commentId}>
                 <ul className={styles["community-post-comment"]}>
                   <li>

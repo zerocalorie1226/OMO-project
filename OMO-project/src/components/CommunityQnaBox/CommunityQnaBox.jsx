@@ -1,7 +1,7 @@
 import styles from "./CommunityQnaBox.module.css";
 import Comment from "../../assets/community/inquiry-board/comment.png";
 import React, {useMemo, useRef, useState} from "react";
-import {formatDate} from "../../utils/Time/\bformatDate";
+import {formatDate} from "../../utils/Time/formatDate";
 
 export const CommunityQnABox = (props) => {
   const [showComments, setShowComments] = useState(false); // 초기에 숨김 상태
