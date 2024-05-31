@@ -7,7 +7,7 @@ const MypageWroteMain = ({postList}) => {
   <>
     <div className={styles["my-page-wrote-main-total-container"]}>
       {postList.map((el) => {
-        return <MyWrotePost key={el.id} {...el} />;
+        return <MyWrotePost key={el.boardId} {...el} />;
       })}
     </div>
   </>

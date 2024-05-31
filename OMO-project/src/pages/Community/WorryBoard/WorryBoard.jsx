@@ -13,13 +13,19 @@ const WorryBoard = () => {
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
+  const category = "Trouble"; 
+
 
   // 게시글 불러오기
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt');
+      const response = await axios.get('https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt', {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+        },
+      });
       setPosts(response.data.data);
-      console.log("posts:", response.data.data);
+      console.log(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -29,7 +35,6 @@ const WorryBoard = () => {
     fetchData();
   }, []);
 
-  // console.log("get으로 불러온 데이터: ", posts); // {data배열, pageInfo}
 
   // 게시글 작성
   const onCreate = async (title, content) => {
@@ -39,7 +44,6 @@ const WorryBoard = () => {
       type: "TROUBLE",
     };
 
-    // console.log('작성한 데이터: ', postData); // {data}
 
     try {
       const response = await axios.post(
@@ -53,7 +57,6 @@ const WorryBoard = () => {
       );
 
       const newPost = response.data;
-      // console.log('post데이터:', newPost); // {data+사용자정보까지}
       setBoardId(newPost.boardId); // 새로 생성된 게시글의 ID를 boardId로 설정
       setPosts(prevPosts => [
         newPost,
@@ -85,7 +88,7 @@ const WorryBoard = () => {
       {posts.length === 0 ? (
         <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
       ) : (
-        <CommunityWorryPostList communityWorryPostList={posts} setPosts={setPosts}  />
+        <CommunityWorryPostList communityWorryPostList={posts} setPosts={setPosts} category={category} />
       )}
 
       {/* 스크롤 */}

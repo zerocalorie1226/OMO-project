@@ -1,7 +1,7 @@
-import styles from "./Radio.module.css";
+import styles from "./ReportRadio.module.css";
 
 
-export const Radio = ({ children, value, name, defaultChecked, disabled, setGender }) => (
+export const ReportRadio = ({ children, value, name, defaultChecked, disabled, setSelectedReason }) => (
   <label>
     <input
       type="radio"
@@ -10,7 +10,7 @@ export const Radio = ({ children, value, name, defaultChecked, disabled, setGend
       defaultChecked={defaultChecked}
       disabled={disabled}
       className={styles["gender-input"]}
-      onChange={(e) => setGender(e.target.value)}
+      onChange={(e) => setSelectedReason(e.target.value)}
     />
     {children}
   </label>

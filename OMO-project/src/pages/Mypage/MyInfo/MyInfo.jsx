@@ -4,37 +4,11 @@ import Mypage from "../../../components/Mypage/Mypage";
 import MyInfoIcon from "../../../assets/my-page/my-info/my-info.png";
 import DefaultProfileImage from "../../../assets/detail/defaultDetailIcon.png";
 import { useEffect, useState, useReducer, useContext } from "react";
-import { BoardDispatchContext, BoardStateContext } from "../MyWrote/MyWrote";
-import { MyCourseStateContext } from "../../../App";
 import { mbtiReverseMapping } from "../../../const/mbtiReverseMapping";
 
-const reducer = (state, action) => {
-  let newState = [];
-  switch (action.type) {
-    case "INIT": {
-      return action.data;
-    }
-    case "CREATE": {
-      newState = [action.data, ...state];
-      break;
-    }
-    default:
-      return state;
-  }
 
-  return newState;
-};
 
 const MyInfo = () => {
-  const myCourseList = useContext(MyCourseStateContext);
-  const [data, dispatch] = useReducer(reducer, []);
-
-  useEffect(() => {
-    const localWorryData = JSON.parse(localStorage.getItem("worryboard")) || [];
-    const localFreeData = JSON.parse(localStorage.getItem("freeboard")) || [];
-    const localQnaData = JSON.parse(localStorage.getItem("qnaboard")) || [];
-    dispatch({ type: "INIT", data: [...localWorryData, ...localFreeData, ...localQnaData] });
-  }, []);
 
   const [myInfoData, setMyInfoData] = useState(null);
 
@@ -61,8 +35,6 @@ const MyInfo = () => {
 
   return (
     <>
-      <BoardStateContext.Provider value={data}>
-        <BoardDispatchContext.Provider value={data}>
           <div className={styles["myinfo-total-container"]}>
             <h2 className={styles["myinfo-title-container"]}>
               <img src={MyInfoIcon} alt="내 정보 아이콘" /> 내 정보
@@ -122,8 +94,6 @@ const MyInfo = () => {
               )}
             </div>
           </div>
-        </BoardDispatchContext.Provider>
-      </BoardStateContext.Provider>
     </>
   );
 };
