@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const NicknameChange = () => {
-  const navigate = useNavigate();
   const [nickname, setNickname] = useState("");
 
   const ChangeNickName = async () => {
@@ -26,7 +25,7 @@ const NicknameChange = () => {
 
         if (response.status === 200 || response.status === 204) {
           alert("닉네임이 변경되었습니다.");
-          window.location.reload(); // 페이지 리로딩
+          window.location.reload(); 
         } else {
           console.error("Failed to change nickname");
           alert("닉네임 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
