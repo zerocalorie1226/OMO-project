@@ -64,17 +64,8 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
   const getCurrentPosition = async () => {
     try {
       const position = await new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject, {
-          enableHighAccuracy: true,
-          timeout: 5000,
-          maximumAge: 0,
-        });
+        navigator.geolocation.getCurrentPosition(resolve, reject);
       });
-
-      // 위의 코드 에러날 시에 이걸로 수정
-      // const position = await new Promise((resolve, reject) => {
-      //   navigator.geolocation.getCurrentPosition(resolve, reject);
-      // });
 
       const {latitude, longitude} = position.coords;
 
