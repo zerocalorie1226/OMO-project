@@ -17,7 +17,6 @@ const Recommend = () => {
         },
       });
       setRecommendPosts(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setRecommendPosts([]); // 오류 발생 시 빈 배열로 초기화

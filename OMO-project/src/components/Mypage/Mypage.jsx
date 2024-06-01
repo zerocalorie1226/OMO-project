@@ -23,7 +23,6 @@ const Mypage = () => {
             Authorization: `${localStorage.getItem("accessToken")}`,
           },
         });
-        console.log(response.data);
         setMyPageData(response.data);
       } catch (error) {
         console.error("에러야", error);

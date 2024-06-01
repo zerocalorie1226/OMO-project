@@ -1,11 +1,11 @@
-import axios from 'axios';
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import React, {useEffect, useState} from "react";
 import Mypage from "../../../components/Mypage/Mypage";
 import styles from "./MyWrote.module.css";
 import MyWroteIcon from "../../../assets/my-page/my-info/my-writing.png";
 import MyPageFilter from "../../../components/MypageFilter/MypageFilter";
 import MypageWroteMain from "../../../components/MypageWroteMain/MypageWroteMain";
-import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 
 const MyWrote = () => {
   const [myPosts, setMyPosts] = useState([]);
@@ -14,14 +14,14 @@ const MyWrote = () => {
   useEffect(() => {
     const MyWroteData = async () => {
       try {
-        const response = await axios.get('https://api.oneulmohae.co.kr/myPage/boards?page=1&category=ALL', {
+        const response = await axios.get("https://api.oneulmohae.co.kr/myPage/boards?page=1", {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
           },
         });
         if (Array.isArray(response.data)) {
-          setMyPosts(response.data);
-          console.log(response.data);
+          const sortedData = response.data.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
+          setMyPosts(sortedData);
         } else {
           console.error("Unexpected data format:", response.data);
           setMyPosts([]);
@@ -65,7 +65,7 @@ const MyWrote = () => {
           <MyPageFilter setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
           <div className={styles["my-wrote-main-title-container"]}>
             {filteredData.length === 0 ? (
-              <div className={styles["no-board-list"]} >글 작성 내역이 없습니다. 커뮤니티 페이지 내 {getCategoryDisplayName()}게시판에 글을 작성해주세요.</div>
+              <div className={styles["no-board-list"]}>글 작성 내역이 없습니다. 커뮤니티 페이지 내 {getCategoryDisplayName()}게시판에 글을 작성해주세요.</div>
             ) : (
               <MypageWroteMain postList={filteredData} />
             )}

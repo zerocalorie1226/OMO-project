@@ -1,8 +1,8 @@
 import styles from "./MembershipWithdrawal.module.css";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
-const MembershipWithdrawal = ({isLoggedIn, setIsLoggedIn}) => {
+const MembershipWithdrawal = ({setIsLoggedIn}) => {
   const navigate = useNavigate();
 
   const handleWithdrawal = async () => {
@@ -20,14 +20,12 @@ const MembershipWithdrawal = ({isLoggedIn, setIsLoggedIn}) => {
 
         if (response.status === 200 || response.status === 204) {
           alert("탈퇴되었습니다.");
-          console.log(response);
-          console.log(response.data);
           setIsLoggedIn(false);
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('refreshToken');
-          localStorage.removeItem('isExistingMember');
-          localStorage.removeItem('memberId');
-          localStorage.removeItem('recentData');
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          localStorage.removeItem("isExistingMember");
+          localStorage.removeItem("memberId");
+          localStorage.removeItem("recentData");
           navigate("/");
         } else {
           console.error("Failed to delete member");
@@ -43,11 +41,7 @@ const MembershipWithdrawal = ({isLoggedIn, setIsLoggedIn}) => {
   return (
     <div className={styles["profile-setting-main-membership-withdrawal-container"]}>
       <p className={styles["profile-setting-main-membership-withdrawal-title"]}>탈퇴하기</p>
-      <button
-        type="button"
-        className={styles["profile-setting-main-membership-withdrawal-button"]}
-        onClick={handleWithdrawal}
-      >
+      <button type="button" className={styles["profile-setting-main-membership-withdrawal-button"]} onClick={handleWithdrawal}>
         회원 탈퇴
       </button>
     </div>

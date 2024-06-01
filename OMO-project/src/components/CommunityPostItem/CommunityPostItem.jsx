@@ -126,6 +126,7 @@ export const CommunityPostItem = (props) => {
   // 댓글 handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
   const handleOnKeyPress = (e) => {
     if (e.key === "Enter") {
+      e.preventDefault();
       handleSubmit(); // Enter 입력이 되면 클릭 이벤트 실행
     }
   };
@@ -236,23 +237,26 @@ export const CommunityPostItem = (props) => {
               </button>
             </div>
 
-           {/* 댓글 리스트 내용 */}
-           {props.comments.slice().reverse().map((el) => (
-              <div key={el.commentId}>
-                <ul className={styles["community-post-comment"]}>
-                  <li>
-                    <img className={styles["community-post-comment-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
-                    <div className={styles["community-post-comment-box"]}>
-                      <div className={styles["community-post-comment-nick-date"]}>
-                        <span className={styles["community-post-comment-box-nick"]}>이니</span>
-                        <span className={styles["community-post-comment-box-date"]}>{elapsedText(new Date(el.createdAt)).toLocaleString()}</span>
+            {/* 댓글 리스트 내용 */}
+            {props.comments
+              .slice()
+              .reverse()
+              .map((el) => (
+                <div key={el.commentId}>
+                  <ul className={styles["community-post-comment"]}>
+                    <li>
+                      <img className={styles["community-post-comment-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
+                      <div className={styles["community-post-comment-box"]}>
+                        <div className={styles["community-post-comment-nick-date"]}>
+                          <span className={styles["community-post-comment-box-nick"]}>이니</span>
+                          <span className={styles["community-post-comment-box-date"]}>{elapsedText(new Date(el.createdAt)).toLocaleString()}</span>
+                        </div>
+                        <span className={styles["community-post-comment-box-content"]}>{el.content}</span>
                       </div>
-                      <span className={styles["community-post-comment-box-content"]}>{el.content}</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            ))}
+                    </li>
+                  </ul>
+                </div>
+              ))}
           </div>
         </div>
       </div>

@@ -1,10 +1,10 @@
-import axios from 'axios';
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import React, {useEffect, useState} from "react";
 import styles from "./WorryBoard.module.css";
-import { CommunityCategory } from "./../../../components/CommunityCategory/CommunityCategory";
+import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
-import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
-import { CommunityWorryPostList } from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
 
@@ -13,19 +13,17 @@ const WorryBoard = () => {
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
-  const category = "Trouble"; 
-
+  const category = "Trouble";
 
   // 게시글 불러오기
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt', {
+      const response = await axios.get("https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt", {
         headers: {
           Authorization: localStorage.getItem("accessToken"),
         },
       });
       setPosts(response.data.data);
-      console.log(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -35,7 +33,6 @@ const WorryBoard = () => {
     fetchData();
   }, []);
 
-
   // 게시글 작성
   const onCreate = async (title, content) => {
     const postData = {
@@ -44,31 +41,22 @@ const WorryBoard = () => {
       type: "TROUBLE",
     };
 
-
     try {
-      const response = await axios.post(
-        'https://api.oneulmohae.co.kr/board/write',
-        postData,
-        {
-          headers: {
-            Authorization: `${localStorage.getItem("accessToken")}`,
-          }
-        }
-      );
+      const response = await axios.post("https://api.oneulmohae.co.kr/board/write", postData, {
+        headers: {
+          Authorization: `${localStorage.getItem("accessToken")}`,
+        },
+      });
 
       const newPost = response.data;
       setBoardId(newPost.boardId); // 새로 생성된 게시글의 ID를 boardId로 설정
-      setPosts(prevPosts => [
-        newPost,
-        ...prevPosts
-      ]);
-
+      setPosts((prevPosts) => [newPost, ...prevPosts]);
     } catch (error) {
       console.error("Error creating post:", error);
       if (error.response) {
-        console.error('Response Data:', error.response.data);
-        console.error('Response Status:', error.response.status);
-        console.error('Response Headers:', error.response.headers);
+        console.error("Response Data:", error.response.data);
+        console.error("Response Status:", error.response.status);
+        console.error("Response Headers:", error.response.headers);
       }
       alert("게시글 작성 중 오류가 발생했습니다.");
     }
@@ -96,12 +84,8 @@ const WorryBoard = () => {
 
       {/* 글쓰기 */}
       <div className={styles["writing-btn-container"]}>
-        <button
-          type="button"
-          className={styles["writing-btn"]}
-          onClick={() => setOpenModal(true)}
-        >
-          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{ width: "80px", height: "80px" }} />
+        <button type="button" className={styles["writing-btn"]} onClick={() => setOpenModal(true)}>
+          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />
         </button>
         {openModal && <WriteWorryBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} />}
       </div>

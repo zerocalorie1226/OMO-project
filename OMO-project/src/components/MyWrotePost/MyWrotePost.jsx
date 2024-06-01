@@ -1,16 +1,8 @@
 import {formatDate} from "../../utils/Time/formatDate";
 import styles from "./MyWrotePost.module.css";
-// import Report from "../../assets/community/worry-board/report.png";
-// import Like from "../../assets/detail/empty-thumb.png";
-// import Comment from "../../assets/community/worry-board/comment.png";
-// import Submit from "../../assets/submit.png";
-// import ProfileImg from "../../assets/profile-img.jpg";
-// import SubmitHover from "../../assets/submit-hover.png";
 import React, {useState} from "react";
 
 export const MyWrotePost = (props) => {
-
-  console.log(props);
   const [expanded, setExpanded] = useState(false);
 
   const handleClick = () => {
@@ -19,7 +11,6 @@ export const MyWrotePost = (props) => {
   const containerClassName = expanded ? styles["my-wrote-post-container-expanded"] : styles["my-wrote-post-container"];
 
   const getCategoryDisplayName = () => {
-  
     switch (props.category) {
       case "FREE":
         return "자유게시판";
