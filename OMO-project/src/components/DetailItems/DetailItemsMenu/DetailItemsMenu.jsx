@@ -20,7 +20,7 @@ import {Loading} from "../../Loading/Loading";
 import KakaoMap from "../../KaKaoMap/KaKaoMap";
 
 export const DetailItemsMenu = (props) => {
-  const [item, setItem] = useState([]); // 상태변화함수, 빈배열로 시작
+  const [posts, setPosts] = useState([]); // 상태변화함수, 빈배열로 시작
   const [content, setContent] = useState(""); // 댓글 내용
   const dataId = useRef(0); // id 인덱스 추가-> 변수처럼 사용 필요 -> useRef 사용
 
@@ -156,19 +156,17 @@ export const DetailItemsMenu = (props) => {
   };
 
   // onCreate 함수 (댓글 리스트에 댓글 추가)
-  const onCreate = (content, imageSrc) => {
-    const created_date = new Date().getTime();
-    const newItem = {
-      content,
-      imageSrc, // 이미지 경로 추가
-      created_date,
-      id: dataId.current,
-    };
-    dataId.current += 1;
-    setItem([newItem, ...item]);
-  };
+  // const onCreate = (content, imageSrc, createdDate, reviewId) => {
+  //   const newItem = {
+  //     content,
+  //     imageSrc, // 이미지 경로 추가
+  //     created_date: createdDate,
+  //     id: reviewId,
+  //   };
+  //   setItem([newItem, ...item]);
+  // };
 
-  //  리뷰 사진 체출
+  // 리뷰 사진 제출
   const [Image, setImage] = useState(DefaultImg);
   const [File, setFile] = useState("");
 
@@ -191,6 +189,69 @@ export const DetailItemsMenu = (props) => {
     };
     reader.readAsDataURL(e.target.files[0]);
   };
+  
+  // 리뷰 데이터
+  const [reviewId, setReviewId] = useState('');
+
+  // 리뷰 작성
+  const postReview = async (content, imageFile) => {
+    const formData = new FormData();
+    formData.append('placeId', props.placeId);
+    formData.append('content', content);
+    if (imageFile) {
+      formData.append('image', imageFile);
+    }
+
+    try {
+      const response = await axios.post(
+        'https://api.oneulmohae.co.kr/review/write',
+        formData,
+        {
+          headers: {
+            Authorization: localStorage.getItem("accessToken"),
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+
+      const newPost = response.data;
+      setReviewId(newPost.reviewId); // 새로 생성된 리뷰의 ID를 reviewId로 설정
+      console.log(response);
+      console.log("리뷰를 성공적으로 보냈습니다.");
+      console.log(reviewId);
+    } catch (error) {
+      console.error("Error creating post:", error);
+      if (error.response) {
+        console.error('Response Data:', error.response.data);
+        console.error('Response Status:', error.response.status);
+        console.error('Response Headers:', error.response.headers);
+      }
+      alert("리뷰 작성 중 오류가 발생했습니다.");
+    }
+  };
+
+  //리뷰 불러오기
+  const fetchData = async (id) => {
+    try {
+      const response = await axios.get(`https://api.oneulmohae.co.kr/review/get`, {
+        headers: {
+          'review-id': id // review-id로 변경
+        }
+      });
+
+      const fetchedPost = response.data;
+      console.log("posts:", fetchedPost);
+      setPosts([fetchedPost, ...posts]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    if(reviewId) {
+      fetchData(reviewId);
+    }
+  }, [reviewId]);
 
   // handleSubmit
   const handleSubmit = () => {
@@ -198,14 +259,10 @@ export const DetailItemsMenu = (props) => {
       alert("리뷰는 최소 1글자 이상 입력해주세요");
       return;
     }
-    const imageToUpload = Image !== DefaultImg ? Image : ""; // 이미지가 기본 이미지와 다르면 이미지 사용, 아니면 빈 문자열
-    onCreate(content, imageToUpload);
+    const imageFile = fileInput.current.files[0];
+    postReview(content, imageFile);
     setContent("");
     setImage(DefaultImg); // 이미지 초기화
-
-    if (item.length > 0) {
-      props.setDefaultListImg(item[0].imageSrc);
-    }
   };
 
   // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
@@ -223,7 +280,7 @@ export const DetailItemsMenu = (props) => {
         <div>
           <section className={styles["detail-title-container"]}>
             <div className={styles["detail-thumbnail-container"]}>
-              <img src={item.length === 0 ? defaultDetailIcon : item[0].imageSrc} alt="썸네일 이미지" />
+              <img src={posts.length === 0 ? defaultDetailIcon : posts[0].imageSrc} alt="썸네일 이미지" />
             </div>
             <span className={styles["detail-title"]}>{props.DetailItemsMenuData.place_name}</span>
             <div className={styles["detail-like-jjim-container"]}>
@@ -332,8 +389,8 @@ export const DetailItemsMenu = (props) => {
 
             <section className={styles["detail-review-container"]}>
               <div className={styles["detail-review-inner-container"]}>
-                <img src={ReviewIcon} alt="리뷰 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "3px"}} />
-                <span className={styles["detail-review-title"]}>리뷰 ({item.length})</span>
+                <img src={ReviewIcon} alt="리뷰 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "3px" }} />
+                <span className={styles["detail-review-title"]}>리뷰 ({posts.length})</span>
 
                 <div className={styles["detail-review-box-container"]}>
                   <div className={styles["detail-review-input-box"]}>
@@ -388,8 +445,8 @@ export const DetailItemsMenu = (props) => {
                     </button>
                   </div>
 
-                  {item.map((review) => (
-                    <Review key={review.id} {...review} />
+                  {posts.map((review) => (
+                    <Review key={review.reviewId} {...review} />
                   ))}
                 </div>
               </div>
