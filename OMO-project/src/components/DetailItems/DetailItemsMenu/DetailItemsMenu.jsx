@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {useState, useRef, useEffect} from "react";
 import axios from "axios";
 import styles from "./DetailItemsMenu.module.css";
 import Jjim from "../../../assets/detail/empty-heart.png";
@@ -12,11 +12,11 @@ import ReviewIcon from "../../../assets/detail/review.png";
 import Submit from "../../../assets/submit.png";
 import SubmitHover from "../../../assets/submit-hover.png";
 import Magnifier from "../../../assets/detail/magnifier.png";
-import { Review } from "../Review/Review";
+import {Review} from "../Review/Review";
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import DefaultImg from "../../../assets/detail/detail-default-background.png";
 import defaultDetailIcon from "../../../assets/detail/defaultDetailIcon.png";
-import { Loading } from "../../Loading/Loading";
+import {Loading} from "../../Loading/Loading";
 import KakaoMap from "../../KaKaoMap/KaKaoMap";
 
 export const DetailItemsMenu = (props) => {
@@ -59,8 +59,6 @@ export const DetailItemsMenu = (props) => {
     }
   }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
 
-
-
   // handleClickJjim 함수 (하트 버튼 (관심) - PUT+GET 요청, 이미지 변경, 카운트 업데이트)
   const handleClickJjim = async () => {
     try {
@@ -72,28 +70,22 @@ export const DetailItemsMenu = (props) => {
             placeId: props.placeId,
             Authorization: localStorage.getItem("accessToken"),
             memberId: localStorage.getItem("memberId"),
-            LR: 'true',
+            LR: "true",
           },
           withCredentials: true,
         }
       );
 
       if (response.status === 200) {
-        console.log("put요청: ", response.data);
         // PUT 요청이 성공한 후 GET 요청을 보내기
-        const getResponse = await axios.get(
-          `https://api.oneulmohae.co.kr/place/${props.place_name}`,
-          {
-            headers: {
-              placeId: props.placeId,
-            },
-          }
-        );
+        const getResponse = await axios.get(`https://api.oneulmohae.co.kr/place/${props.place_name}`, {
+          headers: {
+            placeId: props.placeId,
+          },
+        });
 
         if (getResponse.status === 200) {
           const updatedData = getResponse.data;
-
-          console.log("get요청: ", updatedData.mine);
 
           // 이미지 변경 및 카운트 업데이트
           if (isClikedJjim) {
@@ -115,61 +107,53 @@ export const DetailItemsMenu = (props) => {
     }
   };
 
-    // handleClickLike 함수 (따봉 버튼 (추천) - PUT+GET 요청, 이미지 변경, 카운트 업데이트)
-    const handleClickLike = async () => {
-      try {
-        const response = await axios.put(
-          `https://api.oneulmohae.co.kr/place/${props.place_name}`,
-          {}, // 빈 객체를 본문으로 전달
-          {
-            headers: {
-              placeId: props.placeId,
-              Authorization: localStorage.getItem("accessToken"),
-              memberId: localStorage.getItem("memberId"),
-              LR: 'false',
-            },
-            withCredentials: true,
-          }
-        );
-  
-        if (response.status === 200) {
-          console.log("put요청: ", response.data);
-          // PUT 요청이 성공한 후 GET 요청을 보내기
-          const getResponse = await axios.get(
-            `https://api.oneulmohae.co.kr/place/${props.place_name}`,
-            {
-              headers: {
-                placeId: props.placeId,
-              },
-            }
-          );
-  
-          if (getResponse.status === 200) {
-            const updatedData = getResponse.data;
-  
-            console.log("get요청: ", updatedData.recommend);
-  
-            // 이미지 변경 및 카운트 업데이트
-            if (isClikedLike) {
-              setImageSrcLike(Like);
-              setIsClickedLike(false);
-            } else {
-              setImageSrcLike(LikeClicked);
-              setIsClickedLike(true);
-            }
-            setCountLike(updatedData.recommend); // 새로운 데이터를 사용하여 업데이트
-          } else {
-            console.error("Failed to fetch updated Like data");
-          }
-        } else {
-          console.error("Failed to update Like status");
+  // handleClickLike 함수 (따봉 버튼 (추천) - PUT+GET 요청, 이미지 변경, 카운트 업데이트)
+  const handleClickLike = async () => {
+    try {
+      const response = await axios.put(
+        `https://api.oneulmohae.co.kr/place/${props.place_name}`,
+        {}, // 빈 객체를 본문으로 전달
+        {
+          headers: {
+            placeId: props.placeId,
+            Authorization: localStorage.getItem("accessToken"),
+            memberId: localStorage.getItem("memberId"),
+            LR: "false",
+          },
+          withCredentials: true,
         }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-  
+      );
 
+      if (response.status === 200) {
+        // PUT 요청이 성공한 후 GET 요청을 보내기
+        const getResponse = await axios.get(`https://api.oneulmohae.co.kr/place/${props.place_name}`, {
+          headers: {
+            placeId: props.placeId,
+          },
+        });
+
+        if (getResponse.status === 200) {
+          const updatedData = getResponse.data;
+
+          // 이미지 변경 및 카운트 업데이트
+          if (isClikedLike) {
+            setImageSrcLike(Like);
+            setIsClickedLike(false);
+          } else {
+            setImageSrcLike(LikeClicked);
+            setIsClickedLike(true);
+          }
+          setCountLike(updatedData.recommend); // 새로운 데이터를 사용하여 업데이트
+        } else {
+          console.error("Failed to fetch updated Like data");
+        }
+      } else {
+        console.error("Failed to update Like status");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   // onCreate 함수 (댓글 리스트에 댓글 추가)
   const onCreate = (content, imageSrc) => {
@@ -246,14 +230,14 @@ export const DetailItemsMenu = (props) => {
               <div className={styles["detail-jjim"]}>
                 <span className={styles["detail-jjim-line"]}>|</span>
                 <button type="button" onClick={handleClickJjim}>
-                  <img src={imageSrcJjim} alt="찜 아이콘" style={{ position: "absolute", top: "1px" }} />
+                  <img src={imageSrcJjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} />
                 </button>
                 <span className={styles["detail-jjim-number"]}> {countJjim}</span>
               </div>
               <div className={styles["detail-like"]}>
                 <span className={styles["detail-like-line"]}>|</span>
                 <button type="button" onClick={handleClickLike}>
-                  <img src={imageSrcLike} alt="좋아요 아이콘" style={{ position: "absolute", top: "-1px" }} />
+                  <img src={imageSrcLike} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} />
                 </button>
                 <span className={styles["detail-like-number"]}> {countLike}</span>
               </div>
@@ -262,7 +246,7 @@ export const DetailItemsMenu = (props) => {
           <div className={styles["detail-inner-container"]}>
             <section className={styles["detail-address-container"]}>
               <div className={styles["detail-address-inner-container"]}>
-                <img src={Address} alt="주소 아이콘" style={{ width: "20px", height: "25px", position: "absolute", top: "1px" }} />
+                <img src={Address} alt="주소 아이콘" style={{width: "20px", height: "25px", position: "absolute", top: "1px"}} />
                 <span className={styles["detail-address-title"]}>주소</span>
               </div>
               <span className={styles["detail-address-info-street"]}>{props.DetailItemsMenuData.road_address_name}</span>
@@ -271,23 +255,19 @@ export const DetailItemsMenu = (props) => {
 
             <section className={styles["detail-call-container"]}>
               <div className={styles["detail-call-inner-container"]}>
-                <img src={Call} alt="전화 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "1px" }} />
+                <img src={Call} alt="전화 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
                 <span className={styles["detail-call-title"]}>전화</span>
               </div>
               <span className={styles["detail-call"]}>{props.DetailItemsMenuData.phone}</span>
             </section>
 
             <section className={styles["detail-google-map-container"]}>
-              <KakaoMap
-                latitude={props.DetailItemsMenuData.y}
-                longitude={props.DetailItemsMenuData.x}
-                placeName={props.DetailItemsMenuData.place_name}
-              />
+              <KakaoMap latitude={props.DetailItemsMenuData.y} longitude={props.DetailItemsMenuData.x} placeName={props.DetailItemsMenuData.place_name} />
             </section>
 
             <section className={styles["detail-mbti-stats-container"]}>
               <div className={styles["detail-mbti-stats-inner-container"]}>
-                <img src={Graph} alt="통계 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "1px" }} />
+                <img src={Graph} alt="통계 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
                 <span className={styles["detail-mbti-stats-title"]}>MBTI별 통계</span>
               </div>
 
@@ -352,7 +332,7 @@ export const DetailItemsMenu = (props) => {
 
             <section className={styles["detail-review-container"]}>
               <div className={styles["detail-review-inner-container"]}>
-                <img src={ReviewIcon} alt="리뷰 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "3px" }} />
+                <img src={ReviewIcon} alt="리뷰 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "3px"}} />
                 <span className={styles["detail-review-title"]}>리뷰 ({item.length})</span>
 
                 <div className={styles["detail-review-box-container"]}>
@@ -403,8 +383,8 @@ export const DetailItemsMenu = (props) => {
                       placeholder="리뷰를 작성해주세요..."
                     ></input>
                     <button onClick={handleSubmit} className={styles["detail-review-input-button"]} src={Submit} type="submit">
-                      <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{ width: "35px", height: "35px" }} />
-                      <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{ width: "35px", height: "35px" }} />
+                      <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px"}} />
+                      <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
                     </button>
                   </div>
 
@@ -417,7 +397,7 @@ export const DetailItemsMenu = (props) => {
 
             <section className={styles["detail-more-container"]}>
               <div className={styles["detail-more-inner-container"]}>
-                <img src={Magnifier} alt="더보기 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "1px" }} />
+                <img src={Magnifier} alt="더보기 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
                 <span className={styles["detail-more-title"]}>더보기</span>
               </div>
               <a href={props.DetailItemsMenuData.place_url} className={styles["detail-more"]}>
