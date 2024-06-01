@@ -54,9 +54,7 @@ const reducer = (state, action) => {
 export const MyCourseStateContext = React.createContext();
 export const MyCourseDispatchContext = React.createContext();
 
-const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
-
-
+const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
   // 현재 위치를 가져오기 위한 구글 API KEY (메인페이지에 사용 - 검색창에 디폴트로 현재 위치 뜨게)
   const GOOGLE_MAPS_API_KEY = "AIzaSyBFZH53aP29Zr7vY5jyv7wd4wGQMg3CI1s";
 
@@ -64,7 +62,11 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
   const getCurrentPosition = async () => {
     try {
       const position = await new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
+          enableHighAccuracy: true,
+          timeout: 0.1,
+          maximumAge: 0,
+        });
       });
 
       const {latitude, longitude} = position.coords;
@@ -140,90 +142,84 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
           onCreate,
         }}
       >
+        <div>
+          {/* 헤더 */}
+          <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+          <Routes>
+            {/* 메인 페이지 */}
+            <Route path="/" element={<Main setSearchResultsX={setSearchResultsX} setSearchResultsY={setSearchResultsY} location={location} setLocation={setLocation} />} />
 
-          <div>
-            {/* 헤더 */}
-            <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
-            <Routes>
-              {/* 메인 페이지 */}
-              <Route path="/" element={<Main setSearchResultsX={setSearchResultsX} setSearchResultsY={setSearchResultsY} location={location} setLocation={setLocation} />} />
+            {/* 서브 페이지 */}
+            <Route path="/Eating" element={<Eating />} />
+            <Route path="/Watching" element={<Watching />} />
+            <Route path="/Playing" element={<Playing />} />
+            <Route path="/ThemeCafe" element={<ThemeCafe />} />
 
-              {/* 서브 페이지 */}
-              <Route path="/Eating" element={<Eating />} />
-              <Route path="/Watching" element={<Watching />} />
-              <Route path="/Playing" element={<Playing />} />
-              <Route path="/ThemeCafe" element={<ThemeCafe />} />
+            {/* 로그인/회원가입 */}
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Signup" element={<Signup />} />
+            <Route path="/LoginLoading" element={<LoginLoading />} />
 
-              {/* 로그인/회원가입 */}
-              <Route path="/Login" element={<Login />} />
-              <Route path="/Signup" element={<Signup />} />
-              <Route path="/LoginLoading" element={<LoginLoading />} />
+            {/* 리스트페이지 */}
+            <Route
+              path="/List"
+              element={
+                <List
+                  recentData={recentData}
+                  setRecentData={setRecentData}
+                  dataCopy={dataCopy}
+                  searchResultsX={searchResultsX}
+                  searchResultsY={searchResultsY}
+                  defaultListImg={defaultListImg}
+                  setDefaultListImg={setDefaultListImg}
+                />
+              }
+            />
+            <Route
+              path="/List/:category"
+              element={
+                <List
+                  recentData={recentData}
+                  setRecentData={setRecentData}
+                  dataCopy={dataCopy}
+                  searchResultsX={searchResultsX}
+                  searchResultsY={searchResultsY}
+                  defaultListImg={defaultListImg}
+                  setDefaultListImg={setDefaultListImg}
+                />
+              }
+            />
 
-              {/* 리스트페이지 */}
-              <Route
-                path="/List"
-                element={
-                  <List
-                    recentData={recentData}
-                    setRecentData={setRecentData}
-                    dataCopy={dataCopy}
-                    searchResultsX={searchResultsX}
-                    searchResultsY={searchResultsY}
-                    defaultListImg={defaultListImg}
-                    setDefaultListImg={setDefaultListImg}
-                  />
-                }
-              />
-              <Route
-                path="/List/:category"
-                element={
-                  <List
-                    recentData={recentData}
-                    setRecentData={setRecentData}
-                    dataCopy={dataCopy}
-                    searchResultsX={searchResultsX}
-                    searchResultsY={searchResultsY}
-                    defaultListImg={defaultListImg}
-                    setDefaultListImg={setDefaultListImg}
-                  />
-                }
-              />
+            {/* 상세페이지 */}
+            <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} />} />
+            <Route path="/DetailNone" element={<DetailNone />} />
+            <Route path="/DetailTariff" element={<DetailTariff />} />
 
-              {/* 상세페이지 */}
-              <Route
-                path="/DetailMenu/:id/:place_name"
-                element={
-                  <DetailMenu defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} />
-                }
-              />
-              <Route path="/DetailNone" element={<DetailNone />} />
-              <Route path="/DetailTariff" element={<DetailTariff />} />
+            {/* 마이 페이지 */}
+            <Route path="/MyInfo" element={<MyInfo />} />
+            <Route path="/Interest" element={<Interest />} />
+            <Route path="/Recommend" element={<Recommend />} />
+            <Route path="/Recent" element={<Recent recentData={recentData} />} />
+            <Route path="/MyWrote" element={<MyWrote />} />
+            <Route path="/ProfileSetting" element={<ProfileSetting isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
 
-              {/* 마이 페이지 */}
-              <Route path="/MyInfo" element={<MyInfo />} />
-              <Route path="/Interest" element={<Interest />} />
-              <Route path="/Recommend" element={<Recommend />} />
-              <Route path="/Recent" element={<Recent recentData={recentData} />} />
-              <Route path="/MyWrote" element={<MyWrote />} />
-              <Route path="/ProfileSetting" element={<ProfileSetting isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
+            {/* 나만의 코스 */}
+            <Route path="/MyCourseMain" element={<MyCourseMain />} />
+            <Route path="/MyCourseNewWrite" element={<MyCourseNewWrite />} />
+            <Route path="/MyCourseDetail/:id" element={<MyCourseDetail />} />
+            <Route path="/MyCourseOthersVersion/:id" element={<MyCourseOthersVersion />} />
 
-              {/* 나만의 코스 */}
-              <Route path="/MyCourseMain" element={<MyCourseMain />} />
-              <Route path="/MyCourseNewWrite" element={<MyCourseNewWrite />} />
-              <Route path="/MyCourseDetail/:id" element={<MyCourseDetail />} />
-              <Route path="/MyCourseOthersVersion/:id" element={<MyCourseOthersVersion />} />
+            {/* 커뮤니티 */}
+            <Route path="/MyCourseBoard" element={<MyCourseBoard />} />
+            <Route path="/WorryBoard" element={<WorryBoard />} />
+            <Route path="/FreeBoard" element={<FreeBoard />} />
+            <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent />} />
+            <Route path="/InquiryBoardQnA" element={<InquiryBoardQnA />} />
 
-              {/* 커뮤니티 */}
-              <Route path="/MyCourseBoard" element={<MyCourseBoard />} />
-              <Route path="/WorryBoard" element={<WorryBoard />} />
-              <Route path="/FreeBoard" element={<FreeBoard />} />
-              <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent />} />
-              <Route path="/InquiryBoardQnA" element={<InquiryBoardQnA />} />
-
-              {/* 공지사항 */}
-              <Route path="/Notice" element={<Notice />} />
-            </Routes>
-          </div>
+            {/* 공지사항 */}
+            <Route path="/Notice" element={<Notice />} />
+          </Routes>
+        </div>
       </MyCourseDispatchContext.Provider>
     </MyCourseStateContext.Provider>
   );
