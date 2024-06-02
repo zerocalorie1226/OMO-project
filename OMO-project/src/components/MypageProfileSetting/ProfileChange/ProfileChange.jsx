@@ -1,15 +1,14 @@
+import axios from "axios";
 import styles from "./ProfileChange.module.css";
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import {useRef, useState} from "react";
 import DefaultImg from "../../../assets/my-page/setting/default-background.png";
-import {useNavigate} from "react-router-dom";
 
 const ProfileChange = () => {
   const [Image, setImage] = useState(DefaultImg);
   const [File, setFile] = useState(""); 
 
   const fileInput = useRef(null);
-
 
   const onChange = (e) => {
     if (e.target.files[0]) {
@@ -27,20 +26,52 @@ const ProfileChange = () => {
       }
     };
     reader.readAsDataURL(e.target.files[0]);
-
-
-
   };
-  
-//프로필 변경 버튼
-const ChangeProfileButton = () => {
-  const confirmWithdrawal = window.confirm("프로필 사진을 변경하시겠습니까?");
 
-  if (confirmWithdrawal) {
-    alert("프로필 사진이 변경되었습니다.");
-    window.location.reload(); 
-}
-}
+  //프로필 변경 버튼
+  const ChangeProfileButton = async () => {
+    const confirmChange = window.confirm("프로필 사진을 변경하시겠습니까?");
+
+    if (confirmChange) {
+      try {
+        const memberId = localStorage.getItem("memberId");
+        const accessToken = localStorage.getItem("accessToken");
+
+        if (!File) {
+          alert("변경할 프로필 사진을 선택해 주세요.");
+          return;
+        }
+
+        const formData = new FormData();
+        console.log(File);
+        formData.append("profileImageUrl", File);
+
+        const response = await axios.patch(
+          `https://api.oneulmohae.co.kr/myPage/profileImage/${memberId}`,
+          formData,
+          {
+            headers: {
+              Authorization: accessToken,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          console.log(response);
+          // console.log(formData);
+          // alert("프로필 사진이 변경되었습니다.");
+          // window.location.reload();
+        } else {
+          alert("프로필 사진 변경에 실패했습니다. 다시 시도해 주세요.");
+        }
+      } catch (error) {
+        console.error("프로필 사진 변경 중 오류 발생:", error);
+        alert("프로필 사진 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
+      }
+    }
+  };
+
   return (
     <div className={styles["profile-setting-main-profile-change-container"]}>
       <p className={styles["profile-setting-main-profile-change-title"]}>프로필 변경</p>
@@ -66,12 +97,10 @@ const ChangeProfileButton = () => {
           className={styles["profile-setting-main-profile-change-delete"]}
           onClick={() => {
             window.confirm("이미지를 삭제하겠습니까?") ? setImage(DefaultImg) : null;
-            
           }}
         >
           {Image === DefaultImg ? null : <img src={DeleteImg} alt="이미지 삭제" className={styles["profile-setting-main-profile-change-delete-img"]} />}
         </button>
-
       </div>
       <button
         type="button"
