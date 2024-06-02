@@ -1,5 +1,5 @@
 import styles from "./CommunityQnAPostList.module.css";
-import { CommunityQnABox } from "../CommunityQnABox/CommunityQnABox";
+import { CommunityQnABox } from "../CommunityQnaBox/CommunityQnaBox";
 
 export const CommunityQnAPostList = ({communityQnAPostList}) => {
   return (
@@ -8,7 +8,7 @@ export const CommunityQnAPostList = ({communityQnAPostList}) => {
         {communityQnAPostList.map((el) => {
       return (
         <CommunityQnABox
-          key={el.id}
+          key={el.boardId}
           {...el}
         />
       );

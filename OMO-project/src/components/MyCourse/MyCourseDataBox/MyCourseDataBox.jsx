@@ -1,4 +1,4 @@
-import styles from "./mycoursedatabox.module.css";
+import styles from "./MyCourseDataBox.module.css";
 import Like from "../../../assets/detail/purple-thumb.png";
 import Jjim from "../../../assets/detail/red-heart.png";
 

@@ -8,7 +8,7 @@ import CraftShop from "../assets/sub/theme-cafe/craft-shop.png";
 export const themeCafe = [
   {
     id: 1,
-    title: "룸",
+    title: "룸카페",
     src: Room,
   },
   {
@@ -18,12 +18,12 @@ export const themeCafe = [
   },
   {
     id: 3,
-    title: "만화",
+    title: "만화카페",
     src: Cartoon,
   },
   {
     id: 4,
-    title: "동물",
+    title: "동물원",
     src: Animal,
   },
   {

@@ -2,23 +2,23 @@
 .profile-setting-main-profile-change-container {
   position: relative;
   height: 180px;
-  width: 440px;
+  width: 700px;
   display: flex;
   left: 300px;
   bottom: 680px;
   margin-top: 7px;
+  align-items: center;
 }
 
 /* 프로필 변경 왼쪽 제목 */
 .profile-setting-main-profile-change-title {
   width: 120px;
   font-size: 24px;
-  margin: auto 140px auto 0;
+  margin: auto 130px auto 0;
 }
 
 /* 이미지 네모 박스 */
 .profile-setting-main-profile-change-img-box{
-  /* background-color: #FAFAFA; */
   width: 181px;
   height: 181px;
   border: 1px solid #E0E5EE;
@@ -33,7 +33,7 @@ height: 179px;
 /* 플러스 버튼 label */
 .profile-setting-main-profile-change-add-img{
 top: 65px;
-left: 325px;
+left: 315px;
 position: absolute;
 z-index: 10;
 width: 50px;
@@ -79,4 +79,19 @@ display: none;
   cursor: pointer;
 }
 
+/* 변경하기 버튼 */
+.profile-setting-main-profile-change-button {
+  width: 150px;
+  height: 60px;
+  border: 1px solid var(--secondary);
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: transparent;
+  color: var(--secondary);
+  margin-left: 120px;
+  cursor: pointer;
+}
 
+.profile-setting-main-profile-change-container button:hover {
+  cursor: pointer;
+}

@@ -5,7 +5,7 @@
 /* 개별 박스 */
 .list-box-inner-container {
   width: 950px;
-  height: 265px;
+  height: 220px;
   border: 1px solid var(--gray-400);
   border-radius: 20px;
   position: relative;
@@ -24,13 +24,14 @@
   font-size: 33px;
   position: absolute;
   font-weight: 500;
+  top: 36px;
 }
 
 /* 찜, 좋아요 전체 div  */
 .list-box-like-jjim-container {
   display: flex;
   flex-direction: row;
-  margin-top: 59px;
+  margin-top: 74px;
   font-size: 22px;
   position: relative;
 }
@@ -76,7 +77,7 @@
 .list-box-runtime {
   font-size: 22px;
   position: absolute;
-  top: 205px;
+  top: 202px;
   left: 26px;
   color: var(--blue-200);
 }
@@ -85,7 +86,7 @@
 .list-box-runtime.ready {
   font-size: 22px;
   position: absolute;
-  top: 205px;
+  top: 202px;
   left: 26px;
   color: var(--gray-700);
 }
@@ -101,32 +102,32 @@
 .list-box-address-brief {
   font-size: 22px;
   position: absolute;
-  top: 168px;
+  top: 154px;
 }
 
-.list-box-img1 {
+/* .list-box-img1 {
   position: absolute;
   right: 410px;
   top: 40px;
   width: 180px;
   height: 180px;
   border-radius: 5px;
+} */
+
+.list-box-img1 {
+  position: absolute;
+  right: 220px;
+  top: 40px;
+  width: 140px;
+  height: 140px;
+  border-radius: 5px;
 }
 
 .list-box-img2 {
   position: absolute;
-  right: 220px;
-  top: 40px;
-  width: 180px;
-  height: 180px;
-  border-radius: 5px;
-}
-
-.list-box-img3 {
-  position: absolute;
   right: 30px;
   top: 40px;
-  width: 180px;
-  height: 180px;
+  width: 140px;
+  height: 140px;
   border-radius: 5px;
 }

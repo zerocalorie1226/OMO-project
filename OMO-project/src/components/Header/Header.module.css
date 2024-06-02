@@ -4,29 +4,19 @@
   width: 1000px;
   height: 60px;
   margin: 30px auto;
-  /* background-color: antiquewhite; */
   display: flex;
 }
 
 .main-header-menu-container {
-  /* background-color: yellow; */
   flex-grow: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-left: 35px;
   font-size: 20px;
-  
 }
 
 .main-header-menu-left-container {
-  /* background-color: aqua; */
-  display: flex;
-  gap: 25px;
-}
-
-.main-header-menu-right-container {
-  /* background-color: pink; */
   display: flex;
   gap: 25px;
 }
@@ -37,4 +27,10 @@ header > hr {
   height: 1px;
   background-color: var(--gray-50);
   margin: 0;
+}
+
+.main-header-logout {
+  all: unset;
+  margin-left: 25px;
+  cursor: pointer;
 }

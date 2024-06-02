@@ -31,3 +31,13 @@
   width: 1000px;
   margin-top: 10px;
 }
+.notice-main-nothing{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 50px;
+  font-size: 23px;
+  font-weight: 500;
+  color: var(--gray-700);
+}
