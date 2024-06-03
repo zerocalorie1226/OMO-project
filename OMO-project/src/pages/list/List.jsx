@@ -11,6 +11,7 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
   const { category: categoryParam } = useParams();
   const category = categoryParam || "all";
 
+
   const addRecentItem = (item) => {
     const newItem = {
       id: item.id,
@@ -36,17 +37,21 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
   };
 
   const [listData, setListData] = useState(null);
+  const [maxPage, setMaxPage] = useState(0)
+  const [pagenation, setPagenation] = useState(1)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.oneulmohae.co.kr/place/list/${category}?page=1`, {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/place/list/${category}?page=${pagenation}`, {
           headers: {
             x: searchResultsX,
             y: searchResultsY,
           },
         });
         setListData(response.data.documents);
+        setMaxPage(response.data.meta.pageable_count)
+        console.log(response.data.meta.pageable_count)
       } catch (error) {
         console.error("에러야", error);
       }
@@ -88,6 +93,7 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
             )}
           </section>
         </div>
+        
       )}
       <ScrollToTop />
     </>
