@@ -83,12 +83,28 @@ const Signup = () => {
     }
   };
 
-  const checkNickname = () => {
+  const checkNickname = async () => {
     if (nickname.length < 2) {
       alert("닉네임을 2글자 이상 입력해주세요.");
       return;
     }
-    // 중복 확인 로직 추후 추가
+
+    try {
+      const response = await axios.post(
+        'https://api.oneulmohae.co.kr/checkNickname',
+        { nickname: nickname }
+      );
+      console.log(response);
+
+      if (response.data.isAvailable) {
+        alert("사용 가능한 닉네임입니다.");
+      } else {
+        alert("이미 사용 중인 닉네임입니다.");
+      }
+    } catch (error) {
+      alert("닉네임 중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      console.error(error);
+    }
   };
 
   return (

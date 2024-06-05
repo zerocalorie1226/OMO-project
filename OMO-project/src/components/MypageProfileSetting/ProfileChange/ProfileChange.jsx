@@ -43,8 +43,9 @@ const ProfileChange = () => {
         }
 
         const formData = new FormData();
-        console.log(File);
-        formData.append("profileImageUrl", File);
+        formData.append("image", File);
+
+        console.log("업로드할 파일:", File);
 
         const response = await axios.patch(
           `https://api.oneulmohae.co.kr/myPage/profileImage/${memberId}`,
@@ -57,10 +58,12 @@ const ProfileChange = () => {
           }
         );
 
+        console.log("응답:", response);
+
         if (response.status === 200) {
-          console.log(response);
-          // console.log(formData);
-          // alert("프로필 사진이 변경되었습니다.");
+          console.log("성공적인 응답:", response);
+          // console.log("FormData:", image);
+          alert("프로필 사진이 변경되었습니다.");
           // window.location.reload();
         } else {
           alert("프로필 사진 변경에 실패했습니다. 다시 시도해 주세요.");
