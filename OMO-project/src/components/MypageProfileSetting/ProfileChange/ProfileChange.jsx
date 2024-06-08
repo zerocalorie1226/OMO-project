@@ -1,24 +1,23 @@
 import axios from "axios";
 import styles from "./ProfileChange.module.css";
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
-import {useRef, useState} from "react";
+import { useRef, useState } from "react";
 import DefaultImg from "../../../assets/my-page/setting/default-background.png";
 
 const ProfileChange = () => {
   const [Image, setImage] = useState(DefaultImg);
-  const [File, setFile] = useState(""); 
-
+  const [File, setFile] = useState("");
   const fileInput = useRef(null);
 
   const onChange = (e) => {
     if (e.target.files[0]) {
       setFile(e.target.files[0]);
     } else {
-      //업로드 취소할 시
+      // 업로드 취소할 시
       setImage(DefaultImg);
       return;
     }
-    //화면에 프로필 사진 표시
+    // 화면에 프로필 사진 표시
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
@@ -28,7 +27,7 @@ const ProfileChange = () => {
     reader.readAsDataURL(e.target.files[0]);
   };
 
-  //프로필 변경 버튼
+  // 프로필 변경 버튼
   const ChangeProfileButton = async () => {
     const confirmChange = window.confirm("프로필 사진을 변경하시겠습니까?");
 
@@ -58,13 +57,24 @@ const ProfileChange = () => {
           }
         );
 
-        console.log("응답:", response);
+        console.log("PATCH response:", response);
 
         if (response.status === 200) {
-          console.log("성공적인 응답:", response);
-          // console.log("FormData:", image);
           alert("프로필 사진이 변경되었습니다.");
-          // window.location.reload();
+          const profileImageUrl = response.data.profileImageUrl;
+          const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(profileImageUrl)}`;
+
+          const imageResponse = await axios.get(imageUrl, {
+            headers: {
+              Authorization: accessToken,
+            },
+            responseType: "blob", // 이미지 데이터를 받아오기 위해 responseType을 blob으로 설정
+          });
+
+          const imageBlob = imageResponse.data;
+          const imageObjectURL = URL.createObjectURL(imageBlob);
+          setImage(imageObjectURL);
+          console.log("imageResponse: ", imageResponse);
         } else {
           alert("프로필 사진 변경에 실패했습니다. 다시 시도해 주세요.");
         }
