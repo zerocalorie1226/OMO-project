@@ -33,6 +33,7 @@ import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
 import {useEffect, useState} from "react";
 import {dataCopy} from "./const/dataCopy";
 import LoginLoading from "./pages/LoginLoading/LoginLoading";
+import { ProfileImageProvider } from "./assets/context/ProfileImageContext";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -140,7 +141,7 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
           onCreate,
         }}
       >
-
+ <ProfileImageProvider>
           <div>
             {/* 헤더 */}
             <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
@@ -200,12 +201,14 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
               <Route path="/DetailTariff" element={<DetailTariff />} />
 
               {/* 마이 페이지 */}
+             
               <Route path="/MyInfo" element={<MyInfo />} />
               <Route path="/Interest" element={<Interest />} />
               <Route path="/Recommend" element={<Recommend />} />
               <Route path="/Recent" element={<Recent recentData={recentData} />} />
               <Route path="/MyWrote" element={<MyWrote />} />
               <Route path="/ProfileSetting" element={<ProfileSetting isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
+             
 
               {/* 나만의 코스 */}
               <Route path="/MyCourseMain" element={<MyCourseMain />} />
@@ -224,6 +227,7 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
               <Route path="/Notice" element={<Notice />} />
             </Routes>
           </div>
+          </ProfileImageProvider>
       </MyCourseDispatchContext.Provider>
     </MyCourseStateContext.Provider>
   );

@@ -1,13 +1,49 @@
 import axios from "axios";
 import styles from "./ProfileChange.module.css";
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import DefaultImg from "../../../assets/my-page/setting/default-background.png";
 
 const ProfileChange = () => {
   const [Image, setImage] = useState(DefaultImg);
   const [File, setFile] = useState("");
   const fileInput = useRef(null);
+
+  useEffect(() => {
+    const fetchProfileImage = async () => {
+      const memberId = localStorage.getItem("memberId");
+      const accessToken = localStorage.getItem("accessToken");
+
+      try {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo/${memberId}`, {
+          headers: {
+            Authorization: accessToken,
+          },
+        });
+
+        if (response.data.profileImageUrl) {
+          const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(response.data.profileImageUrl)}`;
+          console.log("Fetching image from URL:", imageUrl);
+
+          const imageResponse = await axios.get(imageUrl, {
+            headers: {
+              Authorization: accessToken,
+            },
+            responseType: "blob",
+          });
+
+          const imageBlob = imageResponse.data;
+          const imageObjectURL = URL.createObjectURL(imageBlob);
+          setImage(imageObjectURL);
+        }
+      } catch (error) {
+        console.error("프로필 사진을 가져오는 중 오류 발생:", error);
+        setImage(DefaultImg); // 오류 발생 시 기본 이미지를 사용합니다.
+      }
+    };
+
+    fetchProfileImage();
+  }, []);
 
   const onChange = (e) => {
     if (e.target.files[0]) {
@@ -27,7 +63,6 @@ const ProfileChange = () => {
     reader.readAsDataURL(e.target.files[0]);
   };
 
-  // 프로필 변경 버튼
   const ChangeProfileButton = async () => {
     const confirmChange = window.confirm("프로필 사진을 변경하시겠습니까?");
 
@@ -44,8 +79,6 @@ const ProfileChange = () => {
         const formData = new FormData();
         formData.append("image", File);
 
-        console.log("업로드할 파일:", File);
-
         const response = await axios.patch(
           `https://api.oneulmohae.co.kr/myPage/profileImage/${memberId}`,
           formData,
@@ -57,8 +90,6 @@ const ProfileChange = () => {
           }
         );
 
-        console.log("PATCH response:", response);
-
         if (response.status === 200) {
           alert("프로필 사진이 변경되었습니다.");
           const profileImageUrl = response.data.profileImageUrl;
@@ -68,13 +99,13 @@ const ProfileChange = () => {
             headers: {
               Authorization: accessToken,
             },
-            responseType: "blob", // 이미지 데이터를 받아오기 위해 responseType을 blob으로 설정
+            responseType: "blob",
           });
 
           const imageBlob = imageResponse.data;
           const imageObjectURL = URL.createObjectURL(imageBlob);
           setImage(imageObjectURL);
-          console.log("imageResponse: ", imageResponse);
+          window.location.reload(); // 페이지 리로딩
         } else {
           alert("프로필 사진 변경에 실패했습니다. 다시 시도해 주세요.");
         }
@@ -109,10 +140,12 @@ const ProfileChange = () => {
           type="button"
           className={styles["profile-setting-main-profile-change-delete"]}
           onClick={() => {
-            window.confirm("이미지를 삭제하겠습니까?") ? setImage(DefaultImg) : null;
+            if (window.confirm("이미지를 삭제하겠습니까?")) {
+              setImage(DefaultImg);
+            }
           }}
         >
-          {Image === DefaultImg ? null : <img src={DeleteImg} alt="이미지 삭제" className={styles["profile-setting-main-profile-change-delete-img"]} />}
+          {Image !== DefaultImg && <img src={DeleteImg} alt="이미지 삭제" className={styles["profile-setting-main-profile-change-delete-img"]} />}
         </button>
       </div>
       <button
