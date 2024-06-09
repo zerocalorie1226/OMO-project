@@ -1,12 +1,53 @@
 import styles from "./NicknameChange.module.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const NicknameChange = () => {
   const [nickname, setNickname] = useState("");
+  const [isNicknameChecked, setIsNicknameChecked] = useState(false);
+
+  const checkNickname = async () => {
+    if (nickname.length < 2) {
+      alert("닉네임을 2글자 이상 입력해주세요.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "https://api.oneulmohae.co.kr/checkNickname",
+        { nickname: nickname },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("nickname :", nickname);
+      console.log("POST response: ", response);
+
+      if (response.data.status === 200) {
+        alert("사용 가능한 닉네임입니다.");
+        setIsNicknameChecked(true);
+      } else {
+        alert("이미 사용 중인 닉네임입니다.");
+        setIsNicknameChecked(false);
+      }
+    } catch (error) {
+      if (error.response && error.response.data.status === 404) {
+        alert("이미 사용 중인 닉네임입니다.");
+      } else {
+        alert("닉네임 중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+      setIsNicknameChecked(false);
+      console.error(error);
+    }
+  };
 
   const ChangeNickName = async () => {
+    if (!isNicknameChecked) {
+      alert("닉네임 중복확인을 해주세요.");
+      return;
+    }
     const confirmChange = window.confirm("닉네임을 변경하시겠습니까?");
 
     if (confirmChange) {
@@ -25,7 +66,7 @@ const NicknameChange = () => {
 
         if (response.status === 200 || response.status === 204) {
           alert("닉네임이 변경되었습니다.");
-          window.location.reload(); 
+          window.location.reload();
         } else {
           console.error("Failed to change nickname");
           alert("닉네임 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
@@ -34,6 +75,9 @@ const NicknameChange = () => {
         console.error("Error changing nickname:", error);
         alert("닉네임 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
       }
+    } else {
+      setNickname("");
+      setIsNicknameChecked(false);
     }
   };
 
@@ -45,8 +89,18 @@ const NicknameChange = () => {
         placeholder="닉네임을 입력해주세요."
         className={styles["profile-setting-main-nickname-change-input"]}
         value={nickname}
-        onChange={(e) => setNickname(e.target.value)}
+        onChange={(e) => {
+          setNickname(e.target.value);
+          setIsNicknameChecked(false);
+        }}
       />
+      <button
+        type="button"
+        className={styles["profile-setting-main-nickname-change-check-button"]}
+        onClick={checkNickname}
+      >
+        중복 확인
+      </button>
       <button
         type="button"
         className={styles["profile-setting-main-nickname-change-button"]}

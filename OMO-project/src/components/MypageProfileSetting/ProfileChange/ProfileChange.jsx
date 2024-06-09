@@ -1,25 +1,57 @@
+import axios from "axios";
 import styles from "./ProfileChange.module.css";
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
-import {useRef, useState} from "react";
+import { useRef, useState, useEffect } from "react";
 import DefaultImg from "../../../assets/my-page/setting/default-background.png";
-import {useNavigate} from "react-router-dom";
 
 const ProfileChange = () => {
   const [Image, setImage] = useState(DefaultImg);
-  const [File, setFile] = useState(""); 
-
+  const [File, setFile] = useState("");
   const fileInput = useRef(null);
 
+  useEffect(() => {
+    const fetchProfileImage = async () => {
+      const memberId = localStorage.getItem("memberId");
+      const accessToken = localStorage.getItem("accessToken");
+
+      try {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo/${memberId}`, {
+          headers: {
+            Authorization: accessToken,
+          },
+        });
+
+        if (response.data.profileImageUrl) {
+          const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(response.data.profileImageUrl)}`;
+
+          const imageResponse = await axios.get(imageUrl, {
+            headers: {
+              Authorization: accessToken,
+            },
+            responseType: "blob",
+          });
+
+          const imageBlob = imageResponse.data;
+          const imageObjectURL = URL.createObjectURL(imageBlob);
+          setImage(imageObjectURL);
+        }
+      } catch (error) {
+        setImage(DefaultImg);
+      }
+    };
+
+    fetchProfileImage();
+  }, []);
 
   const onChange = (e) => {
     if (e.target.files[0]) {
       setFile(e.target.files[0]);
     } else {
-      //업로드 취소할 시
+      // 업로드 취소할 시
       setImage(DefaultImg);
       return;
     }
-    //화면에 프로필 사진 표시
+    // 화면에 프로필 사진 표시
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
@@ -27,20 +59,67 @@ const ProfileChange = () => {
       }
     };
     reader.readAsDataURL(e.target.files[0]);
-
-
-
   };
-  
-//프로필 변경 버튼
-const ChangeProfileButton = () => {
-  const confirmWithdrawal = window.confirm("프로필 사진을 변경하시겠습니까?");
 
-  if (confirmWithdrawal) {
-    alert("프로필 사진이 변경되었습니다.");
-    window.location.reload(); 
-}
-}
+  const ChangeProfileButton = async () => {
+    const confirmChange = window.confirm("프로필 사진을 변경하시겠습니까?");
+
+    if (confirmChange) {
+      try {
+        const memberId = localStorage.getItem("memberId");
+        const accessToken = localStorage.getItem("accessToken");
+
+        if (!File) {
+          alert("변경할 프로필 사진을 선택해 주세요.");
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append("image", File);
+
+        const response = await axios.patch(
+          `https://api.oneulmohae.co.kr/myPage/profileImage/${memberId}`,
+          formData,
+          {
+            headers: {
+              Authorization: accessToken,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          const profileImageUrl = response.data.profileImageUrl;
+          const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(profileImageUrl)}`;
+
+          const imageResponse = await axios.get(imageUrl, {
+            headers: {
+              Authorization: accessToken,
+            },
+            responseType: "blob",
+          });
+
+          const imageBlob = imageResponse.data;
+          const imageObjectURL = URL.createObjectURL(imageBlob);
+          setImage(imageObjectURL);
+          window.location.reload(); // 페이지 리로딩
+          alert("프로필 사진이 변경되었습니다.");
+
+        } else {
+          alert("프로필 사진 변경에 실패했습니다. 다시 시도해 주세요.");
+        }
+      } catch (error) {
+        console.error("프로필 사진 변경 중 오류 발생:", error);
+        alert("프로필 사진 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
+      }
+    } else {
+      // 취소 버튼을 누르면 파일 선택을 초기화합니다.
+      setFile("");
+      setImage(DefaultImg);
+      fileInput.current.value = null;
+    }
+  };
+
   return (
     <div className={styles["profile-setting-main-profile-change-container"]}>
       <p className={styles["profile-setting-main-profile-change-title"]}>프로필 변경</p>
@@ -65,13 +144,13 @@ const ChangeProfileButton = () => {
           type="button"
           className={styles["profile-setting-main-profile-change-delete"]}
           onClick={() => {
-            window.confirm("이미지를 삭제하겠습니까?") ? setImage(DefaultImg) : null;
-            
+            if (window.confirm("이미지를 삭제하겠습니까?")) {
+              setImage(DefaultImg);
+            }
           }}
         >
-          {Image === DefaultImg ? null : <img src={DeleteImg} alt="이미지 삭제" className={styles["profile-setting-main-profile-change-delete-img"]} />}
+          {Image !== DefaultImg && <img src={DeleteImg} alt="이미지 삭제" className={styles["profile-setting-main-profile-change-delete-img"]} />}
         </button>
-
       </div>
       <button
         type="button"

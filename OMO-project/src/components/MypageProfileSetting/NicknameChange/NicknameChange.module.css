@@ -12,7 +12,7 @@
 .profile-setting-main-nickname-change-title {
   width: 140px;
   font-size: 24px;
-  margin: auto 25px auto 0;
+  margin: auto 30px auto 0;
 }
 
 .profile-setting-main-nickname-change-input {
@@ -36,10 +36,22 @@ color: var(--gray);
   font-size: 20px;
   background-color: transparent;
   color: var(--secondary);
-  margin-left: 30px;
+  margin-left: 20px;
   cursor: pointer;
 }
 
 .profile-setting-main-nickname-change-container button:hover {
+  cursor: pointer;
+}
+
+.profile-setting-main-nickname-change-check-button{
+  width: 150px;
+  height: 60px;
+  border: 1px solid var(--secondary);
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: transparent;
+  color: var(--secondary);
+  margin-left: 30px;
   cursor: pointer;
 }

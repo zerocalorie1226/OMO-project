@@ -2,8 +2,8 @@ import axios from "axios";
 import Calendar from "../../components/Calender/Calendar";
 import styles from "./Signup.module.css";
 import Required from "../../assets/sign-up/required.png";
-import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { mbtiMapping } from "../../const/mbtiMapping";
 import { GenderRadioGroup } from "../../components/Radio/GenderRadio/GenderRadioGroup";
 import { GenderRadio } from "../../components/Radio/GenderRadio/GenderRadio";
@@ -18,6 +18,7 @@ const Signup = () => {
   const [mbtiTF, setMbtiTF] = useState("");
   const [mbtiJP, setMbtiJP] = useState("");
   const [genderType, setGenderType] = useState("");
+  const [isNicknameChecked, setIsNicknameChecked] = useState(false);
 
   const singUpInfo = async () => {
     if (!birthdate) {
@@ -26,6 +27,10 @@ const Signup = () => {
     }
     if (!nickname) {
       alert("닉네임을 입력해주세요.");
+      return;
+    }
+    if (!isNicknameChecked) {
+      alert("닉네임 중복확인을 해주세요.");
       return;
     }
     if (!mbtiIE || !mbtiSN || !mbtiTF || !mbtiJP) {
@@ -83,12 +88,39 @@ const Signup = () => {
     }
   };
 
-  const checkNickname = () => {
+  const checkNickname = async () => {
     if (nickname.length < 2) {
       alert("닉네임을 2글자 이상 입력해주세요.");
       return;
     }
-    // 중복 확인 로직 추후 추가
+
+    try {
+      const response = await axios.post(
+        'https://api.oneulmohae.co.kr/checkNickname',
+        { nickname: nickname },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }
+      );
+
+      if (response.data.status === 200) {
+        alert("사용 가능한 닉네임입니다.");
+        setIsNicknameChecked(true);
+      } else {
+        alert("이미 사용 중인 닉네임입니다.");
+        setIsNicknameChecked(false);
+      }
+    } catch (error) {
+      if (error.response && error.response.data.status === 404) {
+        alert("이미 사용 중인 닉네임입니다.");
+      } else {
+        alert("닉네임 중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+      setIsNicknameChecked(false);
+      console.error(error);
+    }
   };
 
   return (
@@ -174,8 +206,6 @@ const Signup = () => {
             </form>
           </div>
 
-          {/* <CheckBox /> */}
-
           <div className={styles["signup-btn-container"]}>
             <button type="submit" className={styles["signup-btn-signup"]} onClick={singUpInfo}>
               가입하기
@@ -186,4 +216,5 @@ const Signup = () => {
     </>
   );
 };
+
 export default Signup;
