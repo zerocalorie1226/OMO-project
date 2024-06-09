@@ -91,7 +91,6 @@ const ProfileChange = () => {
         );
 
         if (response.status === 200) {
-          alert("프로필 사진이 변경되었습니다.");
           const profileImageUrl = response.data.profileImageUrl;
           const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(profileImageUrl)}`;
 
@@ -106,6 +105,8 @@ const ProfileChange = () => {
           const imageObjectURL = URL.createObjectURL(imageBlob);
           setImage(imageObjectURL);
           window.location.reload(); // 페이지 리로딩
+          alert("프로필 사진이 변경되었습니다.");
+
         } else {
           alert("프로필 사진 변경에 실패했습니다. 다시 시도해 주세요.");
         }
