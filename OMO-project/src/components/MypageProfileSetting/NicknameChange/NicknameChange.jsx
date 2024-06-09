@@ -91,7 +91,7 @@ const NicknameChange = () => {
         value={nickname}
         onChange={(e) => {
           setNickname(e.target.value);
-          setIsNicknameChecked(false); // 닉네임이 변경되면 중복확인 상태를 초기화
+          setIsNicknameChecked(false);
         }}
       />
       <button

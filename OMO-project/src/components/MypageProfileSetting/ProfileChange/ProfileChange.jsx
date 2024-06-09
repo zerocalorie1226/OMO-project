@@ -36,7 +36,7 @@ const ProfileChange = () => {
           setImage(imageObjectURL);
         }
       } catch (error) {
-        setImage(DefaultImg); // 오류 발생 시 기본 이미지를 사용합니다.
+        setImage(DefaultImg); 
       }
     };
 
