@@ -19,6 +19,7 @@ const DetailMenu = ({setDefaultListImg}) => {
             Authorization: `${localStorage.getItem("accessToken")}`,
           },
         });
+        console.log(response.data)
         setDetailItemsMenuData(response.data); // 서버로부터 받은 데이터를 상태에 저장
       } catch (error) {
         console.error("에러야", error);
