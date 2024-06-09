@@ -45,6 +45,12 @@ const MbtiChange = () => {
         console.error(error);
         alert("MBTI 변경 중 오류가 발생했습니다. 다시 시도해주세요.");
       }
+    } else {
+      // 취소 버튼을 누르면 상태를 초기값으로 되돌립니다.
+      setMbtiIE("");
+      setMbtiSN("");
+      setMbtiTF("");
+      setMbtiJP("");
     }
   };
 
