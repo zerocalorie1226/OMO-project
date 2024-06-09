@@ -1,7 +1,7 @@
 .profile-setting-main-membership-withdrawal-container {
   position: relative;
   display: flex;
-  width: 300px;
+  width: 267px;
   height: 60px;
   left: 300px;
   bottom: 680px;
@@ -10,9 +10,8 @@
 }
 
 .profile-setting-main-membership-withdrawal-title {
-  width: 140px;
   font-size: 24px;
-  margin: auto 25px auto 0;
+  margin: auto 0 auto 0;
 }
 
 .profile-setting-main-membership-withdrawal-button {

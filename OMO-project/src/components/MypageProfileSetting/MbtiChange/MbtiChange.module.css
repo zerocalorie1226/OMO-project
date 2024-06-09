@@ -10,13 +10,14 @@
 }
 
 .profile-setting-main-mbti-change-title {
-  width: 140px;
+  display: block;
+  /* width: 140px; */
   font-size: 24px;
-  margin: auto 25px auto 0;
+  margin: auto 0px auto 0;
 }
 
 .profile-setting-main-mbti-change-select-container {
-  width: 330px;
+  width: 340px;
   height: 60px;
   display: flex;
   justify-content: space-between;
