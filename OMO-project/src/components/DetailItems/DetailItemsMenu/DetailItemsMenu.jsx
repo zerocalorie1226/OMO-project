@@ -216,9 +216,7 @@ export const DetailItemsMenu = (props) => {
 
       const newPost = response.data;
       setReviewId(newPost.reviewId); // 새로 생성된 리뷰의 ID를 reviewId로 설정
-      console.log(response);
       console.log("리뷰를 성공적으로 보냈습니다.");
-      console.log(reviewId);
     } catch (error) {
       console.error("Error creating post:", error);
       if (error.response) {

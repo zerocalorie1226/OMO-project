@@ -23,7 +23,6 @@ const ProfileChange = () => {
 
         if (response.data.profileImageUrl) {
           const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(response.data.profileImageUrl)}`;
-          console.log("Fetching image from URL:", imageUrl);
 
           const imageResponse = await axios.get(imageUrl, {
             headers: {
@@ -37,7 +36,6 @@ const ProfileChange = () => {
           setImage(imageObjectURL);
         }
       } catch (error) {
-        console.error("프로필 사진을 가져오는 중 오류 발생:", error);
         setImage(DefaultImg); // 오류 발생 시 기본 이미지를 사용합니다.
       }
     };
