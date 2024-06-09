@@ -36,7 +36,7 @@ const ProfileChange = () => {
           setImage(imageObjectURL);
         }
       } catch (error) {
-        setImage(DefaultImg); 
+        setImage(DefaultImg);
       }
     };
 
@@ -112,6 +112,11 @@ const ProfileChange = () => {
         console.error("프로필 사진 변경 중 오류 발생:", error);
         alert("프로필 사진 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
       }
+    } else {
+      // 취소 버튼을 누르면 파일 선택을 초기화합니다.
+      setFile("");
+      setImage(DefaultImg);
+      fileInput.current.value = null;
     }
   };
 
