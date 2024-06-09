@@ -167,17 +167,6 @@ export const DetailItemsMenu = (props) => {
     }
   };
 
-  // onCreate 함수 (댓글 리스트에 댓글 추가)
-  // const onCreate = (content, imageSrc, createdDate, reviewId) => {
-  //   const newItem = {
-  //     content,
-  //     imageSrc, // 이미지 경로 추가
-  //     created_date: createdDate,
-  //     id: reviewId,
-  //   };
-  //   setItem([newItem, ...item]);
-  // };
-
   // 리뷰 사진 제출
   const [Image, setImage] = useState(DefaultImg);
   const [File, setFile] = useState("");
@@ -208,6 +197,7 @@ export const DetailItemsMenu = (props) => {
   // 리뷰 작성
   const postReview = async (content, imageFile) => {
     const formData = new FormData();
+    console.log(imageFile)
     formData.append('placeId', props.placeId);
     formData.append('content', content);
     if (imageFile) {
@@ -231,6 +221,10 @@ export const DetailItemsMenu = (props) => {
       console.log(response);
       console.log("리뷰를 성공적으로 보냈습니다.");
       console.log(reviewId);
+      setContent(""); // 댓글 초기화
+      setImage(DefaultImg); // 이미지 초기화
+      setFile(""); // 파일 초기화
+      fileInput.current.value = null; // 파일 인풋 초기화
     } catch (error) {
       console.error("Error creating post:", error);
       if (error.response) {
@@ -252,6 +246,7 @@ export const DetailItemsMenu = (props) => {
       });
 
       const fetchedPost = response.data;
+      setGetImgName(fetchedPost.imageName)
       console.log("posts:", fetchedPost);
       setPosts([fetchedPost, ...posts]);
     } catch (error) {
@@ -260,10 +255,45 @@ export const DetailItemsMenu = (props) => {
   };
 
   useEffect(() => {
-    if(reviewId) {
+    if (reviewId) {
       fetchData(reviewId);
     }
   }, [reviewId]);
+
+  const [getImgName, setGetImgName] = useState("");
+  const [fetchImgFile, setFetchImgFile] = useState([]);
+
+  console.log(getImgName)
+
+  // 리뷰 이미지 불러오기 
+  const fetchImg = async (getImgName) => {
+    try {
+      const response = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(getImgName)}`, { responseType: 'blob' });
+
+      const fetchedImage = response.data;
+      const fetchedImageURL = URL.createObjectURL(fetchedImage)
+      console.log(fetchedImageURL)
+      setFetchImgFile([fetchedImageURL]);
+      // posts 상태 업데이트
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.imageName === getImgName
+            ? { ...post, fetchImgFile: fetchedImageURL }
+            : post
+        )
+      );
+    } catch (error) {
+      console.error("Error fetching image:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (getImgName) {
+      fetchImg(getImgName);
+    }
+  }, [getImgName]);
+
+  console.log(fetchImgFile)
 
   // handleSubmit
   const handleSubmit = () => {
@@ -273,8 +303,6 @@ export const DetailItemsMenu = (props) => {
     }
     const imageFile = fileInput.current.files[0];
     postReview(content, imageFile);
-    setContent("");
-    setImage(DefaultImg); // 이미지 초기화
   };
 
   // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
@@ -284,6 +312,20 @@ export const DetailItemsMenu = (props) => {
     }
   };
 
+  // 첫 번째로 이미지가 포함된 리뷰를 찾는 함수
+  const findFirstReviewWithImage = (posts) => {
+    for (let i = 0; i < posts.length; i++) {
+      if (posts[i].fetchImgFile) {
+        return posts[i].fetchImgFile;
+      }
+    }
+    return defaultDetailIcon;
+  };
+
+  const firstImage = findFirstReviewWithImage(posts);
+
+  console.log(posts[0])
+
   return (
     <>
       {props.DetailItemsMenuData === null ? (
@@ -292,7 +334,7 @@ export const DetailItemsMenu = (props) => {
         <div>
           <section className={styles["detail-title-container"]}>
             <div className={styles["detail-thumbnail-container"]}>
-              <img src={posts.length === 0 ? defaultDetailIcon : posts[0].imageSrc} alt="썸네일 이미지" />
+              <img src={firstImage} alt="썸네일 이미지" />
             </div>
             <span className={styles["detail-title"]}>{props.DetailItemsMenuData.place_name}</span>
             <div className={styles["detail-like-jjim-container"]}>
