@@ -1,14 +1,8 @@
+import {formatDate} from "../../utils/Time/formatDate";
 import styles from "./MyWrotePost.module.css";
-// import Report from "../../assets/community/worry-board/report.png";
-// import Like from "../../assets/detail/empty-thumb.png";
-// import Comment from "../../assets/community/worry-board/comment.png";
-// import Submit from "../../assets/submit.png";
-// import ProfileImg from "../../assets/profile-img.jpg";
-// import SubmitHover from "../../assets/submit-hover.png";
 import React, {useState} from "react";
 
 export const MyWrotePost = (props) => {
-
   const [expanded, setExpanded] = useState(false);
 
   const handleClick = () => {
@@ -18,11 +12,11 @@ export const MyWrotePost = (props) => {
 
   const getCategoryDisplayName = () => {
     switch (props.category) {
-      case "free":
+      case "FREE":
         return "자유게시판";
-      case "worry":
+      case "TROUBLE":
         return "고민게시판";
-      case "qna":
+      case "QNA":
         return "문의게시판";
       default:
         return props.category;
@@ -43,27 +37,13 @@ export const MyWrotePost = (props) => {
               {/* 카테고리 */}
               <span className={styles["my-wrote-post-category"]}>{getCategoryDisplayName()}</span>
               {/* 날짜 */}
-              <span className={styles["my-wrote-post-date"]}>{new Date(props.reg_at).toLocaleString()}</span>
+              <span className={styles["my-wrote-post-date"]}>{formatDate(props.createdDate)}</span>
             </div>
           </div>
-
-          {/* 프로필 이미지+닉네임 */}
-          {/* <div className={styles["my-wrote-post-profile"]}>
-            <img className={styles["my-wrote-post-profile-img"]} src={ProfileImg} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
-            <span className={styles["my-wrote-post-profile-nick"]}>이니</span>
-          </div> */}
 
           {/* 글 내용 */}
           <span className={styles["my-wrote-post-content"]}>{props.content}</span>
         </div>
-
-        {/* <div className={styles["my-wrote-post-button-wrapper"]}> */}
-        {/* 댓글달기 버튼 */}
-        {/* <button type="button" className={styles["my-wrote-post-comment-button"]}>
-            <img className={styles["my-wrote-post-comment-button-img"]} src={Comment} style={{width: "25px", height: "25px"}} />
-            댓글
-          </button>
-        </div> */}
 
         {/* 하단 댓글창 전체박스 */}
         <div className={styles["my-wrote-post-comment-container"]}>

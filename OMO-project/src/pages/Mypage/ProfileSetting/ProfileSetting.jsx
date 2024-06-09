@@ -7,7 +7,7 @@ import NicknameChange from "../../../components/MypageProfileSetting/NicknameCha
 import MbtiChange from "../../../components/MypageProfileSetting/MbtiChange/MbtiChange";
 import MembershipWithdrawal from "../../../components/MypageProfileSetting/MembershipWithdrawal/MembershipWithdrawal";
 
-const ProfileSetting = () => (
+const ProfileSetting = ({isLoggedIn, setIsLoggedIn}) => (
   <div className={styles["profile-setting-total-container"]}>
     <h2 className={styles["profile-setting-title-container"]}>
       <img src={SettingIcon} alt="프로필 설정" /> 프로필 설정
@@ -17,7 +17,7 @@ const ProfileSetting = () => (
         <ProfileChange />
         <NicknameChange />
         <MbtiChange />
-        <MembershipWithdrawal />
+        <MembershipWithdrawal isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
     </div>
   </div>
 );

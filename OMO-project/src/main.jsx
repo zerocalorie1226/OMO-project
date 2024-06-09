@@ -40,7 +40,7 @@ const Root = () => {
   };
 
   return (
-    <App handleLogout={handleLogout} isLoggedIn={isLoggedIn} />
+    <App handleLogout={handleLogout} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
   );
 };
 

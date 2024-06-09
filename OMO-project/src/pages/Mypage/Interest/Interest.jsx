@@ -1,23 +1,22 @@
-import axios from 'axios';
+import axios from "axios";
 import styles from "./Interest.module.css";
 import Mypage from "../../../components/Mypage/Mypage";
-import { MypageListBox } from "../../../components/MypageListBox/MypageListBox";
-import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
+import {MypageListBox} from "../../../components/MypageListBox/MypageListBox";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import InterestIcon from "../../../assets/my-page/my-info/empty-heart.png";
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from "react";
 
 const Interest = () => {
   const [interestPosts, setInterestPosts] = useState(null); // 초기값을 null로 설정
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://api.oneulmohae.co.kr/myPage/likes?page=1&size=10', {
+      const response = await axios.get("https://api.oneulmohae.co.kr/myPage/likes?page=1&size=10", {
         headers: {
           Authorization: localStorage.getItem("accessToken"),
         },
       });
       setInterestPosts(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setInterestPosts([]); // 오류 발생 시 빈 배열로 초기화
