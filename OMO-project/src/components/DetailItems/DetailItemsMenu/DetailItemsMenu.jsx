@@ -182,103 +182,122 @@ export const DetailItemsMenu = (props) => {
   // 리뷰 데이터
   const [reviewId, setReviewId] = useState('');
 
-  // 리뷰 작성
-  const postReview = async (content, imageFile) => {
-    const formData = new FormData();
-    console.log(imageFile)
-    formData.append('placeId', props.placeId);
-    formData.append('content', content);
-    if (imageFile) {
-      formData.append('image', imageFile);
-    }
+ // 리뷰 작성
+const postReview = async (content, imageFile) => {
+  const formData = new FormData();
+  formData.append('placeId', props.placeId);
+  formData.append('content', content);
+  if (imageFile) {
+    formData.append('image', imageFile);
+  }
 
-    try {
-      const response = await axios.post(
-        'https://api.oneulmohae.co.kr/review/write',
-        formData,
-        {
-          headers: {
-            Authorization: localStorage.getItem("accessToken"),
-            'Content-Type': 'multipart/form-data'
-          }
+  try {
+    const response = await axios.post(
+      'https://api.oneulmohae.co.kr/review/write',
+      formData,
+      {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+          'Content-Type': 'multipart/form-data'
         }
-      );
-
-      const newPost = response.data;
-      setReviewId(newPost.reviewId); // 새로 생성된 리뷰의 ID를 reviewId로 설정
-      console.log("리뷰를 성공적으로 보냈습니다.");
-      console.log(reviewId);
-      setContent(""); // 댓글 초기화
-      setImage(DefaultImg); // 이미지 초기화
-      setFile(""); // 파일 초기화
-      fileInput.current.value = null; // 파일 인풋 초기화
-    } catch (error) {
-      console.error("Error creating post:", error);
-      if (error.response) {
-        console.error('Response Data:', error.response.data);
-        console.error('Response Status:', error.response.status);
-        console.error('Response Headers:', error.response.headers);
       }
-      alert("리뷰 작성 중 오류가 발생했습니다.");
+    );
+
+    const newPost = response.data;
+    setReviewId(newPost.reviewId); // 새로 생성된 리뷰의 ID를 reviewId로 설정
+    console.log("리뷰를 성공적으로 보냈습니다.");
+    console.log(reviewId);
+
+    // 새로운 리뷰를 posts 상태에 추가
+    setPosts((prevPosts) => [newPost, ...prevPosts]);
+
+    // 새로운 이미지 이름을 getImgNames 상태에 추가
+    if (newPost.imageName) {
+      setGetImgNames((prevImgNames) => [newPost.imageName, ...prevImgNames]);
     }
-  };
+
+    setContent(""); // 댓글 초기화
+    setImage(DefaultImg); // 이미지 초기화
+    setFile(""); // 파일 초기화
+    fileInput.current.value = null; // 파일 인풋 초기화
+  } catch (error) {
+    console.error("Error creating post:", error);
+    if (error.response) {
+      console.error('Response Data:', error.response.data);
+      console.error('Response Status:', error.response.status);
+      console.error('Response Headers:', error.response.headers);
+    }
+    alert("리뷰 작성 중 오류가 발생했습니다.");
+  }
+};
+
+  const reviewPlaceId=props.placeId
 
   //리뷰 불러오기
-  const fetchData = async (id) => {
-    try {
-      const response = await axios.get(`https://api.oneulmohae.co.kr/review/get`, {
-        headers: {
-          'review-id': id // review-id로 변경
-        }
-      });
+const fetchData = async (reviewPlaceId) => {
+  try {
+    const response = await axios.get(`https://api.oneulmohae.co.kr/review/${reviewPlaceId}?page=1&size=10`);
 
-      const fetchedPost = response.data;
-      setGetImgName(fetchedPost.imageName)
-      console.log("posts:", fetchedPost);
-      setPosts([fetchedPost, ...posts]);
-    } catch (error) {
-      console.error("Error fetching data:", error);
+    console.log(response.data.data);
+    const fetchedPosts = response.data.data;
+    setPosts(fetchedPosts); // 불러온 리뷰들을 상태에 저장
+
+    // imageName이 null이 아닌 값들만 추출하여 설정
+    const imageNames = fetchedPosts.map(post => post.imageName).filter(imageName => imageName !== null);
+    if (imageNames.length > 0) {
+      setGetImgNames(imageNames); // imageNames 배열 설정
+    } else {
+      setGetImgNames([]); // imageNames가 없을 경우 빈 배열로 설정
     }
-  };
-
+    console.log("imageNames:", imageNames);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
   useEffect(() => {
-    if (reviewId) {
-      fetchData(reviewId);
+    if (reviewPlaceId) {
+      fetchData(reviewPlaceId);
     }
-  }, [reviewId]);
+  }, [reviewPlaceId]);
 
-  const [getImgName, setGetImgName] = useState("");
+  const [getImgNames, setGetImgNames] = useState([]);
   const [fetchImgFile, setFetchImgFile] = useState([]);
 
-  console.log(getImgName)
+  console.log(getImgNames)
 
-  // 리뷰 이미지 불러오기 
-  const fetchImg = async (getImgName) => {
-    try {
-      const response = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(getImgName)}`, { responseType: 'blob' });
-
+ // 리뷰 이미지 불러오기
+const fetchImgs = async (imageNames) => {
+  try {
+    const fetchImagePromises = imageNames.map(async (imageName) => {
+      const response = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, { responseType: 'blob' });
       const fetchedImage = response.data;
-      const fetchedImageURL = URL.createObjectURL(fetchedImage)
-      console.log(fetchedImageURL)
-      setFetchImgFile([fetchedImageURL]);
-      // posts 상태 업데이트
-      setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post.imageName === getImgName
-            ? { ...post, fetchImgFile: fetchedImageURL }
-            : post
-        )
-      );
-    } catch (error) {
-      console.error("Error fetching image:", error);
-    }
-  };
+      const fetchedImageURL = URL.createObjectURL(fetchedImage);
 
-  useEffect(() => {
-    if (getImgName) {
-      fetchImg(getImgName);
-    }
-  }, [getImgName]);
+      return { imageName, fetchedImageURL };
+    });
+
+    const fetchedImages = await Promise.all(fetchImagePromises);
+
+    // posts 상태 업데이트
+    setPosts((prevPosts) =>
+      prevPosts.map((post) => {
+        const matchedImage = fetchedImages.find(image => image.imageName === post.imageName);
+        if (matchedImage) {
+          return { ...post, fetchImgFile: matchedImage.fetchedImageURL };
+        }
+        return post;
+      })
+    );
+  } catch (error) {
+    console.error("Error fetching images:", error);
+  }
+};
+
+useEffect(() => {
+  if (getImgNames.length > 0) {
+    fetchImgs(getImgNames);
+  }
+}, [getImgNames]);
 
   console.log(fetchImgFile)
 
