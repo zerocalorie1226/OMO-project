@@ -3,7 +3,7 @@
 import {useContext, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import styles from "./MyCourseEditor.module.css";
-import {MyCourseDispatchContext} from "../../App";
+import {MyCourseDispatchContext} from "../../assets/context/MyCourseContext";
 import pencil from "../../assets/my-course/write/gray-pencil.png";
 import MyCourseFindBox from "./../MyCourse/MyCourseFindBox/MyCourseFindBox";
 import MyCourseAfter from "./../MyCourse/MyCourseAfter/MyCourseAfter";
