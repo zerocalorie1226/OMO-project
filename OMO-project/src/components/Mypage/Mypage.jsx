@@ -65,7 +65,7 @@ const Mypage = () => {
     <>
       {myPageData && (
         <div className={styles["myinfo-categories-list"]}>
-          <div className={styles["myinfo-categories-list-inFoContainer"]}>
+          <div className={styles["myinfo-categories-list-infoContainer"]}>
             <img className={styles["myinfo-categories-list-logo"]} src={image} alt="기본 프로필" />
             <p className={styles["myinfo-categories-list-nickname"]}>{myPageData.nickname}</p>
             <p className={styles["myinfo-categories-list-mbti"]}>{getMbtiString(myPageData.mbti)}</p>
