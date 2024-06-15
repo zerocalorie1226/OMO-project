@@ -22,6 +22,7 @@ const MyInfo = () => {
           },
         });
         setMyInfoData(response.data);
+        console.log(response.data);
 
         if (response.data.profileImageUrl) {
           const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(response.data.profileImageUrl)}`;
@@ -83,7 +84,7 @@ const MyInfo = () => {
                 <div className={styles["myinfo-birthday-container"]}>
                   <p>생년월일</p>
                   <p className={styles["myinfo-birthday-line"]}>|</p>
-                  <p className={styles["myinfo-birthday"]}>{myInfoData.birth}</p>
+                  <p className={styles["myinfo-birthday"]}>{myInfoData.birth ? myInfoData.birth : "미입력"}</p>
                 </div>
                 <div className={styles["myinfo-mbti-container"]}>
                   <p>MBTI</p>
