@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./List.module.css";
 import ListSearch from "../../components/ListSearch/ListSearch";
@@ -10,7 +10,6 @@ import { Loading } from "../../components/Loading/Loading";
 const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defaultListImg }) => {
   const { category: categoryParam } = useParams();
   const category = categoryParam || "all";
-
 
   const addRecentItem = (item) => {
     const newItem = {
@@ -36,12 +35,30 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
     });
   };
 
-  const [listData, setListData] = useState(null);
-  const [maxPage, setMaxPage] = useState(0)
-  const [pagenation, setPagenation] = useState(1)
+  const [listData, setListData] = useState([]);
+  const [maxPage, setMaxPage] = useState(0);
+  const [pagenation, setPagenation] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  const observer = useRef();
+
+  const lastElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && pagenation < maxPage) {
+          setPagenation((prevPage) => prevPage + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, maxPage, pagenation]
+  );
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(`https://api.oneulmohae.co.kr/place/list/${category}?page=${pagenation}`, {
           headers: {
@@ -49,24 +66,26 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
             y: searchResultsY,
           },
         });
-        setListData(response.data.documents);
-        setMaxPage(response.data.meta.pageable_count)
-        console.log(response.data.meta.pageable_count)
+
+        // 데이터 형식 확인 및 오류 방지
+        const documents = Array.isArray(response.data.documents) ? response.data.documents : [];
+        setListData((prevData) => [...prevData, ...documents]);
+        setMaxPage(response.data.meta.pageable_count || 0);
       } catch (error) {
         console.error("리스트를 불러오는데 실패하였습니다.", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, [category, searchResultsX, searchResultsY]);
+  }, [category, pagenation, searchResultsX, searchResultsY]);
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredData = listData
-    ? listData.filter((item) => {
-        return item.place_name && item.place_name.toLowerCase().includes(searchTerm.toLowerCase());
-      })
-    : [];
+  const filteredData = listData.filter((item) => {
+    return item.place_name && item.place_name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   const onSearch = (term) => {
     setSearchTerm(term);
@@ -74,7 +93,7 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
 
   return (
     <>
-      {filteredData === null ? (
+      {loading && listData.length === 0 ? (
         <Loading />
       ) : (
         <div>
@@ -82,18 +101,21 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
             <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
           </div>
           <section className={styles["list-list-container"]}>
-            {filteredData && filteredData.length > 0 ? (
+            {filteredData.length > 0 ? (
               <div className={styles["list-list-box-container"]}>
-                {filteredData.map((item) => (
-                  <ListBox key={item.id} id={item.id} {...item} addRecentItem={() => addRecentItem(item)} defaultListImg={defaultListImg} />
-                ))}
+                {filteredData.map((item, index) => {
+                  if (index === filteredData.length - 1) {
+                    return <ListBox ref={lastElementRef} key={`${item.id}-${index}`} id={item.id} {...item} addRecentItem={() => addRecentItem(item)} defaultListImg={defaultListImg} />;
+                  } else {
+                    return <ListBox key={`${item.id}-${index}`} id={item.id} {...item} addRecentItem={() => addRecentItem(item)} defaultListImg={defaultListImg} />;
+                  }
+                })}
               </div>
             ) : (
               <span className={styles["list-no-search-result"]}>검색 결과가 없습니다.</span>
             )}
           </section>
         </div>
-        
       )}
       <ScrollToTop />
     </>
