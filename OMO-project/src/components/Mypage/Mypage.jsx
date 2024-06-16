@@ -58,7 +58,7 @@ const Mypage = () => {
   }, []);
 
   const getMbtiString = (mbtiValue) => {
-    return mbtiReverseMapping[mbtiValue] || "Unknown MBTI";
+    return mbtiReverseMapping[mbtiValue] || "";
   };
 
   return (
@@ -68,7 +68,7 @@ const Mypage = () => {
           <div className={styles["myinfo-categories-list-infoContainer"]}>
             <img className={styles["myinfo-categories-list-logo"]} src={image} alt="기본 프로필" />
             <p className={styles["myinfo-categories-list-nickname"]}>{myPageData.nickname}</p>
-            <p className={styles["myinfo-categories-list-mbti"]}>{getMbtiString(myPageData.mbti)}</p>
+            <p className={styles["myinfo-categories-list-mbti"]}>{getMbtiString(myPageData.mbti)}{myPageData.mbti === -1 ? "" : getMbtiString(myPageData.mbti)}</p>
           </div>
           <div className={styles["myinfo-categories-mypage-container"]}>
             <p className={styles["myinfo-categories-mypage"]}>My page</p>

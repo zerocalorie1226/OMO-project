@@ -3,8 +3,8 @@ import styles from "./MyInfo.module.css";
 import Mypage from "../../../components/Mypage/Mypage";
 import MyInfoIcon from "../../../assets/my-page/my-info/my-info.png";
 import DefaultProfileImage from "../../../assets/detail/defaultDetailIcon.png";
-import { useEffect, useState } from "react";
-import { mbtiReverseMapping } from "../../../const/mbtiReverseMapping";
+import {useEffect, useState} from "react";
+import {mbtiReverseMapping} from "../../../const/mbtiReverseMapping";
 
 const MyInfo = () => {
   const [myInfoData, setMyInfoData] = useState(null);
@@ -22,11 +22,10 @@ const MyInfo = () => {
           },
         });
         setMyInfoData(response.data);
-        console.log(response.data);
 
         if (response.data.profileImageUrl) {
           const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(response.data.profileImageUrl)}`;
-          
+
           try {
             const imageResponse = await axios.get(imageUrl, {
               headers: {
@@ -64,11 +63,14 @@ const MyInfo = () => {
           <Mypage myInfoData={myInfoData} />
           {myInfoData && (
             <div className={styles["myinfo-logo-info-container"]}>
-              <img 
-                className={styles["myinfo-circle-logo"]} 
-                src={image} 
-                alt="기본 프로필" 
-                onError={(e) => { e.target.onerror = null; e.target.src = DefaultProfileImage; }}
+              <img
+                className={styles["myinfo-circle-logo"]}
+                src={image}
+                alt="기본 프로필"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = DefaultProfileImage;
+                }}
               />
               <div className={styles["myinfo-info-container"]}>
                 <div className={styles["myinfo-nickname-container"]}>
@@ -89,7 +91,7 @@ const MyInfo = () => {
                 <div className={styles["myinfo-mbti-container"]}>
                   <p>MBTI</p>
                   <p className={styles["myinfo-mbti-line"]}>|</p>
-                  <p className={styles["myinfo-mbti"]}>{getMbtiString(myInfoData.mbti)}</p>
+                  <p className={styles["myinfo-mbti"]}>{myInfoData.mbti === -1 ? "미입력" : getMbtiString(myInfoData.mbti)}</p>
                 </div>
               </div>
               <div className={styles["myinfo-status-container"]}>
