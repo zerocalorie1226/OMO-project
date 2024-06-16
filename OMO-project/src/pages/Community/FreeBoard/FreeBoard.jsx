@@ -21,7 +21,7 @@ const FreeBoard = () => {
       const response = await axios.get('https://api.oneulmohae.co.kr/board/Free?page=1&size=10&sorting=createdAt');
       setPosts(response.data.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("자유게시판 게시글을 불러오는데 실패하였습니다:", error);
     }
   };
 
@@ -58,12 +58,6 @@ const FreeBoard = () => {
       ]);
 
     } catch (error) {
-      console.error("Error creating post:", error);
-      if (error.response) {
-        console.error('Response Data:', error.response.data);
-        console.error('Response Status:', error.response.status);
-        console.error('Response Headers:', error.response.headers);
-      }
       alert("게시글 작성 중 오류가 발생했습니다.");
     }
   };

@@ -84,7 +84,6 @@ const Signup = () => {
       navigate("/");
     } catch (error) {
       alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
-      console.error(error);
     }
   };
 
@@ -119,7 +118,6 @@ const Signup = () => {
         alert("닉네임 중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
       }
       setIsNicknameChecked(false);
-      console.error(error);
     }
   };
 

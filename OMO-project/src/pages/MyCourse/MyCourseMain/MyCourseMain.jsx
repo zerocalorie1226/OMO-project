@@ -1,7 +1,7 @@
 // 나만의 코스 메인페이지 (Home)
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { MyCourseStateContext } from "../../../App";
+import { MyCourseStateContext } from "../../../assets/context/MyCourseContext"
 import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
 import { WritingButton } from "../../../components/WritingButton/WritingButton";
 import MyCourseList from "../../../components/MyCourse/MyCourseList/MyCourseList";

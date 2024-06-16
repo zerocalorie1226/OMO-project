@@ -18,7 +18,7 @@ const Recommend = () => {
       });
       setRecommendPosts(response.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("추천한 장소를 불러오는데 실패하였습니다.", error);
       setRecommendPosts([]); // 오류 발생 시 빈 배열로 초기화
     }
   };

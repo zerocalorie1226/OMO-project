@@ -5,7 +5,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import Share from "../../../components/MyCourse/Button/Share/Share";
 import {useNavigate, useParams} from "react-router-dom";
 import React, {useContext, useEffect, useState} from "react";
-import {MyCourseStateContext} from "../../../App";
+import {MyCourseStateContext} from "../../../assets/context/MyCourseContext"
 import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 

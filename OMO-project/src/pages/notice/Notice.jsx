@@ -15,7 +15,7 @@ const Notice = () => {
         const response = await axios.get(`https://api.oneulmohae.co.kr/notice?page=1&size=10&type=all`);
         setNotices(response.data.data); 
       } catch (error) {
-        console.error("에러야", error);
+        console.error("공지사항을 불러오는데 실패하였습니다.", error);
       }
     };
 
