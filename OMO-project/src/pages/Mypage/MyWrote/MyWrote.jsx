@@ -23,11 +23,10 @@ const MyWrote = () => {
           const sortedData = response.data.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
           setMyPosts(sortedData);
         } else {
-          console.error("Unexpected data format:", response.data);
           setMyPosts([]);
         }
       } catch (error) {
-        console.error("Error fetching MyWrote data:", error);
+        console.error("내가 쓴 글 데이터를 불러오는데 실패하였습니다:", error);
         setMyPosts([]);
       }
     };

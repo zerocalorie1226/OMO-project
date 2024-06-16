@@ -43,7 +43,7 @@ const MyInfo = () => {
           }
         }
       } catch (error) {
-        console.error("에러야", error);
+        console.error("내정보를 불러오는데 실패하였습니다.", error);
       }
     };
 

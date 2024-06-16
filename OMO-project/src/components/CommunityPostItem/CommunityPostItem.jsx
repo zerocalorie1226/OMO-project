@@ -71,15 +71,15 @@ export const CommunityPostItem = (props) => {
         if (getResponse.status === 200) {
           props.setPosts(getResponse.data.data);
         } else {
-          console.error("Failed to fetch updated data");
+          console.error("게시글을 가져오는데 실패하였습니다.");
         }
 
         setContent("");
       } else {
-        console.error("Failed to post comment");
+        console.error("게시글을 가져오는데 실패하였습니다");
       }
     } catch (error) {
-      console.error("Error posting comment:", error);
+      console.error("게시글을 가져오는데 실패하였습니다:", error);
     }
   };
 
@@ -119,13 +119,13 @@ export const CommunityPostItem = (props) => {
           }
           props.setPosts(updatedData.data);
         } else {
-          console.error("Failed to fetch updated jjim data");
+          console.error("게시글을 가져오는데 실패하였습니다.");
         }
       } else {
-        console.error("Failed to update jjim status");
+        console.error("게시글을 가져오는데 실패하였습니다.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("게시글을 가져오는데 실패하였습니다.:", error);
     }
   };
 

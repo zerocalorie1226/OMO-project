@@ -50,7 +50,7 @@ const Mypage = () => {
           }
         }
       } catch (error) {
-        console.error("에러야", error);
+        alert("마이페이지를 불러오는데 실패하였습니다.")
         navigate("/Login");
       }
     };

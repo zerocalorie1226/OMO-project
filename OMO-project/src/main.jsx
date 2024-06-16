@@ -34,8 +34,8 @@ const Root = () => {
       alert("로그아웃 되었습니다.");
       navigate("/Login");
     } catch (error) {
-      console.error("로그아웃 실패:", error);
-      alert("로그아웃에 실패했습니다.");
+      console.error("로그아웃에 실패하였습니다: ", error);
+      alert("로그아웃에 실패하였습니다.");
     }
   };
 
@@ -47,7 +47,6 @@ const Root = () => {
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
-// Initial render
 root.render(
   <BrowserRouter>
     <Root />

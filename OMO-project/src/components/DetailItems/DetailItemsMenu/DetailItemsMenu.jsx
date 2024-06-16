@@ -97,13 +97,13 @@ export const DetailItemsMenu = (props) => {
           }
           setCountJjim(updatedData.mine); // 새로운 데이터를 사용하여 업데이트
         } else {
-          console.error("Failed to fetch updated jjim data");
+          console.error("장소데이터를 가져오는데 실패하였습니다.");
         }
       } else {
-        console.error("Failed to update jjim status");
+        console.error("장소데이터를 가져오는데 실패하였습니다.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("장소데이터를 가져오는데 실패하였습니다:", error);
     }
   };
 
@@ -145,13 +145,13 @@ export const DetailItemsMenu = (props) => {
           }
           setCountLike(updatedData.recommend); // 새로운 데이터를 사용하여 업데이트
         } else {
-          console.error("Failed to fetch updated Like data");
+          console.error("장소데이터를 가져오는데 실패하였습니다.");
         }
       } else {
-        console.error("Failed to update Like status");
+        console.error("장소데이터를 가져오는데 실패하였습니다.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("장소데이터를 가져오는데 실패하였습니다:", error);
     }
   };
 
@@ -221,12 +221,7 @@ const postReview = async (content, imageFile) => {
     setFile(""); // 파일 초기화
     fileInput.current.value = null; // 파일 인풋 초기화
   } catch (error) {
-    console.error("Error creating post:", error);
-    if (error.response) {
-      console.error('Response Data:', error.response.data);
-      console.error('Response Status:', error.response.status);
-      console.error('Response Headers:', error.response.headers);
-    }
+    console.error("리뷰 작성 중 오류가 발생했습니다:", error);
     alert("리뷰 작성 중 오류가 발생했습니다.");
   }
 };
@@ -251,7 +246,7 @@ const fetchData = async (reviewPlaceId) => {
     }
     console.log("imageNames:", imageNames);
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("리뷰를 가져오는데 실패하였습니다:", error);
   }
 };
   useEffect(() => {
@@ -289,7 +284,7 @@ const fetchImgs = async (imageNames) => {
       })
     );
   } catch (error) {
-    console.error("Error fetching images:", error);
+    console.error("이미지를 가져오는데 실패하였습니다:", error);
   }
 };
 

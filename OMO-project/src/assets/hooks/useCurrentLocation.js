@@ -24,8 +24,8 @@ const useCurrentLocation = () => {
       setLocation(address);
       return { latitude, longitude, address };
     } catch (error) {
-      console.error("Failed to fetch location data:", error);
-      throw new Error("Failed to fetch location data");
+      console.error("현재 위치를 찾는데 실패하였습니다.", error);
+      throw new Error("현재 위치를 찾는데 실패하였습니다.");
     }
   };
 

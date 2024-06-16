@@ -53,7 +53,7 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
         setMaxPage(response.data.meta.pageable_count)
         console.log(response.data.meta.pageable_count)
       } catch (error) {
-        console.error("에러야", error);
+        console.error("리스트를 불러오는데 실패하였습니다.", error);
       }
     };
 

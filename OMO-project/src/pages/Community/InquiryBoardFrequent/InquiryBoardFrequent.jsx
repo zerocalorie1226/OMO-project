@@ -18,7 +18,7 @@ const InquiryBoardFrequent = () => {
         const response = await axios.get(`https://api.oneulmohae.co.kr/board/Qna/FAQ?page=1&size=10&sorting=createdAt`);
         setFrequents(response.data.data);
       } catch (error) {
-        console.error("에러야", error);
+        console.error("자주 묻는 질문을 불러오는데 실패하였습니다", error);
       }
     };
 
