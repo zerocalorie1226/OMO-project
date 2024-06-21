@@ -10,8 +10,10 @@ import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/Write
 
 const WorryBoard = () => {
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const category = "Trouble";
 
@@ -24,6 +26,7 @@ const WorryBoard = () => {
         },
       });
       setPosts(response.data.data);
+      setFilteredPosts(response.data.data);
     } catch (error) {
       console.error("고민게시판을 불러오는데 실패였습니다.", error);
     }
@@ -51,9 +54,21 @@ const WorryBoard = () => {
       const newPost = response.data;
       setBoardId(newPost.boardId); // 새로 생성된 게시글의 ID를 boardId로 설정
       setPosts((prevPosts) => [newPost, ...prevPosts]);
+      setFilteredPosts((prevPosts) => [newPost, ...prevPosts]);
     } catch (error) {
       console.error("Error creating post:", error);
       alert("게시글 작성 중 오류가 발생했습니다.");
+    }
+  };
+
+  // 검색어 변경
+  const onSearch = (term) => {
+    setSearchTerm(term);
+    if (term === "") {
+      setFilteredPosts(posts);
+    } else {
+      const filtered = posts.filter((post) => post.title.toLowerCase().includes(term.toLowerCase()));
+      setFilteredPosts(filtered);
     }
   };
 
@@ -64,14 +79,14 @@ const WorryBoard = () => {
 
       {/* 필터 + 검색창 */}
       <div className={styles["community-component-container"]}>
-        <ListSearch />
+        <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
       </div>
 
       {/* 게시글 리스트 */}
-      {posts.length === 0 ? (
+      {filteredPosts.length === 0 ? (
         <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
       ) : (
-        <CommunityWorryPostList communityWorryPostList={posts} setPosts={setPosts} category={category} />
+        <CommunityWorryPostList communityWorryPostList={filteredPosts} setPosts={setPosts} category={category} />
       )}
 
       {/* 스크롤 */}

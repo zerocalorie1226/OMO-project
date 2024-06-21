@@ -10,8 +10,10 @@ import WriteFreeBoard from "../../../components/WritePost/WriteFreeBoard/WriteFr
 
 const FreeBoard = () => {
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const category = "Free"; 
 
@@ -20,6 +22,7 @@ const FreeBoard = () => {
     try {
       const response = await axios.get('https://api.oneulmohae.co.kr/board/Free?page=1&size=10&sorting=createdAt');
       setPosts(response.data.data);
+      setFilteredPosts(response.data.data);
     } catch (error) {
       console.error("자유게시판 게시글을 불러오는데 실패하였습니다:", error);
     }
@@ -56,9 +59,24 @@ const FreeBoard = () => {
         newPost,
         ...prevPosts
       ]);
+      setFilteredPosts(prevPosts => [
+        newPost,
+        ...prevPosts
+      ]);
 
     } catch (error) {
       alert("게시글 작성 중 오류가 발생했습니다.");
+    }
+  };
+
+  // 검색어 변경
+  const onSearch = (term) => {
+    setSearchTerm(term);
+    if (term === "") {
+      setFilteredPosts(posts);
+    } else {
+      const filtered = posts.filter((post) => post.title.toLowerCase().includes(term.toLowerCase()));
+      setFilteredPosts(filtered);
     }
   };
 
@@ -69,14 +87,14 @@ const FreeBoard = () => {
 
       {/* 필터 + 검색창 */}
       <div className={styles["community-component-container"]}>
-        <ListSearch />
+        <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
       </div>
 
       {/* 게시글 리스트 */}
-      {posts.length === 0 ? (
+      {filteredPosts.length === 0 ? (
         <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
       ) : (
-        <CommunityFreePostList communityFreePostList={posts} setPosts={setPosts} category={category}/>
+        <CommunityFreePostList communityFreePostList={filteredPosts} setPosts={setPosts} category={category}/>
       )}
 
       {/* 스크롤 */}
