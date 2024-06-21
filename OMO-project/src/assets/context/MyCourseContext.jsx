@@ -41,15 +41,15 @@ export const MyCourseProvider = ({children}) => {
   const dataId = useRef(0);
 
   // 나만의 코스 CREATE 함수
-  const onCreate = (dates, title, content, regat) => {
+  const onCreate = (dates, courseName, content, createdAt) => {
     dispatch({
       type: "CREATE",
       data: {
         id: dataId.current,
-        title,
+        courseName,
         dates,
         content,
-        regat,
+        createdAt,
       },
     });
     dataId.current += 1;
