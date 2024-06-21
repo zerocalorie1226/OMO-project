@@ -50,7 +50,7 @@ const Mypage = () => {
           }
         }
       } catch (error) {
-        console.error("에러야", error);
+        alert("마이페이지를 불러오는데 실패하였습니다.")
         navigate("/Login");
       }
     };
@@ -58,17 +58,17 @@ const Mypage = () => {
   }, []);
 
   const getMbtiString = (mbtiValue) => {
-    return mbtiReverseMapping[mbtiValue] || "Unknown MBTI";
+    return mbtiReverseMapping[mbtiValue] || "";
   };
 
   return (
     <>
       {myPageData && (
         <div className={styles["myinfo-categories-list"]}>
-          <div className={styles["myinfo-categories-list-inFoContainer"]}>
+          <div className={styles["myinfo-categories-list-infoContainer"]}>
             <img className={styles["myinfo-categories-list-logo"]} src={image} alt="기본 프로필" />
             <p className={styles["myinfo-categories-list-nickname"]}>{myPageData.nickname}</p>
-            <p className={styles["myinfo-categories-list-mbti"]}>{getMbtiString(myPageData.mbti)}</p>
+            <p className={styles["myinfo-categories-list-mbti"]}>{getMbtiString(myPageData.mbti)}{myPageData.mbti === -1 ? "" : getMbtiString(myPageData.mbti)}</p>
           </div>
           <div className={styles["myinfo-categories-mypage-container"]}>
             <p className={styles["myinfo-categories-mypage"]}>My page</p>

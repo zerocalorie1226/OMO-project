@@ -39,7 +39,6 @@ const NicknameChange = () => {
         alert("닉네임 중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
       }
       setIsNicknameChecked(false);
-      console.error(error);
     }
   };
 
@@ -68,11 +67,9 @@ const NicknameChange = () => {
           alert("닉네임이 변경되었습니다.");
           window.location.reload();
         } else {
-          console.error("Failed to change nickname");
           alert("닉네임 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
         }
       } catch (error) {
-        console.error("Error changing nickname:", error);
         alert("닉네임 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
       }
     } else {

@@ -28,7 +28,7 @@ const WorryBoard = () => {
       setPosts(response.data.data);
       setFilteredPosts(response.data.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("고민게시판을 불러오는데 실패였습니다.", error);
     }
   };
 
@@ -57,11 +57,6 @@ const WorryBoard = () => {
       setFilteredPosts((prevPosts) => [newPost, ...prevPosts]);
     } catch (error) {
       console.error("Error creating post:", error);
-      if (error.response) {
-        console.error("Response Data:", error.response.data);
-        console.error("Response Status:", error.response.status);
-        console.error("Response Headers:", error.response.headers);
-      }
       alert("게시글 작성 중 오류가 발생했습니다.");
     }
   };
