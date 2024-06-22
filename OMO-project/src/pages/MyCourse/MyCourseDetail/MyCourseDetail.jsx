@@ -54,10 +54,10 @@ const MyCourseDetail = () => {
         </div>
         <div className={styles["mycourse-detail-course-container"]}>
           <div className={styles["mycourse-detail-course-item-container"]}>
-            {/* content와 dates를 함께 순회하여 각 쌍의 요소를 렌더링 */}
+            {/* content와 time를 함께 순회하여 각 쌍의 요소를 렌더링 */}
             {data.content.map((contentItem, index) => (
               <React.Fragment key={index}>
-                <div className={styles["mycourse-detail-calendar-container"]}>{formatDate(data.dates[index])}</div>
+                <div className={styles["mycourse-detail-calendar-container"]}>{formatDate(data.time[index])}</div>
                 <MyCourseDetailBox {...contentItem} />
                 {index !== data.content.length - 1 && <img src={downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />}
               </React.Fragment>

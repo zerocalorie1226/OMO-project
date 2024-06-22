@@ -10,7 +10,7 @@ import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRece
 import MyCourseFindSearchModal from "../MyCourseFindSearchModal/MyCourseFindSearchModal";
 import {data} from "../../../const/data";
 
-const MyCourseFindBox = ({dates, setDates, content, setContent, idx}) => {
+const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
   const [interestModal, setInterestModal] = useState(false);
   const [recentModal, setRecentModal] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
@@ -42,7 +42,7 @@ const MyCourseFindBox = ({dates, setDates, content, setContent, idx}) => {
     <>
       {isFindBoxVisible && (
         <div className={styles["mycourse-find-box-total-container"]}>
-          <MyCourseCalendar dates={dates} setDates={setDates} idx={idx}/>
+          <MyCourseCalendar time={time} setTime={setTime} idx={idx}/>
           <Delete onClick={handleDeleteClick} />
 
           {state ? (

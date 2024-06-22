@@ -3,16 +3,16 @@ import MyCourseFindBox from "../MyCourseFindBox/MyCourseFindBox";
 import MyCoursePlusBox from "../MyCoursePlusBox/MyCoursePlusBox";
 import React, {useState} from "react";
 
-const MyCourseAfter = ({dates, setDates, content, setContent}) => {
+const MyCourseAfter = ({time, setTime, content, setContent}) => {
 
-  const getStringDate = (dates) => {
-    return dates.toISOString().slice(0, 16);
+  const getStringDate = (time) => {
+    return time.toISOString().slice(0, 16);
   };
   const [myCourseFindBoxes, setMyCourseFindBoxes] = useState([]);
 
   const addMyCourseFindBox = () => {
-    setMyCourseFindBoxes([...myCourseFindBoxes, <MyCourseFindBox dates={dates} setDates={setDates} content={content} setContent={setContent} key={myCourseFindBoxes.length} idx={dates.length} />]);
-    setDates([...dates,  getStringDate(new Date())])
+    setMyCourseFindBoxes([...myCourseFindBoxes, <MyCourseFindBox time={time} setTime={setTime} content={content} setContent={setContent} key={myCourseFindBoxes.length} idx={time.length} />]);
+    setTime([...time,  getStringDate(new Date())])
   };
 
   return (
