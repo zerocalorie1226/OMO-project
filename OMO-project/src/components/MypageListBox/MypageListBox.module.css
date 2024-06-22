@@ -83,11 +83,19 @@ position: absolute;
 }
 
 
-/* 도로명주소 */
+/* 전화번호 */
 .mypage-list-box-phone{
   font-size: 16px;
   position: absolute;
   top: 120px;
+}
+
+
+.mypage-list-box-phone.not_provided{
+  font-size: 16px;
+  position: absolute;
+  top: 120px;
+  color: var(--gray-700);
 }
 
 
