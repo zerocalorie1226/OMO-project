@@ -8,7 +8,7 @@ import FindButton from "./FindButton/FindButton";
 import MyCourseFindInterestModal from "../MyCourseFindInterestModal/MyCourseFindInterestModal";
 import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRecentModal";
 import MyCourseFindSearchModal from "../MyCourseFindSearchModal/MyCourseFindSearchModal";
-import {data} from "../../../const/data";
+import {data} from "../../../const/data"; // 제거 예정 -> get으로 장소정보 불러오기
 
 const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
   const [interestModal, setInterestModal] = useState(false);
@@ -26,7 +26,7 @@ const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
   const [state, setState] = useState(false);
 
   //  선택한 item(id)와 같은 id를 data에서 찾아서 findItem에 넣어줌
-  const findItem = data.find((el) => el.id === item);
+  const findItem = data.find((el) => el.id === item); // placeId로 변경하기
 
   const changeSetContent = (arrayEl) => {
     const newContent = content.length === 0 ? [arrayEl] : [...content, arrayEl];

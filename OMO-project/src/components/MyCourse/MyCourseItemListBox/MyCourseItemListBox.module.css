@@ -68,16 +68,15 @@
   margin-left: 25px;
 }
 
-/* 영업중 */
-.mycourse-list-box-runtime {
+/* 전화번호 */
+.mycourse-list-box-phone {
   font-size: 16px;
   position: absolute;
   top: 99px;
-  color: var(--blue-200);
 }
 
-/* 영업준비중 */
-.mycourse-list-box-runtime.ready{
+/* 전화번호 미제공 */
+.mycourse-list-box-phone.not_provided{
   font-size: 16px;
   position: absolute;
   top: 99px;
