@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 const ListBox = forwardRef((props, ref) => {
   const navigate = useNavigate();
 
+  console.log(props);
+
   return (
     <>
       <button
@@ -17,7 +19,10 @@ const ListBox = forwardRef((props, ref) => {
             id: props.id,
             place_name: props.place_name,
             address_name: props.address_name,
-            phone: props.phone
+            road_address_name: props.road_address_name,
+            phone: props.phone,
+            mine: props.mine,
+            recommend: props.recommend,
           });
         }}
         className={styles["list-box-container"]}
