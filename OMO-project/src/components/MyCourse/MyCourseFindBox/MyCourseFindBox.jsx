@@ -7,13 +7,13 @@ import MyCourseDataBox from "../MyCourseDataBox/MyCourseDataBox";
 import FindButton from "./FindButton/FindButton";
 import MyCourseFindInterestModal from "../MyCourseFindInterestModal/MyCourseFindInterestModal";
 import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRecentModal";
-import MyCourseFindSearchModal from "../MyCourseFindSearchModal/MyCourseFindSearchModal";
+import MyCourseFindRecommendModal from "../MyCourseFindRecommendModal/MyCourseFindRecommendModal";
 import {data} from "../../../const/data"; // 제거 예정 -> get으로 장소정보 불러오기
 
 const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
   const [interestModal, setInterestModal] = useState(false);
   const [recentModal, setRecentModal] = useState(false);
-  const [searchModal, setSearchModal] = useState(false);
+  const [recommendModal, setRecommendModal] = useState(false);
   const [isFindBoxVisible, setFindBoxVisible] = useState(true);
 
   const handleDeleteClick = () => {
@@ -37,12 +37,11 @@ const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
     setContent(flattenedContent); // 업데이트
   };
 
-
   return (
     <>
       {isFindBoxVisible && (
         <div className={styles["mycourse-find-box-total-container"]}>
-          <MyCourseCalendar time={time} setTime={setTime} idx={idx}/>
+          <MyCourseCalendar time={time} setTime={setTime} idx={idx} />
           <Delete onClick={handleDeleteClick} />
 
           {state ? (
@@ -68,7 +67,25 @@ const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
               ) : null}
 
               <FindButton
-                text={"최근 본 목록에서 찾기"}
+                text={"추천한 장소에서 찾기"}
+                onClick={() => {
+                  setRecommendModal(true);
+                }}
+              />
+              {recommendModal ? (
+                <MyCourseFindRecommendModal
+                  item={item}
+                  setItem={setItem}
+                  state={state}
+                  setState={setState}
+                  recommendModal={recommendModal}
+                  setRecommendModal={setRecommendModal}
+                  changeSetContent={changeSetContent}
+                />
+              ) : null}
+
+              <FindButton
+                text={"최근 본 장소에서 찾기"}
                 onClick={() => {
                   setRecentModal(true);
                 }}
@@ -81,24 +98,6 @@ const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
                   setState={setState}
                   recentModal={recentModal}
                   setRecentModal={setRecentModal}
-                  changeSetContent={changeSetContent}
-                />
-              ) : null}
-
-              <FindButton
-                text={"검색을 통해 찾기"}
-                onClick={() => {
-                  setSearchModal(true);
-                }}
-              />
-              {searchModal ? (
-                <MyCourseFindSearchModal
-                  item={item}
-                  setItem={setItem}
-                  state={state}
-                  setState={setState}
-                  searchModal={searchModal}
-                  setSearchModal={setSearchModal}
                   changeSetContent={changeSetContent}
                 />
               ) : null}
