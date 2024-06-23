@@ -19,7 +19,7 @@ const MyCourseEditor = () => {
   const [time, setTime] = useState([getStringDate(new Date())]);
   const [content, setContent] = useState("");
   const [createdAt, setCreatedAt] = useState(new Date().toLocaleString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', hour12: false }));
-  // console.log("MyCourseEditor에서 날짜:", time);
+  console.log("MyCourseEditor에서 날짜:", time);
   // console.log("MyCourseEditor에서 제목", courseName);
   console.log("MyCourseEditor에서 내용:", content);
 

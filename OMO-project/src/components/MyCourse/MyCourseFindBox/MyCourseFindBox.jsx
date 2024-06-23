@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./MyCourseFindBox.module.css";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import Delete from "../Button/Delete/Delete";
@@ -8,34 +8,58 @@ import FindButton from "./FindButton/FindButton";
 import MyCourseFindInterestModal from "../MyCourseFindInterestModal/MyCourseFindInterestModal";
 import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRecentModal";
 import MyCourseFindRecommendModal from "../MyCourseFindRecommendModal/MyCourseFindRecommendModal";
-import {data} from "../../../const/data"; // 제거 예정 -> get으로 장소정보 불러오기
+import axios from "axios";
 
-const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
+const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
   const [interestModal, setInterestModal] = useState(false);
   const [recentModal, setRecentModal] = useState(false);
   const [recommendModal, setRecommendModal] = useState(false);
   const [isFindBoxVisible, setFindBoxVisible] = useState(true);
+  const [item, setItem] = useState(null); // place_name 상태
+  const [findItem, setFindItem] = useState(null); // findItem 초기값을 null로 설정
+  const [state, setState] = useState(false);
 
   const handleDeleteClick = () => {
     setFindBoxVisible(false);
     alert("삭제되었습니다.");
   };
 
-  const [item, setItem] = useState(); // id의 상태
+  useEffect(() => {
+    const fetchData = async () => {
+      if (item) {
+        try {
+          const response = await axios.get(`https://api.oneulmohae.co.kr/place/name/${item}?page=1`);
+          console.log("전체데이터: ", response.data);
+          if (response.data.documents && response.data.documents.length > 0) {
+            const foundItem = response.data.documents[0]; // 첫 번째 결과를 가져옴
+            console.log("foundItem: ", foundItem);
+            setFindItem(foundItem);
+          } else {
+            setFindItem(null);
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+    };
 
-  const [state, setState] = useState(false);
+    fetchData();
+  }, [item]);
 
-  //  선택한 item(id)와 같은 id를 data에서 찾아서 findItem에 넣어줌
-  const findItem = data.find((el) => el.id === item); // placeId로 변경하기
+  useEffect(() => {
+    if (findItem) {
+      changeSetContent(findItem);
+    }
+  }, [findItem]);
 
   const changeSetContent = (arrayEl) => {
-    const newContent = content.length === 0 ? [arrayEl] : [...content, arrayEl];
-    //  기존 배열에 새로운 요소를 추가하기 전에 배열의 길이를 확인하고, 길이가 0이라면 0으로 시작하도록 처리
-
-    const flattenedContent = newContent.flat(); // 이 부분을 추가해서 중첩 배열을 평탄화 (객체가 바로 들어감)
-
-    setContent(flattenedContent); // 업데이트
+    setContent(prevContent => {
+      const newContent = [...prevContent, arrayEl];
+      return newContent;
+    });
   };
+
+  console.log("콘텐트: ", content);
 
   return (
     <>
@@ -44,7 +68,7 @@ const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
           <MyCourseCalendar time={time} setTime={setTime} idx={idx} />
           <Delete onClick={handleDeleteClick} />
 
-          {state ? (
+          {state && findItem ? (
             <MyCourseDataBox key={findItem.id} data={findItem} />
           ) : (
             <div className={styles["mycourse-find-box-button-container"]}>
@@ -54,17 +78,13 @@ const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
                   setInterestModal(true);
                 }}
               />
-              {interestModal ? (
+              {interestModal && (
                 <MyCourseFindInterestModal
-                  item={item}
                   setItem={setItem}
-                  state={state}
-                  setState={setState}
-                  interestModal={interestModal}
                   setInterestModal={setInterestModal}
-                  changeSetContent={changeSetContent}
+                  setState={setState}
                 />
-              ) : null}
+              )}
 
               <FindButton
                 text={"추천한 장소에서 찾기"}
@@ -72,17 +92,13 @@ const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
                   setRecommendModal(true);
                 }}
               />
-              {recommendModal ? (
+              {recommendModal && (
                 <MyCourseFindRecommendModal
-                  item={item}
                   setItem={setItem}
-                  state={state}
-                  setState={setState}
-                  recommendModal={recommendModal}
                   setRecommendModal={setRecommendModal}
-                  changeSetContent={changeSetContent}
+                  setState={setState}
                 />
-              ) : null}
+              )}
 
               <FindButton
                 text={"최근 본 장소에서 찾기"}
@@ -90,17 +106,13 @@ const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
                   setRecentModal(true);
                 }}
               />
-              {recentModal ? (
+              {recentModal && (
                 <MyCourseFindRecentModal
-                  item={item}
                   setItem={setItem}
-                  state={state}
-                  setState={setState}
-                  recentModal={recentModal}
                   setRecentModal={setRecentModal}
-                  changeSetContent={changeSetContent}
+                  setState={setState}
                 />
-              ) : null}
+              )}
             </div>
           )}
 
@@ -110,4 +122,5 @@ const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
     </>
   );
 };
+
 export default MyCourseFindBox;
