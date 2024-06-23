@@ -34,7 +34,7 @@ const MyCourseDetail = () => {
   if (!data) {
     return <div className={styles["loading"]}>로딩중입니다...</div>;
   } else {
-    console.log("디테일 data: ", data);
+    console.log("디테일 data.content: ", data.content);
 
     const formatDate = (dateString) => {
       const options = {
@@ -50,7 +50,7 @@ const MyCourseDetail = () => {
     return (
       <div className={styles["mycourse-detail-total-container"]}>
         <div className={styles["mycourse-detail-title-container"]}>
-          <span>{data.title}</span>
+          <span>{data.courseName}</span>
         </div>
         <div className={styles["mycourse-detail-course-container"]}>
           <div className={styles["mycourse-detail-course-item-container"]}>
