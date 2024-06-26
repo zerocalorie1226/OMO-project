@@ -4,7 +4,7 @@ import {data} from "./../../../const/data";
 import ModalClose from "./../../../assets/modal-close.png";
 import {useEffect, useState} from "react";
 
-const MyCourseFindRecentModal = ({recentModal, setRecentModal, state, setState, item, setItem, changeSetContent}) => {
+const MyCourseFindRecentModal = ({recentModal, setRecentModal, state, setState, setPlaceName, setPlaceId}) => {
   const [recentData, setRecentData] = useState([]);
 
   useEffect(() => {
@@ -14,10 +14,9 @@ const MyCourseFindRecentModal = ({recentModal, setRecentModal, state, setState, 
     }
   }, []);
 
-  const handleClickItem = (item) => {
-    setItem(item); // 받아온 id를 업데이트 해줌
-
-    // console.log("모달창 id:", item);
+  const handleClickItem = (place_name, id) => {
+    setPlaceName(place_name); 
+    setPlaceId(id); 
   };
 
   return (
@@ -44,7 +43,7 @@ const MyCourseFindRecentModal = ({recentModal, setRecentModal, state, setState, 
             ) : (
               <div>
                 {recentData.map((el) => {
-                  return <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={handleClickItem} changeSetContent={changeSetContent} />;
+                  return <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={(place_name, id) => handleClickItem(place_name, id)} />;
                 })}
               </div>
             )}

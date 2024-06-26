@@ -1,20 +1,11 @@
 import styles from "./MyCourseFindInterestModal.module.css";
-import { MyCourseItemListBox } from "../MyCourseItemListBox/MyCourseItemListBox";
+import {MyCourseItemListBox} from "../MyCourseItemListBox/MyCourseItemListBox";
 import ModalClose from "./../../../assets/modal-close.png";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
-const MyCourseFindInterestModal = ({
-  interestModal,
-  setInterestModal,
-  state,
-  setState,
-  setItem,
-  changeSetContent,
-}) => {
+const MyCourseFindInterestModal = ({interestModal, setInterestModal, state, setState, setPlaceName, setPlaceId}) => {
   const [interestPosts, setInterestPosts] = useState(null);
-  const [selectedPlaceName, setSelectedPlaceName] = useState(null);
-
   const fetchData = async () => {
     try {
       const response = await axios.get("https://api.oneulmohae.co.kr/myPage/likes?page=1&size=10", {
@@ -23,7 +14,6 @@ const MyCourseFindInterestModal = ({
         },
       });
       setInterestPosts(response.data);
-      console.log("관심데이터: ", response.data);
     } catch (error) {
       setInterestPosts([]);
     }
@@ -33,19 +23,10 @@ const MyCourseFindInterestModal = ({
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (selectedPlaceName) {
-      setItem(selectedPlaceName);
-    }
-  }, [selectedPlaceName, setItem]);
-
-  const handleClickItem = (place_name) => {
-    // React의 이벤트 루프에 따라 다음 렌더링 사이클에서 상태가 업데이트되도록 설정
-    setTimeout(() => {
-      setSelectedPlaceName(place_name);
-    }, 0);
+  const handleClickItem = (place_name, id) => {
+    setPlaceName(place_name); 
+    setPlaceId(id); 
   };
-
   return (
     <>
       <div className={styles["Overlay"]}>
@@ -69,16 +50,7 @@ const MyCourseFindInterestModal = ({
             <div className={styles["mycourse-find-interest-modal-list-box-container"]}>
               <div>
                 {interestPosts.map((el) => {
-                  return (
-                    <MyCourseItemListBox
-                      key={el.id}
-                      state={state}
-                      setState={setState}
-                      el={el}
-                      onClick={() => handleClickItem(el.place_name)}
-                      changeSetContent={changeSetContent} 
-                    />
-                  );
+                  return <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={(place_name, id) => handleClickItem(place_name, id)} />;
                 })}
               </div>
             </div>

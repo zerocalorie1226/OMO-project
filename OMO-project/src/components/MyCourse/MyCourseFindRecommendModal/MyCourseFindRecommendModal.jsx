@@ -2,11 +2,10 @@ import styles from "./MyCourseFindRecommendModal.module.css";
 import {MyCourseItemListBox} from "../MyCourseItemListBox/MyCourseItemListBox";
 import {data} from "./../../../const/data"; // 제거 예정 -> get으로 관심목록 불러오기
 import ModalClose from "./../../../assets/modal-close.png";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
-const MyCourseFindRecommendModal = ({recommendModal, setRecommendModal, state, setState, item, setItem, changeSetContent}) => {
-  
+const MyCourseFindRecommendModal = ({recommendModal, setRecommendModal, state, setState, setPlaceName, setPlaceId}) => {
   const [recommendPosts, setRecommendPosts] = useState(null); // 초기값을 null로 설정
 
   const fetchData = async () => {
@@ -25,12 +24,10 @@ const MyCourseFindRecommendModal = ({recommendModal, setRecommendModal, state, s
   useEffect(() => {
     fetchData();
   }, []);
-  
-  
-  const handleClickItem = (item) => {
-    setItem(item); // 받아온 id를 업데이트 해줌
 
-    // console.log("모달창 id:", item);
+  const handleClickItem = (place_name, id) => {
+    setPlaceName(place_name); // place_name 상태 업데이트
+    setPlaceId(id); // id 상태 업데이트
   };
   return (
     <>
@@ -50,18 +47,18 @@ const MyCourseFindRecommendModal = ({recommendModal, setRecommendModal, state, s
             </button>
           </label>
           {recommendPosts === null || recommendPosts.length === 0 ? (
-              <div className={styles["no-recommend-list"]}>추천한 장소가 없습니다. 장소 상세 페이지에서 따봉을 눌러보세요!</div>
-            ) : (
-          <div className={styles["mycourse-find-recommend-modal-list-box-container"]}>
-            
-            <div>
-            {recommendPosts.map((el) => { // 여기에 관심목록 데이터가 들어와야함
-              return <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={handleClickItem} changeSetContent={changeSetContent} />;
-            })}
+            <div className={styles["no-recommend-list"]}>추천한 장소가 없습니다. 장소 상세 페이지에서 따봉을 눌러보세요!</div>
+          ) : (
+            <div className={styles["mycourse-find-recommend-modal-list-box-container"]}>
+              <div>
+                {recommendPosts.map((el) => {
+                  // 여기에 관심목록 데이터가 들어와야함
+                  return <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={(place_name, id) => handleClickItem(place_name, id)} />;
+                })}
+              </div>
             </div>
-          </div>
           )}
-          </div>
+        </div>
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./MyCourseFindBox.module.css";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import Delete from "../Button/Delete/Delete";
@@ -10,12 +10,13 @@ import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRece
 import MyCourseFindRecommendModal from "../MyCourseFindRecommendModal/MyCourseFindRecommendModal";
 import axios from "axios";
 
-const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
+const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
   const [interestModal, setInterestModal] = useState(false);
   const [recentModal, setRecentModal] = useState(false);
   const [recommendModal, setRecommendModal] = useState(false);
   const [isFindBoxVisible, setFindBoxVisible] = useState(true);
-  const [item, setItem] = useState(null); // place_name 상태
+  const [placeName, setPlaceName] = useState(null); // place_name 상태 관리
+  const [placeId, setPlaceId] = useState(null); // id 상태 관리
   const [findItem, setFindItem] = useState(null); // findItem 초기값을 null로 설정
   const [state, setState] = useState(false);
 
@@ -26,12 +27,18 @@ const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (item) {
+      if (placeName && placeId) {
         try {
-          const response = await axios.get(`https://api.oneulmohae.co.kr/place/name/${item}?page=1`);
+          const accessToken = localStorage.getItem("accessToken");
+          const response = await axios.get(`https://api.oneulmohae.co.kr/place/${placeName}`, {
+            headers: {
+              Authorization: accessToken,
+              placeId: placeId, // placeId를 headers에 포함
+            },
+          });
           console.log("전체데이터: ", response.data);
-          if (response.data.documents && response.data.documents.length > 0) {
-            const foundItem = response.data.documents[0]; // 첫 번째 결과를 가져옴
+          if (response.data) {
+            const foundItem = response.data;
             console.log("foundItem: ", foundItem);
             setFindItem(foundItem);
           } else {
@@ -44,7 +51,7 @@ const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
     };
 
     fetchData();
-  }, [item]);
+  }, [placeName, placeId]);
 
   useEffect(() => {
     if (findItem) {
@@ -53,7 +60,7 @@ const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
   }, [findItem]);
 
   const changeSetContent = (arrayEl) => {
-    setContent(prevContent => {
+    setContent((prevContent) => {
       const newContent = [...prevContent, arrayEl];
       return newContent;
     });
@@ -80,9 +87,12 @@ const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
               />
               {interestModal && (
                 <MyCourseFindInterestModal
-                  setItem={setItem}
+                  interestModal={interestModal}
                   setInterestModal={setInterestModal}
+                  state={state}
                   setState={setState}
+                  setPlaceName={setPlaceName} // setPlaceName 전달
+                  setPlaceId={setPlaceId} // setPlaceId 전달
                 />
               )}
 
@@ -94,9 +104,12 @@ const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
               />
               {recommendModal && (
                 <MyCourseFindRecommendModal
-                  setItem={setItem}
+                  recommendModal={recommendModal}
                   setRecommendModal={setRecommendModal}
+                  state={state}
                   setState={setState}
+                  setPlaceName={setPlaceName} // setPlaceName 전달
+                  setPlaceId={setPlaceId} // setPlaceId 전달
                 />
               )}
 
@@ -108,9 +121,12 @@ const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
               />
               {recentModal && (
                 <MyCourseFindRecentModal
-                  setItem={setItem}
-                  setRecentModal={setRecentModal}
-                  setState={setState}
+                recentModal={recentModal}
+                setRecentModal={setRecentModal}
+                state={state}
+                setState={setState}
+                setPlaceName={setPlaceName} // setPlaceName 전달
+                setPlaceId={setPlaceId} // setPlaceId 전달
                 />
               )}
             </div>

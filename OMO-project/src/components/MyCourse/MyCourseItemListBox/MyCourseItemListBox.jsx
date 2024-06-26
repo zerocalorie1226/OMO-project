@@ -10,7 +10,7 @@ export const MyCourseItemListBox = ({ state, setState, el, onClick}) => {
       className={styles["mycourse-list-box-inner-container"]}
       onClick={() => {
         setState(!state);
-        onClick(el.place_name);
+        onClick(el.place_name, el.id);
       }}
     >
       <span className={styles["mycourse-list-box-title"]}>{el.place_name}</span>
