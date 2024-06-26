@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
 import styles from "./MyCourseBoard.module.css";
 import {communityPageFilter} from "./../../../const/communityPageFilter";
-import {communityMyCourse} from "../../../const/communityMyCourse";
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
 import Filter from "../../../components/Filter/Filter";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
@@ -14,12 +14,37 @@ import WritingButtonImg from "../../../assets/writing-button.png";
 
 const MyCourseBoard = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [communityMyCourse, setCommunityMyCourse] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const filteredData = communityMyCourse.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://api.oneulmohae.co.kr/mycourse/mbti/0?page=1&size=10&sorting=createdAt", {
+          headers: {
+            Authorization: localStorage.getItem("accessToken"),
+          },
+        });
+        setCommunityMyCourse(response.data.data);
+        console.log(response.data.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("데이터를 가져오는 중 오류가 발생했습니다.", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+  const filteredData = communityMyCourse.filter((item) => item.courseName.toLowerCase().includes(searchTerm.toLowerCase()));
 
   const onSearch = (term) => {
     setSearchTerm(term);
   };
+
+  if (isLoading) {
+    return <div className={styles["loading"]}>로딩중입니다...</div>;
+  }
 
   return (
     <>
@@ -37,7 +62,6 @@ const MyCourseBoard = () => {
       </div>
 
       {/* 리스트 */}
-
       {filteredData && filteredData.length > 0 ? (
         <section className={styles["community-mycourse-container"]}>
           {/* MBTI pick */}
@@ -51,7 +75,7 @@ const MyCourseBoard = () => {
           </div>
           <div className={styles["community-mycourse-list-box"]}>
             {filteredData.map((el) => {
-              return <CommunityMyCourseList key={el.id} {...el}  />;
+              return <CommunityMyCourseList key={el.courseId} {...el} />;
             })}
           </div>
         </section>

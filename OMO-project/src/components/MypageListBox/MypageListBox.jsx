@@ -29,7 +29,7 @@ export const MypageListBox = (props) => {
         </div>
 
         <span className={styles["mypage-list-box-address-brief"]}>{props.address_name}</span>
-        <span className={styles["mypage-list-box-phone"]}> {props.phone}</span>
+        <span className={`${styles["mypage-list-box-phone"]} ${!props.phone ? styles["not_provided"] : ""}`}>{props.phone ? props.phone : "전화번호 미제공"}</span>
         <img className={styles["mypage-list-box-img1"]} src={props.src1} />
         <img className={styles["mypage-list-box-img2"]} src={props.src2} />
         <img className={styles["mypage-list-box-img3"]} src={props.src3} />
