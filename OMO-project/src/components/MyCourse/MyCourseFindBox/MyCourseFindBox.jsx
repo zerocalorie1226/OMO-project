@@ -10,14 +10,14 @@ import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRece
 import MyCourseFindRecommendModal from "../MyCourseFindRecommendModal/MyCourseFindRecommendModal";
 import axios from "axios";
 
-const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
+const MyCourseFindBox = ({time, setTime, setContent, idx}) => {
   const [interestModal, setInterestModal] = useState(false);
   const [recentModal, setRecentModal] = useState(false);
   const [recommendModal, setRecommendModal] = useState(false);
   const [isFindBoxVisible, setFindBoxVisible] = useState(true);
-  const [placeName, setPlaceName] = useState(null); // place_name 상태 관리
-  const [placeId, setPlaceId] = useState(null); // id 상태 관리
-  const [findItem, setFindItem] = useState(null); // findItem 초기값을 null로 설정
+  const [placeName, setPlaceName] = useState(null);
+  const [placeId, setPlaceId] = useState(null);
+  const [findItem, setFindItem] = useState(null);
   const [state, setState] = useState(false);
 
   const handleDeleteClick = () => {
@@ -33,13 +33,13 @@ const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
           const response = await axios.get(`https://api.oneulmohae.co.kr/place/${placeName}`, {
             headers: {
               Authorization: accessToken,
-              placeId: placeId, // placeId를 headers에 포함
+              placeId: placeId,
             },
           });
-          console.log("전체데이터: ", response.data);
+
           if (response.data) {
             const foundItem = response.data;
-            console.log("foundItem: ", foundItem);
+
             setFindItem(foundItem);
           } else {
             setFindItem(null);
@@ -65,8 +65,6 @@ const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
       return newContent;
     });
   };
-
-  console.log("콘텐트: ", content);
 
   return (
     <>
@@ -121,12 +119,12 @@ const MyCourseFindBox = ({time, setTime, content, setContent, idx}) => {
               />
               {recentModal && (
                 <MyCourseFindRecentModal
-                recentModal={recentModal}
-                setRecentModal={setRecentModal}
-                state={state}
-                setState={setState}
-                setPlaceName={setPlaceName} // setPlaceName 전달
-                setPlaceId={setPlaceId} // setPlaceId 전달
+                  recentModal={recentModal}
+                  setRecentModal={setRecentModal}
+                  state={state}
+                  setState={setState}
+                  setPlaceName={setPlaceName} // setPlaceName 전달
+                  setPlaceId={setPlaceId} // setPlaceId 전달
                 />
               )}
             </div>

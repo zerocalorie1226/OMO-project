@@ -24,8 +24,8 @@ const MyCourseFindInterestModal = ({interestModal, setInterestModal, state, setS
   }, []);
 
   const handleClickItem = (place_name, id) => {
-    setPlaceName(place_name); 
-    setPlaceId(id); 
+    setPlaceName(place_name);
+    setPlaceId(id);
   };
   return (
     <>
