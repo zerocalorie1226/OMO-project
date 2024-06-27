@@ -8,7 +8,6 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import styles from "./InquiryBoardFrequent.module.css";
 
 const InquiryBoardFrequent = () => {
-
   const [searchTerm, setSearchTerm] = useState("");
   const [frequents, setFrequents] = useState([]);
 
@@ -25,38 +24,34 @@ const InquiryBoardFrequent = () => {
     fetchData();
   }, []); 
 
-
   const filteredData = frequents.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
   const onSearch = (term) => {
     setSearchTerm(term);
   };
 
-
-
-
-  return(
-  <div>
-    <CommunityCategory />
-    <div className={styles["inquiry-board-filter-search-container"]}>
-      <CommunityInquiryFilter />
-      <ListSearch  searchTerm={searchTerm} onSearch={onSearch} />
-    </div>
-    <hr className={styles["inquiry-board-hr"]} />
-    {filteredData && filteredData.length > 0 ? (
+  return (
     <div>
-    {filteredData.map((el) => {
-      return <CommunityInquiryBox key={el.id} {...el} />;
-    })}
-    </div>
+      <CommunityCategory />
+      <div className={styles["inquiry-board-filter-search-container"]}>
+        <CommunityInquiryFilter />
+        <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
+      </div>
+      <hr className={styles["inquiry-board-hr"]} />
+      {filteredData && filteredData.length > 0 ? (
+        <div>
+          {filteredData.map((el) => {
+            return <CommunityInquiryBox key={el.id} {...el} />;
+          })}
+        </div>
       ) : (
         <div className={styles["list-no-search-result-container"]}>
           <span className={styles["list-no-search-result"]}>검색 결과가 없습니다.</span>
         </div>
       )}
-    <ScrollToTop />
-  </div>
-);
-      };
+      <ScrollToTop />
+    </div>
+  );
+};
 
 export default InquiryBoardFrequent;
