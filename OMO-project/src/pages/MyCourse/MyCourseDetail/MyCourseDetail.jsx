@@ -6,6 +6,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
+import { Loading } from "../../../components/Loading/Loading";
 
 const MyCourseDetail = () => {
   const {id} = useParams();
@@ -38,7 +39,7 @@ const MyCourseDetail = () => {
   }, [id]);
 
   if (loading) {
-    return <div className={styles["loading"]}>로딩 중입니다...</div>;
+    return <Loading />;
   }
 
   if (error) {
