@@ -7,6 +7,7 @@ import axios from "axios";
 import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import { Loading } from "../../../components/Loading/Loading";
+import Like from "../../../assets/community/my-course-board/empty-thumb.png";
 
 const MyCourseDetail = () => {
   const {id} = useParams();
@@ -52,7 +53,7 @@ const MyCourseDetail = () => {
         <span>{detailData.writerName}의 {detailData.courseName}</span>
       </div>
       <div className={styles["mycourse-detail-created-date-container"]}>
-        <span>{detailData.likeCount}</span>
+        {/* <img src={Like} alt="좋아요 아이콘" /> <span className={styles["community-mycourse-list-like-number"]}> {detailData.likeCount}</span> */}
         <span>작성 일자: {getStringDate(detailData.createdAt)}</span>
       </div>
       <div className={styles["mycourse-detail-course-container"]}>

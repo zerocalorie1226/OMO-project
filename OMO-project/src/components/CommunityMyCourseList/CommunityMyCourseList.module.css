@@ -15,23 +15,33 @@
 }
 
 .community-mycourse-list-title {
+  display: block;
   font-size: 28px;
   margin-left: 30px;
+  margin-right: 15px;
+  display: flex;
+  /* gap: 20px; */
+}
+
+.community-mycourse-list-course-name{
+  margin-right: 35px;
+}
+
+.community-mycourse-list-img{
+  width: 26px;
+  height: 26px;
+  margin-right: 10px;
 }
 
 .community-mycourse-list-like {
   display: flex;
   font-size: 24px;
   gap: 5px;
-  position: absolute;
-  left: 360px;
+  /* position: absolute; */
+  /* left: 360px; */
 }
 
-.community-mycourse-list-like-number {
-  left: 35px;
-  top: 2px;
-  position: absolute;
-}
+
 
 .community-mycourse-list-nick {
   color: var(--gray-500);

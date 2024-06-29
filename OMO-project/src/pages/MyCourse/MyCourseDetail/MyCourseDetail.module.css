@@ -25,7 +25,7 @@
   display: flex;
   height: 30px;
   color: var(--gray-500);
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 /* 코스 상자 */
