@@ -15,7 +15,7 @@ const MyCourseDetail = () => {
   const [error, setError] = useState(null);
 
   const getStringDate = (date) => {
-    const options = {year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: false};
+    const options = {year: "numeric", month: "2-digit", day: "2-digit"};
     return new Intl.DateTimeFormat("ko-KR", options).format(new Date(date));
   };
 
@@ -50,6 +50,9 @@ const MyCourseDetail = () => {
     <div className={styles["mycourse-detail-total-container"]}>
       <div className={styles["mycourse-detail-title-container"]}>
         <span>{detailData.courseName}</span>
+      </div>
+      <div className={styles["mycourse-detail-created-date-container"]}>
+        <span>작성 일자: {getStringDate(detailData.createdAt)}</span>
       </div>
       <div className={styles["mycourse-detail-course-container"]}>
         <div className={styles["mycourse-detail-course-item-container"]}>
