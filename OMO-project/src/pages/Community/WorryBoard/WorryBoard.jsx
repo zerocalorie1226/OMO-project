@@ -7,6 +7,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
+import {Loading} from "../../../components/Loading/Loading";
 
 const WorryBoard = () => {
   const [posts, setPosts] = useState([]);
@@ -14,6 +15,7 @@ const WorryBoard = () => {
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const category = "Trouble";
 
@@ -27,6 +29,7 @@ const WorryBoard = () => {
       });
       setPosts(response.data.data);
       setFilteredPosts(response.data.data);
+      setIsLoading(false);
     } catch (error) {
       console.error("고민게시판을 불러오는데 실패였습니다.", error);
     }
@@ -71,6 +74,10 @@ const WorryBoard = () => {
       setFilteredPosts(filtered);
     }
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>

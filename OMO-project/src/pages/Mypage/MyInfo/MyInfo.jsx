@@ -5,10 +5,12 @@ import MyInfoIcon from "../../../assets/my-page/my-info/my-info.png";
 import DefaultProfileImage from "../../../assets/detail/defaultDetailIcon.png";
 import {useEffect, useState} from "react";
 import {mbtiReverseMapping} from "../../../const/mbtiReverseMapping";
+import { Loading } from "../../../components/Loading/Loading";
 
 const MyInfo = () => {
   const [myInfoData, setMyInfoData] = useState(null);
   const [image, setImage] = useState(DefaultProfileImage);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +24,7 @@ const MyInfo = () => {
           },
         });
         setMyInfoData(response.data);
+        setIsLoading(false);
 
         if (response.data.profileImageUrl) {
           const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(response.data.profileImageUrl)}`;
@@ -52,6 +55,10 @@ const MyInfo = () => {
   const getMbtiString = (mbtiValue) => {
     return mbtiReverseMapping[mbtiValue] || "Unknown MBTI";
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>

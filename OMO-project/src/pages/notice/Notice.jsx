@@ -5,15 +5,18 @@ import styles from "./Notice.module.css";
 import { noticeFilter } from './../../const/noticeFilter';
 import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop";
 import NoticeItems from "./../../components/NoticeItems/NoticeItems";
+import { Loading } from "../../components/Loading/Loading";
 
 const Notice = () => {
   const [notices, setNotices] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`https://api.oneulmohae.co.kr/notice?page=1&size=10&type=all`);
-        setNotices(response.data.data); 
+        setNotices(response.data.data);
+        setIsLoading(false); 
       } catch (error) {
         console.error("공지사항을 불러오는데 실패하였습니다.", error);
       }
@@ -21,6 +24,10 @@ const Notice = () => {
 
     fetchData();
   }, []); 
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className={styles["notice-container"]}>

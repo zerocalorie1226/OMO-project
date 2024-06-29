@@ -5,9 +5,11 @@ import {MypageListBox} from "../../../components/MypageListBox/MypageListBox";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import InterestIcon from "../../../assets/my-page/my-info/empty-heart.png";
 import {useEffect, useState} from "react";
+import {Loading} from "../../../components/Loading/Loading";
 
 const Interest = () => {
   const [interestPosts, setInterestPosts] = useState(null); // 초기값을 null로 설정
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
     try {
@@ -17,6 +19,7 @@ const Interest = () => {
         },
       });
       setInterestPosts(response.data);
+      setIsLoading(false);
     } catch (error) {
       setInterestPosts([]); // 오류 발생 시 빈 배열로 초기화
     }
@@ -25,6 +28,10 @@ const Interest = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>

@@ -5,6 +5,7 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
 import MyCourseList from "../../../components/MyCourse/MyCourseList/MyCourseList";
 import styles from "./MyCourseMain.module.css";
+import {Loading} from "../../../components/Loading/Loading";
 
 const MyCourseMain = () => {
   const [myCourseList, setMyCourseList] = useState([]);
@@ -14,7 +15,7 @@ const MyCourseMain = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://api.oneulmohae.co.kr/mycourse/mbti/0?page=1&size=10&sorting=createdAt", {
+        const response = await axios.get("https://api.oneulmohae.co.kr/mycourse/myCourse", {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
           },
@@ -32,7 +33,7 @@ const MyCourseMain = () => {
   }, []);
 
   if (loading) {
-    return <div>로딩 중...</div>;
+    return <Loading />;
   }
 
   if (error) {
