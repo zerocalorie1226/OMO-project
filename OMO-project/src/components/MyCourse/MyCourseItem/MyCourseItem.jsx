@@ -1,7 +1,7 @@
 import styles from "./MyCourseItem.module.css";
 import {useNavigate} from "react-router-dom";
 
-const MyCourseItem = ({courseId, courseName, createdAt}) => {
+const MyCourseItem = ({writerName, courseId, courseName, createdAt}) => {
   const navigate = useNavigate();
 
   const goDetail = () => {
@@ -17,7 +17,7 @@ const MyCourseItem = ({courseId, courseName, createdAt}) => {
 
   return (
     <div className={styles["mycourse-item-container"]} onClick={goDetail}>
-      <div className={styles["mycourse-item-title"]}>{courseName}</div>
+      <div className={styles["mycourse-item-title"]}>{writerName}의 {courseName}</div>
       <div className={styles["mycourse-item-date"]}>{formatDate(createdAt)}</div>
     </div>
   );

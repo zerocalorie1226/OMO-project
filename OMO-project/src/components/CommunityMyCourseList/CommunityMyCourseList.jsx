@@ -22,7 +22,7 @@ const CommunityMyCourseList = (props) => {
         navigate(`/MyCourseDetail/${props.courseId}`);
       }}
     >
-      <span className={styles["community-mycourse-list-title"]}>{props.courseName}</span>
+      <span className={styles["community-mycourse-list-title"]}>{props.writerName}의 {props.courseName}</span>
       <div className={styles["community-mycourse-list-like"]}>
         <img src={Like} alt="좋아요 아이콘" /> <span className={styles["community-mycourse-list-like-number"]}> {props.likeCount}</span>
       </div>

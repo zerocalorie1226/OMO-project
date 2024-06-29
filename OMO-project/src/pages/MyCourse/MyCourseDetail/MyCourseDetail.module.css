@@ -23,9 +23,9 @@
   font-size: 20px;
   margin: 0 0 10px auto;
   display: flex;
-  justify-content: flex-end;
   height: 30px;
   color: var(--gray-500);
+  justify-content: space-between;
 }
 
 /* 코스 상자 */

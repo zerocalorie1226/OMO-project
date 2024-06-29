@@ -49,9 +49,10 @@ const MyCourseDetail = () => {
   return (
     <div className={styles["mycourse-detail-total-container"]}>
       <div className={styles["mycourse-detail-title-container"]}>
-        <span>{detailData.courseName}</span>
+        <span>{detailData.writerName}의 {detailData.courseName}</span>
       </div>
       <div className={styles["mycourse-detail-created-date-container"]}>
+        <span>{detailData.likeCount}</span>
         <span>작성 일자: {getStringDate(detailData.createdAt)}</span>
       </div>
       <div className={styles["mycourse-detail-course-container"]}>
