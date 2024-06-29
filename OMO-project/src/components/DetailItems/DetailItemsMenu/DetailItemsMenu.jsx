@@ -69,7 +69,7 @@ export const DetailItemsMenu = (props) => {
     }
   }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
 
-  console.log(props.DetailItemsMenuData)
+  console.log(mbtiData)
   // handleClickJjim 함수 (하트 버튼 (관심) - PUT+GET 요청, 이미지 변경, 카운트 업데이트)
   const handleClickJjim = async () => {
     try {
