@@ -21,7 +21,7 @@ const MyCourseBoard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://api.oneulmohae.co.kr/mycourse/mbti/2?page=1&size=10&sorting=createdAt", {
+        const response = await axios.get("https://api.oneulmohae.co.kr/mycourse/mbti/17?page=1&size=10&sorting=createdAt", {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
           },
@@ -36,7 +36,10 @@ const MyCourseBoard = () => {
 
     fetchData();
   }, []);
-  const filteredData = communityMyCourse.filter((item) => item.courseName.toLowerCase().includes(searchTerm.toLowerCase()));
+
+  const filteredData = communityMyCourse.filter((item) => 
+    item.courseName && item.courseName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const onSearch = (term) => {
     setSearchTerm(term);
