@@ -18,6 +18,7 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
       mine: item.mine,
       recommend: item.recommend,
       address_name: item.address_name,
+      road_address_name: item.road_address_name,
       phone: item.phone,
       src1: item.src1,
       src2: item.src2,

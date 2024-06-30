@@ -19,14 +19,14 @@
 }
 
 /* input+img */
-.mycourse-editor-title-container {
+.mycourse-editor-course-name-container {
   position: relative;
   margin: 50px auto 100px auto;
   text-align: center;
 }
 
 /*  input */
-.mycourse-editor-input-title {
+.mycourse-editor-input-course-name {
   width: 400px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -39,7 +39,7 @@
   text-align: center;
 }
 
-.mycourse-editor-input-title::placeholder {
+.mycourse-editor-input-course-name::placeholder {
   padding-left:25px;
   text-align: left;
 }

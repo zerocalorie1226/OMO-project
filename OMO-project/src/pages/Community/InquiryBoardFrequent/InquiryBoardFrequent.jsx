@@ -6,16 +6,19 @@ import CommunityInquiryFilter from "../../../components/CommunityInquiryFilter/C
 import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import styles from "./InquiryBoardFrequent.module.css";
+import { Loading } from "../../../components/Loading/Loading";
 
 const InquiryBoardFrequent = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [frequents, setFrequents] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`https://api.oneulmohae.co.kr/board/Qna/FAQ?page=1&size=10&sorting=createdAt`);
         setFrequents(response.data.data);
+        setIsLoading(false);
       } catch (error) {
         console.error("자주 묻는 질문을 불러오는데 실패하였습니다", error);
       }
@@ -29,6 +32,10 @@ const InquiryBoardFrequent = () => {
   const onSearch = (term) => {
     setSearchTerm(term);
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>

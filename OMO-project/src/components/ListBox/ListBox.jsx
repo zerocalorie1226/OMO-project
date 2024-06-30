@@ -3,7 +3,7 @@ import axios from "axios";
 import styles from "./ListBox.module.css";
 import Like from "../../assets/detail/purple-thumb.png";
 import Jjim from "../../assets/detail/red-heart.png";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const ListBox = forwardRef((props, ref) => {
   const navigate = useNavigate();
@@ -48,7 +48,10 @@ const ListBox = forwardRef((props, ref) => {
             id: props.id,
             place_name: props.place_name,
             address_name: props.address_name,
-            phone: props.phone
+            road_address_name: props.road_address_name,
+            phone: props.phone,
+            mine: props.mine,
+            recommend: props.recommend,
           });
         }}
         className={styles["list-box-container"]}
@@ -58,19 +61,11 @@ const ListBox = forwardRef((props, ref) => {
 
           <div className={styles["list-box-like-jjim-container"]}>
             <div className={styles["list-box-jjim"]}>
-              <img
-                src={Jjim}
-                alt="찜 아이콘"
-                style={{ position: "absolute", top: "0px", width: "23px", height: "23px" }}
-              />
+              <img src={Jjim} alt="찜 아이콘" style={{position: "absolute", top: "0px", width: "23px", height: "23px"}} />
               <span className={styles["list-box-jjim-number"]}> {props.mine}</span>
             </div>
             <div className={styles["list-box-like"]}>
-              <img
-                src={Like}
-                alt="좋아요 아이콘"
-                style={{ position: "absolute", top: "-1px", width: "24px", height: "24px" }}
-              />
+              <img src={Like} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px", width: "24px", height: "24px"}} />
               <span className={styles["list-box-like-number"]}> {props.recommend}</span>
             </div>
           </div>
@@ -115,4 +110,4 @@ const ListBox = forwardRef((props, ref) => {
 // 디스플레이 이름 설정
 ListBox.displayName = "ListBox";
 
-export { ListBox };
+export {ListBox};

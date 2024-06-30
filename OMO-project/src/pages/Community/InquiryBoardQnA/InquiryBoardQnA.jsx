@@ -8,6 +8,7 @@ import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteQnABoard from "../../../components/WritePost/WriteQnABoard/WriteQnABoard";
+import { Loading } from "../../../components/Loading/Loading";
 
 // InquiryBoardQnA
 
@@ -17,6 +18,7 @@ const InquiryBoardQnA = () => {
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   // 게시글 불러오기
   const fetchData = async () => {
@@ -24,6 +26,7 @@ const InquiryBoardQnA = () => {
       const response = await axios.get("https://api.oneulmohae.co.kr/board/Qna?page=1&size=10&sorting=createdAt");
       setPosts(response.data.data);
       setFilteredPosts(response.data.data);
+      setIsLoading(false);
     } catch (error) {
       console.error("QnA게시판 게시글을 불러오는데 실패하였습니다.", error);
     }
@@ -67,6 +70,10 @@ const InquiryBoardQnA = () => {
       setFilteredPosts(filtered);
     }
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>

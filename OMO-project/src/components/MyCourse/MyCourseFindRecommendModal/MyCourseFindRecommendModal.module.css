@@ -10,7 +10,7 @@
   z-index: 9999;
 }
 
-.mycourse-find-interest-modal-container {
+.mycourse-find-recommend-modal-container {
   width: 700px;
   height: 750px;
   background-color: var(--white);
@@ -27,7 +27,7 @@
   padding: 35px 0 35px 0;
 }
 
-.mycourse-find-interest-modal-title {
+.mycourse-find-recommend-modal-title {
   font-size: 28px;
   display: block;
   display: flex;
@@ -36,7 +36,7 @@
   font-weight: 500;
 }
 
-.mycourse-find-interest-close-btn {
+.mycourse-find-recommend-close-btn {
   width: 17px;
   height: 17px;
   position: absolute;
@@ -46,7 +46,7 @@
   background-color: transparent;
 }
 
-.mycourse-find-interest-close-btn-img {
+.mycourse-find-recommend-close-btn-img {
   width: 17px;
   height: 17px;
   position: absolute;
@@ -54,13 +54,13 @@
   left: 0px;
 }
 
-.mycourse-find-interest-modal-list-box-container {
+.mycourse-find-recommend-modal-list-box-container {
   height: 100%;
   overflow: hidden;
 }
 
 
-.no-jjim-list{
+.no-recommend-list{
   display: flex;
   justify-content: center;
   width: 730px;

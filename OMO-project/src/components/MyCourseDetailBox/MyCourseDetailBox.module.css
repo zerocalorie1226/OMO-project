@@ -74,17 +74,17 @@
   margin-left: 30px;
 }
 
-/* 영업중 */
-.mycourse-data-box-box-runtime {
+/* 전화번호 */
+.mycourse-data-box-box-phone {
   font-size: 20px;
   position: absolute;
   top: 145px;
   left: 26px;
-  color: var(--blue-200);
 }
 
-/* 영업준비중 */
-.mycourse-data-box-box-runtime.ready {
+
+/* 전화번호 미제공*/
+.mycourse-data-box-box-phone.not_provided {
   font-size: 20px;
   position: absolute;
   top: 145px;
@@ -131,4 +131,9 @@
   width: 135px;
   height: 135px;
   border-radius: 5px;
+}
+
+.mycourse-data-box-down-arrow-img {
+  margin: 60px auto;
+  display: block;
 }

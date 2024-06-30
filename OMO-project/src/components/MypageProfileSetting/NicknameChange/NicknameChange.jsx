@@ -1,5 +1,5 @@
 import styles from "./NicknameChange.module.css";
-import { useState } from "react";
+import {useState} from "react";
 import axios from "axios";
 
 const NicknameChange = () => {
@@ -15,15 +15,13 @@ const NicknameChange = () => {
     try {
       const response = await axios.post(
         "https://api.oneulmohae.co.kr/checkNickname",
-        { nickname: nickname },
+        {nickname: nickname},
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-      console.log("nickname :", nickname);
-      console.log("POST response: ", response);
 
       if (response.data.status === 200) {
         alert("사용 가능한 닉네임입니다.");
@@ -54,7 +52,7 @@ const NicknameChange = () => {
         const memberId = localStorage.getItem("memberId");
         const response = await axios.patch(
           `https://api.oneulmohae.co.kr/myPage/nickname/${memberId}`,
-          { nickname },
+          {nickname},
           {
             headers: {
               Authorization: localStorage.getItem("accessToken"),
@@ -86,23 +84,17 @@ const NicknameChange = () => {
         placeholder="닉네임을 입력해주세요."
         className={styles["profile-setting-main-nickname-change-input"]}
         value={nickname}
+        minLength="2"
+        maxLength="8"
         onChange={(e) => {
           setNickname(e.target.value);
           setIsNicknameChecked(false);
         }}
       />
-      <button
-        type="button"
-        className={styles["profile-setting-main-nickname-change-check-button"]}
-        onClick={checkNickname}
-      >
+      <button type="button" className={styles["profile-setting-main-nickname-change-check-button"]} onClick={checkNickname}>
         중복 확인
       </button>
-      <button
-        type="button"
-        className={styles["profile-setting-main-nickname-change-button"]}
-        onClick={ChangeNickName}
-      >
+      <button type="button" className={styles["profile-setting-main-nickname-change-button"]} onClick={ChangeNickName}>
         변경하기
       </button>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styles from "./MypageListBox.module.css";
 import Like from "../../assets/detail/purple-thumb.png";
@@ -6,7 +6,7 @@ import EmptyLike from "../../assets/detail/empty-thumb.png";
 import Jjim from "../../assets/detail/red-heart.png";
 import EmptyJjim from "../../assets/detail/empty-heart.png";
 import defaultDetailIcon from "../../assets/detail/defaultDetailIcon.png";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 export const MypageListBox = (props) => {
   const navigate = useNavigate();
@@ -20,11 +20,11 @@ export const MypageListBox = (props) => {
         const fetchedPosts = response.data.data;
 
         // 이미지 이름 배열 생성
-        const imageNames = fetchedPosts.map(post => post.imageName).filter(imageName => imageName !== null);
+        const imageNames = fetchedPosts.map((post) => post.imageName).filter((imageName) => imageName !== null);
 
         // 이미지 파일을 가져오는 API 호출
         const fetchImagePromises = imageNames.map(async (imageName) => {
-          const imageResponse = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, { responseType: 'blob' });
+          const imageResponse = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, {responseType: "blob"});
           return URL.createObjectURL(imageResponse.data);
         });
 
@@ -53,18 +53,18 @@ export const MypageListBox = (props) => {
 
         <div className={styles["mypage-list-box-like-jjim-container"]}>
           <div className={styles["mypage-list-box-jjim"]}>
-            <img src={props.myMine ? Jjim : EmptyJjim} alt="찜 아이콘" /> 
+            <img src={props.myMine ? Jjim : EmptyJjim} alt="찜 아이콘" />
             <span className={styles["mypage-list-box-jjim-number"]}> {props.mine}</span>
           </div>
           <div className={styles["mypage-list-box-like"]}>
-            <img src={props.myRecommend ? Like : EmptyLike} alt="좋아요 아이콘" /> 
+            <img src={props.myRecommend ? Like : EmptyLike} alt="좋아요 아이콘" />
             <span className={styles["mypage-list-box-like-number"]}> {props.recommend}</span>
           </div>
         </div>
 
         <span className={styles["mypage-list-box-address-brief"]}>{props.address_name}</span>
-        <span className={styles["mypage-list-box-phone"]}> {props.phone}</span>
-        
+        <span className={`${styles["mypage-list-box-phone"]} ${!props.phone ? styles["not_provided"] : ""}`}>{props.phone ? props.phone : "전화번호 미제공"}</span>
+
         {firstImages.length === 1 ? (
           <>
             <img className={styles["mypage-list-box-img1"]} src={firstImages[0]} alt="list image 1" />
