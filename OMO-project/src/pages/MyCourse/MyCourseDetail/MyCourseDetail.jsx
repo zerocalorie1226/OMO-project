@@ -69,7 +69,7 @@ const MyCourseDetail = () => {
         </div>
       </div>
       <div className={styles["mycourse-detail-edit-share-button-container"]}>
-        <Share />
+        {/* <Share /> */}
       </div>
       <ScrollToTop />
     </div>
