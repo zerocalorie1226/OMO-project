@@ -1,4 +1,3 @@
-// ListBox.js
 import React, { useState, useEffect, forwardRef } from "react";
 import axios from "axios";
 import styles from "./ListBox.module.css";
@@ -72,7 +71,20 @@ const ListBox = forwardRef((props, ref) => {
           </div>
 
           <span className={styles["list-box-address-brief"]}>{props.address_name}</span>
-          {firstImages.length > 0 ? (
+          {firstImages.length === 1 ? (
+            <>
+              <img
+                className={styles["list-box-img1"]}
+                src={firstImages[0]}
+                alt="list image 1"
+              />
+              <img
+                className={styles["list-box-img2"]}
+                src={props.defaultListImg}
+                alt="default list image 2"
+              />
+            </>
+          ) : firstImages.length > 0 ? (
             <>
               {firstImages.map((image, index) => (
                 <img

@@ -26,7 +26,7 @@
 .mypage-list-box-like-jjim-container{
   display: flex;
   flex-direction: row;
-  margin-top: 40px;
+  margin-top: 45px;
   font-size: 16px;
   position: relative;
 }
@@ -78,7 +78,7 @@ position: absolute;
 .mypage-list-box-address-brief{
   font-size: 16px;
   position: absolute;
-  top: 92px;
+  top: 95px;
 
 }
 
@@ -100,32 +100,32 @@ position: absolute;
 
 
 /* 맨왼쪽 이미지 */
-.mypage-list-box-img1{
+/* .mypage-list-box-img1{
   position: absolute;
   width: 120px;
   height: 120px;
   right: 275px;
   top: 19px;
   border-radius: 5px;
-}
+} */
 
 /* 중간 이미지 */
-.mypage-list-box-img2{
+.mypage-list-box-img1{
   position: absolute;
   width: 120px;
   height: 120px;
-  right: 148px;
+  right: 200px;
   top: 19px;
   border-radius: 5px;
 
 }
 
 /* 맨 오른쪽 이미지 */
-.mypage-list-box-img3{
+.mypage-list-box-img2{
   position: absolute;
   width: 120px;
   height: 120px;
-  right: 20px;
+  right: 40px;
   top: 19px;
   border-radius: 5px;
 

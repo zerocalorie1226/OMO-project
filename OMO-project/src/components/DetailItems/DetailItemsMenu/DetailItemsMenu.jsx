@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import styles from "./DetailItemsMenu.module.css";
 import Jjim from "../../../assets/detail/empty-heart.png";
@@ -12,11 +12,11 @@ import ReviewIcon from "../../../assets/detail/review.png";
 import Submit from "../../../assets/submit.png";
 import SubmitHover from "../../../assets/submit-hover.png";
 import Magnifier from "../../../assets/detail/magnifier.png";
-import {Review} from "../Review/Review";
+import { Review } from "../Review/Review";
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import DefaultImg from "../../../assets/detail/detail-default-background.png";
 import defaultDetailIcon from "../../../assets/detail/defaultDetailIcon.png";
-import {Loading} from "../../Loading/Loading";
+import { Loading } from "../../Loading/Loading";
 import KakaoMap from "../../KaKaoMap/KaKaoMap";
 
 export const DetailItemsMenu = (props) => {
@@ -33,6 +33,8 @@ export const DetailItemsMenu = (props) => {
   const [imageSrcLike, setImageSrcLike] = useState(Like); // 따봉 이미지 토글
   const [isClikedLike, setIsClickedLike] = useState(false); // 따봉 버튼 클릭 토글
   const [countLike, setCountLike] = useState(0); // 따봉 카운트 값 관리
+
+  const [mbtiData, setMbtiData] = useState({ ratioI: 0, ratioS: 0, ratioT: 0, ratioP: 0 });
 
   useEffect(() => {
     if (props.DetailItemsMenuData) {
@@ -56,9 +58,18 @@ export const DetailItemsMenu = (props) => {
         setImageSrcLike(Like);
         setIsClickedLike(false);
       }
+
+      // MBTI 데이터 설정
+      setMbtiData({
+        ratioI: props.DetailItemsMenuData.ratioI,
+        ratioS: props.DetailItemsMenuData.ratioS,
+        ratioT: props.DetailItemsMenuData.ratioT,
+        ratioP: props.DetailItemsMenuData.ratioP,
+      });
     }
   }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
 
+  console.log(mbtiData)
   // handleClickJjim 함수 (하트 버튼 (관심) - PUT+GET 요청, 이미지 변경, 카운트 업데이트)
   const handleClickJjim = async () => {
     try {
@@ -268,21 +279,27 @@ const fetchImgs = async (imageNames) => {
       const fetchedImage = response.data;
       const fetchedImageURL = URL.createObjectURL(fetchedImage);
 
+      console.log(fetchedImageURL)
       return { imageName, fetchedImageURL };
     });
 
+
+    console.log(fetchImagePromises)
     const fetchedImages = await Promise.all(fetchImagePromises);
 
     // posts 상태 업데이트
     setPosts((prevPosts) =>
       prevPosts.map((post) => {
         const matchedImage = fetchedImages.find(image => image.imageName === post.imageName);
+        console.log(matchedImage)
         if (matchedImage) {
           return { ...post, fetchImgFile: matchedImage.fetchedImageURL };
         }
+        console.log(posts)
         return post;
       })
     );
+    console.log(posts)
   } catch (error) {
     console.error("이미지를 가져오는데 실패하였습니다:", error);
   }
@@ -326,6 +343,8 @@ useEffect(() => {
   const firstImage = findFirstReviewWithImage(posts);
 
   console.log(posts[0])
+
+  const calculateBarWidth = (ratio) => `${ratio * 100}%`;
 
   return (
     <>
@@ -386,15 +405,15 @@ useEffect(() => {
               <div className={styles["detail-mbti-graph-container"]}>
                 <div className={styles["detail-mbti-graph-inner-container"]}>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
-                    <span className={styles["detail-mbti-graph-alphabat"]}>E</span>
-                    <span className={styles["detail-mbti-graph-text"]}>외향</span>
-                  </div>
-                  <div className={styles["detail-mbti-graph-EI-bar"]}>
-                    <div className={styles["detail-mbti-graph-EI-bar-percent"]}></div>
-                  </div>
-                  <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>I</span>
                     <span className={styles["detail-mbti-graph-text"]}>내향</span>
+                  </div>
+                  <div className={styles["detail-mbti-graph-EI-bar"]}>
+                    <div className={styles["detail-mbti-graph-EI-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioI) }}></div>
+                  </div>
+                  <div className={styles["detail-mbti-graph-alphabat-box"]}>
+                    <span className={styles["detail-mbti-graph-alphabat"]}>E</span>
+                    <span className={styles["detail-mbti-graph-text"]}>외향</span>
                   </div>
                 </div>
 
@@ -404,7 +423,7 @@ useEffect(() => {
                     <span className={styles["detail-mbti-graph-text"]}>현실</span>
                   </div>
                   <div className={styles["detail-mbti-graph-SN-bar"]}>
-                    <div className={styles["detail-mbti-graph-SN-bar-percent"]}></div>
+                    <div className={styles["detail-mbti-graph-SN-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioS) }}></div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>N</span>
@@ -418,7 +437,7 @@ useEffect(() => {
                     <span className={styles["detail-mbti-graph-text"]}>사고</span>
                   </div>
                   <div className={styles["detail-mbti-graph-TF-bar"]}>
-                    <div className={styles["detail-mbti-graph-TF-bar-percent"]}></div>
+                    <div className={styles["detail-mbti-graph-TF-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioT) }}></div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>F</span>
@@ -432,7 +451,7 @@ useEffect(() => {
                     <span className={styles["detail-mbti-graph-text"]}>탐색</span>
                   </div>
                   <div className={styles["detail-mbti-graph-PJ-bar"]}>
-                    <div className={styles["detail-mbti-graph-PJ-bar-percent"]}></div>
+                    <div className={styles["detail-mbti-graph-PJ-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioP) }}></div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>J</span>
