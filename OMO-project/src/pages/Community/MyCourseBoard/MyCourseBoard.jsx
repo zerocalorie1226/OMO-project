@@ -21,7 +21,7 @@ const MyCourseBoard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://api.oneulmohae.co.kr/mycourse/mbti/17?page=1&size=10&sorting=createdAt", {
+        const response = await axios.get("https://api.oneulmohae.co.kr/mycourse/mbti?IorE=A&PorJ=B&page=1&size=10&sorting=createdAt", {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
           },
