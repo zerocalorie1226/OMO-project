@@ -65,7 +65,12 @@ export const CommunityPostItem = (props) => {
       if (response.status === 200 || response.status === 201) {
         // 댓글 작성 후 GET 통신으로 데이터 업데이트
         const getResponse = await axios.get(
-          `https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`
+          `https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`,
+          {
+            headers: {
+              Authorization: localStorage.getItem("accessToken"),
+            },
+          }
         );
 
         if (getResponse.status === 200) {

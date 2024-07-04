@@ -1,20 +1,20 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./FreeBoard.module.css";
-import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
+import { CommunityCategory } from "./../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
+import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
+import { CommunityFreePostList } from "../../../components/CommunityFreePostList/CommunityFreePostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteFreeBoard from "../../../components/WritePost/WriteFreeBoard/WriteFreeBoard";
 import {Loading} from "../../../components/Loading/Loading";
 
 const FreeBoard = () => {
   const [posts, setPosts] = useState([]);
-  const [filteredPosts, setFilteredPosts] = useState([]);
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const category = "Free";
@@ -22,12 +22,15 @@ const FreeBoard = () => {
   // 게시글 불러오기
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://api.oneulmohae.co.kr/board/Free?page=1&size=10&sorting=createdAt");
+      const response = await axios.get("https://api.oneulmohae.co.kr/board/Free?page=1&size=10&sorting=createdAt", {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+        },
+      });
       setPosts(response.data.data);
-      setFilteredPosts(response.data.data);
       setIsLoading(false);
     } catch (error) {
-      console.error("자유게시판 게시글을 불러오는데 실패하였습니다:", error);
+      console.error("고민게시판을 불러오는데 실패였습니다.", error);
     }
   };
 
@@ -35,12 +38,23 @@ const FreeBoard = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = posts.filter((post) =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredPosts(filtered);
+    } else {
+      setFilteredPosts(posts);
+    }
+  }, [posts, searchTerm]);
+
   // 게시글 작성
   const onCreate = async (title, content) => {
     const postData = {
       title,
       content,
-      type: "FREE",
+      type: "TROUBLE",
     };
 
     try {
@@ -53,25 +67,21 @@ const FreeBoard = () => {
       const newPost = response.data;
       setBoardId(newPost.boardId); // 새로 생성된 게시글의 ID를 boardId로 설정
       setPosts((prevPosts) => [newPost, ...prevPosts]);
-      setFilteredPosts((prevPosts) => [newPost, ...prevPosts]);
     } catch (error) {
+      console.error("Error creating post:", error);
       alert("게시글 작성 중 오류가 발생했습니다.");
     }
   };
 
-  // 검색어 변경
-  const onSearch = (term) => {
+  // 검색 기능
+  const handleSearch = (term) => {
     setSearchTerm(term);
-    if (term === "") {
-      setFilteredPosts(posts);
-    } else {
-      const filtered = posts.filter((post) => post.title.toLowerCase().includes(term.toLowerCase()));
-      setFilteredPosts(filtered);
-    }
   };
+
   if (isLoading) {
     return <Loading />;
   }
+
   return (
     <>
       {/* 카테고리 */}
@@ -79,7 +89,7 @@ const FreeBoard = () => {
 
       {/* 필터 + 검색창 */}
       <div className={styles["community-component-container"]}>
-        <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
+        <ListSearch onSearch={handleSearch} searchTerm={searchTerm} />
       </div>
 
       {/* 게시글 리스트 */}
