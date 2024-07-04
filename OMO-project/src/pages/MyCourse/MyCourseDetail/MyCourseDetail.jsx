@@ -50,7 +50,7 @@ const MyCourseDetail = () => {
     try {
       const response = await axios.put(
         `https://api.oneulmohae.co.kr/mycourse/like/${detailData.courseId}`,
-        {}, 
+        {},
         {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
@@ -90,15 +90,17 @@ const MyCourseDetail = () => {
   };
 
   // like 값을 사용하여 초기 상태 설정 (따봉 누른 것들 새로고침해도 유지하게끔)
-  // useEffect(() => {
-  //   if (detailData.myLiked) {
-  //     setImageSrcLike(LikeClicked);
-  //     setIsClickedLike(true);
-  //   } else {
-  //     setImageSrcLike(Like);
-  //     setIsClickedLike(false);
-  //   }
-  // }, [detailData.myLiked]);
+  useEffect(() => {
+    if (detailData) {
+      if (detailData.myLiked) {
+        setImageSrcLike(LikeClicked);
+        setIsClickedLike(true);
+      } else {
+        setImageSrcLike(Like);
+        setIsClickedLike(false);
+      }
+    }
+  }, [detailData]);
 
   if (loading) {
     return <Loading />;
