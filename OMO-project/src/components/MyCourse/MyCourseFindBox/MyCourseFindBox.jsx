@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./MyCourseFindBox.module.css";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import Delete from "../Button/Delete/Delete";
@@ -10,7 +10,7 @@ import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRece
 import MyCourseFindRecommendModal from "../MyCourseFindRecommendModal/MyCourseFindRecommendModal";
 import axios from "axios";
 
-const MyCourseFindBox = ({time, setTime, setContent, idx}) => {
+const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
   const [interestModal, setInterestModal] = useState(false);
   const [recentModal, setRecentModal] = useState(false);
   const [recommendModal, setRecommendModal] = useState(false);
@@ -23,6 +23,9 @@ const MyCourseFindBox = ({time, setTime, setContent, idx}) => {
   const handleDeleteClick = () => {
     setFindBoxVisible(false);
     alert("삭제되었습니다.");
+
+    setTime((prevTime) => prevTime.filter((_, index) => index !== idx));
+    setContent((prevContent) => prevContent.filter((_, index) => index !== idx));
   };
 
   useEffect(() => {
