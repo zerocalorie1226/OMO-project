@@ -1,23 +1,52 @@
 import styles from "./MyCourseAfter.module.css";
 import MyCourseFindBox from "../MyCourseFindBox/MyCourseFindBox";
 import MyCoursePlusBox from "../MyCoursePlusBox/MyCoursePlusBox";
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 
-const MyCourseAfter = ({time, setTime, content, setContent}) => {
-
+const MyCourseAfter = ({ time, setTime, content, setContent }) => {
   const getStringDate = (time) => {
-    return time.toISOString().slice(0, 16);
+    const localTime = new Date(time.getTime() - time.getTimezoneOffset() * 60000);
+    return localTime.toISOString().slice(0, 16);
   };
-  const [myCourseFindBoxes, setMyCourseFindBoxes] = useState([]);
 
   const addMyCourseFindBox = () => {
-    setMyCourseFindBoxes([...myCourseFindBoxes, <MyCourseFindBox time={time} setTime={setTime} content={content} setContent={setContent} key={myCourseFindBoxes.length} idx={time.length} />]);
-    setTime([...time,  getStringDate(new Date())])
+    const newTime = [...time, getStringDate(new Date())];
+    setTime(newTime);
+    setMyCourseFindBoxes((prev) => [
+      ...prev,
+      {
+        key: newTime.length - 1,
+        idx: newTime.length - 1,
+      },
+    ]);
   };
+
+  const [myCourseFindBoxes, setMyCourseFindBoxes] = useState([
+    {
+      key: 0,
+      idx: 0,
+    },
+  ]);
+
+  useEffect(() => {
+    // 초기 MyCourseFindBox 추가
+    if (myCourseFindBoxes.length === 0) {
+      addMyCourseFindBox();
+    }
+  }, []);
 
   return (
     <div className={styles["mycourse-after-total-container"]}>
-      {myCourseFindBoxes}
+      {myCourseFindBoxes.map((box) => (
+        <MyCourseFindBox
+          key={box.key}
+          time={time}
+          setTime={setTime}
+          content={content}
+          setContent={setContent}
+          idx={box.idx}
+        />
+      ))}
 
       <MyCoursePlusBox onPlusButtonClick={addMyCourseFindBox} />
     </div>

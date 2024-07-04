@@ -8,16 +8,14 @@ const MyCourseCalendar = ({time, setTime, idx}) => {
   };
 
   return (
-    <>
-      <input
-        className={styles["mycourse-time-container"]}
-        type="datetime-local"
-        id="meeting-time"
-        name="meeting-time"
-        value={time[idx]}
-        onChange={arrTime}
-      ></input>
-    </>
+    <input
+      className={styles["mycourse-time-container"]}
+      type="datetime-local"
+      id="meeting-time"
+      name="meeting-time"
+      value={time[idx]}
+      onChange={arrTime}
+    />
   );
 };
 
