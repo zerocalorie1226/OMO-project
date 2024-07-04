@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {useState, useRef, useEffect} from "react";
 import axios from "axios";
 import styles from "./DetailItemsMenu.module.css";
 import Jjim from "../../../assets/detail/empty-heart.png";
@@ -12,11 +12,11 @@ import ReviewIcon from "../../../assets/detail/review.png";
 import Submit from "../../../assets/submit.png";
 import SubmitHover from "../../../assets/submit-hover.png";
 import Magnifier from "../../../assets/detail/magnifier.png";
-import { Review } from "../Review/Review";
+import {Review} from "../Review/Review";
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import DefaultImg from "../../../assets/detail/detail-default-background.png";
 import defaultDetailIcon from "../../../assets/detail/defaultDetailIcon.png";
-import { Loading } from "../../Loading/Loading";
+import {Loading} from "../../Loading/Loading";
 import KakaoMap from "../../KaKaoMap/KaKaoMap";
 
 export const DetailItemsMenu = (props) => {
@@ -34,7 +34,7 @@ export const DetailItemsMenu = (props) => {
   const [isClikedLike, setIsClickedLike] = useState(false); // 따봉 버튼 클릭 토글
   const [countLike, setCountLike] = useState(0); // 따봉 카운트 값 관리
 
-  const [mbtiData, setMbtiData] = useState({ ratioI: 0, ratioS: 0, ratioT: 0, ratioP: 0 });
+  const [mbtiData, setMbtiData] = useState({ratioI: 0, ratioS: 0, ratioT: 0, ratioP: 0});
 
   useEffect(() => {
     if (props.DetailItemsMenuData) {
@@ -69,7 +69,6 @@ export const DetailItemsMenu = (props) => {
     }
   }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
 
-  console.log(mbtiData)
   // handleClickJjim 함수 (하트 버튼 (관심) - PUT+GET 요청, 이미지 변경, 카운트 업데이트)
   const handleClickJjim = async () => {
     try {
@@ -189,77 +188,69 @@ export const DetailItemsMenu = (props) => {
     };
     reader.readAsDataURL(e.target.files[0]);
   };
-  
+
   // 리뷰 데이터
-  const [reviewId, setReviewId] = useState('');
+  const [reviewId, setReviewId] = useState("");
 
- // 리뷰 작성
-const postReview = async (content, imageFile) => {
-  const formData = new FormData();
-  formData.append('placeId', props.placeId);
-  formData.append('content', content);
-  if (imageFile) {
-    formData.append('image', imageFile);
-  }
+  // 리뷰 작성
+  const postReview = async (content, imageFile) => {
+    const formData = new FormData();
+    formData.append("placeId", props.placeId);
+    formData.append("content", content);
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
 
-  try {
-    const response = await axios.post(
-      'https://api.oneulmohae.co.kr/review/write',
-      formData,
-      {
+    try {
+      const response = await axios.post("https://api.oneulmohae.co.kr/review/write", formData, {
         headers: {
           Authorization: localStorage.getItem("accessToken"),
-          'Content-Type': 'multipart/form-data'
-        }
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      const newPost = response.data;
+      setReviewId(newPost.reviewId); // 새로 생성된 리뷰의 ID를 reviewId로 설정
+
+      // 새로운 리뷰를 posts 상태에 추가
+      setPosts((prevPosts) => [newPost, ...prevPosts]);
+
+      // 새로운 이미지 이름을 getImgNames 상태에 추가
+      if (newPost.imageName) {
+        setGetImgNames((prevImgNames) => [newPost.imageName, ...prevImgNames]);
       }
-    );
 
-    const newPost = response.data;
-    setReviewId(newPost.reviewId); // 새로 생성된 리뷰의 ID를 reviewId로 설정
-    console.log("리뷰를 성공적으로 보냈습니다.");
-    console.log(reviewId);
-
-    // 새로운 리뷰를 posts 상태에 추가
-    setPosts((prevPosts) => [newPost, ...prevPosts]);
-
-    // 새로운 이미지 이름을 getImgNames 상태에 추가
-    if (newPost.imageName) {
-      setGetImgNames((prevImgNames) => [newPost.imageName, ...prevImgNames]);
+      setContent(""); // 댓글 초기화
+      setImage(DefaultImg); // 이미지 초기화
+      setFile(""); // 파일 초기화
+      fileInput.current.value = null; // 파일 인풋 초기화
+    } catch (error) {
+      console.error("리뷰 작성 중 오류가 발생했습니다:", error);
+      alert("리뷰 작성 중 오류가 발생했습니다.");
     }
+  };
 
-    setContent(""); // 댓글 초기화
-    setImage(DefaultImg); // 이미지 초기화
-    setFile(""); // 파일 초기화
-    fileInput.current.value = null; // 파일 인풋 초기화
-  } catch (error) {
-    console.error("리뷰 작성 중 오류가 발생했습니다:", error);
-    alert("리뷰 작성 중 오류가 발생했습니다.");
-  }
-};
-
-  const reviewPlaceId=props.placeId
+  const reviewPlaceId = props.placeId;
 
   //리뷰 불러오기
-const fetchData = async (reviewPlaceId) => {
-  try {
-    const response = await axios.get(`https://api.oneulmohae.co.kr/review/${reviewPlaceId}?page=1&size=10`);
+  const fetchData = async (reviewPlaceId) => {
+    try {
+      const response = await axios.get(`https://api.oneulmohae.co.kr/review/${reviewPlaceId}?page=1&size=10`);
 
-    console.log(response.data.data);
-    const fetchedPosts = response.data.data;
-    setPosts(fetchedPosts); // 불러온 리뷰들을 상태에 저장
+      const fetchedPosts = response.data.data;
+      setPosts(fetchedPosts); // 불러온 리뷰들을 상태에 저장
 
-    // imageName이 null이 아닌 값들만 추출하여 설정
-    const imageNames = fetchedPosts.map(post => post.imageName).filter(imageName => imageName !== null);
-    if (imageNames.length > 0) {
-      setGetImgNames(imageNames); // imageNames 배열 설정
-    } else {
-      setGetImgNames([]); // imageNames가 없을 경우 빈 배열로 설정
+      // imageName이 null이 아닌 값들만 추출하여 설정
+      const imageNames = fetchedPosts.map((post) => post.imageName).filter((imageName) => imageName !== null);
+      if (imageNames.length > 0) {
+        setGetImgNames(imageNames); // imageNames 배열 설정
+      } else {
+        setGetImgNames([]); // imageNames가 없을 경우 빈 배열로 설정
+      }
+    } catch (error) {
+      console.error("리뷰를 가져오는데 실패하였습니다:", error);
     }
-    console.log("imageNames:", imageNames);
-  } catch (error) {
-    console.error("리뷰를 가져오는데 실패하였습니다:", error);
-  }
-};
+  };
   useEffect(() => {
     if (reviewPlaceId) {
       fetchData(reviewPlaceId);
@@ -269,49 +260,39 @@ const fetchData = async (reviewPlaceId) => {
   const [getImgNames, setGetImgNames] = useState([]);
   const [fetchImgFile, setFetchImgFile] = useState([]);
 
-  console.log(getImgNames)
+  // 리뷰 이미지 불러오기
+  const fetchImgs = async (imageNames) => {
+    try {
+      const fetchImagePromises = imageNames.map(async (imageName) => {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, {responseType: "blob"});
+        const fetchedImage = response.data;
+        const fetchedImageURL = URL.createObjectURL(fetchedImage);
 
- // 리뷰 이미지 불러오기
-const fetchImgs = async (imageNames) => {
-  try {
-    const fetchImagePromises = imageNames.map(async (imageName) => {
-      const response = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, { responseType: 'blob' });
-      const fetchedImage = response.data;
-      const fetchedImageURL = URL.createObjectURL(fetchedImage);
+        return {imageName, fetchedImageURL};
+      });
 
-      console.log(fetchedImageURL)
-      return { imageName, fetchedImageURL };
-    });
+      const fetchedImages = await Promise.all(fetchImagePromises);
 
+      // posts 상태 업데이트
+      setPosts((prevPosts) =>
+        prevPosts.map((post) => {
+          const matchedImage = fetchedImages.find((image) => image.imageName === post.imageName);
+          if (matchedImage) {
+            return {...post, fetchImgFile: matchedImage.fetchedImageURL};
+          }
+          return post;
+        })
+      );
+    } catch (error) {
+      console.error("이미지를 가져오는데 실패하였습니다:", error);
+    }
+  };
 
-    console.log(fetchImagePromises)
-    const fetchedImages = await Promise.all(fetchImagePromises);
-
-    // posts 상태 업데이트
-    setPosts((prevPosts) =>
-      prevPosts.map((post) => {
-        const matchedImage = fetchedImages.find(image => image.imageName === post.imageName);
-        console.log(matchedImage)
-        if (matchedImage) {
-          return { ...post, fetchImgFile: matchedImage.fetchedImageURL };
-        }
-        console.log(posts)
-        return post;
-      })
-    );
-    console.log(posts)
-  } catch (error) {
-    console.error("이미지를 가져오는데 실패하였습니다:", error);
-  }
-};
-
-useEffect(() => {
-  if (getImgNames.length > 0) {
-    fetchImgs(getImgNames);
-  }
-}, [getImgNames]);
-
-  console.log(fetchImgFile)
+  useEffect(() => {
+    if (getImgNames.length > 0) {
+      fetchImgs(getImgNames);
+    }
+  }, [getImgNames]);
 
   // handleSubmit
   const handleSubmit = () => {
@@ -341,8 +322,6 @@ useEffect(() => {
   };
 
   const firstImage = findFirstReviewWithImage(posts);
-
-  console.log(posts[0])
 
   const calculateBarWidth = (ratio) => `${ratio * 100}%`;
 
@@ -409,7 +388,7 @@ useEffect(() => {
                     <span className={styles["detail-mbti-graph-text"]}>내향</span>
                   </div>
                   <div className={styles["detail-mbti-graph-EI-bar"]}>
-                    <div className={styles["detail-mbti-graph-EI-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioI) }}></div>
+                    <div className={styles["detail-mbti-graph-EI-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioI)}}></div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>E</span>
@@ -423,7 +402,7 @@ useEffect(() => {
                     <span className={styles["detail-mbti-graph-text"]}>현실</span>
                   </div>
                   <div className={styles["detail-mbti-graph-SN-bar"]}>
-                    <div className={styles["detail-mbti-graph-SN-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioS) }}></div>
+                    <div className={styles["detail-mbti-graph-SN-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioS)}}></div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>N</span>
@@ -437,7 +416,7 @@ useEffect(() => {
                     <span className={styles["detail-mbti-graph-text"]}>사고</span>
                   </div>
                   <div className={styles["detail-mbti-graph-TF-bar"]}>
-                    <div className={styles["detail-mbti-graph-TF-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioT) }}></div>
+                    <div className={styles["detail-mbti-graph-TF-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioT)}}></div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>F</span>
@@ -451,7 +430,7 @@ useEffect(() => {
                     <span className={styles["detail-mbti-graph-text"]}>탐색</span>
                   </div>
                   <div className={styles["detail-mbti-graph-PJ-bar"]}>
-                    <div className={styles["detail-mbti-graph-PJ-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioP) }}></div>
+                    <div className={styles["detail-mbti-graph-PJ-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioP)}}></div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>J</span>
@@ -463,7 +442,7 @@ useEffect(() => {
 
             <section className={styles["detail-review-container"]}>
               <div className={styles["detail-review-inner-container"]}>
-                <img src={ReviewIcon} alt="리뷰 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "3px" }} />
+                <img src={ReviewIcon} alt="리뷰 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "3px"}} />
                 <span className={styles["detail-review-title"]}>리뷰 ({posts.length})</span>
 
                 <div className={styles["detail-review-box-container"]}>

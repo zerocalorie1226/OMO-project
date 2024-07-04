@@ -27,7 +27,6 @@ const MyCourseBoard = () => {
           },
         });
         setCommunityMyCourse(response.data.data);
-        console.log(response);
         setIsLoading(false);
       } catch (error) {
         console.error("데이터를 가져오는 중 오류가 발생했습니다.", error);

@@ -1,23 +1,23 @@
 import styles from "./MyCourseDetail.module.css";
-import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import Share from "../../../components/MyCourse/Button/Share/Share";
-import { useNavigate, useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
-import { Loading } from "../../../components/Loading/Loading";
+import {Loading} from "../../../components/Loading/Loading";
 import Like from "../../../assets/community/my-course-board/empty-thumb.png";
 import LikeClicked from "../../../assets/detail/purple-thumb.png";
 
 const MyCourseDetail = () => {
-  const { id } = useParams();
+  const {id} = useParams();
   const [detailData, setDetailData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const getStringDate = (date) => {
-    const options = { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" };
+    const options = {year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit"};
     return new Intl.DateTimeFormat("ko-KR", options).format(new Date(date));
   };
 
@@ -34,7 +34,6 @@ const MyCourseDetail = () => {
           },
         });
         setDetailData(response.data);
-        console.log("코스상세데이터: ", response.data);
         setLoading(false);
       } catch (error) {
         setError("데이터를 불러오는 데 실패했습니다.");
@@ -60,15 +59,12 @@ const MyCourseDetail = () => {
       );
 
       if (response.status === 200) {
-        console.log(response);
-        console.log("isClickedLike: ", isClickedLike);
         const getResponse = await axios.get(`https://api.oneulmohae.co.kr/mycourse/${id}`, {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
           },
         });
         if (getResponse.status === 200) {
-          console.log(getResponse);
           // 이미지 변경 및 카운트 업데이트
           if (isClickedLike) {
             setImageSrcLike(Like);
@@ -130,20 +126,14 @@ const MyCourseDetail = () => {
         <div className={styles["mycourse-detail-course-item-container"]}>
           {detailData.contents.map((contentItem, index) => (
             <React.Fragment key={index}>
-              <div className={styles["mycourse-detail-calendar-container"]}>
-                {getStringDate(contentItem.time)}
-              </div>
+              <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(contentItem.time)}</div>
               <MyCourseDetailBox {...contentItem} />
-              {index !== detailData.contents.length - 1 && (
-                <img src={downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />
-              )}
+              {index !== detailData.contents.length - 1 && <img src={downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />}
             </React.Fragment>
           ))}
         </div>
       </div>
-      <div className={styles["mycourse-detail-edit-share-button-container"]}>
-        {/* <Share /> */}
-      </div>
+      <div className={styles["mycourse-detail-edit-share-button-container"]}>{/* <Share /> */}</div>
       <ScrollToTop />
     </div>
   );
