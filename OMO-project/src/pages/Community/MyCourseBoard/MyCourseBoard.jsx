@@ -57,9 +57,9 @@ const MyCourseBoard = () => {
       {/* 필터 + 검색창 */}
       <div className={styles["community-component-container"]}>
         <div className={styles["community-filter-container"]}>
-          {communityPageFilter.map((el) => {
+          {/* {communityPageFilter.map((el) => {
             return <Filter key={el.id} {...el} />;
-          })}
+          })} */}
         </div>
         <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
       </div>
