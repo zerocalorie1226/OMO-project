@@ -7,15 +7,12 @@ export const communityPageFilter = [
   {
     id: 2,
     title: "최신 순",
-    bar: "|",
+    // bar: "|",
   },
-  {
-    id: 3,
-    title: "댓글 많은 순",
-    bar: "|",
-  },
-  {
-    id: 4,
-    title: "조회수 많은 순",
-  },
+  // {
+  //   id: 3,
+  //   title: "댓글 많은 순",
+  //   bar: "|",
+  // },
+
 ];
