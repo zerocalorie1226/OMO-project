@@ -1,6 +1,6 @@
 import styles from "./MyCourseCalendar.module.css";
 
-const MyCourseCalendar = ({time, setTime, idx}) => {
+const MyCourseCalendar = ({ time, setTime, idx }) => {
   const arrTime = (e) => {
     const newTime = [...time];
     newTime[idx] = e.target.value;
@@ -13,7 +13,7 @@ const MyCourseCalendar = ({time, setTime, idx}) => {
       type="datetime-local"
       id="meeting-time"
       name="meeting-time"
-      value={time[idx]}
+      value={time[idx] || new Date().toISOString().slice(0, 16)}
       onChange={arrTime}
     />
   );

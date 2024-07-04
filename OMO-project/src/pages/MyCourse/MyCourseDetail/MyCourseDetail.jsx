@@ -1,24 +1,23 @@
 import styles from "./MyCourseDetail.module.css";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
 import Share from "../../../components/MyCourse/Button/Share/Share";
-import {useNavigate, useParams} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";
 import downArrow from "../../../assets/my-course/write/down-arrow.png";
-import {Loading} from "../../../components/Loading/Loading";
+import { Loading } from "../../../components/Loading/Loading";
 import Like from "../../../assets/community/my-course-board/empty-thumb.png";
 import LikeClicked from "../../../assets/detail/purple-thumb.png";
-import { formatDate } from "../../../utils/Time/formatDate";
 
 const MyCourseDetail = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const [detailData, setDetailData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const getStringDate = (date) => {
-    const options = {year: "numeric", month: "2-digit", day: "2-digit"};
+    const options = { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" };
     return new Intl.DateTimeFormat("ko-KR", options).format(new Date(date));
   };
 
@@ -120,9 +119,8 @@ const MyCourseDetail = () => {
       </div>
       <div className={styles["mycourse-detail-like-container"]}>
         <button className={styles["mycourse-detail-like-button"]} onClick={handleClickLike} type="button">
-          {" "}
-          <img src={imageSrcLike} alt="좋아요 아이콘" />{" "}
-        </button>{" "}
+          <img src={imageSrcLike} alt="좋아요 아이콘" />
+        </button>
         <span className={styles["community-mycourse-detail-like-number"]}> {detailData.likeCount}</span>
       </div>
       <div className={styles["mycourse-detail-created-date"]}>
@@ -130,17 +128,22 @@ const MyCourseDetail = () => {
       </div>
       <div className={styles["mycourse-detail-course-container"]}>
         <div className={styles["mycourse-detail-course-item-container"]}>
-          {/* content와 time를 함께 순회하여 각 쌍의 요소를 렌더링 */}
           {detailData.contents.map((contentItem, index) => (
             <React.Fragment key={index}>
-              <div className={styles["mycourse-detail-calendar-container"]}>{formatDate(contentItem.time)}</div>
+              <div className={styles["mycourse-detail-calendar-container"]}>
+                {getStringDate(contentItem.time)}
+              </div>
               <MyCourseDetailBox {...contentItem} />
-              {index !== detailData.contents.length - 1 && <img src={downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />}
+              {index !== detailData.contents.length - 1 && (
+                <img src={downArrow} className={styles["mycourse-data-box-down-arrow-img"]} />
+              )}
             </React.Fragment>
           ))}
         </div>
       </div>
-      <div className={styles["mycourse-detail-edit-share-button-container"]}>{/* <Share /> */}</div>
+      <div className={styles["mycourse-detail-edit-share-button-container"]}>
+        {/* <Share /> */}
+      </div>
       <ScrollToTop />
     </div>
   );

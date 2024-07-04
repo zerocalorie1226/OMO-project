@@ -10,7 +10,7 @@ import MyCourseFindRecentModal from "../MyCourseFindRecentModal/MyCourseFindRece
 import MyCourseFindRecommendModal from "../MyCourseFindRecommendModal/MyCourseFindRecommendModal";
 import axios from "axios";
 
-const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
+const MyCourseFindBox = ({ time, setTime, content, setContent, idx, handleDelete }) => {
   const [interestModal, setInterestModal] = useState(false);
   const [recentModal, setRecentModal] = useState(false);
   const [recommendModal, setRecommendModal] = useState(false);
@@ -19,14 +19,6 @@ const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
   const [placeId, setPlaceId] = useState(null);
   const [findItem, setFindItem] = useState(null);
   const [state, setState] = useState(false);
-
-  const handleDeleteClick = () => {
-    setFindBoxVisible(false);
-    alert("삭제되었습니다.");
-
-    setTime((prevTime) => prevTime.filter((_, index) => index !== idx));
-    setContent((prevContent) => prevContent.filter((_, index) => index !== idx));
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,7 +34,6 @@ const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
 
           if (response.data) {
             const foundItem = response.data;
-
             setFindItem(foundItem);
           } else {
             setFindItem(null);
@@ -64,7 +55,8 @@ const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
 
   const changeSetContent = (arrayEl) => {
     setContent((prevContent) => {
-      const newContent = [...prevContent, arrayEl];
+      const newContent = [...prevContent];
+      newContent[idx] = arrayEl;
       return newContent;
     });
   };
@@ -74,7 +66,7 @@ const MyCourseFindBox = ({ time, setTime, content, setContent, idx }) => {
       {isFindBoxVisible && (
         <div className={styles["mycourse-find-box-total-container"]}>
           <MyCourseCalendar time={time} setTime={setTime} idx={idx} />
-          <Delete onClick={handleDeleteClick} />
+          <Delete onClick={handleDelete} />
 
           {state && findItem ? (
             <MyCourseDataBox key={findItem.id} data={findItem} />

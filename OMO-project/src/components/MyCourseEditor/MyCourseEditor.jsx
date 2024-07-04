@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useRef, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import styles from "./MyCourseEditor.module.css";
 import pencil from "../../assets/my-course/write/gray-pencil.png";
 import MyCourseAfter from "./../MyCourse/MyCourseAfter/MyCourseAfter";
-import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop";
+import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 import axios from "axios";
 
 const MyCourseEditor = () => {
@@ -16,9 +16,6 @@ const MyCourseEditor = () => {
   const [courseName, setCourseName] = useState("");
   const [time, setTime] = useState([getStringDate(new Date())]);
   const [content, setContent] = useState([]);
-
-  console.log("시간: ", time);
-  console.log("내용: ", content);
 
   const navigate = useNavigate();
 
@@ -58,7 +55,7 @@ const MyCourseEditor = () => {
         });
         alert("새로운 코스가 저장되었습니다.");
 
-        navigate("/MyCourseMain", { replace: true });
+        navigate("/MyCourseMain", {replace: true});
       } catch (error) {
         console.error("Error posting data:", error);
         alert("코스를 저장하는 데 실패했습니다.");
@@ -68,9 +65,7 @@ const MyCourseEditor = () => {
 
   return (
     <div className={styles["mycourse-editor-total-container"]}>
-      <div className={styles["mycourse-editor-subject-container"]}>
-        새로운 코스 만들기
-      </div>
+      <div className={styles["mycourse-editor-subject-container"]}>새로운 코스 만들기</div>
       <div className={styles["mycourse-editor-course-name-container"]}>
         <input
           type="text"
@@ -81,27 +76,14 @@ const MyCourseEditor = () => {
           maxLength="8"
           className={styles["mycourse-editor-input-course-name"]}
         />
-        <img
-          src={pencil}
-          alt="연필"
-          className={styles["mycourse-editor-pencil-img"]}
-        />
+        <img src={pencil} alt="연필" className={styles["mycourse-editor-pencil-img"]} />
       </div>
 
       <div className={styles["mycourse-editor-course-container"]}>
-        <MyCourseAfter
-          time={time}
-          setTime={setTime}
-          content={content}
-          setContent={setContent}
-        />
+        <MyCourseAfter time={time} setTime={setTime} content={content} setContent={setContent} />
       </div>
       <div className={styles["save-button-container"]}>
-        <button
-          type="button"
-          className={styles["save-button"]}
-          onClick={handleSubmit}
-        >
+        <button type="button" className={styles["save-button"]} onClick={handleSubmit}>
           저장
         </button>
       </div>

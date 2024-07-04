@@ -15,7 +15,7 @@ const MyCourseAfter = ({ time, setTime, content, setContent }) => {
     setMyCourseFindBoxes((prev) => [
       ...prev,
       {
-        key: newTime.length - 1,
+        key: Date.now() + Math.random(), // 고유한 키 값 생성
         idx: newTime.length - 1,
       },
     ]);
@@ -23,7 +23,7 @@ const MyCourseAfter = ({ time, setTime, content, setContent }) => {
 
   const [myCourseFindBoxes, setMyCourseFindBoxes] = useState([
     {
-      key: 0,
+      key: Date.now() + Math.random(), // 고유한 키 값 생성
       idx: 0,
     },
   ]);
@@ -35,6 +35,14 @@ const MyCourseAfter = ({ time, setTime, content, setContent }) => {
     }
   }, []);
 
+  const handleDeleteBox = (index) => {
+    setTime((prevTime) => prevTime.filter((_, idx) => idx !== index));
+    setContent((prevContent) => prevContent.filter((_, idx) => idx !== index));
+    setMyCourseFindBoxes((prevBoxes) =>
+      prevBoxes.filter((box) => box.idx !== index).map((box, i) => ({ ...box, idx: i }))
+    );
+  };
+
   return (
     <div className={styles["mycourse-after-total-container"]}>
       {myCourseFindBoxes.map((box) => (
@@ -45,6 +53,7 @@ const MyCourseAfter = ({ time, setTime, content, setContent }) => {
           content={content}
           setContent={setContent}
           idx={box.idx}
+          handleDelete={() => handleDeleteBox(box.idx)}
         />
       ))}
 
