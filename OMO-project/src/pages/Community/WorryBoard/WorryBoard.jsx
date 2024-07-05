@@ -1,20 +1,20 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./WorryBoard.module.css";
-import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
+import { CommunityCategory } from "./../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
+import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
+import { CommunityWorryPostList } from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
 import {Loading} from "../../../components/Loading/Loading";
 
 const WorryBoard = () => {
   const [posts, setPosts] = useState([]);
-  const [filteredPosts, setFilteredPosts] = useState([]);
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const category = "Trouble";
@@ -28,7 +28,6 @@ const WorryBoard = () => {
         },
       });
       setPosts(response.data.data);
-      setFilteredPosts(response.data.data);
       setIsLoading(false);
     } catch (error) {
       console.error("고민게시판을 불러오는데 실패였습니다.", error);
@@ -38,6 +37,17 @@ const WorryBoard = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = posts.filter((post) =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredPosts(filtered);
+    } else {
+      setFilteredPosts(posts);
+    }
+  }, [posts, searchTerm]);
 
   // 게시글 작성
   const onCreate = async (title, content) => {
@@ -57,22 +67,15 @@ const WorryBoard = () => {
       const newPost = response.data;
       setBoardId(newPost.boardId); // 새로 생성된 게시글의 ID를 boardId로 설정
       setPosts((prevPosts) => [newPost, ...prevPosts]);
-      setFilteredPosts((prevPosts) => [newPost, ...prevPosts]);
     } catch (error) {
       console.error("Error creating post:", error);
       alert("게시글 작성 중 오류가 발생했습니다.");
     }
   };
 
-  // 검색어 변경
-  const onSearch = (term) => {
+  // 검색 기능
+  const handleSearch = (term) => {
     setSearchTerm(term);
-    if (term === "") {
-      setFilteredPosts(posts);
-    } else {
-      const filtered = posts.filter((post) => post.title.toLowerCase().includes(term.toLowerCase()));
-      setFilteredPosts(filtered);
-    }
   };
 
   if (isLoading) {
@@ -86,7 +89,7 @@ const WorryBoard = () => {
 
       {/* 필터 + 검색창 */}
       <div className={styles["community-component-container"]}>
-        <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
+        <ListSearch onSearch={handleSearch} searchTerm={searchTerm} />
       </div>
 
       {/* 게시글 리스트 */}

@@ -27,7 +27,6 @@ const MyCourseBoard = () => {
           },
         });
         setCommunityMyCourse(response.data.data);
-        console.log(response);
         setIsLoading(false);
       } catch (error) {
         console.error("데이터를 가져오는 중 오류가 발생했습니다.", error);
@@ -56,11 +55,11 @@ const MyCourseBoard = () => {
 
       {/* 필터 + 검색창 */}
       <div className={styles["community-component-container"]}>
-        {/* <div className={styles["community-filter-container"]}>
-          {communityPageFilter.map((el) => {
+        <div className={styles["community-filter-container"]}>
+          {/* {communityPageFilter.map((el) => {
             return <Filter key={el.id} {...el} />;
-          })}
-        </div> */}
+          })} */}
+        </div>
         <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
       </div>
 

@@ -1,6 +1,6 @@
 .community-component-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   margin: 0 auto;
   margin-top: 40px;
@@ -10,8 +10,8 @@
 
 .community-filter-container {
   display: flex;
-  justify-content: space-between;
 }
+
 
 .community-mycourse-container {
   border-top: 1px solid var(--gray-50);
