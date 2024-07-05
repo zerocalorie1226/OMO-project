@@ -220,7 +220,7 @@ export const CommunityPostItem = (props) => {
 
           {/*공감수*/}
           <div className={styles["community-post-number-report-wapper"]}>
-            <span className={styles["community-post-like-number"]}>좋아요{props.likeCount}</span>
+            <span className={styles["community-post-like-number"]}>좋아요 {props.likeCount}</span>
             <span className={styles["community-post-dot"]}>•</span>
             <span className={styles["community-post-comment-number"]} onClick={toggleComments}>댓글 {props.comments.length}</span>
 
