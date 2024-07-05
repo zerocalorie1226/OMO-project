@@ -79,15 +79,15 @@
   display: flex;
 }
 
-/* 좋아요 */
-.community-post-like-number {
+.community-post-dot{
+  margin-left: 6px;
   margin-right: 6px;
 }
 
-/* 조회수 */
-.community-post-view-number {
-  margin-right: 6px;
+.community-post-comment-number{
+cursor: pointer;
 }
+
 
 /* 신고 버튼 */
 .community-post-report-button {

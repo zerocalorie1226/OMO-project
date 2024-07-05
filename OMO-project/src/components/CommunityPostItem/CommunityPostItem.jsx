@@ -220,8 +220,9 @@ export const CommunityPostItem = (props) => {
 
           {/*공감수*/}
           <div className={styles["community-post-number-report-wapper"]}>
-            <span className={styles["community-post-like-number"]}>좋아요 {props.likeCount}</span>
-            <span className={styles["community-post-comment-number"]}>• 댓글 {props.comments.length}</span>
+            <span className={styles["community-post-like-number"]}>좋아요{props.likeCount}</span>
+            <span className={styles["community-post-dot"]}>•</span>
+            <span className={styles["community-post-comment-number"]} onClick={toggleComments}>댓글 {props.comments.length}</span>
 
             {/* 신고 아이콘 */}
             <button
@@ -260,7 +261,7 @@ export const CommunityPostItem = (props) => {
             <div className={styles["community-post-comment-input-container"]}>
               <img
                 className={styles["community-post-comment-input-profile-img"]}
-                src={DefaultProfileImage}
+                src={profileImage}
                 alt="프로필 이미지"
                 style={{ width: "50px", height: "50px" }}
               />
@@ -305,7 +306,7 @@ export const CommunityPostItem = (props) => {
                     <li>
                       <img
                         className={styles["community-post-comment-profile-img"]}
-                        src={DefaultProfileImage}
+                        src={profileImage}
                         alt="프로필 이미지"
                         style={{ width: "50px", height: "50px" }}
                       />
