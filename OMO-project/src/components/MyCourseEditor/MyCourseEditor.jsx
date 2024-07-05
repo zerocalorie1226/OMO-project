@@ -67,15 +67,19 @@ const MyCourseEditor = () => {
     <div className={styles["mycourse-editor-total-container"]}>
       <div className={styles["mycourse-editor-subject-container"]}>새로운 코스 만들기</div>
       <div className={styles["mycourse-editor-course-name-container"]}>
-        <input
-          type="text"
-          placeholder="코스 이름을 적어주세요."
-          ref={courseNameRef}
-          value={courseName}
-          onChange={(e) => setCourseName(e.target.value)}
-          maxLength="8"
-          className={styles["mycourse-editor-input-course-name"]}
-        />
+      <input
+  type="text"
+  placeholder="코스 이름을 작성해주세요."
+  ref={courseNameRef}
+  value={courseName}
+  onChange={(e) => {
+    if (e.target.value.length <= 10) {
+      setCourseName(e.target.value);
+    }
+  }}
+  maxLength="10"
+  className={styles["mycourse-editor-input-course-name"]}
+/>
         <img src={pencil} alt="연필" className={styles["mycourse-editor-pencil-img"]} />
       </div>
 
@@ -93,3 +97,4 @@ const MyCourseEditor = () => {
 };
 
 export default MyCourseEditor;
+

@@ -8,7 +8,7 @@
 }
 
 /* 새로운코스만들기 or 수정하기 타이틀  */
-.mycourse-editor-subject-container{
+.mycourse-editor-subject-container {
   margin: 100px auto;
   text-align: center;
   width: 730px;
@@ -20,37 +20,39 @@
 
 /* input+img */
 .mycourse-editor-course-name-container {
+  width: 360px;
   position: relative;
   margin: 50px auto 100px auto;
   text-align: center;
+  display: flex;
+  border: 2px solid var(--gray-200);
+  border-radius: 10px;
+  align-items: center;
 }
 
 /*  input */
 .mycourse-editor-input-course-name {
-  width: 400px;
+  width: 300px;
   padding-top: 15px;
   padding-bottom: 15px;
-  
+  padding-left: 10px;
   font-size: 32px;
   border: none;
   outline: none;
-  border: 2px solid var(--gray-200);
   border-radius: 10px;
   text-align: center;
 }
 
 .mycourse-editor-input-course-name::placeholder {
-  padding-left:25px;
-  text-align: left;
+  text-align: center;
+  font-size: 26px;
 }
 
 /*  연필이미지 */
-.mycourse-editor-pencil-img{
-  position: absolute;
-  right: 320px;
-  top: 19px;
+.mycourse-editor-pencil-img {
+  width: 30px;
+  height: 30px;
 }
-
 
 /* 플러스 버튼까지 */
 .mycourse-editor-course-container {
@@ -62,9 +64,7 @@
   padding-bottom: 90px;
 }
 
-
 /* 저장 버튼 */
-
 .save-button-container {
   margin-bottom: 280px;
   margin-top: 100px;
@@ -83,8 +83,8 @@
   cursor: pointer;
 }
 
-
 /*  임시 content */
-.mycourse-editor-content{
-margin-left: 430px;
+.mycourse-editor-content {
+  margin-left: 430px;
 }
+
