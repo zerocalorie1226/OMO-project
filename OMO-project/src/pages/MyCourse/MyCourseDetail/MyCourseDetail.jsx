@@ -17,7 +17,7 @@ const MyCourseDetail = () => {
   const [error, setError] = useState(null);
 
   const getStringDate = (date) => {
-    const options = {year: "numeric", month: "2-digit", day: "2-digit"};
+    const options = {year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit"};
     return new Intl.DateTimeFormat("ko-KR", options).format(new Date(date));
   };
 
@@ -34,7 +34,6 @@ const MyCourseDetail = () => {
           },
         });
         setDetailData(response.data);
-        console.log("코스상세데이터: ", response.data);
         setLoading(false);
       } catch (error) {
         setError("데이터를 불러오는 데 실패했습니다.");
@@ -50,7 +49,7 @@ const MyCourseDetail = () => {
     try {
       const response = await axios.put(
         `https://api.oneulmohae.co.kr/mycourse/like/${detailData.courseId}`,
-        {}, 
+        {},
         {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
@@ -60,15 +59,12 @@ const MyCourseDetail = () => {
       );
 
       if (response.status === 200) {
-        console.log(response);
-        console.log("isClickedLike: ", isClickedLike);
         const getResponse = await axios.get(`https://api.oneulmohae.co.kr/mycourse/${id}`, {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
           },
         });
         if (getResponse.status === 200) {
-          console.log(getResponse);
           // 이미지 변경 및 카운트 업데이트
           if (isClickedLike) {
             setImageSrcLike(Like);
@@ -90,15 +86,17 @@ const MyCourseDetail = () => {
   };
 
   // like 값을 사용하여 초기 상태 설정 (따봉 누른 것들 새로고침해도 유지하게끔)
-  // useEffect(() => {
-  //   if (detailData.myLiked) {
-  //     setImageSrcLike(LikeClicked);
-  //     setIsClickedLike(true);
-  //   } else {
-  //     setImageSrcLike(Like);
-  //     setIsClickedLike(false);
-  //   }
-  // }, [detailData.myLiked]);
+  useEffect(() => {
+    if (detailData) {
+      if (detailData.myLiked) {
+        setImageSrcLike(LikeClicked);
+        setIsClickedLike(true);
+      } else {
+        setImageSrcLike(Like);
+        setIsClickedLike(false);
+      }
+    }
+  }, [detailData]);
 
   if (loading) {
     return <Loading />;
@@ -117,9 +115,8 @@ const MyCourseDetail = () => {
       </div>
       <div className={styles["mycourse-detail-like-container"]}>
         <button className={styles["mycourse-detail-like-button"]} onClick={handleClickLike} type="button">
-          {" "}
-          <img src={imageSrcLike} alt="좋아요 아이콘" />{" "}
-        </button>{" "}
+          <img src={imageSrcLike} alt="좋아요 아이콘" />
+        </button>
         <span className={styles["community-mycourse-detail-like-number"]}> {detailData.likeCount}</span>
       </div>
       <div className={styles["mycourse-detail-created-date"]}>
@@ -127,7 +124,6 @@ const MyCourseDetail = () => {
       </div>
       <div className={styles["mycourse-detail-course-container"]}>
         <div className={styles["mycourse-detail-course-item-container"]}>
-          {/* content와 time를 함께 순회하여 각 쌍의 요소를 렌더링 */}
           {detailData.contents.map((contentItem, index) => (
             <React.Fragment key={index}>
               <div className={styles["mycourse-detail-calendar-container"]}>{getStringDate(contentItem.time)}</div>

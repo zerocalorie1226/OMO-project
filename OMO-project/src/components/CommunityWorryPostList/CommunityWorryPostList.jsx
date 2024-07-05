@@ -1,7 +1,7 @@
 import styles from "./CommunityWorryPostList.module.css";
-import {CommunityPostItem} from "../CommunityPostItem/CommunityPostItem";
+import { CommunityPostItem } from "../CommunityPostItem/CommunityPostItem";
 
-export const CommunityWorryPostList = ({communityWorryPostList, setPosts, category}) => {
+export const CommunityWorryPostList = ({ communityWorryPostList, setPosts, category }) => {
   return (
     <>
       <section className={styles["community-worry-container"]}>

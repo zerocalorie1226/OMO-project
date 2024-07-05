@@ -2,19 +2,20 @@ import {useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import styles from "./MyCourseEditor.module.css";
 import pencil from "../../assets/my-course/write/gray-pencil.png";
-import MyCourseFindBox from "./../MyCourse/MyCourseFindBox/MyCourseFindBox";
 import MyCourseAfter from "./../MyCourse/MyCourseAfter/MyCourseAfter";
 import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 import axios from "axios";
 
 const MyCourseEditor = () => {
   const getStringDate = (time) => {
-    return time.toISOString().slice(0, 16);
+    const localTime = new Date(time.getTime() - time.getTimezoneOffset() * 60000);
+    return localTime.toISOString().slice(0, 16);
   };
+
   const courseNameRef = useRef();
   const [courseName, setCourseName] = useState("");
   const [time, setTime] = useState([getStringDate(new Date())]);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState([]);
 
   const navigate = useNavigate();
 
@@ -66,20 +67,23 @@ const MyCourseEditor = () => {
     <div className={styles["mycourse-editor-total-container"]}>
       <div className={styles["mycourse-editor-subject-container"]}>새로운 코스 만들기</div>
       <div className={styles["mycourse-editor-course-name-container"]}>
-        <input
-          type="text"
-          placeholder="코스 이름을 적어주세요."
-          ref={courseNameRef}
-          value={courseName}
-          onChange={(e) => setCourseName(e.target.value)}
-          maxLength="8"
-          className={styles["mycourse-editor-input-course-name"]}
-        />
+      <input
+  type="text"
+  placeholder="코스 이름을 작성해주세요."
+  ref={courseNameRef}
+  value={courseName}
+  onChange={(e) => {
+    if (e.target.value.length <= 10) {
+      setCourseName(e.target.value);
+    }
+  }}
+  maxLength="10"
+  className={styles["mycourse-editor-input-course-name"]}
+/>
         <img src={pencil} alt="연필" className={styles["mycourse-editor-pencil-img"]} />
       </div>
 
       <div className={styles["mycourse-editor-course-container"]}>
-        <MyCourseFindBox time={time} setTime={setTime} content={content} setContent={setContent} idx={0} />
         <MyCourseAfter time={time} setTime={setTime} content={content} setContent={setContent} />
       </div>
       <div className={styles["save-button-container"]}>
@@ -93,3 +97,4 @@ const MyCourseEditor = () => {
 };
 
 export default MyCourseEditor;
+
