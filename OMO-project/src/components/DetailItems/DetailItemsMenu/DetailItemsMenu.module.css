@@ -299,7 +299,7 @@
 
 /* EI 퍼센트 바 */
 .detail-mbti-graph-EI-bar {
-  background-color: var(--gray-100);
+  background-color: var(--secondary);
   width: 85%;
   height: 30px;
   display: flex;
@@ -308,7 +308,7 @@
 }
 
 .detail-mbti-graph-EI-bar-percent {
-  background-color: var(--secondary);
+  background-color: var(--gray-100);
   height: 100%;
 }
 
@@ -340,7 +340,7 @@
 
 /* PJ 퍼센트 바 */
 .detail-mbti-graph-PJ-bar {
-  background-color: var(--gray-100);
+  background-color: var(--secondary);
   width: 85%;
   height: 30px;
   display: flex;
@@ -348,7 +348,7 @@
 }
 
 .detail-mbti-graph-PJ-bar-percent {
-  background-color: var(--secondary);
+  background-color: var(--gray-100);
   height: 100%;
 }
 
