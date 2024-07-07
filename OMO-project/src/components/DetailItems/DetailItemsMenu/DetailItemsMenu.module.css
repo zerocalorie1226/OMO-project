@@ -68,7 +68,6 @@
 .detail-like {
   display: flex;
   flex-direction: row;
-
 }
 
 /*  따봉 아이콘 버튼 */
@@ -280,6 +279,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .detail-mbti-graph-alphabat-box {
@@ -299,57 +299,138 @@
 
 /* EI 퍼센트 바 */
 .detail-mbti-graph-EI-bar {
-  background-color: var(--secondary);
+  background-color: #ffd1dc;
   width: 85%;
   height: 30px;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
+  position: relative;
 }
 
 .detail-mbti-graph-EI-bar-percent {
-  background-color: var(--gray-100);
+  background-color: #bfedf3;
   height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+}
+
+.detail-mbti-graph-EI-bar-percent-reverse {
+  background-color: #ffd1dc;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  z-index: 1;
 }
 
 /* SN 퍼센트 바 */
 .detail-mbti-graph-SN-bar {
-  background-color: var(--gray-100);
+  background-color: #ffd1dc;
   width: 85%;
   height: 30px;
   display: flex;
+  justify-content: space-between;
+  position: relative;
 }
 
 .detail-mbti-graph-SN-bar-percent {
-  background-color: var(--secondary);
+  background-color: #bfedf3;
   height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+}
+
+.detail-mbti-graph-SN-bar-percent-reverse {
+  background-color: #ffd1dc;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  z-index: 1;
 }
 
 /* TF 퍼센트 바 */
 .detail-mbti-graph-TF-bar {
-  background-color: var(--gray-100);
+  background-color: #ffd1dc;
   width: 85%;
   height: 30px;
   display: flex;
+  justify-content: space-between;
+  position: relative;
 }
 
 .detail-mbti-graph-TF-bar-percent {
-  background-color: var(--secondary);
+  background-color: #bfedf3;
   height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+}
+
+.detail-mbti-graph-TF-bar-percent-reverse {
+  background-color: #ffd1dc;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  z-index: 1;
 }
 
 /* PJ 퍼센트 바 */
 .detail-mbti-graph-PJ-bar {
-  background-color: var(--secondary);
+  background-color: #ffd1dc;
   width: 85%;
   height: 30px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  position: relative;
 }
 
 .detail-mbti-graph-PJ-bar-percent {
-  background-color: var(--gray-100);
+  background-color: #bfedf3;
   height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+}
+
+.detail-mbti-graph-PJ-bar-percent-reverse {
+  background-color: #ffd1dc;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+/* 퍼센테이지 텍스트 스타일 추가 */
+.detail-mbti-graph-percent-text {
+  color: #5e5e5e;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
 }
 
 /* 리뷰 */

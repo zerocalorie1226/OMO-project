@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import styles from "./DetailItemsMenu.module.css";
 import Jjim from "../../../assets/detail/empty-heart.png";
@@ -12,11 +12,11 @@ import ReviewIcon from "../../../assets/detail/review.png";
 import Submit from "../../../assets/submit.png";
 import SubmitHover from "../../../assets/submit-hover.png";
 import Magnifier from "../../../assets/detail/magnifier.png";
-import {Review} from "../Review/Review";
+import { Review } from "../Review/Review";
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import DefaultImg from "../../../assets/detail/detail-default-background.png";
 import defaultDetailIcon from "../../../assets/detail/defaultDetailIcon.png";
-import {Loading} from "../../Loading/Loading";
+import { Loading } from "../../Loading/Loading";
 import KakaoMap from "../../KaKaoMap/KaKaoMap";
 
 export const DetailItemsMenu = (props) => {
@@ -34,7 +34,16 @@ export const DetailItemsMenu = (props) => {
   const [isClikedLike, setIsClickedLike] = useState(false); // 따봉 버튼 클릭 토글
   const [countLike, setCountLike] = useState(0); // 따봉 카운트 값 관리
 
-  const [mbtiData, setMbtiData] = useState({ratioI: 0, ratioS: 0, ratioT: 0, ratioP: 0});
+  const [mbtiData, setMbtiData] = useState({
+    ratioI: 0,
+    ratioE: 0,
+    ratioS: 0,
+    ratioN: 0,
+    ratioT: 0,
+    ratioF: 0,
+    ratioP: 0,
+    ratioJ: 0,
+  });
 
   useEffect(() => {
     if (props.DetailItemsMenuData) {
@@ -62,9 +71,13 @@ export const DetailItemsMenu = (props) => {
       // MBTI 데이터 설정
       setMbtiData({
         ratioI: props.DetailItemsMenuData.ratioI,
+        ratioE: 1 - props.DetailItemsMenuData.ratioI,
         ratioS: props.DetailItemsMenuData.ratioS,
+        ratioN: 1 - props.DetailItemsMenuData.ratioS,
         ratioT: props.DetailItemsMenuData.ratioT,
+        ratioF: 1 - props.DetailItemsMenuData.ratioT,
         ratioP: props.DetailItemsMenuData.ratioP,
+        ratioJ: 1 - props.DetailItemsMenuData.ratioP,
       });
     }
   }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
@@ -264,11 +277,11 @@ export const DetailItemsMenu = (props) => {
   const fetchImgs = async (imageNames) => {
     try {
       const fetchImagePromises = imageNames.map(async (imageName) => {
-        const response = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, {responseType: "blob"});
+        const response = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, { responseType: "blob" });
         const fetchedImage = response.data;
         const fetchedImageURL = URL.createObjectURL(fetchedImage);
 
-        return {imageName, fetchedImageURL};
+        return { imageName, fetchedImageURL };
       });
 
       const fetchedImages = await Promise.all(fetchImagePromises);
@@ -278,7 +291,7 @@ export const DetailItemsMenu = (props) => {
         prevPosts.map((post) => {
           const matchedImage = fetchedImages.find((image) => image.imageName === post.imageName);
           if (matchedImage) {
-            return {...post, fetchImgFile: matchedImage.fetchedImageURL};
+            return { ...post, fetchImgFile: matchedImage.fetchedImageURL };
           }
           return post;
         })
@@ -340,14 +353,14 @@ export const DetailItemsMenu = (props) => {
               <div className={styles["detail-jjim"]}>
                 <span className={styles["detail-jjim-line"]}>|</span>
                 <button type="button" onClick={handleClickJjim}>
-                  <img src={imageSrcJjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} />
+                  <img src={imageSrcJjim} alt="찜 아이콘" style={{ position: "absolute", top: "1px" }} />
                 </button>
                 <span className={styles["detail-jjim-number"]}> {countJjim}</span>
               </div>
               <div className={styles["detail-like"]}>
                 <span className={styles["detail-like-line"]}>|</span>
                 <button type="button" onClick={handleClickLike}>
-                  <img src={imageSrcLike} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} />
+                  <img src={imageSrcLike} alt="좋아요 아이콘" style={{ position: "absolute", top: "-1px" }} />
                 </button>
                 <span className={styles["detail-like-number"]}> {countLike}</span>
               </div>
@@ -356,7 +369,7 @@ export const DetailItemsMenu = (props) => {
           <div className={styles["detail-inner-container"]}>
             <section className={styles["detail-address-container"]}>
               <div className={styles["detail-address-inner-container"]}>
-                <img src={Address} alt="주소 아이콘" style={{width: "20px", height: "25px", position: "absolute", top: "1px"}} />
+                <img src={Address} alt="주소 아이콘" style={{ width: "20px", height: "25px", position: "absolute", top: "1px" }} />
                 <span className={styles["detail-address-title"]}>주소</span>
               </div>
               <span className={styles["detail-address-info-street"]}>{props.DetailItemsMenuData.road_address_name}</span>
@@ -365,7 +378,7 @@ export const DetailItemsMenu = (props) => {
 
             <section className={styles["detail-call-container"]}>
               <div className={styles["detail-call-inner-container"]}>
-                <img src={Call} alt="전화 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
+                <img src={Call} alt="전화 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "1px" }} />
                 <span className={styles["detail-call-title"]}>전화</span>
               </div>
               <span className={styles["detail-call"]}>{props.DetailItemsMenuData.phone}</span>
@@ -377,60 +390,80 @@ export const DetailItemsMenu = (props) => {
 
             <section className={styles["detail-mbti-stats-container"]}>
               <div className={styles["detail-mbti-stats-inner-container"]}>
-                <img src={Graph} alt="통계 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
+                <img src={Graph} alt="통계 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "1px" }} />
                 <span className={styles["detail-mbti-stats-title"]}>MBTI별 통계</span>
               </div>
-
               <div className={styles["detail-mbti-graph-container"]}>
+                {/* 내향/외향 */}
                 <div className={styles["detail-mbti-graph-inner-container"]}>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>I</span>
                     <span className={styles["detail-mbti-graph-text"]}>내향</span>
                   </div>
                   <div className={styles["detail-mbti-graph-EI-bar"]}>
-                    <div className={styles["detail-mbti-graph-EI-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioI)}}></div>
+                    <div className={styles["detail-mbti-graph-EI-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioI) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioI) ? 0 : (mbtiData.ratioI * 100)).toFixed(0)}%</span>
+                    </div>
+                    <div className={styles["detail-mbti-graph-EI-bar-percent-reverse"]} style={{ width: calculateBarWidth(mbtiData.ratioE) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioE) ? 0 : (mbtiData.ratioE * 100)).toFixed(0)}%</span>
+                    </div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>E</span>
                     <span className={styles["detail-mbti-graph-text"]}>외향</span>
                   </div>
                 </div>
-
+                {/* 현실/직관 */}
                 <div className={styles["detail-mbti-graph-inner-container"]}>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>S</span>
                     <span className={styles["detail-mbti-graph-text"]}>현실</span>
                   </div>
                   <div className={styles["detail-mbti-graph-SN-bar"]}>
-                    <div className={styles["detail-mbti-graph-SN-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioS)}}></div>
+                    <div className={styles["detail-mbti-graph-SN-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioS) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioS) ? 0 : (mbtiData.ratioS * 100)).toFixed(0)}%</span>
+                    </div>
+                    <div className={styles["detail-mbti-graph-SN-bar-percent-reverse"]} style={{ width: calculateBarWidth(mbtiData.ratioN) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioN) ? 0 : (mbtiData.ratioN * 100)).toFixed(0)}%</span>
+                    </div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>N</span>
                     <span className={styles["detail-mbti-graph-text"]}>직관</span>
                   </div>
                 </div>
-
+                {/* 사고/감정 */}
                 <div className={styles["detail-mbti-graph-inner-container"]}>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>T</span>
                     <span className={styles["detail-mbti-graph-text"]}>사고</span>
                   </div>
                   <div className={styles["detail-mbti-graph-TF-bar"]}>
-                    <div className={styles["detail-mbti-graph-TF-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioT)}}></div>
+                    <div className={styles["detail-mbti-graph-TF-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioT) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioT) ? 0 : (mbtiData.ratioT * 100)).toFixed(0)}%</span>
+                    </div>
+                    <div className={styles["detail-mbti-graph-TF-bar-percent-reverse"]} style={{ width: calculateBarWidth(mbtiData.ratioF) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioF) ? 0 : (mbtiData.ratioF * 100)).toFixed(0)}%</span>
+                    </div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>F</span>
                     <span className={styles["detail-mbti-graph-text"]}>감정</span>
                   </div>
                 </div>
-
+                {/* 탐색/계획 */}
                 <div className={styles["detail-mbti-graph-inner-container"]}>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>P</span>
                     <span className={styles["detail-mbti-graph-text"]}>탐색</span>
                   </div>
                   <div className={styles["detail-mbti-graph-PJ-bar"]}>
-                    <div className={styles["detail-mbti-graph-PJ-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioP)}}></div>
+                    <div className={styles["detail-mbti-graph-PJ-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioP) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioP) ? 0 : (mbtiData.ratioP * 100)).toFixed(0)}%</span>
+                    </div>
+                    <div className={styles["detail-mbti-graph-PJ-bar-percent-reverse"]} style={{ width: calculateBarWidth(mbtiData.ratioJ) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioJ) ? 0 : (mbtiData.ratioJ * 100)).toFixed(0)}%</span>
+                    </div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>J</span>
@@ -439,10 +472,9 @@ export const DetailItemsMenu = (props) => {
                 </div>
               </div>
             </section>
-
             <section className={styles["detail-review-container"]}>
               <div className={styles["detail-review-inner-container"]}>
-                <img src={ReviewIcon} alt="리뷰 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "3px"}} />
+                <img src={ReviewIcon} alt="리뷰 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "3px" }} />
                 <span className={styles["detail-review-title"]}>리뷰 ({posts.length})</span>
 
                 <div className={styles["detail-review-box-container"]}>
@@ -493,8 +525,8 @@ export const DetailItemsMenu = (props) => {
                       placeholder="리뷰를 작성해주세요..."
                     ></input>
                     <button onClick={handleSubmit} className={styles["detail-review-input-button"]} src={Submit} type="submit">
-                      <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px"}} />
-                      <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
+                      <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{ width: "35px", height: "35px" }} />
+                      <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{ width: "35px", height: "35px" }} />
                     </button>
                   </div>
 
@@ -507,7 +539,7 @@ export const DetailItemsMenu = (props) => {
 
             <section className={styles["detail-more-container"]}>
               <div className={styles["detail-more-inner-container"]}>
-                <img src={Magnifier} alt="더보기 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
+                <img src={Magnifier} alt="더보기 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "1px" }} />
                 <span className={styles["detail-more-title"]}>더보기</span>
               </div>
               <a href={props.DetailItemsMenuData.place_url} className={styles["detail-more"]}>
