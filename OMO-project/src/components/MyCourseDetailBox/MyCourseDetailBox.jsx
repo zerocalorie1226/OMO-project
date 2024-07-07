@@ -3,6 +3,7 @@ import Like from "../../assets/detail/purple-thumb.png";
 import EmptyLike from "../../assets/detail/empty-thumb.png";
 import Jjim from "../../assets/detail/red-heart.png";
 import EmptyJjim from "../../assets/detail/empty-heart.png";
+import defaultDetailIcon from "../../assets/detail/defaultDetailIcon.png";
 
 export const MyCourseDetailBox = (el) => {
   const data = el.placeData;
@@ -26,9 +27,18 @@ export const MyCourseDetailBox = (el) => {
 
           <span className={`${styles["mycourse-data-box-box-phone"]} ${!data.phone ? styles["not_provided"] : ""}`}>{data.phone ? data.phone : "전화번호 미제공"}</span>
           <span className={styles["mycourse-data-box-box-address-brief"]}>{data.road_address_name}</span>
-          <img className={styles["mycourse-data-box-box-img1"]} src={data.src1} />
-          <img className={styles["mycourse-data-box-box-img2"]} src={data.src2} />
-          <img className={styles["mycourse-data-box-box-img3"]} src={data.src3} />
+
+          {data.src1 ? (
+            <img className={styles["mycourse-data-box-box-img1"]} src={data.src1} alt="list image 1" />
+          ) : (
+            <img className={styles["mycourse-data-box-box-img1"]} src={defaultDetailIcon} alt="default list image 1" />
+          )}
+
+          {data.src2 ? (
+            <img className={styles["mycourse-data-box-box-img2"]} src={data.src2} alt="list image 2" />
+          ) : (
+            <img className={styles["mycourse-data-box-box-img2"]} src={defaultDetailIcon} alt="default list image 2" />
+          )}
         </div>
       </div>
     </div>
