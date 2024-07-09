@@ -22,27 +22,32 @@ const Recent = () => {
     const fetchData = async () => {
       const placeNameList = recentData.map((place) => place.place_name);
       const placeIdList = recentData.map((place) => place.id);
-
+  
       const postData = {
         placeNameList: placeNameList,
         placeIdList: placeIdList,
       };
-
+  
       try {
-        const response = await axios.get("https://api.oneulmohae.co.kr/place/recent", {
-          headers: {
-            Authorization: localStorage.getItem("accessToken"),
-          },
-          params: postData,
-        });
+        const response = await axios.post(
+          "https://api.oneulmohae.co.kr/place/recent",
+          postData,
+          {
+            headers: {
+              Authorization: localStorage.getItem("accessToken"),
+            }
+          }
+        );
         setIsLoading(false);
         console.log(response);
-        setRecentData(response.data)
+        // setRecentData(response.data);
       } catch (error) {
         console.error("데이터를 가져오는 중 오류가 발생했습니다.", error);
         setIsLoading(false);
       }
     };
+  
+  
 
     if (recentData.length > 0) {
       fetchData();
