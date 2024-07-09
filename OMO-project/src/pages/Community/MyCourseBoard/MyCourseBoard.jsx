@@ -20,23 +20,40 @@ const MyCourseBoard = () => {
   const [selectedMbtiGroup1, setSelectedMbtiGroup1] = useState(null);
   const [selectedMbtiGroup2, setSelectedMbtiGroup2] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("https://api.oneulmohae.co.kr/mycourse/mbti?IorE=A&PorJ=B&page=1&size=10&sorting=createdAt", {
-          headers: {
-            Authorization: localStorage.getItem("accessToken"),
-          },
-        });
-        setCommunityMyCourse(response.data.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("데이터를 가져오는 중 오류가 발생했습니다.", error);
-      }
-    };
+  const fetchData = async (IorE, PorJ) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`https://api.oneulmohae.co.kr/mycourse/mbti?IorE=${IorE}&PorJ=${PorJ}&page=1&size=10&sorting=createdAt`, {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+        },
+      });
+      setCommunityMyCourse(response.data.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("데이터를 가져오는 중 오류가 발생했습니다.", error);
+      setIsLoading(false);
+    }
+  };
 
-    fetchData();
-  }, []);
+  useEffect(() => {
+    let IorE = "A";
+    let PorJ = "B";
+
+    if (selectedMbtiGroup1 === 1) {
+      IorE = "I";
+    } else if (selectedMbtiGroup1 === 2) {
+      IorE = "E";
+    }
+
+    if (selectedMbtiGroup2 === 3) {
+      PorJ = "J";
+    } else if (selectedMbtiGroup2 === 4) {
+      PorJ = "P";
+    }
+
+    fetchData(IorE, PorJ);
+  }, [selectedMbtiGroup1, selectedMbtiGroup2]);
 
   const filteredData = communityMyCourse.filter((item) => 
     item.courseName && item.courseName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -73,34 +90,36 @@ const MyCourseBoard = () => {
         <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
       </div>
 
-      {/* 리스트 */}
-      {filteredData && filteredData.length > 0 ? (
-        <section className={styles["community-mycourse-container"]}>
-          {/* MBTI pick */}
-          <div className={styles["community-mbti-pick-container"]}>
-            <span className={styles["community-mbti-pick-title"]}>MBTI별 pick</span>
-            <ul className={styles["community-mbti-pick-box"]}>
-              {mbtiBox.map((e) => (
-                <MbtiBox
-                  key={e.id}
-                  data={e}
-                  selected={e.id === selectedMbtiGroup1 || e.id === selectedMbtiGroup2}
-                  onSelect={handleSelectMbti}
-                />
-              ))}
-            </ul>
-          </div>
-          <div className={styles["community-mycourse-list-box"]}>
-            {filteredData.map((el) => {
-              return <CommunityMyCourseList key={el.courseId} {...el} />;
-            })}
-          </div>
-        </section>
-      ) : (
-        <div className={styles["list-no-search-result-container"]}>
-          <span className={styles["list-no-search-result"]}>검색 결과가 없습니다.</span>
+      {/* MBTI pick과 리스트 */}
+      <div className={styles["community-mycourse-container"]}>
+        {/* MBTI pick */}
+        <div className={styles["community-mbti-pick-container"]}>
+          <span className={styles["community-mbti-pick-title"]}>MBTI별 pick</span>
+          <ul className={styles["community-mbti-pick-box"]}>
+            {mbtiBox.map((e) => (
+              <MbtiBox
+                key={e.id}
+                data={e}
+                selected={e.id === selectedMbtiGroup1 || e.id === selectedMbtiGroup2}
+                onSelect={handleSelectMbti}
+              />
+            ))}
+          </ul>
         </div>
-      )}
+
+        {/* 리스트 */}
+        {filteredData && filteredData.length > 0 ? (
+          <div className={styles["community-mycourse-list-box"]}>
+            {filteredData.map((el) => (
+              <CommunityMyCourseList key={el.courseId} {...el} />
+            ))}
+          </div>
+        ) : (
+          <div className={styles["list-no-search-result-container"]}>
+            <span className={styles["list-no-search-result"]}>검색 결과가 없습니다.</span>
+          </div>
+        )}
+      </div>
 
       <ScrollToTop />
 

@@ -87,10 +87,10 @@
 }
 
 .list-no-search-result-container {
-  border-top: 1px solid var(--gray-50);
   display: flex;
   justify-content: center;
-  margin: auto;
-  gap: 50px;
+  /* gap: 60px; */
   padding-top: 40px;
+  margin-right: 374px;
+  margin-left: 26px;
 }
