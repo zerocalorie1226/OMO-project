@@ -1,7 +1,7 @@
 import styles from "./MyCourseDetail.module.css";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import Share from "../../../components/MyCourse/Button/Share/Share";
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";
@@ -133,7 +133,7 @@ const MyCourseDetail = () => {
           ))}
         </div>
       </div>
-      <div className={styles["mycourse-detail-edit-share-button-container"]}>{/* <Share /> */}</div>
+      <div className={styles["mycourse-detail-edit-share-button-container"]}><Share courseId={detailData.courseId} /></div>
       <ScrollToTop />
     </div>
   );
