@@ -1,22 +1,24 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./MyCourseBoard.module.css";
-import {communityPageFilter} from "./../../../const/communityPageFilter";
-import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
+import { communityPageFilter } from "./../../../const/communityPageFilter";
+import { CommunityCategory } from "./../../../components/CommunityCategory/CommunityCategory";
 import Filter from "../../../components/Filter/Filter";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
 import CommunityMyCourseList from "../../../components/CommunityMyCourseList/CommunityMyCourseList";
-import {Link} from "react-router-dom";
-import {mbtiBox} from "../../../const/mbtiBox";
-import {MbtiBox} from "../../../components/MbtiBox/MbtiBox";
+import { Link } from "react-router-dom";
+import { mbtiBox } from "../../../const/mbtiBox";
+import { MbtiBox } from "../../../components/MbtiBox/MbtiBox";
 import WritingButtonImg from "../../../assets/writing-button.png";
-import {Loading} from "../../../components/Loading/Loading";
+import { Loading } from "../../../components/Loading/Loading";
 
 const MyCourseBoard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [communityMyCourse, setCommunityMyCourse] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedMbtiGroup1, setSelectedMbtiGroup1] = useState(null);
+  const [selectedMbtiGroup2, setSelectedMbtiGroup2] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,6 +44,14 @@ const MyCourseBoard = () => {
 
   const onSearch = (term) => {
     setSearchTerm(term);
+  };
+
+  const handleSelectMbti = (id) => {
+    if (id === 1 || id === 2) {
+      setSelectedMbtiGroup1((prevSelected) => (prevSelected === id ? null : id));
+    } else if (id === 3 || id === 4) {
+      setSelectedMbtiGroup2((prevSelected) => (prevSelected === id ? null : id));
+    }
   };
 
   if (isLoading) {
@@ -70,9 +80,14 @@ const MyCourseBoard = () => {
           <div className={styles["community-mbti-pick-container"]}>
             <span className={styles["community-mbti-pick-title"]}>MBTI별 pick</span>
             <ul className={styles["community-mbti-pick-box"]}>
-              {mbtiBox.map((e) => {
-                return <MbtiBox key={e.id} data={e} />;
-              })}
+              {mbtiBox.map((e) => (
+                <MbtiBox
+                  key={e.id}
+                  data={e}
+                  selected={e.id === selectedMbtiGroup1 || e.id === selectedMbtiGroup2}
+                  onSelect={handleSelectMbti}
+                />
+              ))}
             </ul>
           </div>
           <div className={styles["community-mycourse-list-box"]}>
@@ -92,7 +107,7 @@ const MyCourseBoard = () => {
       <Link to="/MyCourseNewWrite">
         <div className={styles["writing-btn-container"]}>
           <button type="button" className={styles["writing-btn"]}>
-            <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}
+            <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{ width: "80px", height: "80px" }} />
           </button>
         </div>
       </Link>
