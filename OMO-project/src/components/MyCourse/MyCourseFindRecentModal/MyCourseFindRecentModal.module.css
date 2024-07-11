@@ -1,3 +1,4 @@
+/* MyCourseFindRecentModal.module.css */
 .Overlay {
   position: fixed;
   width: 100%;
@@ -38,7 +39,8 @@
 
 .mycourse-find-recent-modal-list-box-container {
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto; /* 모달 리스트 박스 스크롤 추가 */
+  width: 90%; /* 리스트 박스 컨테이너 폭 설정 */
 }
 
 .mycourse-find-recent-close-btn {
@@ -59,10 +61,10 @@
   left: 0px;
 }
 
-.no-recent-list{
+.no-recent-list {
   display: flex;
   justify-content: center;
-  width: 730px;
+  width: 100%;
   height: 100%;
   margin: 0 auto;
   padding-top: 80px;
