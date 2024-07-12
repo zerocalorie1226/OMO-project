@@ -5,10 +5,13 @@ import MyInfoIcon from "../../../assets/my-page/my-info/my-info.png";
 import DefaultProfileImage from "../../../assets/detail/defaultDetailIcon.png";
 import {useEffect, useState} from "react";
 import {mbtiReverseMapping} from "../../../const/mbtiReverseMapping";
+import { Loading } from "../../../components/Loading/Loading";
+import { Link } from "react-router-dom";
 
 const MyInfo = () => {
   const [myInfoData, setMyInfoData] = useState(null);
   const [image, setImage] = useState(DefaultProfileImage);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +25,7 @@ const MyInfo = () => {
           },
         });
         setMyInfoData(response.data);
+        setIsLoading(false);
 
         if (response.data.profileImageUrl) {
           const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(response.data.profileImageUrl)}`;
@@ -52,6 +56,10 @@ const MyInfo = () => {
   const getMbtiString = (mbtiValue) => {
     return mbtiReverseMapping[mbtiValue] || "Unknown MBTI";
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -98,19 +106,19 @@ const MyInfo = () => {
                 <p className={styles["myinfo-status-myStatus"]}>내 정보</p>
                 <div className={styles["myinfo-status-heart"]}>
                   <p className={styles["myinfo-status-heart-title"]}>내 관심 수</p>
-                  <p className={styles["myinfo-status-heart-num"]}>{myInfoData.placeLikeCount}</p>
+                  <Link to="/Interest"  className={styles["myinfo-status-heart-num"]}>{myInfoData.placeLikeCount}</Link>
                 </div>
                 <div className={styles["myinfo-status-thumb"]}>
                   <p className={styles["myinfo-status-thumb-title"]}>내 추천 수</p>
-                  <p className={styles["myinfo-status-thumb-num"]}>{myInfoData.placeRecommendCount}</p>
+                  <Link to="/Recommend" className={styles["myinfo-status-thumb-num"]}>{myInfoData.placeRecommendCount}</Link>
                 </div>
                 <div className={styles["myinfo-status-write"]}>
                   <p className={styles["myinfo-status-write-title"]}>내가 쓴 글</p>
-                  <p className={styles["myinfo-status-write-num"]}>{myInfoData.myWrittenBoardCount}</p>
+                  <Link to="/MyWrote" className={styles["myinfo-status-write-num"]}>{myInfoData.myWrittenBoardCount}</Link>
                 </div>
                 <div className={styles["myinfo-status-course"]}>
                   <p className={styles["myinfo-status-course-title"]}>나의 코스</p>
-                  <p className={styles["myinfo-status-course-num"]}>{myInfoData.myCourseCount}</p>
+                  <Link to="/MyCourseMain"  className={styles["myinfo-status-course-num"]}>{myInfoData.myCourseCount}</Link>
                 </div>
               </div>
             </div>

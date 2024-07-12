@@ -1,17 +1,21 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./WorryBoard.module.css";
-import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
+import { CommunityCategory } from "./../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
+import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
+import { CommunityWorryPostList } from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
+import {Loading} from "../../../components/Loading/Loading";
 
 const WorryBoard = () => {
   const [posts, setPosts] = useState([]);
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const category = "Trouble";
 
@@ -24,6 +28,7 @@ const WorryBoard = () => {
         },
       });
       setPosts(response.data.data);
+      setIsLoading(false);
     } catch (error) {
       console.error("고민게시판을 불러오는데 실패였습니다.", error);
     }
@@ -32,6 +37,17 @@ const WorryBoard = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = posts.filter((post) =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredPosts(filtered);
+    } else {
+      setFilteredPosts(posts);
+    }
+  }, [posts, searchTerm]);
 
   // 게시글 작성
   const onCreate = async (title, content) => {
@@ -57,6 +73,15 @@ const WorryBoard = () => {
     }
   };
 
+  // 검색 기능
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <>
       {/* 카테고리 */}
@@ -64,14 +89,14 @@ const WorryBoard = () => {
 
       {/* 필터 + 검색창 */}
       <div className={styles["community-component-container"]}>
-        <ListSearch />
+        <ListSearch onSearch={handleSearch} searchTerm={searchTerm} />
       </div>
 
       {/* 게시글 리스트 */}
-      {posts.length === 0 ? (
+      {filteredPosts.length === 0 ? (
         <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
       ) : (
-        <CommunityWorryPostList communityWorryPostList={posts} setPosts={setPosts} category={category} />
+        <CommunityWorryPostList communityWorryPostList={filteredPosts} setPosts={setPosts} category={category} />
       )}
 
       {/* 스크롤 */}

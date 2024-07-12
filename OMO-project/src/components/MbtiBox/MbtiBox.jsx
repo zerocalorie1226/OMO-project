@@ -1,17 +1,13 @@
-import {useState} from "react";
+import React, { useState } from "react";
 
-export const MbtiBox = ({data}) => {
-  const [toggle, setToggle] = useState(false);
-
+export const MbtiBox = ({ data, selected, onSelect }) => {
   return (
     <li>
       <button
         type="button"
-        onClick={() => {
-          setToggle((state) => !state);
-        }}
+        onClick={() => onSelect(data.id)}
       >
-        <img src={toggle ? data.deep_purple : data.light_purple} />
+        <img src={selected ? data.deep_purple : data.light_purple} alt="MBTI Icon" />
       </button>
     </li>
   );

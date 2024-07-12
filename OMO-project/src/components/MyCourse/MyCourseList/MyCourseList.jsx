@@ -1,9 +1,8 @@
 import styles from "./MyCourseList.module.css";
 import MyCourseItem from "../MyCourseItem/MyCourseItem";
 
-const MyCourseList = ({myCourseList}) => {
-  console.log(myCourseList);
-  return (
+const  MyCourseList = ({myCourseList}) => {
+  return ( 
     <div>
       <div className={styles["mycourse-list-container"]}>
         {myCourseList.map((it) => (

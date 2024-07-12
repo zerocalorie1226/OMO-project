@@ -1,5 +1,7 @@
 import styles from "./CommunityMyCourseList.module.css";
 import Like from "../../assets/community/my-course-board/empty-thumb.png";
+import LikeClicked from "../../assets/detail/purple-thumb.png";
+
 import {useNavigate} from "react-router-dom";
 
 const formatDate = (dateString) => {
@@ -22,10 +24,14 @@ const CommunityMyCourseList = (props) => {
         navigate(`/MyCourseDetail/${props.courseId}`);
       }}
     >
-      <span className={styles["community-mycourse-list-title"]}>{props.courseName}</span>
-      <div className={styles["community-mycourse-list-like"]}>
-        <img src={Like} alt="좋아요 아이콘" /> <span className={styles["community-mycourse-list-like-number"]}> {props.likeCount}</span>
+      <div className={styles["community-mycourse-list-title"]}>
+        <span className={styles["community-mycourse-list-course-name"]}>
+          {props.writerName}의 {props.courseName}
+        </span>
+        <img src={props.myLiked ? LikeClicked : Like} alt="좋아요 아이콘" className={styles["community-mycourse-list-img"]} />
+        <span className={styles["community-mycourse-list-like-number"]}> {props.likeCount}</span>
       </div>
+
       <div className={styles["community-mycourse-list-nick"]}>
         <span>{props.writerName}</span>
       </div>

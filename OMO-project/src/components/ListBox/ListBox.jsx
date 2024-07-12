@@ -1,4 +1,5 @@
-import React, {forwardRef} from "react";
+import React, { useState, useEffect, forwardRef } from "react";
+import axios from "axios";
 import styles from "./ListBox.module.css";
 import Like from "../../assets/detail/purple-thumb.png";
 import Jjim from "../../assets/detail/red-heart.png";
@@ -6,6 +7,36 @@ import {useNavigate} from "react-router-dom";
 
 const ListBox = forwardRef((props, ref) => {
   const navigate = useNavigate();
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const fetchReviewImages = async () => {
+      try {
+        // 리뷰 이미지 이름을 가져오는 API 호출
+        const response = await axios.get(`https://api.oneulmohae.co.kr/review/${props.id}?page=1&size=10`);
+        const fetchedPosts = response.data.data;
+
+        // 이미지 이름 배열 생성
+        const imageNames = fetchedPosts.map(post => post.imageName).filter(imageName => imageName !== null);
+
+        // 이미지 파일을 가져오는 API 호출
+        const fetchImagePromises = imageNames.map(async (imageName) => {
+          const imageResponse = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, { responseType: 'blob' });
+          return URL.createObjectURL(imageResponse.data);
+        });
+
+        const fetchedImages = await Promise.all(fetchImagePromises);
+        setImages(fetchedImages);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchReviewImages();
+  }, [props.id]);
+
+  // 가장 처음 두 개의 이미지를 선택
+  const firstImages = images.slice(0, 2);
 
   return (
     <>
@@ -40,7 +71,36 @@ const ListBox = forwardRef((props, ref) => {
           </div>
 
           <span className={styles["list-box-address-brief"]}>{props.address_name}</span>
-          <img className={styles["list-box-img1"]} src={props.defaultListImg} />
+          {firstImages.length === 1 ? (
+            <>
+              <img
+                className={styles["list-box-img1"]}
+                src={firstImages[0]}
+                alt="list image 1"
+              />
+              <img
+                className={styles["list-box-img2"]}
+                src={props.defaultListImg}
+                alt="default list image 2"
+              />
+            </>
+          ) : firstImages.length > 0 ? (
+            <>
+              {firstImages.map((image, index) => (
+                <img
+                  key={index}
+                  className={index === 0 ? styles["list-box-img1"] : styles["list-box-img2"]}
+                  src={image}
+                  alt={`list image ${index + 1}`}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              <img className={styles["list-box-img1"]} src={props.defaultListImg} alt="default list image 1" />
+              <img className={styles["list-box-img2"]} src={props.defaultListImg} alt="default list image 2" />
+            </>
+          )}
         </div>
       </button>
     </>

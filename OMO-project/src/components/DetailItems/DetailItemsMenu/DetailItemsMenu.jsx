@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import styles from "./DetailItemsMenu.module.css";
 import Jjim from "../../../assets/detail/empty-heart.png";
@@ -12,11 +12,11 @@ import ReviewIcon from "../../../assets/detail/review.png";
 import Submit from "../../../assets/submit.png";
 import SubmitHover from "../../../assets/submit-hover.png";
 import Magnifier from "../../../assets/detail/magnifier.png";
-import {Review} from "../Review/Review";
+import { Review } from "../Review/Review";
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import DefaultImg from "../../../assets/detail/detail-default-background.png";
 import defaultDetailIcon from "../../../assets/detail/defaultDetailIcon.png";
-import {Loading} from "../../Loading/Loading";
+import { Loading } from "../../Loading/Loading";
 import KakaoMap from "../../KaKaoMap/KaKaoMap";
 
 export const DetailItemsMenu = (props) => {
@@ -33,6 +33,17 @@ export const DetailItemsMenu = (props) => {
   const [imageSrcLike, setImageSrcLike] = useState(Like); // 따봉 이미지 토글
   const [isClikedLike, setIsClickedLike] = useState(false); // 따봉 버튼 클릭 토글
   const [countLike, setCountLike] = useState(0); // 따봉 카운트 값 관리
+
+  const [mbtiData, setMbtiData] = useState({
+    ratioI: 0,
+    ratioE: 0,
+    ratioS: 0,
+    ratioN: 0,
+    ratioT: 0,
+    ratioF: 0,
+    ratioP: 0,
+    ratioJ: 0,
+  });
 
   useEffect(() => {
     if (props.DetailItemsMenuData) {
@@ -56,6 +67,18 @@ export const DetailItemsMenu = (props) => {
         setImageSrcLike(Like);
         setIsClickedLike(false);
       }
+
+      // MBTI 데이터 설정
+      setMbtiData({
+        ratioI: props.DetailItemsMenuData.ratioI,
+        ratioE: 1 - props.DetailItemsMenuData.ratioI,
+        ratioS: props.DetailItemsMenuData.ratioS,
+        ratioN: 1 - props.DetailItemsMenuData.ratioS,
+        ratioT: props.DetailItemsMenuData.ratioT,
+        ratioF: 1 - props.DetailItemsMenuData.ratioT,
+        ratioP: props.DetailItemsMenuData.ratioP,
+        ratioJ: 1 - props.DetailItemsMenuData.ratioP,
+      });
     }
   }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
 
@@ -178,77 +201,69 @@ export const DetailItemsMenu = (props) => {
     };
     reader.readAsDataURL(e.target.files[0]);
   };
-  
+
   // 리뷰 데이터
-  const [reviewId, setReviewId] = useState('');
+  const [reviewId, setReviewId] = useState("");
 
- // 리뷰 작성
-const postReview = async (content, imageFile) => {
-  const formData = new FormData();
-  formData.append('placeId', props.placeId);
-  formData.append('content', content);
-  if (imageFile) {
-    formData.append('image', imageFile);
-  }
+  // 리뷰 작성
+  const postReview = async (content, imageFile) => {
+    const formData = new FormData();
+    formData.append("placeId", props.placeId);
+    formData.append("content", content);
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
 
-  try {
-    const response = await axios.post(
-      'https://api.oneulmohae.co.kr/review/write',
-      formData,
-      {
+    try {
+      const response = await axios.post("https://api.oneulmohae.co.kr/review/write", formData, {
         headers: {
           Authorization: localStorage.getItem("accessToken"),
-          'Content-Type': 'multipart/form-data'
-        }
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      const newPost = response.data;
+      setReviewId(newPost.reviewId); // 새로 생성된 리뷰의 ID를 reviewId로 설정
+
+      // 새로운 리뷰를 posts 상태에 추가
+      setPosts((prevPosts) => [newPost, ...prevPosts]);
+
+      // 새로운 이미지 이름을 getImgNames 상태에 추가
+      if (newPost.imageName) {
+        setGetImgNames((prevImgNames) => [newPost.imageName, ...prevImgNames]);
       }
-    );
 
-    const newPost = response.data;
-    setReviewId(newPost.reviewId); // 새로 생성된 리뷰의 ID를 reviewId로 설정
-    console.log("리뷰를 성공적으로 보냈습니다.");
-    console.log(reviewId);
-
-    // 새로운 리뷰를 posts 상태에 추가
-    setPosts((prevPosts) => [newPost, ...prevPosts]);
-
-    // 새로운 이미지 이름을 getImgNames 상태에 추가
-    if (newPost.imageName) {
-      setGetImgNames((prevImgNames) => [newPost.imageName, ...prevImgNames]);
+      setContent(""); // 댓글 초기화
+      setImage(DefaultImg); // 이미지 초기화
+      setFile(""); // 파일 초기화
+      fileInput.current.value = null; // 파일 인풋 초기화
+    } catch (error) {
+      console.error("리뷰 작성 중 오류가 발생했습니다:", error);
+      alert("리뷰 작성 중 오류가 발생했습니다.");
     }
+  };
 
-    setContent(""); // 댓글 초기화
-    setImage(DefaultImg); // 이미지 초기화
-    setFile(""); // 파일 초기화
-    fileInput.current.value = null; // 파일 인풋 초기화
-  } catch (error) {
-    console.error("리뷰 작성 중 오류가 발생했습니다:", error);
-    alert("리뷰 작성 중 오류가 발생했습니다.");
-  }
-};
-
-  const reviewPlaceId=props.placeId
+  const reviewPlaceId = props.placeId;
 
   //리뷰 불러오기
-const fetchData = async (reviewPlaceId) => {
-  try {
-    const response = await axios.get(`https://api.oneulmohae.co.kr/review/${reviewPlaceId}?page=1&size=10`);
+  const fetchData = async (reviewPlaceId) => {
+    try {
+      const response = await axios.get(`https://api.oneulmohae.co.kr/review/${reviewPlaceId}?page=1&size=10`);
 
-    console.log(response.data.data);
-    const fetchedPosts = response.data.data;
-    setPosts(fetchedPosts); // 불러온 리뷰들을 상태에 저장
+      const fetchedPosts = response.data.data;
+      setPosts(fetchedPosts); // 불러온 리뷰들을 상태에 저장
 
-    // imageName이 null이 아닌 값들만 추출하여 설정
-    const imageNames = fetchedPosts.map(post => post.imageName).filter(imageName => imageName !== null);
-    if (imageNames.length > 0) {
-      setGetImgNames(imageNames); // imageNames 배열 설정
-    } else {
-      setGetImgNames([]); // imageNames가 없을 경우 빈 배열로 설정
+      // imageName이 null이 아닌 값들만 추출하여 설정
+      const imageNames = fetchedPosts.map((post) => post.imageName).filter((imageName) => imageName !== null);
+      if (imageNames.length > 0) {
+        setGetImgNames(imageNames); // imageNames 배열 설정
+      } else {
+        setGetImgNames([]); // imageNames가 없을 경우 빈 배열로 설정
+      }
+    } catch (error) {
+      console.error("리뷰를 가져오는데 실패하였습니다:", error);
     }
-    console.log("imageNames:", imageNames);
-  } catch (error) {
-    console.error("리뷰를 가져오는데 실패하였습니다:", error);
-  }
-};
+  };
   useEffect(() => {
     if (reviewPlaceId) {
       fetchData(reviewPlaceId);
@@ -258,43 +273,39 @@ const fetchData = async (reviewPlaceId) => {
   const [getImgNames, setGetImgNames] = useState([]);
   const [fetchImgFile, setFetchImgFile] = useState([]);
 
-  console.log(getImgNames)
+  // 리뷰 이미지 불러오기
+  const fetchImgs = async (imageNames) => {
+    try {
+      const fetchImagePromises = imageNames.map(async (imageName) => {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, { responseType: "blob" });
+        const fetchedImage = response.data;
+        const fetchedImageURL = URL.createObjectURL(fetchedImage);
 
- // 리뷰 이미지 불러오기
-const fetchImgs = async (imageNames) => {
-  try {
-    const fetchImagePromises = imageNames.map(async (imageName) => {
-      const response = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, { responseType: 'blob' });
-      const fetchedImage = response.data;
-      const fetchedImageURL = URL.createObjectURL(fetchedImage);
+        return { imageName, fetchedImageURL };
+      });
 
-      return { imageName, fetchedImageURL };
-    });
+      const fetchedImages = await Promise.all(fetchImagePromises);
 
-    const fetchedImages = await Promise.all(fetchImagePromises);
+      // posts 상태 업데이트
+      setPosts((prevPosts) =>
+        prevPosts.map((post) => {
+          const matchedImage = fetchedImages.find((image) => image.imageName === post.imageName);
+          if (matchedImage) {
+            return { ...post, fetchImgFile: matchedImage.fetchedImageURL };
+          }
+          return post;
+        })
+      );
+    } catch (error) {
+      console.error("이미지를 가져오는데 실패하였습니다:", error);
+    }
+  };
 
-    // posts 상태 업데이트
-    setPosts((prevPosts) =>
-      prevPosts.map((post) => {
-        const matchedImage = fetchedImages.find(image => image.imageName === post.imageName);
-        if (matchedImage) {
-          return { ...post, fetchImgFile: matchedImage.fetchedImageURL };
-        }
-        return post;
-      })
-    );
-  } catch (error) {
-    console.error("이미지를 가져오는데 실패하였습니다:", error);
-  }
-};
-
-useEffect(() => {
-  if (getImgNames.length > 0) {
-    fetchImgs(getImgNames);
-  }
-}, [getImgNames]);
-
-  console.log(fetchImgFile)
+  useEffect(() => {
+    if (getImgNames.length > 0) {
+      fetchImgs(getImgNames);
+    }
+  }, [getImgNames]);
 
   // handleSubmit
   const handleSubmit = () => {
@@ -325,7 +336,7 @@ useEffect(() => {
 
   const firstImage = findFirstReviewWithImage(posts);
 
-  console.log(posts[0])
+  const calculateBarWidth = (ratio) => `${ratio * 100}%`;
 
   return (
     <>
@@ -342,14 +353,14 @@ useEffect(() => {
               <div className={styles["detail-jjim"]}>
                 <span className={styles["detail-jjim-line"]}>|</span>
                 <button type="button" onClick={handleClickJjim}>
-                  <img src={imageSrcJjim} alt="찜 아이콘" style={{position: "absolute", top: "1px"}} />
+                  <img src={imageSrcJjim} alt="찜 아이콘" style={{ position: "absolute", top: "1px" }} />
                 </button>
                 <span className={styles["detail-jjim-number"]}> {countJjim}</span>
               </div>
               <div className={styles["detail-like"]}>
                 <span className={styles["detail-like-line"]}>|</span>
                 <button type="button" onClick={handleClickLike}>
-                  <img src={imageSrcLike} alt="좋아요 아이콘" style={{position: "absolute", top: "-1px"}} />
+                  <img src={imageSrcLike} alt="좋아요 아이콘" style={{ position: "absolute", top: "-1px" }} />
                 </button>
                 <span className={styles["detail-like-number"]}> {countLike}</span>
               </div>
@@ -358,7 +369,7 @@ useEffect(() => {
           <div className={styles["detail-inner-container"]}>
             <section className={styles["detail-address-container"]}>
               <div className={styles["detail-address-inner-container"]}>
-                <img src={Address} alt="주소 아이콘" style={{width: "20px", height: "25px", position: "absolute", top: "1px"}} />
+                <img src={Address} alt="주소 아이콘" style={{ width: "20px", height: "25px", position: "absolute", top: "1px" }} />
                 <span className={styles["detail-address-title"]}>주소</span>
               </div>
               <span className={styles["detail-address-info-street"]}>{props.DetailItemsMenuData.road_address_name}</span>
@@ -367,7 +378,7 @@ useEffect(() => {
 
             <section className={styles["detail-call-container"]}>
               <div className={styles["detail-call-inner-container"]}>
-                <img src={Call} alt="전화 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
+                <img src={Call} alt="전화 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "1px" }} />
                 <span className={styles["detail-call-title"]}>전화</span>
               </div>
               <span className={styles["detail-call"]}>{props.DetailItemsMenuData.phone}</span>
@@ -379,60 +390,80 @@ useEffect(() => {
 
             <section className={styles["detail-mbti-stats-container"]}>
               <div className={styles["detail-mbti-stats-inner-container"]}>
-                <img src={Graph} alt="통계 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
+                <img src={Graph} alt="통계 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "1px" }} />
                 <span className={styles["detail-mbti-stats-title"]}>MBTI별 통계</span>
               </div>
-
               <div className={styles["detail-mbti-graph-container"]}>
+                {/* 내향/외향 */}
                 <div className={styles["detail-mbti-graph-inner-container"]}>
-                  <div className={styles["detail-mbti-graph-alphabat-box"]}>
-                    <span className={styles["detail-mbti-graph-alphabat"]}>E</span>
-                    <span className={styles["detail-mbti-graph-text"]}>외향</span>
-                  </div>
-                  <div className={styles["detail-mbti-graph-EI-bar"]}>
-                    <div className={styles["detail-mbti-graph-EI-bar-percent"]}></div>
-                  </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>I</span>
                     <span className={styles["detail-mbti-graph-text"]}>내향</span>
                   </div>
+                  <div className={styles["detail-mbti-graph-EI-bar"]}>
+                    <div className={styles["detail-mbti-graph-EI-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioI) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioI) ? 0 : (mbtiData.ratioI * 100)).toFixed(0)}%</span>
+                    </div>
+                    <div className={styles["detail-mbti-graph-EI-bar-percent-reverse"]} style={{ width: calculateBarWidth(mbtiData.ratioE) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioE) ? 0 : (mbtiData.ratioE * 100)).toFixed(0)}%</span>
+                    </div>
+                  </div>
+                  <div className={styles["detail-mbti-graph-alphabat-box"]}>
+                    <span className={styles["detail-mbti-graph-alphabat"]}>E</span>
+                    <span className={styles["detail-mbti-graph-text"]}>외향</span>
+                  </div>
                 </div>
-
+                {/* 현실/직관 */}
                 <div className={styles["detail-mbti-graph-inner-container"]}>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>S</span>
                     <span className={styles["detail-mbti-graph-text"]}>현실</span>
                   </div>
                   <div className={styles["detail-mbti-graph-SN-bar"]}>
-                    <div className={styles["detail-mbti-graph-SN-bar-percent"]}></div>
+                    <div className={styles["detail-mbti-graph-SN-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioS) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioS) ? 0 : (mbtiData.ratioS * 100)).toFixed(0)}%</span>
+                    </div>
+                    <div className={styles["detail-mbti-graph-SN-bar-percent-reverse"]} style={{ width: calculateBarWidth(mbtiData.ratioN) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioN) ? 0 : (mbtiData.ratioN * 100)).toFixed(0)}%</span>
+                    </div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>N</span>
                     <span className={styles["detail-mbti-graph-text"]}>직관</span>
                   </div>
                 </div>
-
+                {/* 사고/감정 */}
                 <div className={styles["detail-mbti-graph-inner-container"]}>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>T</span>
                     <span className={styles["detail-mbti-graph-text"]}>사고</span>
                   </div>
                   <div className={styles["detail-mbti-graph-TF-bar"]}>
-                    <div className={styles["detail-mbti-graph-TF-bar-percent"]}></div>
+                    <div className={styles["detail-mbti-graph-TF-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioT) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioT) ? 0 : (mbtiData.ratioT * 100)).toFixed(0)}%</span>
+                    </div>
+                    <div className={styles["detail-mbti-graph-TF-bar-percent-reverse"]} style={{ width: calculateBarWidth(mbtiData.ratioF) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioF) ? 0 : (mbtiData.ratioF * 100)).toFixed(0)}%</span>
+                    </div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>F</span>
                     <span className={styles["detail-mbti-graph-text"]}>감정</span>
                   </div>
                 </div>
-
+                {/* 탐색/계획 */}
                 <div className={styles["detail-mbti-graph-inner-container"]}>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>P</span>
                     <span className={styles["detail-mbti-graph-text"]}>탐색</span>
                   </div>
                   <div className={styles["detail-mbti-graph-PJ-bar"]}>
-                    <div className={styles["detail-mbti-graph-PJ-bar-percent"]}></div>
+                    <div className={styles["detail-mbti-graph-PJ-bar-percent"]} style={{ width: calculateBarWidth(mbtiData.ratioP) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioP) ? 0 : (mbtiData.ratioP * 100)).toFixed(0)}%</span>
+                    </div>
+                    <div className={styles["detail-mbti-graph-PJ-bar-percent-reverse"]} style={{ width: calculateBarWidth(mbtiData.ratioJ) }}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioJ) ? 0 : (mbtiData.ratioJ * 100)).toFixed(0)}%</span>
+                    </div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>J</span>
@@ -441,7 +472,6 @@ useEffect(() => {
                 </div>
               </div>
             </section>
-
             <section className={styles["detail-review-container"]}>
               <div className={styles["detail-review-inner-container"]}>
                 <img src={ReviewIcon} alt="리뷰 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "3px" }} />
@@ -495,8 +525,8 @@ useEffect(() => {
                       placeholder="리뷰를 작성해주세요..."
                     ></input>
                     <button onClick={handleSubmit} className={styles["detail-review-input-button"]} src={Submit} type="submit">
-                      <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px"}} />
-                      <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
+                      <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{ width: "35px", height: "35px" }} />
+                      <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{ width: "35px", height: "35px" }} />
                     </button>
                   </div>
 
@@ -509,7 +539,7 @@ useEffect(() => {
 
             <section className={styles["detail-more-container"]}>
               <div className={styles["detail-more-inner-container"]}>
-                <img src={Magnifier} alt="더보기 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
+                <img src={Magnifier} alt="더보기 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "1px" }} />
                 <span className={styles["detail-more-title"]}>더보기</span>
               </div>
               <a href={props.DetailItemsMenuData.place_url} className={styles["detail-more"]}>

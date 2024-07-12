@@ -84,6 +84,8 @@ const NicknameChange = () => {
         placeholder="닉네임을 입력해주세요."
         className={styles["profile-setting-main-nickname-change-input"]}
         value={nickname}
+        minLength="2"
+        maxLength="8"
         onChange={(e) => {
           setNickname(e.target.value);
           setIsNicknameChecked(false);
