@@ -133,7 +133,9 @@ const MyCourseDetail = () => {
           ))}
         </div>
       </div>
-      <div className={styles["mycourse-detail-edit-share-button-container"]}><Share courseId={detailData.courseId} /></div>
+      <div className={styles["mycourse-detail-edit-share-button-container"]}>
+        <Share courseId={detailData.courseId} share={detailData.share} />
+      </div>
       <ScrollToTop />
     </div>
   );
