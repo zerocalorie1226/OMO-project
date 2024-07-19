@@ -102,15 +102,13 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
 
         {/* 상세페이지 */}
         <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} />} />
-        <Route path="/DetailNone" element={<DetailNone />} />
-        <Route path="/DetailTariff" element={<DetailTariff />} />
 
         {/* 마이 페이지 */}
-        <Route path="/MyInfo" element={<MyInfo />} />
-        <Route path="/Interest" element={<Interest />} />
-        <Route path="/Recommend" element={<Recommend />} />
-        <Route path="/Recent" element={<Recent recentData={recentData} />} />
-        <Route path="/MyWrote" element={<MyWrote />} />
+        <Route path="/MyInfo" element={<MyInfo isLoggedIn={isLoggedIn}/>} />
+        <Route path="/Interest" element={<Interest isLoggedIn={isLoggedIn}/>} />
+        <Route path="/Recommend" element={<Recommend isLoggedIn={isLoggedIn} />} />
+        <Route path="/Recent" element={<Recent recentData={recentData} isLoggedIn={isLoggedIn}/>} />
+        <Route path="/MyWrote" element={<MyWrote isLoggedIn={isLoggedIn} />} />
         <Route path="/ProfileSetting" element={<ProfileSetting isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
 
         {/* 나만의 코스 */}

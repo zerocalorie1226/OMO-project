@@ -7,11 +7,20 @@ import MyPageFilter from "../../../components/MypageFilter/MypageFilter";
 import MypageWroteMain from "../../../components/MypageWroteMain/MypageWroteMain";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import { Loading } from "../../../components/Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
-const MyWrote = () => {
+const MyWrote = ({isLoggedIn}) => {
   const [myPosts, setMyPosts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     const MyWroteData = async () => {

@@ -6,12 +6,20 @@ import DefaultProfileImage from "../../../assets/detail/defaultDetailIcon.png";
 import {useEffect, useState} from "react";
 import {mbtiReverseMapping} from "../../../const/mbtiReverseMapping";
 import { Loading } from "../../../components/Loading/Loading";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const MyInfo = () => {
+const MyInfo = ({isLoggedIn}) => {
   const [myInfoData, setMyInfoData] = useState(null);
   const [image, setImage] = useState(DefaultProfileImage);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     const fetchData = async () => {

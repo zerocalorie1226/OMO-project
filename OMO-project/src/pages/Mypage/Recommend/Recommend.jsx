@@ -6,10 +6,19 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import RecommendIcon from "../../../assets/my-page/my-info/empty-thumb.png";
 import {useEffect, useState} from "react";
 import { Loading } from "../../../components/Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
-const Recommend = () => {
+const Recommend = ({isLoggedIn}) => {
   const [recommendPosts, setRecommendPosts] = useState(null); // 초기값을 null로 설정
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
 
   const fetchData = async () => {
     try {

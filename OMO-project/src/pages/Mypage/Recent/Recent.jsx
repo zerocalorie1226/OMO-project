@@ -6,10 +6,19 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import RecentIcon from "../../../assets/my-page/my-info/recent-place.png";
 import axios from "axios";
 import {Loading} from "../../../components/Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
-const Recent = () => {
+const Recent = ({isLoggedIn}) => {
   const [recentData, setRecentData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     const storedRecentData = localStorage.getItem("recentData");
