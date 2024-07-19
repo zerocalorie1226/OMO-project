@@ -13,8 +13,6 @@ import List from "./pages/list/List";
 import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
 import MyWrote from "./pages/Mypage/MyWrote/MyWrote";
 import DetailMenu from "./pages/Detail/DetailMenu/DetailMenu";
-import DetailNone from "./pages/Detail/DetailNone/DetailNone";
-import DetailTariff from "./pages/Detail/DetailTariff/DetailTariff";
 import Interest from "./pages/Mypage/Interest/Interest";
 import Recent from "./pages/Mypage/Recent/Recent";
 import Recommend from "./pages/Mypage/Recommend/Recommend";
@@ -26,11 +24,9 @@ import InquiryBoardFrequent from "./pages/Community/InquiryBoardFrequent/Inquiry
 import InquiryBoardQnA from "./pages/Community/InquiryBoardQnA/InquiryBoardQnA";
 import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
 import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
-import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
 import Main from "./pages/main/Main";
 import MyCourseNewWrite from "./pages/MyCourse/MyCourseNewWrite/MyCourseNewWrite";
 import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
-import { dataCopy } from "./const/dataCopy";
 import LoginLoading from "./pages/LoginLoading/LoginLoading";
 import useCurrentLocation from "./assets/hooks/useCurrentLocation";
 
@@ -76,7 +72,6 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
             <List
               recentData={recentData}
               setRecentData={setRecentData}
-              dataCopy={dataCopy}
               searchResultsX={coordinates.longitude}
               searchResultsY={coordinates.latitude}
               defaultListImg={defaultListImg}
@@ -91,7 +86,6 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
             <List
               recentData={recentData}
               setRecentData={setRecentData}
-              dataCopy={dataCopy}
               searchResultsX={coordinates.longitude}
               searchResultsY={coordinates.latitude}
               defaultListImg={defaultListImg}
@@ -113,9 +107,8 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
 
         {/* 나만의 코스 */}
         <Route path="/MyCourseMain" element={<MyCourseMain isLoggedIn={isLoggedIn}/>} />
-        <Route path="/MyCourseNewWrite" element={<MyCourseNewWrite />} />
-        <Route path="/MyCourseDetail/:id" element={<MyCourseDetail />} />
-        <Route path="/MyCourseOthersVersion/:id" element={<MyCourseOthersVersion />} />
+        <Route path="/MyCourseNewWrite" element={<MyCourseNewWrite isLoggedIn={isLoggedIn} /> } />
+        <Route path="/MyCourseDetail/:id" element={<MyCourseDetail isLoggedIn={isLoggedIn}  />} />
 
         {/* 커뮤니티 */}
         <Route path="/MyCourseBoard" element={<MyCourseBoard />} isLoggedIn={isLoggedIn}/>

@@ -1,7 +1,7 @@
 import styles from "./MyCourseDetail.module.css";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import Share from "../../../components/MyCourse/Button/Share/Share";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";
@@ -10,11 +10,19 @@ import {Loading} from "../../../components/Loading/Loading";
 import Like from "../../../assets/community/my-course-board/empty-thumb.png";
 import LikeClicked from "../../../assets/detail/purple-thumb.png";
 
-const MyCourseDetail = () => {
+const MyCourseDetail = ({isLoggedIn}) => {
   const {id} = useParams();
   const [detailData, setDetailData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [isLoggedIn, navigate]);
 
   const getStringDate = (date) => {
     const options = {year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit"};
