@@ -6,7 +6,7 @@ import Search from "../../components/Search/Search";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Main = ({ setSearchResultsX, setSearchResultsY, location, setLocation }) => {
+const Main = ({ setSearchResultsX, setSearchResultsY, location, setLocation, locationAccessDenied }) => {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Main = ({ setSearchResultsX, setSearchResultsY, location, setLocation }) =
 
   return (
     <>
-      <Search handleSearch={handleSearch} query={query} setQuery={setQuery} location={location} setLocation={setLocation} />
+      <Search handleSearch={handleSearch} query={query} setQuery={setQuery} location={location} setLocation={setLocation} locationAccessDenied={locationAccessDenied}/>
       {/* <Weather /> */}
       <div className={styles["main-category-container"]}>
         {main.map((el) => {

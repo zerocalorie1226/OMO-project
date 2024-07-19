@@ -1,7 +1,7 @@
 import "./App.module.css";
-import {Header} from "./components/Header/Header";
-import React, {useState} from "react";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { Header } from "./components/Header/Header";
+import React, { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Signup from "./pages/signup/Signup";
 import Eating from "./pages/sub/eating/Eating";
@@ -30,12 +30,12 @@ import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCour
 import Main from "./pages/main/Main";
 import MyCourseNewWrite from "./pages/MyCourse/MyCourseNewWrite/MyCourseNewWrite";
 import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
-import {dataCopy} from "./const/dataCopy";
+import { dataCopy } from "./const/dataCopy";
 import LoginLoading from "./pages/LoginLoading/LoginLoading";
 import useCurrentLocation from "./assets/hooks/useCurrentLocation";
 
-const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
-  const {location, coordinates, setCoordinates, setLocation} = useCurrentLocation();
+const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
+  const { location, coordinates, setCoordinates, setLocation, locationAccessDenied } = useCurrentLocation();
   const [recentData, setRecentData] = useState([]);
   const [defaultListImg, setDefaultListImg] = useState("/src/assets/detail/defaultDetailIcon.png");
 
@@ -49,10 +49,11 @@ const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
           path="/"
           element={
             <Main
-              setSearchResultsX={(x) => setCoordinates((prev) => ({...prev, longitude: x}))}
-              setSearchResultsY={(y) => setCoordinates((prev) => ({...prev, latitude: y}))}
+              setSearchResultsX={(x) => setCoordinates((prev) => ({ ...prev, longitude: x }))}
+              setSearchResultsY={(y) => setCoordinates((prev) => ({ ...prev, latitude: y }))}
               location={location}
               setLocation={setLocation}
+              locationAccessDenied={locationAccessDenied}
             />
           }
         />

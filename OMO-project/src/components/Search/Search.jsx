@@ -4,22 +4,20 @@ import Magnifier from "../../assets/magnifier.png";
 import Location from "../../assets/main/location.png";
 import { useState } from "react";
 
-const Search = ({handleSearch ,query,setQuery, location, setLocation}) => {
+const Search = ({ handleSearch, query, setQuery, location, setLocation, locationAccessDenied }) => {
 
-
-  const handleInputChange = (event) => {  // input 입력값 받음
+  const handleInputChange = (event) => {
     setQuery(event.target.value);
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // form 제출시 페이지 새로고침 막기
-    handleSearch (query); // 사용자가 입력한 쿼리를 부모 컴포넌트로 전달
-    setQuery(''); // 검색창 비우기
-
+    event.preventDefault();
+    handleSearch(query);
+    setQuery('');
   };
 
   return (
-    <div className={styles["main-search-wrapper"]} onSubmit={handleSubmit} >
+    <div className={styles["main-search-wrapper"]} onSubmit={handleSubmit}>
       <form className={styles["main-search-container"]}>
         <div className={styles["main-search-input-container"]}>
           <img className={styles["main-search-logocircle"]} src={LogoCircle} alt="로고 동그라미" />
@@ -38,7 +36,18 @@ const Search = ({handleSearch ,query,setQuery, location, setLocation}) => {
       </form>
       <div className={styles["main-search-location-container"]}>
         <img src={Location} alt="위치" />
-        <div className={styles["main-search-location-current"]}>현재 설정된 위치 : {location} </div>
+        {location === "현재 위치를 확인할 수 없습니다." ? (
+          <div className={styles["main-search-location-current"]}>
+            {location}
+            {locationAccessDenied && (
+              <div className={styles["location-access-denied-bubble"]}>
+                위치 액세스를 허용해주세요
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className={styles["main-search-location-current"]}>현재 설정된 위치 : {location}</div>
+        )}
       </div>
     </div>
   );
