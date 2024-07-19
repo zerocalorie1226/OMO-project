@@ -6,19 +6,9 @@ import ProfileChange from "../../../components/MypageProfileSetting/ProfileChang
 import NicknameChange from "../../../components/MypageProfileSetting/NicknameChange/NicknameChange";
 import MbtiChange from "../../../components/MypageProfileSetting/MbtiChange/MbtiChange";
 import MembershipWithdrawal from "../../../components/MypageProfileSetting/MembershipWithdrawal/MembershipWithdrawal";
-import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
-const ProfileSetting = ({setIsLoggedIn, isLoggedIn}) => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      alert("로그인 후 이용 가능한 서비스입니다.");
-      navigate("/Login", {replace: true});
-    }
-  }, [isLoggedIn, navigate]);
-
+const ProfileSetting = ({setIsLoggedIn}) => {
   return (
     <div className={styles["profile-setting-total-container"]}>
       <h2 className={styles["profile-setting-title-container"]}>
