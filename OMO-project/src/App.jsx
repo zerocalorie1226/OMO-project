@@ -114,7 +114,7 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
         <Route path="/ProfileSetting" element={<ProfileSetting isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
 
         {/* 나만의 코스 */}
-        <Route path="/MyCourseMain" element={<MyCourseMain />} />
+        <Route path="/MyCourseMain" element={<MyCourseMain isLoggedIn={isLoggedIn}/>} />
         <Route path="/MyCourseNewWrite" element={<MyCourseNewWrite />} />
         <Route path="/MyCourseDetail/:id" element={<MyCourseDetail />} />
         <Route path="/MyCourseOthersVersion/:id" element={<MyCourseOthersVersion />} />

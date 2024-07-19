@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {WritingButton} from "../../../components/WritingButton/WritingButton";
@@ -8,11 +8,19 @@ import styles from "./MyCourseMain.module.css";
 import {Loading} from "../../../components/Loading/Loading";
 import ListSearch from "../../../components/ListSearch/ListSearch";
 
-const MyCourseMain = () => {
+const MyCourseMain = ({isLoggedIn}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [myCourseList, setMyCourseList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     const fetchData = async () => {
