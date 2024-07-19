@@ -8,14 +8,23 @@ import { CommunityWorryPostList } from "../../../components/CommunityWorryPostLi
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
 import {Loading} from "../../../components/Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
-const WorryBoard = () => {
+const WorryBoard = ({isLoggedIn}) => {
   const [posts, setPosts] = useState([]);
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
 
   const category = "Trouble";
 

@@ -112,10 +112,10 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
 
         {/* 커뮤니티 */}
         <Route path="/MyCourseBoard" element={<MyCourseBoard />} isLoggedIn={isLoggedIn}/>
-        <Route path="/WorryBoard" element={<WorryBoard />} />
-        <Route path="/FreeBoard" element={<FreeBoard />} />
-        <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent />} />
-        <Route path="/InquiryBoardQnA" element={<InquiryBoardQnA />} />
+        <Route path="/WorryBoard" element={<WorryBoard isLoggedIn={isLoggedIn} />} />
+        <Route path="/FreeBoard" element={<FreeBoard isLoggedIn={isLoggedIn}/>} />
+        <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent isLoggedIn={isLoggedIn} />} />
+        <Route path="/InquiryBoardQnA" element={<InquiryBoardQnA  isLoggedIn={isLoggedIn}/>} />
 
         {/* 공지사항 */}
         <Route path="/Notice" element={<Notice />} />

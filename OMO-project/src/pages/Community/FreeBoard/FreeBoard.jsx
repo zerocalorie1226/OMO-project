@@ -1,21 +1,30 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./FreeBoard.module.css";
-import { CommunityCategory } from "./../../../components/CommunityCategory/CommunityCategory";
+import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
-import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
-import { CommunityFreePostList } from "../../../components/CommunityFreePostList/CommunityFreePostList";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteFreeBoard from "../../../components/WritePost/WriteFreeBoard/WriteFreeBoard";
 import {Loading} from "../../../components/Loading/Loading";
+import {useNavigate} from "react-router-dom";
 
-const FreeBoard = () => {
+const FreeBoard = ({isLoggedIn}) => {
   const [posts, setPosts] = useState([]);
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [isLoggedIn, navigate]);
 
   const category = "Free";
 
@@ -40,9 +49,7 @@ const FreeBoard = () => {
 
   useEffect(() => {
     if (searchTerm) {
-      const filtered = posts.filter((post) =>
-        post.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      const filtered = posts.filter((post) => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
       setFilteredPosts(filtered);
     } else {
       setFilteredPosts(posts);

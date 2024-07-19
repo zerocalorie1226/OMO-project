@@ -1,17 +1,26 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import {CommunityCategory} from "../../../components/CommunityCategory/CommunityCategory";
 import CommunityInquiryBox from "../../../components/CommunityInquiryBox/CommunityInquiryBox";
 import CommunityInquiryFilter from "../../../components/CommunityInquiryFilter/CommunityInquiryFilter";
 import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import styles from "./InquiryBoardFrequent.module.css";
-import { Loading } from "../../../components/Loading/Loading";
+import {Loading} from "../../../components/Loading/Loading";
+import {useNavigate} from "react-router-dom";
 
-const InquiryBoardFrequent = () => {
+const InquiryBoardFrequent = ({isLoggedIn}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [frequents, setFrequents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +34,7 @@ const InquiryBoardFrequent = () => {
     };
 
     fetchData();
-  }, []); 
+  }, []);
 
   const filteredData = frequents.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
