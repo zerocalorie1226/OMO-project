@@ -7,18 +7,26 @@ import Filter from "../../../components/Filter/Filter";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
 import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
 import CommunityMyCourseList from "../../../components/CommunityMyCourseList/CommunityMyCourseList";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { mbtiBox } from "../../../const/mbtiBox";
 import { MbtiBox } from "../../../components/MbtiBox/MbtiBox";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import { Loading } from "../../../components/Loading/Loading";
 
-const MyCourseBoard = () => {
+const MyCourseBoard = ({isLoggedIn}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [communityMyCourse, setCommunityMyCourse] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedMbtiGroup1, setSelectedMbtiGroup1] = useState(null);
   const [selectedMbtiGroup2, setSelectedMbtiGroup2] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
 
   const fetchData = async (IorE, PorJ) => {
     setIsLoading(true);

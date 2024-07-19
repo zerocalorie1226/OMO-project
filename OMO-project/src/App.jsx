@@ -120,7 +120,7 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
         <Route path="/MyCourseOthersVersion/:id" element={<MyCourseOthersVersion />} />
 
         {/* 커뮤니티 */}
-        <Route path="/MyCourseBoard" element={<MyCourseBoard />} />
+        <Route path="/MyCourseBoard" element={<MyCourseBoard />} isLoggedIn={isLoggedIn}/>
         <Route path="/WorryBoard" element={<WorryBoard />} />
         <Route path="/FreeBoard" element={<FreeBoard />} />
         <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent />} />
