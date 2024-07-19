@@ -18,7 +18,7 @@ const MyCourseMain = ({isLoggedIn}) => {
   useEffect(() => {
     if (!isLoggedIn) {
       alert("로그인 후 이용 가능한 서비스입니다.");
-      navigate("/Login", { replace: true });
+      navigate("/Login", {replace: true});
     }
   }, [isLoggedIn, navigate]);
 
@@ -59,17 +59,19 @@ const MyCourseMain = ({isLoggedIn}) => {
   return (
     <div className={styles["mycourse-container"]}>
       <h2 className={styles["mycourse-title"]}>나만의 코스</h2>
-      
-      {filteredData && filteredData.length === 0 ? (
-        <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
-      ) : (
-        <div>
-        <div className={styles["mycourse-search-container"]}>
+      <div className={styles["mycourse-search-container"]}>
         <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
       </div>
-        <div className={styles["mycourse-list-container"]}>
-          <MyCourseList myCourseList={filteredData} />
+
+      {filteredData && filteredData.length === 0 ? (
+        <div>
+          <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
         </div>
+      ) : (
+        <div>
+          <div className={styles["mycourse-list-container"]}>
+            <MyCourseList myCourseList={filteredData} />
+          </div>
         </div>
       )}
 
