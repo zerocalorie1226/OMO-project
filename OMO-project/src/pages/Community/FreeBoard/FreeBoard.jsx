@@ -30,7 +30,7 @@ const FreeBoard = () => {
       setPosts(response.data.data);
       setIsLoading(false);
     } catch (error) {
-      console.error("고민게시판을 불러오는데 실패였습니다.", error);
+      console.error("자유게시판을 불러오는데 실패였습니다.", error);
     }
   };
 
@@ -54,7 +54,7 @@ const FreeBoard = () => {
     const postData = {
       title,
       content,
-      type: "TROUBLE",
+      type: "FREE",
     };
 
     try {
