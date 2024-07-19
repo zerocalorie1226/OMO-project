@@ -81,6 +81,7 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
               searchResultsY={coordinates.latitude}
               defaultListImg={defaultListImg}
               setDefaultListImg={setDefaultListImg}
+              isLoggedIn={isLoggedIn}
             />
           }
         />

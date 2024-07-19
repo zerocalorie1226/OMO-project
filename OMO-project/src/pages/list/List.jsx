@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from "./List.module.css";
 import ListSearch from "../../components/ListSearch/ListSearch";
 import { ListBox } from "../../components/ListBox/ListBox";
@@ -7,9 +7,17 @@ import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop";
 import axios from "axios";
 import { Loading } from "../../components/Loading/Loading";
 
-const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defaultListImg }) => {
+const List = ({ setRecentData, searchResultsX, searchResultsY, defaultListImg, isLoggedIn }) => {
   const { category: categoryParam } = useParams();
   const category = categoryParam || "all";
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
 
   const addRecentItem = (item) => {
     const newItem = {
