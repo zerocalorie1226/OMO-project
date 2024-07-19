@@ -1,14 +1,22 @@
 import styles from "./DetailMenu.module.css";
 import {DetailItemsMenu} from "../../../components/DetailItems/DetailItemsMenu/DetailItemsMenu";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-const DetailMenu = ({setDefaultListImg}) => {
+const DetailMenu = ({setDefaultListImg, isLoggedIn}) => {
   const {id, place_name} = useParams();
 
   const [DetailItemsMenuData, setDetailItemsMenuData] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     const fetchData = async () => {

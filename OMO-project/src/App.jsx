@@ -95,7 +95,7 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
         />
 
         {/* 상세페이지 */}
-        <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} />} />
+        <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} isLoggedIn={isLoggedIn} />} />
 
         {/* 마이 페이지 */}
         <Route path="/MyInfo" element={<MyInfo isLoggedIn={isLoggedIn}/>} />
