@@ -63,7 +63,7 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
         {/* 로그인/회원가입 */}
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/LoginLoading" element={<LoginLoading />} />
+        <Route path="/LoginLoading" element={<LoginLoading setIsLoggedIn={setIsLoggedIn}/>} />
 
         {/* 리스트페이지 */}
         <Route
@@ -90,12 +90,13 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
               searchResultsY={coordinates.latitude}
               defaultListImg={defaultListImg}
               setDefaultListImg={setDefaultListImg}
+              isLoggedIn={isLoggedIn}
             />
           }
         />
 
         {/* 상세페이지 */}
-        <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} isLoggedIn={isLoggedIn} />} />
+        <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg}/>} />
 
         {/* 마이 페이지 */}
         <Route path="/MyInfo" element={<MyInfo isLoggedIn={isLoggedIn}/>} />
@@ -111,7 +112,7 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
         <Route path="/MyCourseDetail/:id" element={<MyCourseDetail isLoggedIn={isLoggedIn}  />} />
 
         {/* 커뮤니티 */}
-        <Route path="/MyCourseBoard" element={<MyCourseBoard />} isLoggedIn={isLoggedIn}/>
+        <Route path="/MyCourseBoard" element={<MyCourseBoard isLoggedIn={isLoggedIn} />} />
         <Route path="/WorryBoard" element={<WorryBoard isLoggedIn={isLoggedIn} />} />
         <Route path="/FreeBoard" element={<FreeBoard isLoggedIn={isLoggedIn}/>} />
         <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent isLoggedIn={isLoggedIn} />} />

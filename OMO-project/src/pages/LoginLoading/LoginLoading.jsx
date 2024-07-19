@@ -21,7 +21,7 @@ const isTokenExpired = (token) => {
   return decodedToken.exp < currentTime; // 토큰의 만료 시간이 현재 시간보다 이전이면 만료된 것
 };
 
-const LoginLoading = () => {
+const LoginLoading = ({setIsLoggedIn}) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -61,14 +61,17 @@ const LoginLoading = () => {
         if (isExistingMember === "true") {
           console.log("기존 멤버로 확인됨, 홈으로 이동");
           navigate("/"); // 기존 멤버일 경우 홈 페이지로 이동
+          setIsLoggedIn(true);
         } else {
           console.log("새로운 멤버로 확인됨, Signup 페이지로 이동");
           navigate("/Signup"); // 새 멤버일 경우 회원가입 페이지로 이동
+          setIsLoggedIn(true);
         }
       } else {
         console.error("Failed to obtain a valid access token");
         // 토큰 갱신 실패 시 처리
         navigate("/Login");
+        setIsLoggedIn(false);
       }
 
       setLoading(false);
