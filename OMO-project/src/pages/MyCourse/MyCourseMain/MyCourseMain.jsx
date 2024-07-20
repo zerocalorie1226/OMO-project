@@ -8,7 +8,7 @@ import styles from "./MyCourseMain.module.css";
 import {Loading} from "../../../components/Loading/Loading";
 import ListSearch from "../../../components/ListSearch/ListSearch";
 
-const MyCourseMain = ({isLoggedIn}) => {
+const MyCourseMain = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [myCourseList, setMyCourseList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,11 +16,12 @@ const MyCourseMain = ({isLoggedIn}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
       alert("로그인 후 이용 가능한 서비스입니다.");
       navigate("/Login", {replace: true});
     }
-  }, [isLoggedIn, navigate]);
+  }, [navigate]);
 
   useEffect(() => {
     const fetchData = async () => {

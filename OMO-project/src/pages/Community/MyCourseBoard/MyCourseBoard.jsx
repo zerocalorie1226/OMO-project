@@ -13,7 +13,7 @@ import { MbtiBox } from "../../../components/MbtiBox/MbtiBox";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import { Loading } from "../../../components/Loading/Loading";
 
-const MyCourseBoard = ({isLoggedIn}) => {
+const MyCourseBoard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [communityMyCourse, setCommunityMyCourse] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,11 +22,12 @@ const MyCourseBoard = ({isLoggedIn}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
       alert("로그인 후 이용 가능한 서비스입니다.");
       navigate("/Login", { replace: true });
     }
-  }, [isLoggedIn, navigate]);
+  }, [navigate]);
 
   const fetchData = async (IorE, PorJ) => {
     setIsLoading(true);

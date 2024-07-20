@@ -7,17 +7,18 @@ import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 import axios from "axios";
 import {Loading} from "../../components/Loading/Loading";
 
-const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg, isLoggedIn}) => {
+const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg}) => {
   const {category: categoryParam} = useParams();
   const category = categoryParam || "all";
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
       alert("로그인 후 이용 가능한 서비스입니다.");
       navigate("/Login", {replace: true});
     }
-  }, [isLoggedIn, navigate]);
+  }, [navigate]);
 
   const addRecentItem = (item) => {
     const newItem = {

@@ -6,21 +6,22 @@ import MyWroteIcon from "../../../assets/my-page/my-info/my-writing.png";
 import MyPageFilter from "../../../components/MypageFilter/MypageFilter";
 import MypageWroteMain from "../../../components/MypageWroteMain/MypageWroteMain";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import { Loading } from "../../../components/Loading/Loading";
-import { useNavigate } from "react-router-dom";
+import {Loading} from "../../../components/Loading/Loading";
+import {useNavigate} from "react-router-dom";
 
-const MyWrote = ({isLoggedIn}) => {
+const MyWrote = () => {
   const [myPosts, setMyPosts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
       alert("로그인 후 이용 가능한 서비스입니다.");
-      navigate("/Login", { replace: true });
+      navigate("/Login", {replace: true});
     }
-  }, [isLoggedIn, navigate]);
+  }, [navigate]);
 
   useEffect(() => {
     const MyWroteData = async () => {
@@ -33,12 +34,10 @@ const MyWrote = ({isLoggedIn}) => {
         if (Array.isArray(response.data)) {
           const sortedData = response.data.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
           setMyPosts(sortedData);
-
         } else {
           setMyPosts([]);
         }
         setIsLoading(false);
-
       } catch (error) {
         console.error("내가 쓴 글 데이터를 불러오는데 실패하였습니다:", error);
         setMyPosts([]);
@@ -64,7 +63,6 @@ const MyWrote = ({isLoggedIn}) => {
         return selectedCategory;
     }
   };
-
 
   if (isLoading) {
     return <Loading />;

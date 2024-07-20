@@ -10,19 +10,20 @@ import {Loading} from "../../../components/Loading/Loading";
 import Like from "../../../assets/community/my-course-board/empty-thumb.png";
 import LikeClicked from "../../../assets/detail/purple-thumb.png";
 
-const MyCourseDetail = ({isLoggedIn}) => {
+const MyCourseDetail = () => {
   const {id} = useParams();
   const [detailData, setDetailData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
-    if (!isLoggedIn) {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
       alert("로그인 후 이용 가능한 서비스입니다.");
       navigate("/Login", {replace: true});
     }
-  }, [isLoggedIn, navigate]);
+  }, [navigate]);
 
   const getStringDate = (date) => {
     const options = {year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit"};

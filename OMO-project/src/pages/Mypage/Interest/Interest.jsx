@@ -6,19 +6,20 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import InterestIcon from "../../../assets/my-page/my-info/empty-heart.png";
 import {useEffect, useState} from "react";
 import {Loading} from "../../../components/Loading/Loading";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
-const Interest = ({isLoggedIn}) => {
+const Interest = () => {
   const [interestPosts, setInterestPosts] = useState(null); // 초기값을 null로 설정
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
       alert("로그인 후 이용 가능한 서비스입니다.");
-      navigate("/Login", { replace: true });
+      navigate("/Login", {replace: true});
     }
-  }, [isLoggedIn, navigate]);
+  }, [navigate]);
 
   const fetchData = async () => {
     try {

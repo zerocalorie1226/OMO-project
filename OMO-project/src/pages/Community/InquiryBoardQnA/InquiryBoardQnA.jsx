@@ -11,7 +11,7 @@ import WriteQnABoard from "../../../components/WritePost/WriteQnABoard/WriteQnAB
 import {Loading} from "../../../components/Loading/Loading";
 import {useNavigate} from "react-router-dom";
 
-const InquiryBoardQnA = ({isLoggedIn}) => {
+const InquiryBoardQnA = () => {
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [boardId, setBoardId] = useState(null);
@@ -21,11 +21,12 @@ const InquiryBoardQnA = ({isLoggedIn}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
       alert("로그인 후 이용 가능한 서비스입니다.");
       navigate("/Login", {replace: true});
     }
-  }, [isLoggedIn, navigate]);
+  }, [navigate]);
 
   // 게시글 불러오기
   const fetchData = async () => {

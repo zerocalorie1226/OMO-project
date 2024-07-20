@@ -1,7 +1,7 @@
 import "./App.module.css";
-import { Header } from "./components/Header/Header";
-import React, { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {Header} from "./components/Header/Header";
+import React, {useState} from "react";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import Signup from "./pages/signup/Signup";
 import Eating from "./pages/sub/eating/Eating";
@@ -30,23 +30,23 @@ import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
 import LoginLoading from "./pages/LoginLoading/LoginLoading";
 import useCurrentLocation from "./assets/hooks/useCurrentLocation";
 
-const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
-  const { location, coordinates, setCoordinates, setLocation, locationAccessDenied } = useCurrentLocation();
+const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
+  const {location, coordinates, setCoordinates, setLocation, locationAccessDenied} = useCurrentLocation();
   const [recentData, setRecentData] = useState([]);
   const [defaultListImg, setDefaultListImg] = useState("/src/assets/detail/defaultDetailIcon.png");
 
   return (
     <div>
       {/* 헤더 */}
-      <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      <Header handleLogout={handleLogout} />
       <Routes>
         {/* 메인 페이지 */}
         <Route
           path="/"
           element={
             <Main
-              setSearchResultsX={(x) => setCoordinates((prev) => ({ ...prev, longitude: x }))}
-              setSearchResultsY={(y) => setCoordinates((prev) => ({ ...prev, latitude: y }))}
+              setSearchResultsX={(x) => setCoordinates((prev) => ({...prev, longitude: x}))}
+              setSearchResultsY={(y) => setCoordinates((prev) => ({...prev, latitude: y}))}
               location={location}
               setLocation={setLocation}
               locationAccessDenied={locationAccessDenied}
@@ -63,7 +63,7 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
         {/* 로그인/회원가입 */}
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/LoginLoading" element={<LoginLoading setIsLoggedIn={setIsLoggedIn}/>} />
+        <Route path="/LoginLoading" element={<LoginLoading setIsLoggedIn={setIsLoggedIn} />} />
 
         {/* 리스트페이지 */}
         <Route
@@ -90,33 +90,32 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
               searchResultsY={coordinates.latitude}
               defaultListImg={defaultListImg}
               setDefaultListImg={setDefaultListImg}
-              isLoggedIn={isLoggedIn}
             />
           }
         />
 
         {/* 상세페이지 */}
-        <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg}/>} />
+        <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} />} />
 
         {/* 마이 페이지 */}
-        <Route path="/MyInfo" element={<MyInfo isLoggedIn={isLoggedIn}/>} />
-        <Route path="/Interest" element={<Interest isLoggedIn={isLoggedIn}/>} />
-        <Route path="/Recommend" element={<Recommend isLoggedIn={isLoggedIn} />} />
-        <Route path="/Recent" element={<Recent recentData={recentData} isLoggedIn={isLoggedIn}/>} />
-        <Route path="/MyWrote" element={<MyWrote isLoggedIn={isLoggedIn} />} />
-        <Route path="/ProfileSetting" element={<ProfileSetting isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/MyInfo" element={<MyInfo />} />
+        <Route path="/Interest" element={<Interest />} />
+        <Route path="/Recommend" element={<Recommend />} />
+        <Route path="/Recent" element={<Recent />} />
+        <Route path="/MyWrote" element={<MyWrote />} />
+        <Route path="/ProfileSetting" element={<ProfileSetting setIsLoggedIn={setIsLoggedIn} />} />
 
         {/* 나만의 코스 */}
-        <Route path="/MyCourseMain" element={<MyCourseMain isLoggedIn={isLoggedIn}/>} />
-        <Route path="/MyCourseNewWrite" element={<MyCourseNewWrite isLoggedIn={isLoggedIn} /> } />
-        <Route path="/MyCourseDetail/:id" element={<MyCourseDetail isLoggedIn={isLoggedIn}  />} />
+        <Route path="/MyCourseMain" element={<MyCourseMain />} />
+        <Route path="/MyCourseNewWrite" element={<MyCourseNewWrite />} />
+        <Route path="/MyCourseDetail/:id" element={<MyCourseDetail />} />
 
         {/* 커뮤니티 */}
-        <Route path="/MyCourseBoard" element={<MyCourseBoard isLoggedIn={isLoggedIn} />} />
-        <Route path="/WorryBoard" element={<WorryBoard isLoggedIn={isLoggedIn} />} />
-        <Route path="/FreeBoard" element={<FreeBoard isLoggedIn={isLoggedIn}/>} />
-        <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent isLoggedIn={isLoggedIn} />} />
-        <Route path="/InquiryBoardQnA" element={<InquiryBoardQnA  isLoggedIn={isLoggedIn}/>} />
+        <Route path="/MyCourseBoard" element={<MyCourseBoard />} />
+        <Route path="/WorryBoard" element={<WorryBoard />} />
+        <Route path="/FreeBoard" element={<FreeBoard />} />
+        <Route path="/InquiryBoardFrequent" element={<InquiryBoardFrequent />} />
+        <Route path="/InquiryBoardQnA" element={<InquiryBoardQnA />} />
 
         {/* 공지사항 */}
         <Route path="/Notice" element={<Notice />} />
