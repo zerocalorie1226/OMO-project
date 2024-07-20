@@ -308,20 +308,14 @@ export const DetailItemsMenu = (props) => {
   }, [getImgNames]);
 
   // handleSubmit
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (content.length < 1) {
       alert("리뷰는 최소 1글자 이상 입력해주세요");
       return;
     }
     const imageFile = fileInput.current.files[0];
     postReview(content, imageFile);
-  };
-
-  // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
-  const handleOnKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSubmit(); // Enter 입력이 되면 클릭 이벤트 실행
-    }
   };
 
   // 첫 번째로 이미지가 포함된 리뷰를 찾는 함수
@@ -478,7 +472,7 @@ export const DetailItemsMenu = (props) => {
                 <span className={styles["detail-review-title"]}>리뷰 ({posts.length})</span>
 
                 <div className={styles["detail-review-box-container"]}>
-                  <div className={styles["detail-review-input-box"]}>
+                  <form className={styles["detail-review-input-box"]} onSubmit={handleSubmit}>
                     <div className={styles["detail-review-input-box-change-img-box"]}>
                       <img src={Image} alt="리뷰 사진" className={styles["detail-review-input-change-img"]} />
                       <label className={styles["detail-review-input-change-img-add-img"]} htmlFor="input-file">
@@ -510,7 +504,6 @@ export const DetailItemsMenu = (props) => {
                     </div>
 
                     <input
-                      onKeyDown={handleOnKeyPress}
                       value={content || ""}
                       onChange={(e) => {
                         setContent(e.target.value);
@@ -523,12 +516,12 @@ export const DetailItemsMenu = (props) => {
                       maxLength="39"
                       size="10"
                       placeholder="리뷰를 작성해주세요..."
-                    ></input>
-                    <button onClick={handleSubmit} className={styles["detail-review-input-button"]} src={Submit} type="submit">
+                    />
+                    <button className={styles["detail-review-input-button"]} src={Submit} type="submit">
                       <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px"}} />
                       <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
                     </button>
-                  </div>
+                  </form>
 
                   {posts.map((review) => (
                     <Review key={review.reviewId} {...review} />
