@@ -3,6 +3,7 @@ import { MyCourseItemListBox } from "../MyCourseItemListBox/MyCourseItemListBox"
 import ModalClose from "./../../../assets/modal-close.png";
 import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
+import { Loading } from "../../Loading/Loading";
 
 const MyCourseFindInterestModal = ({ interestModal, setInterestModal, state, setState, setPlaceName, setPlaceId }) => {
   const [interestPosts, setInterestPosts] = useState([]);
@@ -49,10 +50,10 @@ const MyCourseFindInterestModal = ({ interestModal, setInterestModal, state, set
 
   useEffect(() => {
     // 모달이 열릴 때 배경 스크롤 막기
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     return () => {
       // 모달이 닫힐 때 배경 스크롤 복원
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     };
   }, []);
 
@@ -75,37 +76,41 @@ const MyCourseFindInterestModal = ({ interestModal, setInterestModal, state, set
             {!interestModal ? setInterestModal(true) : null}
           </button>
         </label>
-        {interestPosts.length === 0 ? (
-          <div className={styles["no-jjim-list"]}>관심 목록이 없습니다. 장소 상세 페이지에서 하트를 눌러보세요!</div>
-        ) : (
-          <div className={styles["mycourse-find-interest-modal-list-box-container"]}>
-            {interestPosts.map((el, index) => {
-              if (index === interestPosts.length - 1) {
-                return (
-                  <MyCourseItemListBox
-                    ref={lastElementRef}
-                    key={el.id}
-                    state={state}
-                    setState={setState}
-                    el={el}
-                    onClick={(place_name, id) => handleClickItem(place_name, id)}
-                  />
-                );
-              } else {
-                return (
-                  <MyCourseItemListBox
-                    key={el.id}
-                    state={state}
-                    setState={setState}
-                    el={el}
-                    onClick={(place_name, id) => handleClickItem(place_name, id)}
-                  />
-                );
-              }
-            })}
-            {loading && <div>Loading...</div>}
-          </div>
-        )}
+        
+        <div className={styles["mycourse-find-interest-modal-list-box-container"]}>
+          {loading ? (
+            <Loading />
+          ) : interestPosts.length === 0 ? (
+            <div className={styles["no-jjim-list"]}>관심 목록이 없습니다. 장소 상세 페이지에서 하트를 눌러보세요!</div>
+          ) : (
+            <div>
+              {interestPosts.map((el, index) => {
+                if (index === interestPosts.length - 1) {
+                  return (
+                    <MyCourseItemListBox
+                      ref={lastElementRef}
+                      key={el.id}
+                      state={state}
+                      setState={setState}
+                      el={el}
+                      onClick={(place_name, id) => handleClickItem(place_name, id)}
+                    />
+                  );
+                } else {
+                  return (
+                    <MyCourseItemListBox
+                      key={el.id}
+                      state={state}
+                      setState={setState}
+                      el={el}
+                      onClick={(place_name, id) => handleClickItem(place_name, id)}
+                    />
+                  );
+                }
+              })}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

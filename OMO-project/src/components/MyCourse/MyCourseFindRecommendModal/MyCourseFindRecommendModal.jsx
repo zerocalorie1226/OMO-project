@@ -3,12 +3,13 @@ import { MyCourseItemListBox } from "../MyCourseItemListBox/MyCourseItemListBox"
 import ModalClose from "./../../../assets/modal-close.png";
 import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
+import { Loading } from "../../Loading/Loading";
 
 const MyCourseFindRecommendModal = ({ recommendModal, setRecommendModal, state, setState, setPlaceName, setPlaceId }) => {
   const [recommendPosts, setRecommendPosts] = useState([]);
   const [maxPage, setMaxPage] = useState(0);
   const [pagination, setPagination] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const observer = useRef();
 
@@ -20,8 +21,13 @@ const MyCourseFindRecommendModal = ({ recommendModal, setRecommendModal, state, 
           Authorization: localStorage.getItem("accessToken"),
         },
       });
-      setRecommendPosts((prevPosts) => [...prevPosts, ...response.data]);
-      setMaxPage(response.data.totalPages);
+
+      if (Array.isArray(response.data.content)) {
+        setRecommendPosts((prevPosts) => [...prevPosts, ...response.data.content]);
+        setMaxPage(response.data.totalPages || 0);
+      } else {
+        console.error("Invalid response structure", response.data);
+      }
     } catch (error) {
       console.error("데이터를 가져오는데 실패했습니다.", error);
     } finally {
@@ -75,37 +81,40 @@ const MyCourseFindRecommendModal = ({ recommendModal, setRecommendModal, state, 
             {!recommendModal ? setRecommendModal(true) : null}
           </button>
         </label>
-        {recommendPosts.length === 0 ? (
-          <div className={styles["no-recommend-list"]}>추천한 장소가 없습니다. 장소 상세 페이지에서 따봉을 눌러보세요!</div>
-        ) : (
-          <div className={styles["mycourse-find-recommend-modal-list-box-container"]}>
-            {recommendPosts.map((el, index) => {
-              if (index === recommendPosts.length - 1) {
-                return (
-                  <MyCourseItemListBox
-                    ref={lastElementRef}
-                    key={el.id}
-                    state={state}
-                    setState={setState}
-                    el={el}
-                    onClick={(place_name, id) => handleClickItem(place_name, id)}
-                  />
-                );
-              } else {
-                return (
-                  <MyCourseItemListBox
-                    key={el.id}
-                    state={state}
-                    setState={setState}
-                    el={el}
-                    onClick={(place_name, id) => handleClickItem(place_name, id)}
-                  />
-                );
-              }
-            })}
-            {loading && <div>Loading...</div>}
-          </div>
-        )}
+        <div className={styles["mycourse-find-recommend-modal-list-box-container"]}>
+          {loading ? (
+            <Loading />
+          ) : recommendPosts.length === 0 ? (
+            <div className={styles["no-recommend-list"]}>추천한 장소가 없습니다. 장소 상세 페이지에서 따봉을 눌러보세요!</div>
+          ) : (
+            <div>
+              {recommendPosts.map((el, index) => {
+                if (index === recommendPosts.length - 1) {
+                  return (
+                    <MyCourseItemListBox
+                      ref={lastElementRef}
+                      key={el.id}
+                      state={state}
+                      setState={setState}
+                      el={el}
+                      onClick={(place_name, id) => handleClickItem(place_name, id)}
+                    />
+                  );
+                } else {
+                  return (
+                    <MyCourseItemListBox
+                      key={el.id}
+                      state={state}
+                      setState={setState}
+                      el={el}
+                      onClick={(place_name, id) => handleClickItem(place_name, id)}
+                    />
+                  );
+                }
+              })}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
