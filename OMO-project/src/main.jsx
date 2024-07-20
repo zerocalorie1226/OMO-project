@@ -30,7 +30,7 @@ const Root = () => {
       localStorage.removeItem('isExistingMember');
       localStorage.removeItem('memberId');
       localStorage.removeItem('recentData');
-      setIsLoggedIn(false);
+      localStorage.removeItem('isLoggedIn');
       alert("로그아웃 되었습니다.");
       navigate("/Login", { replace: true });
       window.history.replaceState(null, null, "/Login");
