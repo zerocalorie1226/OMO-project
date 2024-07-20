@@ -46,10 +46,8 @@ export const CommunityPostItem = (props) => {
   const handleSubmit = async (e) => {
     if (e) {
       e.preventDefault();
-      e.stopPropagation();
     }
 
-    console.log("handleSubmit called"); // 디버깅 로그
 
     if (content.length < 1) {
       alert("최소 1글자 이상 입력해주세요");
