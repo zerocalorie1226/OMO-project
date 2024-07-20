@@ -55,6 +55,7 @@ const MyInfo = () => {
           }
         }
       } catch (error) {
+        navigate("/Login", {replace: true});
         console.error("내정보를 불러오는데 실패하였습니다.", error);
       }
     };
