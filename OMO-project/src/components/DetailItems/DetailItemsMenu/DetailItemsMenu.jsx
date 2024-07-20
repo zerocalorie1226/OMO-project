@@ -147,8 +147,9 @@ export const DetailItemsMenu = (props) => {
         }
       );
 
-      if (response.status === 200) {
+      if (response.data !== "No review. Write review first before recommend.") {
         // PUT 요청이 성공한 후 GET 요청을 보내기
+        console.log(response.data);
         const getResponse = await axios.get(`https://api.oneulmohae.co.kr/place/${props.place_name}`, {
           headers: {
             placeId: props.placeId,
@@ -171,7 +172,7 @@ export const DetailItemsMenu = (props) => {
           console.error("장소데이터를 가져오는데 실패하였습니다.");
         }
       } else {
-        console.error("장소데이터를 가져오는데 실패하였습니다.");
+        alert("리뷰를 먼저 작성하여야 추천 버튼을 누를 수 있습니다.");
       }
     } catch (error) {
       console.error("장소데이터를 가져오는데 실패하였습니다:", error);
