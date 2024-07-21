@@ -3,11 +3,12 @@ import styles from "./Header.module.css";
 import MainLogo from "../../assets/logo-main.png";
 import { Link } from "react-router-dom";
 
-export const Header = ({ isLoggedIn, handleLogout }) => {
+export const Header = ({handleLogout }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const isSignupPage = location.pathname === "/Signup";
   const isLogin = location.pathname === "/Login";
+  const loggedIn = localStorage.getItem("isLoggedIn");
 
 
 
@@ -32,7 +33,7 @@ export const Header = ({ isLoggedIn, handleLogout }) => {
             </div>
           </div>
           <div className={styles["main-header-menu-right-container"]}>
-            {isLoggedIn && !isSignupPage && !isLogin ? (
+            {loggedIn && !isSignupPage && !isLogin ? (
               <div>
                 <Link to="/MyInfo" className={styles["main-header-mypage"]}>
                   마이 페이지

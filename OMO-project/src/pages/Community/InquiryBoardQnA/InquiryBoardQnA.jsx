@@ -8,9 +8,8 @@ import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteQnABoard from "../../../components/WritePost/WriteQnABoard/WriteQnABoard";
-import { Loading } from "../../../components/Loading/Loading";
-
-// InquiryBoardQnA
+import {Loading} from "../../../components/Loading/Loading";
+import {useNavigate} from "react-router-dom";
 
 const InquiryBoardQnA = () => {
   const [posts, setPosts] = useState([]);
@@ -19,6 +18,15 @@ const InquiryBoardQnA = () => {
   const [openModal, setOpenModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [navigate]);
 
   // 게시글 불러오기
   const fetchData = async () => {

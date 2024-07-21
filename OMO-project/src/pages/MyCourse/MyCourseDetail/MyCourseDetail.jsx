@@ -1,7 +1,7 @@
 import styles from "./MyCourseDetail.module.css";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import Share from "../../../components/MyCourse/Button/Share/Share";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import MyCourseDetailBox from "../../../components/MyCourseDetailBox/MyCourseDetailBox";
@@ -15,6 +15,15 @@ const MyCourseDetail = () => {
   const [detailData, setDetailData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [navigate]);
 
   const getStringDate = (date) => {
     const options = {year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit"};
@@ -133,7 +142,9 @@ const MyCourseDetail = () => {
           ))}
         </div>
       </div>
-      <div className={styles["mycourse-detail-edit-share-button-container"]}><Share courseId={detailData.courseId} /></div>
+      <div className={styles["mycourse-detail-edit-share-button-container"]}>
+        <Share courseId={detailData.courseId} share={detailData.share} />
+      </div>
       <ScrollToTop />
     </div>
   );

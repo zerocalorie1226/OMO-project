@@ -43,7 +43,12 @@ export const CommunityPostItem = (props) => {
   };
 
   // 댓글 최소 글자
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    if (e) {
+      e.preventDefault();
+    }
+
+
     if (content.length < 1) {
       alert("최소 1글자 이상 입력해주세요");
       return;
@@ -131,14 +136,6 @@ export const CommunityPostItem = (props) => {
       }
     } catch (error) {
       console.error("게시글을 가져오는데 실패하였습니다.:", error);
-    }
-  };
-
-  // 댓글 handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
-  const handleOnKeyPress = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      handleSubmit(); // Enter 입력이 되면 클릭 이벤트 실행
     }
   };
 
@@ -258,7 +255,7 @@ export const CommunityPostItem = (props) => {
           {/* 하단 댓글창 전체박스 */}
           <div className={`${styles["community-post-comment-container"]} ${showComments ? styles["show-comments"] : ""}`}>
             {/* 댓글 입력창 */}
-            <div className={styles["community-post-comment-input-container"]}>
+            <form className={styles["community-post-comment-input-container"]} onSubmit={handleSubmit}>
               <img
                 className={styles["community-post-comment-input-profile-img"]}
                 src={profileImage}
@@ -274,13 +271,12 @@ export const CommunityPostItem = (props) => {
                 maxLength="40"
                 size="10"
                 placeholder="댓글을 입력하세요..."
-                onKeyDown={handleOnKeyPress}
                 value={content || ""}
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}
               />
-              <button className={styles["community-post-comment-input-button"]} type="submit" onClick={handleSubmit}>
+              <button className={styles["community-post-comment-input-button"]} type="submit">
                 <img
                   className={styles["community-post-comment-input-button-img"]}
                   src={Submit}
@@ -294,7 +290,7 @@ export const CommunityPostItem = (props) => {
                   style={{ width: "35px", height: "35px" }}
                 />
               </button>
-            </div>
+            </form>
 
             {/* 댓글 리스트 내용 */}
             {props.comments

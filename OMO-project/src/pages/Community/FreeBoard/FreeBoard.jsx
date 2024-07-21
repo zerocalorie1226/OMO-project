@@ -1,13 +1,14 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./FreeBoard.module.css";
-import { CommunityCategory } from "./../../../components/CommunityCategory/CommunityCategory";
+import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
-import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
-import { CommunityFreePostList } from "../../../components/CommunityFreePostList/CommunityFreePostList";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteFreeBoard from "../../../components/WritePost/WriteFreeBoard/WriteFreeBoard";
 import {Loading} from "../../../components/Loading/Loading";
+import {useNavigate} from "react-router-dom";
 
 const FreeBoard = () => {
   const [posts, setPosts] = useState([]);
@@ -16,6 +17,15 @@ const FreeBoard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [navigate]);
 
   const category = "Free";
 
@@ -30,7 +40,7 @@ const FreeBoard = () => {
       setPosts(response.data.data);
       setIsLoading(false);
     } catch (error) {
-      console.error("고민게시판을 불러오는데 실패였습니다.", error);
+      console.error("자유게시판을 불러오는데 실패였습니다.", error);
     }
   };
 
@@ -40,9 +50,7 @@ const FreeBoard = () => {
 
   useEffect(() => {
     if (searchTerm) {
-      const filtered = posts.filter((post) =>
-        post.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      const filtered = posts.filter((post) => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
       setFilteredPosts(filtered);
     } else {
       setFilteredPosts(posts);
@@ -54,7 +62,7 @@ const FreeBoard = () => {
     const postData = {
       title,
       content,
-      type: "TROUBLE",
+      type: "FREE",
     };
 
     try {

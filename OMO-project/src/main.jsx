@@ -30,9 +30,10 @@ const Root = () => {
       localStorage.removeItem('isExistingMember');
       localStorage.removeItem('memberId');
       localStorage.removeItem('recentData');
-      setIsLoggedIn(false);
+      localStorage.removeItem('isLoggedIn');
       alert("로그아웃 되었습니다.");
-      navigate("/Login");
+      navigate("/Login", { replace: true });
+      window.history.replaceState(null, null, "/Login");
     } catch (error) {
       console.error("로그아웃에 실패하였습니다: ", error);
       alert("로그아웃에 실패하였습니다.");
@@ -43,7 +44,6 @@ const Root = () => {
     <App handleLogout={handleLogout} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
   );
 };
-
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 

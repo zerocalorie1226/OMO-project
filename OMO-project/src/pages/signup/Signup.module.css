@@ -115,8 +115,8 @@
   margin-right: 114px;
 }
 
-.mbti-select-IE, .mbti-select-SN, .mbti-select-TF {
-  width: 60px;
+.mbti-select-IE, .mbti-select-SN, .mbti-select-TF, .mbti-select-JP {
+  width: 80px;
   height: 60px;
   border-radius: 10px;
   border: 1px solid var(--gray-400);
@@ -126,15 +126,6 @@
   cursor: pointer;
 }
 
-.mbti-select-JP {
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-  border: 1px solid var(--gray-400);
-  text-align: center;
-  color: var(--gray);
-  cursor: pointer;
-}
 
 .mbti-color {
   color: black;
