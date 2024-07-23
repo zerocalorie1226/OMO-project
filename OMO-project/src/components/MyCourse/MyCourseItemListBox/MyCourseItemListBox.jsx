@@ -29,6 +29,8 @@ export const MyCourseItemListBox = ({ state, setState, el, onClick}) => {
         setImages(fetchedImages);
       } catch (error) {
         console.error("Error fetching images:", error);
+        // 기본 이미지를 설정합니다.
+        setImages([defaultDetailIcon, defaultDetailIcon]);
       }
     };
 
@@ -36,6 +38,7 @@ export const MyCourseItemListBox = ({ state, setState, el, onClick}) => {
   }, [el.id]);
 
   const firstImages = images.slice(0, 2);
+  console.log(firstImages)
 
   return (
     <div
@@ -64,7 +67,7 @@ export const MyCourseItemListBox = ({ state, setState, el, onClick}) => {
           <img className={styles["mycourse-list-box-img1"]} src={firstImages[0]} alt="list image 1" />
           <img className={styles["mycourse-list-box-img2"]} src={defaultDetailIcon} alt="default list image 2" />
         </>
-      ) : firstImages.length > 0 ? (
+      ) : firstImages.length > 1 ? (
         <>
           <img className={styles["mycourse-list-box-img1"]} src={firstImages[0]} alt="list image 1" />
           <img className={styles["mycourse-list-box-img2"]} src={firstImages[1]} alt="list image 2" />
