@@ -2,50 +2,20 @@ import styles from "./MyCourseFindRecentModal.module.css";
 import { MyCourseItemListBox } from "../MyCourseItemListBox/MyCourseItemListBox";
 import ModalClose from "./../../../assets/modal-close.png";
 import { useEffect, useState, useRef, useCallback } from "react";
-import axios from "axios";
-import { Loading } from "../../Loading/Loading";
 
 const MyCourseFindRecentModal = ({ recentModal, setRecentModal, state, setState, setPlaceName, setPlaceId }) => {
   const [recentData, setRecentData] = useState([]);
   const [maxPage, setMaxPage] = useState(1);
   const [pagination, setPagination] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const observer = useRef();
 
   useEffect(() => {
-    const fetchRecentData = async () => {
-      const storedRecentData = localStorage.getItem("recentData");
-      if (storedRecentData) {
-        const parsedData = JSON.parse(storedRecentData);
-
-        const placeNameList = parsedData.map((place) => place.place_name);
-        const placeIdList = parsedData.map((place) => place.id);
-
-        const postData = {
-          placeNameList: placeNameList,
-          placeIdList: placeIdList,
-        };
-
-        try {
-          const response = await axios.post("https://api.oneulmohae.co.kr/place/recent", postData, {
-            headers: {
-              Authorization: localStorage.getItem("accessToken"),
-            },
-          });
-          setRecentData(response.data);
-          setMaxPage(Math.ceil(response.data.length / 10)); // 페이지 수 계산
-        } catch (error) {
-          console.error("최근 본 목록을 가져오는 중 오류가 발생했습니다.", error);
-        } finally {
-          setLoading(false);
-        }
-      } else {
-        setLoading(false);
-      }
-    };
-
-    fetchRecentData();
+    const storedRecentData = localStorage.getItem("recentData");
+    if (storedRecentData) {
+      setRecentData(JSON.parse(storedRecentData));
+    }
   }, []);
 
   useEffect(() => {
@@ -94,9 +64,7 @@ const MyCourseFindRecentModal = ({ recentModal, setRecentModal, state, setState,
         </label>
 
         <div className={styles["mycourse-find-recent-modal-list-box-container"]}>
-          {loading ? (
-            <Loading />
-          ) : recentData.length === 0 ? (
+          {recentData.length === 0 ? (
             <div className={styles["no-recent-list"]}>최근 본 장소가 없습니다.</div>
           ) : (
             <div>
@@ -124,6 +92,7 @@ const MyCourseFindRecentModal = ({ recentModal, setRecentModal, state, setState,
                   );
                 }
               })}
+              {loading && <div>Loading...</div>}
             </div>
           )}
         </div>
