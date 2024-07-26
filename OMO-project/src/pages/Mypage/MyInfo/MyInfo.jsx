@@ -78,7 +78,7 @@ const MyInfo = () => {
           <img src={MyInfoIcon} alt="내 정보 아이콘" /> 내 정보
         </h2>
         <div className={styles["myinfo-categories-container"]}>
-          <Mypage myInfoData={myInfoData} />
+          <Mypage />
           {myInfoData && (
             <div className={styles["myinfo-logo-info-container"]}>
               <img
