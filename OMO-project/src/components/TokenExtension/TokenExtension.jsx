@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {jwtDecode} from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode'; // 기본 가져오기 방식으로 수정
 import axios from 'axios';
 import styles from './TokenExtension.module.css';
 
@@ -32,10 +32,17 @@ const TokenExtension = ({ setIsLoggedIn }) => {
     }
   };
 
+  const formatRemainingTime = (timeInSeconds) => {
+    if (timeInSeconds <= 0) return '0분 0초';
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
+    return `${minutes}분 ${seconds}초`;
+  };
+
   const updateRemainingTime = (accessExpirationTime, refreshExpirationTime) => {
     const currentTime = Date.now();
-    const accessTimeLeft = accessExpirationTime - currentTime;
-    const refreshTimeLeft = refreshExpirationTime - currentTime;
+    const accessTimeLeft = Math.floor((accessExpirationTime - currentTime) / 1000); 
+    const refreshTimeLeft = Math.floor((refreshExpirationTime - currentTime) / 1000); 
 
     if (accessTimeLeft <= 0 || refreshTimeLeft <= 0) {
       alert('로그아웃 됐습니다.');
@@ -46,11 +53,11 @@ const TokenExtension = ({ setIsLoggedIn }) => {
       setAccessToken(null);
       setRefreshToken(null);
       setRemainingTime({ access: null, refresh: null });
-      window.location.reload(); // 페이지 새로고침
+      window.location.href = '/Login'; 
     } else {
       setRemainingTime({
-        access: Math.floor(accessTimeLeft / 1000), // 초 단위로 변환
-        refresh: Math.floor(refreshTimeLeft / 1000), // 초 단위로 변환
+        access: accessTimeLeft,
+        refresh: refreshTimeLeft,
       });
     }
   };
@@ -89,8 +96,8 @@ const TokenExtension = ({ setIsLoggedIn }) => {
   return (
     <div className={styles['token-extension-container']}>
       <span className={styles['token-extension-time']}>
-        액세스 토큰 남은 시간: {remainingTime.access !== null ? `${remainingTime.access} 초` : '토큰 없음'} <br />
-        리프레시 토큰 남은 시간: {remainingTime.refresh !== null ? `${remainingTime.refresh} 초` : '토큰 없음'}
+        남은 시간: {remainingTime.access !== null ? formatRemainingTime(remainingTime.access) : '토큰 없음'} <br />
+        {/* 리프레시 토큰 남은 시간: {remainingTime.refresh !== null ? formatRemainingTime(remainingTime.refresh) : '토큰 없음'} */}
       </span>
       <button className={styles['token-extension-button']} onClick={handleTokenRefresh}>
         연장
