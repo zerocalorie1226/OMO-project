@@ -8,17 +8,16 @@
 }
 
 .main-header-menu-container {
-  flex-grow: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 35px;
+  margin-left: 30px;
   font-size: 20px;
 }
 
 .main-header-menu-left-container {
   display: flex;
-  gap: 25px;
+  gap: 20px;
 }
 
 header > hr {
@@ -29,13 +28,17 @@ header > hr {
   margin: 0;
 }
 
+.main-header-mypage {
+  margin-left: 70px;
+}
+
 .main-header-logout {
   all: unset;
-  margin-left: 25px;
+  margin-left: 20px;
   cursor: pointer;
 }
 
-.main-header-menu-right-container{
-  margin-top: 31px;
+.main-header-menu-login-status-container {
+  display: flex;
+  align-items: center;
 }
-

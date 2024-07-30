@@ -9,7 +9,6 @@ export const Header = ({handleLogout, setIsLoggedIn, isLoggedIn}) => {
   const navigate = useNavigate();
   const isSignupPage = location.pathname === "/Signup";
   const isLogin = location.pathname === "/Login";
-  const loggedIn = localStorage.getItem("isLoggedIn");
 
   return (
     <header>
@@ -33,17 +32,19 @@ export const Header = ({handleLogout, setIsLoggedIn, isLoggedIn}) => {
           </div>
           <div className={styles["main-header-menu-right-container"]}>
             {isLoggedIn && !isSignupPage && !isLogin ? (
-              <div>
+              <div className={styles["main-header-menu-login-status-container"]}>
                 <Link to="/MyInfo" className={styles["main-header-mypage"]}>
                   마이 페이지
                 </Link>
                 <button onClick={handleLogout} className={styles["main-header-logout"]}>
                   로그아웃
                 </button>
+                <div>
                 <TokenExtension className={styles["main-header-token"]} setIsLoggedIn={setIsLoggedIn} />
               </div>
+              </div>
             ) : (
-              <div>
+              <div className={styles["main-header-menu-logout-status-container"]}>
                 <Link to="/Login" className={styles["main-header-login"]}>
                   로그인
                 </Link>
