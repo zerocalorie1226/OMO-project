@@ -1,0 +1,24 @@
+.token-extension-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.token-extension-time {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.token-extension-button {
+  padding: 10px 20px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.token-extension-button:hover {
+  background-color: #45a049;
+}
