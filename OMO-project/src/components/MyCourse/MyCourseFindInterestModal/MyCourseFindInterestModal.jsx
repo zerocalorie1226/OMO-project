@@ -1,10 +1,11 @@
 import styles from "./MyCourseFindInterestModal.module.css";
-import { MyCourseItemListBox } from "../MyCourseItemListBox/MyCourseItemListBox";
+import {MyCourseItemListBox} from "../MyCourseItemListBox/MyCourseItemListBox";
 import ModalClose from "./../../../assets/modal-close.png";
-import { useEffect, useState, useCallback } from "react";
+import {useEffect, useState, useCallback} from "react";
 import axios from "axios";
+import {Loading} from "../../Loading/Loading";
 
-const MyCourseFindInterestModal = ({ interestModal, setInterestModal, state, setState, setPlaceName, setPlaceId }) => {
+const MyCourseFindInterestModal = ({interestModal, setInterestModal, state, setState, setPlaceName, setPlaceId}) => {
   const [interestPosts, setInterestPosts] = useState([]);
   const [maxPage, setMaxPage] = useState(0);
   const [pagination, setPagination] = useState(1);
@@ -18,9 +19,7 @@ const MyCourseFindInterestModal = ({ interestModal, setInterestModal, state, set
           Authorization: localStorage.getItem("accessToken"),
         },
       });
-      console.log(response.data);
 
-      // response.data가 null인 경우 빈 배열로 대체
       const posts = response.data ? response.data : [];
 
       setInterestPosts((prevPosts) => [...prevPosts, ...posts]);
@@ -45,12 +44,12 @@ const MyCourseFindInterestModal = ({ interestModal, setInterestModal, state, set
 
   useEffect(() => {
     // 모달이 열릴 때 배경 스크롤 막기
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('scroll', handleScroll);
+    document.body.style.overflow = "hidden";
+    window.addEventListener("scroll", handleScroll);
     return () => {
       // 모달이 닫힐 때 배경 스크롤 복원
-      document.body.style.overflow = 'auto';
-      window.removeEventListener('scroll', handleScroll);
+      document.body.style.overflow = "auto";
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [handleScroll]);
 
@@ -64,29 +63,23 @@ const MyCourseFindInterestModal = ({ interestModal, setInterestModal, state, set
       <div className={styles["mycourse-find-interest-modal-container"]}>
         <label className={styles["mycourse-find-interest-modal-title"]} htmlFor="find-interest">
           관심 목록에서 찾기
-          <button
-            className={styles["mycourse-find-interest-close-btn"]}
-            type="button"
-            onClick={() => setInterestModal(false)}
-          >
+          <button className={styles["mycourse-find-interest-close-btn"]} type="button" onClick={() => setInterestModal(false)}>
             <img className={styles["mycourse-find-interest-close-btn-img"]} src={ModalClose} alt="닫기 아이콘" />
             {!interestModal ? setInterestModal(true) : null}
           </button>
         </label>
-        {(interestPosts.length === 0) ? (
+        {interestPosts.length === 0 ? (
           <div className={styles["no-jjim-list"]}>관심 목록이 없습니다. 장소 상세 페이지에서 하트를 눌러보세요!</div>
         ) : (
           <div className={styles["mycourse-find-interest-modal-list-box-container"]}>
             {interestPosts.map((el) => (
-              <MyCourseItemListBox
-                key={el.id}
-                state={state}
-                setState={setState}
-                el={el}
-                onClick={(place_name, id) => handleClickItem(place_name, id)}
-              />
+              <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={(place_name, id) => handleClickItem(place_name, id)} />
             ))}
-            {loading && <div>Loading...</div>}
+            {loading && (
+              <div>
+                <Loading />
+              </div>
+            )}
           </div>
         )}
       </div>
