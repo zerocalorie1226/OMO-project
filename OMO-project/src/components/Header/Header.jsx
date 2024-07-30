@@ -4,7 +4,7 @@ import MainLogo from "../../assets/logo-main.png";
 import {Link} from "react-router-dom";
 import TokenExtension from "../TokenExtension/TokenExtension";
 
-export const Header = ({handleLogout}) => {
+export const Header = ({handleLogout, setIsLoggedIn, isLoggedIn}) => {
   const location = useLocation();
   const navigate = useNavigate();
   const isSignupPage = location.pathname === "/Signup";
@@ -32,7 +32,7 @@ export const Header = ({handleLogout}) => {
             </div>
           </div>
           <div className={styles["main-header-menu-right-container"]}>
-            {loggedIn && !isSignupPage && !isLogin ? (
+            {isLoggedIn && !isSignupPage && !isLogin ? (
               <div>
                 <Link to="/MyInfo" className={styles["main-header-mypage"]}>
                   마이 페이지
@@ -40,7 +40,7 @@ export const Header = ({handleLogout}) => {
                 <button onClick={handleLogout} className={styles["main-header-logout"]}>
                   로그아웃
                 </button>
-                <TokenExtension className={styles["main-header-token"]} />
+                <TokenExtension className={styles["main-header-token"]} setIsLoggedIn={setIsLoggedIn} />
               </div>
             ) : (
               <div>
