@@ -49,6 +49,7 @@ const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg}) =
   const [maxPage, setMaxPage] = useState(0);
   const [pagenation, setPagenation] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [storedCoordinates, setStoredCoordinates] = useState({ latitude: searchResultsY, longitude: searchResultsX });
 
   const observer = useRef();
 
@@ -72,12 +73,11 @@ const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg}) =
       try {
         const response = await axios.get(`https://api.oneulmohae.co.kr/place/list/${category}?page=${pagenation}`, {
           headers: {
-            x: searchResultsX,
-            y: searchResultsY,
+            x: storedCoordinates.longitude,
+            y: storedCoordinates.latitude,
           },
         });
 
-        // 데이터 형식 확인 및 오류 방지
         const documents = Array.isArray(response.data.documents) ? response.data.documents : [];
         setListData((prevData) => [...prevData, ...documents]);
         setMaxPage(response.data.meta.pageable_count || 0);
@@ -89,7 +89,14 @@ const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg}) =
     };
 
     fetchData();
-  }, [category, pagenation, searchResultsX, searchResultsY]);
+  }, [category, pagenation, storedCoordinates]);
+
+  useEffect(() => {
+    const savedCoordinates = localStorage.getItem("savedCoordinates");
+    if (savedCoordinates) {
+      setStoredCoordinates(JSON.parse(savedCoordinates));
+    }
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
 

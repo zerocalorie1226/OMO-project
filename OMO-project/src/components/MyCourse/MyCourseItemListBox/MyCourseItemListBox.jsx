@@ -38,7 +38,6 @@ export const MyCourseItemListBox = ({ state, setState, el, onClick}) => {
   }, [el.id]);
 
   const firstImages = images.slice(0, 2);
-  console.log(firstImages)
 
   return (
     <div

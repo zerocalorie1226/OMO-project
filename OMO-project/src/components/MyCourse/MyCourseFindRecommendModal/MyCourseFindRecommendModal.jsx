@@ -1,10 +1,11 @@
 import styles from "./MyCourseFindRecommendModal.module.css";
-import { MyCourseItemListBox } from "../MyCourseItemListBox/MyCourseItemListBox";
+import {MyCourseItemListBox} from "../MyCourseItemListBox/MyCourseItemListBox";
 import ModalClose from "./../../../assets/modal-close.png";
-import { useEffect, useState, useRef, useCallback } from "react";
+import {useEffect, useState, useRef, useCallback} from "react";
 import axios from "axios";
+import {Loading} from "../../Loading/Loading";
 
-const MyCourseFindRecommendModal = ({ recommendModal, setRecommendModal, state, setState, setPlaceName, setPlaceId }) => {
+const MyCourseFindRecommendModal = ({recommendModal, setRecommendModal, state, setState, setPlaceName, setPlaceId}) => {
   const [recommendPosts, setRecommendPosts] = useState([]);
   const [maxPage, setMaxPage] = useState(0);
   const [pagination, setPagination] = useState(1);
@@ -47,12 +48,12 @@ const MyCourseFindRecommendModal = ({ recommendModal, setRecommendModal, state, 
 
   useEffect(() => {
     // 모달이 열릴 때 배경 스크롤 막기
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('scroll', handleScroll);
+    document.body.style.overflow = "hidden";
+    window.addEventListener("scroll", handleScroll);
     return () => {
       // 모달이 닫힐 때 배경 스크롤 복원
-      document.body.style.overflow = 'auto';
-      window.removeEventListener('scroll', handleScroll);
+      document.body.style.overflow = "auto";
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [handleScroll]);
 
@@ -66,11 +67,7 @@ const MyCourseFindRecommendModal = ({ recommendModal, setRecommendModal, state, 
       <div className={styles["mycourse-find-recommend-modal-container"]}>
         <label className={styles["mycourse-find-recommend-modal-title"]} htmlFor="find-recommend">
           추천한 장소에서 찾기
-          <button
-            className={styles["mycourse-find-recommend-close-btn"]}
-            type="button"
-            onClick={() => setRecommendModal(false)}
-          >
+          <button className={styles["mycourse-find-recommend-close-btn"]} type="button" onClick={() => setRecommendModal(false)}>
             <img className={styles["mycourse-find-recommend-close-btn-img"]} src={ModalClose} alt="닫기 아이콘" />
             {!recommendModal ? setRecommendModal(true) : null}
           </button>
@@ -80,15 +77,13 @@ const MyCourseFindRecommendModal = ({ recommendModal, setRecommendModal, state, 
         ) : (
           <div className={styles["mycourse-find-recommend-modal-list-box-container"]}>
             {recommendPosts.map((el) => (
-              <MyCourseItemListBox
-                key={el.id}
-                state={state}
-                setState={setState}
-                el={el}
-                onClick={(place_name, id) => handleClickItem(place_name, id)}
-              />
+              <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={(place_name, id) => handleClickItem(place_name, id)} />
             ))}
-            {loading && <div>Loading...</div>}
+            {loading && (
+              <div>
+                <Loading />
+              </div>
+            )}
           </div>
         )}
       </div>
