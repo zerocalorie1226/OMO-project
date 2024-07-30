@@ -27,6 +27,7 @@ const MembershipWithdrawal = ({setIsLoggedIn}) => {
           localStorage.removeItem("memberId");
           localStorage.removeItem("recentData");
           localStorage.removeItem('isLoggedIn');
+          localStorage.removeItem('savedCoordinates');
           navigate("/", {replace: true});
         } else {
           alert("탈퇴에 실패하였습니다. 다시 시도해 주세요.");
