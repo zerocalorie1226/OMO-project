@@ -38,7 +38,7 @@ const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
   return (
     <div>
       {/* 헤더 */}
-      <Header handleLogout={handleLogout} />
+      <Header handleLogout={handleLogout} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
       <Routes>
         {/* 메인 페이지 */}
         <Route
