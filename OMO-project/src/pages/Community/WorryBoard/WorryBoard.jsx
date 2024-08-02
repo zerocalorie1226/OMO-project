@@ -1,13 +1,14 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./WorryBoard.module.css";
-import { CommunityCategory } from "./../../../components/CommunityCategory/CommunityCategory";
+import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
-import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
-import { CommunityWorryPostList } from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
 import {Loading} from "../../../components/Loading/Loading";
+import {useNavigate} from "react-router-dom";
 
 const WorryBoard = () => {
   const [posts, setPosts] = useState([]);
@@ -16,6 +17,15 @@ const WorryBoard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [navigate]);
 
   const category = "Trouble";
 
@@ -40,9 +50,7 @@ const WorryBoard = () => {
 
   useEffect(() => {
     if (searchTerm) {
-      const filtered = posts.filter((post) =>
-        post.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      const filtered = posts.filter((post) => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
       setFilteredPosts(filtered);
     } else {
       setFilteredPosts(posts);

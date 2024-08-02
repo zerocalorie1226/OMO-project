@@ -1,10 +1,13 @@
+import React, { useMemo, useRef, useState, useEffect } from "react";
+import axios from "axios";
 import styles from "./CommunityQnaBox.module.css";
 import Comment from "../../assets/community/inquiry-board/comment.png";
-import React, {useMemo, useRef, useState} from "react";
-import {formatDate} from "../../utils/Time/formatDate";
+import DefaultProfileImage from "../../assets/profile-img.jpg"; // 기본 프로필 이미지
+import { formatDate } from "../../utils/Time/formatDate";
 
 export const CommunityQnABox = (props) => {
   const [showComments, setShowComments] = useState(false); // 초기에 숨김 상태
+
   // 댓글 달기 버튼 클릭 시 댓글창 표시/숨김 토글
   const toggleComments = () => {
     setShowComments(!showComments);
@@ -28,6 +31,32 @@ export const CommunityQnABox = (props) => {
     return props.content; // 그렇지않으면 (짧은 글에는) 쓴글 그대로 리턴
   }, [isShowMore]); // isShowMore의 상태가 바뀔때마다 호출됨
 
+  const [profileImage, setProfileImage] = useState(DefaultProfileImage);
+
+  useEffect(() => {
+    const fetchProfileImage = async () => {
+      if (props.profileURL) {
+        try {
+          const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(props.profileURL)}`;
+          const imageResponse = await axios.get(imageUrl, {
+            headers: {
+              Authorization: localStorage.getItem("accessToken"),
+            },
+            responseType: "blob",
+          });
+
+          const imageBlob = imageResponse.data;
+          const imageObjectURL = URL.createObjectURL(imageBlob);
+          setProfileImage(imageObjectURL);
+        } catch (error) {
+          setProfileImage(DefaultProfileImage);
+        }
+      }
+    };
+
+    fetchProfileImage();
+  }, [props.profileURL]);
+
   return (
     <>
       {/* 전체 영역 */}
@@ -44,7 +73,13 @@ export const CommunityQnABox = (props) => {
 
           {/* 프로필 이미지+닉네임 */}
           <div className={styles["community-qnapost-profile"]}>
-            <img className={styles["community-qnapost-profile-img"]} src={props.profileURL} alt="프로필 이미지" style={{width: "32px", height: "32px"}} />
+            <img
+              className={styles["community-qnapost-profile-img"]}
+              src={profileImage}
+              alt="프로필 이미지"
+              style={{ width: "32px", height: "32px" }}
+              onError={(e) => { e.target.onerror = null; e.target.src = DefaultProfileImage; }}
+            />
             <span className={styles["community-qnapost-profile-nick"]}>{props.writer}</span>
           </div>
 

@@ -1,11 +1,11 @@
-// src/hooks/useCurrentLocation.js
 import { useState, useEffect } from "react";
 
-const GOOGLE_MAPS_API_KEY = "AIzaSyBFZH53aP29Zr7vY5jyv7wd4wGQMg3CI1s";
+const KAKAO_REST_API_KEY = "KakaoAK c8c68103031b80f0a572460361537e9f";
 
 const useCurrentLocation = () => {
   const [location, setLocation] = useState("Loading...");
   const [coordinates, setCoordinates] = useState({ latitude: "", longitude: "" });
+  const [locationAccessDenied, setLocationAccessDenied] = useState(false);
 
   const getCurrentPosition = async () => {
     try {
@@ -17,22 +17,46 @@ const useCurrentLocation = () => {
       setCoordinates({ latitude, longitude });
 
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${GOOGLE_MAPS_API_KEY}`
+        `https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${longitude}&y=${latitude}`,
+        {
+          headers: {
+            Authorization: KAKAO_REST_API_KEY,
+          },
+        }
       );
       const data = await response.json();
-      const address = data.results[0].formatted_address; // 현재 위치의 도로명 주소
+
+      let address = "Address not found";
+      if (data.documents.length > 0) {
+        address = data.documents[0].road_address 
+          ? data.documents[0].road_address.address_name 
+          : data.documents[0].address.address_name;
+      }
+      
       setLocation(address);
       return { latitude, longitude, address };
     } catch (error) {
-      console.error("현재 위치를 찾는데 실패하였습니다.", error);
-      throw new Error("현재 위치를 찾는데 실패하였습니다.");
+      setLocation("현재 위치를 확인할 수 없습니다.");
+      setLocationAccessDenied(true);
+    }
+  };
+
+  const checkPermission = async () => {
+    try {
+      const permission = await navigator.permissions.query({ name: 'geolocation' });
+      if (permission.state === 'denied') {
+        setLocationAccessDenied(true);
+        setLocation("현재 위치를 확인할 수 없습니다.");
+      }
+    } catch (error) {
+      console.error("위치 권한 확인 실패:", error.message);
     }
   };
 
   useEffect(() => {
+    checkPermission();
     getCurrentPosition()
       .then(({ latitude, longitude }) => {
-        // 현재 위치 설정된거 받아옴
         setCoordinates({ latitude, longitude });
       })
       .catch((error) => {
@@ -40,7 +64,7 @@ const useCurrentLocation = () => {
       });
   }, []);
 
-  return { location, coordinates, setCoordinates, setLocation };
+  return { location, coordinates, setCoordinates, setLocation, locationAccessDenied };
 };
 
 export default useCurrentLocation;

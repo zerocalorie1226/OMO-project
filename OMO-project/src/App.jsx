@@ -13,8 +13,6 @@ import List from "./pages/list/List";
 import MyInfo from "./pages/Mypage/MyInfo/MyInfo";
 import MyWrote from "./pages/Mypage/MyWrote/MyWrote";
 import DetailMenu from "./pages/Detail/DetailMenu/DetailMenu";
-import DetailNone from "./pages/Detail/DetailNone/DetailNone";
-import DetailTariff from "./pages/Detail/DetailTariff/DetailTariff";
 import Interest from "./pages/Mypage/Interest/Interest";
 import Recent from "./pages/Mypage/Recent/Recent";
 import Recommend from "./pages/Mypage/Recommend/Recommend";
@@ -26,23 +24,21 @@ import InquiryBoardFrequent from "./pages/Community/InquiryBoardFrequent/Inquiry
 import InquiryBoardQnA from "./pages/Community/InquiryBoardQnA/InquiryBoardQnA";
 import WorryBoard from "./pages/Community/WorryBoard/WorryBoard";
 import FreeBoard from "./pages/Community/FreeBoard/FreeBoard";
-import MyCourseOthersVersion from "./pages/MyCourse/MyCourseOthersVersion/MyCourseOthersVersion";
 import Main from "./pages/main/Main";
 import MyCourseNewWrite from "./pages/MyCourse/MyCourseNewWrite/MyCourseNewWrite";
 import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
-import {dataCopy} from "./const/dataCopy";
 import LoginLoading from "./pages/LoginLoading/LoginLoading";
 import useCurrentLocation from "./assets/hooks/useCurrentLocation";
 
 const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
-  const {location, coordinates, setCoordinates, setLocation} = useCurrentLocation();
+  const {location, coordinates, setCoordinates, setLocation, locationAccessDenied} = useCurrentLocation();
   const [recentData, setRecentData] = useState([]);
   const [defaultListImg, setDefaultListImg] = useState("/src/assets/detail/defaultDetailIcon.png");
 
   return (
     <div>
       {/* 헤더 */}
-      <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      <Header handleLogout={handleLogout} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
       <Routes>
         {/* 메인 페이지 */}
         <Route
@@ -53,6 +49,7 @@ const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
               setSearchResultsY={(y) => setCoordinates((prev) => ({...prev, latitude: y}))}
               location={location}
               setLocation={setLocation}
+              locationAccessDenied={locationAccessDenied}
             />
           }
         />
@@ -66,7 +63,7 @@ const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
         {/* 로그인/회원가입 */}
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/LoginLoading" element={<LoginLoading />} />
+        <Route path="/LoginLoading" element={<LoginLoading setIsLoggedIn={setIsLoggedIn} />} />
 
         {/* 리스트페이지 */}
         <Route
@@ -75,11 +72,11 @@ const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
             <List
               recentData={recentData}
               setRecentData={setRecentData}
-              dataCopy={dataCopy}
               searchResultsX={coordinates.longitude}
               searchResultsY={coordinates.latitude}
               defaultListImg={defaultListImg}
               setDefaultListImg={setDefaultListImg}
+              isLoggedIn={isLoggedIn}
             />
           }
         />
@@ -89,7 +86,6 @@ const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
             <List
               recentData={recentData}
               setRecentData={setRecentData}
-              dataCopy={dataCopy}
               searchResultsX={coordinates.longitude}
               searchResultsY={coordinates.latitude}
               defaultListImg={defaultListImg}
@@ -100,22 +96,19 @@ const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
 
         {/* 상세페이지 */}
         <Route path="/DetailMenu/:id/:place_name" element={<DetailMenu defaultListImg={defaultListImg} setDefaultListImg={setDefaultListImg} />} />
-        <Route path="/DetailNone" element={<DetailNone />} />
-        <Route path="/DetailTariff" element={<DetailTariff />} />
 
         {/* 마이 페이지 */}
         <Route path="/MyInfo" element={<MyInfo />} />
         <Route path="/Interest" element={<Interest />} />
         <Route path="/Recommend" element={<Recommend />} />
-        <Route path="/Recent" element={<Recent recentData={recentData} />} />
+        <Route path="/Recent" element={<Recent />} />
         <Route path="/MyWrote" element={<MyWrote />} />
-        <Route path="/ProfileSetting" element={<ProfileSetting isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/ProfileSetting" element={<ProfileSetting setIsLoggedIn={setIsLoggedIn} />} />
 
         {/* 나만의 코스 */}
         <Route path="/MyCourseMain" element={<MyCourseMain />} />
         <Route path="/MyCourseNewWrite" element={<MyCourseNewWrite />} />
         <Route path="/MyCourseDetail/:id" element={<MyCourseDetail />} />
-        <Route path="/MyCourseOthersVersion/:id" element={<MyCourseOthersVersion />} />
 
         {/* 커뮤니티 */}
         <Route path="/MyCourseBoard" element={<MyCourseBoard />} />
