@@ -41,8 +41,8 @@ const TokenExtension = ({ setIsLoggedIn }) => {
 
   const updateRemainingTime = (accessExpirationTime, refreshExpirationTime) => {
     const currentTime = Date.now();
-    const accessTimeLeft = Math.floor((accessExpirationTime - currentTime) / 1000); 
-    const refreshTimeLeft = Math.floor((refreshExpirationTime - currentTime) / 1000); 
+    const accessTimeLeft = Math.floor((accessExpirationTime - currentTime) / 1000);
+    const refreshTimeLeft = Math.floor((refreshExpirationTime - currentTime) / 1000);
 
     if (accessTimeLeft <= 0 || refreshTimeLeft <= 0) {
       alert('로그아웃 됐습니다.');
@@ -53,12 +53,18 @@ const TokenExtension = ({ setIsLoggedIn }) => {
       setAccessToken(null);
       setRefreshToken(null);
       setRemainingTime({ access: null, refresh: null });
-      window.location.href = '/Login'; 
+      window.location.href = '/Login';
     } else {
       setRemainingTime({
         access: accessTimeLeft,
         refresh: refreshTimeLeft,
       });
+
+      // 남은 시간이 1분 이하일 때 토큰 자동 갱신
+      if (accessTimeLeft == 60) {
+        console.log("갱신 시작");
+        handleTokenRefresh();
+      }
     }
   };
 
@@ -78,18 +84,20 @@ const TokenExtension = ({ setIsLoggedIn }) => {
       });
 
       console.log(response);
+
       const newAccessToken = response.headers.authorization;
       const newRefreshToken = response.headers.refresh;
       if (!newAccessToken || !newRefreshToken) {
         throw new Error('새로운 토큰을 받지 못했습니다.');
       }
+      console.log(newAccessToken);
+      console.log(newRefreshToken);
       localStorage.setItem('accessToken', newAccessToken);
       localStorage.setItem('refreshToken', newRefreshToken);
       setAccessToken(newAccessToken);
       setRefreshToken(newRefreshToken);
     } catch (error) {
       console.error('토큰 갱신 실패:', error);
-      alert('토큰 갱신 실패: ' + error.message);
     }
   };
 
