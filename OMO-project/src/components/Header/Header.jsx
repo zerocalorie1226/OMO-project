@@ -1,10 +1,10 @@
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import MainLogo from "../../assets/logo-main.png";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import TokenExtension from "../TokenExtension/TokenExtension";
 
-export const Header = ({handleLogout, setIsLoggedIn, isLoggedIn}) => {
+export const Header = ({ handleLogout, setIsLoggedIn, isLoggedIn }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const isSignupPage = location.pathname === "/Signup";
@@ -39,9 +39,7 @@ export const Header = ({handleLogout, setIsLoggedIn, isLoggedIn}) => {
                 <button onClick={handleLogout} className={styles["main-header-logout"]}>
                   로그아웃
                 </button>
-                <div>
-                <TokenExtension className={styles["main-header-token"]} setIsLoggedIn={setIsLoggedIn} />
-              </div>
+                <TokenExtension setIsLoggedIn={setIsLoggedIn} />
               </div>
             ) : (
               <div className={styles["main-header-menu-logout-status-container"]}>
