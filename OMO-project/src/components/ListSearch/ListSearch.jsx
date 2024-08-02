@@ -1,11 +1,11 @@
 import styles from "./ListSearch.module.css";
 import Magnifier from "../../assets/magnifier.png";
 
-const ListSearch = ({onSearch, searchTerm}) => {
+const ListSearch = ({ onSearch, searchTerm }) => {
 
   const handleInputChange = (event) => {
-    const term = event.target.value; 
-    onSearch(term);   
+    const term = event.target.value;
+    onSearch(term);
   };
 
   return (

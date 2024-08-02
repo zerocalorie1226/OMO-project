@@ -1,31 +1,56 @@
 import axios from "axios";
 import styles from "./Mypage.module.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import MyInfoIcon from "../../assets/my-page/my-info/my-info.png";
 import MyInfoHeart from "../../assets/my-page/my-info/empty-heart.png";
 import MyInfoWrote from "../../assets/my-page/my-info/my-writing.png";
 import MyInfoSetting from "../../assets/my-page/my-info/profile-setting.png";
 import MyInfoRecent from "../../assets/my-page/my-info/recent-place.png";
 import MyInfoThumb from "../../assets/my-page/my-info/empty-thumb.png";
-import {mbtiReverseMapping} from "../../const/mbtiReverseMapping";
-import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { mbtiReverseMapping } from "../../const/mbtiReverseMapping";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import DefaultProfileImage from "../../assets/detail/defaultDetailIcon.png"; // 기본 프로필 이미지
 
 const Mypage = () => {
   const navigate = useNavigate();
   const [myPageData, setMyPageData] = useState(null);
+  const [image, setImage] = useState(DefaultProfileImage);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo/${localStorage.getItem("memberId")}`, {
+        const memberId = localStorage.getItem("memberId");
+        const accessToken = localStorage.getItem("accessToken");
+
+        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo/${memberId}`, {
           headers: {
-            Authorization: `${localStorage.getItem("accessToken")}`,
+            Authorization: accessToken,
           },
         });
         setMyPageData(response.data);
+
+        if (response.data.profileImageUrl) {
+          const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(response.data.profileImageUrl)}`;
+          
+          try {
+            const imageResponse = await axios.get(imageUrl, {
+              headers: {
+                Authorization: accessToken,
+              },
+              responseType: "blob",
+            });
+
+            const imageBlob = imageResponse.data;
+            const imageObjectURL = URL.createObjectURL(imageBlob);
+            setImage(imageObjectURL);
+          } catch (imageError) {
+            // 프로필 이미지를 가져오는 데 실패하면 기본 프로필 이미지를 사용
+            setImage(response.data.profileImageUrl);
+          }
+        }
       } catch (error) {
-        console.error("에러야", error);
+        alert("마이페이지를 불러오는데 실패하였습니다.")
         navigate("/Login");
       }
     };
@@ -33,17 +58,17 @@ const Mypage = () => {
   }, []);
 
   const getMbtiString = (mbtiValue) => {
-    return mbtiReverseMapping[mbtiValue] || "Unknown MBTI";
+    return mbtiReverseMapping[mbtiValue] || "";
   };
 
   return (
     <>
       {myPageData && (
         <div className={styles["myinfo-categories-list"]}>
-          <div className={styles["myinfo-categories-list-inFoContainer"]}>
-            <img className={styles["myinfo-categories-list-logo"]} src={myPageData.profileImageUrl} alt="기본 프로필" />
+          <div className={styles["myinfo-categories-list-infoContainer"]}>
+            <img className={styles["myinfo-categories-list-logo"]} src={image} alt="기본 프로필" />
             <p className={styles["myinfo-categories-list-nickname"]}>{myPageData.nickname}</p>
-            <p className={styles["myinfo-categories-list-mbti"]}>{getMbtiString(myPageData.mbti)}</p>
+            <p className={styles["myinfo-categories-list-mbti"]}>{myPageData.mbti === -1 ? "" : getMbtiString(myPageData.mbti)}</p>
           </div>
           <div className={styles["myinfo-categories-mypage-container"]}>
             <p className={styles["myinfo-categories-mypage"]}>My page</p>

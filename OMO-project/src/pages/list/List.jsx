@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, {useState, useEffect, useRef, useCallback} from "react";
+import {useParams, useNavigate} from "react-router-dom";
 import styles from "./List.module.css";
 import ListSearch from "../../components/ListSearch/ListSearch";
-import { ListBox } from "../../components/ListBox/ListBox";
-import { ScrollToTop } from "../../components/ScrollToTop/ScrollToTop";
+import {ListBox} from "../../components/ListBox/ListBox";
+import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 import axios from "axios";
-import { Loading } from "../../components/Loading/Loading";
+import {Loading} from "../../components/Loading/Loading";
 
-const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defaultListImg }) => {
-  const { category: categoryParam } = useParams();
+const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg}) => {
+  const {category: categoryParam} = useParams();
   const category = categoryParam || "all";
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [navigate]);
 
   const addRecentItem = (item) => {
     const newItem = {
@@ -18,6 +27,7 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
       mine: item.mine,
       recommend: item.recommend,
       address_name: item.address_name,
+      road_address_name: item.road_address_name,
       phone: item.phone,
       src1: item.src1,
       src2: item.src2,
@@ -35,33 +45,64 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
     });
   };
 
-  const [listData, setListData] = useState(null);
+  const [listData, setListData] = useState([]);
+  const [maxPage, setMaxPage] = useState(0);
+  const [pagenation, setPagenation] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [storedCoordinates, setStoredCoordinates] = useState({ latitude: searchResultsY, longitude: searchResultsX });
+
+  const observer = useRef();
+
+  const lastElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && pagenation < maxPage) {
+          setPagenation((prevPage) => prevPage + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, maxPage, pagenation]
+  );
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
-        const response = await axios.get(`https://api.oneulmohae.co.kr/place/list/${category}?page=1`, {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/place/list/${category}?page=${pagenation}`, {
           headers: {
-            x: searchResultsX,
-            y: searchResultsY,
+            x: storedCoordinates.longitude,
+            y: storedCoordinates.latitude,
           },
         });
-        setListData(response.data.documents);
+
+        const documents = Array.isArray(response.data.documents) ? response.data.documents : [];
+        setListData((prevData) => [...prevData, ...documents]);
+        setMaxPage(response.data.meta.pageable_count || 0);
       } catch (error) {
-        console.error("에러야", error);
+        console.error("리스트를 불러오는데 실패하였습니다.", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, [category, searchResultsX, searchResultsY]);
+  }, [category, pagenation, storedCoordinates]);
+
+  useEffect(() => {
+    const savedCoordinates = localStorage.getItem("savedCoordinates");
+    if (savedCoordinates) {
+      setStoredCoordinates(JSON.parse(savedCoordinates));
+    }
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredData = listData
-    ? listData.filter((item) => {
-        return item.place_name && item.place_name.toLowerCase().includes(searchTerm.toLowerCase());
-      })
-    : [];
+  const filteredData = listData.filter((item) => {
+    return item.place_name && item.place_name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   const onSearch = (term) => {
     setSearchTerm(term);
@@ -69,7 +110,7 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
 
   return (
     <>
-      {filteredData === null ? (
+      {loading && listData.length === 0 ? (
         <Loading />
       ) : (
         <div>
@@ -77,11 +118,15 @@ const List = ({ recentData, setRecentData, searchResultsX, searchResultsY, defau
             <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
           </div>
           <section className={styles["list-list-container"]}>
-            {filteredData && filteredData.length > 0 ? (
+            {filteredData.length > 0 ? (
               <div className={styles["list-list-box-container"]}>
-                {filteredData.map((item) => (
-                  <ListBox key={item.id} id={item.id} {...item} addRecentItem={() => addRecentItem(item)} defaultListImg={defaultListImg} />
-                ))}
+                {filteredData.map((item, index) => {
+                  if (index === filteredData.length - 1) {
+                    return <ListBox ref={lastElementRef} key={`${item.id}-${index}`} id={item.id} {...item} addRecentItem={() => addRecentItem(item)} defaultListImg={defaultListImg} />;
+                  } else {
+                    return <ListBox key={`${item.id}-${index}`} id={item.id} {...item} addRecentItem={() => addRecentItem(item)} defaultListImg={defaultListImg} />;
+                  }
+                })}
               </div>
             ) : (
               <span className={styles["list-no-search-result"]}>검색 결과가 없습니다.</span>

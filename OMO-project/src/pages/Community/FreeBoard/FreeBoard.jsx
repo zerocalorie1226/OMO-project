@@ -1,27 +1,46 @@
-import axios from 'axios';
+import axios from "axios";
 import React, {useEffect, useState} from "react";
 import styles from "./FreeBoard.module.css";
-import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory"; 
-import ListSearch from "./../../../components/ListSearch/ListSearch"; 
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop"; 
+import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
+import ListSearch from "./../../../components/ListSearch/ListSearch";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {CommunityFreePostList} from "../../../components/CommunityFreePostList/CommunityFreePostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteFreeBoard from "../../../components/WritePost/WriteFreeBoard/WriteFreeBoard";
+import {Loading} from "../../../components/Loading/Loading";
+import {useNavigate} from "react-router-dom";
 
 const FreeBoard = () => {
   const [posts, setPosts] = useState([]);
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
-  const category = "Free"; 
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [navigate]);
+
+  const category = "Free";
 
   // 게시글 불러오기
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://api.oneulmohae.co.kr/board/Free?page=1&size=10&sorting=createdAt');
+      const response = await axios.get("https://api.oneulmohae.co.kr/board/Free?page=1&size=10&sorting=createdAt", {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+        },
+      });
       setPosts(response.data.data);
+      setIsLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("자유게시판을 불러오는데 실패였습니다.", error);
     }
   };
 
@@ -29,6 +48,14 @@ const FreeBoard = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = posts.filter((post) => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
+      setFilteredPosts(filtered);
+    } else {
+      setFilteredPosts(posts);
+    }
+  }, [posts, searchTerm]);
 
   // 게시글 작성
   const onCreate = async (title, content) => {
@@ -38,35 +65,30 @@ const FreeBoard = () => {
       type: "FREE",
     };
 
-
     try {
-      const response = await axios.post(
-        'https://api.oneulmohae.co.kr/board/write',
-        postData,
-        {
-          headers: {
-            Authorization: `${localStorage.getItem("accessToken")}`,
-          }
-        }
-      );
+      const response = await axios.post("https://api.oneulmohae.co.kr/board/write", postData, {
+        headers: {
+          Authorization: `${localStorage.getItem("accessToken")}`,
+        },
+      });
 
       const newPost = response.data;
       setBoardId(newPost.boardId); // 새로 생성된 게시글의 ID를 boardId로 설정
-      setPosts(prevPosts => [
-        newPost,
-        ...prevPosts
-      ]);
-
+      setPosts((prevPosts) => [newPost, ...prevPosts]);
     } catch (error) {
       console.error("Error creating post:", error);
-      if (error.response) {
-        console.error('Response Data:', error.response.data);
-        console.error('Response Status:', error.response.status);
-        console.error('Response Headers:', error.response.headers);
-      }
       alert("게시글 작성 중 오류가 발생했습니다.");
     }
   };
+
+  // 검색 기능
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -75,14 +97,14 @@ const FreeBoard = () => {
 
       {/* 필터 + 검색창 */}
       <div className={styles["community-component-container"]}>
-        <ListSearch />
+        <ListSearch onSearch={handleSearch} searchTerm={searchTerm} />
       </div>
 
       {/* 게시글 리스트 */}
-      {posts.length === 0 ? (
+      {filteredPosts.length === 0 ? (
         <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
       ) : (
-        <CommunityFreePostList communityFreePostList={posts} setPosts={setPosts} category={category}/>
+        <CommunityFreePostList communityFreePostList={filteredPosts} setPosts={setPosts} category={category} />
       )}
 
       {/* 스크롤 */}
@@ -90,12 +112,8 @@ const FreeBoard = () => {
 
       {/* 글쓰기 */}
       <div className={styles["writing-btn-container"]}>
-        <button
-          type="button"
-          className={styles["writing-btn"]}
-          onClick={() => setOpenModal(true)}
-        >
-          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{ width: "80px", height: "80px" }} />
+        <button type="button" className={styles["writing-btn"]} onClick={() => setOpenModal(true)}>
+          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />
         </button>
         {openModal && <WriteFreeBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} />}
       </div>

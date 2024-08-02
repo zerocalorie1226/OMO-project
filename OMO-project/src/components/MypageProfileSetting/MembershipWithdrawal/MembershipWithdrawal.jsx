@@ -26,13 +26,13 @@ const MembershipWithdrawal = ({setIsLoggedIn}) => {
           localStorage.removeItem("isExistingMember");
           localStorage.removeItem("memberId");
           localStorage.removeItem("recentData");
-          navigate("/");
+          localStorage.removeItem('isLoggedIn');
+          localStorage.removeItem('savedCoordinates');
+          navigate("/", {replace: true});
         } else {
-          console.error("Failed to delete member");
           alert("탈퇴에 실패하였습니다. 다시 시도해 주세요.");
         }
       } catch (error) {
-        console.error("Error deleting member:", error);
         alert("탈퇴에 실패하였습니다. 다시 시도해 주세요.");
       }
     }

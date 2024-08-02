@@ -5,9 +5,21 @@ import {MypageListBox} from "../../../components/MypageListBox/MypageListBox";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import RecommendIcon from "../../../assets/my-page/my-info/empty-thumb.png";
 import {useEffect, useState} from "react";
+import {Loading} from "../../../components/Loading/Loading";
+import {useNavigate} from "react-router-dom";
 
 const Recommend = () => {
-  const [recommendPosts, setRecommendPosts] = useState(null); // 초기값을 null로 설정
+  const [recommendPosts, setRecommendPosts] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [navigate]);
 
   const fetchData = async () => {
     try {
@@ -17,8 +29,9 @@ const Recommend = () => {
         },
       });
       setRecommendPosts(response.data);
+      setIsLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("추천한 장소를 불러오는데 실패하였습니다.", error);
       setRecommendPosts([]); // 오류 발생 시 빈 배열로 초기화
     }
   };
@@ -26,6 +39,11 @@ const Recommend = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <>
       <div className={styles["mypage-list-component-container"]}>

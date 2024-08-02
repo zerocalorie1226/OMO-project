@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useEffect, useRef, useState, useReducer} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./InquiryBoardQnA.module.css";
 import CommunityInquiryFilter from "../../../components/CommunityInquiryFilter/CommunityInquiryFilter";
 import {CommunityQnAPostList} from "../../../components/CommunityQnAPostList/CommunityQnAPostList";
@@ -8,21 +8,35 @@ import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteQnABoard from "../../../components/WritePost/WriteQnABoard/WriteQnABoard";
-
-// InquiryBoardQnA
+import {Loading} from "../../../components/Loading/Loading";
+import {useNavigate} from "react-router-dom";
 
 const InquiryBoardQnA = () => {
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [navigate]);
 
   // 게시글 불러오기
   const fetchData = async () => {
     try {
       const response = await axios.get("https://api.oneulmohae.co.kr/board/Qna?page=1&size=10&sorting=createdAt");
       setPosts(response.data.data);
+      setFilteredPosts(response.data.data);
+      setIsLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("QnA게시판 게시글을 불러오는데 실패하였습니다.", error);
     }
   };
 
@@ -48,29 +62,39 @@ const InquiryBoardQnA = () => {
       const newPost = response.data;
       setBoardId(newPost.boardId); // 새로 생성된 게시글의 ID를 boardId로 설정
       setPosts((prevPosts) => [newPost, ...prevPosts]);
+      setFilteredPosts((prevPosts) => [newPost, ...prevPosts]);
     } catch (error) {
-      console.error("Error creating post:", error);
-      if (error.response) {
-        console.error("Response Data:", error.response.data);
-        console.error("Response Status:", error.response.status);
-        console.error("Response Headers:", error.response.headers);
-      }
       alert("게시글 작성 중 오류가 발생했습니다.");
     }
   };
+
+  // 검색어 변경
+  const onSearch = (term) => {
+    setSearchTerm(term);
+    if (term === "") {
+      setFilteredPosts(posts);
+    } else {
+      const filtered = posts.filter((post) => post.title.toLowerCase().includes(term.toLowerCase()));
+      setFilteredPosts(filtered);
+    }
+  };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
       <CommunityCategory />
       <div className={styles["inquiry-board-qna-filter-search-container"]}>
         <CommunityInquiryFilter />
-        <ListSearch />
+        <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
       </div>
       <hr className={styles["inquiry-board-qna-hr"]} />
-      {posts.length === 0 ? (
+      {filteredPosts.length === 0 ? (
         <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
       ) : (
-        <CommunityQnAPostList communityQnAPostList={posts} />
+        <CommunityQnAPostList communityQnAPostList={filteredPosts} />
       )}
       <ScrollToTop />
       <div className={styles["writing-btn-container"]}>

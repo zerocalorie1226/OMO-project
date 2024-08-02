@@ -7,11 +7,25 @@ import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
+import {Loading} from "../../../components/Loading/Loading";
+import {useNavigate} from "react-router-dom";
 
 const WorryBoard = () => {
   const [posts, setPosts] = useState([]);
   const [boardId, setBoardId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/Login", {replace: true});
+    }
+  }, [navigate]);
 
   const category = "Trouble";
 
@@ -24,14 +38,24 @@ const WorryBoard = () => {
         },
       });
       setPosts(response.data.data);
+      setIsLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("고민게시판을 불러오는데 실패였습니다.", error);
     }
   };
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = posts.filter((post) => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
+      setFilteredPosts(filtered);
+    } else {
+      setFilteredPosts(posts);
+    }
+  }, [posts, searchTerm]);
 
   // 게시글 작성
   const onCreate = async (title, content) => {
@@ -53,14 +77,18 @@ const WorryBoard = () => {
       setPosts((prevPosts) => [newPost, ...prevPosts]);
     } catch (error) {
       console.error("Error creating post:", error);
-      if (error.response) {
-        console.error("Response Data:", error.response.data);
-        console.error("Response Status:", error.response.status);
-        console.error("Response Headers:", error.response.headers);
-      }
       alert("게시글 작성 중 오류가 발생했습니다.");
     }
   };
+
+  // 검색 기능
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -69,14 +97,14 @@ const WorryBoard = () => {
 
       {/* 필터 + 검색창 */}
       <div className={styles["community-component-container"]}>
-        <ListSearch />
+        <ListSearch onSearch={handleSearch} searchTerm={searchTerm} />
       </div>
 
       {/* 게시글 리스트 */}
-      {posts.length === 0 ? (
+      {filteredPosts.length === 0 ? (
         <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
       ) : (
-        <CommunityWorryPostList communityWorryPostList={posts} setPosts={setPosts} category={category} />
+        <CommunityWorryPostList communityWorryPostList={filteredPosts} setPosts={setPosts} category={category} />
       )}
 
       {/* 스크롤 */}

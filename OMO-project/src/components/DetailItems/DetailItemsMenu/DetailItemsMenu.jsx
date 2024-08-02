@@ -34,6 +34,17 @@ export const DetailItemsMenu = (props) => {
   const [isClikedLike, setIsClickedLike] = useState(false); // 따봉 버튼 클릭 토글
   const [countLike, setCountLike] = useState(0); // 따봉 카운트 값 관리
 
+  const [mbtiData, setMbtiData] = useState({
+    ratioI: 0,
+    ratioE: 0,
+    ratioS: 0,
+    ratioN: 0,
+    ratioT: 0,
+    ratioF: 0,
+    ratioP: 0,
+    ratioJ: 0,
+  });
+
   useEffect(() => {
     if (props.DetailItemsMenuData) {
       setCountJjim(props.DetailItemsMenuData.mine); // 관심 데이터가 로드되면 상태 업데이트
@@ -56,6 +67,18 @@ export const DetailItemsMenu = (props) => {
         setImageSrcLike(Like);
         setIsClickedLike(false);
       }
+
+      // MBTI 데이터 설정
+      setMbtiData({
+        ratioI: props.DetailItemsMenuData.ratioI,
+        ratioE: 1 - props.DetailItemsMenuData.ratioI,
+        ratioS: props.DetailItemsMenuData.ratioS,
+        ratioN: 1 - props.DetailItemsMenuData.ratioS,
+        ratioT: props.DetailItemsMenuData.ratioT,
+        ratioF: 1 - props.DetailItemsMenuData.ratioT,
+        ratioP: props.DetailItemsMenuData.ratioP,
+        ratioJ: 1 - props.DetailItemsMenuData.ratioP,
+      });
     }
   }, [props.DetailItemsMenuData]); // props.DetailItemsMenuData가 변경될 때마다 실행
 
@@ -97,13 +120,13 @@ export const DetailItemsMenu = (props) => {
           }
           setCountJjim(updatedData.mine); // 새로운 데이터를 사용하여 업데이트
         } else {
-          console.error("Failed to fetch updated jjim data");
+          console.error("장소데이터를 가져오는데 실패하였습니다.");
         }
       } else {
-        console.error("Failed to update jjim status");
+        console.error("장소데이터를 가져오는데 실패하였습니다.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("장소데이터를 가져오는데 실패하였습니다:", error);
     }
   };
 
@@ -124,8 +147,9 @@ export const DetailItemsMenu = (props) => {
         }
       );
 
-      if (response.status === 200) {
+      if (response.data !== "No review. Write review first before recommend.") {
         // PUT 요청이 성공한 후 GET 요청을 보내기
+        console.log(response.data);
         const getResponse = await axios.get(`https://api.oneulmohae.co.kr/place/${props.place_name}`, {
           headers: {
             placeId: props.placeId,
@@ -145,26 +169,15 @@ export const DetailItemsMenu = (props) => {
           }
           setCountLike(updatedData.recommend); // 새로운 데이터를 사용하여 업데이트
         } else {
-          console.error("Failed to fetch updated Like data");
+          console.error("장소데이터를 가져오는데 실패하였습니다.");
         }
       } else {
-        console.error("Failed to update Like status");
+        alert("리뷰를 먼저 작성하여야 추천 버튼을 누를 수 있습니다.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("장소데이터를 가져오는데 실패하였습니다:", error);
     }
   };
-
-  // onCreate 함수 (댓글 리스트에 댓글 추가)
-  // const onCreate = (content, imageSrc, createdDate, reviewId) => {
-  //   const newItem = {
-  //     content,
-  //     imageSrc, // 이미지 경로 추가
-  //     created_date: createdDate,
-  //     id: reviewId,
-  //   };
-  //   setItem([newItem, ...item]);
-  // };
 
   // 리뷰 사진 제출
   const [Image, setImage] = useState(DefaultImg);
@@ -189,88 +202,136 @@ export const DetailItemsMenu = (props) => {
     };
     reader.readAsDataURL(e.target.files[0]);
   };
-  
+
   // 리뷰 데이터
-  const [reviewId, setReviewId] = useState('');
+  const [reviewId, setReviewId] = useState("");
 
   // 리뷰 작성
   const postReview = async (content, imageFile) => {
     const formData = new FormData();
-    formData.append('placeId', props.placeId);
-    formData.append('content', content);
+    formData.append("placeId", props.placeId);
+    formData.append("content", content);
     if (imageFile) {
-      formData.append('image', imageFile);
+      formData.append("image", imageFile);
     }
 
     try {
-      const response = await axios.post(
-        'https://api.oneulmohae.co.kr/review/write',
-        formData,
-        {
-          headers: {
-            Authorization: localStorage.getItem("accessToken"),
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-      );
+      const response = await axios.post("https://api.oneulmohae.co.kr/review/write", formData, {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       const newPost = response.data;
       setReviewId(newPost.reviewId); // 새로 생성된 리뷰의 ID를 reviewId로 설정
-      console.log(response);
-      console.log("리뷰를 성공적으로 보냈습니다.");
-      console.log(reviewId);
-    } catch (error) {
-      console.error("Error creating post:", error);
-      if (error.response) {
-        console.error('Response Data:', error.response.data);
-        console.error('Response Status:', error.response.status);
-        console.error('Response Headers:', error.response.headers);
+
+      // 새로운 리뷰를 posts 상태에 추가
+      setPosts((prevPosts) => [newPost, ...prevPosts]);
+
+      // 새로운 이미지 이름을 getImgNames 상태에 추가
+      if (newPost.imageName) {
+        setGetImgNames((prevImgNames) => [newPost.imageName, ...prevImgNames]);
       }
+
+      setContent(""); // 댓글 초기화
+      setImage(DefaultImg); // 이미지 초기화
+      setFile(""); // 파일 초기화
+      fileInput.current.value = null; // 파일 인풋 초기화
+    } catch (error) {
+      console.error("리뷰 작성 중 오류가 발생했습니다:", error);
       alert("리뷰 작성 중 오류가 발생했습니다.");
     }
   };
 
+  const reviewPlaceId = props.placeId;
+
   //리뷰 불러오기
-  const fetchData = async (id) => {
+  const fetchData = async (reviewPlaceId) => {
     try {
-      const response = await axios.get(`https://api.oneulmohae.co.kr/review/get`, {
-        headers: {
-          'review-id': id // review-id로 변경
-        }
+      const response = await axios.get(`https://api.oneulmohae.co.kr/review/${reviewPlaceId}?page=1&size=10`);
+
+      const fetchedPosts = response.data.data;
+      setPosts(fetchedPosts); // 불러온 리뷰들을 상태에 저장
+
+      // imageName이 null이 아닌 값들만 추출하여 설정
+      const imageNames = fetchedPosts.map((post) => post.imageName).filter((imageName) => imageName !== null);
+      if (imageNames.length > 0) {
+        setGetImgNames(imageNames); // imageNames 배열 설정
+      } else {
+        setGetImgNames([]); // imageNames가 없을 경우 빈 배열로 설정
+      }
+    } catch (error) {
+      console.error("리뷰를 가져오는데 실패하였습니다:", error);
+    }
+  };
+  useEffect(() => {
+    if (reviewPlaceId) {
+      fetchData(reviewPlaceId);
+    }
+  }, [reviewPlaceId]);
+
+  const [getImgNames, setGetImgNames] = useState([]);
+  const [fetchImgFile, setFetchImgFile] = useState([]);
+
+  // 리뷰 이미지 불러오기
+  const fetchImgs = async (imageNames) => {
+    try {
+      const fetchImagePromises = imageNames.map(async (imageName) => {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, {responseType: "blob"});
+        const fetchedImage = response.data;
+        const fetchedImageURL = URL.createObjectURL(fetchedImage);
+
+        return {imageName, fetchedImageURL};
       });
 
-      const fetchedPost = response.data;
-      console.log("posts:", fetchedPost);
-      setPosts([fetchedPost, ...posts]);
+      const fetchedImages = await Promise.all(fetchImagePromises);
+
+      // posts 상태 업데이트
+      setPosts((prevPosts) =>
+        prevPosts.map((post) => {
+          const matchedImage = fetchedImages.find((image) => image.imageName === post.imageName);
+          if (matchedImage) {
+            return {...post, fetchImgFile: matchedImage.fetchedImageURL};
+          }
+          return post;
+        })
+      );
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("이미지를 가져오는데 실패하였습니다:", error);
     }
   };
 
   useEffect(() => {
-    if(reviewId) {
-      fetchData(reviewId);
+    if (getImgNames.length > 0) {
+      fetchImgs(getImgNames);
     }
-  }, [reviewId]);
+  }, [getImgNames]);
 
   // handleSubmit
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (content.length < 1) {
       alert("리뷰는 최소 1글자 이상 입력해주세요");
       return;
     }
     const imageFile = fileInput.current.files[0];
     postReview(content, imageFile);
-    setContent("");
-    setImage(DefaultImg); // 이미지 초기화
   };
 
-  // handleOnKeyPress함수 (input에 적용할 Enter 키 입력 함수)
-  const handleOnKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSubmit(); // Enter 입력이 되면 클릭 이벤트 실행
+  // 첫 번째로 이미지가 포함된 리뷰를 찾는 함수
+  const findFirstReviewWithImage = (posts) => {
+    for (let i = 0; i < posts.length; i++) {
+      if (posts[i].fetchImgFile) {
+        return posts[i].fetchImgFile;
+      }
     }
+    return defaultDetailIcon;
   };
+
+  const firstImage = findFirstReviewWithImage(posts);
+
+  const calculateBarWidth = (ratio) => `${ratio * 100}%`;
 
   return (
     <>
@@ -280,7 +341,7 @@ export const DetailItemsMenu = (props) => {
         <div>
           <section className={styles["detail-title-container"]}>
             <div className={styles["detail-thumbnail-container"]}>
-              <img src={posts.length === 0 ? defaultDetailIcon : posts[0].imageSrc} alt="썸네일 이미지" />
+              <img src={firstImage} alt="썸네일 이미지" />
             </div>
             <span className={styles["detail-title"]}>{props.DetailItemsMenuData.place_name}</span>
             <div className={styles["detail-like-jjim-container"]}>
@@ -327,57 +388,77 @@ export const DetailItemsMenu = (props) => {
                 <img src={Graph} alt="통계 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
                 <span className={styles["detail-mbti-stats-title"]}>MBTI별 통계</span>
               </div>
-
               <div className={styles["detail-mbti-graph-container"]}>
+                {/* 내향/외향 */}
                 <div className={styles["detail-mbti-graph-inner-container"]}>
-                  <div className={styles["detail-mbti-graph-alphabat-box"]}>
-                    <span className={styles["detail-mbti-graph-alphabat"]}>E</span>
-                    <span className={styles["detail-mbti-graph-text"]}>외향</span>
-                  </div>
-                  <div className={styles["detail-mbti-graph-EI-bar"]}>
-                    <div className={styles["detail-mbti-graph-EI-bar-percent"]}></div>
-                  </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>I</span>
                     <span className={styles["detail-mbti-graph-text"]}>내향</span>
                   </div>
+                  <div className={styles["detail-mbti-graph-EI-bar"]}>
+                    <div className={styles["detail-mbti-graph-EI-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioI)}}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioI) ? 0 : mbtiData.ratioI * 100).toFixed(0)}%</span>
+                    </div>
+                    <div className={styles["detail-mbti-graph-EI-bar-percent-reverse"]} style={{width: calculateBarWidth(mbtiData.ratioE)}}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioE) ? 0 : mbtiData.ratioE * 100).toFixed(0)}%</span>
+                    </div>
+                  </div>
+                  <div className={styles["detail-mbti-graph-alphabat-box"]}>
+                    <span className={styles["detail-mbti-graph-alphabat"]}>E</span>
+                    <span className={styles["detail-mbti-graph-text"]}>외향</span>
+                  </div>
                 </div>
-
+                {/* 현실/직관 */}
                 <div className={styles["detail-mbti-graph-inner-container"]}>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>S</span>
                     <span className={styles["detail-mbti-graph-text"]}>현실</span>
                   </div>
                   <div className={styles["detail-mbti-graph-SN-bar"]}>
-                    <div className={styles["detail-mbti-graph-SN-bar-percent"]}></div>
+                    <div className={styles["detail-mbti-graph-SN-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioS)}}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioS) ? 0 : mbtiData.ratioS * 100).toFixed(0)}%</span>
+                    </div>
+                    <div className={styles["detail-mbti-graph-SN-bar-percent-reverse"]} style={{width: calculateBarWidth(mbtiData.ratioN)}}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioN) ? 0 : mbtiData.ratioN * 100).toFixed(0)}%</span>
+                    </div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>N</span>
                     <span className={styles["detail-mbti-graph-text"]}>직관</span>
                   </div>
                 </div>
-
+                {/* 사고/감정 */}
                 <div className={styles["detail-mbti-graph-inner-container"]}>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>T</span>
                     <span className={styles["detail-mbti-graph-text"]}>사고</span>
                   </div>
                   <div className={styles["detail-mbti-graph-TF-bar"]}>
-                    <div className={styles["detail-mbti-graph-TF-bar-percent"]}></div>
+                    <div className={styles["detail-mbti-graph-TF-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioT)}}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioT) ? 0 : mbtiData.ratioT * 100).toFixed(0)}%</span>
+                    </div>
+                    <div className={styles["detail-mbti-graph-TF-bar-percent-reverse"]} style={{width: calculateBarWidth(mbtiData.ratioF)}}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioF) ? 0 : mbtiData.ratioF * 100).toFixed(0)}%</span>
+                    </div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>F</span>
                     <span className={styles["detail-mbti-graph-text"]}>감정</span>
                   </div>
                 </div>
-
+                {/* 탐색/계획 */}
                 <div className={styles["detail-mbti-graph-inner-container"]}>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>P</span>
                     <span className={styles["detail-mbti-graph-text"]}>탐색</span>
                   </div>
                   <div className={styles["detail-mbti-graph-PJ-bar"]}>
-                    <div className={styles["detail-mbti-graph-PJ-bar-percent"]}></div>
+                    <div className={styles["detail-mbti-graph-PJ-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioP)}}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioP) ? 0 : mbtiData.ratioP * 100).toFixed(0)}%</span>
+                    </div>
+                    <div className={styles["detail-mbti-graph-PJ-bar-percent-reverse"]} style={{width: calculateBarWidth(mbtiData.ratioJ)}}>
+                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioJ) ? 0 : mbtiData.ratioJ * 100).toFixed(0)}%</span>
+                    </div>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>J</span>
@@ -386,14 +467,13 @@ export const DetailItemsMenu = (props) => {
                 </div>
               </div>
             </section>
-
             <section className={styles["detail-review-container"]}>
               <div className={styles["detail-review-inner-container"]}>
-                <img src={ReviewIcon} alt="리뷰 아이콘" style={{ width: "25px", height: "25px", position: "absolute", top: "3px" }} />
+                <img src={ReviewIcon} alt="리뷰 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "3px"}} />
                 <span className={styles["detail-review-title"]}>리뷰 ({posts.length})</span>
 
                 <div className={styles["detail-review-box-container"]}>
-                  <div className={styles["detail-review-input-box"]}>
+                  <form className={styles["detail-review-input-box"]} onSubmit={handleSubmit}>
                     <div className={styles["detail-review-input-box-change-img-box"]}>
                       <img src={Image} alt="리뷰 사진" className={styles["detail-review-input-change-img"]} />
                       <label className={styles["detail-review-input-change-img-add-img"]} htmlFor="input-file">
@@ -425,7 +505,6 @@ export const DetailItemsMenu = (props) => {
                     </div>
 
                     <input
-                      onKeyDown={handleOnKeyPress}
                       value={content || ""}
                       onChange={(e) => {
                         setContent(e.target.value);
@@ -438,12 +517,12 @@ export const DetailItemsMenu = (props) => {
                       maxLength="39"
                       size="10"
                       placeholder="리뷰를 작성해주세요..."
-                    ></input>
-                    <button onClick={handleSubmit} className={styles["detail-review-input-button"]} src={Submit} type="submit">
+                    />
+                    <button className={styles["detail-review-input-button"]} src={Submit} type="submit">
                       <img className={styles["detail-review-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px"}} />
                       <img className={styles["detail-review-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
                     </button>
-                  </div>
+                  </form>
 
                   {posts.map((review) => (
                     <Review key={review.reviewId} {...review} />

@@ -9,8 +9,6 @@
   align-items: center;
 }
 
-
-
 .mycourse-item-container:hover {
   border: 2px solid var(--secondary);
   cursor: pointer;
@@ -20,17 +18,23 @@
   display: inline-block;
   font-size: 28px;
   padding-left: 30px;
+  margin-right: 35px;
+}
+.mycourse-item-img {
+  width: 26px;
+  height: 26px;
+  margin-right: 10px;
 }
 
+.mycourse-item-like-number {
+  font-size: 24px;
+  gap: 5px;
+}
 
-  
-  .mycourse-item-date {
-    display: inline-block;
-    color: var(--gray-500);
-    font-size: 24px;
-    font-weight: 200;
-    padding-right: 30px;
-  }
-  
-
-  
+.mycourse-item-date {
+  display: inline-block;
+  color: var(--gray-500);
+  font-size: 24px;
+  font-weight: 200;
+  padding-right: 30px;
+}

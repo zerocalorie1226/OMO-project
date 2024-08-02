@@ -37,7 +37,7 @@
   flex-direction: row;
 }
 
-/*  하트 아이콘 이미지 */
+/* 하트 아이콘 이미지 */
 .mycourse-list-box-jjim > img {
   width: 18px;
   height: 18px;
@@ -49,7 +49,7 @@
   margin-left: 25px;
 }
 
-/*  따봉 아이콘 + 숫자 */
+/* 따봉 아이콘 + 숫자 */
 .mycourse-list-box-like {
   display: flex;
   flex-direction: row;
@@ -68,16 +68,15 @@
   margin-left: 25px;
 }
 
-/* 영업중 */
-.mycourse-list-box-runtime {
+/* 전화번호 */
+.mycourse-list-box-phone {
   font-size: 16px;
   position: absolute;
   top: 99px;
-  color: var(--blue-200);
 }
 
-/* 영업준비중 */
-.mycourse-list-box-runtime.ready{
+/* 전화번호 미제공 */
+.mycourse-list-box-phone.not_provided {
   font-size: 16px;
   position: absolute;
   top: 99px;
@@ -96,27 +95,17 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  right: 235px;
-  top: 16px;
-  border-radius: 5px;
-}
-
-/* 중간 이미지 */
-.mycourse-list-box-img2 {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  right: 128px;
+  right: 160px;
   top: 16px;
   border-radius: 5px;
 }
 
 /* 오른쪽 이미지 */
-.mycourse-list-box-img3 {
+.mycourse-list-box-img2 {
   position: absolute;
   width: 100px;
   height: 100px;
-  right: 20px;
+  right: 40px;
   top: 16px;
   border-radius: 5px;
 }

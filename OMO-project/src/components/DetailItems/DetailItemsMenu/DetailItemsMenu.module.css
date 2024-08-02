@@ -68,7 +68,6 @@
 .detail-like {
   display: flex;
   flex-direction: row;
-
 }
 
 /*  따봉 아이콘 버튼 */
@@ -280,6 +279,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .detail-mbti-graph-alphabat-box {
@@ -299,61 +299,138 @@
 
 /* EI 퍼센트 바 */
 .detail-mbti-graph-EI-bar {
-  background-color: var(--gray-100);
+  background-color: #ffd1dc;
   width: 85%;
   height: 30px;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
+  position: relative;
 }
 
 .detail-mbti-graph-EI-bar-percent {
-  background-color: var(--secondary);
+  background-color: #bfedf3;
   height: 100%;
-  width: 70%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+}
+
+.detail-mbti-graph-EI-bar-percent-reverse {
+  background-color: #ffd1dc;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  z-index: 1;
 }
 
 /* SN 퍼센트 바 */
 .detail-mbti-graph-SN-bar {
-  background-color: var(--gray-100);
+  background-color: #ffd1dc;
   width: 85%;
   height: 30px;
   display: flex;
+  justify-content: space-between;
+  position: relative;
 }
 
 .detail-mbti-graph-SN-bar-percent {
-  background-color: var(--secondary);
+  background-color: #bfedf3;
   height: 100%;
-  width: 65%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+}
+
+.detail-mbti-graph-SN-bar-percent-reverse {
+  background-color: #ffd1dc;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  z-index: 1;
 }
 
 /* TF 퍼센트 바 */
 .detail-mbti-graph-TF-bar {
-  background-color: var(--gray-100);
+  background-color: #ffd1dc;
   width: 85%;
   height: 30px;
   display: flex;
+  justify-content: space-between;
+  position: relative;
 }
 
 .detail-mbti-graph-TF-bar-percent {
-  background-color: var(--secondary);
+  background-color: #bfedf3;
   height: 100%;
-  width: 70%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+}
+
+.detail-mbti-graph-TF-bar-percent-reverse {
+  background-color: #ffd1dc;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  z-index: 1;
 }
 
 /* PJ 퍼센트 바 */
 .detail-mbti-graph-PJ-bar {
-  background-color: var(--gray-100);
+  background-color: #ffd1dc;
   width: 85%;
   height: 30px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  position: relative;
 }
 
 .detail-mbti-graph-PJ-bar-percent {
-  background-color: var(--secondary);
+  background-color: #bfedf3;
   height: 100%;
-  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+}
+
+.detail-mbti-graph-PJ-bar-percent-reverse {
+  background-color: #ffd1dc;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+/* 퍼센테이지 텍스트 스타일 추가 */
+.detail-mbti-graph-percent-text {
+  color: #5e5e5e;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
 }
 
 /* 리뷰 */
@@ -417,7 +494,6 @@
   border: 0;
   border-radius: 10px;
   border: 1px solid var(--gray);
-  /* margin-right: 20px; */
   position: absolute;
   right: 75px;
   top: 84px;
@@ -444,24 +520,23 @@
   top: 126px;
 }
 
-.detail-review-input-button img.detail-review-input-button-img-hover{
+.detail-review-input-button img.detail-review-input-button-img-hover {
   display: none;
 }
 
-.detail-review-input-button:hover img.detail-review-input-button-img{
+.detail-review-input-button:hover img.detail-review-input-button-img {
   display: none;
 }
 
-.detail-review-input-button:hover img.detail-review-input-button-img-hover{
+.detail-review-input-button:hover img.detail-review-input-button-img-hover {
   display: block;
   position: absolute;
-  top:12px;
+  top: 12px;
   right: 8px;
-
 }
+
 /* 이미지 네모 박스 */
-.detail-review-input-box-change-img-box{
-  /* background-color: #FAFAFA; */
+.detail-review-input-box-change-img-box {
   width: 150px;
   height: 150px;
   border: 1px solid var(--gray);
@@ -472,66 +547,64 @@
 }
 
 /* 선택된 이미지 */
-.detail-review-input-change-img{
-width: 147px;
-height: 147px;
-border-radius: 10px;
+.detail-review-input-change-img {
+  width: 147px;
+  height: 147px;
+  border-radius: 10px;
 }
 
 /* 플러스 버튼 label */
-.detail-review-input-change-img-add-img{
-top: 42px;
-left: 45px;
-position: absolute;
-z-index: 10;
-width: 50px;
-height: 50px;
-border-radius: 50%;
-}
-
-
-/* 플러스 버튼 추가 이미지 span*/
-.detail-review-input-change-img-add-img-icon{
+.detail-review-input-change-img-add-img {
+  top: 42px;
+  left: 45px;
   position: absolute;
-    z-index: 9999;
-    width: 60px;
-    height: 60px;
-    display: inline-block;
-    overflow: hidden;
-    background: url(../../../assets/detail/reviewChooseImg.png) no-repeat;
-    opacity: 0.6;
-    text-indent: -9999px;
-    cursor: pointer;
-}
-.detail-review-input-change-img-add-img-icon-setImg{
-  position: absolute;
-    z-index: 9999;
-    width: 60px;
-    height: 60px;
-    display: inline-block;
-    overflow: hidden;
-    
-    opacity: 0.6;
-    text-indent: -9999px;
-    cursor: pointer;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
-.detail-review-input-change-img-add-img-icon:hover{
+/* 플러스 버튼 추가 이미지 span */
+.detail-review-input-change-img-add-img-icon {
+  position: absolute;
+  z-index: 9999;
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  overflow: hidden;
+  background: url(../../../assets/detail/reviewChooseImg.png) no-repeat;
+  opacity: 0.6;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+
+.detail-review-input-change-img-add-img-icon-setImg {
+  position: absolute;
+  z-index: 9999;
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  overflow: hidden;
+  opacity: 0.6;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+
+.detail-review-input-change-img-add-img-icon:hover {
   opacity: 0.8;
 }
 
-
 /* 플러스 버튼 input */
-.detail-review-input-change-img-add-img-input{
+.detail-review-input-change-img-add-img-input {
   display: none;
 }
 
-.detail-review-input-change-img-add-img-input::file-selector-button{
+.detail-review-input-change-img-add-img-input::file-selector-button {
   display: none;
 }
 
 /* 삭제버튼 */
-.detail-review-input-change-img-delete{
+.detail-review-input-change-img-delete {
   all: unset;
   position: absolute;
   bottom: 127px;
@@ -550,7 +623,6 @@ border-radius: 50%;
   flex-direction: column;
   gap: 18px;
   margin-bottom: 100px;
-
 }
 
 .detail-more-inner-container {
@@ -569,6 +641,6 @@ border-radius: 50%;
   text-decoration: underline;
 }
 
-.detail-more:hover{
+.detail-more:hover {
   color: var(--secondary);
 }

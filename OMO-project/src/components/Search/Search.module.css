@@ -75,6 +75,7 @@
   justify-content: center;
   font-size: 18px;
   color: #818181;
+  /* background-color: aqua; */
 }
 
 .main-search-location-container > img{
@@ -83,6 +84,35 @@ height: 25px;
 }
 
 /* 위치정보 span */
+
+
 .main-search-location-current {
+  position: relative;
+  display: inline-block;
   margin-left: 5px;
+}
+
+.location-access-denied-bubble {
+  position: absolute;
+  top: -8px;
+  right: -220px;
+  border: 1px #ffcccc;
+  background-color: #ffcccc;
+  color: #ff0000;
+  padding: 10px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.location-access-denied-bubble::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -20px; /* Adjust this value as needed */
+  transform: translateY(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent #ffcccc transparent transparent;
+  border-right-width: 16px; 
 }
