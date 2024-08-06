@@ -294,9 +294,7 @@
 }
 
 .detail-mbti-graph-text {
-  color: #6e6e6e;
-  margin-left: 10px;
-  margin-right: 10px;
+  color: var(--gray-700);
 }
 
 /* EI 퍼센트 바 */
@@ -429,10 +427,12 @@
 
 /* 퍼센테이지 텍스트 스타일 추가 */
 .detail-mbti-graph-percent-text {
-  color: #5e5e5e;
   font-weight: 500;
   position: relative;
   z-index: 2;
+  color: #6e6e6e;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 /* 리뷰 */
