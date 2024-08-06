@@ -294,7 +294,9 @@
 }
 
 .detail-mbti-graph-text {
-  color: var(--gray-700);
+  color: #6e6e6e;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 /* EI 퍼센트 바 */
