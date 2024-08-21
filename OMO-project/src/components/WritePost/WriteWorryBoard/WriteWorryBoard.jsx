@@ -70,7 +70,7 @@ const WriteWorryBoard = ({onCreate, openModal, setOpenModal}) => {
             ref={contentInput}
             name="content"
             className={styles["board-content"]}
-            placeholder="게시글의 내용을 적어주세요. (최소 5자, 최대 500자)"
+            placeholder={`게시글의 내용을 적어주세요. (최소 5자, 최대 500자)\n\n주제와 관련 없는 글을 작성 할 시 삭제될 수 있습니다.`}
             minLength="5"
             maxLength="500"
             value={state.content}
