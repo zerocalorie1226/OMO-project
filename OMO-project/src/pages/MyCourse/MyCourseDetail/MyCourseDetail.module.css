@@ -33,7 +33,7 @@
 
 /* 따봉 이미지 */
 .mycourse-detail-like-container > img {
-  width: 26px;
+  width: 27px;
   height: 26px;
 }
 
@@ -43,14 +43,49 @@
   margin-left: 10px;
 }
 
-/* 작성 날짜 */
-.mycourse-detail-created-date {
+/* 작성 정보*/
+.mycourse-detail-created {
+  position: relative;
   font-size: 20px;
   margin: 0 0 10px auto;
-  display: flex;
   height: 30px;
-  color: var(--gray-500);
+  /* color: var(--gray-500); */
   justify-content: flex-end;
+  gap: 10px;
+  margin-left: 10px;
+  margin-bottom: 25px;
+  margin-top: 70px;
+}
+
+/* 유저 아이콘 */
+.community-mycourse-detail-user-icon {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  margin-right: 6px;
+  bottom: 40px;
+}
+/* 시간 아이콘 */
+.community-mycourse-detail-time-icon {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  margin-right: 5px;
+  left: 2px;
+}
+
+/* 유저 이름 */
+.mycourse-detail-created-user {
+  position: absolute;
+  left: 35px;
+  bottom: 42px;
+}
+
+/* 시간 이름 */
+.mycourse-detail-created-time {
+  position: absolute;
+  left: 36px;
+  bottom: 6px;
 }
 
 /* 코스 상자 */

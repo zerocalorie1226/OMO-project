@@ -9,6 +9,8 @@ import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import {Loading} from "../../../components/Loading/Loading";
 import Like from "../../../assets/community/my-course-board/empty-thumb.png";
 import LikeClicked from "../../../assets/detail/purple-thumb.png";
+import Time from "../../../assets/my-course/detail/time2.png";
+import User from "../../../assets/my-course/detail/user2.png";
 
 const MyCourseDetail = () => {
   const {id} = useParams();
@@ -119,7 +121,7 @@ const MyCourseDetail = () => {
     <div className={styles["mycourse-detail-total-container"]}>
       <div className={styles["mycourse-detail-title-container"]}>
         <span>
-          {detailData.writerName}의 {detailData.courseName}
+          {detailData.courseName}
         </span>
       </div>
       <div className={styles["mycourse-detail-like-container"]}>
@@ -128,8 +130,9 @@ const MyCourseDetail = () => {
         </button>
         <span className={styles["community-mycourse-detail-like-number"]}> {detailData.likeCount}</span>
       </div>
-      <div className={styles["mycourse-detail-created-date"]}>
-        <span>작성 일자: {getStringDate(detailData.createdAt)}</span>
+      <div className={styles["mycourse-detail-created"]}>
+      <img src={User} alt="유저 아이콘"className={styles["community-mycourse-detail-user-icon"]} /> <span className={styles["mycourse-detail-created-user"]}> {detailData.writerName}</span>
+      <img src={Time} alt="시간 아이콘"className={styles["community-mycourse-detail-time-icon"]} /><span className={styles["mycourse-detail-created-time"]}> {getStringDate(detailData.createdAt)}</span>
       </div>
       <div className={styles["mycourse-detail-course-container"]}>
         <div className={styles["mycourse-detail-course-item-container"]}>
