@@ -74,18 +74,29 @@
   left: 2px;
 }
 
-/* 유저 이름 */
+/* 작성자 이름 */
 .mycourse-detail-created-user {
   position: absolute;
   left: 35px;
   bottom: 42px;
 }
 
-/* 시간 이름 */
+/* 작성 시간 */
 .mycourse-detail-created-time {
   position: absolute;
   left: 36px;
   bottom: 6px;
+}
+
+
+/* 신고 버튼 */
+.community-post-report-button {
+  all: unset;
+  padding: 0;
+  position: absolute;
+  cursor: pointer;
+  right: 20px;
+  top: 170px;
 }
 
 /* 코스 상자 */

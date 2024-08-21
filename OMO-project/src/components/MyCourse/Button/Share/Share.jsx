@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
 const Share = ({courseId, share}) => {
-  console.log(share);
   const navigate = useNavigate();
 
   const handleShare = async () => {
