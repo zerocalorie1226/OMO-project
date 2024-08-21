@@ -54,8 +54,8 @@ const useCurrentLocation = () => {
 
   useEffect(() => {
     const initializeLocation = async () => {
-      const permissionGranted = await checkPermission();
-      if (!permissionGranted) return;
+      // const permissionGranted = await checkPermission();
+      // if (!permissionGranted) return; 
 
       // 우선 로컬 스토리지에서 좌표를 가져온다.
       const savedCoordinates = JSON.parse(localStorage.getItem("savedCoordinates"));
