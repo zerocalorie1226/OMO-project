@@ -376,7 +376,7 @@ export const DetailItemsMenu = (props) => {
                 <img src={Call} alt="전화 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
                 <span className={styles["detail-call-title"]}>전화</span>
               </div>
-              <span className={styles["detail-call"]}>{props.DetailItemsMenuData.phone}</span>
+              <span className={styles["detail-call"]}>{props.DetailItemsMenuData.phone ? props.DetailItemsMenuData.phone : "전화번호 미제공"}</span>
             </section>
 
             <section className={styles["detail-google-map-container"]}>
