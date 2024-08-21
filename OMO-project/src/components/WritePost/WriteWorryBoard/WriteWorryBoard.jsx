@@ -18,16 +18,21 @@ const WriteWorryBoard = ({onCreate, openModal, setOpenModal}) => {
   };
 
   const handleSubmit = () => {
-    if (state.title.length < 3) {
+    // 공백 제거된 상태로 유효성 검사
+    const trimmedTitle = state.title.trim();
+    const trimmedContent = state.content.trim();
+  
+    if (trimmedTitle.length < 3) {
       alert("글제목은 최소 3자 이상 입력해주세요");
       return;
     }
-
-    if (state.content.length < 5) {
+  
+    if (trimmedContent.length < 5) {
       alert("본문은 최소 5자 이상 입력해주세요");
       return;
     }
-    onCreate(state.title, state.content);
+  
+    onCreate(trimmedTitle, trimmedContent);
     alert("등록되었습니다");
     setState({
       title: "",
