@@ -9,8 +9,8 @@ import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import {Loading} from "../../../components/Loading/Loading";
 import Like from "../../../assets/community/my-course-board/empty-thumb.png";
 import LikeClicked from "../../../assets/detail/purple-thumb.png";
-import Time from "../../../assets/my-course/detail/time2.png";
-import User from "../../../assets/my-course/detail/user2.png";
+import Time from "../../../assets/my-course/detail/time.png";
+import User from "../../../assets/my-course/detail/user.png";
 
 const MyCourseDetail = () => {
   const {id} = useParams();
