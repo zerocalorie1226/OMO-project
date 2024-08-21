@@ -30,7 +30,6 @@ const MyCourseFindRecentModal = ({recentModal, setRecentModal, state, setState, 
               Authorization: localStorage.getItem("accessToken"),
             },
           });
-          console.log(response.data);
           setRecentData(response.data);
           setMaxPage(Math.ceil(response.data.length / 10));
         } catch (error) {

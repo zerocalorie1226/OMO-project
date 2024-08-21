@@ -149,7 +149,6 @@ export const DetailItemsMenu = (props) => {
 
       if (response.data !== "No review. Write review first before recommend.") {
         // PUT 요청이 성공한 후 GET 요청을 보내기
-        console.log(response.data);
         const getResponse = await axios.get(`https://api.oneulmohae.co.kr/place/${props.place_name}`, {
           headers: {
             placeId: props.placeId,
