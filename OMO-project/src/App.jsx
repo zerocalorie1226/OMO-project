@@ -1,7 +1,7 @@
 import "./App.module.css";
-import {Header} from "./components/Header/Header";
-import React, {useState} from "react";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { Header } from "./components/Header/Header";
+import React, { useState } from "react";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 
 import Signup from "./pages/signup/Signup";
 import Eating from "./pages/sub/eating/Eating";
@@ -30,23 +30,27 @@ import MyCourseDetail from "./pages/MyCourse/MyCourseDetail/MyCourseDetail";
 import LoginLoading from "./pages/LoginLoading/LoginLoading";
 import useCurrentLocation from "./assets/hooks/useCurrentLocation";
 
-const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
-  const {location, coordinates, setCoordinates, setLocation, locationAccessDenied} = useCurrentLocation();
+const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
+  const { location, coordinates, setCoordinates, setLocation, locationAccessDenied } = useCurrentLocation();
   const [recentData, setRecentData] = useState([]);
   const [defaultListImg, setDefaultListImg] = useState("/src/assets/detail/defaultDetailIcon.png");
 
+  const currentLocation = useLocation(); // 현재 경로를 가져옴
+
   return (
     <div>
-      {/* 헤더 */}
-      <Header handleLogout={handleLogout} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+      {/* 경로가 "/Signup"이 아닐 때만 Header를 렌더링 */}
+      {currentLocation.pathname !== "/Signup" && (
+        <Header handleLogout={handleLogout} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+      )}
       <Routes>
         {/* 메인 페이지 */}
         <Route
           path="/"
           element={
             <Main
-              setSearchResultsX={(x) => setCoordinates((prev) => ({...prev, longitude: x}))}
-              setSearchResultsY={(y) => setCoordinates((prev) => ({...prev, latitude: y}))}
+              setSearchResultsX={(x) => setCoordinates((prev) => ({ ...prev, longitude: x }))}
+              setSearchResultsY={(y) => setCoordinates((prev) => ({ ...prev, latitude: y }))}
               location={location}
               setLocation={setLocation}
               locationAccessDenied={locationAccessDenied}
@@ -62,7 +66,7 @@ const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
 
         {/* 로그인/회원가입 */}
         <Route path="/Login" element={<Login />} />
-        <Route path="/Signup" element={<Signup />} />
+        <Route path="/Signup" element={<Signup />} />  {/* Signup 페이지 */}
         <Route path="/LoginLoading" element={<LoginLoading setIsLoggedIn={setIsLoggedIn} />} />
 
         {/* 리스트페이지 */}
@@ -123,4 +127,5 @@ const App = ({handleLogout, isLoggedIn, setIsLoggedIn}) => {
     </div>
   );
 };
+
 export default App;
