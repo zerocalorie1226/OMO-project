@@ -10,23 +10,22 @@ const DetailMenu = ({setDefaultListImg}) => {
 
   const [DetailItemsMenuData, setDetailItemsMenuData] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`https://api.oneulmohae.co.kr/place/${place_name}`, {
-          headers: {
-            placeId: id,
-            Authorization: `${localStorage.getItem("accessToken")}`,
-          },
-        });
-        setDetailItemsMenuData(response.data); // 서버로부터 받은 데이터를 상태에 저장
-      } catch (error) {
-        console.log("상세페이지를 불러오는데 실패하였습니다.");
-      }
-    };
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`https://api.oneulmohae.co.kr/place/${place_name}`, {
+        headers: {
+          placeId: id,
+        },
+      });
+      setDetailItemsMenuData(response.data); // 서버로부터 받은 데이터를 상태에 저장
+    } catch (error) {
+      console.log("상세페이지를 불러오는데 실패하였습니다.");
+    }
+  };
 
-    fetchData();
-  }, []); // category가 변경될 때마다 데이터를 새로 가져옵니다
+  fetchData();
+}, []); // category가 변경될 때마다 데이터를 새로 가져옵니다
 
   return (
     <>
