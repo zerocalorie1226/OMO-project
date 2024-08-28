@@ -50,7 +50,7 @@ const MyCourseDetail = () => {
         });
         setDetailData(response.data);
         console.log(response.data);
-        
+
         setLoading(false);
       } catch (error) {
         setError("데이터를 불러오는 데 실패했습니다.");
@@ -140,15 +140,17 @@ const MyCourseDetail = () => {
         <span className={styles["mycourse-detail-created-time"]}> {getStringDate(detailData.createdAt)}</span>
       </div>
       {/* 신고 아이콘 */}
-      <button
-        className={styles["community-post-report-button"]}
-        type="button"
-        onClick={() => {
-          setOpenModal(true);
-        }}
-      >
-        <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{width: "32px", height: "32px"}} />
-      </button>
+      {detailData.writerUserMatch ? null : (
+        <button
+          className={styles["community-post-report-button"]}
+          type="button"
+          onClick={() => {
+            setOpenModal(true);
+          }}
+        >
+          <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{width: "32px", height: "32px"}} />
+        </button>
+      )}
       {openModal ? <ReportModal openModal={openModal} setOpenModal={setOpenModal} boardId={detailData.courseId} /> : null}
       <div className={styles["mycourse-detail-course-container"]}>
         <div className={styles["mycourse-detail-course-item-container"]}>
