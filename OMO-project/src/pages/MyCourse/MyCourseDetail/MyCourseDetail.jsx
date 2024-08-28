@@ -49,6 +49,8 @@ const MyCourseDetail = () => {
           },
         });
         setDetailData(response.data);
+        console.log(response.data);
+        
         setLoading(false);
       } catch (error) {
         setError("데이터를 불러오는 데 실패했습니다.");
@@ -160,7 +162,8 @@ const MyCourseDetail = () => {
         </div>
       </div>
       <div className={styles["mycourse-detail-edit-share-button-container"]}>
-        <Share courseId={detailData.courseId} share={detailData.share} />
+        {detailData.writerUserMatch ? <Share courseId={detailData.courseId} share={detailData.share} /> : null}
+        {/* writerUserMatch */}
       </div>
       <ScrollToTop />
     </div>
