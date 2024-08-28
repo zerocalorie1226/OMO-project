@@ -1,9 +1,14 @@
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 /* 페이지 회원가입 영역 전체 */
 .signup-container {
   width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 100px;
+  margin: auto;
 }
 
 /* 회원가입 헤더박스 */
@@ -33,7 +38,7 @@
 }
 
 /* 필수입력사항 아이콘 */
-.signup-ess{
+.signup-ess {
   width: 10px;
   height: 10px;
   position: relative;
@@ -41,16 +46,17 @@
   right: 1px;
 }
 
-
 /* 항목 별 필수항목 아이콘 */
-.signup-birth-date-ess, .signup-nickname-ess, .signup-mbti-ess, .signup-gender-ess{
+.signup-birth-date-ess,
+.signup-nickname-ess,
+.signup-mbti-ess,
+.signup-gender-ess {
   width: 10px;
   height: 10px;
   position: relative;
   bottom: 17px;
   right: 7px;
 }
-
 
 /* 회원가입 하단 영역 전체 */
 .signup-inner-container {
@@ -115,7 +121,10 @@
   margin-right: 114px;
 }
 
-.mbti-select-IE, .mbti-select-SN, .mbti-select-TF, .mbti-select-JP {
+.mbti-select-IE,
+.mbti-select-SN,
+.mbti-select-TF,
+.mbti-select-JP {
   width: 80px;
   height: 60px;
   border-radius: 10px;
@@ -126,7 +135,6 @@
   cursor: pointer;
 }
 
-
 .mbti-color {
   color: black;
 }
@@ -136,7 +144,6 @@
   display: flex;
   padding-bottom: 53px;
   border-bottom: 1px solid var(--primary);
-
 }
 
 .signup-gender-radio-container > fieldset {

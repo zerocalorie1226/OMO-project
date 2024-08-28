@@ -120,6 +120,7 @@ const Signup = () => {
 
   return (
     <>
+    <div className={styles["signup"]}>
       <section className={styles["signup-container"]}>
         <div className={styles["signup-title-container"]}>
           <h2 className={styles["signup-title"]}>회원가입</h2>
@@ -208,6 +209,7 @@ const Signup = () => {
           </div>
         </div>
       </section>
+      </div>
     </>
   );
 };
