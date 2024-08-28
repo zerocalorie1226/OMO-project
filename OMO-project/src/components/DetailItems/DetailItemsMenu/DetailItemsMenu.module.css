@@ -435,6 +435,7 @@
   position: relative;
   z-index: 2;
   margin-top: 4px;
+  margin-left: 10px;
 }
 
 .detail-mbti-graph-percent-text-right{
@@ -443,6 +444,7 @@
   position: relative;
   z-index: 2;
   margin-top: 4px;
+  margin-right: 10px;
 }
 
 /* 리뷰 */

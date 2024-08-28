@@ -60,7 +60,6 @@ const DetailMenu = ({ setDefaultListImg }) => {
     <>
       <section className={styles["detail-container"]}>
         {/* 자른 제목을 표시 */}
-        <h1>{truncatedTitle}</h1>
         <DetailItemsMenu DetailItemsMenuData={DetailItemsMenuData} setDefaultListImg={setDefaultListImg} place_name={place_name} placeId={id} />
       </section>
       <ScrollToTop />
