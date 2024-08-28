@@ -39,7 +39,6 @@ const App = ({ handleLogout, isLoggedIn, setIsLoggedIn }) => {
 
   return (
     <div>
-      {/* 경로가 "/Signup"이 아닐 때만 Header를 렌더링 */}
       {currentLocation.pathname !== "/Signup" && (
         <Header handleLogout={handleLogout} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
       )}

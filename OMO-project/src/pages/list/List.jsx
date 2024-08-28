@@ -72,7 +72,6 @@ const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg}) =
         const documents = Array.isArray(response.data.documents) ? response.data.documents : [];
         
         setListData((prevData) => {
-          // 새로 받아온 데이터 중에서 기존 데이터에 없는 항목만 추가
           const newData = documents.filter((item) => !prevData.some((prevItem) => prevItem.id === item.id));
           return [...prevData, ...newData];
         });

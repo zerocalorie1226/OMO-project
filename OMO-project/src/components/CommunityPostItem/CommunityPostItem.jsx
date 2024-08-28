@@ -90,7 +90,6 @@ export const CommunityPostItem = (props) => {
           }
           
         );
-        console.log(getResponse)
         if (getResponse.status === 200) {
           props.setPosts(getResponse.data.data);
         } else {
@@ -193,9 +192,7 @@ export const CommunityPostItem = (props) => {
           });
 
           const imageBlob = imageResponse.data;
-          console.log(imageBlob)
           const imageObjectURL = URL.createObjectURL(imageBlob);
-          console.log(imageObjectURL)
           setProfileImage(imageObjectURL);
         } catch (error) {
           setProfileImage(props.profileURL);

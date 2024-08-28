@@ -19,7 +19,6 @@ const DetailMenu = ({ setDefaultListImg }) => {
         const response = await axios.get(`https://api.oneulmohae.co.kr/place/${place_name}`, {
           headers: {
             placeId: id,
-            Authorization: `${localStorage.getItem("accessToken")}`,
           },
         });
 
