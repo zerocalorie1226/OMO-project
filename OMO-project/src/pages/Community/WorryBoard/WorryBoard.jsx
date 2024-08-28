@@ -38,8 +38,6 @@ const WorryBoard = () => {
         },
       });
       setPosts(response.data.data);
-      console.log(response.data);
-      
       setIsLoading(false);
     } catch (error) {
       console.error("고민게시판을 불러오는데 실패였습니다.", error);

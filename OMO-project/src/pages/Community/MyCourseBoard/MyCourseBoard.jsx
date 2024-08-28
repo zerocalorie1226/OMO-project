@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styles from "./MyCourseBoard.module.css";
-import { communityPageFilter } from "./../../../const/communityPageFilter";
-import { CommunityCategory } from "./../../../components/CommunityCategory/CommunityCategory";
+import {communityPageFilter} from "./../../../const/communityPageFilter";
+import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
 import Filter from "../../../components/Filter/Filter";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
-import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import CommunityMyCourseList from "../../../components/CommunityMyCourseList/CommunityMyCourseList";
-import { Link, useNavigate } from "react-router-dom";
-import { mbtiBox } from "../../../const/mbtiBox";
-import { MbtiBox } from "../../../components/MbtiBox/MbtiBox";
+import {Link, useNavigate} from "react-router-dom";
+import {mbtiBox} from "../../../const/mbtiBox";
+import {MbtiBox} from "../../../components/MbtiBox/MbtiBox";
 import WritingButtonImg from "../../../assets/writing-button.png";
-import { Loading } from "../../../components/Loading/Loading";
+import {Loading} from "../../../components/Loading/Loading";
 
 const MyCourseBoard = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,7 +25,7 @@ const MyCourseBoard = () => {
     const loggedIn = localStorage.getItem("isLoggedIn") === "true";
     if (!loggedIn) {
       alert("로그인 후 이용 가능한 서비스입니다.");
-      navigate("/Login", { replace: true });
+      navigate("/Login", {replace: true});
     }
   }, [navigate]);
 
@@ -38,8 +38,6 @@ const MyCourseBoard = () => {
         },
       });
       setCommunityMyCourse(response.data.data);
-      console.log(response.data.data);
-      
       setIsLoading(false);
     } catch (error) {
       console.error("데이터를 가져오는 중 오류가 발생했습니다.", error);
@@ -66,9 +64,7 @@ const MyCourseBoard = () => {
     fetchData(IorE, PorJ);
   }, [selectedMbtiGroup1, selectedMbtiGroup2]);
 
-  const filteredData = communityMyCourse.filter((item) => 
-    item.courseName && item.courseName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredData = communityMyCourse.filter((item) => item.courseName && item.courseName.toLowerCase().includes(searchTerm.toLowerCase()));
 
   const onSearch = (term) => {
     setSearchTerm(term);
@@ -108,12 +104,7 @@ const MyCourseBoard = () => {
           <span className={styles["community-mbti-pick-title"]}>MBTI별 pick</span>
           <ul className={styles["community-mbti-pick-box"]}>
             {mbtiBox.map((e) => (
-              <MbtiBox
-                key={e.id}
-                data={e}
-                selected={e.id === selectedMbtiGroup1 || e.id === selectedMbtiGroup2}
-                onSelect={handleSelectMbti}
-              />
+              <MbtiBox key={e.id} data={e} selected={e.id === selectedMbtiGroup1 || e.id === selectedMbtiGroup2} onSelect={handleSelectMbti} />
             ))}
           </ul>
         </div>
@@ -137,7 +128,7 @@ const MyCourseBoard = () => {
       <Link to="/MyCourseNewWrite">
         <div className={styles["writing-btn-container"]}>
           <button type="button" className={styles["writing-btn"]}>
-            <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{ width: "80px", height: "80px" }} />
+            <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />
           </button>
         </div>
       </Link>
