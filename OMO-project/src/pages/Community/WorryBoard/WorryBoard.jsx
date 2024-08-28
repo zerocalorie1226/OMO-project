@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import styles from "./WorryBoard.module.css";
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
@@ -80,7 +80,7 @@ const WorryBoard = () => {
     if (!loggedIn) {
       const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
       if (confirmLogin) {
-        navigate("/Login", { replace: true });
+        navigate("/Login", {replace: true});
       }
       return;
     }
