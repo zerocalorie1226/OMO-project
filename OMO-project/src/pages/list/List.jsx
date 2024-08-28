@@ -79,7 +79,13 @@ const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg}) =
         });
 
         const documents = Array.isArray(response.data.documents) ? response.data.documents : [];
-        setListData((prevData) => [...prevData, ...documents]);
+        
+        setListData((prevData) => {
+          // 새로 받아온 데이터 중에서 기존 데이터에 없는 항목만 추가
+          const newData = documents.filter((item) => !prevData.some((prevItem) => prevItem.id === item.id));
+          return [...prevData, ...newData];
+        });
+
         setMaxPage(response.data.meta.pageable_count || 0);
       } catch (error) {
         console.error("리스트를 불러오는데 실패하였습니다.", error);
@@ -87,7 +93,6 @@ const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg}) =
         setLoading(false);
       }
     };
-
     fetchData();
   }, [category, pagenation, storedCoordinates]);
 
