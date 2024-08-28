@@ -2,7 +2,7 @@ import React, { useMemo, useRef, useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./CommunityQnaBox.module.css";
 import Comment from "../../assets/community/inquiry-board/comment.png";
-import DefaultProfileImage from "../../assets/profile-img.jpg"; // 기본 프로필 이미지
+import DefaultProfileImage from "../../assets/profile-default.png"; // 기본 프로필 이미지
 import { formatDate } from "../../utils/Time/formatDate";
 
 export const CommunityQnABox = (props) => {

@@ -5,7 +5,7 @@ import styles from "./CommunityPostItem.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
 import LikeClicked from "../../assets/detail/purple-thumb.png";
-import DefaultProfileImage from "../../assets/profile-img.jpg"; // 기본 프로필 이미지
+import DefaultProfileImage from "../../assets/profile-default.png"; // 기본 프로필 이미지
 import Comment from "../../assets/community/worry-board/comment.png";
 import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
@@ -81,12 +81,16 @@ export const CommunityPostItem = (props) => {
 
       if (response.status === 200 || response.status === 201) {
         // 댓글 작성 후 GET 통신으로 데이터 업데이트
-        const getResponse = await axios.get(`https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`, {
-          headers: {
-            Authorization: localStorage.getItem("accessToken"),
-          },
-        });
-
+        const getResponse = await axios.get(
+          `https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`,
+          {
+            headers: {
+              Authorization: localStorage.getItem("accessToken"),
+            },
+          }
+          
+        );
+        console.log(getResponse)
         if (getResponse.status === 200) {
           props.setPosts(getResponse.data.data);
         } else {
@@ -177,6 +181,7 @@ export const CommunityPostItem = (props) => {
 
   useEffect(() => {
     const fetchProfileImage = async () => {
+     
       if (props.profileURL) {
         try {
           const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(props.profileURL)}`;
@@ -188,7 +193,9 @@ export const CommunityPostItem = (props) => {
           });
 
           const imageBlob = imageResponse.data;
+          console.log(imageBlob)
           const imageObjectURL = URL.createObjectURL(imageBlob);
+          console.log(imageObjectURL)
           setProfileImage(imageObjectURL);
         } catch (error) {
           setProfileImage(props.profileURL);
@@ -279,7 +286,12 @@ export const CommunityPostItem = (props) => {
           <div className={`${styles["community-post-comment-container"]} ${showComments ? styles["show-comments"] : ""}`}>
             {/* 댓글 입력창 */}
             <form className={styles["community-post-comment-input-container"]} onSubmit={handleSubmit}>
-              <img className={styles["community-post-comment-input-profile-img"]} src={profileImage} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
+              <img
+                className={styles["community-post-comment-input-profile-img"]}
+                src={DefaultProfileImage}
+                alt="프로필 이미지"
+                style={{ width: "50px", height: "50px" }}
+              />
               <input
                 className={styles["community-post-comment-input"]}
                 type="text"
@@ -308,11 +320,18 @@ export const CommunityPostItem = (props) => {
                 <div key={el.commentId}>
                   <ul className={styles["community-post-comment"]}>
                     <li>
-                      <img className={styles["community-post-comment-profile-img"]} src={profileImage} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
+                      <img
+                        className={styles["community-post-comment-profile-img"]}
+                        src={el.profileURL || DefaultProfileImage} // 각 댓글 작성자의 프로필 이미지
+                        alt="프로필 이미지"
+                        style={{ width: "50px", height: "50px" }}
+                      />
                       <div className={styles["community-post-comment-box"]}>
                         <div className={styles["community-post-comment-nick-date"]}>
-                          <span className={styles["community-post-comment-box-nick"]}>이니</span>
-                          <span className={styles["community-post-comment-box-date"]}>{elapsedText(new Date(el.createdAt)).toLocaleString()}</span>
+                          <span className={styles["community-post-comment-box-nick"]}>{el.writer}</span> {/* 각 댓글 작성자의 닉네임 */}
+                          <span className={styles["community-post-comment-box-date"]}>
+                            {elapsedText(new Date(el.createdAt)).toLocaleString()}
+                          </span>
                         </div>
                         <span className={styles["community-post-comment-box-content"]}>{el.content}</span>
                       </div>
