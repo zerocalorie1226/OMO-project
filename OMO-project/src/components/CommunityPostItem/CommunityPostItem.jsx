@@ -1,5 +1,6 @@
 import React, {useRef, useState, useMemo, useEffect} from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom"; // navigate 사용
 import styles from "./CommunityPostItem.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
@@ -13,6 +14,8 @@ import ReportModal from "../ReportModal/ReportModal";
 import {formatDate} from "../../utils/Time/formatDate";
 
 export const CommunityPostItem = (props) => {
+  const navigate = useNavigate(); // navigate hook
+
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
 
@@ -50,6 +53,16 @@ export const CommunityPostItem = (props) => {
 
     if (content.length < 1) {
       alert("최소 1글자 이상 입력해주세요");
+      return;
+    }
+
+    // 로그인 여부 확인
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
+      if (confirmLogin) {
+        navigate("/Login", { replace: true });
+      }
       return;
     }
 
@@ -91,6 +104,16 @@ export const CommunityPostItem = (props) => {
 
   // 좋아요 버튼
   const handleClickLike = async () => {
+    // 로그인 여부 확인
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
+      if (confirmLogin) {
+        navigate("/Login", { replace: true });
+      }
+      return;
+    }
+
     try {
       const response = await axios.put(
         `https://api.oneulmohae.co.kr/board/like/${props.boardId}`,
