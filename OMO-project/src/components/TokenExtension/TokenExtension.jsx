@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {jwtDecode} from "jwt-decode"; // 기본 가져오기 방식으로 수정
 import axios from "axios";
-// import styles from "./TokenExtension.module.css";
+import styles from "./TokenExtension.module.css";
 
 const TokenExtension = ({setIsLoggedIn}) => {
   const [remainingTime, setRemainingTime] = useState({access: null, refresh: null});
@@ -95,7 +95,17 @@ const TokenExtension = ({setIsLoggedIn}) => {
     }
   };
 
-  return null;
+  return (
+    <div className={styles['token-extension-container']}>
+      <span className={styles['token-extension-time']}>
+        남은 시간: {remainingTime.access !== null ? formatRemainingTime(remainingTime.access) : '토큰 없음'} <br />
+        {/* 리프레시 토큰 남은 시간: {remainingTime.refresh !== null ? formatRemainingTime(remainingTime.refresh) : '토큰 없음'} */}
+      </span>
+      <button className={styles['token-extension-button']} onClick={handleTokenRefresh}>
+        연장
+      </button>
+    </div>
+  );
 };
 
 export default TokenExtension;
