@@ -1,12 +1,13 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {jwtDecode} from "jwt-decode"; // 기본 가져오기 방식으로 수정
 import axios from "axios";
 // import styles from "./TokenExtension.module.css";
 
-const TokenExtension = ({setIsLoggedIn}) => {
-  const [remainingTime, setRemainingTime] = useState({access: null, refresh: null});
+const TokenExtension = ({ setIsLoggedIn }) => {
+  const [remainingTime, setRemainingTime] = useState({ access: null, refresh: null });
   const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
   const [refreshToken, setRefreshToken] = useState(localStorage.getItem("refreshToken"));
+  const [isPageFocused, setIsPageFocused] = useState(true);
 
   useEffect(() => {
     if (accessToken && refreshToken) {
@@ -16,22 +17,33 @@ const TokenExtension = ({setIsLoggedIn}) => {
       const accessExpirationTime = getTokenExpiration(accessToken);
       const refreshExpirationTime = getTokenExpiration(refreshToken);
       if (accessExpirationTime && refreshExpirationTime) {
-        // console.log("accessExpirationTime: ", accessExpirationTime);
-        // console.log("refreshExpirationTime: ", refreshExpirationTime);
         console.log("엑세스토큰 남은시간: ", formatRemainingTime(remainingTime.access));
         console.log("리프레쉬토큰 남은시간: ", formatRemainingTime(remainingTime.refresh));
         updateRemainingTime(accessExpirationTime, refreshExpirationTime);
         const intervalId = setInterval(() => {
-          updateRemainingTime(accessExpirationTime, refreshExpirationTime);
+          if (isPageFocused) {
+            updateRemainingTime(accessExpirationTime, refreshExpirationTime);
+          }
         }, 1000);
-        return () => clearInterval(intervalId);
+
+        const handleFocus = () => setIsPageFocused(true);
+        const handleBlur = () => setIsPageFocused(false);
+
+        window.addEventListener("focus", handleFocus);
+        window.addEventListener("blur", handleBlur);
+
+        return () => {
+          clearInterval(intervalId);
+          window.removeEventListener("focus", handleFocus);
+          window.removeEventListener("blur", handleBlur);
+        };
       }
     }
-  }, [accessToken, refreshToken]);
+  }, [accessToken, refreshToken, isPageFocused]);
 
   const getTokenExpiration = (token) => {
     try {
-      const {exp} = jwtDecode(token);
+      const { exp } = jwtDecode(token);
       return exp * 1000; // 밀리초 단위로 변환
     } catch (error) {
       console.error("토큰 디코딩 실패:", error);
@@ -59,7 +71,7 @@ const TokenExtension = ({setIsLoggedIn}) => {
       localStorage.removeItem("refreshToken");
       setAccessToken(null);
       setRefreshToken(null);
-      setRemainingTime({access: null, refresh: null});
+      setRemainingTime({ access: null, refresh: null });
       window.location.href = "/Login";
     } else {
       setRemainingTime({
@@ -67,7 +79,8 @@ const TokenExtension = ({setIsLoggedIn}) => {
         refresh: refreshTimeLeft,
       });
 
-      if (accessTimeLeft == 10) {
+      // 30초 남았을 때 갱신 요청을 보내도록 설정
+      if (accessTimeLeft <= 30) {
         handleTokenRefresh();
       }
     }
