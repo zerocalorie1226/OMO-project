@@ -170,3 +170,13 @@
   font-size: 20px;
   line-height: 1.3;
 }
+
+.no-comments{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  margin: 15px auto;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--gray-700);
+}

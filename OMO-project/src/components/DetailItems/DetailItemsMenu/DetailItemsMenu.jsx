@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./DetailItemsMenu.module.css";
 import Jjim from "../../../assets/detail/empty-heart.png";
@@ -23,6 +24,21 @@ export const DetailItemsMenu = (props) => {
   const [posts, setPosts] = useState([]); // 상태변화함수, 빈배열로 시작
   const [content, setContent] = useState(""); // 댓글 내용
   const dataId = useRef(0); // id 인덱스 추가-> 변수처럼 사용 필요 -> useRef 사용
+
+  const navigate = useNavigate();
+
+  // 로그인 여부 확인 함수
+  const checkLoginAndProceed = () => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
+      if (confirmLogin) {
+        navigate("/Login", { replace: true });
+      }
+      return false;
+    }
+    return true;
+  };
 
   // 하트 버튼 (관심) 상태관리
   const [imageSrcJjim, setImageSrcJjim] = useState(Jjim); // 하트 이미지 토글
@@ -84,6 +100,8 @@ export const DetailItemsMenu = (props) => {
 
   // handleClickJjim 함수 (하트 버튼 (관심) - PUT+GET 요청, 이미지 변경, 카운트 업데이트)
   const handleClickJjim = async () => {
+    if (!checkLoginAndProceed()) return;
+
     try {
       const response = await axios.put(
         `https://api.oneulmohae.co.kr/place/${props.place_name}`,
@@ -132,6 +150,8 @@ export const DetailItemsMenu = (props) => {
 
   // handleClickLike 함수 (따봉 버튼 (추천) - PUT+GET 요청, 이미지 변경, 카운트 업데이트)
   const handleClickLike = async () => {
+    if (!checkLoginAndProceed()) return;
+
     try {
       const response = await axios.put(
         `https://api.oneulmohae.co.kr/place/${props.place_name}`,
@@ -149,7 +169,6 @@ export const DetailItemsMenu = (props) => {
 
       if (response.data !== "No review. Write review first before recommend.") {
         // PUT 요청이 성공한 후 GET 요청을 보내기
-        console.log(response.data);
         const getResponse = await axios.get(`https://api.oneulmohae.co.kr/place/${props.place_name}`, {
           headers: {
             placeId: props.placeId,
@@ -208,6 +227,8 @@ export const DetailItemsMenu = (props) => {
 
   // 리뷰 작성
   const postReview = async (content, imageFile) => {
+    if (!checkLoginAndProceed()) return;
+
     const formData = new FormData();
     formData.append("placeId", props.placeId);
     formData.append("content", content);
@@ -376,7 +397,7 @@ export const DetailItemsMenu = (props) => {
                 <img src={Call} alt="전화 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
                 <span className={styles["detail-call-title"]}>전화</span>
               </div>
-              <span className={styles["detail-call"]}>{props.DetailItemsMenuData.phone}</span>
+              <span className={styles["detail-call"]}>{props.DetailItemsMenuData.phone ? props.DetailItemsMenuData.phone : "전화번호 미제공"}</span>
             </section>
 
             <section className={styles["detail-google-map-container"]}>
@@ -386,7 +407,7 @@ export const DetailItemsMenu = (props) => {
             <section className={styles["detail-mbti-stats-container"]}>
               <div className={styles["detail-mbti-stats-inner-container"]}>
                 <img src={Graph} alt="통계 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
-                <span className={styles["detail-mbti-stats-title"]}>MBTI별 통계</span>
+                <span className={styles["detail-mbti-stats-title"]}>MBTI별 통계 (따봉 기준)</span>
               </div>
               <div className={styles["detail-mbti-graph-container"]}>
                 {/* 내향/외향 */}
@@ -397,11 +418,13 @@ export const DetailItemsMenu = (props) => {
                   </div>
                   <div className={styles["detail-mbti-graph-EI-bar"]}>
                     <div className={styles["detail-mbti-graph-EI-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioI)}}>
-                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioI) ? 0 : mbtiData.ratioI * 100).toFixed(0)}%</span>
+                     
                     </div>
+                    <span className={styles["detail-mbti-graph-percent-text-left"]}>{(isNaN(mbtiData.ratioI) ? 0 : mbtiData.ratioI * 100).toFixed(0)}%</span>
                     <div className={styles["detail-mbti-graph-EI-bar-percent-reverse"]} style={{width: calculateBarWidth(mbtiData.ratioE)}}>
-                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioE) ? 0 : mbtiData.ratioE * 100).toFixed(0)}%</span>
+                      
                     </div>
+                    <span className={styles["detail-mbti-graph-percent-text-right"]}>{(isNaN(mbtiData.ratioE) ? 0 : mbtiData.ratioE * 100).toFixed(0)}%</span>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>E</span>
@@ -416,11 +439,13 @@ export const DetailItemsMenu = (props) => {
                   </div>
                   <div className={styles["detail-mbti-graph-SN-bar"]}>
                     <div className={styles["detail-mbti-graph-SN-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioS)}}>
-                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioS) ? 0 : mbtiData.ratioS * 100).toFixed(0)}%</span>
-                    </div>
+                      
+                    </div><span className={styles["detail-mbti-graph-percent-text-left"]}>{(isNaN(mbtiData.ratioS) ? 0 : mbtiData.ratioS * 100).toFixed(0)}%</span>
+
                     <div className={styles["detail-mbti-graph-SN-bar-percent-reverse"]} style={{width: calculateBarWidth(mbtiData.ratioN)}}>
-                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioN) ? 0 : mbtiData.ratioN * 100).toFixed(0)}%</span>
+                    
                     </div>
+                    <span className={styles["detail-mbti-graph-percent-text-right"]}>{(isNaN(mbtiData.ratioN) ? 0 : mbtiData.ratioN * 100).toFixed(0)}%</span>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>N</span>
@@ -435,11 +460,13 @@ export const DetailItemsMenu = (props) => {
                   </div>
                   <div className={styles["detail-mbti-graph-TF-bar"]}>
                     <div className={styles["detail-mbti-graph-TF-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioT)}}>
-                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioT) ? 0 : mbtiData.ratioT * 100).toFixed(0)}%</span>
+                      
                     </div>
+                    <span className={styles["detail-mbti-graph-percent-text-left"]}>{(isNaN(mbtiData.ratioT) ? 0 : mbtiData.ratioT * 100).toFixed(0)}%</span>
                     <div className={styles["detail-mbti-graph-TF-bar-percent-reverse"]} style={{width: calculateBarWidth(mbtiData.ratioF)}}>
-                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioF) ? 0 : mbtiData.ratioF * 100).toFixed(0)}%</span>
+                    
                     </div>
+                    <span className={styles["detail-mbti-graph-percent-text-right"]}>{(isNaN(mbtiData.ratioF) ? 0 : mbtiData.ratioF * 100).toFixed(0)}%</span>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>F</span>
@@ -454,11 +481,12 @@ export const DetailItemsMenu = (props) => {
                   </div>
                   <div className={styles["detail-mbti-graph-PJ-bar"]}>
                     <div className={styles["detail-mbti-graph-PJ-bar-percent"]} style={{width: calculateBarWidth(mbtiData.ratioP)}}>
-                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioP) ? 0 : mbtiData.ratioP * 100).toFixed(0)}%</span>
+                      
                     </div>
+                    <span className={styles["detail-mbti-graph-percent-text-left"]}>{(isNaN(mbtiData.ratioP) ? 0 : mbtiData.ratioP * 100).toFixed(0) }%</span>
                     <div className={styles["detail-mbti-graph-PJ-bar-percent-reverse"]} style={{width: calculateBarWidth(mbtiData.ratioJ)}}>
-                      <span className={styles["detail-mbti-graph-percent-text"]}>{(isNaN(mbtiData.ratioJ) ? 0 : mbtiData.ratioJ * 100).toFixed(0)}%</span>
                     </div>
+                    <span className={styles["detail-mbti-graph-percent-text-right"]}>{(isNaN(mbtiData.ratioJ) ? 0 : mbtiData.ratioJ * 100).toFixed(0)}%</span>
                   </div>
                   <div className={styles["detail-mbti-graph-alphabat-box"]}>
                     <span className={styles["detail-mbti-graph-alphabat"]}>J</span>

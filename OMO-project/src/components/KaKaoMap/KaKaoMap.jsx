@@ -17,7 +17,8 @@ const KakaoMap = ({ latitude, longitude, placeName }) => {
         const mapOption = {
           center: mapCenter, // 지도의 중심 좌표
           level: 3, // 지도 확대 레벨
-          draggable: false, // 지도 이동 및 마우스 휠 확대/축소를 막기
+          draggable: true, // 지도 이동 가능
+          scrollwheel: false, // 마우스 휠 확대/축소 비활성화
         };
 
         const map = new window.kakao.maps.Map(mapContainer.current, mapOption); // 지도 생성

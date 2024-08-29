@@ -31,9 +31,11 @@ const Root = () => {
       localStorage.removeItem('memberId');
       localStorage.removeItem('recentData');
       localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('savedCoordinates');
       alert("로그아웃 되었습니다.");
       navigate("/Login", { replace: true });
       window.history.replaceState(null, null, "/Login");
+      setIsLoggedIn(false);
     } catch (error) {
       console.error("로그아웃에 실패하였습니다: ", error);
       alert("로그아웃에 실패하였습니다.");

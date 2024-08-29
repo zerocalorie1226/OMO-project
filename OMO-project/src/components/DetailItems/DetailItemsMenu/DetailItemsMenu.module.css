@@ -294,12 +294,15 @@
 }
 
 .detail-mbti-graph-text {
-  color: var(--gray-700);
+  width: 40px;
+  color: #6e6e6e;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 /* EI 퍼센트 바 */
 .detail-mbti-graph-EI-bar {
-  background-color: #ffd1dc;
+  background-color: #cfcfcf;
   width: 85%;
   height: 30px;
   display: flex;
@@ -315,7 +318,7 @@
   align-items: center;
   position: absolute;
   left: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 .detail-mbti-graph-EI-bar-percent-reverse {
@@ -331,7 +334,7 @@
 
 /* SN 퍼센트 바 */
 .detail-mbti-graph-SN-bar {
-  background-color: #ffd1dc;
+  background-color: #cfcfcf;
   width: 85%;
   height: 30px;
   display: flex;
@@ -347,7 +350,7 @@
   align-items: center;
   position: absolute;
   left: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 .detail-mbti-graph-SN-bar-percent-reverse {
@@ -363,7 +366,7 @@
 
 /* TF 퍼센트 바 */
 .detail-mbti-graph-TF-bar {
-  background-color: #ffd1dc;
+  background-color: #cfcfcf;
   width: 85%;
   height: 30px;
   display: flex;
@@ -379,7 +382,7 @@
   align-items: center;
   position: absolute;
   left: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 .detail-mbti-graph-TF-bar-percent-reverse {
@@ -395,7 +398,7 @@
 
 /* PJ 퍼센트 바 */
 .detail-mbti-graph-PJ-bar {
-  background-color: #ffd1dc;
+  background-color: #cfcfcf;
   width: 85%;
   height: 30px;
   display: flex;
@@ -426,12 +429,21 @@
 }
 
 /* 퍼센테이지 텍스트 스타일 추가 */
-.detail-mbti-graph-percent-text {
+.detail-mbti-graph-percent-text-left {
+  color: #5e5e5e;
   font-weight: 500;
   position: relative;
   z-index: 2;
-  color: #6e6e6e;
+  margin-top: 4px;
   margin-left: 10px;
+}
+
+.detail-mbti-graph-percent-text-right{
+  color: #5e5e5e;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+  margin-top: 4px;
   margin-right: 10px;
 }
 
