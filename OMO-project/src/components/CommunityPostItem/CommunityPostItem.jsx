@@ -1,10 +1,11 @@
 import React, { useRef, useState, useMemo, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import styles from "./CommunityPostItem.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
 import LikeClicked from "../../assets/detail/purple-thumb.png";
-import DefaultProfileImage from "../../assets/profile-img.jpg"; // 기본 프로필 이미지
+import DefaultProfileImage from "../../assets/profile-default.png";
 import Comment from "../../assets/community/worry-board/comment.png";
 import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
@@ -13,14 +14,29 @@ import ReportModal from "../ReportModal/ReportModal";
 import { formatDate } from "../../utils/Time/formatDate";
 
 export const CommunityPostItem = (props) => {
+  const navigate = useNavigate(); 
+  
+
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
+
+  // 작성자 여부에 따라 신고버튼 가시성
+  const [showReportButton, setShowReportButton] = useState(null); // null로 초기화하여 아직 확인되지 않음을 의미
 
   // 좋아요 버튼 (이미지, 클릭토글)
   const [imageSrcLike, setImageSrcLike] = useState(Like);
   const [isClickedLike, setIsClickedLike] = useState(false);
 
-  // like 값을 사용하여 초기 상태 설정 (따봉 누른 것들 새로고침해도 유지하게끔)
+  useEffect(() => {
+    // writerUserMatch 값이 존재할 때만 상태를 설정
+    console.log(props.writerUserMatch);
+    
+    if (props.writerUserMatch !== null && props.writerUserMatch !== undefined) {
+      setShowReportButton(!props.writerUserMatch);
+    }
+  }, [props.writerUserMatch]);
+
+  // like 값을 사용하여 초기 상태 설정
   useEffect(() => {
     if (props.myLiked) {
       setImageSrcLike(LikeClicked);
@@ -48,9 +64,18 @@ export const CommunityPostItem = (props) => {
       e.preventDefault();
     }
 
-
     if (content.length < 1) {
       alert("최소 1글자 이상 입력해주세요");
+      return;
+    }
+
+    // 로그인 여부 확인
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
+      if (confirmLogin) {
+        navigate("/Login", { replace: true });
+      }
       return;
     }
 
@@ -77,7 +102,6 @@ export const CommunityPostItem = (props) => {
             },
           }
         );
-
         if (getResponse.status === 200) {
           props.setPosts(getResponse.data.data);
         } else {
@@ -95,6 +119,16 @@ export const CommunityPostItem = (props) => {
 
   // 좋아요 버튼
   const handleClickLike = async () => {
+    // 로그인 여부 확인
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
+      if (confirmLogin) {
+        navigate("/Login", { replace: true });
+      }
+      return;
+    }
+
     try {
       const response = await axios.put(
         `https://api.oneulmohae.co.kr/board/like/${props.boardId}`,
@@ -108,14 +142,11 @@ export const CommunityPostItem = (props) => {
       );
 
       if (response.status === 200) {
-        const getResponse = await axios.get(
-          `https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`,
-          {
-            headers: {
-              Authorization: localStorage.getItem("accessToken"),
-            },
-          }
-        );
+        const getResponse = await axios.get(`https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`, {
+          headers: {
+            Authorization: localStorage.getItem("accessToken"),
+          },
+        });
         if (getResponse.status === 200) {
           const updatedData = getResponse.data;
 
@@ -204,7 +235,10 @@ export const CommunityPostItem = (props) => {
               src={profileImage}
               alt="프로필 이미지"
               style={{ width: "32px", height: "32px" }}
-              onError={(e) => { e.target.onerror = null; e.target.src = DefaultProfileImage; }}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = DefaultProfileImage;
+              }}
             />
             <span className={styles["community-post-profile-nick"]}>{props.writer}</span>
           </div>
@@ -219,18 +253,22 @@ export const CommunityPostItem = (props) => {
           <div className={styles["community-post-number-report-wapper"]}>
             <span className={styles["community-post-like-number"]}>좋아요 {props.likeCount}</span>
             <span className={styles["community-post-dot"]}>•</span>
-            <span className={styles["community-post-comment-number"]} onClick={toggleComments}>댓글 {props.comments.length}</span>
+            <span className={styles["community-post-comment-number"]} onClick={toggleComments}>
+              댓글 {props.comments.length}
+            </span>
 
             {/* 신고 아이콘 */}
-            <button
-              className={styles["community-post-report-button"]}
-              type="button"
-              onClick={() => {
-                setOpenModal(true);
-              }}
-            >
-              <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{ width: "32px", height: "32px" }} />
-            </button>
+            {showReportButton !== null && showReportButton ? (
+              <button
+                className={styles["community-post-report-button"]}
+                type="button"
+                onClick={() => {
+                  setOpenModal(true);
+                }}
+              >
+                <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{ width: "32px", height: "32px" }} />
+              </button>
+            ) : null}
             {openModal ? <ReportModal openModal={openModal} setOpenModal={setOpenModal} boardId={props.boardId} /> : null}
           </div>
         </div>
@@ -258,7 +296,7 @@ export const CommunityPostItem = (props) => {
             <form className={styles["community-post-comment-input-container"]} onSubmit={handleSubmit}>
               <img
                 className={styles["community-post-comment-input-profile-img"]}
-                src={profileImage}
+                src={DefaultProfileImage}
                 alt="프로필 이미지"
                 style={{ width: "50px", height: "50px" }}
               />
@@ -277,18 +315,8 @@ export const CommunityPostItem = (props) => {
                 }}
               />
               <button className={styles["community-post-comment-input-button"]} type="submit">
-                <img
-                  className={styles["community-post-comment-input-button-img"]}
-                  src={Submit}
-                  alt="제출 이미지"
-                  style={{ width: "35px", height: "35px", marginTop: "6px" }}
-                />
-                <img
-                  className={styles["community-post-comment-input-button-img-hover"]}
-                  src={SubmitHover}
-                  alt="제출 hover 이미지"
-                  style={{ width: "35px", height: "35px" }}
-                />
+                <img className={styles["community-post-comment-input-button-img"]} src={Submit} alt="제출 이미지" style={{ width: "35px", height: "35px", marginTop: "6px" }} />
+                <img className={styles["community-post-comment-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{ width: "35px", height: "35px" }} />
               </button>
             </form>
 
@@ -302,16 +330,14 @@ export const CommunityPostItem = (props) => {
                     <li>
                       <img
                         className={styles["community-post-comment-profile-img"]}
-                        src={profileImage}
+                        src={el.profileURL || DefaultProfileImage} // 각 댓글 작성자의 프로필 이미지
                         alt="프로필 이미지"
                         style={{ width: "50px", height: "50px" }}
                       />
                       <div className={styles["community-post-comment-box"]}>
                         <div className={styles["community-post-comment-nick-date"]}>
-                          <span className={styles["community-post-comment-box-nick"]}>이니</span>
-                          <span className={styles["community-post-comment-box-date"]}>
-                            {elapsedText(new Date(el.createdAt)).toLocaleString()}
-                          </span>
+                          <span className={styles["community-post-comment-box-nick"]}>{el.writer}</span> {/* 각 댓글 작성자의 닉네임 */}
+                          <span className={styles["community-post-comment-box-date"]}>{elapsedText(new Date(el.createdAt)).toLocaleString()}</span>
                         </div>
                         <span className={styles["community-post-comment-box-content"]}>{el.content}</span>
                       </div>

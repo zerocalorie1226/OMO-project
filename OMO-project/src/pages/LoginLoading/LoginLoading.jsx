@@ -30,11 +30,9 @@ const LoginLoading = ({ setIsLoggedIn }) => {
       localStorage.setItem("isLoggedIn", "true");
 
       if (isExistingMember === "true") {
-        console.log("기존 멤버로 확인됨, 홈으로 이동");
         navigate("/"); // 기존 멤버일 경우 홈 페이지로 이동
         setIsLoggedIn(true);
       } else {
-        console.log("새로운 멤버로 확인됨, Signup 페이지로 이동");
         navigate("/Signup"); // 새 멤버일 경우 회원가입 페이지로 이동
         setIsLoggedIn(true);
       }

@@ -20,13 +20,6 @@ const InquiryBoardQnA = () => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    if (!loggedIn) {
-      alert("로그인 후 이용 가능한 서비스입니다.");
-      navigate("/Login", {replace: true});
-    }
-  }, [navigate]);
 
   // 게시글 불러오기
   const fetchData = async () => {
@@ -79,6 +72,19 @@ const InquiryBoardQnA = () => {
     }
   };
 
+  // 글쓰기 버튼 클릭 시 로그인 여부 확인 및 처리
+  const handleWritingButtonClick = () => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
+      if (confirmLogin) {
+        navigate("/Login", { replace: true });
+      }
+      return;
+    }
+    setOpenModal(true);
+  };
+
   if (isLoading) {
     return <Loading />;
   }
@@ -101,9 +107,7 @@ const InquiryBoardQnA = () => {
         <button
           type="button"
           className={styles["writing-btn"]}
-          onClick={() => {
-            setOpenModal(true);
-          }}
+          onClick={handleWritingButtonClick}
         >
           <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}
         </button>

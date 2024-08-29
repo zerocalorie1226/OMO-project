@@ -18,16 +18,21 @@ const WriteFreeBoard = ({onCreate, openModal, setOpenModal}) => {
   };
 
   const handleSubmit = () => {
-    if (state.title.length < 3) {
+    // 공백 제거된 상태로 유효성 검사
+    const trimmedTitle = state.title.trim();
+    const trimmedContent = state.content.trim();
+  
+    if (trimmedTitle.length < 3) {
       alert("글제목은 최소 3자 이상 입력해주세요");
       return;
     }
-
-    if (state.content.length < 5) {
+  
+    if (trimmedContent.length < 5) {
       alert("본문은 최소 5자 이상 입력해주세요");
       return;
     }
-    onCreate(state.title, state.content);
+  
+    onCreate(trimmedTitle, trimmedContent);
     alert("등록되었습니다");
     setState({
       title: "",
@@ -65,7 +70,7 @@ const WriteFreeBoard = ({onCreate, openModal, setOpenModal}) => {
             ref={contentInput}
             name="content"
             className={styles["board-content"]}
-            placeholder="게시글의 내용을 적어주세요. (최소 5자, 최대 500자)"
+            placeholder={`게시글의 내용을 적어주세요. (최소 5자, 최대 500자)\n\n주제와 관련 없는 글을 작성 할 시 삭제될 수 있습니다.`}
             minLength="5"
             maxLength="500"
             value={state.content}

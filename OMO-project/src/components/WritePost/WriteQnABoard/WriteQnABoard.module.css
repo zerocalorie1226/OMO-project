@@ -75,7 +75,8 @@
 }
 
 .board-content::placeholder{
-  color: var(--gray-600)
+  color: var(--gray-600);
+  line-height: 0.9;
 }
 
 .board-button-container {
