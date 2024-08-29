@@ -9,7 +9,7 @@ import {Loading} from "../../../components/Loading/Loading";
 import {useNavigate} from "react-router-dom";
 
 const Recent = () => {
-  const [recentData, setRecentData] = useState([]);
+  const [recentData, setRecentData] = useState([]); 
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const Recent = () => {
   useEffect(() => {
     const storedRecentData = localStorage.getItem("recentData");
     if (storedRecentData) {
-      const parsedData = JSON.parse(storedRecentData); // JSON 문자열을 객체로 변환
+      const parsedData = JSON.parse(storedRecentData); 
       setRecentData(parsedData);
 
       const fetchData = async (data) => {
@@ -42,8 +42,16 @@ const Recent = () => {
               Authorization: localStorage.getItem("accessToken"),
             },
           });
+
+          const responseData = response.data.recentPlace;
+
+          if (Array.isArray(responseData)) {
+            setRecentData(responseData);
+          } else {
+            setRecentData([]); 
+          }
+
           setIsLoading(false);
-          setRecentData(response.data);
         } catch (error) {
           console.error("최근 본 목록을 가져오는 중 오류가 발생했습니다.", error);
           setIsLoading(false);

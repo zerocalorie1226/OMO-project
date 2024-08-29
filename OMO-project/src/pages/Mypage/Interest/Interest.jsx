@@ -9,7 +9,7 @@ import {Loading} from "../../../components/Loading/Loading";
 import {useNavigate} from "react-router-dom";
 
 const Interest = () => {
-  const [interestPosts, setInterestPosts] = useState(null); // 초기값을 null로 설정
+  const [interestPosts, setInterestPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -28,10 +28,19 @@ const Interest = () => {
           Authorization: localStorage.getItem("accessToken"),
         },
       });
-      setInterestPosts(response.data);
+      const data = response.data.likedPlace;
+
+      if (Array.isArray(data)) {
+        setInterestPosts(data);
+      } else {
+        setInterestPosts([]);
+      }
+
       setIsLoading(false);
     } catch (error) {
-      setInterestPosts([]); // 오류 발생 시 빈 배열로 초기화
+      console.error("데이터 가져오기 실패:", error);
+      setInterestPosts([]);
+      setIsLoading(false);
     }
   };
 
@@ -55,7 +64,7 @@ const Interest = () => {
         <section className={styles["mypage-list-container"]}>
           <Mypage />
           <div className={styles["mypage-list-box-container"]}>
-            {interestPosts === null || interestPosts.length === 0 ? (
+            {interestPosts.length === 0 ? (
               <div className={styles["no-jjim-list"]}>관심 목록이 없습니다. 장소 상세 페이지에서 하트를 눌러보세요!</div>
             ) : (
               <div>
