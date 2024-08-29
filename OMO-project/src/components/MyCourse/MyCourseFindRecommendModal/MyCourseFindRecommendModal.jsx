@@ -1,11 +1,18 @@
 import styles from "./MyCourseFindRecommendModal.module.css";
-import {MyCourseItemListBox} from "../MyCourseItemListBox/MyCourseItemListBox";
+import { MyCourseItemListBox } from "../MyCourseItemListBox/MyCourseItemListBox";
 import ModalClose from "./../../../assets/modal-close.png";
-import {useEffect, useState, useRef, useCallback} from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
-import {Loading} from "../../Loading/Loading";
+import { Loading } from "../../Loading/Loading";
 
-const MyCourseFindRecommendModal = ({recommendModal, setRecommendModal, state, setState, setPlaceName, setPlaceId}) => {
+const MyCourseFindRecommendModal = ({
+  recommendModal,
+  setRecommendModal,
+  state,
+  setState,
+  setPlaceName,
+  setPlaceId,
+}) => {
   const [recommendPosts, setRecommendPosts] = useState([]);
   const [maxPage, setMaxPage] = useState(0);
   const [pagination, setPagination] = useState(1);
@@ -16,14 +23,16 @@ const MyCourseFindRecommendModal = ({recommendModal, setRecommendModal, state, s
   const fetchData = async (page) => {
     setLoading(true);
     try {
-      const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/recommend?page=${page}&size=10`, {
-        headers: {
-          Authorization: localStorage.getItem("accessToken"),
-        },
-      });
+      const response = await axios.get(
+        `https://api.oneulmohae.co.kr/myPage/recommend?page=${page}&size=10`,
+        {
+          headers: {
+            Authorization: localStorage.getItem("accessToken"),
+          },
+        }
+      );
 
-      // response.data가 null인 경우 빈 배열로 대체
-      const posts = response.data ? response.data : [];
+      const posts = Array.isArray(response.data?.recommendPlace) ? response.data.recommendPlace : [];
 
       setRecommendPosts((prevPosts) => [...prevPosts, ...posts]);
       setMaxPage(response.data?.totalPages || 0);
@@ -66,17 +75,33 @@ const MyCourseFindRecommendModal = ({recommendModal, setRecommendModal, state, s
       <div className={styles["mycourse-find-recommend-modal-container"]}>
         <label className={styles["mycourse-find-recommend-modal-title"]} htmlFor="find-recommend">
           추천한 장소에서 찾기
-          <button className={styles["mycourse-find-recommend-close-btn"]} type="button" onClick={() => setRecommendModal(false)}>
-            <img className={styles["mycourse-find-recommend-close-btn-img"]} src={ModalClose} alt="닫기 아이콘" />
+          <button
+            className={styles["mycourse-find-recommend-close-btn"]}
+            type="button"
+            onClick={() => setRecommendModal(false)}
+          >
+            <img
+              className={styles["mycourse-find-recommend-close-btn-img"]}
+              src={ModalClose}
+              alt="닫기 아이콘"
+            />
             {!recommendModal ? setRecommendModal(true) : null}
           </button>
         </label>
         {recommendPosts.length === 0 ? (
-          <div className={styles["no-recommend-list"]}>추천한 장소가 없습니다. 장소 상세 페이지에서 따봉을 눌러보세요!</div>
+          <div className={styles["no-recommend-list"]}>
+            추천한 장소가 없습니다. 장소 상세 페이지에서 따봉을 눌러보세요!
+          </div>
         ) : (
           <div className={styles["mycourse-find-recommend-modal-list-box-container"]}>
             {recommendPosts.map((el) => (
-              <MyCourseItemListBox key={el.id} state={state} setState={setState} el={el} onClick={(place_name, id) => handleClickItem(place_name, id)} />
+              <MyCourseItemListBox
+                key={el.id}
+                state={state}
+                setState={setState}
+                el={el}
+                onClick={(place_name, id) => handleClickItem(place_name, id)}
+              />
             ))}
             {loading && (
               <div>
