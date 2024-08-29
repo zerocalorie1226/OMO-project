@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {jwtDecode} from "jwt-decode"; // 기본 가져오기 방식으로 수정
 import axios from "axios";
-import styles from "./TokenExtension.module.css";
+// import styles from "./TokenExtension.module.css";
 
 const TokenExtension = ({setIsLoggedIn}) => {
   const [remainingTime, setRemainingTime] = useState({access: null, refresh: null});
@@ -10,9 +10,16 @@ const TokenExtension = ({setIsLoggedIn}) => {
 
   useEffect(() => {
     if (accessToken && refreshToken) {
+      console.log("로컬스토리지 액세스토큰: ", accessToken);
+      console.log("로컬스토리지 리프레쉬토큰: ", refreshToken);
+
       const accessExpirationTime = getTokenExpiration(accessToken);
       const refreshExpirationTime = getTokenExpiration(refreshToken);
       if (accessExpirationTime && refreshExpirationTime) {
+        // console.log("accessExpirationTime: ", accessExpirationTime);
+        // console.log("refreshExpirationTime: ", refreshExpirationTime);
+        console.log("엑세스토큰 남은시간: ", formatRemainingTime(remainingTime.access));
+        console.log("리프레쉬토큰 남은시간: ", formatRemainingTime(remainingTime.refresh));
         updateRemainingTime(accessExpirationTime, refreshExpirationTime);
         const intervalId = setInterval(() => {
           updateRemainingTime(accessExpirationTime, refreshExpirationTime);
@@ -60,7 +67,7 @@ const TokenExtension = ({setIsLoggedIn}) => {
         refresh: refreshTimeLeft,
       });
 
-      if (accessTimeLeft == 60) {
+      if (accessTimeLeft == 10) {
         handleTokenRefresh();
       }
     }
@@ -76,13 +83,17 @@ const TokenExtension = ({setIsLoggedIn}) => {
 
       const response = await axios.get("https://api.oneulmohae.co.kr/reissueToken", {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: accessToken,
           Refresh: refreshToken,
         },
       });
+      console.log("통신: ", response);
 
       const newAccessToken = response.headers.authorization;
       const newRefreshToken = response.headers.refresh;
+      console.log("새로운 액세스토큰: ", newAccessToken);
+      console.log("새로운 리프레쉬토큰: ", newRefreshToken);
+
       if (!newAccessToken || !newRefreshToken) {
         throw new Error("새로운 토큰을 받지 못했습니다.");
       }
@@ -95,17 +106,16 @@ const TokenExtension = ({setIsLoggedIn}) => {
     }
   };
 
-  return (
-    <div className={styles['token-extension-container']}>
-      <span className={styles['token-extension-time']}>
-        남은 시간: {remainingTime.access !== null ? formatRemainingTime(remainingTime.access) : '토큰 없음'} <br />
-        {/* 리프레시 토큰 남은 시간: {remainingTime.refresh !== null ? formatRemainingTime(remainingTime.refresh) : '토큰 없음'} */}
-      </span>
-      <button className={styles['token-extension-button']} onClick={handleTokenRefresh}>
-        연장
-      </button>
-    </div>
-  );
+  return null;
+  // <div className={styles['token-extension-container']}>
+  //   <span className={styles['token-extension-time']}>
+  //     남은 시간: {remainingTime.access !== null ? formatRemainingTime(remainingTime.access) : '토큰 없음'} <br />
+  //     리프레시 토큰 남은 시간: {remainingTime.refresh !== null ? formatRemainingTime(remainingTime.refresh) : '토큰 없음'}
+  //   </span>
+  //   <button className={styles['token-extension-button']} onClick={handleTokenRefresh}>
+  //     연장
+  //   </button>
+  // </div>
 };
 
 export default TokenExtension;
