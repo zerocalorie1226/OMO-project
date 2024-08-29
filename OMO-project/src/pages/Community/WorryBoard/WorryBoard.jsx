@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import styles from "./WorryBoard.module.css";
 import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
@@ -8,7 +9,6 @@ import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
 import {Loading} from "../../../components/Loading/Loading";
-import {useNavigate} from "react-router-dom";
 
 const WorryBoard = () => {
   const [posts, setPosts] = useState([]);
@@ -17,26 +17,14 @@ const WorryBoard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    if (!loggedIn) {
-      alert("로그인 후 이용 가능한 서비스입니다.");
-      navigate("/Login", {replace: true});
-    }
-  }, [navigate]);
 
   const category = "Trouble";
+  const navigate = useNavigate();
 
   // 게시글 불러오기
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt", {
-        headers: {
-          Authorization: localStorage.getItem("accessToken"),
-        },
-      });
+      const response = await axios.get("https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt");
       setPosts(response.data.data);
       setIsLoading(false);
     } catch (error) {
@@ -86,6 +74,19 @@ const WorryBoard = () => {
     setSearchTerm(term);
   };
 
+  // 글쓰기 버튼 클릭 시 로그인 여부 확인 및 처리
+  const handleWritingButtonClick = () => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!loggedIn) {
+      const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
+      if (confirmLogin) {
+        navigate("/Login", {replace: true});
+      }
+      return;
+    }
+    setOpenModal(true);
+  };
+
   if (isLoading) {
     return <Loading />;
   }
@@ -112,7 +113,7 @@ const WorryBoard = () => {
 
       {/* 글쓰기 */}
       <div className={styles["writing-btn-container"]}>
-        <button type="button" className={styles["writing-btn"]} onClick={() => setOpenModal(true)}>
+        <button type="button" className={styles["writing-btn"]} onClick={handleWritingButtonClick}>
           <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />
         </button>
         {openModal && <WriteWorryBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} />}

@@ -21,7 +21,6 @@ const MyCourseFindRecommendModal = ({recommendModal, setRecommendModal, state, s
           Authorization: localStorage.getItem("accessToken"),
         },
       });
-      console.log(response.data);
 
       // response.data가 null인 경우 빈 배열로 대체
       const posts = response.data ? response.data : [];

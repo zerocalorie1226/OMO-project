@@ -26,7 +26,7 @@ const CommunityMyCourseList = (props) => {
     >
       <div className={styles["community-mycourse-list-title"]}>
         <span className={styles["community-mycourse-list-course-name"]}>
-          {props.writerName}의 {props.courseName}
+          {props.courseName}
         </span>
         <img src={props.myLiked ? LikeClicked : Like} alt="좋아요 아이콘" className={styles["community-mycourse-list-img"]} />
         <span className={styles["community-mycourse-list-like-number"]}> {props.likeCount}</span>

@@ -2,11 +2,11 @@ import axios from "axios";
 import Calendar from "../../components/Calender/Calendar";
 import styles from "./Signup.module.css";
 import Required from "../../assets/sign-up/required.png";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { mbtiMapping } from "../../const/mbtiMapping";
-import { GenderRadioGroup } from "../../components/Radio/GenderRadio/GenderRadioGroup";
-import { GenderRadio } from "../../components/Radio/GenderRadio/GenderRadio";
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import {mbtiMapping} from "../../const/mbtiMapping";
+import {GenderRadioGroup} from "../../components/Radio/GenderRadio/GenderRadioGroup";
+import {GenderRadio} from "../../components/Radio/GenderRadio/GenderRadio";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const Signup = () => {
       return;
     }
     if (!mbtiIE || !mbtiSN || !mbtiTF || !mbtiJP) {
-      alert("MBTI를 입력해주세요.");
+      alert("MBTI를 완전히 선택해주세요.");
       return;
     }
     if (!genderType) {
@@ -44,7 +44,8 @@ const Signup = () => {
 
     const getMbtiValue = (mbtiIE, mbtiSN, mbtiTF, mbtiJP) => {
       const fullMbti = `${mbtiIE}${mbtiSN}${mbtiTF}${mbtiJP}`;
-      return mbtiMapping[fullMbti] || null;
+
+      return mbtiMapping[fullMbti];
     };
 
     // 날짜에서 년, 월, 일 추출
@@ -54,10 +55,6 @@ const Signup = () => {
 
     // MBTI 값 매핑
     const mbti = getMbtiValue(mbtiIE, mbtiSN, mbtiTF, mbtiJP);
-    if (!mbti) {
-      alert("MBTI를 완전히 선택해주세요.");
-      return;
-    }
 
     // 성별을 0과 1로 변환
     const gender = genderType === "MALE" ? 0 : 1;
@@ -95,12 +92,12 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        'https://api.oneulmohae.co.kr/checkNickname',
-        { nickname: nickname },
+        "https://api.oneulmohae.co.kr/checkNickname",
+        {nickname: nickname},
         {
           headers: {
-            'Content-Type': 'application/json',
-          }
+            "Content-Type": "application/json",
+          },
         }
       );
 
@@ -123,6 +120,7 @@ const Signup = () => {
 
   return (
     <>
+    <div className={styles["signup"]}>
       <section className={styles["signup-container"]}>
         <div className={styles["signup-title-container"]}>
           <h2 className={styles["signup-title"]}>회원가입</h2>
@@ -211,6 +209,7 @@ const Signup = () => {
           </div>
         </div>
       </section>
+      </div>
     </>
   );
 };

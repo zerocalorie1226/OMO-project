@@ -39,11 +39,11 @@ const Search = ({ handleSearch, query, setQuery, location, setLocation, location
         {location === "현재 위치를 확인할 수 없습니다." ? (
           <div className={styles["main-search-location-current"]}>
             {location}
-            {locationAccessDenied && (
+            {/* {locationAccessDenied && ( */}
               <div className={styles["location-access-denied-bubble"]}>
                 위치 액세스를 허용해주세요
               </div>
-            )}
+            {/* )} */}
           </div>
         ) : (
           <div className={styles["main-search-location-current"]}>현재 설정된 위치 : {location}</div>

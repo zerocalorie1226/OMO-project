@@ -19,9 +19,9 @@ const MbtiChange = () => {
 
     if (confirmChange) {
       const fullMbti = `${mbtiIE}${mbtiSN}${mbtiTF}${mbtiJP}`;
-      const mbti = mbtiMapping[fullMbti] || null;
+      const mbti = mbtiMapping[fullMbti];
 
-      if (!mbti) {
+      if (!mbtiIE || !mbtiSN || !mbtiTF || !mbtiJP) {
         alert("MBTI를 완전히 선택해주세요.");
         return;
       }

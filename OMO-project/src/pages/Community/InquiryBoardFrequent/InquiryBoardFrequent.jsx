@@ -7,21 +7,11 @@ import ListSearch from "../../../components/ListSearch/ListSearch";
 import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
 import styles from "./InquiryBoardFrequent.module.css";
 import {Loading} from "../../../components/Loading/Loading";
-import {useNavigate} from "react-router-dom";
 
 const InquiryBoardFrequent = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [frequents, setFrequents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    if (!loggedIn) {
-      alert("로그인 후 이용 가능한 서비스입니다.");
-      navigate("/Login", {replace: true});
-    }
-  }, [navigate]);
 
   useEffect(() => {
     const fetchData = async () => {
