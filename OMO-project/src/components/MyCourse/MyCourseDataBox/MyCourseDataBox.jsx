@@ -34,7 +34,6 @@ export const MyCourseDataBox = ({ data }) => {
   }, [data.id]);
 
   const firstImages = images.slice(0, 2);
-  console.log(firstImages)
 
   return (
     <div className={styles["mycourse-data-box-total-container"]}>

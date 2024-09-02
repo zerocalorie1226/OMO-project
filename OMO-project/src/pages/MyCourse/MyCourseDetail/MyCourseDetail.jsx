@@ -9,6 +9,10 @@ import downArrow from "../../../assets/my-course/write/down-arrow.png";
 import {Loading} from "../../../components/Loading/Loading";
 import Like from "../../../assets/community/my-course-board/empty-thumb.png";
 import LikeClicked from "../../../assets/detail/purple-thumb.png";
+import Time from "../../../assets/my-course/detail/time.png";
+import User from "../../../assets/my-course/detail/user.png";
+import Report from "../../../assets/community/worry-board/report.png";
+import ReportModal from "../../../components/ReportModal/ReportModal";
 
 const MyCourseDetail = () => {
   const {id} = useParams();
@@ -16,7 +20,9 @@ const MyCourseDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  
+  // 신고 모달창 열기
+  const [openModal, setOpenModal] = useState(false);
+
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn") === "true";
     if (!loggedIn) {
@@ -118,9 +124,7 @@ const MyCourseDetail = () => {
   return (
     <div className={styles["mycourse-detail-total-container"]}>
       <div className={styles["mycourse-detail-title-container"]}>
-        <span>
-          {detailData.writerName}의 {detailData.courseName}
-        </span>
+        <span>{detailData.courseName}</span>
       </div>
       <div className={styles["mycourse-detail-like-container"]}>
         <button className={styles["mycourse-detail-like-button"]} onClick={handleClickLike} type="button">
@@ -128,9 +132,24 @@ const MyCourseDetail = () => {
         </button>
         <span className={styles["community-mycourse-detail-like-number"]}> {detailData.likeCount}</span>
       </div>
-      <div className={styles["mycourse-detail-created-date"]}>
-        <span>작성 일자: {getStringDate(detailData.createdAt)}</span>
+      <div className={styles["mycourse-detail-created"]}>
+        <img src={User} alt="유저 아이콘" className={styles["community-mycourse-detail-user-icon"]} /> <span className={styles["mycourse-detail-created-user"]}> {detailData.writerName}</span>
+        <img src={Time} alt="시간 아이콘" className={styles["community-mycourse-detail-time-icon"]} />
+        <span className={styles["mycourse-detail-created-time"]}> {getStringDate(detailData.createdAt)}</span>
       </div>
+      {/* 신고 아이콘 */}
+      {detailData.writerUserMatch ? null : (
+        <button
+          className={styles["community-post-report-button"]}
+          type="button"
+          onClick={() => {
+            setOpenModal(true);
+          }}
+        >
+          <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{width: "32px", height: "32px"}} />
+        </button>
+      )}
+      {openModal ? <ReportModal openModal={openModal} setOpenModal={setOpenModal} boardId={detailData.courseId} /> : null}
       <div className={styles["mycourse-detail-course-container"]}>
         <div className={styles["mycourse-detail-course-item-container"]}>
           {detailData.contents.map((contentItem, index) => (
@@ -143,7 +162,8 @@ const MyCourseDetail = () => {
         </div>
       </div>
       <div className={styles["mycourse-detail-edit-share-button-container"]}>
-        <Share courseId={detailData.courseId} share={detailData.share} />
+        {detailData.writerUserMatch ? <Share courseId={detailData.courseId} share={detailData.share} /> : null}
+        {/* writerUserMatch */}
       </div>
       <ScrollToTop />
     </div>

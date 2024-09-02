@@ -100,12 +100,12 @@ export const CommunityQnABox = (props) => {
         {/* 하단 댓글창 전체박스 */}
         <div className={`${styles["community-qnapost-comment-container"]} ${showComments ? styles["show-comments"] : ""}`}>
           {/* 답변 내용 */}
-          {props.comments &&
+          {props.comments && props.comments.length > 0 ? (
             props.comments.map((el) => (
               <div key={el.id}>
                 <ul className={styles["community-qnapost-comment"]}>
                   <li>
-                    <img className={styles["community-qnapost-comment-profile-img"]} src={el.src} alt="프로필 이미지" style={{width: "50px", height: "50px"}} />
+                    <img className={styles["community-qnapost-comment-profile-img"]} src={el.src} alt="프로필 이미지" style={{ width: "50px", height: "50px" }} />
                     <div className={styles["community-qnapost-comment-box"]}>
                       <div className={styles["community-qnapost-comment-nick-date"]}>
                         <span className={styles["community-qnapost-comment-box-nick"]}>OmO 운영진</span>
@@ -116,7 +116,10 @@ export const CommunityQnABox = (props) => {
                   </li>
                 </ul>
               </div>
-            ))}
+            ))
+          ) : (
+            <div className={styles["no-comments"]}>작성된 답변이 없습니다.</div>
+          )}
         </div>
       </div>
     </>

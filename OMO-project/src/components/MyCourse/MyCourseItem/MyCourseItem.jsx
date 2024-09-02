@@ -18,12 +18,15 @@ const MyCourseItem = ({writerName, courseId, courseName, createdAt, likeCount, m
 
   return (
     <div className={styles["mycourse-item-container"]} onClick={goDetail}>
-       <div className={styles["mycourse-item-box"]}>
-      <div className={styles["mycourse-item-title"]}>{writerName}의 {courseName}</div>
-      <img src={myLiked ? LikeClicked : Like} alt="좋아요 아이콘" className={styles["mycourse-item-img"]} />
-      <span className={styles["mycourse-item-like-number"]}> {likeCount}</span>
+      <div className={styles["mycourse-item-box"]}>
+        <div className={styles["mycourse-item-title"]}>{courseName}</div>
+        <img src={myLiked ? LikeClicked : Like} alt="좋아요 아이콘" className={styles["mycourse-item-img"]} />
+        <span className={styles["mycourse-item-like-number"]}> {likeCount}</span>
       </div>
+    <div>
+      <div className={styles["mycourse-item-writer"]}>{writerName}</div>
       <div className={styles["mycourse-item-date"]}>{formatDate(createdAt)}</div>
+      </div>
     </div>
   );
 };

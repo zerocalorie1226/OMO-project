@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef, useCallback} from "react";
-import {useParams, useNavigate} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import styles from "./List.module.css";
 import ListSearch from "../../components/ListSearch/ListSearch";
 import {ListBox} from "../../components/ListBox/ListBox";
@@ -10,15 +10,6 @@ import {Loading} from "../../components/Loading/Loading";
 const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg}) => {
   const {category: categoryParam} = useParams();
   const category = categoryParam || "all";
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    if (!loggedIn) {
-      alert("로그인 후 이용 가능한 서비스입니다.");
-      navigate("/Login", {replace: true});
-    }
-  }, [navigate]);
 
   const addRecentItem = (item) => {
     const newItem = {
@@ -49,7 +40,7 @@ const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg}) =
   const [maxPage, setMaxPage] = useState(0);
   const [pagenation, setPagenation] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [storedCoordinates, setStoredCoordinates] = useState({ latitude: searchResultsY, longitude: searchResultsX });
+  const [storedCoordinates, setStoredCoordinates] = useState({latitude: searchResultsY, longitude: searchResultsX});
 
   const observer = useRef();
 
@@ -81,7 +72,6 @@ const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg}) =
         const documents = Array.isArray(response.data.documents) ? response.data.documents : [];
         
         setListData((prevData) => {
-          // 새로 받아온 데이터 중에서 기존 데이터에 없는 항목만 추가
           const newData = documents.filter((item) => !prevData.some((prevItem) => prevItem.id === item.id));
           return [...prevData, ...newData];
         });
