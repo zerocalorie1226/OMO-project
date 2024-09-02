@@ -14,8 +14,7 @@ import ReportModal from "../ReportModal/ReportModal";
 import { formatDate } from "../../utils/Time/formatDate";
 
 export const CommunityPostItem = (props) => {
-  const navigate = useNavigate(); 
-  
+  const navigate = useNavigate();
 
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
@@ -27,10 +26,13 @@ export const CommunityPostItem = (props) => {
   const [imageSrcLike, setImageSrcLike] = useState(Like);
   const [isClickedLike, setIsClickedLike] = useState(false);
 
+  // 댓글창 초기에 숨김상태
+  const [showComments, setShowComments] = useState(false);
+
+  // 댓글 내용
+  const [content, setContent] = useState("");
+
   useEffect(() => {
-    // writerUserMatch 값이 존재할 때만 상태를 설정
-    console.log(props.writerUserMatch);
-    
     if (props.writerUserMatch !== null && props.writerUserMatch !== undefined) {
       setShowReportButton(!props.writerUserMatch);
     }
@@ -46,12 +48,6 @@ export const CommunityPostItem = (props) => {
       setIsClickedLike(false);
     }
   }, [props.myLiked]);
-
-  // 댓글창 초기에 숨김상태
-  const [showComments, setShowComments] = useState(false);
-
-  // 댓글 내용
-  const [content, setContent] = useState("");
 
   // 댓글 달기 버튼 클릭 시 댓글창 표시/숨김 토글
   const toggleComments = () => {
@@ -119,7 +115,6 @@ export const CommunityPostItem = (props) => {
 
   // 좋아요 버튼
   const handleClickLike = async () => {
-    // 로그인 여부 확인
     const loggedIn = localStorage.getItem("isLoggedIn") === "true";
     if (!loggedIn) {
       const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
@@ -132,7 +127,7 @@ export const CommunityPostItem = (props) => {
     try {
       const response = await axios.put(
         `https://api.oneulmohae.co.kr/board/like/${props.boardId}`,
-        {}, // 빈 객체를 본문으로 전달
+        {}, 
         {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
@@ -150,7 +145,6 @@ export const CommunityPostItem = (props) => {
         if (getResponse.status === 200) {
           const updatedData = getResponse.data;
 
-          // 이미지 변경 및 카운트 업데이트
           if (isClickedLike) {
             setImageSrcLike(Like);
             setIsClickedLike(false);
@@ -171,22 +165,20 @@ export const CommunityPostItem = (props) => {
   };
 
   // 게시글 더보기/닫기 기능
-  const [isShowMore, setIsShowMore] = useState(false); // 더보기 열고 닫는 스위치
-  const textLimit = useRef(100); // 글자수 제한 선언
+  const [isShowMore, setIsShowMore] = useState(false);
+  const textLimit = useRef(100);
 
   const commenter = useMemo(() => {
-    // 조건에 따라 게시글을 보여주는 함수
-    const shortReview = props.content.slice(0, textLimit.current); // 원본에서 글자 수만큼 자른 짧은 버전
+    const shortReview = props.content.slice(0, textLimit.current);
 
     if (props.content.length > textLimit.current) {
-      // 원본이 길면 (원본 글자수 > 제한된 갯수)
       if (isShowMore) {
         return props.content;
-      } // 더보기가 true 면 원본 바로 리턴
-      return shortReview; // (더보기가 false면) 짧은 버전 리턴
+      }
+      return shortReview;
     }
-    return props.content; // 그렇지않으면 (짧은 글에는) 쓴글 그대로 리턴
-  }, [isShowMore]); // isShowMore의 상태가 바뀔때마다 호출됨
+    return props.content;
+  }, [isShowMore]);
 
   const [profileImage, setProfileImage] = useState(DefaultProfileImage);
 
@@ -214,21 +206,50 @@ export const CommunityPostItem = (props) => {
     fetchProfileImage();
   }, [props.profileURL]);
 
+  // 댓글 프로필 이미지 로직
+  const [commentImages, setCommentImages] = useState({});
+
+  useEffect(() => {
+    const fetchCommentImages = async () => {
+      const imagePromises = props.comments.map(async (el) => {
+        if (el.profileURL) {
+          try {
+            const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(el.profileURL)}`;
+            const response = await axios.get(imageUrl, {
+              headers: {
+                Authorization: localStorage.getItem("accessToken"),
+              },
+              responseType: "blob",
+            });
+
+            const blob = response.data;
+            const blobURL = URL.createObjectURL(blob);
+            return { [el.commentId]: blobURL };
+          } catch (error) {
+            return { [el.commentId]: DefaultProfileImage };
+          }
+        } else {
+          return { [el.commentId]: DefaultProfileImage };
+        }
+      });
+
+      const imageObjects = await Promise.all(imagePromises);
+      const imagesMap = imageObjects.reduce((acc, cur) => ({ ...acc, ...cur }), {});
+      setCommentImages(imagesMap);
+    };
+
+    fetchCommentImages();
+  }, [props.comments]);
+
   return (
     <>
-      {/* 전체 영역 */}
       <div className={styles["community-post-container"]}>
-        {/*버튼 전까지 윗부분 영역*/}
         <div className={styles["community-post-content-container"]}>
           <div className={styles["community-post-content-title-date"]}>
-            {/* 제목 */}
             <span className={styles["community-post-title"]}>{props.title}</span>
-
-            {/* 날짜 */}
             <span className={styles["community-post-date"]}>{formatDate(props.createdDate)}</span>
           </div>
 
-          {/* 프로필 이미지+닉네임 */}
           <div className={styles["community-post-profile"]}>
             <img
               className={styles["community-post-profile-img"]}
@@ -243,13 +264,11 @@ export const CommunityPostItem = (props) => {
             <span className={styles["community-post-profile-nick"]}>{props.writer}</span>
           </div>
 
-          {/* 글 내용 */}
           <span className={styles["community-post-content"]}>{commenter}</span>
           <div className={styles["community-post-content-show"]} onClick={() => setIsShowMore(!isShowMore)}>
             {props.content.length > textLimit.current && (isShowMore ? "[접기]" : "... [더 보기]")}
           </div>
 
-          {/*공감수*/}
           <div className={styles["community-post-number-report-wapper"]}>
             <span className={styles["community-post-like-number"]}>좋아요 {props.likeCount}</span>
             <span className={styles["community-post-dot"]}>•</span>
@@ -257,7 +276,6 @@ export const CommunityPostItem = (props) => {
               댓글 {props.comments.length}
             </span>
 
-            {/* 신고 아이콘 */}
             {showReportButton !== null && showReportButton ? (
               <button
                 className={styles["community-post-report-button"]}
@@ -274,25 +292,21 @@ export const CommunityPostItem = (props) => {
         </div>
 
         <div className={styles["community-post-button-wrapper"]}>
-          {/*좋아요 버튼*/}
           <button onClick={handleClickLike} type="button" className={`${styles["community-post-like-button"]} ${showComments ? styles["show-comments"] : ""}`}>
-            <img className={styles["community-post-like-button-img"]} src={imageSrcLike} />
+            <img className={styles["community-post-like-button-img"]} src={imageSrcLike} alt="좋아요 버튼" />
             좋아요
           </button>
 
-          {/* 댓글달기 버튼 */}
           <button
             type="button"
             className={`${styles["community-post-comment-button"]} ${showComments ? styles["show-comments"] : ""}`}
-            onClick={toggleComments} // 댓글 달기 버튼 클릭 시 toggleComments 함수 호출
+            onClick={toggleComments}
           >
-            <img className={styles["community-post-comment-button-img"]} src={Comment} />
+            <img className={styles["community-post-comment-button-img"]} src={Comment} alt="댓글 달기 버튼" />
             댓글 달기
           </button>
 
-          {/* 하단 댓글창 전체박스 */}
           <div className={`${styles["community-post-comment-container"]} ${showComments ? styles["show-comments"] : ""}`}>
-            {/* 댓글 입력창 */}
             <form className={styles["community-post-comment-input-container"]} onSubmit={handleSubmit}>
               <img
                 className={styles["community-post-comment-input-profile-img"]}
@@ -320,7 +334,6 @@ export const CommunityPostItem = (props) => {
               </button>
             </form>
 
-            {/* 댓글 리스트 내용 */}
             {props.comments
               .slice()
               .reverse()
@@ -330,13 +343,13 @@ export const CommunityPostItem = (props) => {
                     <li>
                       <img
                         className={styles["community-post-comment-profile-img"]}
-                        src={el.profileURL || DefaultProfileImage} // 각 댓글 작성자의 프로필 이미지
+                        src={commentImages[el.commentId] || DefaultProfileImage} // 댓글 작성자의 프로필 이미지
                         alt="프로필 이미지"
                         style={{ width: "50px", height: "50px" }}
                       />
                       <div className={styles["community-post-comment-box"]}>
                         <div className={styles["community-post-comment-nick-date"]}>
-                          <span className={styles["community-post-comment-box-nick"]}>{el.writer}</span> {/* 각 댓글 작성자의 닉네임 */}
+                          <span className={styles["community-post-comment-box-nick"]}>{el.writer}</span>
                           <span className={styles["community-post-comment-box-date"]}>{elapsedText(new Date(el.createdAt)).toLocaleString()}</span>
                         </div>
                         <span className={styles["community-post-comment-box-content"]}>{el.content}</span>
