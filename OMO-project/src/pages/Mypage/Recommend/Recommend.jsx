@@ -9,7 +9,7 @@ import {Loading} from "../../../components/Loading/Loading";
 import {useNavigate} from "react-router-dom";
 
 const Recommend = () => {
-  const [recommendPosts, setRecommendPosts] = useState(null);
+  const [recommendPosts, setRecommendPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -28,11 +28,20 @@ const Recommend = () => {
           Authorization: localStorage.getItem("accessToken"),
         },
       });
-      setRecommendPosts(response.data);
+
+      const data = response.data.recommendPlace;
+
+      if (Array.isArray(data)) {
+        setRecommendPosts(data);
+      } else {
+        setRecommendPosts([]);
+      }
+
       setIsLoading(false);
     } catch (error) {
       console.error("추천한 장소를 불러오는데 실패하였습니다.", error);
-      setRecommendPosts([]); // 오류 발생 시 빈 배열로 초기화
+      setRecommendPosts([]);
+      setIsLoading(false);
     }
   };
 
@@ -56,7 +65,7 @@ const Recommend = () => {
         <section className={styles["mypage-list-container"]}>
           <Mypage />
           <div className={styles["mypage-list-box-container"]}>
-            {recommendPosts === null || recommendPosts.length === 0 ? (
+            {recommendPosts.length === 0 ? (
               <div className={styles["no-like-list"]}>추천한 장소가 없습니다. 장소 상세 페이지에서 따봉을 눌러보세요!</div>
             ) : (
               <div>
