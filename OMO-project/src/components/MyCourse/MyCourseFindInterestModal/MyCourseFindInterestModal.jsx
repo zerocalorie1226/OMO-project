@@ -1,7 +1,7 @@
 import styles from "./MyCourseFindInterestModal.module.css";
 import { MyCourseItemListBox } from "../MyCourseItemListBox/MyCourseItemListBox";
 import ModalClose from "./../../../assets/modal-close.png";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import { Loading } from "../../Loading/Loading";
 
@@ -13,12 +13,18 @@ const MyCourseFindInterestModal = ({
   setPlaceName,
   setPlaceId,
 }) => {
-  const [interestPosts, setInterestPosts] = useState([]);
-  const [maxPage, setMaxPage] = useState(0);
-  const [pagination, setPagination] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [interestPosts, setInterestPosts] = useState([]); // 관심 목록
+  const [pagination, setPagination] = useState(1); // 현재 페이지
+  const [loading, setLoading] = useState(false); // 로딩 상태
+  const [totalPage, setTotalPage] = useState(null); // 전체 데이터 개수, 초기값 null로 설정
+  const observer = useRef(); // observer를 위한 ref
+  const lastElementRef = useRef(null); // 마지막 요소 추적
+  const [hasMoreData, setHasMoreData] = useState(true); // 더 많은 데이터가 있는지 확인
 
+  // 데이터를 불러오는 함수
   const fetchData = async (page) => {
+    if (!hasMoreData) return; // 더 이상 데이터가 없으면 함수 종료
+
     setLoading(true);
     try {
       const response = await axios.get(
@@ -29,12 +35,19 @@ const MyCourseFindInterestModal = ({
           },
         }
       );
-
-      const posts = Array.isArray(response.data?.likedPlace) ? response.data.likedPlace : [];
       
-      setInterestPosts((prevPosts) => [...prevPosts, ...posts]);
+      // likedPlace 배열을 가져와 설정
+      const posts = response.data?.likedPlace || [];
+      const totalItems = response.data?.meta?.total_count;
 
-      setMaxPage(response.data?.totalPages || 0);
+      if (totalItems === undefined || posts.length === 0) {
+        console.warn("더 이상 불러올 데이터가 없습니다.");
+        setHasMoreData(false); // 더 이상 데이터가 없다고 설정
+        return;
+      }
+
+      setTotalPage(totalItems); // 총 데이터 개수 설정
+      setInterestPosts((prevPosts) => [...prevPosts, ...posts]); // 이전 데이터에 추가
     } catch (error) {
       console.error("데이터를 가져오는데 실패했습니다.", error);
     } finally {
@@ -42,27 +55,38 @@ const MyCourseFindInterestModal = ({
     }
   };
 
-  const handleScroll = useCallback(() => {
-    if (loading || pagination >= maxPage) return;
-    if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-      setPagination((prevPage) => prevPage + 1);
+  // IntersectionObserver로 마지막 요소 감지
+  const observerCallback = useCallback((entries) => {
+    const target = entries[0];
+    if (target.isIntersecting && !loading && hasMoreData) {
+      setPagination((prevPage) => prevPage + 1); // 페이지 증가
     }
-  }, [loading, pagination, maxPage]);
+  }, [loading, hasMoreData]);
 
+  // IntersectionObserver 초기화
   useEffect(() => {
-    fetchData(pagination);
-  }, [pagination]);
+    observer.current = new IntersectionObserver(observerCallback, {
+      root: null,
+      rootMargin: "0px",
+      threshold: 1.0,
+    });
 
-  useEffect(() => {
-    // 모달이 열릴 때 배경 스크롤 막기
-    document.body.style.overflow = "hidden";
-    window.addEventListener("scroll", handleScroll);
+    if (lastElementRef.current) {
+      observer.current.observe(lastElementRef.current); // 마지막 요소를 감시
+    }
+
     return () => {
-      // 모달이 닫힐 때 배경 스크롤 복원
-      document.body.style.overflow = "auto";
-      window.removeEventListener("scroll", handleScroll);
+      if (lastElementRef.current) {
+        observer.current.unobserve(lastElementRef.current); // 컴포넌트 언마운트 시 observer 해제
+      }
     };
-  }, [handleScroll]);
+  }, [observerCallback]);
+
+  useEffect(() => {
+    if (hasMoreData) {
+      fetchData(pagination); // 페이지가 바뀔 때마다 데이터 요청
+    }
+  }, [pagination, hasMoreData]);
 
   const handleClickItem = (place_name, id) => {
     setPlaceName(place_name);
@@ -87,19 +111,20 @@ const MyCourseFindInterestModal = ({
             {!interestModal ? setInterestModal(true) : null}
           </button>
         </label>
-        {interestPosts.length === 0 ? (
+        {interestPosts.length === 0 && !loading ? (
           <div className={styles["no-jjim-list"]}>
             관심 목록이 없습니다. 장소 상세 페이지에서 하트를 눌러보세요!
           </div>
         ) : (
           <div className={styles["mycourse-find-interest-modal-list-box-container"]}>
-            {interestPosts.map((el) => (
+            {interestPosts.map((el, index) => (
               <MyCourseItemListBox
                 key={el.id}
                 state={state}
                 setState={setState}
                 el={el}
                 onClick={(place_name, id) => handleClickItem(place_name, id)}
+                ref={index === interestPosts.length - 1 ? lastElementRef : null} // 마지막 요소에 ref 설정
               />
             ))}
             {loading && (

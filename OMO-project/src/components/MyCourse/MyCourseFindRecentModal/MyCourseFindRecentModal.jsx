@@ -1,7 +1,7 @@
 import styles from "./MyCourseFindRecentModal.module.css";
 import { MyCourseItemListBox } from "../MyCourseItemListBox/MyCourseItemListBox";
 import ModalClose from "./../../../assets/modal-close.png";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Loading } from "../../Loading/Loading";
 
@@ -14,8 +14,6 @@ const MyCourseFindRecentModal = ({
   setPlaceId,
 }) => {
   const [recentData, setRecentData] = useState([]); // 초기 상태를 빈 배열로 설정
-  const [maxPage, setMaxPage] = useState(1);
-  const [pagination, setPagination] = useState(1);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -42,9 +40,10 @@ const MyCourseFindRecentModal = ({
             }
           );
 
-          const recentDataArray = Array.isArray(response.data.recentPlace) ? response.data.recentPlace : [];
+          const recentDataArray = Array.isArray(response.data.recentPlace)
+            ? response.data.recentPlace
+            : [];
           setRecentData(recentDataArray);
-          setMaxPage(Math.ceil(recentDataArray.length / 10));
         } catch (error) {
           console.error("Error fetching recent data", error);
         } finally {
@@ -64,23 +63,6 @@ const MyCourseFindRecentModal = ({
       document.body.style.overflow = "auto";
     };
   }, []);
-
-  const handleScroll = useCallback(() => {
-    if (loading || pagination >= maxPage) return;
-    if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
-    ) {
-      setPagination((prevPage) => prevPage + 1);
-    }
-  }, [loading, pagination, maxPage]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [handleScroll]);
 
   const handleClickItem = (place_name, id) => {
     setPlaceName(place_name);
@@ -120,17 +102,15 @@ const MyCourseFindRecentModal = ({
             </div>
           ) : (
             <div>
-              {recentData
-                .slice(0, pagination * 10)
-                .map((el) => (
-                  <MyCourseItemListBox
-                    key={el.id}
-                    state={state}
-                    setState={setState}
-                    el={el}
-                    onClick={(place_name, id) => handleClickItem(place_name, id)}
-                  />
-                ))}
+              {recentData.map((el) => (
+                <MyCourseItemListBox
+                  key={el.id}
+                  state={state}
+                  setState={setState}
+                  el={el}
+                  onClick={(place_name, id) => handleClickItem(place_name, id)}
+                />
+              ))}
             </div>
           )}
         </div>

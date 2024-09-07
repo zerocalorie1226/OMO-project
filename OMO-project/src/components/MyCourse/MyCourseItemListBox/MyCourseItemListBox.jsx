@@ -8,7 +8,8 @@ import EmptyJjim from "../../../assets/detail/empty-heart.png";
 import defaultDetailIcon from "../../../assets/detail/defaultDetailIcon.png";
 import {useNavigate} from "react-router-dom";
 
-export const MyCourseItemListBox = ({ state, setState, el, onClick}) => {
+// forwardRef를 적용해 ref 전달 가능하도록 수정
+export const MyCourseItemListBox = React.forwardRef(({ state, setState, el, onClick }, ref) => {
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
 
@@ -42,6 +43,7 @@ export const MyCourseItemListBox = ({ state, setState, el, onClick}) => {
   return (
     <div
       className={styles["mycourse-list-box-inner-container"]}
+      ref={ref} // ref를 적용
       onClick={() => {
         setState(!state);
         onClick(el.place_name, el.id);
@@ -79,4 +81,4 @@ export const MyCourseItemListBox = ({ state, setState, el, onClick}) => {
       )}
     </div>
   );
-};
+});
