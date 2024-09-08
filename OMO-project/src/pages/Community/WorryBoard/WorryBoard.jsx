@@ -1,14 +1,14 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./WorryBoard.module.css";
-import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
+import { CommunityCategory } from "./../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
+import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
+import { CommunityWorryPostList } from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
-import {Loading} from "../../../components/Loading/Loading";
+import { Loading } from "../../../components/Loading/Loading";
 
 const WorryBoard = () => {
   const [posts, setPosts] = useState([]);
@@ -76,15 +76,20 @@ const WorryBoard = () => {
 
   // 글쓰기 버튼 클릭 시 로그인 여부 확인 및 처리
   const handleWritingButtonClick = () => {
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    if (!loggedIn) {
+    const accessToken = localStorage.getItem("accessToken");
+    const memberRole = localStorage.getItem("memberRole");
+    
+    if (!accessToken) {
       const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
       if (confirmLogin) {
-        navigate("/Login", {replace: true});
+        navigate("/Login", { replace: true });
       }
-      return;
+    } else if (memberRole === "GUEST") {
+      alert("회원정보 입력이 필요합니다.");
+      navigate("/Signup", { replace: true });
+    } else {
+      setOpenModal(true);
     }
-    setOpenModal(true);
   };
 
   if (isLoading) {
@@ -114,7 +119,7 @@ const WorryBoard = () => {
       {/* 글쓰기 */}
       <div className={styles["writing-btn-container"]}>
         <button type="button" className={styles["writing-btn"]} onClick={handleWritingButtonClick}>
-          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />
+          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{ width: "80px", height: "80px" }} />
         </button>
         {openModal && <WriteWorryBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} />}
       </div>

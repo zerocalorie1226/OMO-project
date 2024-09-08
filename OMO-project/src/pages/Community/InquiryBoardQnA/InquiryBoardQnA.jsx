@@ -1,15 +1,15 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./InquiryBoardQnA.module.css";
 import CommunityInquiryFilter from "../../../components/CommunityInquiryFilter/CommunityInquiryFilter";
-import {CommunityQnAPostList} from "../../../components/CommunityQnAPostList/CommunityQnAPostList";
-import {CommunityCategory} from "../../../components/CommunityCategory/CommunityCategory";
+import { CommunityQnAPostList } from "../../../components/CommunityQnAPostList/CommunityQnAPostList";
+import { CommunityCategory } from "../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "../../../components/ListSearch/ListSearch";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteQnABoard from "../../../components/WritePost/WriteQnABoard/WriteQnABoard";
-import {Loading} from "../../../components/Loading/Loading";
-import {useNavigate} from "react-router-dom";
+import { Loading } from "../../../components/Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
 const InquiryBoardQnA = () => {
   const [posts, setPosts] = useState([]);
@@ -19,7 +19,6 @@ const InquiryBoardQnA = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-
 
   // 게시글 불러오기
   const fetchData = async () => {
@@ -73,15 +72,24 @@ const InquiryBoardQnA = () => {
   };
 
   // 글쓰기 버튼 클릭 시 로그인 여부 확인 및 처리
-  const handleWritingButtonClick = () => {
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    if (!loggedIn) {
+  const handleWritingButtonClick = async () => {
+    const accessToken = localStorage.getItem("accessToken");
+    const memberRole = localStorage.getItem("memberRole");
+
+    if (!accessToken) {
       const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
       if (confirmLogin) {
         navigate("/Login", { replace: true });
       }
       return;
     }
+
+    if (memberRole === "GUEST") {
+      alert("회원정보 입력이 필요합니다.");
+      navigate("/Signup", { replace: true });
+      return;
+    }
+
     setOpenModal(true);
   };
 
@@ -109,7 +117,7 @@ const InquiryBoardQnA = () => {
           className={styles["writing-btn"]}
           onClick={handleWritingButtonClick}
         >
-          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />{" "}
+          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{ width: "80px", height: "80px" }} />
         </button>
         {openModal ? <WriteQnABoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} /> : null}
       </div>

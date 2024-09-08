@@ -1,14 +1,14 @@
 import styles from "./DetailMenu.module.css";
-import { DetailItemsMenu } from "../../../components/DetailItems/DetailItemsMenu/DetailItemsMenu";
-import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
-import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {DetailItemsMenu} from "../../../components/DetailItems/DetailItemsMenu/DetailItemsMenu";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import {useParams, useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
-const DetailMenu = ({ setDefaultListImg }) => {
-  const { id, place_name } = useParams();
+const DetailMenu = ({setDefaultListImg}) => {
+  const {id, place_name} = useParams();
   const navigate = useNavigate();
-  
+
   const [DetailItemsMenuData, setDetailItemsMenuData] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -16,14 +16,24 @@ const DetailMenu = ({ setDefaultListImg }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.oneulmohae.co.kr/place/${place_name}`, {
-          headers: {
-            placeId: id,
-          },
-        });
+        // 로컬 스토리지에 accessToken이 있는지 확인
+        const accessToken = localStorage.getItem("accessToken");
+
+        // 토큰이 있는지 여부에 따라 헤더 설정
+        const headers = accessToken
+          ? {
+              Authorization: `${accessToken}`, // accessToken이 있으면 Authorization 헤더에 추가
+              placeId: id,
+            }
+          : {
+              placeId: id, // accessToken이 없으면 placeId 헤더 사용
+            };
+        console.log(headers);
+
+        const response = await axios.get(`https://api.oneulmohae.co.kr/place/${place_name}`, {headers});
 
         const data = response.data;
-        
+
         if (data && data.place_name === place_name) {
           setDetailItemsMenuData(data);
         } else {
@@ -51,9 +61,7 @@ const DetailMenu = ({ setDefaultListImg }) => {
   }
 
   // 제목이 15글자보다 길면 자르고 "..."을 붙임
-  const truncatedTitle = DetailItemsMenuData.place_name.length > 15
-    ? DetailItemsMenuData.place_name.slice(0, 15) + "..."
-    : DetailItemsMenuData.place_name;
+  const truncatedTitle = DetailItemsMenuData.place_name.length > 15 ? DetailItemsMenuData.place_name.slice(0, 15) + "..." : DetailItemsMenuData.place_name;
 
   return (
     <>
