@@ -7,6 +7,7 @@ import {ScrollToTop} from "../../components/ScrollToTop/ScrollToTop";
 import axios from "axios";
 import {Loading} from "../../components/Loading/Loading";
 
+
 const List = ({setRecentData, searchResultsX, searchResultsY, defaultListImg}) => {
   const {category: categoryParam} = useParams();
   const category = categoryParam || "all";
