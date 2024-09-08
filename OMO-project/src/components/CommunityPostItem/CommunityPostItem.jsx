@@ -66,8 +66,18 @@ export const CommunityPostItem = (props) => {
     }
 
     // 로그인 여부 확인
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    if (!loggedIn) {
+    const accessToken = localStorage.getItem("accessToken");
+    const memberRole = localStorage.getItem("memberRole");
+
+    if (accessToken) {
+      // 사용자가 토큰을 가지고 있지만 GUEST인 경우
+      if (memberRole === "GUEST") {
+        alert("회원정보 입력이 필요합니다.");
+        navigate("/Signup", { replace: true });
+        return;
+      }
+    } else {
+      // 사용자가 토큰이 없는 경우
       const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
       if (confirmLogin) {
         navigate("/Login", { replace: true });
@@ -115,8 +125,18 @@ export const CommunityPostItem = (props) => {
 
   // 좋아요 버튼
   const handleClickLike = async () => {
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    if (!loggedIn) {
+    const accessToken = localStorage.getItem("accessToken");
+    const memberRole = localStorage.getItem("memberRole");
+
+    if (accessToken) {
+      // 사용자가 토큰을 가지고 있지만 GUEST인 경우
+      if (memberRole === "GUEST") {
+        alert("회원정보 입력이 필요합니다.");
+        navigate("/Signup", { replace: true });
+        return;
+      }
+    } else {
+      // 사용자가 토큰이 없는 경우
       const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
       if (confirmLogin) {
         navigate("/Login", { replace: true });
@@ -127,7 +147,7 @@ export const CommunityPostItem = (props) => {
     try {
       const response = await axios.put(
         `https://api.oneulmohae.co.kr/board/like/${props.boardId}`,
-        {}, 
+        {},
         {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
@@ -292,7 +312,11 @@ export const CommunityPostItem = (props) => {
         </div>
 
         <div className={styles["community-post-button-wrapper"]}>
-          <button onClick={handleClickLike} type="button" className={`${styles["community-post-like-button"]} ${showComments ? styles["show-comments"] : ""}`}>
+          <button
+            onClick={handleClickLike}
+            type="button"
+            className={`${styles["community-post-like-button"]} ${showComments ? styles["show-comments"] : ""}`}
+          >
             <img className={styles["community-post-like-button-img"]} src={imageSrcLike} alt="좋아요 버튼" />
             좋아요
           </button>
