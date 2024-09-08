@@ -1,11 +1,11 @@
-import {useState, useEffect} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
-import {WritingButton} from "../../../components/WritingButton/WritingButton";
+import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
+import { WritingButton } from "../../../components/WritingButton/WritingButton";
 import MyCourseList from "../../../components/MyCourse/MyCourseList/MyCourseList";
 import styles from "./MyCourseMain.module.css";
-import {Loading} from "../../../components/Loading/Loading";
+import { Loading } from "../../../components/Loading/Loading";
 import ListSearch from "../../../components/ListSearch/ListSearch";
 
 const MyCourseMain = () => {
@@ -17,13 +17,20 @@ const MyCourseMain = () => {
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const memberRole = localStorage.getItem("memberRole");
+
     if (!loggedIn) {
       alert("로그인 후 이용 가능한 서비스입니다.");
-      navigate("/Login", {replace: true});
+      navigate("/Login", { replace: true });
+      return;
     }
-  }, [navigate]);
 
-  useEffect(() => {
+    if (memberRole === "GUEST") {
+      alert("회원정보 입력이 필요합니다.");
+      navigate("/Signup", { replace: true });
+      return;
+    }
+
     const fetchData = async () => {
       try {
         const response = await axios.get("https://api.oneulmohae.co.kr/mycourse/myCourse", {
@@ -41,9 +48,11 @@ const MyCourseMain = () => {
     };
 
     fetchData();
-  }, []);
+  }, [navigate]);
 
-  const filteredData = myCourseList.filter((item) => item.courseName.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredData = myCourseList.filter((item) =>
+    item.courseName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const onSearch = (term) => {
     setSearchTerm(term);
@@ -64,15 +73,13 @@ const MyCourseMain = () => {
         <ListSearch searchTerm={searchTerm} onSearch={onSearch} />
       </div>
 
-      {filteredData && filteredData.length === 0 ? (
-        <div>
-          <div className={styles["no-boardlist"]}>글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.</div>
+      {filteredData.length === 0 ? (
+        <div className={styles["no-boardlist"]}>
+          글 작성 내역이 없습니다. 우측 하단에 있는 글쓰기 버튼을 통해 게시글을 작성해주세요.
         </div>
       ) : (
-        <div>
-          <div className={styles["mycourse-list-container"]}>
-            <MyCourseList myCourseList={filteredData} />
-          </div>
+        <div className={styles["mycourse-list-container"]}>
+          <MyCourseList myCourseList={filteredData} />
         </div>
       )}
 
