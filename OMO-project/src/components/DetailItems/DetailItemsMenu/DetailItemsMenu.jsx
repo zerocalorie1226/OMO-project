@@ -407,7 +407,8 @@ export const DetailItemsMenu = (props) => {
             <section className={styles["detail-mbti-stats-container"]}>
               <div className={styles["detail-mbti-stats-inner-container"]}>
                 <img src={Graph} alt="통계 아이콘" style={{width: "25px", height: "25px", position: "absolute", top: "1px"}} />
-                <span className={styles["detail-mbti-stats-title"]}>MBTI별 통계 (따봉 기준)</span>
+                <span className={styles["detail-mbti-stats-title"]}>MBTI별  <img src={Like} alt="통계 추천 아이콘" /> 통계 </span>
+               
               </div>
               <div className={styles["detail-mbti-graph-container"]}>
                 {/* 내향/외향 */}
