@@ -29,14 +29,25 @@ export const DetailItemsMenu = (props) => {
 
   // 로그인 여부 확인 함수
   const checkLoginAndProceed = () => {
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    if (!loggedIn) {
+    const accessToken = localStorage.getItem("accessToken");
+    const memberRole = localStorage.getItem("memberRole");
+  
+    if (accessToken) {
+      // 사용자가 토큰을 가지고 있지만 GUEST인 경우
+      if (memberRole === "GUEST") {
+        alert("회원정보 입력이 필요합니다.");
+        navigate("/Signup", { replace: true });
+        return false;
+      }
+    } else {
+      // 사용자가 토큰이 없는 경우
       const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
       if (confirmLogin) {
         navigate("/Login", { replace: true });
       }
       return false;
     }
+  
     return true;
   };
 
