@@ -4,6 +4,7 @@ import styles from "./ListBox.module.css";
 import Like from "../../assets/detail/purple-thumb.png";
 import Jjim from "../../assets/detail/red-heart.png";
 import {useNavigate} from "react-router-dom";
+import defaultListImg from "../../assets/detail/defaultDetailIcon.png"
 
 const ListBox = forwardRef((props, ref) => {
   const navigate = useNavigate();
@@ -80,7 +81,7 @@ const ListBox = forwardRef((props, ref) => {
               />
               <img
                 className={styles["list-box-img2"]}
-                src={props.defaultListImg}
+                src={defaultListImg}
                 alt="default list image 2"
               />
             </>
@@ -97,8 +98,8 @@ const ListBox = forwardRef((props, ref) => {
             </>
           ) : (
             <>
-              <img className={styles["list-box-img1"]} src={props.defaultListImg} alt="default list image 1" />
-              <img className={styles["list-box-img2"]} src={props.defaultListImg} alt="default list image 2" />
+              <img className={styles["list-box-img1"]} src={defaultListImg} alt="default list image 1" />
+              <img className={styles["list-box-img2"]} src={defaultListImg} alt="default list image 2" />
             </>
           )}
         </div>
