@@ -3,6 +3,7 @@ import styles from "./ProfileChange.module.css";
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import { useRef, useState, useEffect } from "react";
 import DefaultImg from "../../../assets/my-page/setting/default-background.png";
+import DefaultProfileImage from "../../../assets/profile-default.png";
 
 const ProfileChange = () => {
   const [Image, setImage] = useState(DefaultImg);
