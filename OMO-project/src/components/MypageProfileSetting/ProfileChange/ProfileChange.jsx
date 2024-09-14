@@ -64,20 +64,21 @@ const ProfileChange = () => {
 
   const ChangeProfileButton = async () => {
     const confirmChange = window.confirm("프로필 사진을 변경하시겠습니까?");
-
+  
     if (confirmChange) {
       try {
         const memberId = localStorage.getItem("memberId");
         const accessToken = localStorage.getItem("accessToken");
-
-        if (!File) {
-          alert("변경할 프로필 사진을 선택해 주세요.");
-          return;
-        }
-
         const formData = new FormData();
-        formData.append("image", File);
-
+        
+        if (!File || Image === DefaultProfileImage) {
+          const response = await fetch(DefaultProfileImage);
+          const blob = await response.blob();  // 이미지 파일을 Blob으로 변환
+          formData.append("image", blob, "default-profile.png");  // Blob 파일을 formData에 추가
+        } else {
+          formData.append("image", File);
+        }
+  
         const response = await axios.patch(
           `https://api.oneulmohae.co.kr/myPage/profileImage/${memberId}`,
           formData,
@@ -88,24 +89,23 @@ const ProfileChange = () => {
             },
           }
         );
-
+  
         if (response.status === 200) {
           const profileImageUrl = response.data.profileImageUrl;
           const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(profileImageUrl)}`;
-
+  
           const imageResponse = await axios.get(imageUrl, {
             headers: {
               Authorization: accessToken,
             },
             responseType: "blob",
           });
-
+  
           const imageBlob = imageResponse.data;
           const imageObjectURL = URL.createObjectURL(imageBlob);
           setImage(imageObjectURL);
           window.location.reload(); // 페이지 리로딩
           alert("프로필 사진이 변경되었습니다.");
-
         } else {
           alert("프로필 사진 변경에 실패했습니다. 다시 시도해 주세요.");
         }
