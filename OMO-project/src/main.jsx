@@ -31,7 +31,6 @@ const Root = () => {
       localStorage.removeItem('recentData');
       localStorage.removeItem('isLoggedIn');
       localStorage.removeItem('savedCoordinates');
-      localStorage.removeItem('memberRole');
       alert("로그아웃 되었습니다.");
       navigate("/Login", { replace: true });
       window.history.replaceState(null, null, "/Login");
