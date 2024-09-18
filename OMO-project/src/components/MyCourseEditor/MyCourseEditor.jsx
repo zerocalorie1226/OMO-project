@@ -57,8 +57,13 @@ const MyCourseEditor = () => {
 
         navigate("/MyCourseMain", {replace: true});
       } catch (error) {
-        console.error("Error posting data:", error);
-        alert("코스를 저장하는 데 실패했습니다.");
+        if (error.response && error.response.status === 403) {
+          // 403 에러인 경우 (GUEST일 때)
+          alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+          navigate("/Signup", { replace: true });
+        } else {
+          console.error("장소데이터를 가져오는데 실패하였습니다:", error);
+        }
       }
     }
   };
