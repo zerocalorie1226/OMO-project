@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // useNavigate 가져오기
 import axios from "axios";
 import styles from "./MyCourseDetailBox.module.css";
 import Like from "../../assets/detail/purple-thumb.png";
@@ -9,6 +10,7 @@ import defaultDetailIcon from "../../assets/detail/defaultDetailIcon.png";
 
 export const MyCourseDetailBox = (el) => {
   const data = el.placeData;
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
   const [images, setImages] = useState([]);
 
@@ -37,9 +39,14 @@ export const MyCourseDetailBox = (el) => {
 
   const firstImages = images.slice(0, 2);
 
+  // 클릭 핸들러 추가
+  const handleBoxClick = () => {
+    navigate(`/DetailMenu/${data.id}/${data.place_name}`); // id와 place_name을 경로에 전달
+  };
+
   return (
     <div className={styles["mycourse-data-box-total-container"]}>
-      <div href="#" className={styles["mycourse-data-box-box-container"]}>
+      <div onClick={handleBoxClick} className={styles["mycourse-data-box-box-container"]} style={{cursor:"pointer"}}> {/* 클릭 시 handleBoxClick 실행 */}
         <div className={styles["mycourse-data-box-box-inner-container"]}>
           <span className={styles["mycourse-data-box-box-title"]}>{data.place_name}</span>
 
