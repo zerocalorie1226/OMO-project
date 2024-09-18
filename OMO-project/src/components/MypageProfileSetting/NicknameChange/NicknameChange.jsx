@@ -1,10 +1,12 @@
 import styles from "./NicknameChange.module.css";
-import {useState} from "react";
+import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // useNavigate 훅을 가져옵니다.
 
 const NicknameChange = () => {
   const [nickname, setNickname] = useState("");
   const [isNicknameChecked, setIsNicknameChecked] = useState(false);
+  const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수 가져오기
 
   const checkNickname = async () => {
     if (nickname.length < 2) {
@@ -15,7 +17,7 @@ const NicknameChange = () => {
     try {
       const response = await axios.post(
         "https://api.oneulmohae.co.kr/checkNickname",
-        {nickname: nickname},
+        { nickname: nickname },
         {
           headers: {
             "Content-Type": "application/json",
@@ -31,7 +33,11 @@ const NicknameChange = () => {
         setIsNicknameChecked(false);
       }
     } catch (error) {
-      if (error.response && error.response.data.status === 404) {
+      if (error.response && error.response.status === 403) {
+        // 403 에러인 경우 (GUEST일 때)
+        alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+        navigate("/Signup", { replace: true });
+      } else if (error.response && error.response.data.status === 404) {
         alert("이미 사용 중인 닉네임입니다.");
       } else {
         alert("닉네임 중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -51,7 +57,7 @@ const NicknameChange = () => {
       try {
         const response = await axios.patch(
           `https://api.oneulmohae.co.kr/myPage/nickname`,
-          {nickname},
+          { nickname },
           {
             headers: {
               Authorization: localStorage.getItem("accessToken"),
@@ -67,7 +73,13 @@ const NicknameChange = () => {
           alert("닉네임 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
         }
       } catch (error) {
-        alert("닉네임 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
+        if (error.response && error.response.status === 403) {
+          // 403 에러인 경우 (GUEST일 때)
+          alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+          navigate("/Signup", { replace: true });
+        } else {
+          alert("닉네임 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
+        }
       }
     } else {
       setNickname("");
@@ -90,10 +102,18 @@ const NicknameChange = () => {
           setIsNicknameChecked(false);
         }}
       />
-      <button type="button" className={styles["profile-setting-main-nickname-change-check-button"]} onClick={checkNickname}>
+      <button
+        type="button"
+        className={styles["profile-setting-main-nickname-change-check-button"]}
+        onClick={checkNickname}
+      >
         중복 확인
       </button>
-      <button type="button" className={styles["profile-setting-main-nickname-change-button"]} onClick={ChangeNickName}>
+      <button
+        type="button"
+        className={styles["profile-setting-main-nickname-change-button"]}
+        onClick={ChangeNickName}
+      >
         변경하기
       </button>
     </div>
