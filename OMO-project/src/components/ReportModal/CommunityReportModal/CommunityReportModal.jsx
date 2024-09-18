@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styles from "./ReportModal.module.css";
-import ReportClose from "../../assets/modal-close.png";
-import { ReportRadioGroup } from '../Radio/ReportRadio/ReportRadioGroup';
-import { ReportRadio } from '../Radio/ReportRadio/ReportRadio';
+import styles from "./CommunityReportModal.module.css";
+import ReportClose from "../../../assets/modal-close.png";
+import { ReportRadioGroup } from '../../Radio/ReportRadio/ReportRadioGroup';
+import { ReportRadio } from '../../Radio/ReportRadio/ReportRadio';
 
-const ReportModal = ({ openModal, setOpenModal, boardId }) => {
+const CommunityReportModal = ({ openModal, setOpenModal, boardId }) => {
   const [selectedReason, setSelectedReason] = useState("INAPPROPRIATE-SUBJECT");
   const [etcReason, setEtcReason] = useState("");
 
@@ -130,4 +130,4 @@ const ReportModal = ({ openModal, setOpenModal, boardId }) => {
   );
 };
 
-export default ReportModal;
+export default CommunityReportModal;

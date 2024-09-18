@@ -10,8 +10,8 @@ import Comment from "../../assets/community/worry-board/comment.png";
 import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
 import { elapsedText } from "../../utils/Time/elapsedText";
-import ReportModal from "../ReportModal/ReportModal";
 import { formatDate } from "../../utils/Time/formatDate";
+import CommunityReportModal from "../ReportModal/CommunityReportModal/CommunityReportModal";
 
 export const CommunityPostItem = (props) => {
   const navigate = useNavigate();
@@ -303,7 +303,7 @@ export const CommunityPostItem = (props) => {
                 <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{ width: "32px", height: "32px" }} />
               </button>
             ) : null}
-            {openModal ? <ReportModal openModal={openModal} setOpenModal={setOpenModal} boardId={props.boardId} /> : null}
+            {openModal ? <CommunityReportModal openModal={openModal} setOpenModal={setOpenModal} boardId={props.boardId} /> : null}
           </div>
         </div>
 
