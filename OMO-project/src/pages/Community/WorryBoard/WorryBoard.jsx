@@ -1,14 +1,14 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import styles from "./WorryBoard.module.css";
-import { CommunityCategory } from "./../../../components/CommunityCategory/CommunityCategory";
+import {CommunityCategory} from "./../../../components/CommunityCategory/CommunityCategory";
 import ListSearch from "./../../../components/ListSearch/ListSearch";
-import { ScrollToTop } from "../../../components/ScrollToTop/ScrollToTop";
-import { CommunityWorryPostList } from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
+import {ScrollToTop} from "../../../components/ScrollToTop/ScrollToTop";
+import {CommunityWorryPostList} from "../../../components/CommunityWorryPostList/CommunityWorryPostList";
 import WritingButtonImg from "../../../assets/writing-button.png";
 import WriteWorryBoard from "../../../components/WritePost/WriteWorryBoard/WriteWorryBoard";
-import { Loading } from "../../../components/Loading/Loading";
+import {Loading} from "../../../components/Loading/Loading";
 
 const WorryBoard = () => {
   const [posts, setPosts] = useState([]);
@@ -63,9 +63,20 @@ const WorryBoard = () => {
       const newPost = response.data;
       setBoardId(newPost.boardId); // 새로 생성된 게시글의 ID를 boardId로 설정
       setPosts((prevPosts) => [newPost, ...prevPosts]);
+
+    alert("등록되었습니다");
+    // setOpenModal(false);
+
+
     } catch (error) {
-      console.error("Error creating post:", error);
-      alert("게시글 작성 중 오류가 발생했습니다.");
+      if (error.response && error.response.status === 403) {
+        // 403 에러인 경우 (GUEST일 때)
+        alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+        navigate("/Signup", {replace: true});
+      } else {
+        console.error("Error creating post:", error);
+        alert("게시글 작성 중 오류가 발생했습니다.");
+      }
     }
   };
 
@@ -77,19 +88,15 @@ const WorryBoard = () => {
   // 글쓰기 버튼 클릭 시 로그인 여부 확인 및 처리
   const handleWritingButtonClick = () => {
     const accessToken = localStorage.getItem("accessToken");
-    const memberRole = localStorage.getItem("memberRole");
-    
+
     if (!accessToken) {
       const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
       if (confirmLogin) {
-        navigate("/Login", { replace: true });
+        navigate("/Login", {replace: true});
       }
-    } else if (memberRole === "GUEST") {
-      alert("회원정보 입력이 필요합니다.");
-      navigate("/Signup", { replace: true });
-    } else {
-      setOpenModal(true);
+      return;
     }
+    setOpenModal(true);
   };
 
   if (isLoading) {
@@ -119,7 +126,7 @@ const WorryBoard = () => {
       {/* 글쓰기 */}
       <div className={styles["writing-btn-container"]}>
         <button type="button" className={styles["writing-btn"]} onClick={handleWritingButtonClick}>
-          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{ width: "80px", height: "80px" }} />
+          <img src={WritingButtonImg} alt="글쓰기 아이콘" style={{width: "80px", height: "80px"}} />
         </button>
         {openModal && <WriteWorryBoard onCreate={onCreate} openModal={openModal} setOpenModal={setOpenModal} />}
       </div>
