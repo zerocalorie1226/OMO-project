@@ -13,8 +13,6 @@ const LoginLoading = ({ setIsLoggedIn }) => {
       const accessToken = params.get("accessToken");
       const refreshToken = params.get("refreshToken");
       const isExistingMember = params.get("isExistingMember");
-      const memberId = params.get("memberId");
-      const memberRole = params.get("memberRole");
 
       if (!accessToken) {
         console.error("No access token found");
@@ -27,9 +25,7 @@ const LoginLoading = ({ setIsLoggedIn }) => {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
       localStorage.setItem("isExistingMember", isExistingMember);
-      localStorage.setItem("memberId", memberId);
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("memberRole", memberRole);
 
       if (isExistingMember === "true") {
         navigate("/"); // 기존 멤버일 경우 홈 페이지로 이동

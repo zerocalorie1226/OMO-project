@@ -10,8 +10,7 @@ const MembershipWithdrawal = ({setIsLoggedIn}) => {
 
     if (confirmWithdrawal) {
       try {
-        const memberId = localStorage.getItem("memberId");
-        const response = await axios.delete(`https://api.oneulmohae.co.kr/member/${memberId}`, {
+        const response = await axios.delete(`https://api.oneulmohae.co.kr/member`, {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
           },
@@ -24,11 +23,9 @@ const MembershipWithdrawal = ({setIsLoggedIn}) => {
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
           localStorage.removeItem("isExistingMember");
-          localStorage.removeItem("memberId");
           localStorage.removeItem("recentData");
           localStorage.removeItem('isLoggedIn');
           localStorage.removeItem('savedCoordinates');
-          localStorage.removeItem('memberRole');
           navigate("/", {replace: true});
         } else {
           alert("탈퇴에 실패하였습니다. 다시 시도해 주세요.");

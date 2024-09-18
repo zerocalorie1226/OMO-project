@@ -60,7 +60,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        `https://api.oneulmohae.co.kr/memberInfo/${localStorage.getItem("memberId")}`,
+        `https://api.oneulmohae.co.kr/memberInfo`,
         {
           nickname: nickname,
           birthYear: birthYear,
@@ -75,10 +75,6 @@ const Signup = () => {
           },
         }
       );
-
-      if (response.data.memberRole === "USER") {
-        localStorage.setItem("memberRole", "USER");
-      }
 
       alert("가입되었습니다");
       navigate("/");
@@ -126,7 +122,7 @@ const Signup = () => {
       <div className={styles["signup"]}>
         <section className={styles["signup-container"]}>
           <div className={styles["signup-title-container"]}>
-            <h2 className={styles["signup-title"]}>회원가입</h2>
+            <h2 className={styles["signup-title"]}>회원 정보 추가 입력</h2>
             <p className={styles["essential"]}>
               <img className={styles["signup-ess"]} src={Required} alt="필수항목표시" />
               필수입력사항

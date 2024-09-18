@@ -49,9 +49,8 @@ const NicknameChange = () => {
 
     if (confirmChange) {
       try {
-        const memberId = localStorage.getItem("memberId");
         const response = await axios.patch(
-          `https://api.oneulmohae.co.kr/myPage/nickname/${memberId}`,
+          `https://api.oneulmohae.co.kr/myPage/nickname`,
           {nickname},
           {
             headers: {

@@ -20,10 +20,9 @@ const Mypage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const memberId = localStorage.getItem("memberId");
         const accessToken = localStorage.getItem("accessToken");
 
-        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo/${memberId}`, {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo`, {
           headers: {
             Authorization: accessToken,
           },
