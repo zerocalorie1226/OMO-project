@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import {jwtDecode} from "jwt-decode"; // 기본 가져오기 방식으로 수정
 import axios from "axios";
-// import styles from "./TokenExtension.module.css";
+import { useNavigate } from "react-router-dom";
 
 const TokenExtension = ({ setIsLoggedIn }) => {
   const [remainingTime, setRemainingTime] = useState({ access: null, refresh: null });
   const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
   const [refreshToken, setRefreshToken] = useState(localStorage.getItem("refreshToken"));
   const [isPageFocused, setIsPageFocused] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (accessToken && refreshToken) {
@@ -65,6 +66,7 @@ const TokenExtension = ({ setIsLoggedIn }) => {
 
     if (accessTimeLeft <= 0 || refreshTimeLeft <= 0) {
       alert("로그아웃 됐습니다.");
+      navigate("/Login", { replace: true });
       setIsLoggedIn(false);
       localStorage.setItem("isLoggedIn", "false");
       localStorage.removeItem("accessToken");
@@ -72,7 +74,7 @@ const TokenExtension = ({ setIsLoggedIn }) => {
       setAccessToken(null);
       setRefreshToken(null);
       setRemainingTime({ access: null, refresh: null });
-      window.location.href = "/Login";
+  
     } else {
       setRemainingTime({
         access: accessTimeLeft,

@@ -4,11 +4,13 @@ import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import { useRef, useState, useEffect } from "react";
 import DefaultImg from "../../../assets/my-page/setting/default-background.png";
 import DefaultProfileImage from "../../../assets/profile-default.png";
+import { useNavigate } from "react-router-dom"; // useNavigate 훅을 가져옵니다.
 
 const ProfileChange = () => {
   const [Image, setImage] = useState(DefaultImg);
   const [File, setFile] = useState("");
   const fileInput = useRef(null);
+  const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수 가져오기
 
   useEffect(() => {
     const fetchProfileImage = async () => {
@@ -108,8 +110,14 @@ const ProfileChange = () => {
           alert("프로필 사진 변경에 실패했습니다. 다시 시도해 주세요.");
         }
       } catch (error) {
-        console.error("프로필 사진 변경에 실패하였습니다:", error);
-        alert("프로필 사진 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
+        if (error.response && error.response.status === 403) {
+          // 403 에러인 경우 (GUEST일 때)
+          alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+          navigate("/Signup", { replace: true });
+        } else {
+          console.error("프로필 사진 변경에 실패하였습니다:", error);
+          alert("프로필 사진 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
+        }
       }
     } else {
       // 취소 버튼을 누르면 파일 선택을 초기화합니다.

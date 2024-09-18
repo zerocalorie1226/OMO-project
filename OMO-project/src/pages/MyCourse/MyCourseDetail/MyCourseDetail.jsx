@@ -12,7 +12,7 @@ import LikeClicked from "../../../assets/detail/purple-thumb.png";
 import Time from "../../../assets/my-course/detail/time.png";
 import User from "../../../assets/my-course/detail/user.png";
 import Report from "../../../assets/community/worry-board/report.png";
-import ReportModal from "../../../components/ReportModal/ReportModal";
+import MyCourseReportModal from "../../../components/ReportModal/MyCourseReportModal/MyCourseReportModal";
 
 const MyCourseDetail = () => {
   const {id} = useParams();
@@ -149,7 +149,7 @@ const MyCourseDetail = () => {
           <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{width: "32px", height: "32px"}} />
         </button>
       )}
-      {openModal ? <ReportModal openModal={openModal} setOpenModal={setOpenModal} boardId={detailData.courseId} /> : null}
+      {openModal ? <MyCourseReportModal openModal={openModal} setOpenModal={setOpenModal} courseId={detailData.courseId} /> : null}
       <div className={styles["mycourse-detail-course-container"]}>
         <div className={styles["mycourse-detail-course-item-container"]}>
           {detailData.contents.map((contentItem, index) => (

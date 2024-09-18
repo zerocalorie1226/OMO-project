@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styles from "./ReportModal.module.css";
-import ReportClose from "../../assets/modal-close.png";
-import { ReportRadioGroup } from '../Radio/ReportRadio/ReportRadioGroup';
-import { ReportRadio } from '../Radio/ReportRadio/ReportRadio';
+import styles from "./MyCourseReportModal.module.css";
+import ReportClose from "../../../assets/modal-close.png";
+import { ReportRadioGroup } from '../../Radio/ReportRadio/ReportRadioGroup';
+import { ReportRadio } from '../../Radio/ReportRadio/ReportRadio';
 
-const ReportModal = ({ openModal, setOpenModal, boardId }) => {
+const MyCourseReportModal = ({ openModal, setOpenModal, courseId }) => {
   const [selectedReason, setSelectedReason] = useState("INAPPROPRIATE-SUBJECT");
   const [etcReason, setEtcReason] = useState("");
 
@@ -42,7 +42,7 @@ const ReportModal = ({ openModal, setOpenModal, boardId }) => {
     }
 
     try {
-      const response = await axios.post(`https://api.oneulmohae.co.kr/boardReport/${boardId}`, 
+      const response = await axios.post(`https://api.oneulmohae.co.kr/myCourseReport/${courseId}`, 
         {
           reportType,
           reason,
@@ -130,4 +130,4 @@ const ReportModal = ({ openModal, setOpenModal, boardId }) => {
   );
 };
 
-export default ReportModal;
+export default MyCourseReportModal;

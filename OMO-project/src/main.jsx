@@ -4,6 +4,7 @@ import { BrowserRouter, useNavigate } from 'react-router-dom';
 import App from './App';
 import "./css/index.css";
 import axios from 'axios';
+import TokenExtension from './components/TokenExtension/TokenExtension';
 
 const Root = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,7 +24,7 @@ const Root = () => {
           Authorization: localStorage.getItem("accessToken"),
           Refresh: localStorage.getItem('refreshToken'),
         },
-        withCredentials: true, // 자격 증명을 포함
+        withCredentials: true,
       });
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
@@ -42,9 +43,13 @@ const Root = () => {
   };
 
   return (
-    <App handleLogout={handleLogout} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+    <>
+      <TokenExtension setIsLoggedIn={setIsLoggedIn} />
+      <App handleLogout={handleLogout} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+    </>
   );
 };
+
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
