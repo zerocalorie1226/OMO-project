@@ -12,7 +12,6 @@ const MbtiChange = () => {
   const [mbtiTF, setMbtiTF] = useState("");
   const [mbtiJP, setMbtiJP] = useState("");
 
-  const memberId = localStorage.getItem("memberId");
 
   const ChangeMbti = async () => {
     const confirmChange = window.confirm("MBTI를 변경하시겠습니까?");
@@ -28,7 +27,7 @@ const MbtiChange = () => {
 
       try {
         const response = await axios.patch(
-          `https://api.oneulmohae.co.kr/myPage/mbti/${memberId}`,
+          `https://api.oneulmohae.co.kr/myPage/mbti`,
           {
             mbti: mbti,
           },

@@ -11,11 +11,10 @@ const ProfileChange = () => {
 
   useEffect(() => {
     const fetchProfileImage = async () => {
-      const memberId = localStorage.getItem("memberId");
       const accessToken = localStorage.getItem("accessToken");
 
       try {
-        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo/${memberId}`, {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo`, {
           headers: {
             Authorization: accessToken,
           },
@@ -66,7 +65,6 @@ const ProfileChange = () => {
 
     if (confirmChange) {
       try {
-        const memberId = localStorage.getItem("memberId");
         const accessToken = localStorage.getItem("accessToken");
 
         if (!File) {
@@ -78,7 +76,7 @@ const ProfileChange = () => {
         formData.append("image", File);
 
         const response = await axios.patch(
-          `https://api.oneulmohae.co.kr/myPage/profileImage/${memberId}`,
+          `https://api.oneulmohae.co.kr/myPage/profileImage`,
           formData,
           {
             headers: {

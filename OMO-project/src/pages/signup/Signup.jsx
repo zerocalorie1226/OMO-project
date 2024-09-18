@@ -60,7 +60,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        `https://api.oneulmohae.co.kr/memberInfo/${localStorage.getItem("memberId")}`,
+        `https://api.oneulmohae.co.kr/memberInfo`,
         {
           nickname: nickname,
           birthYear: birthYear,
@@ -76,9 +76,9 @@ const Signup = () => {
         }
       );
 
-      if (response.data.memberRole === "USER") {
-        localStorage.setItem("memberRole", "USER");
-      }
+      // if (response.data.memberRole === "USER") {
+      //   localStorage.setItem("memberRole", "USER");
+      // }
 
       alert("가입되었습니다");
       navigate("/");

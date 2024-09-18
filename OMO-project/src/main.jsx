@@ -28,7 +28,6 @@ const Root = () => {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('isExistingMember');
-      localStorage.removeItem('memberId');
       localStorage.removeItem('recentData');
       localStorage.removeItem('isLoggedIn');
       localStorage.removeItem('savedCoordinates');

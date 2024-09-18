@@ -13,7 +13,6 @@ const LoginLoading = ({ setIsLoggedIn }) => {
       const accessToken = params.get("accessToken");
       const refreshToken = params.get("refreshToken");
       const isExistingMember = params.get("isExistingMember");
-      const memberId = params.get("memberId");
       const memberRole = params.get("memberRole");
 
       if (!accessToken) {
@@ -27,7 +26,6 @@ const LoginLoading = ({ setIsLoggedIn }) => {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
       localStorage.setItem("isExistingMember", isExistingMember);
-      localStorage.setItem("memberId", memberId);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("memberRole", memberRole);
 
