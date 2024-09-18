@@ -66,7 +66,6 @@ const FreeBoard = () => {
     
 
     alert("등록되었습니다");
-    // setOpenModal(false);
 
     } catch (error) {
       if (error.response && error.response.status === 403) {

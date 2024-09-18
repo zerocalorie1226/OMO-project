@@ -33,7 +33,6 @@ const WriteQnABoard = ({onCreate, openModal, setOpenModal}) => {
     }
   
     onCreate(trimmedTitle, trimmedContent);
-    alert("등록되었습니다");
     setState({
       title: "",
       content: "",
@@ -46,13 +45,6 @@ const WriteQnABoard = ({onCreate, openModal, setOpenModal}) => {
       <div className={styles["writeboard-total-container"]}>
         <div className={styles["writeboard-title"]}>문의 게시판에 글쓰기</div>
         <div className={styles["writeboard-categories-title-container"]}>
-          {/* <select name="board" id="board-select" className={styles["board-select-box"]}>
-            <option value="게시판 선택">게시판 선택</option>
-            <option value="나만의 코스 게시판">나만의 코스 게시판</option>
-            <option value="고민 게시판">고민 게시판</option>
-            <option value="자유 게시판">자유 게시판</option>
-            <option value="문의 게시판">문의 게시판</option>
-          </select> */}
           <input
             ref={titleInput}
             name="title"
@@ -70,7 +62,7 @@ const WriteQnABoard = ({onCreate, openModal, setOpenModal}) => {
             ref={contentInput}
             name="content"
             className={styles["board-content"]}
-            placeholder={`게시글의 내용을 적어주세요. (최소 5자, 최대 500자)\n\n주제와 관련 없는 글을 작성 할 시 삭제될 수 있습니다.`}
+            placeholder={`게시글의 내용을 적어주세요. (최소 5자, 최대 500자)\n\n\n\n* 주제와 관련 없는 글을 작성 할 시, 게시글이 삭제될 수 있습니다.\n\n* 회원 정보 추가 입력을 안 했을 시, 글쓰기가 불가합니다.`}
             minLength="5"
             maxLength="500"
             value={state.content}

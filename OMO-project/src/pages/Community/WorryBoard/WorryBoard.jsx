@@ -65,7 +65,6 @@ const WorryBoard = () => {
       setPosts((prevPosts) => [newPost, ...prevPosts]);
 
     alert("등록되었습니다");
-    // setOpenModal(false);
 
 
     } catch (error) {
