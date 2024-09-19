@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // useNavigate 가져오기
+import React, {useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom"; 
 import axios from "axios";
 import styles from "./MyCourseDetailBox.module.css";
 import Like from "../../assets/detail/purple-thumb.png";
@@ -10,7 +10,8 @@ import defaultDetailIcon from "../../assets/detail/defaultDetailIcon.png";
 
 export const MyCourseDetailBox = (el) => {
   const data = el.placeData;
-  const navigate = useNavigate(); // useNavigate 훅 사용
+
+  const navigate = useNavigate(); 
 
   const [images, setImages] = useState([]);
 
@@ -23,7 +24,7 @@ export const MyCourseDetailBox = (el) => {
         const imageNames = fetchedPosts.map((post) => post.imageName).filter((imageName) => imageName !== null);
 
         const fetchImagePromises = imageNames.map(async (imageName) => {
-          const imageResponse = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, { responseType: "blob" });
+          const imageResponse = await axios.get(`https://api.oneulmohae.co.kr/image/${encodeURIComponent(imageName)}`, {responseType: "blob"});
           return URL.createObjectURL(imageResponse.data);
         });
 
@@ -39,24 +40,25 @@ export const MyCourseDetailBox = (el) => {
 
   const firstImages = images.slice(0, 2);
 
-  // 클릭 핸들러 추가
+
   const handleBoxClick = () => {
-    navigate(`/DetailMenu/${data.id}/${data.place_name}`); // id와 place_name을 경로에 전달
+    navigate(`/DetailMenu/${data.id}/${data.place_name}`); 
   };
 
   return (
     <div className={styles["mycourse-data-box-total-container"]}>
-      <div onClick={handleBoxClick} className={styles["mycourse-data-box-box-container"]} style={{cursor:"pointer"}}> {/* 클릭 시 handleBoxClick 실행 */}
+      <div onClick={handleBoxClick} className={styles["mycourse-data-box-box-container"]} style={{cursor: "pointer"}}>
+  
         <div className={styles["mycourse-data-box-box-inner-container"]}>
           <span className={styles["mycourse-data-box-box-title"]}>{data.place_name}</span>
 
           <div className={styles["mycourse-data-box-box-like-jjim-container"]}>
             <div className={styles["mycourse-data-box-box-jjim"]}>
-              <img src={data.myMine ? Jjim : EmptyJjim} alt="찜 아이콘" style={{ position: "absolute", top: "2px", width: "20px", height: "20px" }} />{" "}
+              <img src={data.myMine ? Jjim : EmptyJjim} alt="찜 아이콘" style={{position: "absolute", top: "2px", width: "20px", height: "20px"}} />{" "}
               <span className={styles["mycourse-data-box-box-jjim-number"]}> {data.mine}</span>
             </div>
             <div className={styles["mycourse-data-box-box-like"]}>
-              <img src={data.myRecommend ? Like : EmptyLike} alt="좋아요 아이콘" style={{ position: "absolute", top: "0px", width: "20px", height: "20px" }} />{" "}
+              <img src={data.myRecommend ? Like : EmptyLike} alt="좋아요 아이콘" style={{position: "absolute", top: "0px", width: "20px", height: "20px"}} />{" "}
               <span className={styles["mycourse-data-box-box-like-number"]}> {data.recommend}</span>
             </div>
           </div>

@@ -15,7 +15,6 @@ import CommunityReportModal from "../ReportModal/CommunityReportModal/CommunityR
 
 export const CommunityPostItem = (props) => {
   const navigate = useNavigate();
-  console.log(props.writerUserMatch);
 
   // 신고 모달창 열기
   const [openModal, setOpenModal] = useState(false);
