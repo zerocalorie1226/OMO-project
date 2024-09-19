@@ -21,16 +21,27 @@ const FreeBoard = () => {
   const category = "Free";
   const navigate = useNavigate();
 
-  // 게시글 불러오기
-  const fetchData = async () => {
+   // 게시글 불러오기
+   const fetchData = async () => {
+    const accessToken = localStorage.getItem("accessToken"); // accessToken 확인
+    const config = {
+      headers: {},
+    };
+
+    // accessToken이 있으면 헤더에 추가
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+
     try {
-      const response = await axios.get("https://api.oneulmohae.co.kr/board/Free?page=1&size=10&sorting=createdAt");
+      const response = await axios.get("https://api.oneulmohae.co.kr/board/Free?page=1&size=10&sorting=createdAt", config);
       setPosts(response.data.data);
       setIsLoading(false);
     } catch (error) {
-      console.error("자유게시판을 불러오는데 실패였습니다.", error);
+      console.error("자유게시판을 불러오는데 실패했습니다.", error);
     }
   };
+
 
   useEffect(() => {
     fetchData();
