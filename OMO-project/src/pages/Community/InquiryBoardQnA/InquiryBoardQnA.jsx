@@ -23,13 +23,19 @@ const InquiryBoardQnA = () => {
   // 게시글 불러오기
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://api.oneulmohae.co.kr/board/Qna?page=1&size=10&sorting=createdAt");
+      const accessToken = localStorage.getItem("accessToken");
+      const response = await axios.get("https://api.oneulmohae.co.kr/board/Qna?page=1&size=10&sorting=createdAt", {
+        headers: {
+          Authorization: accessToken ? `Bearer ${accessToken}` : undefined,
+        },
+      });
       setPosts(response.data.data);
       setFilteredPosts(response.data.data);
       setIsLoading(false);
     } catch (error) {
       console.error("QnA게시판 게시글을 불러오는데 실패하였습니다.", error);
     }
+  
   };
 
   useEffect(() => {
