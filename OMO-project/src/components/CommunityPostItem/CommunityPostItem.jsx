@@ -242,10 +242,10 @@ export const CommunityPostItem = (props) => {
             const blobURL = URL.createObjectURL(blob);
             return { [el.commentId]: blobURL };
           } catch (error) {
-            return { [el.commentId]: DefaultProfileImage };
+            return { [el.commentId]: el.profileURL };
           }
         } else {
-          return { [el.commentId]: DefaultProfileImage };
+          return { [el.commentId]: el.profileURL };
         }
       });
 
