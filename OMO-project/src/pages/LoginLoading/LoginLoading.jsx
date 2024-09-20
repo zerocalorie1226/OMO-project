@@ -9,15 +9,12 @@ const LoginLoading = ({ setIsLoggedIn }) => {
   useEffect(() => {
     const handleLogin = async () => {
       const params = new URLSearchParams(window.location.search);
-
       const accessToken = params.get("accessToken");
       const refreshToken = params.get("refreshToken");
       const isExistingMember = params.get("isExistingMember");
-      const memberId = params.get("memberId");
-      const memberRole = params.get("memberRole");
 
       if (!accessToken) {
-        console.error("No access token found");
+        console.error("Access token이 없습니다.");
         navigate("/Login");
         setIsLoggedIn(false);
         setLoading(false);
@@ -27,16 +24,14 @@ const LoginLoading = ({ setIsLoggedIn }) => {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
       localStorage.setItem("isExistingMember", isExistingMember);
-      localStorage.setItem("memberId", memberId);
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("memberRole", memberRole);
+
+      setIsLoggedIn(true);
 
       if (isExistingMember === "true") {
         navigate("/"); // 기존 멤버일 경우 홈 페이지로 이동
-        setIsLoggedIn(true);
       } else {
         navigate("/Signup"); // 새 멤버일 경우 회원가입 페이지로 이동
-        setIsLoggedIn(true);
       }
 
       setLoading(false);

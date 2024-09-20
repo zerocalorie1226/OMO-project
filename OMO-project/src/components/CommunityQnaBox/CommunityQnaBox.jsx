@@ -49,7 +49,7 @@ export const CommunityQnABox = (props) => {
           const imageObjectURL = URL.createObjectURL(imageBlob);
           setProfileImage(imageObjectURL);
         } catch (error) {
-          setProfileImage(DefaultProfileImage);
+          setProfileImage(props.profileURL);
         }
       }
     };

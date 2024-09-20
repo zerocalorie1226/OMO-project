@@ -21,8 +21,8 @@ const MyCourseFindRecentModal = ({
       const storedRecentData = localStorage.getItem("recentData");
       if (storedRecentData) {
         const parsedData = JSON.parse(storedRecentData);
-        const placeNameList = parsedData.map((place) => place.place_name);
-        const placeIdList = parsedData.map((place) => place.id);
+        const placeNameList = parsedData.map((place) => place.place_name || ""); // 기본값 추가
+        const placeIdList = parsedData.map((place) => place.id || ""); // 기본값 추가
 
         const postData = {
           placeNameList,
@@ -40,6 +40,7 @@ const MyCourseFindRecentModal = ({
             }
           );
 
+          // 데이터 유효성 검사
           const recentDataArray = Array.isArray(response.data.recentPlace)
             ? response.data.recentPlace
             : [];
@@ -87,7 +88,6 @@ const MyCourseFindRecentModal = ({
               src={ModalClose}
               alt="닫기 아이콘"
             />
-            {!recentModal ? setRecentModal(true) : null}
           </button>
         </label>
 
@@ -103,13 +103,15 @@ const MyCourseFindRecentModal = ({
           ) : (
             <div>
               {recentData.map((el) => (
-                <MyCourseItemListBox
-                  key={el.id}
-                  state={state}
-                  setState={setState}
-                  el={el}
-                  onClick={(place_name, id) => handleClickItem(place_name, id)}
-                />
+                el && el.id && el.place_name ? (
+                  <MyCourseItemListBox
+                    key={el.id}
+                    state={state}
+                    setState={setState}
+                    el={el}
+                    onClick={(place_name, id) => handleClickItem(place_name, id)}
+                  />
+                ) : null
               ))}
             </div>
           )}

@@ -1,14 +1,11 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { useLocation, Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import MainLogo from "../../assets/logo-main.png";
-import { Link } from "react-router-dom";
-import TokenExtension from "../TokenExtension/TokenExtension";
 
-export const Header = ({ handleLogout, setIsLoggedIn, isLoggedIn }) => {
+export const Header = ({ handleLogout, isLoggedIn }) => {
   const location = useLocation();
-  const navigate = useNavigate();
   const isSignupPage = location.pathname === "/Signup";
-  const isLogin = location.pathname === "/Login";
 
   return (
     <header>
@@ -31,7 +28,7 @@ export const Header = ({ handleLogout, setIsLoggedIn, isLoggedIn }) => {
             </div>
           </div>
           <div className={styles["main-header-menu-right-container"]}>
-            {isLoggedIn && !isSignupPage && !isLogin ? (
+            {isLoggedIn ? (
               <div className={styles["main-header-menu-login-status-container"]}>
                 <Link to="/MyInfo" className={styles["main-header-mypage"]}>
                   마이 페이지
@@ -39,14 +36,15 @@ export const Header = ({ handleLogout, setIsLoggedIn, isLoggedIn }) => {
                 <button onClick={handleLogout} className={styles["main-header-logout"]}>
                   로그아웃
                 </button>
-                <TokenExtension setIsLoggedIn={setIsLoggedIn} />
               </div>
             ) : (
-              <div className={styles["main-header-menu-logout-status-container"]}>
-                <Link to="/Login" className={styles["main-header-login"]}>
-                  로그인
-                </Link>
-              </div>
+              !isSignupPage && (
+                <div className={styles["main-header-menu-logout-status-container"]}>
+                  <Link to="/Login" className={styles["main-header-login"]}>
+                    로그인
+                  </Link>
+                </div>
+              )
             )}
           </div>
         </div>
@@ -55,3 +53,5 @@ export const Header = ({ handleLogout, setIsLoggedIn, isLoggedIn }) => {
     </header>
   );
 };
+
+export default Header;

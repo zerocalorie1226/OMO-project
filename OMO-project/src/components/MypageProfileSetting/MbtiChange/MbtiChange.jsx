@@ -12,8 +12,6 @@ const MbtiChange = () => {
   const [mbtiTF, setMbtiTF] = useState("");
   const [mbtiJP, setMbtiJP] = useState("");
 
-  const memberId = localStorage.getItem("memberId");
-
   const ChangeMbti = async () => {
     const confirmChange = window.confirm("MBTI를 변경하시겠습니까?");
 
@@ -28,10 +26,8 @@ const MbtiChange = () => {
 
       try {
         const response = await axios.patch(
-          `https://api.oneulmohae.co.kr/myPage/mbti/${memberId}`,
-          {
-            mbti: mbti,
-          },
+          `https://api.oneulmohae.co.kr/myPage/mbti`,
+          { mbti: mbti },
           {
             headers: {
               Authorization: localStorage.getItem("accessToken"),
@@ -42,7 +38,13 @@ const MbtiChange = () => {
         alert("MBTI가 변경되었습니다.");
         window.location.reload(); // 페이지 리로딩
       } catch (error) {
-        alert("MBTI 변경 중 오류가 발생했습니다. 다시 시도해주세요.");
+        if (error.response && error.response.status === 403) {
+          // 403 에러인 경우 (GUEST일 때)
+          alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+          navigate("/Signup", { replace: true });
+        } else {
+          alert("MBTI 변경 중 오류가 발생했습니다. 다시 시도해주세요.");
+        }
       }
     } else {
       setMbtiIE("");
@@ -101,7 +103,11 @@ const MbtiChange = () => {
           <option value="P">P</option>
         </select>
       </div>
-      <button type="button" className={styles["profile-setting-main-mbti-change-button"]} onClick={ChangeMbti}>
+      <button
+        type="button"
+        className={styles["profile-setting-main-mbti-change-button"]}
+        onClick={ChangeMbti}
+      >
         변경하기
       </button>
     </div>

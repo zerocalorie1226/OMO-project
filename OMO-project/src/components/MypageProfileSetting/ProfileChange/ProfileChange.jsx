@@ -3,19 +3,21 @@ import styles from "./ProfileChange.module.css";
 import DeleteImg from "../../../assets/my-page/setting/profile-delete.png";
 import { useRef, useState, useEffect } from "react";
 import DefaultImg from "../../../assets/my-page/setting/default-background.png";
+import DefaultProfileImage from "../../../assets/profile-default.png";
+import { useNavigate } from "react-router-dom"; // useNavigate 훅을 가져옵니다.
 
 const ProfileChange = () => {
   const [Image, setImage] = useState(DefaultImg);
   const [File, setFile] = useState("");
   const fileInput = useRef(null);
+  const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수 가져오기
 
   useEffect(() => {
     const fetchProfileImage = async () => {
-      const memberId = localStorage.getItem("memberId");
       const accessToken = localStorage.getItem("accessToken");
 
       try {
-        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo/${memberId}`, {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo`, {
           headers: {
             Authorization: accessToken,
           },
@@ -63,22 +65,22 @@ const ProfileChange = () => {
 
   const ChangeProfileButton = async () => {
     const confirmChange = window.confirm("프로필 사진을 변경하시겠습니까?");
-
+  
     if (confirmChange) {
       try {
-        const memberId = localStorage.getItem("memberId");
         const accessToken = localStorage.getItem("accessToken");
-
-        if (!File) {
-          alert("변경할 프로필 사진을 선택해 주세요.");
-          return;
-        }
-
         const formData = new FormData();
-        formData.append("image", File);
-
+        
+        if (!File || Image === DefaultProfileImage) {
+          const response = await fetch(DefaultProfileImage);
+          const blob = await response.blob();  // 이미지 파일을 Blob으로 변환
+          formData.append("image", blob, "default-profile.png");  // Blob 파일을 formData에 추가
+        } else {
+          formData.append("image", File);
+        }
+  
         const response = await axios.patch(
-          `https://api.oneulmohae.co.kr/myPage/profileImage/${memberId}`,
+          `https://api.oneulmohae.co.kr/myPage/profileImage`,
           formData,
           {
             headers: {
@@ -87,30 +89,35 @@ const ProfileChange = () => {
             },
           }
         );
-
+  
         if (response.status === 200) {
           const profileImageUrl = response.data.profileImageUrl;
           const imageUrl = `https://api.oneulmohae.co.kr/image/${encodeURIComponent(profileImageUrl)}`;
-
+  
           const imageResponse = await axios.get(imageUrl, {
             headers: {
               Authorization: accessToken,
             },
             responseType: "blob",
           });
-
+  
           const imageBlob = imageResponse.data;
           const imageObjectURL = URL.createObjectURL(imageBlob);
           setImage(imageObjectURL);
           window.location.reload(); // 페이지 리로딩
           alert("프로필 사진이 변경되었습니다.");
-
         } else {
           alert("프로필 사진 변경에 실패했습니다. 다시 시도해 주세요.");
         }
       } catch (error) {
-        console.error("프로필 사진 변경에 실패하였습니다:", error);
-        alert("프로필 사진 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
+        if (error.response && error.response.status === 403) {
+          // 403 에러인 경우 (GUEST일 때)
+          alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+          navigate("/Signup", { replace: true });
+        } else {
+          console.error("프로필 사진 변경에 실패하였습니다:", error);
+          alert("프로필 사진 변경 중 오류가 발생했습니다. 다시 시도해 주세요.");
+        }
       }
     } else {
       // 취소 버튼을 누르면 파일 선택을 초기화합니다.

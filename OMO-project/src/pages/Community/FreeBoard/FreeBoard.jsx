@@ -21,16 +21,27 @@ const FreeBoard = () => {
   const category = "Free";
   const navigate = useNavigate();
 
-  // 게시글 불러오기
-  const fetchData = async () => {
+   // 게시글 불러오기
+   const fetchData = async () => {
+    const accessToken = localStorage.getItem("accessToken"); // accessToken 확인
+    const config = {
+      headers: {},
+    };
+
+    // accessToken이 있으면 헤더에 추가
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+
     try {
-      const response = await axios.get("https://api.oneulmohae.co.kr/board/Free?page=1&size=10&sorting=createdAt");
+      const response = await axios.get("https://api.oneulmohae.co.kr/board/Free?page=1&size=10&sorting=createdAt", config);
       setPosts(response.data.data);
       setIsLoading(false);
     } catch (error) {
-      console.error("자유게시판을 불러오는데 실패였습니다.", error);
+      console.error("자유게시판을 불러오는데 실패했습니다.", error);
     }
   };
+
 
   useEffect(() => {
     fetchData();
@@ -63,21 +74,29 @@ const FreeBoard = () => {
       const newPost = response.data;
       setBoardId(newPost.boardId); // 새로 생성된 게시글의 ID를 boardId로 설정
       setPosts((prevPosts) => [newPost, ...prevPosts]);
+    
+
+    alert("등록되었습니다");
+
     } catch (error) {
-      console.error("Error creating post:", error);
-      alert("게시글 작성 중 오류가 발생했습니다.");
+      if (error.response && error.response.status === 403) {
+        // 403 에러인 경우 (GUEST일 때)
+        alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+        navigate("/Signup", {replace: true});
+      } else {
+        console.error("Error creating post:", error);
+        alert("게시글 작성 중 오류가 발생했습니다.");
+      }
     }
   };
-
   // 검색 기능
   const handleSearch = (term) => {
     setSearchTerm(term);
   };
 
   // 글쓰기 버튼 클릭 시 로그인 여부 확인 및 처리
-  const handleWritingButtonClick = async () => {
+  const handleWritingButtonClick = () => {
     const accessToken = localStorage.getItem("accessToken");
-    const memberRole = localStorage.getItem("memberRole");
 
     if (!accessToken) {
       const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
@@ -86,13 +105,6 @@ const FreeBoard = () => {
       }
       return;
     }
-
-    if (memberRole === "GUEST") {
-      alert("회원정보 입력이 필요합니다.");
-      navigate("/Signup", { replace: true });
-      return;
-    }
-
     setOpenModal(true);
   };
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import styles from "./MyInfo.module.css";
 import Mypage from "../../../components/Mypage/Mypage";
 import MyInfoIcon from "../../../assets/my-page/my-info/my-info.png";
-import DefaultProfileImage from "../../../assets/detail/defaultDetailIcon.png";
+import DefaultProfileImage from "../../../assets/profile-default.png";
 import {useEffect, useState} from "react";
 import {mbtiReverseMapping} from "../../../const/mbtiReverseMapping";
 import {Loading} from "../../../components/Loading/Loading";
@@ -25,10 +25,9 @@ const MyInfo = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const memberId = localStorage.getItem("memberId");
         const accessToken = localStorage.getItem("accessToken");
 
-        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo/${memberId}`, {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo`, {
           headers: {
             Authorization: accessToken,
           },

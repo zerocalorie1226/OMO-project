@@ -10,7 +10,7 @@ import MyInfoThumb from "../../assets/my-page/my-info/empty-thumb.png";
 import { mbtiReverseMapping } from "../../const/mbtiReverseMapping";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DefaultProfileImage from "../../assets/detail/defaultDetailIcon.png"; // 기본 프로필 이미지
+import DefaultProfileImage from "../../assets/profile-default.png"; // 기본 프로필 이미지
 
 const Mypage = () => {
   const navigate = useNavigate();
@@ -20,10 +20,9 @@ const Mypage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const memberId = localStorage.getItem("memberId");
         const accessToken = localStorage.getItem("accessToken");
 
-        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo/${memberId}`, {
+        const response = await axios.get(`https://api.oneulmohae.co.kr/myPage/myInfo`, {
           headers: {
             Authorization: accessToken,
           },

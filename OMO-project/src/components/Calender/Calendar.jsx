@@ -6,18 +6,19 @@ import styles from "./Calendar.module.css";
 import { getMonth, getYear } from 'date-fns';
 import range from "lodash/range";
 
-const Calendar = ({birthdate, setBirthdate}) => {
+const Calendar = ({ birthdate, setBirthdate }) => {
   const years = range(1800, getYear(new Date()) + 1, 1);
-  const months = range(0, 12); // 월을 숫자로 처리하도록 변경
+  const months = range(0, 12);
 
   return (
     <DatePicker 
       selected={birthdate} 
       onChange={date => setBirthdate(date)}
       locale={ko}
-      dateFormat="yyyy-MM-dd" // 일반적인 날짜 포맷으로 변경
+      dateFormat="yyyy-MM-dd"
       showPopperArrow={false}
       className={styles["date-picker"]}
+      maxDate={new Date()}  // 오늘 이후의 날짜는 선택하지 못하도록 설정
       renderCustomHeader={({
         date,
         changeYear,
@@ -46,12 +47,12 @@ const Calendar = ({birthdate, setBirthdate}) => {
 
           <select
             className={styles["select-date"]}
-            value={getMonth(date)} // 현재 월의 숫자를 사용
+            value={getMonth(date)}
             onChange={({ target: { value } }) => changeMonth(Number(value))}
           >
             {months.map((option) => (
               <option key={option} value={option}>
-                {option + 1}월 
+                {option + 1}월
               </option>
             ))}
           </select>
