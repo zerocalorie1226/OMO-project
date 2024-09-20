@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./MyCourseDataBox.module.css";
 import Like from "../../../assets/detail/purple-thumb.png";
+import EmptyLike from "../../../assets/detail/empty-thumb.png";
 import Jjim from "../../../assets/detail/red-heart.png";
+import EmptyJjim from "../../../assets/detail/empty-heart.png";
 import defaultDetailIcon from "../../../assets/detail/defaultDetailIcon.png";
 
 export const MyCourseDataBox = ({ data }) => {
@@ -43,11 +45,11 @@ export const MyCourseDataBox = ({ data }) => {
 
           <div className={styles["mycourse-data-box-box-like-jjim-container"]}>
             <div className={styles["mycourse-data-box-box-jjim"]}>
-              <img src={Jjim} alt="찜 아이콘" style={{ position: "absolute", top: "2px", width: "20px", height: "20px" }} />
+              <img src={data.myMine ? Jjim : EmptyJjim} alt="찜 아이콘" style={{ position: "absolute", top: "2px", width: "20px", height: "20px" }} />
               <span className={styles["mycourse-data-box-box-jjim-number"]}> {data.mine}</span>
             </div>
             <div className={styles["mycourse-data-box-box-like"]}>
-              <img src={Like} alt="좋아요 아이콘" style={{ position: "absolute", top: "0px", width: "20px", height: "20px" }} />
+            <img src={data.myRecommend ? Like : EmptyLike}alt="좋아요 아이콘" style={{ position: "absolute", top: "0px", width: "20px", height: "20px" }} />
               <span className={styles["mycourse-data-box-box-like-number"]}> {data.recommend}</span>
             </div>
           </div>
