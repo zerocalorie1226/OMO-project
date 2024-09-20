@@ -10,7 +10,7 @@ import MyInfoThumb from "../../assets/my-page/my-info/empty-thumb.png";
 import { mbtiReverseMapping } from "../../const/mbtiReverseMapping";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DefaultProfileImage from "../../assets/detail/defaultDetailIcon.png"; // 기본 프로필 이미지
+import DefaultProfileImage from "../../assets/profile-default.png"; // 기본 프로필 이미지
 
 const Mypage = () => {
   const navigate = useNavigate();
