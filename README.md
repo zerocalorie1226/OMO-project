@@ -1,4 +1,4 @@
-# **OMO-project **
+# **OMO-project**
 
 FE & BE 협업 프로젝트
 서비스 링크 : https://www.oneulmohae.co.kr/
