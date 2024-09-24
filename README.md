@@ -151,18 +151,30 @@ https://github.com/user-attachments/assets/a99a5f51-0b17-46ec-9f29-13685c9c8010
 - 회원 추가 정보를 입력하지 않으면 서비스 이용이 제한됩니다. (관심/추천버튼, 리뷰, 커뮤니티 글 작성/댓글 등)
 - 로그인 인증 토큰 만료 시 자동 갱신됩니다.
 - 회원 가입 후 재로그인 시에는, 회원추가입력을 하지 않아도, 과거 이용 내역 그대로 남은 상태로 바로 서비스 이용이 가능합니다.
-- 
 
 <br>
 
-
+https://github.com/user-attachments/assets/17864652-a305-47aa-bbad-9afc3136273f
 
 <br>
-  
 
+https://github.com/user-attachments/assets/389aeecc-0a31-4e47-9d25-fd148ab438c2
 
+<br>
 
 ## 9.게스트, 로그아웃
 
+- 사용자가 회원 정보를 입력하지 않고 웹을 이용할 경우, 서버에서 이를 "GUEST"로 판단하여 오류 코드를 반환하고 회원 정보 입력 페이지로 redirect 합니다.
+- 로그아웃 유저가 사용할 수 있는 기능을 제한하기 위해서, 로그아웃 상태에서 특정 기능 이용 시 자동으로 로그인 페이지로 redirect 합니다.
+
+<br>
+
+https://github.com/user-attachments/assets/adeef669-605c-4a26-8230-1b574fb8b1c1
+
+<br>
+
+https://github.com/user-attachments/assets/dbedc871-2d43-48ca-8658-c84f19107fe8
+
+<br>
 
 
