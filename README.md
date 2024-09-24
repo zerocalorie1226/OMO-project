@@ -3,19 +3,24 @@
 - FE & BE 협업 프로젝트
 - 서비스 링크 : https://www.oneulmohae.co.kr/
 
+<br>
+
 ## 💻 프로젝트 소개
 
 - 사용자들이 장소를 고려해서 자신만의 놀이 코스를 생성할 수 있게끔 다양한 정보를 제공해주고, 커뮤니티 기능을 통해 다양한 의견을 공유할 수 있게 하는 일정관리 및 커뮤니티 웹사이트
 
+<br>
 
 ## ⌛개발 기간
 
 - 2023.07 ~ing
 
+<br>
 
 ## **TYING 프로젝트의 구성원**
 - 황혜인, 조성찬, 홍승현, 이호준, 황제현
 
+<br>
 
 ## 개발환경
 
@@ -24,9 +29,12 @@
 - 배포 : AWS EC2, Vercel
 - 버전 관리 및 협업 : Git, Github, Figma, Discord, Confluence, Notion, SpreadSheets
 
+<br>
 
 ## 📌 기획 동기 
 - 사용자가 설정한 위치를 기반으로 대분류 및 소분류로 장소 정보를 제공하고, 이를 활용해 개인화된 일정 및 코스를 생성하며, 커뮤니티 기능을 통해 사용자 간 의견을 공유할 수 있는 웹 플랫폼의 필요성을 인식하고 이를 개발하게 되었습니다.
+
+<br>
 
 ## 📌 주요 기능 및 목표
 - 먹거리, 볼거리, 놀거리, 카페 등 여가활동 정보를 설정된 위치 기반으로 장소 상세 정보 제공
@@ -37,6 +45,7 @@
 - 문의게시판(자주하는 질문, QnA) 및 공지사항을 통해 사용자 편의성 증대
 - 카카오, 네이버, 구글 3가지의 다양한 로그인 방식 제공
 
+<br>
  
 ## 📌 주요 기능 시연 영상
 ## 1. 메인 페이지 검색창
@@ -58,7 +67,7 @@ https://github.com/user-attachments/assets/79a4c022-3fbd-40a3-8af0-773c489a1037
   
 https://github.com/user-attachments/assets/8ceb5f7e-e1ef-405f-944a-b253396eac8a
 
-
+<br>
 
 ## 3. 장소 상세 페이지 
 - 관심(하트)을 누르면, 사용자의 "관심목록"에 해당 장소 데이터가 저장됩니다.
@@ -67,6 +76,7 @@ https://github.com/user-attachments/assets/8ceb5f7e-e1ef-405f-944a-b253396eac8a
 - MBTI별 추천 통계를 통해 추천한 사람들의 성향을 퍼센트로 알 수 있습니다.
 - 리뷰에 사진/글 업로드가 가능하며, 리뷰로 작성된 사진은 썸네일로 등록되어, 리스트 페이지에도 보이게 됩니다. 
 - 더보기 URL을 통해 카카오 장소 상세페이지로 이동하여 더 많은 정보를 볼 수 있습니다.
+  
 <br>
 
 https://github.com/user-attachments/assets/691181e3-5822-4b75-afab-09e64ca200e5
@@ -74,6 +84,21 @@ https://github.com/user-attachments/assets/691181e3-5822-4b75-afab-09e64ca200e5
 <br>
 
 https://github.com/user-attachments/assets/953c7d9a-0939-47b6-8b99-8a65f6a71d1e
+
+<br>
+
+## 4. 커뮤니티 고민/자유 게시판
+
+https://github.com/user-attachments/assets/43254ca4-0ebb-48d9-b116-1039352c112d
+
+
+
+
+## 5. 나만의 코스 작성
+
+
+
+https://github.com/user-attachments/assets/9e03976c-a4fd-43de-8b9c-aaab07a7bab7
 
 
 
