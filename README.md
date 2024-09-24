@@ -90,6 +90,8 @@ https://github.com/user-attachments/assets/a9c2c861-5be0-4320-b5aa-9b5b504534e1
 - 좋아요를 통해 공감이 가능합니다.
 - 댓글을 통해 의견을 공유할 수 있습니다.
 
+<br>
+
 https://github.com/user-attachments/assets/43254ca4-0ebb-48d9-b116-1039352c112d
 
 <br>
@@ -105,23 +107,25 @@ https://github.com/user-attachments/assets/67eb3847-6550-4c7b-ba60-c88b2339d83f
 - 글쓰기를 완료하면 나만의 코스에 뜨고 여기서는 나만 볼 수 있습니다.
 - 해당 코스 상세 페이지에서 커뮤니티 공유 버튼을 누르면 나만의 코스 커뮤니티에 공유가 되고, 취소도 가능합니다.
 
-https://github.com/user-attachments/assets/9e03976c-a4fd-43de-8b9c-aaab07a7bab7
-
-
-## 6. 나만의 코스 커뮤니티 
-- MBTI별 pick
-- 좋아요 기능
-- 
-
-
-
 <br>
 
+https://github.com/user-attachments/assets/9e03976c-a4fd-43de-8b9c-aaab07a7bab7
+
+<br>
 
 https://github.com/user-attachments/assets/b9c97326-d190-455c-a283-8f3e8087cd08
 
 
+## 6. 나만의 코스 커뮤니티 
+- 다른 사람이 공유한 코스 상세 페이지를 볼 수 있으며, 코스 내의 장소를 클릭하면 장소상세페이지로 이동하여 볼 수 있습니다.
+- MBTI별 pick을 통해 I/E, J/P 성향을 필터함으로써, 성향에 따른 맞춤형 코스를 볼 수 있습니다.
+- 좋아요를 통해 추천 및 공감이 가능합니다.
+- 
+
+
+
 ## 6. 마이페이지 
+
 
 
 
