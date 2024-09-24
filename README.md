@@ -120,19 +120,39 @@ https://github.com/user-attachments/assets/b9c97326-d190-455c-a283-8f3e8087cd08
 - 다른 사람이 공유한 코스 상세 페이지를 볼 수 있으며, 코스 내의 장소를 클릭하면 장소상세페이지로 이동하여 볼 수 있습니다.
 - MBTI별 pick을 통해 I/E, J/P 성향을 필터함으로써, 성향에 따른 맞춤형 코스를 볼 수 있습니다.
 - 좋아요를 통해 추천 및 공감이 가능합니다.
-- 
+
+<br>
+
+https://github.com/user-attachments/assets/9f4a8c32-0df1-4275-8e73-b73ae7311cef
+
+<br>
+
+https://github.com/user-attachments/assets/15fc2d7b-af76-45fb-87b2-c91b57ffeef8
+
+<br>
+
+## 7. 마이페이지 
+- 내정보에서는 사용자의 회원정보와 관심/추천/글/코스 수를 볼 수 있습니다.
+- 관심목록에서는 장소 상세페이지에서 관심목록(하트 버튼을 누른 것들)을 볼 수 있습니다.
+- 추천한 장소에서는 장소 상세페이지에서 추천목록(따봉 버튼을 누른 것들)을 볼 수 있습니다.
+- 내가 쓴글에서는 커뮤니티 게시판에서 작성한 글들을 볼 수 있습니다.
+- 프로필 설정에서는 프로필/닉네임/MBTI 변경, 회원 탈퇴가 가능합니다.
+
+https://github.com/user-attachments/assets/541a1fa1-ac3d-4dff-a4c6-efc6324f74fd
+
+<br>
+
+https://github.com/user-attachments/assets/5f394de8-40c1-47a0-97c8-554bc1795b6b
+
+<br>
+
+
+## 8. 로그인
 
 
 
-## 6. 마이페이지 
 
-
-
-
-## 7. 로그인
-
-
-## 게스트, 로그아웃
+## 9.게스트, 로그아웃
 
 
 
