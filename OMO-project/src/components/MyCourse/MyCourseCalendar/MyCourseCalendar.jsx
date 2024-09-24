@@ -28,7 +28,6 @@ const MyCourseCalendar = ({ time, setTime, idx }) => {
       name="meeting-time"
       value={time[idx] || getCurrentDateTime()}
       onChange={arrTime}
-      min={getCurrentDateTime()} // 현재 시간 이전은 선택 불가
       max={getOneYearLaterDateTime()} // 1년 이후는 선택 불가
     />
   );
