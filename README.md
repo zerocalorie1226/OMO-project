@@ -62,14 +62,11 @@ https://github.com/user-attachments/assets/79a4c022-3fbd-40a3-8af0-773c489a1037
 ## 2. 위치 기반 카테고리별 장소 리스트
 - 카테고리를 대분류-소분류 별로 나눠서 장소 리스트를 보여줍니다.
 - 장소 리스트는 메인페이지에서 설정한 위치를 기반으로 보여줍니다.
+- 검색 필터링 기능
   
 <br>
-  
-
-
+ 
 https://github.com/user-attachments/assets/eb3083e4-d498-4ae0-ba2f-5e64cd4bf973
-
-
 
 <br>
 
@@ -83,26 +80,55 @@ https://github.com/user-attachments/assets/eb3083e4-d498-4ae0-ba2f-5e64cd4bf973
   
 <br>
 
-https://github.com/user-attachments/assets/691181e3-5822-4b75-afab-09e64ca200e5
-
-<br>
-
-https://github.com/user-attachments/assets/953c7d9a-0939-47b6-8b99-8a65f6a71d1e
+https://github.com/user-attachments/assets/a9c2c861-5be0-4320-b5aa-9b5b504534e1
 
 <br>
 
 ## 4. 커뮤니티 고민/자유 게시판
+- 글쓰기 버튼을 통해 작성이 가능합니다.
+- 게시글에는 제목, 닉네임, 작성날짜, 내용, 좋아요/댓글 수가 나타납니다.
+- 좋아요를 통해 공감이 가능합니다.
+- 댓글을 통해 의견을 공유할 수 있습니다.
 
 https://github.com/user-attachments/assets/43254ca4-0ebb-48d9-b116-1039352c112d
 
+<br>
 
+https://github.com/user-attachments/assets/67eb3847-6550-4c7b-ba60-c88b2339d83f
 
+<br>
 
-## 5. 나만의 코스 작성
-
-
+## 5. 나만의 코스 작성 및 커뮤니티 공유
+- 글쓰기 버튼을 통해 작성이 가능합니다.
+- 관심/추천/최근 본 목록에서 장소를 선택해서 코스를 만들 수 있습니다.
+- 개별 장소마다 날짜 및 시간도 설정 가능합니다.
+- 글쓰기를 완료하면 나만의 코스에 뜨고 여기서는 나만 볼 수 있습니다.
+- 해당 코스 상세 페이지에서 커뮤니티 공유 버튼을 누르면 나만의 코스 커뮤니티에 공유가 되고, 취소도 가능합니다.
 
 https://github.com/user-attachments/assets/9e03976c-a4fd-43de-8b9c-aaab07a7bab7
+
+
+## 6. 나만의 코스 커뮤니티 
+- MBTI별 pick
+- 좋아요 기능
+- 
+
+
+
+<br>
+
+
+https://github.com/user-attachments/assets/b9c97326-d190-455c-a283-8f3e8087cd08
+
+
+## 6. 마이페이지 
+
+
+
+## 7. 로그인
+
+
+## 게스트, 로그아웃
 
 
 
