@@ -1,7 +1,7 @@
 # **OMO-project**
 
-FE & BE 협업 프로젝트
-서비스 링크 : https://www.oneulmohae.co.kr/
+- FE & BE 협업 프로젝트
+- 서비스 링크 : https://www.oneulmohae.co.kr/
 
 ## 💻 프로젝트 소개
 
@@ -32,5 +32,12 @@ FE & BE 협업 프로젝트
 
  
 ## 📌 주요 기능
+## 1. 메인 페이지 검색창
+- 위치 허용 안할 시 허용하도록 alert창을 통해 사용자에게 알림
+- 위치 허용 시 자동으로 사용자의 현재 위치를 불러오고, 현재 위치를 기반으로 한 장소 데이터를 불러옴
+- 도로명 주소를 검색 시, 해당 주소를 기반으로한 장소 데이터로 변경됨
+
+https://github.com/user-attachments/assets/79a4c022-3fbd-40a3-8af0-773c489a1037
+
 
 
