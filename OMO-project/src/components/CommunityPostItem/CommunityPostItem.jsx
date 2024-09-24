@@ -1,6 +1,6 @@
-import React, { useRef, useState, useMemo, useEffect } from "react";
+import React, {useRef, useState, useMemo, useEffect} from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import styles from "./CommunityPostItem.module.css";
 import Report from "../../assets/community/worry-board/report.png";
 import Like from "../../assets/detail/empty-thumb.png";
@@ -9,8 +9,8 @@ import DefaultProfileImage from "../../assets/profile-default.png";
 import Comment from "../../assets/community/worry-board/comment.png";
 import Submit from "../../assets/submit.png";
 import SubmitHover from "../../assets/submit-hover.png";
-import { elapsedText } from "../../utils/Time/elapsedText";
-import { formatDate } from "../../utils/Time/formatDate";
+import {elapsedText} from "../../utils/Time/elapsedText";
+import {formatDate} from "../../utils/Time/formatDate";
 import CommunityReportModal from "../ReportModal/CommunityReportModal/CommunityReportModal";
 
 export const CommunityPostItem = (props) => {
@@ -91,7 +91,7 @@ export const CommunityPostItem = (props) => {
 
   useEffect(() => {
     if (props.writerUserMatch !== null && props.writerUserMatch !== undefined) {
-      setShowReportButton(!props.writerUserMatch);
+      setShowReportButton(props.writerUserMatch);
     }
   }, [props.writerUserMatch]);
 
@@ -129,7 +129,7 @@ export const CommunityPostItem = (props) => {
       // 사용자가 토큰이 없는 경우
       const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
       if (confirmLogin) {
-        navigate("/Login", { replace: true });
+        navigate("/Login", {replace: true});
       }
       return;
     }
@@ -138,7 +138,7 @@ export const CommunityPostItem = (props) => {
     try {
       const response = await axios.post(
         `https://api.oneulmohae.co.kr/comment/write`,
-        { content, boardId: props.boardId },
+        {content, boardId: props.boardId},
         {
           headers: {
             Authorization: localStorage.getItem("accessToken"),
@@ -149,14 +149,11 @@ export const CommunityPostItem = (props) => {
 
       if (response.status === 200 || response.status === 201) {
         // 댓글 작성 후 GET 통신으로 데이터 업데이트
-        const getResponse = await axios.get(
-          `https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`,
-          {
-            headers: {
-              Authorization: localStorage.getItem("accessToken"),
-            },
-          }
-        );
+        const getResponse = await axios.get(`https://api.oneulmohae.co.kr/board/${props.category}?page=1&size=10&sorting=createdAt`, {
+          headers: {
+            Authorization: localStorage.getItem("accessToken"),
+          },
+        });
         if (getResponse.status === 200) {
           props.setPosts(getResponse.data.data);
         } else {
@@ -171,7 +168,7 @@ export const CommunityPostItem = (props) => {
       if (error.response && error.response.status === 403) {
         // 403 에러인 경우 (GUEST일 때)
         alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
-        navigate("/Signup", { replace: true });
+        navigate("/Signup", {replace: true});
       } else {
         console.error("게시글을 가져오는데 실패하였습니다:", error);
       }
@@ -186,7 +183,7 @@ export const CommunityPostItem = (props) => {
       // 사용자가 토큰이 없는 경우
       const confirmLogin = confirm("로그인 후 이용 가능한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
       if (confirmLogin) {
-        navigate("/Login", { replace: true });
+        navigate("/Login", {replace: true});
       }
       return;
     }
@@ -230,7 +227,7 @@ export const CommunityPostItem = (props) => {
       if (error.response && error.response.status === 403) {
         // 403 에러인 경우 (GUEST일 때)
         alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
-        navigate("/Signup", { replace: true });
+        navigate("/Signup", {replace: true});
       } else {
         console.error("게시글을 가져오는데 실패하였습니다:", error);
       }
@@ -297,7 +294,7 @@ export const CommunityPostItem = (props) => {
 
             const blob = response.data;
             const blobURL = URL.createObjectURL(blob);
-            return { [el.commentId]: blobURL };
+            return {[el.commentId]: blobURL};
           } catch (error) {
             return { [el.commentId]: el.profileURL };
           }
@@ -307,7 +304,7 @@ export const CommunityPostItem = (props) => {
       });
 
       const imageObjects = await Promise.all(imagePromises);
-      const imagesMap = imageObjects.reduce((acc, cur) => ({ ...acc, ...cur }), {});
+      const imagesMap = imageObjects.reduce((acc, cur) => ({...acc, ...cur}), {});
       setCommentImages(imagesMap);
     };
 
@@ -328,7 +325,7 @@ export const CommunityPostItem = (props) => {
               className={styles["community-post-profile-img"]}
               src={profileImage}
               alt="프로필 이미지"
-              style={{ width: "32px", height: "32px" }}
+              style={{width: "32px", height: "32px"}}
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = DefaultProfileImage;
@@ -349,7 +346,7 @@ export const CommunityPostItem = (props) => {
               댓글 {props.comments.length}
             </span>
 
-            {showReportButton !== null && showReportButton ? (
+            {showReportButton !== null && !showReportButton ? (
               <button
                 className={styles["community-post-report-button"]}
                 type="button"
@@ -357,7 +354,7 @@ export const CommunityPostItem = (props) => {
                   setOpenModal(true);
                 }}
               >
-                <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{ width: "32px", height: "32px" }} />
+                <img className={styles["community-post-report"]} alt="신고 아이콘" src={Report} style={{width: "32px", height: "32px"}} />
               </button>
             ) : null}
             {openModal ? <CommunityReportModal openModal={openModal} setOpenModal={setOpenModal} boardId={props.boardId} /> : null}
@@ -365,20 +362,12 @@ export const CommunityPostItem = (props) => {
         </div>
 
         <div className={styles["community-post-button-wrapper"]}>
-          <button
-            onClick={handleClickLike}
-            type="button"
-            className={`${styles["community-post-like-button"]} ${showComments ? styles["show-comments"] : ""}`}
-          >
+          <button onClick={handleClickLike} type="button" className={`${styles["community-post-like-button"]} ${showComments ? styles["show-comments"] : ""}`}>
             <img className={styles["community-post-like-button-img"]} src={imageSrcLike} alt="좋아요 버튼" />
             좋아요
           </button>
 
-          <button
-            type="button"
-            className={`${styles["community-post-comment-button"]} ${showComments ? styles["show-comments"] : ""}`}
-            onClick={toggleComments}
-          >
+          <button type="button" className={`${styles["community-post-comment-button"]} ${showComments ? styles["show-comments"] : ""}`} onClick={toggleComments}>
             <img className={styles["community-post-comment-button-img"]} src={Comment} alt="댓글 달기 버튼" />
             댓글 달기
           </button>
@@ -406,8 +395,8 @@ export const CommunityPostItem = (props) => {
                 }}
               />
               <button className={styles["community-post-comment-input-button"]} type="submit">
-                <img className={styles["community-post-comment-input-button-img"]} src={Submit} alt="제출 이미지" style={{ width: "35px", height: "35px", marginTop: "6px" }} />
-                <img className={styles["community-post-comment-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{ width: "35px", height: "35px" }} />
+                <img className={styles["community-post-comment-input-button-img"]} src={Submit} alt="제출 이미지" style={{width: "35px", height: "35px", marginTop: "6px"}} />
+                <img className={styles["community-post-comment-input-button-img-hover"]} src={SubmitHover} alt="제출 hover 이미지" style={{width: "35px", height: "35px"}} />
               </button>
             </form>
 
@@ -422,7 +411,7 @@ export const CommunityPostItem = (props) => {
                         className={styles["community-post-comment-profile-img"]}
                         src={commentImages[el.commentId] || DefaultProfileImage} // 댓글 작성자의 프로필 이미지
                         alt="프로필 이미지"
-                        style={{ width: "50px", height: "50px" }}
+                        style={{width: "50px", height: "50px"}}
                       />
                       <div className={styles["community-post-comment-box"]}>
                         <div className={styles["community-post-comment-nick-date"]}>

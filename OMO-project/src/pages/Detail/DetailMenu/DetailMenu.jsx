@@ -28,7 +28,6 @@ const DetailMenu = ({setDefaultListImg}) => {
           : {
               placeId: id, // accessToken이 없으면 placeId 헤더 사용
             };
-        console.log(headers);
 
         const response = await axios.get(`https://api.oneulmohae.co.kr/place/${place_name}`, {headers});
 

@@ -23,12 +23,22 @@ const WorryBoard = () => {
 
   // 게시글 불러오기
   const fetchData = async () => {
+    const accessToken = localStorage.getItem("accessToken"); // accessToken 확인
+    const config = {
+      headers: {},
+    };
+
+    // accessToken이 있으면 헤더에 추가
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+
     try {
-      const response = await axios.get("https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt");
+      const response = await axios.get("https://api.oneulmohae.co.kr/board/Trouble?page=1&size=10&sorting=createdAt", config);
       setPosts(response.data.data);
       setIsLoading(false);
     } catch (error) {
-      console.error("고민게시판을 불러오는데 실패였습니다.", error);
+      console.error("고민게시판을 불러오는데 실패했습니다.", error);
     }
   };
 
@@ -64,9 +74,7 @@ const WorryBoard = () => {
       setBoardId(newPost.boardId); // 새로 생성된 게시글의 ID를 boardId로 설정
       setPosts((prevPosts) => [newPost, ...prevPosts]);
 
-    alert("등록되었습니다");
-
-
+      alert("등록되었습니다");
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // 403 에러인 경우 (GUEST일 때)
