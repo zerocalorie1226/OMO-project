@@ -148,7 +148,7 @@ export const DetailItemsMenu = (props) => {
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // 403 에러인 경우 (GUEST일 때)
-        alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+        alert("회원 추가 정보 입력이 필요합니다. 해당 페이지로 이동합니다.");
         navigate("/Signup", { replace: true });
       } else {
         console.error("장소데이터를 가져오는데 실패하였습니다:", error);
@@ -203,7 +203,7 @@ export const DetailItemsMenu = (props) => {
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // 403 에러인 경우 (GUEST일 때)
-        alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+        alert("회원 추가 정보 입력이 필요합니다. 해당 페이지로 이동합니다.");
         navigate("/Signup", { replace: true });
       } else {
         console.error("장소데이터를 가져오는데 실패하였습니다:", error);
@@ -275,7 +275,7 @@ export const DetailItemsMenu = (props) => {
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // 403 에러인 경우 (GUEST일 때)
-        alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+        alert("회원 추가 정보 입력이 필요합니다. 해당 페이지로 이동합니다.");
         navigate("/Signup", { replace: true });
       } else {
         console.error("장소데이터를 가져오는데 실패하였습니다:", error);
