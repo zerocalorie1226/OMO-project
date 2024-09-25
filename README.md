@@ -1,13 +1,13 @@
 # **OMO-project**
+### FE & BE 협업 프로젝트
+
+
 <img width="300" alt="스크린샷 2024-09-25 오후 2 22 10" src="https://github.com/user-attachments/assets/4d0e7308-3f6c-46c1-8cf7-387ccc2fad81">
 
+
 <br>
 
-- FE & BE 협업 프로젝트
-  
-<br>
-
-- 서비스 링크 : https://www.oneulmohae.co.kr/
+### 서비스 링크 : https://www.oneulmohae.co.kr/
 
 <br>
 
