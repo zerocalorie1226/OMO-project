@@ -22,7 +22,7 @@
 
 <br>
 
-## 개발환경
+## :globe_with_meridians:개발환경
 
 - 개발 언어: Html, Css, JavaScript, Java, SQL
 - 사용 기술: React, Spring Boot, MySQL
