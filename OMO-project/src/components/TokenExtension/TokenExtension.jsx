@@ -12,14 +12,14 @@ const TokenExtension = ({ setIsLoggedIn }) => {
 
   useEffect(() => {
     if (accessToken && refreshToken) {
-      console.log("로컬스토리지 액세스토큰: ", accessToken);
-      console.log("로컬스토리지 리프레쉬토큰: ", refreshToken);
+      // console.log("로컬스토리지 액세스토큰: ", accessToken);
+      // console.log("로컬스토리지 리프레쉬토큰: ", refreshToken);
 
       const accessExpirationTime = getTokenExpiration(accessToken);
       const refreshExpirationTime = getTokenExpiration(refreshToken);
       if (accessExpirationTime && refreshExpirationTime) {
-        console.log("엑세스토큰 남은시간: ", formatRemainingTime(remainingTime.access));
-        console.log("리프레쉬토큰 남은시간: ", formatRemainingTime(remainingTime.refresh));
+        // console.log("엑세스토큰 남은시간: ", formatRemainingTime(remainingTime.access));
+        // console.log("리프레쉬토큰 남은시간: ", formatRemainingTime(remainingTime.refresh));
         updateRemainingTime(accessExpirationTime, refreshExpirationTime);
         const intervalId = setInterval(() => {
           if (isPageFocused) {
@@ -102,12 +102,11 @@ const TokenExtension = ({ setIsLoggedIn }) => {
           Refresh: refreshToken,
         },
       });
-      console.log("통신: ", response);
 
       const newAccessToken = response.headers.authorization;
       const newRefreshToken = response.headers.refresh;
-      console.log("새로운 액세스토큰: ", newAccessToken);
-      console.log("새로운 리프레쉬토큰: ", newRefreshToken);
+      // console.log("새로운 액세스토큰: ", newAccessToken);
+      // console.log("새로운 리프레쉬토큰: ", newRefreshToken);
 
       if (!newAccessToken || !newRefreshToken) {
         throw new Error("새로운 토큰을 받지 못했습니다.");

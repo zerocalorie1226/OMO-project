@@ -40,7 +40,7 @@ const MbtiChange = () => {
       } catch (error) {
         if (error.response && error.response.status === 403) {
           // 403 에러인 경우 (GUEST일 때)
-          alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+          alert("회원 추가 정보 입력이 필요합니다. 해당 페이지로 이동합니다.");
           navigate("/Signup", { replace: true });
         } else {
           alert("MBTI 변경 중 오류가 발생했습니다. 다시 시도해주세요.");
