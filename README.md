@@ -140,6 +140,7 @@ https://github.com/user-attachments/assets/9e03976c-a4fd-43de-8b9c-aaab07a7bab7
 
 https://github.com/user-attachments/assets/b9c97326-d190-455c-a283-8f3e8087cd08
 
+<br>
 
 ## 7. 나만의 코스 커뮤니티 
 - 다른 사람이 공유한 코스 상세 페이지를 볼 수 있으며, 코스 내의 장소를 클릭하면 해당 장소상세페이지로 이동하여 볼 수 있습니다.
@@ -179,7 +180,10 @@ https://github.com/user-attachments/assets/a99a5f51-0b17-46ec-9f29-13685c9c8010
 
 <br>
 
-https://github.com/user-attachments/assets/17864652-a305-47aa-bbad-9afc3136273f
+
+https://github.com/user-attachments/assets/632ec7d7-70a8-49b0-a5d9-b3ad4b87c8dd
+
+
 
 <br>
 
