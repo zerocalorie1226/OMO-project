@@ -386,7 +386,7 @@ export const CommunityPostItem = (props) => {
                 id="comment"
                 name="comment"
                 minLength="2"
-                maxLength="40"
+                maxLength="250"
                 size="10"
                 placeholder="댓글을 입력하세요..."
                 value={content || ""}
