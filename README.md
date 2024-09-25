@@ -17,7 +17,7 @@
 
 <br>
 
-## **TYING 프로젝트의 구성원**
+## :information_desk_person:TYING 프로젝트의 구성원
 - 황혜인, 조성찬, 홍승현, 이호준, 황제현
 
 <br>
