@@ -96,10 +96,16 @@ const MyCourseDetail = () => {
         console.error("게시글을 가져오는데 실패하였습니다.");
       }
     } catch (error) {
-      console.error("게시글을 가져오는데 실패하였습니다.:", error);
+      if (error.response && error.response.status === 403) {
+        // 403 에러인 경우 (GUEST일 때)
+        alert("회원 추가 정보 입력이 필요합니다. 해당 페이지로 이동합니다.");
+        navigate("/Signup", { replace: true });
+      } else {
+        console.error("게시글을 가져오는데 실패하였습니다:", error);
+        setLoading(false);
+      }
     }
-  };
-
+  }
   // like 값을 사용하여 초기 상태 설정 (따봉 누른 것들 새로고침해도 유지하게끔)
   useEffect(() => {
     if (detailData) {

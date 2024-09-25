@@ -167,7 +167,7 @@ export const CommunityPostItem = (props) => {
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // 403 에러인 경우 (GUEST일 때)
-        alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+        alert("회원 추가 정보 입력이 필요합니다. 해당 페이지로 이동합니다.");
         navigate("/Signup", {replace: true});
       } else {
         console.error("게시글을 가져오는데 실패하였습니다:", error);
@@ -226,7 +226,7 @@ export const CommunityPostItem = (props) => {
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // 403 에러인 경우 (GUEST일 때)
-        alert("회원정보 입력이 필요합니다. 회원가입 페이지로 이동합니다.");
+        alert("회원 추가 정보 입력이 필요합니다. 해당 페이지로 이동합니다.");
         navigate("/Signup", {replace: true});
       } else {
         console.error("게시글을 가져오는데 실패하였습니다:", error);
@@ -386,7 +386,7 @@ export const CommunityPostItem = (props) => {
                 id="comment"
                 name="comment"
                 minLength="2"
-                maxLength="40"
+                maxLength="250"
                 size="10"
                 placeholder="댓글을 입력하세요..."
                 value={content || ""}
