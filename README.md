@@ -1,5 +1,5 @@
 # **OMO-project**
-### :two_men_holding_hands:FE & BE 협업 프로젝트
+### :sparkles: FE & BE 협업 프로젝트 :sparkles:
 
 
 <img width="300" alt="스크린샷 2024-09-25 오후 2 22 10" src="https://github.com/user-attachments/assets/4d0e7308-3f6c-46c1-8cf7-387ccc2fad81">
