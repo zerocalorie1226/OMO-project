@@ -21,13 +21,13 @@ export const CommunityPostItem = (props) => {
   const [image, setImage] = useState(DefaultProfileImage);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    if (!loggedIn) {
-      alert("로그인 후 이용 가능한 서비스입니다.");
-      navigate("/Login", {replace: true});
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+  //   if (!loggedIn) {
+  //     alert("로그인 후 이용 가능한 서비스입니다.");
+  //     navigate("/Login", {replace: true});
+  //   }
+  // }, [navigate]);
 
   useEffect(() => {
     const fetchData = async () => {
