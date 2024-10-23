@@ -31,7 +31,7 @@
 ## :globe_with_meridians: 개발환경
 
 - 개발 언어: Html, Css, JavaScript, Java
-- 사용 기술: React, Spring Boot, MySQL
+- 사용 기술: React, Spring Boot, MySQL, Redis
 - 배포 : AWS EC2, Vercel
 - 버전 관리 및 협업 : Git, Github, Figma, Discord, Confluence, Notion, SpreadSheets
 
